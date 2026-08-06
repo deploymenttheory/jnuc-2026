@@ -1,0 +1,73 @@
+name: Deploy presentations
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "presentations/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+# A sync plus an invalidation is not atomic, so never let two runs overlap.
+# Queue instead of cancelling: a cancelled run can leave the bucket half-synced.
+concurrency:
+  group: deploy-presentations
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  AWS_REGION: eu-west-2
+  BUCKET: jl-html-presentation-2026
+  DISTRIBUTION_ID: E2OOVHG9JBN54J
+
+jobs:
+  deploy:
+    name: Sync to S3 and invalidate CloudFront
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # The bucket mirrors presentations/ exactly, so the URL layout is the repo
+      # layout. _shared/ must ship: both decks load ../_shared/speakers.js.
+      - name: Sync presentations to S3
+        run: |
+          aws s3 sync presentations/ "s3://${BUCKET}/" --delete \
+            --exclude "*.md" \
+            --exclude ".DS_Store"
+
+      # CachingOptimized holds objects at the edge for a day, so a sync alone
+      # will not show up.
+      - name: Invalidate CloudFront
+        run: |
+          id="$(aws cloudfront create-invalidation \
+            --distribution-id "${DISTRIBUTION_ID}" \
+            --paths '/*' \
+            --query 'Invalidation.Id' \
+            --output text)"
+          echo "Invalidation ${id} created, waiting for it to complete"
+          aws cloudfront wait invalidation-completed \
+            --distribution-id "${DISTRIBUTION_ID}" \
+            --id "${id}"
+
+      - name: Summarise
+        run: |
+          url="https://d3ga0oyittaf77.cloudfront.net"
+          {
+            echo "### Deployed"
+            echo
+            for deck in presentations/*/; do
+              name="$(basename "$deck")"
+              [ "$name" = "_shared" ] && continue
+              echo "- [${name}](${url}/${name}/)"
+            done
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -715,6 +715,8 @@ body.presenter #viewport { display: none; }
       </svg>
 
       <footer class="s00-credit">
+        <!-- Overwritten from ../_shared/speakers.js at load. Kept here as a fallback so the
+             title slide is never blank if _shared/ goes missing; the shared file always wins. -->
         <p class="credit-name">Joseph Little &middot; Gordon Deacon &middot; Dafydd Watkins</p>
         <p class="credit-line caption muted">Lloyds Banking Group</p>
       </footer>
@@ -732,23 +734,8 @@ body.presenter #viewport { display: none; }
     <section class="slide" id="s00b" aria-label="Who we are" data-when="2025-11">
       <h1 class="slide-title">Who we are
         <span class="todo">TODO: roles + photos</span></h1>
-      <div class="speakers">
-        <div class="card speaker">
-          <div class="speaker-photo" aria-hidden="true">photo</div>
-          <h2 class="speaker-name">Joseph Little</h2>
-          <p class="caption muted">Lloyds Banking Group</p>
-        </div>
-        <div class="card speaker">
-          <div class="speaker-photo" aria-hidden="true">photo</div>
-          <h2 class="speaker-name">Gordon Deacon</h2>
-          <p class="caption muted">Lloyds Banking Group</p>
-        </div>
-        <div class="card speaker">
-          <div class="speaker-photo" aria-hidden="true">photo</div>
-          <h2 class="speaker-name">Dafydd Watkins</h2>
-          <p class="caption muted">Lloyds Banking Group</p>
-        </div>
-      </div>
+      <!-- Cards are built from ../_shared/speakers.js - see the render block at the end of body. -->
+      <div class="speakers"></div>
       <aside class="notes">
         <p>Quick intros - name, role, and which part of the story each person tells.</p>
       </aside>
@@ -1442,6 +1429,51 @@ body.presenter #viewport { display: none; }
   </div>
 </div>
 
+<script src="../_shared/speakers.js"></script>
+<script>
+// Speaker names on the title slide and the S00b cards, built from the shared
+// records so both decks stay in step. This deck shows name and org only - roles
+// and photos are still open TODOs here, so the extra shared fields go unused.
+(function () {
+  var people = window.JNUC_SPEAKERS;
+  var order = ['joseph', 'gordon', 'dafydd'];
+  if (!people) return;
+
+  var credit = document.querySelector('#s00 .credit-name');
+  if (credit) {
+    credit.textContent = order.map(function (id) {
+      return people[id] ? people[id].name : '';
+    }).filter(Boolean).join(' · ');
+  }
+
+  var host = document.querySelector('#s00b .speakers');
+  if (!host) return;
+  order.forEach(function (id) {
+    var p = people[id];
+    if (!p) return;
+    var card = document.createElement('div');
+    card.className = 'card speaker';
+
+    var photo = document.createElement('div');
+    photo.className = 'speaker-photo';
+    photo.setAttribute('aria-hidden', 'true');
+    photo.textContent = 'photo';
+
+    var name = document.createElement('h2');
+    name.className = 'speaker-name';
+    name.textContent = p.name;
+
+    var org = document.createElement('p');
+    org.className = 'caption muted';
+    org.textContent = p.org;
+
+    card.appendChild(photo);
+    card.appendChild(name);
+    card.appendChild(org);
+    host.appendChild(card);
+  });
+})();
+</script>
 <script>
 (function () {
   var qs = new URLSearchParams(location.search);

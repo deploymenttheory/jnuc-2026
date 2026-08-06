@@ -5,31 +5,106 @@ in the same change whenever anything here becomes inaccurate or stale.
 
 ## What this repo is
 
-A JNUC 2026 conference talk: **"From Clicks to Code - Migrating Jamf Pro to Terraform at
-Lloyds Banking Group"**. The deliverable is `index.html` - a single self-contained HTML deck.
-30-minute slot, three speakers: Joseph Little, Gordon Deacon, Dafydd Watkins (all LBG).
+Home for all public JNUC 2026 materials. It holds more than one conference talk. Each talk is
+a self-contained folder under `presentations/`. One deck is ported in so far; a second is
+expected.
 
-## Files
-
-| File | Role |
+| Deck | Status |
 |---|---|
-| `index.html` | The deck. The only deliverable. |
-| `presenter.json` | Per-slide speaker notes and timer lengths plus the 30-minute talk limit. Notes are a copy of the deck's `<aside class="notes">` text - keep both in sync when notes change. Timer allocations are proposed, not rehearsed. Nothing reads this file yet. |
-| `spec.md` | Spec and change history: the original build runbook, Joseph's source narrative and full repo tree, all three Q&A rounds answered inline, and a decision index. **Historical** - sections marked SUPERSEDED (deck order, palette values, open-questions index) predate the story restructure. |
+| `presentations/migrating_an_instance` | Ported in and being worked on. Full detail below. |
+| `presentations/training_a_team` | Deck dropped in, not yet worked on here. Full detail below. |
 
-`spec.md` is provenance for every fact in the deck. Do not delete it; do not treat its
-superseded sections as current. This file wins wherever the two disagree.
+The two decks look nothing like each other - one is a light LBG-green theme, the other is
+near-black. That is deliberate. Do not harmonise their styling.
 
-## Authoring rules for index.html
+## Layout
 
-- One self-contained file. Zero external requests: no CDNs, webfonts, external JS or images.
-- All styling derives from the token block in `:root`. Never hardcode a colour/font/size in
-  slide markup - add a token if a new value is needed.
+| Path | Role |
+|---|---|
+| `presentations/<slug>/` | One talk. Snake-case slug. Each deck owns its own HTML, tokens and script; decks do not import from each other beyond `_shared/`. |
+| `presentations/_shared/` | Data used by more than one deck. Currently `speakers.js` only. Content, not styling - see below. |
+| `.github/workflows/` | Empty. There is no CI. |
+| `README.md`, `LICENSE` | Repo boilerplate. |
+
+`.github/workflows/` is empty, so git does not track it - it exists on Joseph's machine only
+until something is committed inside it.
+
+## Shared speaker data
+
+`presentations/_shared/speakers.js` is the single source of truth for who is speaking. It
+sets `window.JNUC_SPEAKERS`, keyed by `dafydd` / `joseph` / `gordon`, each with `name`,
+`initials`, `org`, `role`, `bio` and `photo` (a self-contained data URI, or `null`).
+
+- It is loaded with a plain `<script src="../_shared/speakers.js">`, not `fetch`. `fetch` on
+  a `file://` page is blocked by CORS; a classic script tag is not, so the decks still work
+  opened straight off disk. Verified in headless Chrome over both `file://` and `http://`.
+- The fields are a **superset**. Each deck renders only what its own layout uses, in its own
+  order, with its own classes, from a small render block just before its main script. Adding
+  a field here changes nothing until a deck asks for it.
+- Strings are plain text, injected with `textContent`, so write `&` not `&amp;`.
+- `migrating_an_instance` uses `name` and `org` only. It deliberately ignores `role` and
+  `photo` - that deck still carries a "roles + photos" TODO and its own photo treatment is
+  unsettled. The data is there whenever that TODO is picked up.
+- `training_a_team` uses `initials`, `name`, `role`, `bio` and `photo`. Only Dafydd has a
+  photo; the render skips the `<img>` for anyone whose `photo` is `null`.
+- The title-slide credit line in `migrating_an_instance` keeps its hardcoded names as a
+  fallback so the opening slide is never blank if `_shared/` goes missing. The shared file
+  overwrites it on load and always wins. The speaker cards have no such fallback - three
+  duplicated cards were not worth the drift risk.
+
+`_shared/` must ship anywhere a deck ships. A deck copied out on its own loses its speakers.
+
+## House rules for every deck
+
+These apply to any deck in this repo, current or future.
+
+- One HTML file per deck, holding its own CSS, JS and images. Zero requests off the machine:
+  no CDNs, webfonts, remote JS or remote images. The only local file a deck may reference is
+  `../_shared/speakers.js`. A deck must work opened straight off disk.
+- All styling derives from the token block in that deck's `:root`. Never hardcode a
+  colour/font/size in slide markup - add a token if a new value is needed.
 - **Never invent facts, numbers, resource names, or rationale.** Anything unconfirmed gets an
   amber TODO chip: `<span class="todo">TODO: ...</span>`.
 - **Titles are plain and human.** No colon-glued two-part titles ("The Wall: How We Hit It")
   and no clever fragment titles ("The shape that stuck"). Write titles the way a person
   would: "Getting past Sentinel", "The module structure", "Rebuilding staging".
+- Visible keyboard focus states on anything interactive.
+- British English. No emojis. No em-dashes - plain hyphens only (user preference, applies to
+  every deliverable in this repo).
+- Tone: professional but not boring.
+- 1920x1080 canvas scaled to viewport; arrow/space/Home/End navigation, plus single-finger
+  horizontal swipe on touch devices (60px threshold, pinches and vertical drags ignored);
+  URL hash per slide; respect `prefers-reduced-motion`.
+- Every slide carries speaker notes in a hidden `<aside class="notes">` (last element of the
+  section). Notes are delivery cues in full sentences; they ship inside the HTML, so keep
+  them safe for public reading or strip them from any copy that gets distributed.
+- Nothing in a deck may depend on where it is served from. The presenter window opens off
+  `location.pathname`, which is why the move into `presentations/` needed no code change -
+  keep it that way.
+
+The presenter view and reader mode below are implemented inside `migrating_an_instance`'s
+`index.html`, not in shared code. A second deck wanting them has to copy the pattern across.
+If that happens, that is the first real candidate for `_shared/`.
+
+## Deck: presentations/migrating_an_instance
+
+**"From Clicks to Code - Migrating Jamf Pro to Terraform at Lloyds Banking Group"**.
+30-minute slot, three speakers: Joseph Little, Gordon Deacon, Dafydd Watkins (all LBG).
+
+### Files
+
+| File | Role |
+|---|---|
+| `index.html` | The deck. Needs `../_shared/speakers.js` alongside it for the title credit and the S00b cards. |
+| `presenter.json` | Per-slide speaker notes and timer lengths plus the 30-minute talk limit. Notes are a copy of the deck's `<aside class="notes">` text - keep both in sync when notes change. Timer allocations are proposed, not rehearsed. Nothing reads this file yet. |
+| `spec.md` | Spec and change history: the original build runbook, Joseph's source narrative and full repo tree, all three Q&A rounds answered inline, and a decision index. **Historical** - sections marked SUPERSEDED (deck order, palette values, open-questions index) predate the story restructure. |
+
+`spec.md` is provenance for every fact in the deck. Do not delete it; do not treat its
+superseded sections as current. This file wins wherever the two disagree. Note that `spec.md`
+predates the move into `presentations/`, so any repo tree or path it quotes is stale.
+
+### Deck-specific authoring rules
+
 - **Dates live on the persistent timeline, not in slide content.** Every `<section>` carries
   `data-when="YYYY-MM"` or `data-when="YYYY-MM:YYYY-MM"` (a month range). A fixed strip at
   the bottom of the stage runs Nov 2025 -> Jul 2026 (present day); the active slide's range
@@ -48,21 +123,11 @@ superseded sections as current. This file wins wherever the two disagree.
 - The recurring motif is clicks vs code: UI-chrome fragments in muted text giving way to
   monospace HCL in the accent colour. Title slide and close only - never on every slide.
   Currently carried by the title wording rather than a drawn device.
-- Visible keyboard focus states on anything interactive.
-- British English. No emojis. No em-dashes - plain hyphens only (user preference, applies to
-  every deliverable in this repo).
-- Tone: professional but not boring.
-- 1920x1080 canvas scaled to viewport; arrow/space/Home/End navigation, plus single-finger
-  horizontal swipe on touch devices (60px threshold, pinches and vertical drags ignored);
-  URL hash per slide; respect `prefers-reduced-motion`.
 - Palette is a light LBG-green theme; fonts prefer GT Ultra with system fallbacks. Both are
   placeholders until logo/brand assets arrive (Q1).
 
-## Presenter notes and reader mode
+### Presenter view and reader mode
 
-- Every slide carries speaker notes in a hidden `<aside class="notes">` (last element of the
-  section). Notes are delivery cues in full sentences; they ship inside the HTML, so keep
-  them safe for public reading or strip them from any copy that gets distributed.
 - **Presenter view**: pressing `p` in the deck opens a second window
   (`?presenter=1`) showing current slide (from the section's `aria-label`), notes, next
   slide, slide count, and a click-to-reset elapsed timer. Windows sync via BroadcastChannel
@@ -72,15 +137,15 @@ superseded sections as current. This file wins wherever the two disagree.
   the visible slide title.
 - `presenter.json` mirrors the notes with per-slide `timerSeconds` (summing to the
   1800-second `timeLimitSeconds`). It is not wired into the presenter view; the deploy sync
-  ships it to S3 (only `*.md` is excluded), which is fine while it only duplicates the
-  already-public notes.
+  ships it to S3 (only `*.md` and `.DS_Store` are excluded), which is fine while it only
+  duplicates the already-public notes.
 - **Reader mode**: press `d` or open with `?reader=1`. Reveals "More detail"
   `<details class="reader-extra">` popovers on selected slides (currently s01, s05,
   s-singletons, s-sentinel, s12, s15b, s-staging, s-today) for post-presentation viewers.
   The counter shows a "reader" tag while active. Popover content follows the same
   no-invented-facts rule.
 
-## Current slide order (story arc)
+### Current slide order (story arc)
 
 Context -> decisions -> first wins -> the wall -> the loop -> growing pains -> payoff.
 23 slides, trimmed from 27 to fit the 30-minute slot. Legacy section ids kept stable across
@@ -113,7 +178,7 @@ reorders (so `s10` no longer sits at position 10); new story slides use semantic
 Former slides folded away in the trim: `s06` (into s10's intro), `s09` (into s10),
 `s-refine` (into s12), `s15` (chips moved to s15b; its 500/1,500/5,000 figures remain on s04).
 
-## Settled story facts (do not re-ask, do not contradict)
+### Settled story facts (do not re-ask, do not contradict)
 
 - **Estate at the start:** Sandbox (no parity), Staging (parity on paper, drifted, no history
   to reconcile), Production. DevTest was added recently (2026) as the first stop on the route
@@ -155,12 +220,12 @@ Former slides folded away in the trim: `s06` (into s10's intro), `s09` (into s10
   figures); per-team modules (internal approval complexity - expansion TODO); managing
   everything (static group membership unmanaged to protect support).
 
-## Outstanding TODO chips in the deck
+### Outstanding TODO chips in the deck
 
 | Slide | TODO | Owner |
 |---|---|---|
 | `s00` | Logo/brand assets (Q1) | Joseph |
-| `s00b` | Speaker roles + photos | Joseph |
+| `s00b` | Speaker roles + photos. Real roles and Dafydd's photo now exist in `_shared/speakers.js`; this deck ignores them on purpose until the treatment is decided | Joseph |
 | `s02` | Support team access model (unconfirmed prior reading in `spec.md` §2.4 S02: 1st/2nd line actions only, 3rd line resource management) | Joseph |
 | `s04` | Expand per-team-modules approval complexity | Joseph |
 | `s07` | More prep points (Joseph wants to explain why) | Joseph |
@@ -178,32 +243,107 @@ Former slides folded away in the trim: `s06` (into s10's intro), `s09` (into s10
 Three chips still carry question numbers from the first build (`TODO Q1`, `TODO Q9`,
 `TODO Q12`). Those resolve in `spec.md` §2.5 and §4.
 
+## Deck: presentations/training_a_team
+
+**"ClickOps to GitOps - Learning Journey"**, in `clickops-to-gitops.html` (not `index.html`).
+20 slides. Dropped in as a finished-looking deck; no spec, notes file or slot length has been
+recorded here yet, and no work has been done on it in this repo beyond wiring its speakers to
+`_shared/`.
+
+Everything about it is its own: near-black theme, its own token names (`--green-deep`,
+`--green-bright`, `--mono`), its own slide machinery. Nothing is borrowed from the other deck
+and nothing should be.
+
+- Slides are `<section class="slide">` with no ids except `#s1`. Navigation is by index -
+  the URL hash is `#1`..`#20`, not a slide name.
+- Notes live in a `data-notes` attribute on each section, shown in an overlay toggled with
+  `n`. There is no second-window presenter view and no `presenter.json`.
+- Keys: arrows / PageUp / PageDown / space / Home / End to move, `n` notes, `f` fullscreen.
+  Clicking the left 28% of the screen goes back, anywhere else forward.
+- Speakers are on slide 2 (`#2`), rendered from `_shared/speakers.js`.
+
+Known gaps, none of them addressed:
+
+- The deck uses em-dashes throughout (13 literal, 43 `&mdash;`), against the repo-wide
+  no-em-dash rule. Pre-existing, left alone.
+- No spec or provenance file, so the facts on its slides have no recorded source.
+- Slot length and which of the three speakers present it are unrecorded.
+
 ## Deployment
 
-- Live at https://d3ga0oyittaf77.cloudfront.net - CloudFront in front of a private S3 bucket
-  (`jl-html-presentation-2026`, OAC access). Infra: `~/Github/terraform/aws/bucket_presentation.tf`
-  (VCS-driven HCP Terraform workspace, no local CLI state access).
-- Deploy with `~/Github/terraform/aws/deploy_presentation.sh` - syncs this repo to S3
-  (excluding `.git`, `*.md`, `.DS_Store`), then creates and waits on a CloudFront
-  invalidation. A sync alone is not enough: the distribution uses CachingOptimized
-  (day-long edge TTL).
-- The `*.md` exclude keeps this file and `spec.md` off the site, but `index.html` ships with
-  the presenter notes embedded - keep them public-safe.
-- The stage scales to `visualViewport` (fallback `innerWidth/innerHeight`) so browsers with
-  dynamic chrome (mobile toolbars) don't hide the bottom of the deck - the timeline strip
-  sits there. Headless-Chrome caveat when verifying: old headless enforces a minimum window
-  width of ~500px, so phone-sized `--window-size` screenshots clip on the right; that is the
-  test tool, not the deck.
+`.github/workflows/deploy.yml` deploys this repo on merge to `main` (only when
+`presentations/**` or the workflow itself changes) and on manual dispatch. It syncs
+`presentations/` to S3 with `--delete`, then creates a CloudFront invalidation and waits for
+it — a sync alone is not enough, because the distribution uses CachingOptimized and holds
+objects at the edge for a day.
+
+The bucket mirrors `presentations/` exactly, so the URL layout is the repo layout:
+
+| Path | Serves |
+| --- | --- |
+| `/migrating_an_instance/` | `presentations/migrating_an_instance/index.html` |
+| `/training_a_team/` | `presentations/training_a_team/index.html` |
+| `/_shared/speakers.js` | `presentations/_shared/speakers.js` |
+
+Live at https://d3ga0oyittaf77.cloudfront.net — CloudFront in front of a private S3 bucket
+(`jl-html-presentation-2026`, OAC access). Infra is `~/Github/terraform/presentation.tf`, an
+S3-backend workspace driven from the local CLI. That repo owns the bucket, the distribution
+and the `jnuc-2026-deploy` IAM user; the bucket name and distribution ID are duplicated in
+this workflow's `env:` block, so a change on either side needs the other updated.
+
+Things that will bite you:
+
+- **Every deck directory needs an `index.html`.** A CloudFront Function resolves `/<deck>/`
+  to `/<deck>/index.html` and 301s a bare `/<deck>` to `/<deck>/`. Any other filename is
+  only reachable by its full path.
+- **Keep shared assets relative and one level up.** Both decks load
+  `../_shared/speakers.js`, which resolves to `/_shared/speakers.js` only because every deck
+  sits one level down in a single bucket. A deck nested deeper, or moved to its own bucket,
+  loses its speakers.
+- **There is no root page yet**, so `/` returns an error rather than a deck listing. The
+  distribution has no `custom_error_response`, and a private S3 origin answers a missing key
+  with 403 rather than 404, so misses surface as 403.
+- The `*.md` exclude keeps this file and each deck's `spec.md` off the site, but the decks
+  ship with their presenter notes embedded — keep them public-safe.
+
+The workflow authenticates with an IAM user access key, held as the `AWS_ACCESS_KEY_ID` and
+`AWS_SECRET_ACCESS_KEY` repo secrets. The user is scoped to this one bucket and this one
+distribution and can do nothing else in the account.
+
+Deck rendering itself survived the move: the stage scales to `visualViewport` (fallback
+`innerWidth/innerHeight`) so browsers with dynamic chrome (mobile toolbars) don't hide the
+bottom of the deck - the timeline strip sits there. Headless-Chrome caveat when verifying:
+old headless enforces a minimum window width of ~500px, so phone-sized `--window-size`
+screenshots clip on the right; that is the test tool, not the deck.
 
 ## Verifying changes
 
-No build step. To check slides render without overflow, screenshot with headless Chrome:
+No build step. Serve from the repo root and address decks by their path. To check slides
+render without overflow, screenshot with headless Chrome:
 
 ```sh
 python3 -m http.server 8741 &   # from the repo root
 CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+DECK="http://localhost:8741/presentations/migrating_an_instance/index.html"
 "$CHROME" --headless --disable-gpu --window-size=1920,1080 --hide-scrollbars \
-  --screenshot=/tmp/slide.png "http://localhost:8741/index.html#<slide-id>"
+  --virtual-time-budget=3000 --screenshot=/tmp/slide.png "$DECK#s00b"
+```
+
+For `training_a_team`, swap in `training_a_team/clickops-to-gitops.html` and use a numeric
+hash (`#2`), not a slide id.
+
+When a change is meant to leave the rendering alone - anything sourced from `_shared/`, for
+instance - prove it rather than eyeballing it. Screenshot before, screenshot after, and
+`cmp` the PNGs; they should be byte-identical. `git show HEAD:<path> > _orig.html` inside the
+deck directory gives a baseline to serve alongside the working copy (delete it afterwards).
+
+Anything touching `_shared/` also needs a `file://` check, since that is where a relative
+script src would break:
+
+```sh
+"$CHROME" --headless --disable-gpu --window-size=1920,1080 --hide-scrollbars \
+  --virtual-time-budget=3000 --screenshot=/tmp/file.png \
+  "file:///Users/josephlittle/Github/jnuc-2026/presentations/migrating_an_instance/index.html#s00b"
 ```
 
 Also check after any structural change:
@@ -217,4 +357,5 @@ Also check after any structural change:
   covers the first-slide case.
 
 (Serving over HTTP avoids file:// restrictions and is required for presenter sync; any port
-works.)
+works. The timeline and reader-mode checks are `migrating_an_instance` specifics -
+`training_a_team` has neither.)
