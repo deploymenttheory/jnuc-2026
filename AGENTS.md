@@ -253,8 +253,43 @@ Three chips still carry question numbers from the first build (`TODO Q1`, `TODO 
 `clickops-to-gitops.html` when the site moved to path-per-deck: the CloudFront Function
 resolves `/training_a_team/` to `index.html`, so any other filename is only reachable by its
 full path. 20 slides. Dropped in as a finished-looking deck; no spec, notes file or slot
-length has been recorded here yet, and no work has been done on it in this repo beyond wiring
-its speakers to `_shared/`.
+length has been recorded here yet. Content work has now begun, slide by slide (Aug 2026):
+
+- **Goals** (`#3`): new learning-outcome cards, a "what success looked like" behaviours block,
+  a non-goals strip and a trained-bar definition.
+- **Execution** (`#4`): rebuilt from scratch. The old six-box left-to-right pathway is gone,
+  replaced by a fan-out - a hub panel (one engineer seconded into the DevOps CoE, 3 months,
+  train-the-trainer) bracketed by an SVG to five outcome cards (materials, session design,
+  hackathons and homework, migration waves, handover), with two full-width arrows underneath
+  showing the two-way trade: domain context in, GitOps practice back. Classes `.fanout`,
+  `.hub`, `.brace`, `.spokes`/`.spoke`, `.flow`/`.flowrow`; the old `.pathway`, `.stepcard`,
+  `.chev` and `.insight` rules were deleted with it.
+- **What didn't work** (`#6`): rebuilt, replacing two cards and an `xxx` placeholder. A hero
+  SVG chart runs across the top: green bands mark teaching sessions, and a gradient line
+  rises through each one then decays through the gap that follows, trending down over six
+  months. **That curve is illustrative, not measured**, and the slide says so in a
+  `SHAPE IS ILLUSTRATIVE` label - keep that label if the chart is edited. Below it sit eight
+  chips: seven failures plus one green chip for what replaced the programme, then a quote
+  strip. Classes `.chartwrap`/`.chd`, `.fchips`/`.fchip` (`.won` for the green one) and
+  `.qstrip`, plus a `--red-light` token. The earlier `.failcard`, `.quotecard`, `.swapcard`
+  and `dense6` rules were deleted with the layout they served.
+- **Conditions** (`#7`): an added "Expect the dip" card.
+
+Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an `--amber`
+token for exactly that. Earlier work wired its speakers to `_shared/`.
+
+The figures on `#6` are measured, not estimated. They come from
+`github.com/deploymenttheory/terraform-training-jamfpro` at the time of writing: 214,645
+words across 51 markdown files in `training_materials/` (of which 20 Terraform modules sit in
+a `WIP/` folder) against 3,778 words across 6 files in `training_essentials/`, a ratio of
+roughly 57 to 1. The 144 prescribed hours are the TOTAL row of the module table in
+`training_materials/0.0.0_module_overview.md` (85.5 instructor-led plus 58.5 student-led).
+Re-measure with `wc -w` before quoting them again, since the repo is still being worked on.
+
+The reading of those 144 hours matters and is the speaker's, not a derived one: it is about
+four weeks of learning, which is roughly right for the number of topics. The failure was the
+calendar, not the volume - four weeks of content delivered across six months, with interest
+wandering off in the gaps. Don't recast it as "too much content".
 
 Everything about it is its own: near-black theme, its own token names (`--green-deep`,
 `--green-bright`, `--mono`), its own slide machinery. Nothing is borrowed from the other deck
@@ -270,8 +305,10 @@ and nothing should be.
 
 Known gaps, none of them addressed:
 
-- The deck uses em-dashes throughout (13 literal, 43 `&mdash;`), against the repo-wide
-  no-em-dash rule. Pre-existing, left alone.
+- The deck uses em-dashes throughout (9 literal, 34 `&mdash;`), against the repo-wide
+  no-em-dash rule. Pre-existing; the working rule is that any slide touched by content work
+  is brought fully to house style (the Goals and Conditions slides already have been), the
+  rest are left alone until touched.
 - No spec or provenance file, so the facts on its slides have no recorded source.
 - Slot length and which of the three speakers present it are unrecorded.
 
