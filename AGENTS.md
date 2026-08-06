@@ -323,7 +323,8 @@ Known gaps, none of them addressed:
 `presentations/**` or the workflow itself changes) and on manual dispatch. It syncs
 `presentations/` to S3 with `--delete`, then creates a CloudFront invalidation and waits for
 it. A sync alone is not enough, because the distribution uses CachingOptimized and holds
-objects at the edge for a day.
+objects at the edge for a day. Last, it rewrites the CloudFront link in `README.md` to
+whatever the distribution actually reports and pushes that back to `main`.
 
 The bucket mirrors `presentations/` exactly, so the URL layout is the repo layout:
 
@@ -340,6 +341,14 @@ S3-backend workspace driven from the local CLI. That repo owns the bucket, the d
 and the `jnuc-2026-deploy` IAM user; the bucket name and distribution ID are duplicated in
 this workflow's `env:` block, so a change on either side needs the other updated.
 
+The domain is not duplicated anywhere. The workflow reads it from
+`cloudfront get-distribution` at deploy time and uses it for both the run summary and the
+README rewrite, so replacing the distribution only means updating `DISTRIBUTION_ID`. That
+needs `cloudfront:GetDistribution` on the deploy user (granted in the same `InvalidateDistribution`
+statement as the invalidation permissions) and `contents: write` on the workflow, which is
+what lets it push the README commit as `github-actions[bot]`. The URL above is the one place
+still maintained by hand - the rewrite only touches `README.md`.
+
 Things that will bite you:
 
 - **Every deck directory needs an `index.html`.** A CloudFront Function resolves `/<deck>/`
@@ -353,6 +362,9 @@ Things that will bite you:
   be reachable from anywhere until you add a card to `presentations/index.html`. That list is
   hand-maintained on purpose: generating it would mean client-side JS or a build step, and
   this site has neither.
+- **The README's link is generated.** Any `*.cloudfront.net` URL in `README.md` gets
+  overwritten on the next deploy, so edit the distribution, not the file. The rewrite is a
+  regex over the whole file - a different CloudFront URL added there would be clobbered too.
 - **A miss still returns 403, not 404.** The distribution has no `custom_error_response`, and
   a private S3 origin answers a missing key with 403. Only `/` and the deck paths are
   guaranteed to resolve.
