@@ -5,28 +5,270 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ClickOps to GitOps — Learning Journey</title>
 <style>
+/* ============================================================================
+   COLOUR KNOBS
+   Every colour in this deck resolves to one of the semantic tokens below. Never
+   hardcode a hex in slide CSS or markup - add or reuse a knob instead, or the
+   themes further down will not reach it.
+
+   Values marked DERIVED are not in the slide 20 colour system; they are tints
+   worked out from a documented brand colour, noted per line. Brand colours
+   (Mountain Meadow #11B67A, Tropical Rain Forest #006A4D, Jamf Blue #0468F1,
+   Alert Red #C0503C) are always used exactly as published.
+
+   Press T to cycle themes, Shift+T to go back, K for the live knobs panel.
+   ?theme=<name> on the URL wins on load.
+   ========================================================================= */
 :root{
-  --bg:#080B0A;
-  --surface:#121614;
-  --border:#26302C;
-  --blue-surface:#0E1A2B;
-  --blue-border:#1E4785;
-  --muted:#8A938F;
-  --text:#F4F6F5;
-  --green:#11B67A;
-  --green-deep:#006A4D;
-  --green-bright:#3FE0A6;
-  --jamf-blue:#0468F1;
-  --blue:#2F7DF6;
-  --blue-light:#6FB0FF;
-  --red:#C0503C;
-  --red-light:#E08670;
-  --amber:#D0A03C;
+  color-scheme:dark;
+
+  /* structure */
+  --page:#000000;            /* letterbox behind the 16:9 stage */
+  --bg:#080B0A;              /* slide canvas - Near-Black */
+  --surface:#121614;         /* card fill - Card Surface */
+  --surface-2:#101a16;       /* DERIVED: card fill with a green cast */
+  --border:#26302C;          /* Card Border */
+  --border-soft:#1d3129;     /* DERIVED: faint rules inside green-cast cards */
+
+  /* text, four tiers from brightest to dimmest */
+  --text:#F4F6F5;            /* Near-White Text */
+  --text-dim:#cdd4d1;        /* DERIVED: body copy inside cards */
+  --text-dimmer:#a9b2ae;     /* DERIVED: supporting copy */
+  --muted:#8A938F;           /* Muted Text */
+  --faint:#3f4a47;           /* DERIVED: help strip, inactive chrome */
+
+  /* the led hue */
+  --accent:#11B67A;          /* Mountain Meadow */
+  --accent-strong:#3FE0A6;   /* Bright Green */
+  --accent-deep:#006A4D;     /* Tropical Rain Forest */
+  --accent-wash:#0c2b1f;     /* DERIVED: darkest tint of Tropical Rain Forest */
+  --on-accent:#04150e;       /* DERIVED: text on a filled accent block */
+
+  /* the secondary hue */
+  --alt:#2F7DF6;             /* Bright Blue */
+  --alt-light:#6FB0FF;       /* Light Blue */
+  --alt-surface:#0E1A2B;     /* Blue Surface */
+  --alt-border:#1E4785;      /* Blue Border */
+
+  /* signal */
+  --warn:#C0503C;            /* Alert Red */
+  --warn-light:#E08670;      /* DERIVED: lighter Alert Red for large figures */
+  --amber:#D0A03C;           /* DERIVED: TODO chips */
+
+  /* Fine tints. All DERIVED. The deck grew six greys for text and several
+     near-identical washes; they are kept apart because collapsing them would
+     change the default rendering. Every theme has to restate them, but the
+     knobs panel hides them behind "show fine tints" - they are rarely what you
+     want to experiment with. */
+  --text-2:#E2E7E5;          /* title tagline, case-study values */
+  --text-3:#dfe4e2;          /* timeline env tag, total figure */
+  --text-dim-2:#c3ccc8;      /* speaker-notes body */
+  --text-dim-3:#b9c2be;      /* card copy on the context slide */
+  --muted-2:#6f7b77;         /* "not the goal" rule, auxiliary team cards */
+  --muted-3:#5b6663;         /* slide counter */
+  --faint-2:#3c4744;         /* terminal window title */
+  --border-dash:#3a4642;     /* dashed video placeholder */
+  --border-faint:#2f3a36;    /* palette chip outlines */
+  --notes-bg:#0d1210;        /* speaker-notes drawer */
+  --bar-bg:#e9edeb;          /* terminal title bar - light in every dark theme */
+  --accent-wash-2:#0d2a20;   /* speaker avatar fill */
+  --accent-wash-3:#0c2119;   /* ripple card wash */
+  --accent-wash-4:#101d18;   /* mid stop of the green gradients */
+  --wash-mid:#0d1a1c;        /* mid stop of the blue-to-neutral gradient */
+  --grid-line:#1a211e;       /* chart gridlines on the retrospective slide */
+  --arc-mid:#2AA0C4;         /* DERIVED: teal midpoint of the 30/60/90 arc */
+
+  /* Embedded artwork. Several logos are white-on-transparent PNGs drawn for a
+     dark stage, so they vanish on a light canvas. Monochrome marks (the
+     Octocat, the cursor) invert cleanly; the multicolour ones (Jamf, Terraform)
+     must not be filtered, so light themes sit them on a dark plate instead. */
+  --art-mono-filter:none;    /* applied to monochrome white marks */
+  --art-plate:transparent;   /* backing plate for multicolour marks */
+  --art-plate-pad:0px;
+
+  /* Aliases kept so existing rules and markup keep working. Prefer the
+     semantic names above in anything new. */
+  --green:var(--accent);
+  --green-bright:var(--accent-strong);
+  --green-deep:var(--accent-deep);
+  --blue:var(--alt);
+  --blue-light:var(--alt-light);
+  --blue-surface:var(--alt-surface);
+  --blue-border:var(--alt-border);
+  --red:var(--warn);
+  --red-light:var(--warn-light);
+  --jamf-blue:#0468F1;       /* Jamf Blue - fixed, used as brand not as accent */
+
   --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
   --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;
 }
+/* ---------- THEME PRESETS -------------------------------------------------
+   Each block restates only the knobs it changes. "default" is :root above and
+   needs no block. Add a preset by copying a block, renaming it, and adding the
+   name to THEMES in the script at the foot of the file.
+   ------------------------------------------------------------------------ */
+
+/* Light Paper - near-white page, Mountain Meadow still leading. */
+html[data-theme="light-paper"]{
+  color-scheme:light;
+  --art-mono-filter:invert(1);
+  --art-plate:#0B1512;
+  --art-plate-pad:12px;
+  --page:#DDE3E0;            /* DERIVED: letterbox, a shade under the canvas */
+  --bg:#F4F6F5;              /* Near-White Text used as the canvas */
+  --surface:#FFFFFF;         /* White */
+  --surface-2:#F0F5F2;       /* DERIVED: white with a Mountain Meadow cast */
+  --border:#D2DAD6;          /* DERIVED: Card Border lightened onto white */
+  --border-soft:#DCE8E2;     /* DERIVED: Tropical Rain Forest at low opacity */
+  --text:#0B1512;           /* DERIVED: Near-Black warmed toward the greens */
+  --text-dim:#2C3B36;        /* DERIVED */
+  --text-dimmer:#48584F;     /* DERIVED */
+  --muted:#66756F;           /* DERIVED: Muted Text darkened for light ground */
+  --faint:#A8B4AF;           /* DERIVED */
+  --accent:#0C8F5F;          /* DERIVED: Mountain Meadow darkened to hold on white */
+  --accent-strong:#006A4D;   /* Tropical Rain Forest carries emphasis here */
+  --accent-deep:#8FD9BC;     /* DERIVED: pale Mountain Meadow for borders */
+  --accent-wash:#E4F5ED;     /* DERIVED */
+  --on-accent:#FFFFFF;       /* White */
+  --alt:#0468F1;             /* Jamf Blue */
+  --alt-light:#2F7DF6;       /* Bright Blue */
+  --alt-surface:#E8F0FE;     /* DERIVED: Jamf Blue at low opacity */
+  --alt-border:#A9C8F8;      /* DERIVED */
+  --warn:#A83C28;            /* DERIVED: Alert Red darkened for light ground */
+  --warn-light:#C0503C;      /* Alert Red */
+  --amber:#8A6410;           /* DERIVED: amber darkened to stay legible */
+  --text-2:#16221E;--text-3:#22302B;--text-dim-2:#33413B;--text-dim-3:#3E4C46;
+  --muted-2:#8C9A94;--muted-3:#9BA8A2;--faint-2:#B6C1BC;
+  --border-dash:#B6C1BC;--border-faint:#C8D2CD;
+  --notes-bg:#FFFFFF;--bar-bg:#DCE3DF;
+  --accent-wash-2:#DCF0E6;--accent-wash-3:#EAF6F1;--accent-wash-4:#EDF6F2;
+  --wash-mid:#EDF3F7;--grid-line:#E2E9E5;--arc-mid:#1B87A8;
+}
+
+/* Light Slate - cool grey paper, Jamf Blue leading. */
+html[data-theme="light-slate"]{
+  color-scheme:light;
+  --art-mono-filter:invert(1);
+  --art-plate:#0B1512;
+  --art-plate-pad:12px;
+  --page:#C9D0D6;            /* DERIVED */
+  --bg:#EDF1F4;              /* DERIVED: cool near-white */
+  --surface:#FFFFFF;         /* White */
+  --surface-2:#F2F6F9;       /* DERIVED */
+  --border:#CFD8DF;          /* DERIVED */
+  --border-soft:#DCE5EC;     /* DERIVED */
+  --text:#0C1418;            /* DERIVED: Black cooled */
+  --text-dim:#28343C;--text-dimmer:#465560;--muted:#63727D;--faint:#A4B0BA;
+  --accent:#0468F1;          /* Jamf Blue leads */
+  --accent-strong:#0350BC;   /* DERIVED: Jamf Blue darkened */
+  --accent-deep:#A9C8F8;     /* DERIVED */
+  --accent-wash:#E6EFFD;     /* DERIVED */
+  --on-accent:#FFFFFF;       /* White */
+  --alt:#0C8F5F;             /* DERIVED: Mountain Meadow darkened */
+  --alt-light:#11B67A;       /* Mountain Meadow */
+  --alt-surface:#E4F5ED;     /* DERIVED */
+  --alt-border:#8FD9BC;      /* DERIVED */
+  --warn:#A83C28;--warn-light:#C0503C;--amber:#8A6410;
+  --text-2:#16222A;--text-3:#22303A;--text-dim-2:#33414B;--text-dim-3:#3E4C56;
+  --muted-2:#8896A1;--muted-3:#97A4AE;--faint-2:#B3BEC7;
+  --border-dash:#B3BEC7;--border-faint:#C6D0D8;
+  --notes-bg:#FFFFFF;--bar-bg:#D9E1E7;
+  --accent-wash-2:#DCEAFC;--accent-wash-3:#EAF2FD;--accent-wash-4:#EFF4FA;
+  --wash-mid:#EDF3F7;--grid-line:#E1E8ED;--arc-mid:#1B87A8;
+}
+
+/* Jamf Pro - modelled on the Jamf Pro admin console: white content area on a
+   faint grey shell, near-black type, hairline card borders, Jamf Blue as the
+   only strong colour, and the console's pastel icon-tile tints for washes. */
+html[data-theme="jamf"]{
+  color-scheme:light;
+  --art-mono-filter:invert(1);
+  --art-plate:#101214;
+  --art-plate-pad:12px;
+  --page:#DCE0E5;            /* DERIVED: shell grey around the stage */
+  --bg:#F7F8FA;              /* DERIVED: console sidebar grey as the canvas */
+  --surface:#FFFFFF;         /* White - console cards */
+  --surface-2:#F4F7FE;       /* DERIVED: the blue icon-tile tint */
+  --border:#E1E5EA;          /* DERIVED: console hairline card border */
+  --border-soft:#EDF1F6;     /* DERIVED */
+  --text:#101214;            /* DERIVED: console heading near-black */
+  --text-dim:#2E343C;        /* DERIVED: console body copy */
+  --text-dimmer:#4C545E;     /* DERIVED */
+  --muted:#6E7781;           /* DERIVED: console secondary text */
+  --faint:#A9B1BA;           /* DERIVED */
+  --accent:#0468F1;          /* Jamf Blue, exactly as published */
+  --accent-strong:#0353C7;   /* DERIVED: Jamf Blue darkened for emphasis */
+  --accent-deep:#A8C7FA;     /* DERIVED: console focus-ring blue */
+  --accent-wash:#EAF1FE;     /* DERIVED: console blue icon tile */
+  --on-accent:#FFFFFF;       /* White */
+  --alt:#0C8F5F;             /* DERIVED: Mountain Meadow darkened for white */
+  --alt-light:#11B67A;       /* Mountain Meadow */
+  --alt-surface:#E9F7EC;     /* DERIVED: console green icon tile */
+  --alt-border:#A9DCC0;      /* DERIVED */
+  --warn:#B23A2A;            /* DERIVED: Alert Red darkened for white */
+  --warn-light:#C0503C;      /* Alert Red */
+  --amber:#8A6410;           /* DERIVED: amber darkened to stay legible */
+  --text-2:#1A1F26;--text-3:#252B33;--text-dim-2:#333A43;--text-dim-3:#3E464F;
+  --muted-2:#8C949D;--muted-3:#9AA2AB;--faint-2:#B8BFC7;
+  --border-dash:#B8BFC7;--border-faint:#C9D0D8;
+  --notes-bg:#FFFFFF;--bar-bg:#E1E5EA;
+  --accent-wash-2:#DCE9FD;--accent-wash-3:#EDF3FE;--accent-wash-4:#F0F5FE;
+  --wash-mid:#EEF2F7;        /* DERIVED */
+  --grid-line:#E6EAEF;       /* DERIVED */
+  --arc-mid:#7C5CE6;         /* DERIVED: console lavender icon tile */
+}
+
+/* Deep Green - Tropical Rain Forest leading, richer and softer. */
+html[data-theme="deep-green"]{
+  --bg:#05100C;              /* DERIVED: Near-Black pulled toward the greens */
+  --surface:#0E1A15;--surface-2:#0C1F18;
+  --border:#22362D;--border-soft:#1B3A2C;
+  --accent:#006A4D;          /* Tropical Rain Forest leads */
+  --accent-strong:#11B67A;   /* Mountain Meadow */
+  --accent-deep:#00543D;     /* DERIVED: Tropical Rain Forest deepened */
+  --accent-wash:#08251A;     /* DERIVED */
+  --alt:#2F7DF6;--alt-light:#6FB0FF;--alt-surface:#0E1A2B;--alt-border:#1E4785;
+  --text-dim:#c6d4cd;--text-dimmer:#9fb0a8;--muted:#7d8f87;--faint:#39473f;
+  --text-2:#dbe6e1;--text-3:#d3e0da;--text-dim-2:#bccac3;--text-dim-3:#aebbb4;
+  --muted-2:#65756d;--muted-3:#55645d;--faint-2:#35433b;
+  --border-dash:#374840;--border-faint:#2b3a32;
+  --notes-bg:#0a1410;--bar-bg:#e4eae7;
+  --accent-wash-2:#0a2b1e;--accent-wash-3:#0a2418;--accent-wash-4:#0d2119;
+  --wash-mid:#0c1c1e;--grid-line:#16231d;
+}
+
+/* High Contrast - pure black, maximum legibility from the back of a room. */
+html[data-theme="contrast"]{
+  --page:#000000;--bg:#000000;              /* Black */
+  --surface:#0C0C0C;--surface-2:#0A120E;
+  --border:#4A544F;--border-soft:#3E574B;   /* DERIVED: borders lifted to read */
+  --text:#FFFFFF;                            /* White */
+  --text-dim:#EAEEEC;--text-dimmer:#D2D9D6;--muted:#AFBAB5;--faint:#6C7873;
+  --accent:#3FE0A6;          /* Bright Green leads, the most legible green */
+  --accent-strong:#7CFFD1;   /* DERIVED: Bright Green lifted further */
+  --accent-deep:#11B67A;     /* Mountain Meadow */
+  --accent-wash:#052117;     /* DERIVED */
+  --on-accent:#000000;       /* Black */
+  --alt:#6FB0FF;             /* Light Blue leads the secondary */
+  --alt-light:#A8CEFF;       /* DERIVED */
+  --alt-surface:#04101F;--alt-border:#3E6DA8;
+  --warn:#FF7A5E;            /* DERIVED: Alert Red lifted for contrast */
+  --warn-light:#FFA98F;--amber:#FFC65C;      /* DERIVED */
+  --text-2:#FFFFFF;--text-3:#F4F6F5;--text-dim-2:#E4E9E7;--text-dim-3:#DCE2DF;
+  --muted-2:#98A39E;--muted-3:#8A958F;--faint-2:#68736E;
+  --border-dash:#6C7873;--border-faint:#57625D;
+  --notes-bg:#000000;--bar-bg:#FFFFFF;
+  --accent-wash-2:#06291C;--accent-wash-3:#05231A;--accent-wash-4:#07231A;
+  --wash-mid:#061620;--grid-line:#222A26;--arc-mid:#59D0EC;
+}
+
+html[data-theme] #s1 .oc .cur,html[data-theme] #s1 .oc .gh,
+html[data-theme] .collabel img{filter:var(--art-mono-filter)}
+html[data-theme] #s1 .jamf{background:var(--art-plate);border-radius:12px;
+  padding:var(--art-plate-pad)}
+
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:#000;overflow:hidden}
+html,body{height:100%;background:var(--page);overflow:hidden}
 body{font-family:var(--sans);color:var(--text);-webkit-font-smoothing:antialiased}
 
 #stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
@@ -52,7 +294,7 @@ h1{font-size:53px;font-weight:700;letter-spacing:-.015em;line-height:1.05;margin
 
 .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 32px}
 .card h3{font-size:24px;font-weight:700;line-height:1.2}
-.card p{font-size:19px;line-height:1.45;color:#b9c2be;margin-top:10px}
+.card p{font-size:19px;line-height:1.45;color:var(--text-dim-3);margin-top:10px}
 .mono{font-family:var(--mono)}
 .g{color:var(--green-bright)}
 .gm{color:var(--green)}
@@ -68,7 +310,7 @@ h1{font-size:53px;font-weight:700;letter-spacing:-.015em;line-height:1.05;margin
 .split{display:grid;grid-template-columns:1fr 1fr;gap:80px}
 
 ul.dash{list-style:none}
-ul.dash li{position:relative;padding-left:32px;font-size:21px;line-height:1.45;margin-bottom:16px;color:#cdd4d1}
+ul.dash li{position:relative;padding-left:32px;font-size:21px;line-height:1.45;margin-bottom:16px;color:var(--text-dim)}
 ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var(--green);font-size:22px}
 
 /* ---------- slide 1 ---------- */
@@ -86,49 +328,49 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 #s1 .oc .cur{width:70px;transform:translate(-40%,-36%)}
 #s1 .oc.ghost{color:transparent}
 #s1 .oc .gh{width:126px}
-#s1 .tagline{margin-top:262px;font-size:32px;color:#e2e7e5}
+#s1 .tagline{margin-top:262px;font-size:32px;color:var(--text-2)}
 #s1 .stats{margin-top:70px;font-family:var(--mono);font-size:25px;display:flex;gap:56px;color:var(--muted)}
 #s1 .stats b{color:var(--text);font-weight:400}
 
 /* ---------- slide 2 ---------- */
 .person{display:flex;gap:24px;align-items:flex-start;margin-bottom:22px;
   background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:26px 30px}
-.person .av{width:74px;height:74px;border-radius:50%;background:#0d2a20;border:1px solid var(--green-deep);
+.person .av{width:74px;height:74px;border-radius:50%;background:var(--accent-wash-2);border:1px solid var(--green-deep);
   color:var(--green-bright);font-family:var(--mono);font-size:24px;display:flex;align-items:center;
   justify-content:center;flex:none;letter-spacing:.04em}
 .person .nm{font-size:28px;font-weight:700}
 .person .rl{font-family:var(--mono);font-size:20px;color:var(--green-bright);margin-top:2px}
-.person .bl2{font-size:20px;color:#b9c2be;margin-top:12px;line-height:1.4;max-width:520px}
+.person .bl2{font-size:20px;color:var(--text-dim-3);margin-top:12px;line-height:1.4;max-width:520px}
 .person .ph{width:150px;height:150px;object-fit:cover;border-radius:6px;margin-left:auto;flex:none}
 .statecard{border:1px solid var(--border);border-left:5px solid var(--blue);border-radius:6px;
-  padding:26px 30px;margin-bottom:34px;background:linear-gradient(100deg,#0E1A2B 0%,#0d1a1c 55%,#121614 100%)}
+  padding:26px 30px;margin-bottom:34px;background:linear-gradient(100deg,var(--alt-surface) 0%,var(--wash-mid) 55%,var(--surface) 100%)}
 .statecard.green{border-left-color:var(--green);
-  background:linear-gradient(100deg,#0c2b1f 0%,#101d18 55%,#121614 100%)}
+  background:linear-gradient(100deg,var(--accent-wash) 0%,var(--accent-wash-4) 55%,var(--surface) 100%)}
 .statecard h3{font-size:27px;font-weight:700;margin-bottom:14px}
-.statecard p{font-size:20px;line-height:1.5;color:#cdd4d1;margin:0}
+.statecard p{font-size:20px;line-height:1.5;color:var(--text-dim);margin:0}
 
 /* ---------- slide 3 ---------- */
 .ripple{border:1px solid var(--border);border-left:4px solid var(--green);border-radius:4px;padding:20px 26px;
-  background:linear-gradient(100deg,#0c2119 0%,#121614 60%)}
-.ripple.blue{border-left-color:var(--blue);background:linear-gradient(100deg,#0E1A2B 0%,#121614 60%)}
+  background:linear-gradient(100deg,var(--accent-wash-3) 0%,var(--surface) 60%)}
+.ripple.blue{border-left-color:var(--blue);background:linear-gradient(100deg,var(--alt-surface) 0%,var(--surface) 60%)}
 .ripple .hd{font-size:22px;font-weight:700;color:var(--green-bright);margin-bottom:8px}
 .ripple.blue .hd{color:var(--blue-light)}
 .ripple .hd span{font-family:var(--mono);font-size:19px;color:var(--muted);font-weight:400;margin-left:10px}
-.ripple p{font-size:19px;line-height:1.5;color:#cdd4d1}
+.ripple p{font-size:19px;line-height:1.5;color:var(--text-dim)}
 .tick{width:2px;height:26px;background:var(--green);margin:10px auto}
 
 /* ---------- slide 4 ---------- */
 .fanout{display:grid;grid-template-columns:520px 96px 1fr;align-items:stretch}
 .hub{border:1px solid var(--green-deep);border-radius:12px;padding:34px;
-  background:linear-gradient(165deg,#0c2b1f 0%,#101d18 60%,#121614 100%);display:flex;flex-direction:column}
+  background:linear-gradient(165deg,var(--accent-wash) 0%,var(--accent-wash-4) 60%,var(--surface) 100%);display:flex;flex-direction:column}
 .hub .tag{font-family:var(--mono);font-size:17px;letter-spacing:.2em;color:var(--green-bright)}
 .hub h2{font-size:40px;font-weight:700;line-height:1.1;margin-top:14px}
 .hub .big{font-family:var(--mono);font-size:64px;font-weight:700;color:var(--green-bright);
   line-height:1;margin:22px 0 4px}
-.hub .biglb{font-size:20px;color:#cdd4d1}
-.hub p{font-size:19px;line-height:1.45;color:#cdd4d1;margin-top:22px}
-.hub .foot{margin-top:auto;border-top:1px solid #1d3129;padding-top:18px;font-size:18px;
-  color:#a9b2ae;line-height:1.4}
+.hub .biglb{font-size:20px;color:var(--text-dim)}
+.hub p{font-size:19px;line-height:1.45;color:var(--text-dim);margin-top:22px}
+.hub .foot{margin-top:auto;border-top:1px solid var(--border-soft);padding-top:18px;font-size:18px;
+  color:var(--text-dimmer);line-height:1.4}
 .brace{position:relative}
 .brace svg{position:absolute;inset:0;width:100%;height:100%}
 .spokes{display:flex;flex-direction:column;gap:14px}
@@ -137,15 +379,15 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 .spoke .n{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--green-bright);
   flex:none;line-height:1.2}
 .spoke h3{font-size:22px;font-weight:700;line-height:1.2}
-.spoke p{font-size:17px;line-height:1.4;color:#a9b2ae;margin-top:6px}
-.spoke.mig{border-color:var(--green-deep);background:linear-gradient(100deg,#0c2b1f 0%,#121614 60%)}
-.spoke.hand{background:#0E1A2B;border-color:var(--blue-border)}
+.spoke p{font-size:17px;line-height:1.4;color:var(--text-dimmer);margin-top:6px}
+.spoke.mig{border-color:var(--green-deep);background:linear-gradient(100deg,var(--accent-wash) 0%,var(--surface) 60%)}
+.spoke.hand{background:var(--alt-surface);border-color:var(--blue-border)}
 .spoke.hand .n{color:var(--blue-light)}
 .flow{margin-top:26px}
 .flowrow{display:flex;align-items:center;gap:16px;margin-bottom:12px}
 .flowrow .ln{flex:1;height:2px;background:var(--green)}
 .flowrow.back .ln{background:var(--blue)}
-.flowrow .lbl{font-size:19px;color:#cdd4d1;white-space:nowrap}
+.flowrow .lbl{font-size:19px;color:var(--text-dim);white-space:nowrap}
 .flowrow .cap{font-size:26px;color:var(--green);line-height:1}
 .flowrow.back .cap{color:var(--blue)}
 
@@ -154,7 +396,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
   border:1px solid var(--border);border-radius:12px;padding:26px 30px}
 .icard svg{width:32px;height:32px;flex:none;stroke:var(--green-bright);fill:none;stroke-width:1.6;margin-top:4px}
 .icard h3{font-size:25px;font-weight:700}
-.icard p{font-size:19px;line-height:1.42;color:#a9b2ae;margin-top:8px}
+.icard p{font-size:19px;line-height:1.42;color:var(--text-dimmer);margin-top:8px}
 
 /* ---------- slide 6 ---------- */
 .chartwrap{border:1px solid var(--border);border-radius:10px;background:var(--surface);
@@ -166,11 +408,11 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 .fchip{border:1px solid var(--border);border-left:4px solid var(--red);border-radius:5px;
   background:var(--surface);padding:13px 18px}
 .fchip h4{font-size:19px;font-weight:700;line-height:1.15}
-.fchip p{font-size:15px;line-height:1.35;color:#a9b2ae;margin-top:5px}
+.fchip p{font-size:15px;line-height:1.35;color:var(--text-dimmer);margin-top:5px}
 .fchip.won{border-left-color:var(--green)}
-.fchip.won p{color:#cdd4d1}
-.qstrip{display:flex;align-items:center;gap:22px;margin-top:14px;background:#101a16;
-  border:1px solid #1d3129;border-radius:8px;padding:16px 26px}
+.fchip.won p{color:var(--text-dim)}
+.qstrip{display:flex;align-items:center;gap:22px;margin-top:14px;background:var(--surface-2);
+  border:1px solid var(--border-soft);border-radius:8px;padding:16px 26px}
 .qstrip .qm{font-size:44px;color:var(--green-bright);line-height:0;flex:none;padding-top:14px}
 .qstrip .qt{font-size:23px;line-height:1.3}
 .qstrip .at{font-family:var(--mono);font-size:16px;color:var(--muted);margin-left:auto;
@@ -179,23 +421,23 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 /* ---------- slide 7 ---------- */
 .herowrap{display:grid;grid-template-columns:640px 1fr;gap:40px;height:706px}
 .heropanel{border:1px solid var(--green-deep);border-radius:14px;padding:44px 46px;
-  background:linear-gradient(160deg,#0c2b1f 0%,#101d18 55%,#121614 100%);
+  background:linear-gradient(160deg,var(--accent-wash) 0%,var(--accent-wash-4) 55%,var(--surface) 100%);
   display:flex;flex-direction:column}
 .heropanel .tag{font-family:var(--mono);font-size:17px;letter-spacing:.2em;color:var(--green-bright)}
 .heropanel h2{font-size:52px;font-weight:700;line-height:1.05;margin-top:18px;letter-spacing:-.015em}
-.heropanel .lede{font-size:25px;line-height:1.4;color:#cdd4d1;margin-top:26px}
-.heropanel .rule{border:0;border-top:1px solid #1d3129;margin:26px 0}
+.heropanel .lede{font-size:25px;line-height:1.4;color:var(--text-dim);margin-top:26px}
+.heropanel .rule{border:0;border-top:1px solid var(--border-soft);margin:26px 0}
 .heropanel .pt{display:flex;gap:16px;align-items:flex-start;margin-bottom:16px}
 .heropanel .pt i{width:8px;height:8px;border-radius:2px;background:var(--green-bright);flex:none;margin-top:10px}
-.heropanel .pt p{font-size:19px;line-height:1.42;color:#a9b2ae}
+.heropanel .pt p{font-size:19px;line-height:1.42;color:var(--text-dimmer)}
 .heropanel .foot{margin-top:auto;font-family:var(--mono);font-size:18px;color:var(--green-bright);
   line-height:1.4}
 .supp{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:16px}
 .suppcard{border:1px solid var(--border);border-radius:10px;background:var(--surface);padding:20px 24px}
 .suppcard .n{font-family:var(--mono);font-size:17px;color:var(--muted)}
 .suppcard h3{font-size:21px;font-weight:700;line-height:1.15;margin-top:4px}
-.suppcard p{font-size:17px;line-height:1.38;color:#a9b2ae;margin-top:8px}
-.suppcard.dip{background:#0E1A2B;border-color:var(--blue-border)}
+.suppcard p{font-size:17px;line-height:1.38;color:var(--text-dimmer);margin-top:8px}
+.suppcard.dip{background:var(--alt-surface);border-color:var(--blue-border)}
 .suppcard.dip .n{color:var(--blue-light)}
 
 /* ---------- slide 8 ---------- */
@@ -205,7 +447,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 .rolecard .hd span{font-family:var(--mono);font-size:19px;color:var(--green-bright)}
 .rolecard .hd span.blue{color:var(--blue-light)}
 .rolecard ul{list-style:none}
-.rolecard li{position:relative;padding-left:28px;font-size:20px;line-height:1.4;margin-bottom:9px;color:#cdd4d1}
+.rolecard li{position:relative;padding-left:28px;font-size:20px;line-height:1.4;margin-bottom:9px;color:var(--text-dim)}
 .rolecard li::before{content:"\203A";position:absolute;left:4px;color:var(--green);font-size:20px}
 .legend{display:flex;gap:34px;justify-content:center;font-family:var(--mono);font-size:22px;color:var(--muted);margin-top:18px}
 .legend i{width:13px;height:13px;display:inline-block;border-radius:2px;margin-right:10px}
@@ -228,7 +470,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 .disc.b i{background:var(--blue)}
 .disc span{font-size:24px;font-weight:700}
 .cell{border:1px solid var(--border);border-radius:6px;background:var(--surface);
-  font-family:var(--mono);font-size:20px;line-height:1.45;color:#cdd4d1;padding:16px 18px}
+  font-family:var(--mono);font-size:20px;line-height:1.45;color:var(--text-dim);padding:16px 18px}
 .cell.sm{font-size:16px;color:var(--muted)}
 .cell.empty{border:0;background:none}
 .keyp{display:flex;gap:24px;align-items:baseline;margin-top:26px}
@@ -255,15 +497,15 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 .saw{border:1px solid var(--border);border-left:4px solid var(--green-bright);border-radius:4px;
   padding:12px 22px;background:var(--surface);margin-bottom:12px}
 .saw .hd{font-size:20px;font-weight:700;color:var(--green-bright);margin-bottom:5px}
-.saw p{font-size:17px;line-height:1.38;color:#cdd4d1}
+.saw p{font-size:17px;line-height:1.38;color:var(--text-dim)}
 .saw .todo{display:inline-block;margin:8px 0 0;}
 .goalfoot{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:14px}
 .goalfoot .bar3{background:var(--surface);border-left:4px solid var(--green);
   padding:14px 24px;display:flex;gap:20px;align-items:flex-start}
-.goalfoot .bar3.not{border-left-color:#6f7b77}
+.goalfoot .bar3.not{border-left-color:var(--muted-2)}
 .goalfoot .lb{font-family:var(--mono);font-size:16px;letter-spacing:.14em;color:var(--green-bright);flex:none;padding-top:3px}
 .goalfoot .bar3.not .lb{color:var(--muted)}
-.goalfoot p{font-size:17px;line-height:1.38;color:#cdd4d1}
+.goalfoot p{font-size:17px;line-height:1.38;color:var(--text-dim)}
 .goalfoot .todo{display:inline-block;margin:6px 0 0}
 .slide.dense8 .rolecard{padding:20px 28px;margin-bottom:18px}
 .slide.dense8 .rolecard .hd{margin-bottom:11px}
@@ -271,15 +513,15 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 .slide.tight h1{margin-top:14px}
 .slide.tight .sub{margin-top:8px}
 .term{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;position:relative;z-index:2}
-.term .bar{background:#e9edeb;padding:7px 14px;display:flex;align-items:center;gap:8px}
+.term .bar{background:var(--bar-bg);padding:7px 14px;display:flex;align-items:center;gap:8px}
 .term .bar i{width:10px;height:10px;border-radius:50%;display:inline-block}
-.term .bar span{font-family:var(--mono);font-size:16px;color:#3c4744;margin-left:8px}
+.term .bar span{font-family:var(--mono);font-size:16px;color:var(--faint-2);margin-left:8px}
 .term .st{font-family:var(--mono);color:var(--muted);letter-spacing:.08em}
 .term .ti{font-family:var(--mono);font-weight:700}
-.term .ln{font-family:var(--mono);color:#cdd4d1}
+.term .ln{font-family:var(--mono);color:var(--text-dim)}
 .term .ln b{font-weight:700}
 .tg-git{color:var(--green-bright)}.tg-tf{color:var(--green-bright)}
-.tg-gitops{color:var(--blue-light)}.tg-env{color:#dfe4e2}
+.tg-gitops{color:var(--blue-light)}.tg-env{color:var(--text-3)}
 .tlrow{display:grid;grid-template-columns:repeat(3,1fr);gap:54px;position:relative}
 .tlrow + .tlrow{margin-top:28px}
 .conn{position:absolute;top:50%;width:54px;border-top:2px dashed var(--green-deep);z-index:1}
@@ -295,12 +537,12 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 
 /* ---------- slide 11 ---------- */
 .modecard{border:1px solid var(--border);border-radius:14px;padding:38px 42px;height:760px}
-.modecard.on{background:#101a16;border-color:#1d3129}
+.modecard.on{background:var(--surface-2);border-color:var(--border-soft)}
 .modecard h3{font-size:32px;font-weight:700}
 .modecard .sb{font-family:var(--mono);font-size:22px;color:var(--green-bright);margin-top:6px}
 .modecard.off .sb{color:var(--muted)}
 .modecard ul{list-style:none;margin-top:34px}
-.modecard li{position:relative;padding-left:38px;font-size:23px;line-height:1.4;margin-bottom:24px;color:#cdd4d1}
+.modecard li{position:relative;padding-left:38px;font-size:23px;line-height:1.4;margin-bottom:24px;color:var(--text-dim)}
 .modecard.on li::before{content:"\2713";position:absolute;left:4px;color:var(--green-bright)}
 .modecard.off li::before{content:"\203A";position:absolute;left:6px;color:var(--muted)}
 
@@ -311,20 +553,20 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 .skillcol .hd h3{font-size:28px;font-weight:700}
 .skillcol .sec{font-family:var(--mono);font-size:13.5px;letter-spacing:.12em;margin:12px 0 5px}
 .skillcol ul{list-style:none}
-.skillcol li{position:relative;padding-left:19px;font-size:15.5px;line-height:1.34;margin-bottom:2px;color:#cdd4d1}
+.skillcol li{position:relative;padding-left:19px;font-size:15.5px;line-height:1.34;margin-bottom:2px;color:var(--text-dim)}
 .skillcol li::before{content:"\203A";position:absolute;left:2px;color:var(--muted);font-size:15px}
 
 /* ---------- slide 14 ---------- */
-.videoph{border:1px dashed #3a4642;border-radius:14px;height:760px;display:flex;flex-direction:column;
+.videoph{border:1px dashed var(--border-dash);border-radius:14px;height:760px;display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:22px}
 .videoph .btn{width:100px;height:100px;border-radius:50%;background:var(--green);display:flex;
   align-items:center;justify-content:center}
-.videoph .btn i{width:30px;height:30px;background:#04150e;border-radius:4px;display:block}
-.videoph .t1{font-family:var(--mono);font-size:26px;color:#cdd4d1}
+.videoph .btn i{width:30px;height:30px;background:var(--on-accent);border-radius:4px;display:block}
+.videoph .t1{font-family:var(--mono);font-size:26px;color:var(--text-dim)}
 .videoph .t2{font-family:var(--mono);font-size:19px;color:var(--muted)}
 .jrow{display:grid;grid-template-columns:190px 1fr;gap:28px;margin-bottom:26px;align-items:start}
 .jrow .lb{font-family:var(--mono);font-size:22px;color:var(--green-bright);line-height:1.3}
-.jrow .vl{font-size:24px;line-height:1.4;color:#e2e7e5}
+.jrow .vl{font-size:24px;line-height:1.4;color:var(--text-2)}
 
 /* ---------- slide 15 ---------- */
 .qbox{width:620px;margin:0 auto;border:1px solid var(--green);border-radius:8px;background:var(--surface);
@@ -335,21 +577,21 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 .branch .arm{text-align:center}
 .branch .arm .ln{width:2px;height:34px;background:var(--green);margin:0 auto}
 .branch .arm .lb{font-family:var(--mono);font-size:22px;font-weight:700;margin-top:8px}
-.teamcard{border:1px solid var(--border);border-top:3px solid #6f7b77;border-radius:4px;
+.teamcard{border:1px solid var(--border);border-top:3px solid var(--muted-2);border-radius:4px;
   background:var(--surface);padding:26px 30px;min-height:200px}
-.teamcard.yes{border-top-color:var(--green);border-color:var(--green-deep);background:#101a16}
+.teamcard.yes{border-top-color:var(--green);border-color:var(--green-deep);background:var(--surface-2)}
 .teamcard h3{font-size:27px;font-weight:700}
 .teamcard .st{font-family:var(--mono);font-size:20px;color:var(--muted);margin-top:4px}
 .teamcard.yes .st{color:var(--green-bright)}
-.teamcard p{font-size:21px;line-height:1.4;color:#cdd4d1;margin-top:18px}
+.teamcard p{font-size:21px;line-height:1.4;color:var(--text-dim);margin-top:18px}
 
 /* ---------- slide 16 ---------- */
 .cycle{display:flex;gap:10px;align-items:stretch;margin-top:190px}
 .phase{border:1px solid var(--border);border-radius:8px;background:var(--surface);padding:24px 22px;
   display:flex;flex-direction:column;min-height:210px}
-.phase.last{background:#0E1A2B;border-color:var(--blue-border)}
+.phase.last{background:var(--alt-surface);border-color:var(--blue-border)}
 .phase h3{font-size:26px;font-weight:700;line-height:1.15}
-.phase p{font-size:19px;color:#a9b2ae;margin-top:10px;line-height:1.35}
+.phase p{font-size:19px;color:var(--text-dimmer);margin-top:10px;line-height:1.35}
 .phase .wk{font-family:var(--mono);font-size:22px;color:var(--green-bright);margin-top:auto}
 .phase.last .wk{color:var(--blue-light)}
 .wkaxis{display:flex;justify-content:space-between;font-family:var(--mono);font-size:21px;
@@ -357,13 +599,13 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 .total{margin-top:150px;background:var(--blue-surface);border-left:4px solid var(--blue);
   padding:26px 34px;display:flex;gap:28px;align-items:baseline}
 .total .lb{font-family:var(--mono);font-size:19px;letter-spacing:.14em;color:var(--blue-light);flex:none}
-.total p{font-size:24px;color:#dfe4e2}
+.total p{font-size:24px;color:var(--text-3)}
 
 /* ---------- slide 19 ---------- */
 .res{border:1px solid var(--border);border-radius:10px;background:var(--surface);padding:24px 28px;margin-bottom:22px}
-.res.hi{background:#101a16;border-color:#1d3129}
+.res.hi{background:var(--surface-2);border-color:var(--border-soft)}
 .res h3{font-size:26px;font-weight:700}
-.res p{font-size:20px;color:#a9b2ae;margin-top:8px;line-height:1.4}
+.res p{font-size:20px;color:var(--text-dimmer);margin-top:8px;line-height:1.4}
 .res .url{font-family:var(--mono);font-size:20px;color:var(--green-bright);margin-top:12px;word-break:break-all}
 .res .url.b{color:var(--blue-light)}
 
@@ -371,9 +613,9 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 .palcol h4{font-family:var(--mono);font-size:20px;letter-spacing:.2em;color:var(--muted);
   font-weight:400;padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:22px}
 .sw{display:flex;gap:20px;margin-bottom:20px;align-items:flex-start}
-.sw .chip{width:48px;height:48px;border-radius:8px;flex:none;border:1px solid #2f3a36}
+.sw .chip{width:48px;height:48px;border-radius:8px;flex:none;border:1px solid var(--border-faint)}
 .sw .nm{font-size:22px;font-weight:700}
-.sw .vl{font-family:var(--mono);font-size:19px;color:#a9b2ae;margin-top:4px;line-height:1.35}
+.sw .vl{font-family:var(--mono);font-size:19px;color:var(--text-dimmer);margin-top:4px;line-height:1.35}
 .palnote{border-top:1px solid var(--border);padding-top:22px;margin-top:34px;font-size:20px;
   color:var(--muted);line-height:1.45}
 
@@ -381,22 +623,49 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 #progress{position:fixed;left:0;bottom:0;height:3px;background:var(--green);width:0;
   transition:width .25s ease;z-index:50}
 #counter{position:fixed;right:22px;bottom:18px;font-family:var(--mono);font-size:14px;
-  color:#5b6663;z-index:50;letter-spacing:.1em}
+  color:var(--muted-3);z-index:50;letter-spacing:.1em}
 #notes{position:fixed;left:0;right:0;bottom:0;max-height:42vh;overflow:auto;
-  background:#0d1210;border-top:1px solid var(--border);padding:22px 34px 30px;
-  font-size:16px;line-height:1.55;color:#c3ccc8;z-index:60;display:none}
+  background:var(--notes-bg);border-top:1px solid var(--border);padding:22px 34px 30px;
+  font-size:16px;line-height:1.55;color:var(--text-dim-2);z-index:60;display:none}
 #notes.on{display:block}
 #notes h5{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--green-bright);
   margin-bottom:10px;font-weight:400}
-#help{position:fixed;left:22px;bottom:16px;font-family:var(--mono);font-size:13px;color:#3f4a47;z-index:50}
+#help{position:fixed;left:22px;bottom:16px;font-family:var(--mono);font-size:13px;color:var(--faint);z-index:50}
+
+/* ---------- knobs panel (press K) ---------- */
+#knobs{position:fixed;top:0;right:0;bottom:0;width:352px;z-index:90;display:none;
+  flex-direction:column;background:var(--surface);border-left:1px solid var(--border);
+  font-family:var(--mono);font-size:12px;color:var(--text)}
+#knobs.on{display:flex}
+#knobs header{padding:14px 16px;border-bottom:1px solid var(--border);flex:none}
+#knobs h5{font-size:12px;letter-spacing:.16em;color:var(--accent-strong);font-weight:400;margin-bottom:10px}
+#knobs .themes{display:flex;flex-wrap:wrap;gap:6px}
+#knobs .themes button{font-family:var(--mono);font-size:11px;padding:5px 9px;border-radius:4px;
+  border:1px solid var(--border);background:transparent;color:var(--text-dimmer);cursor:pointer}
+#knobs .themes button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent-strong);
+  background:var(--accent-wash)}
+#knobs .list{overflow-y:auto;flex:1;padding:10px 16px}
+#knobs .row{display:flex;align-items:center;gap:10px;padding:3px 0}
+#knobs .row.fine{display:none}
+#knobs.showfine .row.fine{display:flex}
+#knobs .row label{flex:1;color:var(--text-dimmer);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#knobs .row input[type=color]{width:34px;height:24px;padding:0;border:1px solid var(--border);
+  border-radius:4px;background:none;cursor:pointer;flex:none}
+#knobs .row .hex{width:66px;color:var(--muted);text-align:right;flex:none}
+#knobs footer{padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;flex:none}
+#knobs footer button{flex:1;font-family:var(--mono);font-size:11px;padding:7px 0;border-radius:4px;
+  border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer}
+#knobs footer button.primary{border-color:var(--accent-deep);color:var(--accent-strong)}
+#knobs .hint{padding:0 16px 12px;color:var(--muted);line-height:1.4;flex:none}
+#knobs button:focus-visible,#knobs input:focus-visible{outline:2px solid var(--accent-strong);outline-offset:2px}
 
 @media print{
-  html,body{overflow:visible;background:#080B0A}
+  html,body{overflow:visible;background:var(--bg)}
   #stage{position:static;display:block}
   #deck{transform:none!important;width:1920px;height:auto}
   .slide{display:block!important;position:relative;inset:auto;width:1920px;height:1080px;
     page-break-after:always;break-after:page}
-  #progress,#counter,#notes,#help{display:none!important}
+  #progress,#counter,#notes,#help,#knobs{display:none!important}
   @page{size:1920px 1080px;margin:0}
 }
 </style>
@@ -526,7 +795,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
       </div>
       <div class="brace" aria-hidden="true">
         <svg viewBox="0 0 96 700" preserveAspectRatio="none">
-          <g fill="none" stroke="#11B67A" stroke-width="2" opacity=".85">
+          <g fill="none" stroke-width="2" opacity=".85" style="stroke:var(--accent)">
             <path d="M0 350 H30"/>
             <path d="M30 350 C60 350 60 62 96 62"/>
             <path d="M30 350 C60 350 60 206 96 206"/>
@@ -534,7 +803,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
             <path d="M30 350 C60 350 60 494 96 494"/>
             <path d="M30 350 C60 350 60 638 96 638"/>
           </g>
-          <circle cx="30" cy="350" r="6" fill="#3FE0A6"/>
+          <circle cx="30" cy="350" r="6"style="fill:var(--accent-strong)" />
         </svg>
       </div>
       <div class="spokes">
@@ -589,7 +858,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 </section>
 
 <!-- ============ 6 · WHAT DIDN'T WORK ============ -->
-<section class="slide" data-notes="This is the most useful slide in the deck for anyone planning their own programme, so do not rush it. Walk the chart first. The green bands are the teaching sessions. Every one of them lifts confidence, and every gap that follows gives most of it back, which is why the line trends down across six months even though the teaching itself was good. Be clear that the shape is illustrative rather than measured. The important thing is the total: 144 hours is roughly four weeks of learning, which for this many topics is about right. It was not the volume that hurt us, it was the calendar. Spread four weeks of content across six months and people learn a bit, stop, let it settle, come back, and somewhere in there interest wanders off. Two of the gaps were genuinely outside our control: our internal developer platform was not ready and online when engineers needed it, so practice slipped weeks behind the teaching. That was not a delivery failure, but it cost us just the same. Then take the chips underneath. Mixed-ability cohorts: everyone in the room together and the pace was wrong at both ends. What actually predicted who would do well was prior coding experience, not Jamf Pro familiarity and not age, which surprised us. Theory before the hands-on: no mental model formed and the words went in one ear and out the other. Step-by-step tutorials: engineers completed them and retained almost nothing, because following instructions is not the same as solving a problem. A curriculum shaped like a reference manual: 214,645 words of genuinely good content, written to be complete rather than to be learned from. And effort stayed invisible until handover, because nothing in the programme showed who had genuinely put the hours in. The green chip is the answer to all of it: 3,778 words, two modules and four labs, one of which hands you someone else's broken configuration with faults planted in it and asks you to find them. That is 57 times smaller, and we wrote it after direct feedback that the first was too heavy going and too theoretical. Both are public in the training repo, so people can judge for themselves.">
+<section class="slide" data-notes="This is the most useful slide in the deck for anyone planning their own programme, so do not rush it. Walk the chart first. The shaded bands are the teaching sessions. Every one of them lifts confidence, and every gap that follows gives most of it back, which is why the line trends down across six months even though the teaching itself was good. Be clear that the shape is illustrative rather than measured. The important thing is the total: 144 hours is roughly four weeks of learning, which for this many topics is about right. It was not the volume that hurt us, it was the calendar. Spread four weeks of content across six months and people learn a bit, stop, let it settle, come back, and somewhere in there interest wanders off. Two of the gaps were genuinely outside our control: our internal developer platform was not ready and online when engineers needed it, so practice slipped weeks behind the teaching. That was not a delivery failure, but it cost us just the same. Then take the chips underneath. Mixed-ability cohorts: everyone in the room together and the pace was wrong at both ends. What actually predicted who would do well was prior coding experience, not Jamf Pro familiarity and not age, which surprised us. Theory before the hands-on: no mental model formed and the words went in one ear and out the other. Step-by-step tutorials: engineers completed them and retained almost nothing, because following instructions is not the same as solving a problem. A curriculum shaped like a reference manual: 214,645 words of genuinely good content, written to be complete rather than to be learned from. And effort stayed invisible until handover, because nothing in the programme showed who had genuinely put the hours in. The highlighted chip is the answer to all of it: 3,778 words, two modules and four labs, one of which hands you someone else's broken configuration with faults planted in it and asks you to find them. That is 57 times smaller, and we wrote it after direct feedback that the first was too heavy going and too theoretical. Both are public in the training repo, so people can judge for themselves.">
   <div class="eyebrow red"><i class="dot"></i>05 &middot; Retrospective</div>
   <h1>What didn't work</h1>
   <div class="body" style="margin-top:30px">
@@ -600,41 +869,41 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
            aria-label="Confidence rises during each teaching block and decays through the gap that follows, trending downwards across six months">
         <defs>
           <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#11B67A"/><stop offset="100%" stop-color="#C0503C"/>
+            <stop offset="0%"style="stop-color:var(--accent)" /><stop offset="100%"style="stop-color:var(--warn)" />
           </linearGradient>
         </defs>
-        <line x1="70" y1="248" x2="1560" y2="248" stroke="#26302C" stroke-width="1.5"/>
-        <line x1="70" y1="20" x2="70" y2="248" stroke="#26302C" stroke-width="1.5"/>
-        <text x="58" y="30" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="15" fill="#8A938F">high</text>
-        <text x="58" y="245" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="15" fill="#8A938F">low</text>
-        <text x="20" y="145" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="15" fill="#8A938F" transform="rotate(-90 20 145)">CONFIDENCE</text>
-        <g stroke="#1a211e" stroke-width="1">
+        <line x1="70" y1="248" x2="1560" y2="248" stroke-width="1.5"style="stroke:var(--border)" />
+        <line x1="70" y1="20" x2="70" y2="248" stroke-width="1.5"style="stroke:var(--border)" />
+        <text x="58" y="30" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="15" style="fill:var(--muted)">high</text>
+        <text x="58" y="245" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="15" style="fill:var(--muted)">low</text>
+        <text x="20" y="145" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="15" transform="rotate(-90 20 145)" style="fill:var(--muted)">CONFIDENCE</text>
+        <g stroke-width="1" style="stroke:var(--grid-line)">
           <line x1="318" y1="20" x2="318" y2="248"/><line x1="566" y1="20" x2="566" y2="248"/>
           <line x1="814" y1="20" x2="814" y2="248"/><line x1="1062" y1="20" x2="1062" y2="248"/>
           <line x1="1310" y1="20" x2="1310" y2="248"/>
         </g>
-        <g font-family="ui-monospace,Menlo,monospace" font-size="15" fill="#8A938F" text-anchor="middle">
+        <g font-family="ui-monospace,Menlo,monospace" font-size="15" text-anchor="middle" style="fill:var(--muted)">
           <text x="194" y="274">MONTH 1</text><text x="442" y="274">MONTH 2</text><text x="690" y="274">MONTH 3</text>
           <text x="938" y="274">MONTH 4</text><text x="1186" y="274">MONTH 5</text><text x="1434" y="274">MONTH 6</text>
         </g>
-        <g fill="#11B67A" opacity=".18">
+        <g opacity=".18" style="fill:var(--accent)">
           <rect x="90" y="20" width="54" height="228"/><rect x="210" y="20" width="40" height="228"/>
           <rect x="400" y="20" width="46" height="228"/><rect x="700" y="20" width="38" height="228"/>
           <rect x="1000" y="20" width="34" height="228"/><rect x="1330" y="20" width="30" height="228"/>
         </g>
         <path d="M90 240 L144 96 L210 170 L250 78 L400 196 L446 92 L700 214 L738 120 L1000 226 L1034 150 L1330 236 L1360 178 L1560 244"
               fill="none" stroke="url(#fade)" stroke-width="3.5" stroke-linejoin="round"/>
-        <g font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="16" fill="#C0503C">
+        <g font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="16" style="fill:var(--warn)">
           <text x="325" y="150">platform not ready</text>
           <text x="573" y="176">gap</text>
           <text x="745" y="196">interest wanders</text>
           <text x="1041" y="212">relearning the basics again</text>
         </g>
-        <g stroke="#C0503C" stroke-width="1" stroke-dasharray="3 4" opacity=".7">
+        <g stroke-width="1" stroke-dasharray="3 4" opacity=".7" style="stroke:var(--warn)">
           <line x1="250" y1="78" x2="400" y2="196"/><line x1="446" y1="92" x2="700" y2="214"/>
           <line x1="738" y1="120" x2="1000" y2="226"/><line x1="1034" y1="150" x2="1330" y2="236"/>
         </g>
-        <text x="1450" y="60" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="16" fill="#3FE0A6">green bands = teaching</text>
+        <text x="1450" y="60" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="16" style="fill:var(--accent-strong)">shaded bands = teaching</text>
       </svg>
     </div>
     <div class="fchips">
@@ -718,16 +987,16 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
     </div>
     <div style="display:flex;flex-direction:column;justify-content:center;height:720px">
       <svg viewBox="-130 -30 820 560" style="width:100%">
-        <g fill="none" stroke="#26302C" stroke-width="1.5">
+        <g fill="none" stroke-width="1.5" style="stroke:var(--border)">
           <polygon points="280,60 470,170 470,390 280,500 90,390 90,170" transform="translate(0,-30)"/>
         </g>
         <!-- senior -->
-        <polygon points="280,30 470,140 470,360 280,470 90,360 90,140" fill="#2F7DF6" fill-opacity=".92"/>
+        <polygon points="280,30 470,140 470,360 280,470 90,360 90,140" fill-opacity=".92"style="fill:var(--alt)" />
         <!-- engineer -->
-        <polygon points="280,118 398,186 398,322 280,390 162,322 162,186" fill="#11B67A" fill-opacity=".95"/>
+        <polygon points="280,118 398,186 398,322 280,390 162,322 162,186" fill-opacity=".95"style="fill:var(--accent)" />
         <!-- junior -->
-        <polygon points="280,150 358,205 350,300 268,330 205,290 212,205" fill="#3FE0A6" fill-opacity=".55"/>
-        <g fill="#E2E7E5" font-family="Helvetica,Arial,sans-serif" font-size="28">
+        <polygon points="280,150 358,205 350,300 268,330 205,290 212,205" fill-opacity=".55"style="fill:var(--accent-strong)" />
+        <g font-family="Helvetica,Arial,sans-serif" font-size="28" style="fill:var(--text-2)">
           <text x="280" y="14" text-anchor="middle">Terraform</text>
           <text x="492" y="128" text-anchor="start">Git</text>
           <text x="492" y="378" text-anchor="start">Branching</text>
@@ -737,9 +1006,9 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
         </g>
       </svg>
       <div class="legend">
-        <span><i style="background:#3FE0A6"></i>Junior</span>
-        <span><i style="background:#11B67A"></i>Engineer</span>
-        <span><i style="background:#2F7DF6"></i>Senior</span>
+        <span><i style="background:var(--accent-strong)"></i>Junior</span>
+        <span><i style="background:var(--accent)"></i>Engineer</span>
+        <span><i style="background:var(--alt)"></i>Senior</span>
       </div>
     </div>
   </div>
@@ -793,10 +1062,10 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 <section class="slide tight" data-notes="A week-by-week view of the same pathway for a typical engineer. Weeks 1 to 3 are environment, Git fundamentals and Terraform foundations. Weeks 4 to 6 are first plan and apply, branching and pull requests, and the full GitOps change flow. From week 7 they take a real task solo, then modules and review, then release ownership by month four.">
   <div class="eyebrow"><i class="dot"></i>09 &middot; Curriculum</div>
   <div class="tlkey" style="position:absolute;top:88px;right:122px">
-    <span><i style="background:#3FE0A6"></i><span class="g">GIT</span></span>
-    <span><i style="background:#11B67A"></i><span class="gm">TERRAFORM</span></span>
-    <span><i style="background:#2F7DF6"></i><span class="bl">GITOPS</span></span>
-    <span><i style="background:#dfe4e2"></i>ENV</span>
+    <span><i style="background:var(--accent-strong)"></i><span class="g">GIT</span></span>
+    <span><i style="background:var(--accent)"></i><span class="gm">TERRAFORM</span></span>
+    <span><i style="background:var(--alt)"></i><span class="bl">GITOPS</span></span>
+    <span><i style="background:var(--text-3)"></i>ENV</span>
   </div>
   <h1>The learning timeline for a typical engineer</h1>
   <div class="sub">Milestones are indicative and will vary individual to individual</div>
@@ -805,7 +1074,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
       <div class="conn c1"></div><div class="conn c2"></div>
       <div class="connv" style="left:83.3%"></div>
     <div class="term">
-      <div class="bar"><i style="background:#c0503c"></i><i style="background:#d0a03c"></i><i style="background:#11B67A"></i><span>engineer@your_org: ~/week-01</span></div>
+      <div class="bar"><i style="background:var(--warn)"></i><i style="background:var(--amber)"></i><i style="background:var(--accent)"></i><span>engineer@your_org: ~/week-01</span></div>
       <div class="bd">
         <div class="st"># stop 01 &middot; WEEK 1</div><div class="ti">Environment &amp; access</div>
         <div class="ln"><b class="g">+ ENV</b>&nbsp;&nbsp; Install tools &mdash; IDE, extensions, TF on PATH</div>
@@ -814,7 +1083,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
       </div>
     </div>
     <div class="term">
-      <div class="bar"><i style="background:#c0503c"></i><i style="background:#d0a03c"></i><i style="background:#11B67A"></i><span>engineer@your_org: ~/week-02</span></div>
+      <div class="bar"><i style="background:var(--warn)"></i><i style="background:var(--amber)"></i><i style="background:var(--accent)"></i><span>engineer@your_org: ~/week-02</span></div>
       <div class="bd">
         <div class="st"># stop 02 &middot; WEEK 2</div><div class="ti">Git fundamentals</div>
         <div class="ln"><b class="g">+ GIT</b>&nbsp;&nbsp; Daily basics: add &middot; commit &middot; status &middot; log &middot; diff</div>
@@ -823,7 +1092,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
       </div>
     </div>
     <div class="term">
-      <div class="bar"><i style="background:#c0503c"></i><i style="background:#d0a03c"></i><i style="background:#11B67A"></i><span>engineer@your_org: ~/week-03</span></div>
+      <div class="bar"><i style="background:var(--warn)"></i><i style="background:var(--amber)"></i><i style="background:var(--accent)"></i><span>engineer@your_org: ~/week-03</span></div>
       <div class="bd">
         <div class="st"># stop 03 &middot; WEEK 3</div><div class="ti">Terraform foundations</div>
         <div class="ln"><b class="g">+ TF</b>&nbsp;&nbsp; IaC principles and declarative config</div>
@@ -837,7 +1106,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
       <div class="conn c1"></div><div class="conn c2"></div>
       <div class="connv" style="left:16.6%"></div>
     <div class="term">
-      <div class="bar"><i style="background:#c0503c"></i><i style="background:#d0a03c"></i><i style="background:#11B67A"></i><span>engineer@your_org: ~/week-06</span></div>
+      <div class="bar"><i style="background:var(--warn)"></i><i style="background:var(--amber)"></i><i style="background:var(--accent)"></i><span>engineer@your_org: ~/week-06</span></div>
       <div class="bd">
         <div class="st"># stop 06 &middot; WEEK 6</div><div class="ti">The GitOps change flow</div>
         <div class="ln"><b class="bl">+ GITOPS</b>&nbsp;&nbsp; branch &rarr; PR &rarr; plan &rarr; merge &rarr; apply, end to end</div>
@@ -846,7 +1115,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
       </div>
     </div>
     <div class="term">
-      <div class="bar"><i style="background:#c0503c"></i><i style="background:#d0a03c"></i><i style="background:#11B67A"></i><span>engineer@your_org: ~/week-05</span></div>
+      <div class="bar"><i style="background:var(--warn)"></i><i style="background:var(--amber)"></i><i style="background:var(--accent)"></i><span>engineer@your_org: ~/week-05</span></div>
       <div class="bd">
         <div class="st"># stop 05 &middot; WEEK 5</div><div class="ti">Branching &amp; pull requests</div>
         <div class="ln"><b class="g">+ GIT</b>&nbsp;&nbsp; Raise a first PR from a feature branch</div>
@@ -855,7 +1124,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
       </div>
     </div>
     <div class="term">
-      <div class="bar"><i style="background:#c0503c"></i><i style="background:#d0a03c"></i><i style="background:#11B67A"></i><span>engineer@your_org: ~/week-04</span></div>
+      <div class="bar"><i style="background:var(--warn)"></i><i style="background:var(--amber)"></i><i style="background:var(--accent)"></i><span>engineer@your_org: ~/week-04</span></div>
       <div class="bd">
         <div class="st"># stop 04 &middot; WEEK 4</div><div class="ti">First plan &amp; apply</div>
         <div class="ln"><b class="g">+ TF</b>&nbsp;&nbsp; Run apply and destroy safely in a sandbox</div>
@@ -868,7 +1137,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
     <div class="tlrow">
       <div class="conn c1"></div><div class="conn c2"></div>
     <div class="term">
-      <div class="bar"><i style="background:#c0503c"></i><i style="background:#d0a03c"></i><i style="background:#11B67A"></i><span>engineer@your_org: ~/week-07/08</span></div>
+      <div class="bar"><i style="background:var(--warn)"></i><i style="background:var(--amber)"></i><i style="background:var(--accent)"></i><span>engineer@your_org: ~/week-07/08</span></div>
       <div class="bd">
         <div class="st"># stop 07 &middot; WEEKS 7&ndash;8</div><div class="ti">First real task (solo)</div>
         <div class="ln"><b class="g">+ TF</b>&nbsp;&nbsp; Deliver a real non-prod change end to end, unpaired</div>
@@ -877,7 +1146,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
       </div>
     </div>
     <div class="term">
-      <div class="bar"><i style="background:#c0503c"></i><i style="background:#d0a03c"></i><i style="background:#11B67A"></i><span>engineer@your_org: ~/week-09-11</span></div>
+      <div class="bar"><i style="background:var(--warn)"></i><i style="background:var(--amber)"></i><i style="background:var(--accent)"></i><span>engineer@your_org: ~/week-09-11</span></div>
       <div class="bd">
         <div class="st"># stop 08 &middot; WEEKS 9&ndash;11</div><div class="ti">Modules, reuse &amp; review</div>
         <div class="ln"><b class="g">+ TF</b>&nbsp;&nbsp; count &amp; for_each for dynamic resources</div>
@@ -886,7 +1155,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
       </div>
     </div>
     <div class="term">
-      <div class="bar"><i style="background:#c0503c"></i><i style="background:#d0a03c"></i><i style="background:#11B67A"></i><span>engineer@your_org: ~/week-12+</span></div>
+      <div class="bar"><i style="background:var(--warn)"></i><i style="background:var(--amber)"></i><i style="background:var(--accent)"></i><span>engineer@your_org: ~/week-12+</span></div>
       <div class="bd">
         <div class="st"># stop 09 &middot; WK 12 &rarr; MONTH 4</div><div class="ti">Release ownership &amp; independence</div>
         <div class="ln"><b class="bl">+ GITOPS</b>&nbsp;&nbsp; Promote a change across dev &rarr; stage &rarr; prod</div>
@@ -935,7 +1204,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
   <div class="sub">The full skills map for reskilling into GitOps &mdash; foundations through advanced, across the four core disciplines.</div>
   <div class="body grid g4" style="margin-top:32px;gap:20px">
     <div class="skillcol">
-      <div class="hd"><i style="background:#11B67A"></i><h3>Environment</h3></div>
+      <div class="hd"><i style="background:var(--accent)"></i><h3>Environment</h3></div>
       <div class="sec g">EDITOR &amp; TERMINAL</div>
       <ul><li>VS Code / JetBrains / Neovim + terminal</li><li>Git ext: inline diff, blame, staging</li><li>Editor for commits; .editorconfig</li></ul>
       <div class="sec g">LANGUAGE SUPPORT</div>
@@ -946,7 +1215,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
       <ul><li>SSH keys / credential helper</li><li>.gitignore template pre first commit</li></ul>
     </div>
     <div class="skillcol">
-      <div class="hd"><i style="background:#2F7DF6"></i><h3>Git</h3></div>
+      <div class="hd"><i style="background:var(--alt)"></i><h3>Git</h3></div>
       <div class="sec bl">FOUNDATIONS</div>
       <ul><li>Version control &amp; the distributed model</li><li>Git vs GitHub / GitLab; why it matters</li><li>git config &amp; init; working &rarr; staging &rarr; remote</li></ul>
       <div class="sec bl">DAILY WORKFLOW</div>
@@ -957,7 +1226,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
       <ul><li>Rebase vs merge; tagging &amp; stashing</li><li>Revert / reset, history rewrite, recovery</li><li>GitHub Flow team branching strategy</li><li>Git 3.0: SHA-256 &amp; reftable (late 2026)</li></ul>
     </div>
     <div class="skillcol">
-      <div class="hd"><i style="background:#2F7DF6"></i><h3>Terraform</h3></div>
+      <div class="hd"><i style="background:var(--alt)"></i><h3>Terraform</h3></div>
       <div class="sec bl">FOUNDATIONS</div>
       <ul><li>IaC principles &amp; declarative config</li><li>Install Terraform + provider CLI / creds</li></ul>
       <div class="sec bl">DAILY WORKFLOW</div>
@@ -972,7 +1241,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
       <ul><li>Terraform Associate 004 (live Jan 2026)</li><li>Authoring &amp; Operations Professional</li></ul>
     </div>
     <div class="skillcol">
-      <div class="hd"><i style="background:#11B67A"></i><h3>GitOps</h3></div>
+      <div class="hd"><i style="background:var(--accent)"></i><h3>GitOps</h3></div>
       <div class="sec g">FOUNDATIONS</div>
       <ul><li>Git as the single source of truth</li><li>Desired vs live state &amp; reconciliation</li><li>Principles: declarative, versioned, pulled, reconciled</li></ul>
       <div class="sec g">DAILY WORKFLOW</div>
@@ -997,7 +1266,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
     <div class="card" style="min-height:270px"><h3>New-starter bootstrapping</h3><p>A Mac provisioning flow in Jamf to ship tools, config &amp; environment automatically.</p></div>
     <div class="card" style="min-height:270px"><h3>Scenario-based lab packs</h3><p>Pre-built non-prod 'fix this broken config' challenges &mdash; not hello-world examples.</p></div>
     <div class="card" style="min-height:270px"><h3>Short video walkthroughs</h3><p>3&ndash;5 min recordings of real tasks. Don't over-produce &mdash; screen recording with good audio is enough.</p></div>
-    <div class="card" style="min-height:270px;background:#101a16;border-color:#1d3129"><h3>Structured onboarding plan</h3><p>A written 4&ndash;8 week plan per new engineer, with clear milestones and a named buddy from day one.</p></div>
+    <div class="card" style="min-height:270px;background:var(--surface-2);border-color:var(--border-soft)"><h3>Structured onboarding plan</h3><p>A written 4&ndash;8 week plan per new engineer, with clear milestones and a named buddy from day one.</p></div>
   </div>
 </section>
 
@@ -1032,7 +1301,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
     </div>
     <div class="branch">
       <div class="arm"><div class="ln"></div><div class="lb"><span class="g">YES</span> &rarr; <span class="g">author TF</span></div></div>
-      <div class="arm"><div class="ln" style="background:#6f7b77"></div><div class="lb mu">NO &rarr; read-only</div></div>
+      <div class="arm"><div class="ln" style="background:var(--muted-2)"></div><div class="lb mu">NO &rarr; read-only</div></div>
     </div>
     <div class="grid g3" style="margin-top:30px">
       <div class="teamcard yes">
@@ -1082,19 +1351,19 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
     <svg viewBox="0 0 900 260" style="width:760px;display:block;margin:0 auto 44px">
       <defs>
         <linearGradient id="arc" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#11B67A"/><stop offset="50%" stop-color="#2AA0C4"/><stop offset="100%" stop-color="#2F7DF6"/>
+          <stop offset="0%"style="stop-color:var(--accent)" /><stop offset="50%"style="stop-color:var(--arc-mid)" /><stop offset="100%"style="stop-color:var(--alt)" />
         </linearGradient>
       </defs>
       <path d="M120 230 Q450 40 780 230" fill="none" stroke="url(#arc)" stroke-width="4"/>
-      <circle cx="120" cy="230" r="11" fill="#11B67A"/>
-      <circle cx="450" cy="123" r="11" fill="#11B67A"/>
-      <circle cx="780" cy="230" r="11" fill="#2F7DF6"/>
-      <text x="120" y="180" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="52" font-weight="bold" fill="#11B67A">30</text>
-      <text x="120" y="212" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="22" fill="#cdd4d1">first PR merged</text>
-      <text x="450" y="66" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="52" font-weight="bold" fill="#11B67A">60</text>
-      <text x="450" y="100" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="22" fill="#cdd4d1">first solo delivery</text>
-      <text x="780" y="180" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="52" font-weight="bold" fill="#2F7DF6">90</text>
-      <text x="780" y="212" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="22" fill="#cdd4d1">real task, no help</text>
+      <circle cx="120" cy="230" r="11"style="fill:var(--accent)" />
+      <circle cx="450" cy="123" r="11"style="fill:var(--accent)" />
+      <circle cx="780" cy="230" r="11"style="fill:var(--alt)" />
+      <text x="120" y="180" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="52" font-weight="bold" style="fill:var(--accent)">30</text>
+      <text x="120" y="212" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="22" style="fill:var(--text-dim)">first PR merged</text>
+      <text x="450" y="66" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="52" font-weight="bold" style="fill:var(--accent)">60</text>
+      <text x="450" y="100" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="22" style="fill:var(--text-dim)">first solo delivery</text>
+      <text x="780" y="180" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="52" font-weight="bold" style="fill:var(--alt)">90</text>
+      <text x="780" y="212" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="22" style="fill:var(--text-dim)">real task, no help</text>
     </svg>
     <div class="grid g3">
       <div class="card" style="min-height:250px"><h3>Artifacts package</h3><p>A new-hire pack: runbook index, architecture diagram, Git conventions, PR template, 'how we work' guide. Ship it on day one &mdash; don't make them ask.</p></div>
@@ -1215,8 +1484,146 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 </div></div>
 <div id="progress"></div>
 <div id="counter"></div>
-<div id="help">&larr; &rarr; move &middot; N notes &middot; F full</div>
+<div id="help">&larr; &rarr; move &middot; N notes &middot; F full &middot; T theme &middot; K knobs</div>
 <div id="notes"><h5>Speaker notes</h5><div id="notestext"></div></div>
+<div id="knobs" aria-label="Colour knobs">
+  <header>
+    <h5>THEME</h5>
+    <div class="themes" id="knobThemes"></div>
+  </header>
+  <div class="list" id="knobList"></div>
+  <div class="hint">Brand colours are fixed by the style guide. Tints are derived.</div>
+  <footer>
+    <button type="button" id="knobFine">Fine tints</button>
+    <button type="button" id="knobReset">Reset</button>
+    <button type="button" class="primary" id="knobCopy">Copy CSS</button>
+  </footer>
+</div>
+<script>
+// Colour knobs. Themes are the [data-theme] blocks in the stylesheet; this only
+// sets the attribute and, for the live panel, writes inline overrides onto
+// documentElement. Nothing here knows any colour values.
+(function(){
+  var THEMES=['default','light-paper','light-slate','jamf','deep-green','contrast'];
+  // Knobs offered in the panel. Anything in FINE is hidden until asked for.
+  var PRIMARY=['page','bg','surface','surface-2','border','border-soft','text','text-dim',
+    'text-dimmer','muted','faint','accent','accent-strong','accent-deep','accent-wash',
+    'on-accent','alt','alt-light','alt-surface','alt-border','warn','warn-light','amber'];
+  var FINE=['text-2','text-3','text-dim-2','text-dim-3','muted-2','muted-3','faint-2',
+    'border-dash','border-faint','notes-bg','bar-bg','accent-wash-2','accent-wash-3',
+    'accent-wash-4','wash-mid','grid-line','arc-mid','jamf-blue'];
+  var root=document.documentElement, current='default', overrides={};
+
+  // file:// pages can have an opaque origin, so storage may throw. Losing
+  // persistence is fine; breaking the deck is not.
+  function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function load(k){try{return localStorage.getItem(k)}catch(e){return null}}
+
+  function apply(name){
+    current=THEMES.indexOf(name)>-1?name:'default';
+    if(current==='default')root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme',current);
+    store('jnuc-theme',current);
+    refresh();
+  }
+  function cycle(dir){
+    apply(THEMES[(THEMES.indexOf(current)+dir+THEMES.length)%THEMES.length]);
+  }
+
+  // Resolved value of a knob, minus any inline override, as #rrggbb.
+  function resolved(name){
+    var v=getComputedStyle(root).getPropertyValue('--'+name).trim();
+    if(v.charAt(0)==='#'){
+      if(v.length===4)v='#'+v[1]+v[1]+v[2]+v[2]+v[3]+v[3];
+      return v.toLowerCase();
+    }
+    // var() alias or a name: paint it and read it back
+    var probe=document.createElement('span');
+    probe.style.cssText='display:none;color:var(--'+name+')';
+    root.appendChild(probe);
+    var rgb=getComputedStyle(probe).color;
+    root.removeChild(probe);
+    var m=rgb.match(/\d+/g);
+    return m?'#'+m.slice(0,3).map(function(n){
+      return ('0'+parseInt(n,10).toString(16)).slice(-2)}).join(''):'#000000';
+  }
+
+  var panel=document.getElementById('knobs'),
+      list=document.getElementById('knobList'),
+      themeBar=document.getElementById('knobThemes');
+
+  THEMES.forEach(function(t){
+    var b=document.createElement('button');
+    b.type='button'; b.textContent=t; b.dataset.theme=t;
+    b.addEventListener('click',function(){apply(t)});
+    themeBar.appendChild(b);
+  });
+
+  function buildRow(name,fine){
+    var row=document.createElement('div');
+    row.className='row'+(fine?' fine':'');
+    var lab=document.createElement('label');
+    lab.textContent='--'+name;
+    lab.htmlFor='knob-'+name;
+    var input=document.createElement('input');
+    input.type='color'; input.id='knob-'+name;
+    var hex=document.createElement('span');
+    hex.className='hex';
+    input.addEventListener('input',function(){
+      overrides[name]=input.value;
+      root.style.setProperty('--'+name,input.value);
+      hex.textContent=input.value;
+    });
+    row.appendChild(lab); row.appendChild(hex); row.appendChild(input);
+    row._sync=function(){
+      var v=overrides[name]||resolved(name);
+      input.value=v; hex.textContent=v;
+    };
+    return row;
+  }
+  var rows=PRIMARY.map(function(n){return buildRow(n,false)})
+    .concat(FINE.map(function(n){return buildRow(n,true)}));
+  rows.forEach(function(r){list.appendChild(r)});
+
+  function refresh(){
+    rows.forEach(function(r){r._sync()});
+    [].forEach.call(themeBar.children,function(b){
+      b.setAttribute('aria-pressed',String(b.dataset.theme===current));
+    });
+  }
+
+  document.getElementById('knobFine').addEventListener('click',function(){
+    panel.classList.toggle('showfine');
+  });
+  document.getElementById('knobReset').addEventListener('click',function(){
+    Object.keys(overrides).forEach(function(k){root.style.removeProperty('--'+k)});
+    overrides={}; refresh();
+  });
+  document.getElementById('knobCopy').addEventListener('click',function(){
+    var keys=Object.keys(overrides);
+    var body=(keys.length?keys:PRIMARY.concat(FINE)).map(function(k){
+      return '  --'+k+':'+(overrides[k]||resolved(k))+';';
+    }).join('\n');
+    var css='html[data-theme="my-theme"]{\n'+body+'\n}';
+    var btn=this;
+    function done(ok){btn.textContent=ok?'Copied':'Copy failed';
+      setTimeout(function(){btn.textContent='Copy CSS'},1400)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(css).then(function(){done(true)},function(){console.log(css);done(false)});
+    }else{console.log(css);done(false)}
+  });
+
+  window.JNUC_THEME={
+    cycle:cycle,
+    apply:apply,
+    togglePanel:function(){panel.classList.toggle('on');if(panel.classList.contains('on'))refresh()}
+  };
+
+  var q=(location.search.match(/[?&]theme=([\w-]+)/)||[])[1];
+  apply(q||load('jnuc-theme')||'default');
+  if(/[?&]knobs=1/.test(location.search))window.JNUC_THEME.togglePanel();
+})();
+</script>
 <script src="../_shared/speakers.js"></script>
 <script>
 // Person rows on the context slide, built from the shared records so both decks
@@ -1276,17 +1683,20 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
     if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
   }
   document.addEventListener('keydown',function(e){
+    if(e.target.closest&&e.target.closest('#knobs'))return;
     if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '||e.key==='ArrowDown'){show(i+1);e.preventDefault()}
     else if(e.key==='ArrowLeft'||e.key==='PageUp'||e.key==='ArrowUp'){show(i-1);e.preventDefault()}
     else if(e.key==='Home'){show(0)}
     else if(e.key==='End'){show(slides.length-1)}
     else if(e.key==='n'||e.key==='N'){notesOn=!notesOn;notes.classList.toggle('on',notesOn)}
+    else if(e.key==='t'||e.key==='T'){window.JNUC_THEME.cycle(e.shiftKey?-1:1)}
+    else if(e.key==='k'||e.key==='K'){window.JNUC_THEME.togglePanel()}
     else if(e.key==='f'||e.key==='F'){
       if(document.fullscreenElement){document.exitFullscreen()}else{document.documentElement.requestFullscreen()}
     }
   });
   document.addEventListener('click',function(e){
-    if(e.target.closest('#notes'))return;
+    if(e.target.closest('#notes')||e.target.closest('#knobs'))return;
     show(e.clientX < window.innerWidth*0.28 ? i-1 : i+1);
   });
   window.addEventListener('resize',fit);

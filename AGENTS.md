@@ -296,9 +296,45 @@ four weeks of learning, which is roughly right for the number of topics. The fai
 calendar, not the volume - four weeks of content delivered across six months, with interest
 wandering off in the gaps. Don't recast it as "too much content".
 
-Everything about it is its own: near-black theme, its own token names (`--green-deep`,
-`--green-bright`, `--mono`), its own slide machinery. Nothing is borrowed from the other deck
-and nothing should be.
+Everything about it is its own: its own token names, its own slide machinery. Nothing is
+borrowed from the other deck and nothing should be.
+
+### Colour knobs and themes
+
+Every colour in this deck resolves to a semantic token in `:root`. **Never hardcode a hex in
+slide CSS or markup** - reuse a knob or add one, or the themes will not reach it. The old
+colour-named tokens (`--green`, `--blue-light`, `--red`) survive as aliases of the semantic
+ones, so existing rules keep working, but new work should use `--accent`, `--alt`, `--warn`,
+`--surface`, `--text-dim` and friends.
+
+- **Six presets**, three dark and three light. Dark: `default` (the original near-black, and
+  the only one with no `[data-theme]` block), `deep-green`, `contrast`. Light: `light-paper`,
+  `light-slate`, and `jamf` - which is modelled directly on the Jamf Pro admin console
+  (white cards on a faint grey canvas, hairline borders, near-black type, Jamf Blue as the
+  only strong colour, console icon-tile pastels as the washes). Add a preset by copying a
+  block and adding its name to `THEMES` in the theme script.
+- **Controls**: `T` cycles, `Shift+T` cycles back, `K` opens the knobs panel. `?theme=<name>`
+  wins on load; `?knobs=1` opens the panel. The choice persists in `localStorage`, wrapped in
+  try/catch because `file://` can have an opaque origin - losing persistence is fine, throwing
+  is not.
+- **The knobs panel** lists the primary knobs, hides the fine tints behind a toggle, and
+  "Copy CSS" emits a paste-ready `[data-theme="my-theme"]{…}` block.
+- **Values marked DERIVED** in the token block are not from the slide 20 colour system; they
+  are tints worked out from a documented brand colour, and each says which. Brand colours
+  (Mountain Meadow, Tropical Rain Forest, Jamf Blue, Alert Red) are always used exactly.
+- **Slide 20 stays canonical.** Its chips keep literal hexes under every theme, because it
+  documents the brand palette rather than the active UI. Do not tokenise them.
+- **Embedded artwork**: several logos are white-on-transparent PNGs drawn for a dark stage.
+  `--art-mono-filter` inverts the monochrome marks (Octocat, cursor) and `--art-plate` sits
+  the multicolour ones (Jamf) on a dark plate. These rules are scoped to `html[data-theme]`
+  on purpose: applying `filter` at all promotes a compositing layer and shifts antialiasing,
+  so the unthemed default must not carry them.
+- **Slide copy must stay theme-neutral.** Do not write "the green bands" or "the green chip"
+  when a theme can turn them blue.
+
+When changing anything colour-related, screenshot all 20 slides on `default` before and after
+and `cmp` them. Tokenising must never alter the default rendering; that check is what catches
+a wrong substitution.
 
 - Slides are `<section class="slide">` with no ids except `#s1`. Navigation is by index -
   the URL hash is `#1`..`#20`, not a slide name.
