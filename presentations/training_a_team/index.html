@@ -507,9 +507,12 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 .goalfoot .bar3.not .lb{color:var(--muted)}
 .goalfoot p{font-size:17px;line-height:1.38;color:var(--text-dim)}
 .goalfoot .todo{display:inline-block;margin:6px 0 0}
-.slide.dense8 .rolecard{padding:20px 28px;margin-bottom:18px}
-.slide.dense8 .rolecard .hd{margin-bottom:11px}
-.slide.dense8 .rolecard li{margin-bottom:7px}
+.slide.dense8 .rolecard{padding:16px 26px;margin-bottom:14px}
+.slide.dense8 .rolecard .hd{margin-bottom:9px}
+.slide.dense8 .rolecard .hd h3{font-size:25px}
+.slide.dense8 .rolecard .hd span{font-size:18px}
+.slide.dense8 .rolecard li{margin-bottom:5px;font-size:18px;line-height:1.35;padding-left:24px}
+.slide.dense8 .rolecard li::before{font-size:18px}
 .slide.tight h1{margin-top:14px}
 .slide.tight .sub{margin-top:8px}
 .term{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;position:relative;z-index:2}
@@ -951,7 +954,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 </section>
 
 <!-- ============ 8 · CURRICULUM BY ROLE ============ -->
-<section class="slide dense8" data-notes="Teach to the role. Juniors need breadth over depth — Terraform and Git basics, branching fundamentals, and can they safely write and apply a PR. Seniors need end-to-end mastery: advanced Terraform, DevOps practice, provider architecture — they're the escalation point and the mentors.">
+<section class="slide dense8" data-notes="Teach to the role, and note the axes are the same four disciplines the next three slides use, plus two that only start to matter as people move up. Juniors need breadth over depth: a working environment, Git basics, branching fundamentals, and enough Terraform to read a plan and predict what it will change. The test for a junior is simple - can they write a working PR and apply a change safely. Engineers own modules and everyday resource changes, review each other's work, and start going to the Jamf Pro API docs directly when the provider documentation is ambiguous. Be deliberate about the senior row, because this is where most teams get the shape wrong. Seniors are the escalation point, not a separate species. They need advanced Terraform, release management, and a strong understanding of the Jamf Pro API. The API knowledge is the one people underestimate: when a resource is not supported yet, somebody has to work out whether the API supports it at all, whether this is a gap in the provider, and whether it is worth raising upstream. What seniors explicitly do not need is provider architecture or SDK design. Building the provider is a different job from using it, and no Mac team needs a Go developer in order to adopt any of this. Mentoring stays on the chart because pairing with juniors is how the knowledge actually moved, which is the same finding as the what-worked slide.">
   <div class="eyebrow"><i class="dot"></i>07 &middot; Curriculum</div>
   <h1>Learning priorities by role</h1>
   <div class="body split" style="gap:70px">
@@ -959,9 +962,9 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
       <div class="rolecard">
         <div class="hd"><h3>Junior engineers</h3><span>Breadth over depth</span></div>
         <ul>
-          <li>Terraform basics + Git basics : the must-haves</li>
-          <li>Branching strategies: fundamentals only</li>
-          <li>Do <span class="g">not</span> need to understand provider internals</li>
+          <li>Environment working: editor, extensions, Terraform on PATH</li>
+          <li>Git basics, and branching fundamentals only</li>
+          <li>Terraform basics: read a plan and predict what it will change</li>
           <li>Focus: can they write a working PR and apply a change safely?</li>
           <li>Self-service runbooks for common CLI operations</li>
         </ul>
@@ -971,37 +974,51 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
         <ul>
           <li>Own modules and everyday resource changes end-to-end</li>
           <li>Review junior PRs; raise their own with confidence</li>
-          <li>Growing into advanced Terraform and DevOps patterns</li>
+          <li>Read the Jamf Pro API docs when the provider docs are ambiguous</li>
+          <li>Growing into advanced Terraform and release management</li>
         </ul>
       </div>
       <div class="rolecard">
-        <div class="hd"><h3>Senior engineers</h3><span class="blue">End-to-end mastery</span></div>
+        <div class="hd"><h3>Senior engineers</h3><span class="blue">The escalation point</span></div>
         <ul>
-          <li>Advanced Terraform: dynamic blocks, for_each, lookups, modules</li>
-          <li>DevOps: release cycles, automated testing, PR approvals</li>
-          <li>Provider architecture and SDK design</li>
-          <li>Can mentor, code-review, and unblock juniors</li>
-          <li>Contribute to internal tooling and runbook authorship</li>
+          <li>Advanced Terraform: for_each, dynamic blocks, lookups, modules</li>
+          <li>Release management: tagging, promotion, rollback, PR approvals</li>
+          <li><span class="g">Strong Jamf Pro API understanding</span></li>
+          <li>When a resource isn't supported: does the API support it, is it a provider gap, is it worth raising</li>
+          <li>Pairs with and mentors juniors; reviews and unblocks</li>
+          <li>Owns internal tooling and runbook authorship</li>
         </ul>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;justify-content:center;height:720px">
       <svg viewBox="-130 -30 820 560" style="width:100%">
+        <!-- Radar web. Centre is 280,250; a vertex at full reach is 220 up,
+             or 190 across and 110 down. Axes run clockwise from the top:
+             Terraform, Git, GitOps, Jamf APIs, Environment, Mentoring. The
+             first four are the same four disciplines used by the pathway
+             matrix, the timeline and the skills map - keep them in step if
+             any of those slides change. -->
         <g fill="none" stroke-width="1.5" style="stroke:var(--border)">
-          <polygon points="280,60 470,170 470,390 280,500 90,390 90,170" transform="translate(0,-30)"/>
+          <polygon points="280,173 347,212 347,289 280,327 213,289 213,212"/>
+          <polygon points="280,96 413,173 413,327 280,404 147,327 147,173"/>
+          <polygon points="280,30 470,140 470,360 280,470 90,360 90,140"/>
+          <path d="M280 250 L280 30M280 250 L470 140M280 250 L470 360M280 250 L280 470M280 250 L90 360M280 250 L90 140"/>
         </g>
-        <!-- senior -->
-        <polygon points="280,30 470,140 470,360 280,470 90,360 90,140" fill-opacity=".92"style="fill:var(--alt)" />
+        <!-- senior: near the outer ring, but nobody is maxed everywhere -->
+        <polygon points="280,30 455,149 462,356 280,444 105,351 90,140"
+          fill-opacity=".16" stroke-width="3" style="fill:var(--alt);stroke:var(--alt)" />
         <!-- engineer -->
-        <polygon points="280,118 398,186 398,322 280,390 162,322 162,186" fill-opacity=".95"style="fill:var(--accent)" />
-        <!-- junior -->
-        <polygon points="280,150 358,205 350,300 268,330 205,290 212,205" fill-opacity=".55"style="fill:var(--accent-strong)" />
+        <polygon points="280,92 421,169 413,327 280,360 128,338 189,197"
+          fill-opacity=".18" stroke-width="3" style="fill:var(--accent);stroke:var(--accent)" />
+        <!-- junior: pinched on Jamf APIs and mentoring, which they need none of -->
+        <polygon points="280,158 375,195 356,294 280,294 176,311 238,226"
+          fill-opacity=".22" stroke-width="3" style="fill:var(--accent-strong);stroke:var(--accent-strong)" />
         <g font-family="Helvetica,Arial,sans-serif" font-size="28" style="fill:var(--text-2)">
           <text x="280" y="14" text-anchor="middle">Terraform</text>
           <text x="492" y="128" text-anchor="start">Git</text>
-          <text x="492" y="378" text-anchor="start">Branching</text>
-          <text x="280" y="497" text-anchor="middle">Provider internals</text>
-          <text x="68" y="378" text-anchor="end">DevOps</text>
+          <text x="492" y="378" text-anchor="start">GitOps</text>
+          <text x="280" y="497" text-anchor="middle">Jamf APIs</text>
+          <text x="68" y="378" text-anchor="end">Environment</text>
           <text x="68" y="128" text-anchor="end">Mentoring</text>
         </g>
       </svg>

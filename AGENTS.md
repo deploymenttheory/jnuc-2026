@@ -279,9 +279,34 @@ length has been recorded here yet. Content work has now begun, slide by slide (A
   including the added "Expect the dip", sit right as compact numbered cards. Classes
   `.herowrap`, `.heropanel`, `.supp`/`.suppcard` (`.dip` for the blue one); `.numcard` was
   deleted with the layout it served.
+- **Learning priorities by role** (`#8`): realigned with the three curriculum slides that
+  follow it, and its radar redrawn as a proper web (grid rings plus spokes, thin outlines,
+  translucent fills) rather than solid stacked polygons.
 
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an `--amber`
 token for exactly that. Earlier work wired its speakers to `_shared/`.
+
+**The four disciplines are a shared vocabulary.** `#9` (pathway matrix), `#10` (timeline) and
+`#12` (skills map) are all built on **Environment, Git, Terraform, GitOps**, and `#12` calls
+them "the four core disciplines" in its subtitle. `#8`'s radar now uses those same four plus
+Jamf APIs and Mentoring, the two that only start to matter as people move up. If you rename
+or re-cut a discipline on any of those four slides, change all four.
+
+Two deliberate decisions on `#8` worth not undoing:
+
+- **Provider architecture and SDK design were removed.** Building the Terraform provider is a
+  different job from using it, and no Mac team needs a Go developer to adopt this. It was
+  replaced with Jamf Pro API knowledge, which the deck previously never taught at all -
+  before this change the only mention of an API anywhere in the deck was one bullet on the
+  hiring slide. The senior row now owns the "resource isn't supported yet" triage: does the
+  API support it, is it a provider gap, is it worth raising.
+- **The senior label is "The escalation point", not "End-to-end mastery"**, because seniors
+  are defined here by responsibility rather than by a completed body of knowledge.
+
+Known tension, left as-is on purpose: `#8` organises the curriculum by job grade, while `#9`
+organises it by stage of learning (Oriented, Safe Contributor, and so on) and `#6` reports
+that prior coding experience predicted success rather than seniority. The speaker owns that
+framing and chose to keep grades, since that is how the audience's own org charts read.
 
 The figures on `#6` are measured, not estimated. They come from
 `github.com/deploymenttheory/terraform-training-jamfpro` at the time of writing: 214,645
