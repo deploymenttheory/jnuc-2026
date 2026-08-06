@@ -273,7 +273,12 @@ length has been recorded here yet. Content work has now begun, slide by slide (A
   strip. Classes `.chartwrap`/`.chd`, `.fchips`/`.fchip` (`.won` for the green one) and
   `.qstrip`, plus a `--red-light` token. The earlier `.failcard`, `.quotecard`, `.swapcard`
   and `dense6` rules were deleted with the layout they served.
-- **Conditions** (`#7`): an added "Expect the dip" card.
+- **Conditions** (`#7`): rebuilt from seven equal `numcard` boxes into a hero layout. A large
+  left panel gives psychological safety the weight the copy always claimed for it ("the most
+  evidenced condition of all") with three practical points under it; the other six conditions,
+  including the added "Expect the dip", sit right as compact numbered cards. Classes
+  `.herowrap`, `.heropanel`, `.supp`/`.suppcard` (`.dip` for the blue one); `.numcard` was
+  deleted with the layout it served.
 
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an `--amber`
 token for exactly that. Earlier work wired its speakers to `_shared/`.
