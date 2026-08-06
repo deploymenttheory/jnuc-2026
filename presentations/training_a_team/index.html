@@ -177,11 +177,26 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
   flex:none;text-align:right;line-height:1.9}
 
 /* ---------- slide 7 ---------- */
-.numcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:30px 32px;
-  display:flex;gap:22px;align-items:flex-start;min-height:290px}
-.numcard .n{font-family:var(--mono);font-size:36px;font-weight:700;color:var(--green-bright);flex:none;line-height:1}
-.numcard h3{font-size:25px;font-weight:700;line-height:1.15}
-.numcard p{font-size:19px;line-height:1.45;color:#a9b2ae;margin-top:10px}
+.herowrap{display:grid;grid-template-columns:640px 1fr;gap:40px;height:706px}
+.heropanel{border:1px solid var(--green-deep);border-radius:14px;padding:44px 46px;
+  background:linear-gradient(160deg,#0c2b1f 0%,#101d18 55%,#121614 100%);
+  display:flex;flex-direction:column}
+.heropanel .tag{font-family:var(--mono);font-size:17px;letter-spacing:.2em;color:var(--green-bright)}
+.heropanel h2{font-size:52px;font-weight:700;line-height:1.05;margin-top:18px;letter-spacing:-.015em}
+.heropanel .lede{font-size:25px;line-height:1.4;color:#cdd4d1;margin-top:26px}
+.heropanel .rule{border:0;border-top:1px solid #1d3129;margin:26px 0}
+.heropanel .pt{display:flex;gap:16px;align-items:flex-start;margin-bottom:16px}
+.heropanel .pt i{width:8px;height:8px;border-radius:2px;background:var(--green-bright);flex:none;margin-top:10px}
+.heropanel .pt p{font-size:19px;line-height:1.42;color:#a9b2ae}
+.heropanel .foot{margin-top:auto;font-family:var(--mono);font-size:18px;color:var(--green-bright);
+  line-height:1.4}
+.supp{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:16px}
+.suppcard{border:1px solid var(--border);border-radius:10px;background:var(--surface);padding:20px 24px}
+.suppcard .n{font-family:var(--mono);font-size:17px;color:var(--muted)}
+.suppcard h3{font-size:21px;font-weight:700;line-height:1.15;margin-top:4px}
+.suppcard p{font-size:17px;line-height:1.38;color:#a9b2ae;margin-top:8px}
+.suppcard.dip{background:#0E1A2B;border-color:var(--blue-border)}
+.suppcard.dip .n{color:var(--blue-light)}
 
 /* ---------- slide 8 ---------- */
 .rolecard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 30px;margin-bottom:22px}
@@ -644,14 +659,25 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 <section class="slide" data-notes="Set the conditions before you start. Get explicit stakeholder buy-in - the transition takes one to three months. Gate workshop attendance on completed pre-reqs. Keep a tight learn-then-practice loop, days not weeks. Do the pairing and labs in person. And expect the dip: the team gets slower before it gets faster, so set that expectation with stakeholders up front - early friction is part of the plan, not a sign of failure.">
   <div class="eyebrow"><i class="dot"></i>06 &middot; Conditions</div>
   <h1>Creating the conditions for success</h1>
-  <div class="body grid g3">
-    <div class="numcard"><div class="n">01</div><div><h3>Stakeholder buy-in first</h3><p>Get non-technical stakeholders and senior leadership bought in on the priority before you start. The transition takes 1-3 months - ours were slow to 'get it', which cost early momentum.</p></div></div>
-    <div class="numcard"><div class="n">02</div><div><h3>Complete pre-reqs before workshops</h3><p>Engineers who skipped pre-requisite learning held back their whole cohort. Gate workshop attendance on completed pre-reqs - no exceptions.</p></div></div>
-    <div class="numcard"><div class="n">03</div><div><h3>Tight loop: learn &rarr; practice</h3><p>Long gaps between learning and applying caused rapid knowledge loss. Keep days, not weeks, between learning something and practising it for real.</p></div></div>
-    <div class="numcard"><div class="n">04</div><div><h3>In-person training &amp; pairing</h3><p>Remote worked for self-paced pre-reqs, but paired programming and lab sessions were dramatically more effective face-to-face - screen-sharing loses the cues real pairing depends on.</p></div></div>
-    <div class="numcard"><div class="n">05</div><div><h3>Partner with your platform-tooling owners</h3><p>Build a working relationship with whoever owns Terraform, GitHub and your other platform tooling early. You'll need them for access, guardrails and troubleshooting throughout.</p></div></div>
-    <div class="numcard"><div class="n">06</div><div><h3>Psychological safety</h3><p>The most evidenced condition of all: teams that treat mistakes as learning, not blame, retain skills faster and ship more reliably. Make it explicit - and don't assume it exists.</p></div></div>
-    <div class="numcard" style="grid-column:1/-1;min-height:0"><div class="n">07</div><div><h3>Expect the dip</h3><p>The team gets slower before it gets faster. Set that expectation with stakeholders up front, so early friction reads as part of the plan and not as failure. <span class="todo">TODO: confirm this expectation was set and roughly how long the dip lasted</span></p></div></div>
+  <div class="body herowrap" style="margin-top:38px">
+    <div class="heropanel">
+      <div class="tag">THE CONDITION THAT CARRIES THE REST</div>
+      <h2>Psychological safety</h2>
+      <div class="lede">Teams that treat mistakes as learning, not blame, retain skills faster and ship more reliably. It is the most evidenced condition of all.</div>
+      <hr class="rule">
+      <div class="pt"><i></i><p>Make it explicit. Say it out loud, early, and more than once.</p></div>
+      <div class="pt"><i></i><p>Don't assume it already exists because the team seems friendly.</p></div>
+      <div class="pt"><i></i><p>It has to still hold the week somebody breaks something that matters.</p></div>
+      <div class="foot">Everything to the right depends on this being true.</div>
+    </div>
+    <div class="supp">
+      <div class="suppcard"><div class="n">01</div><h3>Stakeholder buy-in first</h3><p>Get non-technical stakeholders and senior leadership bought in on the priority before you start. Ours were slow to 'get it', which cost early momentum.</p></div>
+      <div class="suppcard"><div class="n">02</div><h3>Complete pre-reqs before workshops</h3><p>Engineers who skipped pre-requisite learning held back their whole cohort. Gate attendance on it, no exceptions.</p></div>
+      <div class="suppcard"><div class="n">03</div><h3>Tight loop: learn &rarr; practice</h3><p>Long gaps caused rapid knowledge loss. Keep days, not weeks, between learning something and practising it for real.</p></div>
+      <div class="suppcard"><div class="n">04</div><h3>In-person training and pairing</h3><p>Remote worked for self-paced pre-reqs, but pairing and labs were dramatically better face to face.</p></div>
+      <div class="suppcard"><div class="n">05</div><h3>Partner with your platform-tooling owners</h3><p>You'll need whoever owns Terraform and GitHub for access, guardrails and troubleshooting throughout.</p></div>
+      <div class="suppcard dip"><div class="n">06</div><h3>Expect the dip</h3><p>The team gets slower before it gets faster. Set that expectation up front, so early friction reads as part of the plan. <span class="todo">TODO: how long</span></p></div>
+    </div>
   </div>
 </section>
 
