@@ -1,0 +1,54 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node tooling (reveal.js, Slidev, Marp, esbuild, etc.)
+node_modules/
+.npm/
+.cache/
+.parcel-cache/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Build output
+# NOTE: if the deck is published from dist/ via GitHub Pages, remove these two
+# lines — Pages serves what is committed.
+dist/
+build/
+
+# Presentation exports (regenerate from source rather than committing)
+*.pdf
+*.pptx
+export/
+exports/
+
+# Speaker/scratch material that should not ship
+*.local.html
+notes.local.md
+scratch/
+
+# Large media working files (commit optimised assets, not the originals)
+*.mov
+*.mp4
+*.psd
+*.ai
+*.sketch

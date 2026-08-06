@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<!-- Favicon mirrors --c-accent and --c-bg; the data URL keeps the deck self-contained. -->
+<link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23006A4D'/%3E%3Cpath d='M15 16l16 16-16 16M35 48h15' fill='none' stroke='%23F6F8F7' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<title>From Clicks to Code - JNUC 2026</title>
+<style>
+/* =====================================================================
+   Tokens - spec §2. Palette (Q1) and type (Q2) values are placeholders
+   by design; structure is final. All styling below derives from these.
+   ===================================================================== */
+:root {
+  /* Canvas */
+  --slide-w: 1920px;
+  --slide-h: 1080px;
+  --slide-pad: 96px;
+
+  /* Palette - light theme, LBG-green flavoured (Q1: logo assets still pending) */
+  --c-bg: #F6F8F7;          /* base background */
+  --c-surface: #FFFFFF;     /* cards, code blocks */
+  --c-border: #D9E0DD;
+  --c-text: #0F1F1A;
+  --c-text-muted: #5B6A64;
+  --c-accent: #006A4D;      /* primary accent: chosen paths, highlights */
+  --c-accent-2: #0B5FA5;    /* secondary accent: links, diagram edges */
+  --c-danger: #BE3A2E;      /* rejected ideas, revoked permissions */
+  --c-success: #177A4C;     /* validated / managed states */
+  --c-warn: #9A6A00;        /* TODO placeholder chips, freeze notices */
+
+  /* Typography - GT Ultra (LBG brand) where installed; system fallbacks otherwise */
+  --f-display: "GT Ultra", "GT Ultra Standard", Georgia, "Times New Roman", serif;
+  --f-body: "GT Ultra", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-mono: "SF Mono", "Cascadia Code", Consolas, monospace;
+  --fs-hero: 88px;
+  --fs-h1: 64px;
+  --fs-h2: 44px;
+  --fs-body: 30px;
+  --fs-code: 26px;
+  --fs-caption: 22px;
+  --lh-tight: 1.1;
+  --lh-body: 1.45;
+
+  /* Spacing scale */
+  --sp-1: 8px;  --sp-2: 16px; --sp-3: 24px;
+  --sp-4: 40px; --sp-5: 64px; --sp-6: 96px;
+
+  /* Shape and motion */
+  --radius: 12px;
+  --transition-slide: 240ms ease;
+
+  /* Added during build (per §2: new values become tokens) */
+  --radius-sm: 6px;
+  --bw-1: 1px;
+  --bw-2: 2px;
+  --bw-3: 3px;
+  --fs-chip: 18px;
+  --shadow-pop: 0 8px 24px rgba(15, 31, 26, 0.15);
+  --tl-w: 1560px;           /* persistent timeline width */
+  --tl-bottom: 48px;        /* timeline offset - leaves room for its month labels */
+  --tl-clear: 88px;         /* bottom offset for elements that must sit above it */
+  /* timeline cells on a slide that repeats the previous slide's range - must stay
+     distinct from both --c-border (future cells) and the .past tint next to it */
+  --c-tl-static: color-mix(in srgb, var(--c-text-muted) 70%, var(--c-surface));
+}
+
+/* ============================ base ============================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; overscroll-behavior: none; background: var(--c-bg); }
+body {
+  font-family: var(--f-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--c-text);
+}
+:focus-visible { outline: var(--bw-3) solid var(--c-accent-2); outline-offset: var(--bw-2); }
+
+#viewport { position: fixed; inset: 0; overflow: hidden; }
+#stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--slide-w);
+  height: var(--slide-h);
+  background: var(--c-bg);
+  transform-origin: 0 0;
+  transform: scale(1) translate(-50%, -50%);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: var(--slide-pad);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-slide);
+}
+.slide.active { opacity: 1; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .slide { transition: none; }
+  .tl-cell { transition: none; }
+}
+
+#counter {
+  position: absolute;
+  right: var(--sp-3);
+  bottom: var(--sp-2);
+  font-family: var(--f-mono);
+  font-size: var(--fs-caption);
+  color: var(--c-text-muted);
+}
+
+/* persistent story timeline - Nov 2025 to present day, driven by data-when */
+#timeline {
+  position: absolute;
+  left: var(--slide-pad);
+  bottom: var(--tl-bottom);
+  width: var(--tl-w);
+  display: flex;
+  gap: var(--bw-2);
+}
+.tl-cell {
+  flex: 1;
+  height: var(--sp-1);
+  background: var(--c-border);
+  border-radius: var(--radius-sm);
+  position: relative;
+  transition: background var(--transition-slide);
+}
+.tl-cell.past { background: color-mix(in srgb, var(--c-accent) 25%, var(--c-surface)); }
+.tl-cell.now { background: var(--c-accent); }
+/* the story didn't move on this slide - grey the highlight, keep the label accent */
+#timeline.tl-static .tl-cell.now { background: var(--c-tl-static); }
+.tl-label {
+  position: absolute;
+  top: calc(var(--sp-1) + 6px);
+  left: 0;
+  font-family: var(--f-mono);
+  font-size: var(--fs-chip);
+  color: var(--c-text-muted);
+  white-space: nowrap;
+}
+.tl-cell.now .tl-label { color: var(--c-accent); }
+
+/* ============================ shared ============================ */
+.slide-title {
+  font-family: var(--f-display);
+  font-size: var(--fs-h1);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  margin-bottom: var(--sp-4);
+}
+.muted { color: var(--c-text-muted); }
+.mono { font-family: var(--f-mono); }
+.caption { font-size: var(--fs-caption); }
+
+.todo {
+  display: inline-block;
+  vertical-align: middle;
+  font-family: var(--f-mono);
+  font-size: var(--fs-chip);
+  font-weight: 400;
+  line-height: var(--lh-body);
+  color: var(--c-warn);
+  background: color-mix(in srgb, var(--c-warn) 12%, transparent);
+  border: var(--bw-1) solid var(--c-warn);
+  border-radius: var(--radius-sm);
+  padding: 0 var(--sp-2);
+  white-space: nowrap;
+}
+
+.slide-note { margin-top: var(--sp-4); color: var(--c-text-muted); font-size: var(--fs-caption); }
+
+.card {
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius);
+  padding: var(--sp-3);
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--f-mono);
+  font-size: var(--fs-chip);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: var(--bw-1) solid currentColor;
+  border-radius: var(--radius-sm);
+  padding: 0 var(--sp-2);
+}
+.tag-actions { color: var(--c-text-muted); }
+.tag-manage  { color: var(--c-accent); }
+.tag-rejected { color: var(--c-danger); }
+.tag-chosen {
+  color: var(--c-bg);
+  background: var(--c-accent);
+  border-color: var(--c-accent);
+}
+
+code.inline {
+  font-family: var(--f-mono);
+  font-size: 0.88em;
+  color: var(--c-accent-2);
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius-sm);
+  padding: 0 0.3em;
+}
+
+/* code panels + hand-tokenised HCL */
+.code {
+  display: block;
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius);
+  padding: var(--sp-3);
+  font-family: var(--f-mono);
+  font-size: var(--fs-code);
+  line-height: var(--lh-body);
+  white-space: pre;
+  overflow: hidden;
+  tab-size: 2;
+}
+.code-narrow { margin-top: var(--sp-4); max-width: 1240px; }
+.tk-kw  { color: var(--c-accent-2); }
+.tk-str { color: var(--c-accent); }
+.tk-num { color: var(--c-warn); }
+.tk-cm  { color: var(--c-text-muted); }
+
+/* horizontal chevron arrow between pipeline nodes */
+.h-arrow { width: var(--sp-4); flex: none; }
+.h-arrow path { stroke: var(--c-accent-2); stroke-width: var(--bw-3); fill: none; }
+
+/* diagram primitives (inline SVG) */
+.dg-box   { fill: var(--c-surface); stroke: var(--c-border); stroke-width: var(--bw-1); }
+.dg-label { font-family: var(--f-mono); font-size: var(--fs-caption); fill: var(--c-text); }
+.dg-edge  { stroke: var(--c-accent-2); stroke-width: var(--bw-3); fill: none; }
+.dg-ix    { fill: var(--c-accent-2); }
+
+/* dashed shared bullets (tools, topology) */
+.dash-bullets { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); }
+.dash-bullets li { padding-left: var(--sp-4); position: relative; }
+.dash-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: var(--sp-2);
+  height: var(--bw-2);
+  background: var(--c-accent-2);
+}
+
+/* presenter notes - hidden in the deck; shown only in the presenter window */
+.notes { display: none; }
+
+/* reader mode - extra detail for post-presentation viewers (press d or ?reader=1) */
+.reader-extra { display: none; }
+body.reader .reader-extra {
+  display: block;
+  position: absolute;
+  left: var(--slide-pad);
+  bottom: var(--tl-clear);
+}
+.reader-extra summary {
+  display: inline-block;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--f-mono);
+  font-size: var(--fs-chip);
+  color: var(--c-accent-2);
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-accent-2);
+  border-radius: var(--radius-sm);
+  padding: 0 var(--sp-2);
+}
+.reader-extra summary::-webkit-details-marker { display: none; }
+.reader-extra .detail-body {
+  position: absolute;
+  bottom: calc(100% + var(--sp-2));
+  left: 0;
+  width: 1100px;
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-accent-2);
+  border-radius: var(--radius);
+  padding: var(--sp-3);
+  font-size: var(--fs-caption);
+  box-shadow: var(--shadow-pop);
+}
+
+/* ============================ S00 / S17 title slides ============================ */
+.s00-head { margin-top: var(--sp-5); max-width: 1500px; }
+.hero {
+  font-family: var(--f-display);
+  font-size: var(--fs-hero);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+}
+.hero-sub {
+  font-family: var(--f-display);
+  font-size: var(--fs-h2);
+  font-weight: 400;
+  line-height: var(--lh-tight);
+  margin-top: var(--sp-2);
+}
+.s00-subtitle { margin-top: var(--sp-3); color: var(--c-text-muted); }
+
+.motif {
+  position: absolute;
+  right: var(--slide-pad);
+  bottom: 280px;
+  width: 980px;
+}
+.motif-ui rect, .motif-ui line, .motif-ui circle { stroke: var(--c-text-muted); stroke-width: var(--bw-2); fill: none; }
+.motif-ui .ui-fill { fill: var(--c-border); stroke: none; }
+.motif-ui .ui-window { fill: var(--c-surface); }
+.motif-cursor { fill: var(--c-text); stroke: var(--c-bg); stroke-width: var(--bw-1); }
+.motif-code text {
+  font-family: var(--f-mono);
+  font-size: var(--fs-caption);
+  fill: var(--c-accent);
+}
+.motif-caret { fill: var(--c-accent); }
+
+.s00-credit { position: absolute; left: var(--slide-pad); bottom: var(--tl-clear); }
+.s00-credit .credit-name { font-size: var(--fs-body); }
+.s00-credit .credit-line { margin-top: var(--sp-1); }
+.s00-mark {
+  position: absolute;
+  right: var(--slide-pad);
+  bottom: var(--tl-clear);
+  text-align: right;
+}
+.s00-mark .logo-placeholder { margin-bottom: var(--sp-1); }
+
+.closing {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--sp-4);
+}
+.motif-resolved {
+  color: var(--c-accent);
+  text-align: left;
+}
+.motif-resolved .caret {
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  vertical-align: text-bottom;
+  background: var(--c-accent);
+}
+.closing-links {
+  display: flex;
+  gap: var(--sp-4);
+  align-items: center;
+  font-family: var(--f-mono);
+  font-size: var(--fs-caption);
+  color: var(--c-text-muted);
+}
+
+/* ============================ S01 + pipelines ============================ */
+.pipeline-band { padding: var(--sp-3) var(--sp-4); }
+.pipeline-label { margin-bottom: var(--sp-2); }
+.pipeline { display: flex; align-items: center; gap: var(--sp-3); }
+.pipe-node {
+  font-family: var(--f-mono);
+  font-size: var(--fs-body);
+  text-align: center;
+  background: var(--c-bg);
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-1) var(--sp-3);
+}
+.pipe-node small { display: block; font-size: var(--fs-chip); color: var(--c-text-muted); }
+.pipe-off { border-style: dashed; color: var(--c-text-muted); }
+.pipe-gap { flex: 1; }
+.constraints {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+}
+.constraints li { font-size: var(--fs-caption); }
+
+/* ============================ S02 ============================ */
+.teams { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3); }
+.team {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  min-height: 420px;
+  padding: var(--sp-4) var(--sp-3);
+}
+.team-name { font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); }
+.team .tag { align-self: flex-start; }
+.teams-note { margin-top: var(--sp-4); color: var(--c-text-muted); font-size: var(--fs-caption); }
+
+/* ============================ S03 ============================ */
+.obj-groups { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+.obj-group { padding: var(--sp-4); }
+.obj-group-title {
+  font-family: var(--f-mono);
+  font-size: var(--fs-caption);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--c-text-muted);
+  margin-bottom: var(--sp-3);
+}
+.obj-list { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); }
+.obj-list li { display: flex; gap: var(--sp-2); }
+.obj-num {
+  font-family: var(--f-mono);
+  color: var(--c-accent-2);
+  flex: none;
+  min-width: var(--sp-4);
+}
+
+/* ============================ S04 ============================ */
+.rejects { display: flex; flex-direction: column; gap: var(--sp-2); }
+.reject {
+  display: grid;
+  grid-template-columns: 620px 1fr;
+  gap: var(--sp-3);
+  align-items: center;
+  border-bottom: var(--bw-1) solid var(--c-border);
+  padding-bottom: var(--sp-2);
+}
+.reject:last-child { border-bottom: none; }
+.reject-idea { display: flex; flex-direction: column; gap: var(--sp-1); align-items: flex-start; }
+.reject-idea s {
+  text-decoration-color: var(--c-danger);
+  text-decoration-thickness: var(--bw-2);
+}
+.reject-why { font-size: var(--fs-caption); color: var(--c-text-muted); }
+
+/* ============================ S05 option cards ============================ */
+.options { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-5);
+  min-height: 340px;
+}
+.option-label {
+  font-family: var(--f-mono);
+  font-size: var(--fs-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--c-text-muted);
+}
+.option-title { font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); }
+.option-dimmed { color: var(--c-text-muted); }
+.option-dimmed .option-title { color: var(--c-text-muted); }
+.option-chosen { border: var(--bw-3) solid var(--c-accent); }
+.statement {
+  margin-top: var(--sp-4);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-body);
+  max-width: 1560px;
+}
+.control-note { margin-top: var(--sp-4); max-width: 1560px; }
+.control-note strong { color: var(--c-accent); }
+
+/* ============================ S07 ============================ */
+.checklist { list-style: none; display: flex; flex-direction: column; gap: var(--sp-4); max-width: 1450px; }
+.checklist li { display: flex; align-items: flex-start; gap: var(--sp-3); }
+.check {
+  flex: none;
+  width: 1.25em;
+  height: 1.25em;
+  margin-top: 0.1em;
+  border: var(--bw-2) solid var(--c-success);
+  border-radius: var(--radius-sm);
+  position: relative;
+}
+.check::after {
+  content: "";
+  position: absolute;
+  left: 0.35em;
+  top: 0.1em;
+  width: 0.35em;
+  height: 0.65em;
+  border-right: var(--bw-2) solid var(--c-success);
+  border-bottom: var(--bw-2) solid var(--c-success);
+  transform: rotate(45deg);
+}
+
+/* ============================ S08 ============================ */
+.stepper {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--sp-2);
+  align-items: stretch;
+}
+.step { font-size: var(--fs-caption); display: flex; flex-direction: column; gap: var(--sp-2); }
+.step-num {
+  font-family: var(--f-mono);
+  font-size: var(--fs-h2);
+  color: var(--c-accent-2);
+  line-height: var(--lh-tight);
+}
+.step-lock .step-num { color: var(--c-danger); }
+.step-lock { border-color: var(--c-danger); }
+.lock-glyph { width: var(--sp-3); }
+.lock-glyph .lock-body { fill: var(--c-danger); }
+.lock-glyph .lock-shackle { fill: none; stroke: var(--c-danger); stroke-width: var(--bw-2); }
+.step .todo { white-space: normal; align-self: flex-start; }
+
+/* ============================ S10 sequencing ============================ */
+.s10-intro { max-width: 1600px; margin-bottom: var(--sp-3); }
+.s10-svg { width: 100%; max-width: 1440px; height: auto; display: block; }
+.s10-svg .band-1 { fill: var(--c-surface); }
+.s10-svg .band-2 { fill: color-mix(in srgb, var(--c-accent) 5%, var(--c-surface)); }
+.s10-svg .band-3 { fill: color-mix(in srgb, var(--c-accent) 10%, var(--c-surface)); }
+.s10-svg .band-4 { fill: color-mix(in srgb, var(--c-accent) 15%, var(--c-surface)); }
+.s10-svg .band-5 { fill: color-mix(in srgb, var(--c-accent) 22%, var(--c-surface)); stroke: var(--c-accent); }
+
+/* ============================ S11 ============================ */
+.s11-grid { display: grid; grid-template-columns: 560px 1fr; gap: var(--sp-5); align-items: start; }
+.s11-svg { width: 100%; height: auto; display: block; }
+
+/* ============================ S12 / compare panels ============================ */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); align-items: start; }
+.panel-title {
+  font-family: var(--f-mono);
+  font-size: var(--fs-caption);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--c-text-muted);
+  margin-bottom: var(--sp-2);
+}
+.panel-ours .panel-title { color: var(--c-accent); }
+.panel-ours .code { border: var(--bw-3) solid var(--c-accent); }
+.takeaway { margin-top: var(--sp-4); font-weight: 600; }
+
+/* ============================ S13 ============================ */
+.lead { font-size: var(--fs-h2); line-height: var(--lh-body); margin-bottom: var(--sp-5); max-width: 1560px; }
+.exceptions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+.exception { padding: var(--sp-5); }
+.exception-title { font-family: var(--f-mono); font-size: var(--fs-h2); font-weight: 600; margin-bottom: var(--sp-3); }
+.exception-conditions { list-style: none; display: flex; flex-direction: column; gap: var(--sp-2); color: var(--c-text-muted); }
+.s13-close { margin-top: var(--sp-5); color: var(--c-text-muted); }
+
+/* ============================ S14 / gate cards ============================ */
+.terminal { max-width: 1240px; margin: 0 auto var(--sp-5); padding: 0; overflow: hidden; }
+.term-head {
+  display: flex;
+  gap: var(--sp-1);
+  padding: var(--sp-2) var(--sp-3);
+  border-bottom: var(--bw-1) solid var(--c-border);
+}
+.term-dot { width: var(--sp-2); height: var(--sp-2); border-radius: 50%; background: var(--c-border); }
+.term-body {
+  font-family: var(--f-mono);
+  font-size: var(--fs-code);
+  line-height: var(--lh-body);
+  padding: var(--sp-3) var(--sp-4);
+  white-space: pre;
+}
+.term-ok { color: var(--c-success); }
+.gates { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3); }
+.gates-3 { grid-template-columns: repeat(3, 1fr); }
+.gate { font-size: var(--fs-caption); display: flex; flex-direction: column; gap: var(--sp-2); }
+.gate-num { font-family: var(--f-mono); font-size: var(--fs-h2); color: var(--c-accent-2); line-height: var(--lh-tight); }
+.gate-final .gate-num { color: var(--c-danger); }
+.gate-final { border-color: var(--c-danger); }
+.gate-ok .gate-num { color: var(--c-success); }
+.gate-ok { border-color: var(--c-success); }
+.gate .todo { white-space: normal; align-self: flex-start; }
+
+/* ============================ S15b topology ============================ */
+.s15b-grid { display: grid; grid-template-columns: 780px 1fr; gap: var(--sp-5); align-items: start; }
+
+/* ============================ S16b / S18 ============================ */
+.slide-centred {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--sp-3);
+}
+.slide-centred .slide-title { margin-bottom: var(--sp-2); }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
+.stat { text-align: center; padding: var(--sp-5) var(--sp-3); }
+.stat-num { display: block; font-family: var(--f-display); font-size: var(--fs-hero); line-height: var(--lh-tight); }
+.stat-num-sm { font-size: var(--fs-h1); }
+.stat-label { display: block; margin-top: var(--sp-2); font-size: var(--fs-caption); color: var(--c-text-muted); }
+
+/* ============================ S00b speakers ============================ */
+.speakers { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
+.speaker { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-2); padding: var(--sp-4); }
+.speaker-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  border: var(--bw-1) dashed var(--c-text-muted);
+  border-radius: var(--radius);
+  font-family: var(--f-mono);
+  font-size: var(--fs-caption);
+  color: var(--c-text-muted);
+}
+.speaker-name { font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); }
+
+/* placeholder logo mark (Q1) */
+.logo-placeholder {
+  display: inline-block;
+  font-family: var(--f-mono);
+  font-size: var(--fs-caption);
+  color: var(--c-text-muted);
+  border: var(--bw-1) dashed var(--c-text-muted);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-2) var(--sp-3);
+}
+
+/* ============================ story additions ============================ */
+.evolution { margin-top: var(--sp-4); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
+.evolution .card { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-2); padding: var(--sp-4); }
+.evo-title { font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); }
+
+/* ============================ presenter window ============================ */
+body.presenter #viewport { display: none; }
+#pv {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--sp-4);
+  padding: var(--sp-4);
+  background: var(--c-bg);
+  overflow: hidden;
+}
+.pv-main { overflow-y: auto; padding-right: var(--sp-3); }
+.pv-count { font-family: var(--f-mono); font-size: var(--fs-caption); color: var(--c-text-muted); }
+.pv-title {
+  font-family: var(--f-display);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  margin: var(--sp-2) 0 var(--sp-3);
+}
+.pv-notes { font-size: var(--fs-caption); }
+.pv-notes p { margin-bottom: var(--sp-2); }
+.pv-side {
+  border-left: var(--bw-1) solid var(--c-border);
+  padding-left: var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.pv-label {
+  font-family: var(--f-mono);
+  font-size: var(--fs-chip);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--c-text-muted);
+  margin-top: var(--sp-3);
+}
+.pv-next { font-size: var(--fs-caption); font-weight: 600; }
+.pv-timer { font-family: var(--f-mono); font-size: var(--fs-h2); cursor: pointer; }
+</style>
+</head>
+<body>
+<div id="viewport">
+  <div id="stage">
+
+    <!-- ============================ S00 - Title ============================ -->
+    <section class="slide" id="s00" aria-label="Title" data-when="2025-11">
+      <div class="s00-head">
+        <h1 class="hero">From Clicks to Code</h1>
+        <p class="hero-sub">Migrating Jamf Pro to Terraform at Lloyds Banking Group</p>
+      </div>
+
+      <!-- Signature motif: UI chrome resolving into HCL -->
+      <svg class="motif" viewBox="0 0 1000 330" aria-hidden="true">
+        <g class="motif-ui">
+          <rect class="ui-window" x="4" y="4" width="340" height="290" rx="14"/>
+          <line x1="4" y1="52" x2="344" y2="52"/>
+          <circle cx="30" cy="28" r="6"/>
+          <circle cx="56" cy="28" r="6"/>
+          <circle cx="82" cy="28" r="6"/>
+          <rect x="32" y="82" width="26" height="26" rx="5"/>
+          <path d="M38 95 l7 8 l13 -15" fill="none"/>
+          <rect class="ui-fill" x="76" y="88" width="180" height="13" rx="6"/>
+          <rect x="32" y="130" width="26" height="26" rx="5"/>
+          <rect class="ui-fill" x="76" y="136" width="140" height="13" rx="6"/>
+          <circle cx="45" cy="192" r="13"/>
+          <circle class="ui-fill" cx="45" cy="192" r="5"/>
+          <rect class="ui-fill" x="76" y="185" width="160" height="13" rx="6"/>
+          <rect x="32" y="228" width="150" height="42" rx="8"/>
+          <rect class="ui-fill" x="58" y="243" width="98" height="12" rx="6"/>
+          <path class="motif-cursor" d="M164 250 l0 34 l7.5 -7 l5.5 13 l6 -2.5 l-5.5 -13 l10 -1 z"/>
+        </g>
+        <path class="dg-edge" d="M376 150 h56 m-16 -13 l18 13 l-18 13"/>
+        <g class="motif-code">
+          <text x="470" y="106" xml:space="preserve">resource "jamfpro_category" "managed" {</text>
+          <text x="496" y="146" xml:space="preserve">for_each = local.categories</text>
+          <text x="496" y="186" xml:space="preserve">name     = each.key</text>
+          <text x="470" y="226" xml:space="preserve">}</text>
+          <rect class="motif-caret" x="492" y="208" width="13" height="24"/>
+        </g>
+      </svg>
+
+      <footer class="s00-credit">
+        <p class="credit-name">Joseph Little &middot; Gordon Deacon &middot; Dafydd Watkins</p>
+        <p class="credit-line caption muted">Lloyds Banking Group</p>
+      </footer>
+      <div class="s00-mark">
+        <p><span class="logo-placeholder">placeholder-logo</span></p>
+        <span class="todo">TODO Q1: logo assets</span>
+      </div>
+      <aside class="notes">
+        <p>Welcome. Premise in one line: three Jamf Pro instances, 1,500+ resources, moved from click-ops to Terraform - and what it took to do that inside a bank.</p>
+        <p>Hand to introductions.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S00b - Who we are ============================ -->
+    <section class="slide" id="s00b" aria-label="Who we are" data-when="2025-11">
+      <h1 class="slide-title">Who we are
+        <span class="todo">TODO: roles + photos</span></h1>
+      <div class="speakers">
+        <div class="card speaker">
+          <div class="speaker-photo" aria-hidden="true">photo</div>
+          <h2 class="speaker-name">Joseph Little</h2>
+          <p class="caption muted">Lloyds Banking Group</p>
+        </div>
+        <div class="card speaker">
+          <div class="speaker-photo" aria-hidden="true">photo</div>
+          <h2 class="speaker-name">Gordon Deacon</h2>
+          <p class="caption muted">Lloyds Banking Group</p>
+        </div>
+        <div class="card speaker">
+          <div class="speaker-photo" aria-hidden="true">photo</div>
+          <h2 class="speaker-name">Dafydd Watkins</h2>
+          <p class="caption muted">Lloyds Banking Group</p>
+        </div>
+      </div>
+      <aside class="notes">
+        <p>Quick intros - name, role, and which part of the story each person tells.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S01 - Context ============================ -->
+    <section class="slide" id="s01" aria-label="Context, requirements, constraints" data-when="2025-11">
+      <h1 class="slide-title">Context, requirements, constraints</h1>
+      <div class="pipeline-band card">
+        <p class="pipeline-label caption muted">The estate at the start - three Jamf Pro instances</p>
+        <div class="pipeline">
+          <span class="pipe-node">Sandbox<small>no parity</small></span>
+          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
+          <span class="pipe-node">Staging<small>parity on paper</small></span>
+          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
+          <span class="pipe-node">Production<small>the real estate</small></span>
+        </div>
+      </div>
+      <ul class="constraints">
+        <li class="card">No hardcoded secrets, anywhere.</li>
+        <li class="card">Every production change gated by peer review.</li>
+        <li class="card">Align with the bank's strategic tooling: GitHub, VCS-triggered Terraform runs, internally hosted HashiCorp Vault, HCP Terraform for remote state and run execution on HCP private runners.</li>
+        <li class="card">Terraform CLI available only in development environments.</li>
+        <li class="card">One shared source of truth for every team - resources are not split by org structure.</li>
+        <li class="card">Post-migration, all create/update/delete operations happen through Terraform only.</li>
+        <li class="card">All HCL must satisfy org linters.</li>
+        <li class="card">Versioned releases, with change history findable when it is needed.</li>
+      </ul>
+      <p class="slide-note">Staging was supposed to mirror production. In practice it had drifted - and there was no history that could bring the two back in line. Hold that thought.</p>
+      <details class="reader-extra">
+        <summary>More detail</summary>
+        <div class="detail-body">
+          <p>HCP Terraform runs plans and applies remotely on private runners inside the bank's network - state never touches a laptop. With the CLI restricted to development environments, every staging and production change flows through a VCS-triggered run.</p>
+        </div>
+      </details>
+      <aside class="notes">
+        <p>This is a bank - the constraints are the story. No CLI outside dev means no local applies and no local state: everything flows through VCS-triggered runs.</p>
+        <p>Point at the parity notes on the pipeline - staging drift drives both the prod-first decision and the staging rebuild later.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S02 - Who touches Jamf Pro ============================ -->
+    <section class="slide" id="s02" aria-label="Who touches Jamf Pro" data-when="2025-11">
+      <h1 class="slide-title">Who touches Jamf Pro</h1>
+      <div class="teams">
+        <div class="card team">
+          <h2 class="team-name">Support</h2>
+          <span class="todo">TODO: access model</span>
+        </div>
+        <div class="card team">
+          <h2 class="team-name">Mac@LBG</h2>
+          <span class="tag tag-manage">Resource management</span>
+        </div>
+        <div class="card team">
+          <h2 class="team-name">Security</h2>
+          <span class="tag tag-manage">Resource management</span>
+        </div>
+        <div class="card team">
+          <h2 class="team-name">App Packaging &amp; Deployment</h2>
+          <span class="tag tag-manage">Resource management</span>
+        </div>
+      </div>
+      <p class="teams-note">Four teams, one config surface.</p>
+      <aside class="notes">
+        <p>Four teams, one config surface. Splitting the repo by team would fragment ownership of shared dependencies like categories and scripts.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S03 - Objectives ============================ -->
+    <section class="slide" id="s03" aria-label="Migration objectives and design decisions" data-when="2025-11">
+      <h1 class="slide-title">Migration objectives and design decisions</h1>
+      <div class="obj-groups">
+        <div class="card obj-group">
+          <h2 class="obj-group-title">Governance</h2>
+          <ul class="obj-list">
+            <li><span class="obj-num">1</span><span>A monorepo is the single source of truth for every instance.</span></li>
+            <li><span class="obj-num">2</span><span>Every merge to main requires at least one peer review from another engineer.</span></li>
+            <li><span class="obj-num">3</span><span>Post-migration, all engineers drop to read-only in Jamf Pro; only the Terraform machine identity holds full CRUD.</span></li>
+            <li><span class="obj-num">4</span><span>Break-glass account available, held in PAM (Privileged Access Management).</span></li>
+          </ul>
+        </div>
+        <div class="card obj-group">
+          <h2 class="obj-group-title">Architecture and DX</h2>
+          <ul class="obj-list">
+            <li><span class="obj-num">5</span><span>One Terraform definition drives all instances.</span></li>
+            <li><span class="obj-num">6</span><span>Secrets centralised in an internally hosted HashiCorp Vault - set once by humans, read by Terraform via data sources.</span></li>
+            <li><span class="obj-num">7</span><span>Branching strategy supports three environments with VCS-based triggers (one instance is CLI-triggered).</span></li>
+            <li><span class="obj-num">8</span><span>Developer experience: BAU change is a one-line edit to a parameter map, not hand-written HCL.</span></li>
+          </ul>
+        </div>
+      </div>
+      <aside class="notes">
+        <p>Objective 8 is aimed squarely at Mac engineers new to Terraform: the contribution bar is "edit a map", not "write HCL from scratch".</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S04 - Ideas rejected up front ============================ -->
+    <section class="slide" id="s04" aria-label="Ideas rejected, and why" data-when="2025-11">
+      <h1 class="slide-title">Ideas rejected, and why</h1>
+      <div class="rejects">
+        <div class="reject">
+          <div class="card reject-idea">
+            <span class="tag tag-rejected">Rejected</span>
+            <s>A single workspace for all resources</s>
+          </div>
+          <p class="reject-why">Blast radius and plan execution time. Guidance suggests roughly 500 resources per workspace; the estate holds 1,500+. At ~5,000, things break down.</p>
+        </div>
+        <div class="reject">
+          <div class="card reject-idea">
+            <span class="tag tag-rejected">Rejected</span>
+            <s>Per-team Terraform modules scoped to each team's resources</s>
+          </div>
+          <p class="reject-why">Too much internal approval complexity.
+            <span class="todo">TODO: expand on the approval complexity</span></p>
+        </div>
+        <div class="reject">
+          <div class="card reject-idea">
+            <span class="tag tag-rejected">Rejected</span>
+            <s>Managing everything with Terraform</s>
+          </div>
+          <p class="reject-why">Static group membership stays unmanaged to protect the support experience - troubleshooting should not require a pull request.</p>
+        </div>
+      </div>
+      <p class="slide-note">Two more ideas fell later in the journey - they come up where they happened.</p>
+      <aside class="notes">
+        <p>Expect pushback on "not everything in Terraform" - defend it: troubleshooting must not require a pull request.</p>
+        <p>Tease the closing line: two more ideas got dropped later, and they show up where they happened in the story.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S05 - Instance migration order ============================ -->
+    <section class="slide" id="s05" aria-label="Instance migration order" data-when="2025-11">
+      <h1 class="slide-title">Instance migration order</h1>
+      <div class="options">
+        <div class="card option option-dimmed">
+          <span class="option-label">Option</span>
+          <h2 class="option-title">Staging → Production</h2>
+          <p>Two divergent sets of configuration to import - and the drifted one gets validated first.</p>
+        </div>
+        <div class="card option option-chosen">
+          <span class="tag tag-chosen">Chosen</span>
+          <h2 class="option-title">Production first</h2>
+          <p>Riskier on paper. But production is the configuration that matters.</p>
+        </div>
+      </div>
+      <div class="card control-note">
+        <p><strong>The control that made it safe:</strong> the Terraform API client held read-only scopes. Importing only reads - so state was built with no surface to change the server. Write access was widened only once imports were stable with no recurring diff. Joseph and Gordon held those keys.</p>
+      </div>
+      <details class="reader-extra">
+        <summary>More detail</summary>
+        <div class="detail-body">
+          <p>An import is read-only by nature: Terraform records the resource in state without writing to the server. Scoping the API client read-only removed the write surface entirely, so a mistake during import could not change Jamf Pro. Write scopes were added back once imports were stable with no recurring diff.</p>
+        </div>
+      </details>
+      <aside class="notes">
+        <p>Counterintuitive on purpose. Importing is read-then-manage - with a read-only API client there is no write surface, so prod-first is safer than it sounds.</p>
+        <p>Write scopes were only widened once imports were stable at zero diff.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S07 - Instance prep ============================ -->
+    <section class="slide" id="s07" aria-label="Instance prep" data-when="2025-11">
+      <h1 class="slide-title">Instance prep
+        <span class="todo">TODO: add more prep points</span></h1>
+      <ul class="checklist">
+        <li><span class="check" aria-hidden="true"></span><span>Big tidy-up: removed all non-active resources from the tenant.</span></li>
+        <li><span class="check" aria-hidden="true"></span><span>Verified API credentials per client were valid and complete.</span></li>
+        <li><span class="check" aria-hidden="true"></span><span>Confirmed the Jamf Pro instance version met provider requirements.</span></li>
+        <li><span class="check" aria-hidden="true"></span><span>Stored credentials for every instance's API clients in the secrets manager.</span></li>
+      </ul>
+      <aside class="notes">
+        <p>The tidy-up mattered - importing dead config would have codified years of cruft.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ Singletons first ============================ -->
+    <section class="slide" id="s-singletons" aria-label="Singletons first" data-when="2025-11">
+      <h1 class="slide-title">Singletons first</h1>
+      <p class="lead">Settings panes are single-instance resources - there is only ever one, so there is nothing to import.</p>
+      <div class="pipeline-band card">
+        <div class="pipeline">
+          <span class="pipe-node">HCL to match the UI</span>
+          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
+          <span class="pipe-node">Apply</span>
+          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
+          <span class="pipe-node">The "create" is a no-op</span>
+          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
+          <span class="pipe-node">In state - managed</span>
+        </div>
+      </div>
+      <pre class="code code-narrow"><span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_client_checkin"</span> <span class="tk-str">"settings"</span> {
+  check_in_frequency = <span class="tk-num">15</span>
+  <span class="tk-cm"># values mirror the UI - the apply changes nothing</span>
+}</pre>
+      <p class="takeaway">Every settings resource under management in about a day.
+        <span class="todo">TODO: real singleton example</span></p>
+      <details class="reader-extra">
+        <summary>More detail</summary>
+        <div class="detail-body">
+          <p>Settings panes always exist, so Terraform's "create" simply writes the values the UI already shows - a no-op change that leaves the resource tracked in state. No import block, no import command, and no Sentinel exception needed for these.</p>
+        </div>
+      </details>
+      <aside class="notes">
+        <p>November 2025 - the first real state in the repo.</p>
+        <p>Mechanic: the apply sets the same values the UI shows; nothing changes, but the resource is now in state. All settings panes done in about a day.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ Getting past Sentinel ============================ -->
+    <section class="slide" id="s-sentinel" aria-label="Getting past Sentinel" data-when="2025-11:2026-01">
+      <h1 class="slide-title">Getting past Sentinel</h1>
+      <p class="lead">Terraform at LBG runs the bank's public cloud, and every run passes Sentinel policy. One policy bans <code class="inline">import</code> blocks outright - importing would let one workspace adopt resources someone else manages.</p>
+      <ol class="gates gates-3">
+        <li class="card gate gate-final">
+          <span class="gate-num">1</span>
+          <p><strong>Blocked.</strong> No <code class="inline">import</code> blocks anywhere - and no CLI access to production workspaces, so no <code class="inline">terraform import</code> fallback either.</p>
+        </li>
+        <li class="card gate">
+          <span class="gate-num">2</span>
+          <p><strong>Excepted.</strong> A time-bound Sentinel exception, submitted - and chased - for every import window. Strings were pulled.</p>
+        </li>
+        <li class="card gate gate-ok">
+          <span class="gate-num">3</span>
+          <p><strong>Resolved.</strong> We made the case to the Sentinel team: sole actors on these workspaces, nobody else's resources to adopt. Standing exception granted.</p>
+        </li>
+      </ol>
+      <details class="reader-extra">
+        <summary>More detail</summary>
+        <div class="detail-body">
+          <p>Sentinel is HashiCorp's policy-as-code engine: policies evaluate every HCP Terraform run before it can apply. At LBG the same rails govern the bank's Azure and GCP estates, which is why the import ban is organisation-wide rather than per team.</p>
+        </div>
+      </details>
+      <aside class="notes">
+        <p>Why the ban exists: Terraform runs the bank's whole public cloud - import blocks would let one workspace adopt someone else's resources. The policy is right; it just did not fit a sole-actor migration.</p>
+        <p>Each import window needed a fresh time-bound exception until the standing exception was granted.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S10 - Resource sequencing ============================ -->
+    <section class="slide" id="s10" aria-label="Resource sequencing" data-when="2025-12:2026-01">
+      <h1 class="slide-title">Resource sequencing
+        <span class="todo">TODO (Gordon Deacon): real resource-type names per band</span></h1>
+      <p class="s10-intro">One resource type at a time, end to end in production - not one instance at a time. The order came from the matrix: a group-built spreadsheet of every resource type and its dependencies.</p>
+      <svg class="s10-svg" viewBox="0 0 1728 720" aria-label="Five migration tiers with dependency arrows flowing downward into the policies band">
+        <defs>
+          <marker id="s10-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--c-accent-2)"/>
+          </marker>
+        </defs>
+        <rect class="dg-box band-1" x="1" y="1" width="1726" height="104" rx="12"/>
+        <text class="dg-label" x="40" y="61"><tspan class="dg-ix">1</tspan><tspan dx="18">Singletons and resources that rarely change</tspan></text>
+        <rect class="dg-box band-2" x="1" y="155" width="1726" height="104" rx="12"/>
+        <text class="dg-label" x="40" y="215"><tspan class="dg-ix">2</tspan><tspan dx="18">Dependency targets - resources other resources depend on</tspan></text>
+        <rect class="dg-box band-3" x="1" y="309" width="1726" height="104" rx="12"/>
+        <text class="dg-label" x="40" y="369"><tspan class="dg-ix">3</tspan><tspan dx="18">Resources with one or two dependencies</tspan></text>
+        <rect class="dg-box band-4" x="1" y="463" width="1726" height="104" rx="12"/>
+        <text class="dg-label" x="40" y="523"><tspan class="dg-ix">4</tspan><tspan dx="18">Resources with more than two dependencies</tspan></text>
+        <rect class="dg-box band-5" x="1" y="617" width="1726" height="102" rx="12"/>
+        <text class="dg-label" x="40" y="676"><tspan class="dg-ix">5</tspan><tspan dx="18">Policies</tspan></text>
+        <g marker-end="url(#s10-ah)">
+          <line class="dg-edge" x1="480" y1="112" x2="480" y2="146"/>
+          <line class="dg-edge" x1="864" y1="112" x2="864" y2="146"/>
+          <line class="dg-edge" x1="1248" y1="112" x2="1248" y2="146"/>
+          <line class="dg-edge" x1="480" y1="266" x2="480" y2="300"/>
+          <line class="dg-edge" x1="864" y1="266" x2="864" y2="300"/>
+          <line class="dg-edge" x1="1248" y1="266" x2="1248" y2="300"/>
+          <line class="dg-edge" x1="480" y1="420" x2="480" y2="454"/>
+          <line class="dg-edge" x1="864" y1="420" x2="864" y2="454"/>
+          <line class="dg-edge" x1="1248" y1="420" x2="1248" y2="454"/>
+          <line class="dg-edge" x1="480" y1="574" x2="480" y2="608"/>
+          <line class="dg-edge" x1="864" y1="574" x2="864" y2="608"/>
+          <line class="dg-edge" x1="1248" y1="574" x2="1248" y2="608"/>
+        </g>
+      </svg>
+      <aside class="notes">
+        <p>The matrix is a spreadsheet the team built together. Risk scales with dependency fan-in; policies sit on top of everything, so they close the migration.</p>
+        <p>Also considered migrating instance-by-instance - rejected in favour of one resource type at a time, end to end.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S08 - Migration wave workflow ============================ -->
+    <section class="slide" id="s08" aria-label="Migration wave workflow" data-when="2025-12:2026-01">
+      <h1 class="slide-title">Migration wave workflow</h1>
+      <ol class="stepper">
+        <li class="card step">
+          <span class="step-num">1</span>
+          <p>Tell the Mac team which resources are in this wave.</p>
+        </li>
+        <li class="card step">
+          <span class="step-num">2</span>
+          <p>Communicate a change freeze for those resource types to affected teams.</p>
+        </li>
+        <li class="card step step-lock">
+          <span class="step-num">3</span>
+          <svg class="lock-glyph" viewBox="0 0 24 24" aria-hidden="true">
+            <path class="lock-shackle" d="M8 11 V7.5 a4 4 0 0 1 8 0 V11"/>
+            <rect class="lock-body" x="5" y="11" width="14" height="10" rx="2"/>
+          </svg>
+          <p>Start the wave: revoke GUI write permissions for in-scope resources - no side-door edits mid-import.</p>
+        </li>
+        <li class="card step">
+          <span class="step-num">4</span>
+          <p>Run the import.</p>
+        </li>
+        <li class="card step">
+          <span class="step-num">5</span>
+          <p>Validate the import succeeded.</p>
+        </li>
+        <li class="card step">
+          <span class="step-num">6</span>
+          <p>Publish example documentation showing how to manage the resource via Terraform in BAU.</p>
+        </li>
+        <li class="card step">
+          <span class="step-num">7</span>
+          <p>Announce to all teams: the resource is now Terraform-managed.</p>
+        </li>
+      </ol>
+      <aside class="notes">
+        <p>Step 3 is the one people skip and regret - revoking write permissions makes the freeze real rather than polite.</p>
+        <p>Bulk waves ran December into January.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S11 - Tools and helpers ============================ -->
+    <section class="slide" id="s11" aria-label="Tools and helpers" data-when="2025-12:2026-01">
+      <h1 class="slide-title">Tools and helpers</h1>
+      <div class="s11-grid">
+        <svg class="s11-svg" viewBox="0 0 560 740" aria-label="Import pipeline from Python SDK to Terraform import">
+          <defs>
+            <marker id="s11-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="var(--c-accent-2)"/>
+            </marker>
+          </defs>
+          <rect class="dg-box" x="8" y="1" width="544" height="80" rx="12"/>
+          <text class="dg-label" x="280" y="49" text-anchor="middle">jamfpro Python SDK</text>
+          <line class="dg-edge" x1="280" y1="87" x2="280" y2="121" marker-end="url(#s11-ah)"/>
+          <rect class="dg-box" x="8" y="132" width="544" height="80" rx="12"/>
+          <text class="dg-label" x="280" y="180" text-anchor="middle">Per-resource script</text>
+          <line class="dg-edge" x1="280" y1="218" x2="280" y2="252" marker-end="url(#s11-ah)"/>
+          <rect class="dg-box" x="8" y="263" width="544" height="80" rx="12"/>
+          <text class="dg-label" x="280" y="311" text-anchor="middle">Structured map</text>
+          <line class="dg-edge" x1="280" y1="349" x2="280" y2="383" marker-end="url(#s11-ah)"/>
+          <rect class="dg-box" x="8" y="394" width="544" height="80" rx="12"/>
+          <text class="dg-label" x="280" y="442" text-anchor="middle">Terraform local</text>
+          <line class="dg-edge" x1="280" y1="480" x2="280" y2="514" marker-end="url(#s11-ah)"/>
+          <rect class="dg-box" x="8" y="525" width="544" height="80" rx="12"/>
+          <text class="dg-label" x="280" y="573" text-anchor="middle">for_each resource block</text>
+          <line class="dg-edge" x1="280" y1="611" x2="280" y2="645" marker-end="url(#s11-ah)"/>
+          <rect class="dg-box" x="8" y="656" width="544" height="80" rx="12"/>
+          <text class="dg-label" x="280" y="704" text-anchor="middle">Import</text>
+        </svg>
+        <ul class="dash-bullets">
+          <li>Extraction driven by the jamfpro Python SDK.</li>
+          <li>Each migration candidate got a script that pulled live config and emitted a structured map, shaped for a Terraform <code class="inline">local</code> - duplicates and all.</li>
+          <li>Map pasted into a <code class="inline">local</code>; a single resource block with <code class="inline">for_each</code>, conditionals and dynamic blocks loops over it to create/import every instance of that type.</li>
+          <li>Regex mop-up pass to tidy the generated output.</li>
+          <li>Rejected <code class="inline">terraform plan -generate-config-out</code>: it emits one HCL block per resource; we wanted one block per resource type driven by data.
+            <span class="todo">TODO Q9: confirm truncated sentence</span></li>
+          <li>AI-assisted validation of configuration and dependency links - mostly Copilot CLI.</li>
+        </ul>
+      </div>
+      <aside class="notes">
+        <p>jamfpy is Joseph's open-source SDK. Each candidate got a script emitting a structured map, duplicates and all.</p>
+        <p>generate-config-out rejected: one block per resource; we wanted one block per type, driven by data.</p>
+        <p>AI use in one line: Copilot CLI validating configuration and dependency links.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S12 - for_each ============================ -->
+    <section class="slide" id="s12" aria-label="Dynamic creation with for_each" data-when="2026-02:2026-03">
+      <h1 class="slide-title">Dynamic creation with <span class="mono">for_each</span>
+        <span class="todo">TODO: paste sanitised real HCL</span></h1>
+      <div class="compare">
+        <div class="panel">
+          <h2 class="panel-title">generate-config-out style</h2>
+          <pre class="code"><span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_script"</span> <span class="tk-str">"homebrew"</span> {
+  name        = <span class="tk-str">"Install Homebrew"</span>
+  category_id = <span class="tk-num">9</span>
+  <span class="tk-cm"># ... a dozen more attributes</span>
+}
+
+<span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_script"</span> <span class="tk-str">"homebrew_intel"</span> {
+  name        = <span class="tk-str">"Install Homebrew (Intel)"</span>
+  category_id = <span class="tk-num">9</span>
+  <span class="tk-cm"># ... a dozen more attributes</span>
+}
+
+<span class="tk-cm"># one block per script, for every script</span></pre>
+        </div>
+        <div class="panel panel-ours">
+          <h2 class="panel-title">Ours, after the passes</h2>
+          <pre class="code"><span class="tk-kw">locals</span> {
+  scripts = {
+    <span class="tk-str">"Install Homebrew"</span>         = <span class="tk-str">"Engineering"</span>
+    <span class="tk-str">"Install Homebrew (Intel)"</span> = <span class="tk-str">"Engineering"</span>
+    <span class="tk-cm"># BAU change = append one line here</span>
+  }
+}
+
+<span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_script"</span> <span class="tk-str">"managed"</span> {
+  <span class="tk-kw">for_each</span>    = local.scripts
+  name        = each.key
+  category_id = local.category_ids[each.value]
+}</pre>
+        </div>
+      </div>
+      <p class="takeaway">Adding script number two hundred is a one-line diff. Reviews read the data, not the boilerplate.</p>
+      <p class="slide-note">The refinement passes, repeated until zero diff - Gordon imported verbosely; Joseph deduplicated, named the IDs and shared the locals, through February and March.</p>
+      <details class="reader-extra">
+        <summary>More detail</summary>
+        <div class="detail-body">
+          <p>One resource block per type means provider changes are fixed in one place, pull requests diff data rather than boilerplate, and the HCL does not grow as the estate does. The maps started life generated from live config by the jamfpy scripts, then were refined by hand - duplicates stripped, raw IDs replaced with named lookups from locals built off the managed resources.</p>
+        </div>
+      </details>
+      <aside class="notes">
+        <p>The technical centrepiece. One block per type; adding script two hundred is a one-line diff; reviews diff data, not boilerplate.</p>
+        <p>Division of labour: Gordon imported verbosely, Joseph refined in passes - dedup, name the IDs, share the locals - with a zero-diff plan after every pass, through February and March.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S13 - for_each exceptions ============================ -->
+    <section class="slide" id="s13" aria-label="for_each exceptions" data-when="2026-02:2026-03">
+      <h1 class="slide-title"><span class="mono">for_each</span> exceptions</h1>
+      <p class="lead">The parameter-map pattern is a default, not dogma.</p>
+      <div class="exceptions">
+        <div class="card exception">
+          <h2 class="exception-title">Policies</h2>
+          <ul class="exception-conditions">
+            <li>Payload complexity</li>
+            <li>Readability</li>
+          </ul>
+        </div>
+        <div class="card exception">
+          <h2 class="exception-title">Dock Items</h2>
+          <ul class="exception-conditions">
+            <li>Payload complexity</li>
+            <li>Readability</li>
+          </ul>
+        </div>
+      </div>
+      <p class="s13-close">When the map becomes harder to read than plain HCL, the pattern has stopped paying for itself.</p>
+      <aside class="notes">
+        <p>The honesty slide: when the map is harder to read than plain HCL, the pattern has stopped paying for itself. Policies and dock items got plain HCL.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S14 - Validating a migration ============================ -->
+    <section class="slide" id="s14" aria-label="Validating a migration" data-when="2026-02:2026-03">
+      <h1 class="slide-title">Validating a migration</h1>
+      <div class="card terminal">
+        <div class="term-head" aria-hidden="true">
+          <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+        </div>
+        <pre class="term-body"><span class="muted">$ terraform plan</span>
+
+<span class="term-ok">No changes. Your infrastructure matches the configuration.</span></pre>
+      </div>
+      <ol class="gates">
+        <li class="card gate">
+          <span class="gate-num">1</span>
+          <p><code class="inline">terraform plan</code> returns zero diff.</p>
+        </li>
+        <li class="card gate">
+          <span class="gate-num">2</span>
+          <p>State is centralised in HCP and not locally inspectable - AI-assisted checks (Copilot CLI) confirmed each resource exists with the correct dependencies assigned.</p>
+        </li>
+        <li class="card gate">
+          <span class="gate-num">3</span>
+          <p>Sweep for orphaned resources living outside the HCL config.</p>
+        </li>
+        <li class="card gate gate-final">
+          <span class="gate-num">4</span>
+          <p>Only after all checks pass: remove UI write permissions for that resource type.</p>
+        </li>
+      </ol>
+      <aside class="notes">
+        <p>Gate 4 is the point of no return - and the point of the whole exercise.</p>
+        <p>State lives in HCP and is not locally inspectable, hence the Copilot CLI checks in gate 2.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ Growing pains ============================ -->
+    <section class="slide" id="s-pivot" aria-label="Growing pains" data-when="2026-03">
+      <h1 class="slide-title">Growing pains</h1>
+      <p class="lead">By March, one directory - <code class="inline">terraform/jamfpro</code> - served every instance, and instance-specific behaviour hung off conditionals keyed on the FQDN.</p>
+      <pre class="code code-narrow"><span class="tk-kw">locals</span> {
+  is_staging = can(regex(<span class="tk-str">"staging"</span>, var.jamfpro_fqdn))
+}
+
+<span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_policy"</span> <span class="tk-str">"maintenance"</span> {
+  count = local.is_staging ? <span class="tk-num">0</span> : <span class="tk-num">1</span>
+  <span class="tk-cm"># deployment behaviour inferred from a URL - everywhere</span>
+}</pre>
+      <p class="statement">It got out of hand. The pivot: shared modules own the configuration; thin per-instance roots own only what genuinely differs.
+        <span class="todo">TODO: real conditional example</span></p>
+      <aside class="notes">
+        <p>The FQDN conditionals were everywhere by March - behaviour inferred from a URL.</p>
+        <p>The pivot: modules own configuration, thin per-instance roots own only genuine differences.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ The module structure ============================ -->
+    <section class="slide" id="s15b" aria-label="The module structure" data-when="2026-03">
+      <h1 class="slide-title">The module structure</h1>
+      <div class="s15b-grid">
+        <pre class="code">terraform/
+├─ modules/
+│  ├─ iam_main/
+│  ├─ profiles_policies_main/
+│  └─ root_main/
+└─ prod/
+   ├─ lbgstaging/
+   │  ├─ iam/                <span class="tk-kw">→ workspace</span>
+   │  ├─ profiles_policies/  <span class="tk-kw">→ workspace</span>
+   │  └─ root/               <span class="tk-kw">→ workspace</span>
+   └─ lbgbusiness/
+      ├─ iam/                <span class="tk-kw">→ workspace</span>
+      ├─ profiles_policies/  <span class="tk-kw">→ workspace</span>
+      └─ root/               <span class="tk-kw">→ workspace</span></pre>
+        <ul class="dash-bullets">
+          <li>Three shared modules hold the configuration - and its payloads: privilege-set JSON, <code class="inline">.mobileconfig</code> profiles, scripts, Self Service icons, descriptions.</li>
+          <li>Each instance calls the modules from thin roots, plus a small <code class="inline">specific_to_here.tf</code> for genuine differences.</li>
+          <li>Every root maps one-to-one to an HCP Terraform workspace - three per instance, bounding the blast radius of any single run.</li>
+          <li>Divergence is visible, not hidden: staging-only profiles sit in the module as <code class="inline">profile_staging_only/</code>.</li>
+        </ul>
+      </div>
+      <p class="slide-note"><span class="todo">TODO: sandbox workspace layout</span> <span class="todo">TODO: plan-time figures</span></p>
+      <details class="reader-extra">
+        <summary>More detail</summary>
+        <div class="detail-body">
+          <p>iam_main holds accounts, account groups and their privilege-set JSON. profiles_policies_main holds configuration profiles, policies and Self Service icons. root_main holds the rest - scripts, app installers and their descriptions. Payloads live next to the HCL that deploys them.</p>
+        </div>
+      </details>
+      <aside class="notes">
+        <p>Three workspaces per instance is the blast radius control - guidance says ~500 resources per workspace and the estate holds 1,500+.</p>
+        <p>Payloads live in the modules too. Staging-only profiles sit in a visible directory, so divergence is explicit.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ Rebuilding staging ============================ -->
+    <section class="slide" id="s-staging" aria-label="Rebuilding staging" data-when="2026-04:2026-05">
+      <h1 class="slide-title">Rebuilding staging</h1>
+      <p class="lead">Production was fully code. Staging was still years of drift - importing that drift would only have enshrined it. So it was not imported at all.</p>
+      <ol class="gates gates-3">
+        <li class="card gate gate-final">
+          <span class="gate-num">1</span>
+          <p><strong>Wipe.</strong> Staging cleared out, keeping only the essentials - APNS, cloud identity provider.</p>
+        </li>
+        <li class="card gate">
+          <span class="gate-num">2</span>
+          <p><strong>Apply.</strong> Production's configuration pointed at the empty instance.</p>
+        </li>
+        <li class="card gate gate-ok">
+          <span class="gate-num">3</span>
+          <p><strong>Iterate.</strong> Plenty of errors, pass after pass of refinement, until the run came back clean.</p>
+        </li>
+      </ol>
+      <p class="takeaway">Staging no longer claims parity with production - it inherits it, built from the same modules.
+        <span class="todo">TODO (Mac engineer): confirm kept-items and timing</span></p>
+      <details class="reader-extra">
+        <summary>More detail</summary>
+        <div class="detail-body">
+          <p>The wipe kept the things a rebuild cannot recreate without touching the fleet - the APNS connection and the cloud identity provider integration. Everything else on the instance was recreated by pointing production's modules at it and iterating until the run came back clean.</p>
+        </div>
+      </details>
+      <aside class="notes">
+        <p>The highlight - slow down here.</p>
+        <p>Importing staging would have enshrined years of drift. So: wipe (keep APNS and the cloud IdP), apply production's modules, iterate through the errors until clean. Parity is now inherited, not claimed.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ Refinements along the way ============================ -->
+    <section class="slide" id="s-today" aria-label="Refinements along the way" data-when="2026-06:2026-07">
+      <h1 class="slide-title">Refinements along the way</h1>
+      <div class="pipeline-band card">
+        <p class="pipeline-label caption muted">Route to live, today</p>
+        <div class="pipeline">
+          <span class="pipe-node">DevTest</span>
+          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
+          <span class="pipe-node">Staging</span>
+          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
+          <span class="pipe-node">Production</span>
+          <span class="pipe-gap"></span>
+          <span class="pipe-node pipe-off">Sandbox - CLI-only</span>
+        </div>
+      </div>
+      <div class="evolution">
+        <div class="card">
+          <h2 class="evo-title">DevTest joins</h2>
+          <p class="caption muted">Brought in recently as the first stop on the route to live - a single CLI-triggered workspace.</p>
+          <span class="todo">TODO (Mac engineer): clarify instance roles</span>
+        </div>
+        <div class="card">
+          <h2 class="evo-title">Sandbox steps out</h2>
+          <p class="caption muted">Trialled inside the route to live, then removed and kept separate - now a CLI-only instance.</p>
+        </div>
+        <div class="card">
+          <h2 class="evo-title">Release Please → CalVer</h2>
+          <p class="caption muted">The release cadence was hard to sustain and releases needed clearer tracking. Calendar versioning instead: when a flood of tickets lands on 1 December, the matching release and its change history are findable by date.</p>
+        </div>
+      </div>
+      <details class="reader-extra">
+        <summary>More detail</summary>
+        <div class="detail-body">
+          <p>Calendar versioning tags releases by date rather than by semantic version, so an incident report from 1 December maps directly to the releases shipped around that date - no changelog archaeology required.</p>
+        </div>
+      </details>
+      <aside class="notes">
+        <p>The estate as it stands: DevTest joined recently with a single CLI workspace, sandbox stepped out to CLI-only, and Release Please gave way to calendar versioning - releases findable by date when a flood of tickets lands.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S16b - By the numbers ============================ -->
+    <section class="slide" id="s16b" aria-label="By the numbers" data-when="2026-07">
+      <h1 class="slide-title">By the numbers</h1>
+      <div class="stats">
+        <div class="card stat">
+          <span class="stat-num stat-num-sm">Apr 2025 → May 2026</span>
+          <span class="stat-label">provider development to v1.0.0</span>
+        </div>
+        <div class="card stat">
+          <span class="stat-num">14+</span>
+          <span class="stat-label">contributors</span>
+        </div>
+        <div class="card stat">
+          <span class="stat-num">526+</span>
+          <span class="stat-label">pull requests</span>
+        </div>
+        <div class="card stat">
+          <span class="stat-num">1,902</span>
+          <span class="stat-label">commits</span>
+        </div>
+        <div class="card stat">
+          <span class="stat-num">127</span>
+          <span class="stat-label">Terraform files</span>
+        </div>
+        <div class="card stat">
+          <span class="stat-num">19,000+</span>
+          <span class="stat-label">lines of HCL</span>
+        </div>
+      </div>
+      <p class="slide-note"><span class="todo">TODO: pre-Nov 2025 provider-development timeline</span></p>
+      <aside class="notes">
+        <p>April 2025 is the provider-development start; nothing was imported before November 2025. v1.0.0 landed May 2026.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S17 - Closing ============================ -->
+    <section class="slide" id="s17" aria-label="Closing and questions" data-when="2026-07">
+      <div class="closing">
+        <!-- Signature motif, fully resolved into code -->
+        <pre class="code motif-resolved" aria-hidden="true">resource "jamfpro_category" "managed" {
+  for_each = local.categories
+  name     = each.key
+}<span class="caret"></span></pre>
+        <h1 class="hero">Questions</h1>
+        <div>
+          <p class="hero-sub">From Clicks to Code - Migrating Jamf Pro to Terraform at Lloyds Banking Group</p>
+        </div>
+      </div>
+      <aside class="notes">
+        <p>Open the floor. Keep the links slide ready as the backdrop for the walk-out.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S18 - Links ============================ -->
+    <section class="slide slide-centred" id="s18" aria-label="Links" data-when="2026-07">
+      <h1 class="slide-title">Links</h1>
+      <div class="closing-links">
+        <span>Provider: deploymenttheory/jamfpro</span>
+        <span>SDK: jamfpy</span>
+      </div>
+      <span class="todo">TODO Q12: URLs, contact and socials</span>
+      <aside class="notes">
+        <p>Point at the provider and jamfpy repos; contact details.</p>
+      </aside>
+    </section>
+
+    <div id="counter" aria-hidden="true"></div>
+    <div id="timeline" aria-hidden="true">
+      <span class="tl-cell"><span class="tl-label">Nov 25</span></span>
+      <span class="tl-cell"><span class="tl-label">Dec</span></span>
+      <span class="tl-cell"><span class="tl-label">Jan 26</span></span>
+      <span class="tl-cell"><span class="tl-label">Feb</span></span>
+      <span class="tl-cell"><span class="tl-label">Mar</span></span>
+      <span class="tl-cell"><span class="tl-label">Apr</span></span>
+      <span class="tl-cell"><span class="tl-label">May</span></span>
+      <span class="tl-cell"><span class="tl-label">Jun</span></span>
+      <span class="tl-cell"><span class="tl-label">Jul 26</span></span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var qs = new URLSearchParams(location.search);
+  var isPresenter = qs.get('presenter') === '1';
+  var stage = document.getElementById('stage');
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var counter = document.getElementById('counter');
+  var idx = -1;
+  if (qs.get('reader') === '1') document.body.classList.add('reader');
+
+  // Persistent story timeline - month cells matched to each slide's data-when.
+  // A slide repeating the previous slide's range greys out: accent means the story
+  // just moved, grey means we're still in the same months.
+  var MONTHS = ['2025-11', '2025-12', '2026-01', '2026-02', '2026-03', '2026-04', '2026-05', '2026-06', '2026-07'];
+  var timeline = document.getElementById('timeline');
+  var tlCells = Array.prototype.slice.call(document.querySelectorAll('#timeline .tl-cell'));
+  var tlRanges = slides.map(function (s) {
+    var parts = (s.getAttribute('data-when') || '').split(':');
+    return { a: MONTHS.indexOf(parts[0]), b: MONTHS.indexOf(parts[1] || parts[0]) };
+  });
+  // Deck order, not navigation order, so a hash jump or a step backwards gives the
+  // same state as a forward pass. Slide one establishes the timeline, so it counts.
+  var tlAdvanced = tlRanges.map(function (r, i) {
+    return i === 0 || r.a !== tlRanges[i - 1].a || r.b !== tlRanges[i - 1].b;
+  });
+  function updateTimeline(i) {
+    var r = tlRanges[i];
+    tlCells.forEach(function (cell, j) {
+      cell.classList.toggle('now', r.a >= 0 && j >= r.a && j <= r.b);
+      cell.classList.toggle('past', r.a >= 0 && j < r.a);
+    });
+    timeline.classList.toggle('tl-static', !tlAdvanced[i]);
+  }
+
+  // Cross-window presenter sync. Needs http(s) - file:// windows get opaque origins.
+  var chan = null;
+  try { chan = new BroadcastChannel('jnuc-deck'); } catch (e) {}
+  if (chan) chan.onmessage = function (m) { show(m.data.idx, true, true); };
+  addEventListener('storage', function (e) {
+    if (e.key === 'jnuc-deck-sync' && e.newValue) show(JSON.parse(e.newValue).idx, true, true);
+  });
+  function broadcast(i) {
+    if (chan) chan.postMessage({ idx: i });
+    try { localStorage.setItem('jnuc-deck-sync', JSON.stringify({ idx: i, t: Date.now() })); } catch (e) {}
+  }
+
+  function renderCounter() {
+    counter.textContent = String(idx + 1).padStart(2, '0') + ' / ' + slides.length +
+      (document.body.classList.contains('reader') ? ' · reader' : '');
+  }
+
+  function show(i, updateHash, fromRemote) {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    if (i === idx) return;
+    if (idx >= 0) {
+      slides[idx].classList.remove('active');
+      slides[idx].setAttribute('aria-hidden', 'true');
+    }
+    idx = i;
+    var s = slides[i];
+    s.classList.add('active');
+    s.removeAttribute('aria-hidden');
+    renderCounter();
+    updateTimeline(i);
+    if (updateHash !== false && '#' + s.id !== location.hash) {
+      history.replaceState(null, '', '#' + s.id);
+    }
+    if (!fromRemote) broadcast(i);
+    if (isPresenter) renderPresenter();
+  }
+
+  function fromHash() {
+    var i = slides.findIndex(function (s) { return '#' + s.id === location.hash; });
+    show(i < 0 ? 0 : i, false);
+  }
+
+  // Presenter window (press p in the audience window; audience on the projector,
+  // presenter on the laptop - requires extended, not mirrored, displays).
+  var pv = null;
+  var pvTimerStart = Date.now();
+  function slideLabel(i) {
+    return slides[i] ? (slides[i].getAttribute('aria-label') || slides[i].id) : '';
+  }
+  function renderPresenter() {
+    if (!pv) return;
+    pv.count.textContent = String(idx + 1).padStart(2, '0') + ' / ' + slides.length;
+    pv.title.textContent = slideLabel(idx);
+    var notes = slides[idx].querySelector('.notes');
+    pv.notes.innerHTML = notes ? notes.innerHTML : '<p class="muted">No notes.</p>';
+    pv.next.textContent = idx + 1 < slides.length ? slideLabel(idx + 1) : 'End of deck';
+  }
+  if (isPresenter) {
+    document.body.classList.add('presenter');
+    var root = document.createElement('div');
+    root.id = 'pv';
+    root.innerHTML =
+      '<div class="pv-main"><p class="pv-count"></p><h2 class="pv-title"></h2><div class="pv-notes"></div></div>' +
+      '<div class="pv-side"><p class="pv-label">Next</p><p class="pv-next"></p>' +
+      '<p class="pv-label">Elapsed - click to reset</p><p class="pv-timer">00:00</p></div>';
+    document.body.appendChild(root);
+    pv = {
+      count: root.querySelector('.pv-count'),
+      title: root.querySelector('.pv-title'),
+      notes: root.querySelector('.pv-notes'),
+      next: root.querySelector('.pv-next'),
+      timer: root.querySelector('.pv-timer')
+    };
+    pv.timer.addEventListener('click', function () { pvTimerStart = Date.now(); });
+    setInterval(function () {
+      var s = Math.floor((Date.now() - pvTimerStart) / 1000);
+      pv.timer.textContent =
+        String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+    }, 1000);
+  }
+  function openPresenter() {
+    window.open(location.pathname + '?presenter=1' + location.hash, 'jnuc-presenter',
+      'width=1200,height=760');
+  }
+
+  addEventListener('keydown', function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    switch (e.key) {
+      case 'ArrowRight':
+      case ' ':
+      case 'PageDown':
+        e.preventDefault(); show(idx + 1); break;
+      case 'ArrowLeft':
+      case 'PageUp':
+        e.preventDefault(); show(idx - 1); break;
+      case 'Home':
+        e.preventDefault(); show(0); break;
+      case 'End':
+        e.preventDefault(); show(slides.length - 1); break;
+      case 'p':
+        if (!isPresenter) { e.preventDefault(); openPresenter(); }
+        break;
+      case 'd':
+        e.preventDefault();
+        document.body.classList.toggle('reader');
+        renderCounter();
+        break;
+    }
+  });
+  addEventListener('hashchange', fromHash);
+
+  // Swipe navigation for touch devices. Single-finger horizontal swipes only -
+  // pinches and mostly-vertical drags are ignored.
+  var touchX = null, touchY = null;
+  addEventListener('touchstart', function (e) {
+    if (e.touches.length > 1) { touchX = null; return; }
+    touchX = e.touches[0].clientX;
+    touchY = e.touches[0].clientY;
+  }, { passive: true });
+  addEventListener('touchcancel', function () { touchX = null; }, { passive: true });
+  addEventListener('touchend', function (e) {
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    var dy = e.changedTouches[0].clientY - touchY;
+    touchX = null;
+    if (Math.abs(dx) >= 60 && Math.abs(dx) > Math.abs(dy)) {
+      show(dx < 0 ? idx + 1 : idx - 1);
+    }
+  }, { passive: true });
+
+  // Scale the fixed 1920x1080 stage to the visible area. visualViewport, not
+  // innerWidth/innerHeight: on browsers with dynamic chrome (mobile toolbars),
+  // the layout viewport extends under the toolbar and the bottom of the deck -
+  // the timeline strip - ends up hidden behind it.
+  var viewport = document.getElementById('viewport');
+  var css = getComputedStyle(document.documentElement);
+  var W = parseFloat(css.getPropertyValue('--slide-w'));
+  var H = parseFloat(css.getPropertyValue('--slide-h'));
+  function fit() {
+    var vv = window.visualViewport;
+    var vw = vv ? vv.width : innerWidth;
+    var vh = vv ? vv.height : innerHeight;
+    viewport.style.height = vh + 'px';
+    var s = Math.min(vw / W, vh / H);
+    stage.style.transform = 'scale(' + s + ') translate(-50%, -50%)';
+  }
+  addEventListener('resize', fit);
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', fit);
+
+  slides.forEach(function (s) { s.setAttribute('aria-hidden', 'true'); });
+  fromHash();
+  fit();
+})();
+</script>
+</body>
+</html>

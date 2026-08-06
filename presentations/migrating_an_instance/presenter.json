@@ -1,0 +1,204 @@
+{
+  "timeLimitSeconds": 1800,
+  "slides": [
+    {
+      "id": "s00",
+      "title": "Title",
+      "timerSeconds": 45,
+      "notes": [
+        "Welcome. Premise in one line: three Jamf Pro instances, 1,500+ resources, moved from click-ops to Terraform - and what it took to do that inside a bank.",
+        "Hand to introductions."
+      ]
+    },
+    {
+      "id": "s00b",
+      "title": "Who we are",
+      "timerSeconds": 60,
+      "notes": [
+        "Quick intros - name, role, and which part of the story each person tells."
+      ]
+    },
+    {
+      "id": "s01",
+      "title": "Context, requirements, constraints",
+      "timerSeconds": 90,
+      "notes": [
+        "This is a bank - the constraints are the story. No CLI outside dev means no local applies and no local state: everything flows through VCS-triggered runs.",
+        "Point at the parity notes on the pipeline - staging drift drives both the prod-first decision and the staging rebuild later."
+      ]
+    },
+    {
+      "id": "s02",
+      "title": "Who touches Jamf Pro",
+      "timerSeconds": 45,
+      "notes": [
+        "Four teams, one config surface. Splitting the repo by team would fragment ownership of shared dependencies like categories and scripts."
+      ]
+    },
+    {
+      "id": "s03",
+      "title": "Migration objectives and design decisions",
+      "timerSeconds": 60,
+      "notes": [
+        "Objective 8 is aimed squarely at Mac engineers new to Terraform: the contribution bar is \"edit a map\", not \"write HCL from scratch\"."
+      ]
+    },
+    {
+      "id": "s04",
+      "title": "Ideas rejected, and why",
+      "timerSeconds": 75,
+      "notes": [
+        "Expect pushback on \"not everything in Terraform\" - defend it: troubleshooting must not require a pull request.",
+        "Tease the closing line: two more ideas got dropped later, and they show up where they happened in the story."
+      ]
+    },
+    {
+      "id": "s05",
+      "title": "Instance migration order",
+      "timerSeconds": 90,
+      "notes": [
+        "Counterintuitive on purpose. Importing is read-then-manage - with a read-only API client there is no write surface, so prod-first is safer than it sounds.",
+        "Write scopes were only widened once imports were stable at zero diff."
+      ]
+    },
+    {
+      "id": "s07",
+      "title": "Instance prep",
+      "timerSeconds": 30,
+      "notes": [
+        "The tidy-up mattered - importing dead config would have codified years of cruft."
+      ]
+    },
+    {
+      "id": "s-singletons",
+      "title": "Singletons first",
+      "timerSeconds": 75,
+      "notes": [
+        "November 2025 - the first real state in the repo.",
+        "Mechanic: the apply sets the same values the UI shows; nothing changes, but the resource is now in state. All settings panes done in about a day."
+      ]
+    },
+    {
+      "id": "s-sentinel",
+      "title": "Getting past Sentinel",
+      "timerSeconds": 90,
+      "notes": [
+        "Why the ban exists: Terraform runs the bank's whole public cloud - import blocks would let one workspace adopt someone else's resources. The policy is right; it just did not fit a sole-actor migration.",
+        "Each import window needed a fresh time-bound exception until the standing exception was granted."
+      ]
+    },
+    {
+      "id": "s10",
+      "title": "Resource sequencing",
+      "timerSeconds": 75,
+      "notes": [
+        "The matrix is a spreadsheet the team built together. Risk scales with dependency fan-in; policies sit on top of everything, so they close the migration.",
+        "Also considered migrating instance-by-instance - rejected in favour of one resource type at a time, end to end."
+      ]
+    },
+    {
+      "id": "s08",
+      "title": "Migration wave workflow",
+      "timerSeconds": 60,
+      "notes": [
+        "Step 3 is the one people skip and regret - revoking write permissions makes the freeze real rather than polite.",
+        "Bulk waves ran December into January."
+      ]
+    },
+    {
+      "id": "s11",
+      "title": "Tools and helpers",
+      "timerSeconds": 75,
+      "notes": [
+        "jamfpy is Joseph's open-source SDK. Each candidate got a script emitting a structured map, duplicates and all.",
+        "generate-config-out rejected: one block per resource; we wanted one block per type, driven by data.",
+        "AI use in one line: Copilot CLI validating configuration and dependency links."
+      ]
+    },
+    {
+      "id": "s12",
+      "title": "Dynamic creation with for_each",
+      "timerSeconds": 120,
+      "notes": [
+        "The technical centrepiece. One block per type; adding script two hundred is a one-line diff; reviews diff data, not boilerplate.",
+        "Division of labour: Gordon imported verbosely, Joseph refined in passes - dedup, name the IDs, share the locals - with a zero-diff plan after every pass, through February and March."
+      ]
+    },
+    {
+      "id": "s13",
+      "title": "for_each exceptions",
+      "timerSeconds": 45,
+      "notes": [
+        "The honesty slide: when the map is harder to read than plain HCL, the pattern has stopped paying for itself. Policies and dock items got plain HCL."
+      ]
+    },
+    {
+      "id": "s14",
+      "title": "Validating a migration",
+      "timerSeconds": 60,
+      "notes": [
+        "Gate 4 is the point of no return - and the point of the whole exercise.",
+        "State lives in HCP and is not locally inspectable, hence the Copilot CLI checks in gate 2."
+      ]
+    },
+    {
+      "id": "s-pivot",
+      "title": "Growing pains",
+      "timerSeconds": 60,
+      "notes": [
+        "The FQDN conditionals were everywhere by March - behaviour inferred from a URL.",
+        "The pivot: modules own configuration, thin per-instance roots own only genuine differences."
+      ]
+    },
+    {
+      "id": "s15b",
+      "title": "The module structure",
+      "timerSeconds": 90,
+      "notes": [
+        "Three workspaces per instance is the blast radius control - guidance says ~500 resources per workspace and the estate holds 1,500+.",
+        "Payloads live in the modules too. Staging-only profiles sit in a visible directory, so divergence is explicit."
+      ]
+    },
+    {
+      "id": "s-staging",
+      "title": "Rebuilding staging",
+      "timerSeconds": 120,
+      "notes": [
+        "The highlight - slow down here.",
+        "Importing staging would have enshrined years of drift. So: wipe (keep APNS and the cloud IdP), apply production's modules, iterate through the errors until clean. Parity is now inherited, not claimed."
+      ]
+    },
+    {
+      "id": "s-today",
+      "title": "Refinements along the way",
+      "timerSeconds": 60,
+      "notes": [
+        "The estate as it stands: DevTest joined recently with a single CLI workspace, sandbox stepped out to CLI-only, and Release Please gave way to calendar versioning - releases findable by date when a flood of tickets lands."
+      ]
+    },
+    {
+      "id": "s16b",
+      "title": "By the numbers",
+      "timerSeconds": 45,
+      "notes": [
+        "April 2025 is the provider-development start; nothing was imported before November 2025. v1.0.0 landed May 2026."
+      ]
+    },
+    {
+      "id": "s17",
+      "title": "Closing and questions",
+      "timerSeconds": 300,
+      "notes": [
+        "Open the floor. Keep the links slide ready as the backdrop for the walk-out."
+      ]
+    },
+    {
+      "id": "s18",
+      "title": "Links",
+      "timerSeconds": 30,
+      "notes": [
+        "Point at the provider and jamfpy repos; contact details."
+      ]
+    }
+  ]
+}
