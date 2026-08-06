@@ -14,8 +14,12 @@ expected.
 | `presentations/migrating_an_instance` | Ported in and being worked on. Full detail below. |
 | `presentations/training_a_team` | Deck dropped in, not yet worked on here. Full detail below. |
 
+`presentations/index.html` is the landing page rather than a deck. It serves the site root and
+links to each deck by hand, so a new deck needs a card adding to it.
+
 The two decks look nothing like each other - one is a light LBG-green theme, the other is
-near-black. That is deliberate. Do not harmonise their styling.
+near-black. That is deliberate. Do not harmonise their styling. The landing page sits apart
+from both: near-black, anchored on `#006A4D`, the one green they have in common.
 
 ## Layout
 
@@ -245,10 +249,12 @@ Three chips still carry question numbers from the first build (`TODO Q1`, `TODO 
 
 ## Deck: presentations/training_a_team
 
-**"ClickOps to GitOps - Learning Journey"**, in `clickops-to-gitops.html` (not `index.html`).
-20 slides. Dropped in as a finished-looking deck; no spec, notes file or slot length has been
-recorded here yet, and no work has been done on it in this repo beyond wiring its speakers to
-`_shared/`.
+**"ClickOps to GitOps - Learning Journey"**, in `index.html`. Renamed from
+`clickops-to-gitops.html` when the site moved to path-per-deck: the CloudFront Function
+resolves `/training_a_team/` to `index.html`, so any other filename is only reachable by its
+full path. 20 slides. Dropped in as a finished-looking deck; no spec, notes file or slot
+length has been recorded here yet, and no work has been done on it in this repo beyond wiring
+its speakers to `_shared/`.
 
 Everything about it is its own: near-black theme, its own token names (`--green-deep`,
 `--green-bright`, `--mono`), its own slide machinery. Nothing is borrowed from the other deck
@@ -274,18 +280,19 @@ Known gaps, none of them addressed:
 `.github/workflows/deploy.yml` deploys this repo on merge to `main` (only when
 `presentations/**` or the workflow itself changes) and on manual dispatch. It syncs
 `presentations/` to S3 with `--delete`, then creates a CloudFront invalidation and waits for
-it — a sync alone is not enough, because the distribution uses CachingOptimized and holds
+it. A sync alone is not enough, because the distribution uses CachingOptimized and holds
 objects at the edge for a day.
 
 The bucket mirrors `presentations/` exactly, so the URL layout is the repo layout:
 
 | Path | Serves |
 | --- | --- |
+| `/` | `presentations/index.html` (the landing page) |
 | `/migrating_an_instance/` | `presentations/migrating_an_instance/index.html` |
 | `/training_a_team/` | `presentations/training_a_team/index.html` |
 | `/_shared/speakers.js` | `presentations/_shared/speakers.js` |
 
-Live at https://d3ga0oyittaf77.cloudfront.net — CloudFront in front of a private S3 bucket
+Live at https://d3ga0oyittaf77.cloudfront.net - CloudFront in front of a private S3 bucket
 (`jl-html-presentation-2026`, OAC access). Infra is `~/Github/terraform/presentation.tf`, an
 S3-backend workspace driven from the local CLI. That repo owns the bucket, the distribution
 and the `jnuc-2026-deploy` IAM user; the bucket name and distribution ID are duplicated in
@@ -300,11 +307,15 @@ Things that will bite you:
   `../_shared/speakers.js`, which resolves to `/_shared/speakers.js` only because every deck
   sits one level down in a single bucket. A deck nested deeper, or moved to its own bucket,
   loses its speakers.
-- **There is no root page yet**, so `/` returns an error rather than a deck listing. The
-  distribution has no `custom_error_response`, and a private S3 origin answers a missing key
-  with 403 rather than 404, so misses surface as 403.
+- **Adding a deck is two edits, not one.** The directory gives you the URL, but it will not
+  be reachable from anywhere until you add a card to `presentations/index.html`. That list is
+  hand-maintained on purpose: generating it would mean client-side JS or a build step, and
+  this site has neither.
+- **A miss still returns 403, not 404.** The distribution has no `custom_error_response`, and
+  a private S3 origin answers a missing key with 403. Only `/` and the deck paths are
+  guaranteed to resolve.
 - The `*.md` exclude keeps this file and each deck's `spec.md` off the site, but the decks
-  ship with their presenter notes embedded — keep them public-safe.
+  ship with their presenter notes embedded, so keep them public-safe.
 
 The workflow authenticates with an IAM user access key, held as the `AWS_ACCESS_KEY_ID` and
 `AWS_SECRET_ACCESS_KEY` repo secrets. The user is scoped to this one bucket and this one
@@ -329,8 +340,8 @@ DECK="http://localhost:8741/presentations/migrating_an_instance/index.html"
   --virtual-time-budget=3000 --screenshot=/tmp/slide.png "$DECK#s00b"
 ```
 
-For `training_a_team`, swap in `training_a_team/clickops-to-gitops.html` and use a numeric
-hash (`#2`), not a slide id.
+For `training_a_team`, swap in `training_a_team/index.html` and use a numeric hash (`#2`),
+not a slide id.
 
 When a change is meant to leave the rendering alone - anything sourced from `_shared/`, for
 instance - prove it rather than eyeballing it. Screenshot before, screenshot after, and
