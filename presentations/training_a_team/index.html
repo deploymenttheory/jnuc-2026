@@ -559,29 +559,30 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 
 /* ---------- slide 11 ---------- */
 /* Each item is claim + reason: the <b> is what to do, the <span> is why it
-   works, and <em> marks the bit of evidence carrying the claim. */
-.modecard{border:1px solid var(--border);border-radius:14px;padding:36px 38px;height:568px;
+   works. The reason is the payload - the headings alone say nothing. */
+.modecard{border:1px solid var(--border);border-radius:14px;padding:32px 38px;height:628px;
   display:flex;flex-direction:column}
 .modecard.on{background:var(--surface-2);border-color:var(--green-deep)}
 .modecard h3{font-size:32px;font-weight:700}
 .modecard .sb{font-family:var(--mono);font-size:18px;color:var(--green-bright);margin-top:6px}
 .modecard.off .sb{color:var(--muted)}
-.modecard ul{list-style:none;margin-top:30px}
-.modecard li{position:relative;padding-left:34px;margin-bottom:25px}
+.modecard ul{list-style:none;margin-top:24px}
+.modecard li{position:relative;padding-left:34px;margin-bottom:13px}
 .modecard li:last-child{margin-bottom:0}
 .modecard li::before{position:absolute;left:2px;top:1px}
 .modecard.on li::before{content:"\2713";color:var(--green-bright)}
 .modecard.off li::before{content:"\203A";left:6px;color:var(--muted)}
 .modecard li b{display:block;font-size:22px;font-weight:700;line-height:1.2;color:var(--text)}
-.modecard li span{display:block;font-size:18px;line-height:1.4;color:var(--text-dimmer);margin-top:6px}
-.modecard li em{font-style:normal;font-family:var(--mono);color:var(--green-bright)}
-.rulebar{margin-top:26px;background:var(--surface-2);border:1px solid var(--border-soft);
-  border-left:4px solid var(--green);border-radius:12px;padding:30px 34px;display:flex;
-  align-items:center;gap:34px}
+.modecard li span{display:block;font-size:17.5px;line-height:1.38;color:var(--text-dimmer);margin-top:6px}
+.rulebar{margin-top:16px;background:var(--surface-2);border:1px solid var(--border-soft);
+  border-left:4px solid var(--green);border-radius:12px;padding:20px 34px}
+.rulebar .top{display:flex;align-items:center;gap:34px}
 .rulebar .rk{font-family:var(--mono);font-size:15px;letter-spacing:.2em;color:var(--green-bright);flex:none}
-.rulebar .rt{font-size:27px;line-height:1.3;color:var(--text-2)}
-.rulebar .rx{margin-left:auto;flex:none;border-left:1px solid var(--border);padding-left:30px;
-  font-size:16px;line-height:1.45;color:var(--muted)}
+.rulebar .rt{font-size:27px;line-height:1.28;color:var(--text-2)}
+/* The two asides run full width underneath, so neither one squeezes the rule. */
+.rulebar .rx{margin-top:12px;border-top:1px solid var(--border);padding-top:12px;
+  font-size:16px;line-height:1.4;color:var(--muted)}
+.rulebar .rx i{font-style:normal;color:var(--faint);margin:0 12px}
 
 /* ---------- slide 12 ---------- */
 .skillcol{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 18px}
@@ -1305,38 +1306,40 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 </section>
 
 <!-- ============ 12 · DELIVERY ============ -->
-<section class="slide" data-notes="Be deliberate about the medium, and note that every line here carries its reason, because the reason is the part that transfers to somebody else's programme. Take the left column first. First exposure has to be in the room because that is the only place you catch a wrong mental model while it is still forming; once it has set, you are unpicking it rather than teaching. Debugging someone else's broken configuration is the same argument from the other end: you cannot script the questions in advance, which is exactly why the replacement curriculum hands people a deliberately broken config. On pairing, be precise, because the research does not say what people assume. Distributed pair programming, including a 2023 systematic review, performs comparably to co-located on learning outcomes and confidence - but that is genuine co-editing with shared control, not one person spectating another's screen. What the same review found matters most is pair compatibility, which is why the pairing you do in the room is the one that forms the pair; after that it can go remote. Game days are high equivocality and negotiated live, with everyone hearing the same reasoning. And psychological safety forms face to face - remote raises the threshold for the spontaneous interaction it depends on, so remote maintains safety, it does not create it. Now the right column, and the headline there is 'with conditions'. Self-paced pre-requisites are fine, but ungated they do not get finished: median completion for self-paced online content sits around 12.6%, against 60 to 90% for a cohort with a date, which is the evidence behind condition 02 earlier. Recorded think-aloud works because modelling records perfectly and the learner can pause and rewind; what does not record is the coaching, being interrupted mid-mistake. Written review beats verbal whenever the answer is checkable, and it leaves a trail. And keep clinics short: videoconference fatigue is measurable on EEG and ECG within about fifteen minutes and significant by fifty, so ninety minutes with a break at thirty is the ceiling, and a full-day remote workshop is a wasted day. Then land the rule at the bottom, because that is the sentence people can apply to their own material: one checkable answer, remote; many valid answers or unknown unknowns, in the room. That is Daft and Lengel's media richness argument in one line - match the richness of the medium to how ambiguous the task is. Finally the two asides on the right, and they matter more than they look. Environment setup should be automated rather than taught, which is what our internal developer platform arriving late really cost us. And reference material is not a session in either mode, which is the 214,645-word manual said as a delivery rule.">
+<section class="slide" data-notes="The point of this slide is the small print, not the headings. Anyone can tell you to do training in person. What people actually need is the reason, because the reason is what they can apply to their own material. Left column, and every one of these comes down to the same thing: what you can see, and how cheap it is to ask. First exposure - in a room you can see somebody is lost from across the table, before they have said a word. On a call, asking for help means unmuting and stopping everyone else, so people sit there quietly instead, and you find out three weeks later. Debugging a broken config - somebody is looking at your screen the second you go wrong, not ten minutes later after you have piled three more mistakes on top of the first one. That is why the replacement curriculum hands people a config with faults planted in it. Pairing - and be precise here, because the research does not say what people assume. Distributed pairing, including a 2023 systematic review, performs about as well as sitting together, provided both people can actually type. What the same review found really matters is whether the pair get on. Two people who do not know each other will not share a keyboard honestly, and that trust gets built in the chat around the work, which a scheduled call has none of. So form the pair in the room; after that it can go remote quite happily. Game days and hacks - here it is simply the atmosphere. Ideas bounce, people overhear each other, and a team forms while they are solving something. Nobody has ever built that on a call. And the week someone breaks something - owning up to a screen is much harder than owning up to a room, and in a room everyone else watches the reaction be help rather than blame, which is what makes them speak up sooner the next time. That is the whole mechanism behind psychological safety, and it is why remote can maintain it but rarely creates it. Right column, and the heading matters: with conditions. Pre-requisites - nobody needs to watch you install a toolchain, so do not waste a room on it. But ungated, it does not get finished: median completion for self-paced online content sits around 12.6%, against 60 to 90% for a cohort with a date on it. That is the evidence behind condition 02 earlier. Recorded walkthroughs - a recording can be paused, rewound and watched again at 11pm, which a room genuinely cannot do. What it cannot do is answer a question back, so it is for the parts with a fixed answer. Co-editing - if both people can type it holds up; if only one can, the other is watching somebody work, which is not learning. Pull request review is the easy one to justify, because it is how review works in the job anyway - doing it remotely is not a compromise, it is the real thing. And pull requests by their nature need time for reflection and analysis, which is exactly what a room does not give you. And keep clinics short, because video genuinely drains people faster than a room does - videoconference fatigue shows up on EEG and ECG within about fifteen minutes and is significant by fifty. So under an hour, with a break in the middle. Past that they are still on the call but they have stopped learning, and a full day of remote workshop is a wasted day. Then the rule at the bottom, which is the sentence to leave them with, and it is just the two columns said once. Everything on the left is there because the learning depends on other people - being seen when you are lost, being caught at the moment you go wrong, being reassured when you break something. Everything on the right is between a learner and the material, where there is one right answer, or where they need to pause, re-read and think. So: if the learning depends on other people, put it in the room; if it is between a learner and the material, remote is fine and often better. And the two asides on the right matter more than they look. Environment setup belongs in neither column - automate it, which is exactly what our platform arriving late cost us. And reference material is not a session in its own right - it should be carried out separately, which is the 214,645-word manual said as a delivery rule.">
   <div class="eyebrow"><i class="dot"></i>11 &middot; Delivery</div>
   <h1>What lands well in the room together, what lands well remotely</h1>
   <div class="sub">When delivering technical training, you should consider the following:</div>
-  <div class="body grid g2" style="margin-top:38px">
+  <div class="body grid g2" style="margin-top:30px">
     <div class="modecard on">
       <h3>In the room</h3>
       <div class="sb">DEFAULT FOR THESE CONDITIONS</div>
       <ul>
-        <li><b>First exposure to a concept</b><span>The only place you can catch a wrong mental model, while it is still forming.</span></li>
-        <li><b>Debugging someone else's broken config</b><span>Unknown unknowns &mdash; since you cannot script the questions in advance.</span></li>
-        <li><b>The forming of the paired programming pair</b><span>Pair compatibility is the strongest predictor in the research. <em>Form it face to face.</em></span></li>
-        <li><b>Game days, hacks and scenario labs</b><span>High equivocality, negotiated in real time, with everyone hearing the same reasoning.</span></li>
-        <li><b>The week someone breaks something</b><span>Safety forms face to face. Remote maintains it; it does not create it.</span></li>
+        <li><b>First exposure to a concept</b><span>You can see someone is lost before they say so. On a call they have to interrupt everyone to admit it, so they don't.</span></li>
+        <li><b>Debugging someone else's broken config</b><span>Someone is looking at your screen the second you go wrong, not ten minutes later once you have built more on top of it.</span></li>
+        <li><b>Pairing people up for the first time</b><span>Two people who don't know each other won't share a keyboard honestly. That trust builds in the talk around the work, and a call has none of it.</span></li>
+        <li><b>Game days, hacks and scenario labs</b><span>The atmosphere does the work. Ideas bounce, everyone hears everyone, and a team forms while they solve something.</span></li>
+        <li><b>The week someone breaks something</b><span>Owning up is much harder to a screen. In the room everyone watches the reaction be help rather than blame, and they speak up sooner next time.</span></li>
       </ul>
     </div>
     <div class="modecard off">
       <h3>Remote</h3>
       <div class="sb">WORKS FOR THESE &mdash; WITH CONDITIONS</div>
       <ul>
-        <li><b>Pre-requisite modules</b><span>Only with a deadline and a cohort. <em>12.6% ungated &rarr; 60&ndash;90% gated.</em></span></li>
-        <li><b>Recorded expert think-aloud</b><span>Modelling records fine. Coaching &mdash; being interrupted mid-mistake &mdash; is what doesn't.</span></li>
-        <li><b>Co-editing, not screen sharing</b><span>Shared control performs like co-located in the studies. Spectating does not.</span></li>
-        <li><b>Async PR review</b><span>Written beats verbal whenever the answer is checkable, and it leaves a trail.</span></li>
-        <li><b>Follow-up clinics</b><span>Keep them short. <em>&le;90 min, break at 30</em> &mdash; fatigue is measurable by 50.</span></li>
+        <li><b>Pre-requisite modules</b><span>Installing a toolchain has one right answer, so there's nothing to gain from an audience. But without a deadline it doesn't get done, and learners turning up unprepared slows the whole room down.</span></li>
+        <li><b>Recorded expert think-aloud</b><span>A recording can be paused, rewound and watched again at 11pm, which a room cannot. What it cannot do is answer a question back.</span></li>
+        <li><b>Co-editing, not screen sharing</b><span>If both people can type, remote pairing holds up. If only one can, the other is watching someone work and learning very little.</span></li>
+        <li><b>Async PR review</b><span>This is how review works in the job anyway, and PRs by their nature need time for reflection and analysis.</span></li>
+        <li><b>Follow-up clinics</b><span>Video drains people far faster than a room does. Keep it under an hour with a break in the middle &mdash; past that they're still on the call but not learning.</span></li>
       </ul>
     </div>
   </div>
   <div class="rulebar">
-    <div class="rk">THE RULE</div>
-    <div class="rt">One checkable answer &rarr; remote. Many valid answers, or unknown unknowns &rarr; the room.</div>
-    <div class="rx">Environment setup is neither &mdash; automate it.<br>Reference material isn't a session in either mode.</div>
+    <div class="top">
+      <div class="rk">THE RULE</div>
+      <div class="rt">If the learning depends on other people, put it in the room. If it's between a learner and the material, remote is fine &mdash; often better.</div>
+    </div>
+    <div class="rx">Environment setup is neither &mdash; automate it.<i>&middot;</i>Reference material isn't a session in its own right and should be carried out separately.</div>
   </div>
 </section>
 
@@ -1779,9 +1782,14 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
       if(document.fullscreenElement){document.exitFullscreen()}else{document.documentElement.requestFullscreen()}
     }
   });
+  // Click-to-advance is confined to an inch-wide gutter down each edge, so that
+  // clicking or selecting text anywhere on the slide itself does not navigate.
+  var EDGE=96;
   document.addEventListener('click',function(e){
     if(e.target.closest('#notes')||e.target.closest('#knobs'))return;
-    show(e.clientX < window.innerWidth*0.28 ? i-1 : i+1);
+    if(String(window.getSelection()))return;
+    if(e.clientX<EDGE)show(i-1);
+    else if(e.clientX>window.innerWidth-EDGE)show(i+1);
   });
   window.addEventListener('resize',fit);
   fit();
