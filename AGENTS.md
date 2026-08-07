@@ -280,8 +280,15 @@ length has been recorded here yet. Content work has now begun, slide by slide (A
   `.herowrap`, `.heropanel`, `.supp`/`.suppcard` (`.dip` for the blue one); `.numcard` was
   deleted with the layout it served.
 - **Learning priorities by role** (`#8`): realigned with the three curriculum slides that
-  follow it, and its radar redrawn as a proper web (grid rings plus spokes, thin outlines,
-  translucent fills) rather than solid stacked polygons.
+  follow it, and rebuilt around **two org scenarios**. The three role cards run across the
+  top; below them sit two radar webs (grid rings plus spokes, thin outlines, translucent
+  fills), each carrying all three roles. Left is a small org with no DevOps function, where
+  every shape is broad because if the Mac team does not own the pipeline, the state backend
+  and the guardrails then nobody does. Right is a large org like LBG, where the shapes narrow
+  but spike on Jamf APIs and Mentoring while Environment and GitOps pull back to the platform
+  team. Classes `.roles3`, `.scen2`. The colour chip in each role-card header is the chart
+  key, so **chip and polygon colours must stay in step**: junior `--accent-strong`, engineer
+  `--accent`, senior `--alt`.
 
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an `--amber`
 token for exactly that. Earlier work wired its speakers to `_shared/`.
@@ -307,6 +314,35 @@ Known tension, left as-is on purpose: `#8` organises the curriculum by job grade
 organises it by stage of learning (Oriented, Safe Contributor, and so on) and `#6` reports
 that prior coding experience predicted success rather than seniority. The speaker owns that
 framing and chose to keep grades, since that is how the audience's own org charts read.
+
+**How `#8`'s two charts are scored** - this came from the speaker directly, so do not
+"correct" it back:
+
+- **Jamf APIs score identically in both charts.** No external team is ever going to know your
+  own service's APIs better than the team that owns the service, so org size makes no
+  difference to it. If you find yourself lowering one of them, you have misunderstood.
+- **Environment is the real differentiator.** Small org: you design it, build it and maintain
+  it, because nobody provisions a repo for you. Large org: repos and toolchain arrive from
+  the internal developer platform as templates, so the burden genuinely lifts.
+- **Git and GitOps barely move between the two, and must not be scored sharply lower in the
+  large org.** In a large org the Mac team still owns its branching strategy, still wires the
+  Git event triggers into its own environments, and still handles merges to main and
+  releases. What it loses is authority, not knowledge: every PR needs a second approver,
+  GitHub access stops at the edges of what the team owns, and it cannot disable Checkov or
+  the linters. An earlier draft scored these down to 0.60 and that was wrong.
+- **The governing principle**, and the speaker's own wording, which the panel straplines now
+  carry verbatim: small org is "Design, build and maintain the platform and manage the Jamf
+  Terraform workflows"; large org is "Consume the platform, inside its guardrails and manage
+  the Jamf Terraform workflows". The closing line is "You still need to know how the platform
+  is designed. But your workflow will have to conform with wider company standards." Note
+  that managing the Jamf Terraform workflows is constant across both; only the platform
+  underneath changes hands.
+- **Say "the platform", not "it".** An earlier draft leaned on an unanchored pronoun whose
+  referent drifted between the tooling, the delivery machinery and the whole body of
+  knowledge, within a single panel. On a slide read at distance there is no time to resolve
+  an antecedent, so name the thing.
+- Mentoring is low in the small org (fewer people, one person often spans all three roles)
+  and high in the large one (bigger team, plus the packaging and endpoint security teams).
 
 The figures on `#6` are measured, not estimated. They come from
 `github.com/deploymenttheory/terraform-training-jamfpro` at the time of writing: 214,645

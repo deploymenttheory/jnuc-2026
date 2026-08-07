@@ -507,12 +507,31 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 .goalfoot .bar3.not .lb{color:var(--muted)}
 .goalfoot p{font-size:17px;line-height:1.38;color:var(--text-dim)}
 .goalfoot .todo{display:inline-block;margin:6px 0 0}
-.slide.dense8 .rolecard{padding:16px 26px;margin-bottom:14px}
-.slide.dense8 .rolecard .hd{margin-bottom:9px}
-.slide.dense8 .rolecard .hd h3{font-size:25px}
-.slide.dense8 .rolecard .hd span{font-size:18px}
-.slide.dense8 .rolecard li{margin-bottom:5px;font-size:18px;line-height:1.35;padding-left:24px}
-.slide.dense8 .rolecard li::before{font-size:18px}
+/* Role cards run across the top, so the two scenario radars below get the
+   height they need for three polygons each. The colour chip in each card
+   header doubles as the chart legend - keep the chip and polygon colours
+   in step (junior --accent-strong, engineer --accent, senior --alt). */
+.roles3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.roles3 .rolecard{margin-bottom:0;padding:14px 22px}
+.roles3 .rolecard .hd{margin-bottom:8px;gap:12px}
+.roles3 .rolecard .hd h3{font-size:23px}
+.roles3 .rolecard .hd span{font-size:16px}
+.roles3 .rolecard .hd i{width:13px;height:13px;border-radius:3px;flex:none}
+.roles3 .rolecard li{font-size:16.5px;line-height:1.3;margin-bottom:4px;padding-left:22px}
+.roles3 .rolecard li::before{font-size:17px;left:2px}
+.scen2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:12px}
+.scen2 .pane{border:1px solid var(--border);border-radius:12px;background:var(--surface);padding:16px 24px}
+.scen2 .phd{display:flex;align-items:baseline;gap:16px}
+.scen2 .phd .tag{font-family:var(--mono);font-size:16px;letter-spacing:.16em;color:var(--accent-strong)}
+.scen2 .pane.big .phd .tag{color:var(--alt-light)}
+.scen2 .phd h3{font-size:23px;font-weight:700}
+.scen2 .strap{font-size:17px;color:var(--text-dimmer);line-height:1.35;margin-top:5px}
+.scen2 svg{width:100%;height:300px;display:block;margin-top:4px}
+.scen2 .why{list-style:none;margin-top:8px}
+.scen2 .why li{position:relative;padding-left:20px;font-size:16px;line-height:1.3;
+  margin-bottom:4px;color:var(--text-dimmer)}
+.scen2 .why li::before{content:"\203A";position:absolute;left:2px;color:var(--accent);font-size:16px}
+.scen2 .pane.big .why li::before{color:var(--alt-light)}
 .slide.tight h1{margin-top:14px}
 .slide.tight .sub{margin-top:8px}
 .term{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;position:relative;z-index:2}
@@ -808,6 +827,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
           </g>
           <circle cx="30" cy="350" r="6"style="fill:var(--accent-strong)" />
         </svg>
+
       </div>
       <div class="spokes">
         <div class="spoke"><div class="n">01</div><div><h3>Training materials, written together</h3><p>The CoE brought the Terraform and Git content; the seconded engineer put it in Mac language and cut what did not apply.</p></div></div>
@@ -831,6 +851,7 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
   <div class="body grid g2" style="gap:20px">
     <div class="icard">
       <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M15.5 14.2c2.6.3 4.5 1.9 4.5 4.8"/></svg>
+
       <div><h3>Paired programming</h3><p>Real-time knowledge transfer. Engineers learn faster from a peer than from documentation alone. Effective pairs that transfer knowledge well share a disciplined (one topic at a time, staged clarification, deliberately pushing context rather than only answering questions asked) approach.</p></div>
     </div>
     <div class="icard">
@@ -954,78 +975,103 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 </section>
 
 <!-- ============ 8 · CURRICULUM BY ROLE ============ -->
-<section class="slide dense8" data-notes="Teach to the role, and note the axes are the same four disciplines the next three slides use, plus two that only start to matter as people move up. Juniors need breadth over depth: a working environment, Git basics, branching fundamentals, and enough Terraform to read a plan and predict what it will change. The test for a junior is simple - can they write a working PR and apply a change safely. Engineers own modules and everyday resource changes, review each other's work, and start going to the Jamf Pro API docs directly when the provider documentation is ambiguous. Be deliberate about the senior row, because this is where most teams get the shape wrong. Seniors are the escalation point, not a separate species. They need advanced Terraform, release management, and a strong understanding of the Jamf Pro API. The API knowledge is the one people underestimate: when a resource is not supported yet, somebody has to work out whether the API supports it at all, whether this is a gap in the provider, and whether it is worth raising upstream. What seniors explicitly do not need is provider architecture or SDK design. Building the provider is a different job from using it, and no Mac team needs a Go developer in order to adopt any of this. Mentoring stays on the chart because pairing with juniors is how the knowledge actually moved, which is the same finding as the what-worked slide.">
+<section class="slide dense8" data-notes="Teach to the role, but the real point of this slide is the pair of charts underneath. The three roles are the same in both, and the coloured chip on each card is the key to the shapes. Juniors need breadth over depth: a working environment, Git basics, branching fundamentals, and enough Terraform to read a plan and predict what it will change. The test is simple - can they write a working PR and apply a change safely. Engineers own modules and everyday resource changes, review each other's work, and go to the Jamf Pro API docs directly when the provider documentation is ambiguous. Seniors are the escalation point rather than a separate species: advanced Terraform, release management, and a strong understanding of the Jamf Pro API, including working out whether an unsupported resource is an API gap or a provider gap and whether it is worth raising upstream. Note what is deliberately absent: provider architecture and SDK design. Building the provider is a different job from using it, and no Mac team needs a Go developer in order to adopt any of this. Now the two charts, and there are two things to draw out. First, look at Jamf APIs. That score is identical in both, deliberately. No external team is ever going to know your own service's APIs better than the team that owns the service, so org size makes no difference to it whatsoever. Second, and this is the real distinction, look at Environment. In a small organisation you design it, build it and maintain it: the toolchain, the runners, the state backend, all of it, because nobody provisions a repo for you. In a large organisation that arrives from the internal developer platform as a template, so the burden lifts. But be careful how you say the rest, because Git and GitOps barely move between the two. In a large organisation you still own your branching strategy, you still wire the event triggers into your own environments, and you still handle merges to main and releases. What you lose is not the knowledge, it is the authority: every PR needs a second approver, your GitHub access stops at the edges of what you own, and you cannot turn off Checkov or the linters even if you want to. That is the sentence worth landing. You still need to know how the platform is designed, but your workflow will have to conform with wider company standards, and how much of it you can change is entirely dependent on your own organisation. Note the wording on both panels: in either case you are managing the Jamf Terraform workflows. What differs is whether you also design, build and maintain the platform underneath them, or consume it inside somebody else's guardrails.">
   <div class="eyebrow"><i class="dot"></i>07 &middot; Curriculum</div>
   <h1>Learning priorities by role</h1>
-  <div class="body split" style="gap:70px">
-    <div>
+  <div class="sub">The same three roles. How far each has to stretch depends on who else is in the building.</div>
+  <div class="body" style="margin-top:24px">
+    <div class="roles3">
       <div class="rolecard">
-        <div class="hd"><h3>Junior engineers</h3><span>Breadth over depth</span></div>
+        <div class="hd"><i style="background:var(--accent-strong)"></i><h3>Junior engineers</h3><span>Breadth over depth</span></div>
         <ul>
           <li>Environment working: editor, extensions, Terraform on PATH</li>
-          <li>Git basics, and branching fundamentals only</li>
-          <li>Terraform basics: read a plan and predict what it will change</li>
-          <li>Focus: can they write a working PR and apply a change safely?</li>
-          <li>Self-service runbooks for common CLI operations</li>
+          <li>Git basics and branching fundamentals</li>
+          <li>Terraform basics: read a plan and predict what it changes</li>
+          <li>Can they write a working PR and apply a change safely?</li>
         </ul>
       </div>
       <div class="rolecard">
-        <div class="hd"><h3>Engineers</h3><span>Applying it daily</span></div>
+        <div class="hd"><i style="background:var(--accent)"></i><h3>Engineers</h3><span>Applying it daily</span></div>
         <ul>
           <li>Own modules and everyday resource changes end-to-end</li>
           <li>Review junior PRs; raise their own with confidence</li>
           <li>Read the Jamf Pro API docs when the provider docs are ambiguous</li>
-          <li>Growing into advanced Terraform and release management</li>
         </ul>
       </div>
       <div class="rolecard">
-        <div class="hd"><h3>Senior engineers</h3><span class="blue">The escalation point</span></div>
+        <div class="hd"><i style="background:var(--alt)"></i><h3>Senior engineers</h3><span class="blue">The escalation point</span></div>
         <ul>
-          <li>Advanced Terraform: for_each, dynamic blocks, lookups, modules</li>
-          <li>Release management: tagging, promotion, rollback, PR approvals</li>
+          <li>Advanced Terraform: for_each, dynamic blocks, modules</li>
+          <li>Release management: tagging, promotion, rollback</li>
           <li><span class="g">Strong Jamf Pro API understanding</span></li>
-          <li>When a resource isn't supported: does the API support it, is it a provider gap, is it worth raising</li>
+          <li>Unsupported resource? API gap or provider gap, and is it worth raising</li>
           <li>Pairs with and mentors juniors; reviews and unblocks</li>
-          <li>Owns internal tooling and runbook authorship</li>
         </ul>
       </div>
     </div>
-    <div style="display:flex;flex-direction:column;justify-content:center;height:720px">
-      <svg viewBox="-130 -30 820 560" style="width:100%">
-        <!-- Radar web. Centre is 280,250; a vertex at full reach is 220 up,
-             or 190 across and 110 down. Axes run clockwise from the top:
-             Terraform, Git, GitOps, Jamf APIs, Environment, Mentoring. The
-             first four are the same four disciplines used by the pathway
-             matrix, the timeline and the skills map - keep them in step if
-             any of those slides change. -->
-        <g fill="none" stroke-width="1.5" style="stroke:var(--border)">
-          <polygon points="280,173 347,212 347,289 280,327 213,289 213,212"/>
-          <polygon points="280,96 413,173 413,327 280,404 147,327 147,173"/>
-          <polygon points="280,30 470,140 470,360 280,470 90,360 90,140"/>
-          <path d="M280 250 L280 30M280 250 L470 140M280 250 L470 360M280 250 L280 470M280 250 L90 360M280 250 L90 140"/>
-        </g>
-        <!-- senior: near the outer ring, but nobody is maxed everywhere -->
-        <polygon points="280,30 455,149 462,356 280,444 105,351 90,140"
-          fill-opacity=".16" stroke-width="3" style="fill:var(--alt);stroke:var(--alt)" />
-        <!-- engineer -->
-        <polygon points="280,92 421,169 413,327 280,360 128,338 189,197"
-          fill-opacity=".18" stroke-width="3" style="fill:var(--accent);stroke:var(--accent)" />
-        <!-- junior: pinched on Jamf APIs and mentoring, which they need none of -->
-        <polygon points="280,158 375,195 356,294 280,294 176,311 238,226"
-          fill-opacity=".22" stroke-width="3" style="fill:var(--accent-strong);stroke:var(--accent-strong)" />
-        <g font-family="Helvetica,Arial,sans-serif" font-size="28" style="fill:var(--text-2)">
-          <text x="280" y="14" text-anchor="middle">Terraform</text>
-          <text x="492" y="128" text-anchor="start">Git</text>
-          <text x="492" y="378" text-anchor="start">GitOps</text>
-          <text x="280" y="497" text-anchor="middle">Jamf APIs</text>
-          <text x="68" y="378" text-anchor="end">Environment</text>
-          <text x="68" y="128" text-anchor="end">Mentoring</text>
-        </g>
-      </svg>
-      <div class="legend">
-        <span><i style="background:var(--accent-strong)"></i>Junior</span>
-        <span><i style="background:var(--accent)"></i>Engineer</span>
-        <span><i style="background:var(--alt)"></i>Senior</span>
+
+    <div class="scen2">
+      <div class="pane">
+        <div class="phd"><span class="tag">SMALL ORG</span><h3>No DevOps function</h3></div>
+        <p class="strap">Design, build and maintain the platform and manage the Jamf Terraform workflows</p>
+        <svg viewBox="-130 -22 820 546">
+          <g fill="none" stroke-width="1.5" style="stroke:var(--border)">
+            <polygon points="280,173 347,212 347,289 280,327 213,289 213,212"/>
+            <polygon points="280,96 413,173 413,327 280,404 147,327 147,173"/>
+            <polygon points="280,30 470,140 470,360 280,470 90,360 90,140"/>
+            <path d="M280 250 L280 30M280 250 L470 140M280 250 L470 360M280 250 L280 470M280 250 L90 360M280 250 L90 140"/>
+          </g>
+          <polygon points="280,41 451,151 461,355 280,459 100,355 176,190"
+            fill-opacity=".14" stroke-width="3" style="fill:var(--alt);stroke:var(--alt)"/>
+          <polygon points="280,85 423,168 413,327 280,382 119,344 204,206"
+            fill-opacity=".16" stroke-width="3" style="fill:var(--accent);stroke:var(--accent)"/>
+          <polygon points="280,173 366,201 337,283 280,283 166,316 261,239"
+            fill-opacity=".2" stroke-width="3" style="fill:var(--accent-strong);stroke:var(--accent-strong)"/>
+          <g font-family="Helvetica,Arial,sans-serif" font-size="32" style="fill:var(--text-2)">
+            <text x="280" y="12" text-anchor="middle">Terraform</text>
+            <text x="487" y="133" text-anchor="start">Git</text>
+            <text x="487" y="373" text-anchor="start">GitOps</text>
+            <text x="280" y="502" text-anchor="middle">Jamf APIs</text>
+            <text x="73" y="373" text-anchor="end">Environment</text>
+            <text x="73" y="133" text-anchor="end">Mentoring</text>
+          </g>
+        </svg>
+        <ul class="why">
+          <li>The platform is yours too: the toolchain, the runners and the state backend</li>
+          <li>Nobody provisions a repo for you, so the whole environment is yours to stand up and keep alive</li>
+          <li>Fewer people, so one person often spans all three roles at once</li>
+        </ul>
+      </div>
+      <div class="pane big">
+        <div class="phd"><span class="tag">LARGE ORG</span><h3>Specialist teams either side</h3></div>
+        <p class="strap">Consume the platform, inside its guardrails and manage the Jamf Terraform workflows</p>
+        <svg viewBox="-130 -22 820 546">
+          <g fill="none" stroke-width="1.5" style="stroke:var(--border)">
+            <polygon points="280,173 347,212 347,289 280,327 213,289 213,212"/>
+            <polygon points="280,96 413,173 413,327 280,404 147,327 147,173"/>
+            <polygon points="280,30 470,140 470,360 280,470 90,360 90,140"/>
+            <path d="M280 250 L280 30M280 250 L470 140M280 250 L470 360M280 250 L280 470M280 250 L90 360M280 250 L90 140"/>
+          </g>
+          <polygon points="280,52 432,162 432,338 280,459 185,305 109,151"
+            fill-opacity=".14" stroke-width="3" style="fill:var(--alt);stroke:var(--alt)"/>
+          <polygon points="280,85 398,182 398,318 280,382 200,296 176,190"
+            fill-opacity=".16" stroke-width="3" style="fill:var(--accent);stroke:var(--accent)"/>
+          <polygon points="280,173 360,204 337,283 280,283 214,289 261,239"
+            fill-opacity=".2" stroke-width="3" style="fill:var(--accent-strong);stroke:var(--accent-strong)"/>
+          <g font-family="Helvetica,Arial,sans-serif" font-size="32" style="fill:var(--text-2)">
+            <text x="280" y="12" text-anchor="middle">Terraform</text>
+            <text x="487" y="133" text-anchor="start">Git</text>
+            <text x="487" y="373" text-anchor="start">GitOps</text>
+            <text x="280" y="502" text-anchor="middle">Jamf APIs</text>
+            <text x="73" y="373" text-anchor="end">Environment</text>
+            <text x="73" y="133" text-anchor="end">Mentoring</text>
+          </g>
+        </svg>
+        <ul class="why">
+          <li>You still own the branching strategy, the triggers into your environments, merges and releases</li>
+          <li>Repos come from platform templates, every PR needs a second approver, and you cannot disable Checkov or the linters</li>
+          <li>You still need to know how the platform is designed. But your workflow will have to conform with wider company standards</li>
+        </ul>
       </div>
     </div>
   </div>
