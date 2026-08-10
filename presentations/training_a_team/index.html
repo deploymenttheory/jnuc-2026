@@ -631,21 +631,22 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 .jrow .vl{font-size:24px;line-height:1.4;color:var(--text-2)}
 
 /* ---------- slide 15 ---------- */
-.qbox{width:620px;margin:0 auto;border:1px solid var(--green);border-radius:8px;background:var(--surface);
-  padding:22px 30px;text-align:center}
-.qbox .lb{font-family:var(--mono);font-size:19px;letter-spacing:.2em;color:var(--muted)}
-.qbox .q{font-size:31px;font-weight:700;margin-top:10px}
-.branch{display:flex;justify-content:center;gap:220px;margin-top:0}
-.branch .arm{text-align:center}
-.branch .arm .ln{width:2px;height:34px;background:var(--green);margin:0 auto}
-.branch .arm .lb{font-family:var(--mono);font-size:22px;font-weight:700;margin-top:8px}
-.teamcard{border:1px solid var(--border);border-top:3px solid var(--muted-2);border-radius:4px;
-  background:var(--surface);padding:26px 30px;min-height:200px}
-.teamcard.yes{border-top-color:var(--green);border-color:var(--green-deep);background:var(--surface-2)}
-.teamcard h3{font-size:27px;font-weight:700}
-.teamcard .st{font-family:var(--mono);font-size:20px;color:var(--muted);margin-top:4px}
-.teamcard.yes .st{color:var(--green-bright)}
-.teamcard p{font-size:21px;line-height:1.4;color:var(--text-dim);margin-top:18px}
+/* Ownership matrix. Cells are placed explicitly rather than auto-flowed, because
+   the row spans ARE the message: one merged cell is one team, so the number of
+   boxes in a column is the number of cohorts. */
+.ownmx{display:grid;grid-template-columns:330px repeat(3,1fr);gap:10px;align-items:stretch}
+.ownmx .hdc{font-family:var(--mono);font-size:16px;letter-spacing:.16em;color:var(--muted);
+  text-align:center;padding-bottom:6px}
+.ownmx .rl{display:flex;align-items:center;font-size:20px;font-weight:700;color:var(--text-2);padding-right:14px}
+.owncell{border:1px solid var(--border);border-radius:8px;background:var(--surface);padding:14px 16px;
+  font-family:var(--mono);font-size:15.5px;line-height:1.35;color:var(--muted);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:96px}
+.owncell span{display:block;font-size:13px;color:var(--muted);margin-top:10px}
+.owncell.a{background:var(--accent-wash);border-color:var(--green-deep);color:var(--green-bright)}
+.owncell.b{background:var(--alt-surface);border-color:var(--blue-border);color:var(--blue-light)}
+.owncell.c{background:var(--surface-2);border-color:var(--border-soft);color:var(--text-dimmer)}
+.ownmx .tot{font-family:var(--mono);font-size:16px;color:var(--muted);text-align:center;padding-top:10px}
+.ownmx .tot b{font-family:var(--sans);font-size:30px;color:var(--green-bright);font-weight:700}
 
 /* ---------- slide 16 ---------- */
 .cycle{display:flex;gap:10px;align-items:stretch;margin-top:190px}
@@ -1436,34 +1437,39 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 </section>
 
 <!-- ============ 15 · SCOPE ============ -->
-<section class="slide" data-notes="The transition doesn't stop at the core Mac team. Use one rule to scope adjacent teams: if a team only triggers actions, they don't need Terraform authoring; if they manage resources, they do. Endpoint Security Engineering manage resources — they author TF PRs. App Packaging and Support consume and triage — read-only.">
+<section class="slide" data-notes="The transition does not stop at the core Mac team, and this slide is how you work out how far it does go. Five responsibilities sit behind Jamf Pro: endpoint security, device management, Jamf platform ops, support and escalations, and application packaging. Every organisation has all five. What differs is how many teams they are spread across. Ask people to find their own organisation in one of the three columns. On the left, a small organisation, where one team owns all five - that is the single tall box, and it is one cohort to train. In the middle, a mid-sized organisation, and this is the most common shape by a distance: device management, Jamf platform ops and application packaging stay together as one engineering team, security engineering has broken out on its own, and the service desk takes support and escalations. Three boxes, three cohorts. On the right, a very large organisation, where each responsibility is somebody's whole job and you have five separate teams to teach. The instruction is simple: count the boxes in your column, and that is the number of cohorts you have to run. Worth saying explicitly that the curriculum barely changes between those three columns - what changes is how many times you deliver it, how much coordination it takes, and how many different managers you need bought in before you start, which is condition 01 from earlier. The grouping in the middle column is the common one rather than the only one; if security has not broken out in their organisation yet, the middle column is a two-box column for them. And a rule worth keeping from the way we scoped this: a team that only triggers actions does not need to author Terraform, but a team that manages resources does. That is what decides whether a cohort gets the full authoring curriculum or a shorter read-and-triage one.">
   <div class="eyebrow"><i class="dot"></i>14 &middot; Scope</div>
-  <h1>Don't forget your auxiliary teams</h1>
-  <div class="body" style="margin-top:150px">
-    <div class="qbox">
-      <div class="lb">THE ONE QUESTION</div>
-      <div class="q">Does the team <span class="g">manage resources</span>?</div>
-    </div>
-    <div class="branch">
-      <div class="arm"><div class="ln"></div><div class="lb"><span class="g">YES</span> &rarr; <span class="g">author TF</span></div></div>
-      <div class="arm"><div class="ln" style="background:var(--muted-2)"></div><div class="lb mu">NO &rarr; read-only</div></div>
-    </div>
-    <div class="grid g3" style="margin-top:30px">
-      <div class="teamcard yes">
-        <h3>Endpoint Security Engineering</h3>
-        <div class="st">Resource management: YES</div>
-        <p>Must manage Jamf resources via Terraform. Config changes = TF PRs, like the core team.</p>
-      </div>
-      <div class="teamcard">
-        <h3>App Packaging</h3>
-        <div class="st">No TF authoring</div>
-        <p>Read-only consumers &rarr; understand resource naming and module outputs.</p>
-      </div>
-      <div class="teamcard">
-        <h3>1st / 2nd Line Support</h3>
-        <div class="st">No TF authoring</div>
-        <p>Understand the GitOps workflow enough to triage and escalate correctly.</p>
-      </div>
+  <h1>Don't forget to train your sister engineering teams aswell</h1>
+  <div class="sub">The larger the organisation the larger the amount of teams that will be required to go on this journey.</div>
+  <div class="body" style="margin-top:34px">
+    <div class="ownmx">
+      <div style="grid-column:1;grid-row:1"></div>
+      <div class="hdc" style="grid-column:2;grid-row:1">SMALL ORGANISATION</div>
+      <div class="hdc" style="grid-column:3;grid-row:1">MID-SIZED</div>
+      <div class="hdc" style="grid-column:4;grid-row:1">VERY LARGE</div>
+
+      <div class="rl" style="grid-column:1;grid-row:2">Endpoint security</div>
+      <div class="rl" style="grid-column:1;grid-row:3">Device management</div>
+      <div class="rl" style="grid-column:1;grid-row:4">Jamf platform ops</div>
+      <div class="rl" style="grid-column:1;grid-row:5">App packaging</div>
+      <div class="rl" style="grid-column:1;grid-row:6">Support &amp; escalations</div>
+
+      <div class="owncell a" style="grid-column:2;grid-row:2 / span 5">The Mac team<span>one team, all five</span></div>
+
+      <div class="owncell b" style="grid-column:3;grid-row:2">Security engineering</div>
+      <div class="owncell a" style="grid-column:3;grid-row:3 / span 3">Platform, devices &amp; packaging</div>
+      <div class="owncell c" style="grid-column:3;grid-row:6">Service desk</div>
+
+      <div class="owncell b" style="grid-column:4;grid-row:2">Endpoint security team</div>
+      <div class="owncell a" style="grid-column:4;grid-row:3">Device management team</div>
+      <div class="owncell a" style="grid-column:4;grid-row:4">Platform ops team</div>
+      <div class="owncell a" style="grid-column:4;grid-row:5">Packaging team</div>
+      <div class="owncell c" style="grid-column:4;grid-row:6">Service desk</div>
+
+      <div style="grid-column:1;grid-row:7"></div>
+      <div class="tot" style="grid-column:2;grid-row:7"><b>1</b> cohort</div>
+      <div class="tot" style="grid-column:3;grid-row:7"><b>3</b> cohorts</div>
+      <div class="tot" style="grid-column:4;grid-row:7"><b>5</b> cohorts</div>
     </div>
   </div>
 </section>
