@@ -307,6 +307,7 @@ h1{font-size:53px;font-weight:700;letter-spacing:-.015em;line-height:1.05;margin
 .g2{grid-template-columns:1fr 1fr}
 .g3{grid-template-columns:repeat(3,1fr)}
 .g4{grid-template-columns:repeat(4,1fr)}
+.g5{grid-template-columns:repeat(5,1fr)}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:80px}
 
 ul.dash{list-style:none}
@@ -593,6 +594,29 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 .skillcol ul{list-style:none}
 .skillcol li{position:relative;padding-left:19px;font-size:15.5px;line-height:1.34;margin-bottom:2px;color:var(--text-dim)}
 .skillcol li::before{content:"\203A";position:absolute;left:2px;color:var(--muted);font-size:15px}
+
+/* ---------- slide 13 ---------- */
+/* One card per moment. The heading is the situation the learner is actually in;
+   the tag underneath is the form that fits it. Same facts, wrong form, no use. */
+/* Height comes from the tallest card - grid stretch keeps the other four level,
+   and margin-top:auto on .eg pins the examples to a shared baseline. */
+.moment{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:30px 26px;display:flex;flex-direction:column}
+.moment.on{background:var(--surface-2);border-color:var(--green-deep)}
+.moment .q{font-size:26px;font-weight:700;line-height:1.2;letter-spacing:-.008em}
+.moment .fm{font-family:var(--mono);font-size:15px;letter-spacing:.16em;color:var(--green-bright);margin-top:16px}
+.moment .rl{border:0;border-top:1px solid var(--border);margin:20px 0}
+.moment p{font-size:19px;line-height:1.5;color:var(--text-dimmer)}
+.moment .eg{margin-top:auto;padding-top:26px;font-family:var(--mono);font-size:15.5px;
+  line-height:1.5;color:var(--text-dimmer)}
+.moment .eg .lb{display:block;font-size:13px;letter-spacing:.18em;color:var(--muted);margin-bottom:10px}
+.moment.on .eg{color:var(--green-bright)}
+.moment.on .eg .lb{color:var(--muted)}
+/* Blue, not green: this is a modifier on all five, not a sixth category. */
+.modline{margin-top:18px;border:1px solid var(--border);border-left:4px solid var(--blue);
+  border-radius:10px;padding:20px 30px;display:flex;align-items:center;gap:28px}
+.modline .mk{font-family:var(--mono);font-size:14px;letter-spacing:.18em;color:var(--blue-light);flex:none}
+.modline .mv{font-size:19px;line-height:1.4;color:var(--text-dim)}
 
 /* ---------- slide 14 ---------- */
 .videoph{border:1px dashed var(--border-dash);border-radius:14px;height:760px;display:flex;flex-direction:column;
@@ -1344,16 +1368,50 @@ ul.dash li::before{content:"\203A";position:absolute;left:6px;top:-1px;color:var
 </section>
 
 <!-- ============ 13 · CONTENT TYPES ============ -->
-<section class="slide" data-notes="Build a range of content. Mix video, runbooks, and hands-on labs — engineers absorb differently. Create runbooks for everyday CLI ops, a Mac new-starter bootstrap flow in Jamf, scenario-based lab packs, short 3-5 minute walkthroughs, and a structured onboarding plan with a named buddy.">
+<section class="slide" data-notes="The headings on this slide are deliberately the moment the person is in, not the type of document, because the moment is what tells you which document to write. Five moments, five different pieces of material, and the same facts in the wrong one of them are useless. Somebody learning this for the first time needs a tutorial - guided, hand-held, and it has to work every time, because if step four fails they conclude they cannot do this. Somebody who already understands it and is just doing the job needs a runbook: the steps, no theory. Somebody in the middle of an incident needs reference material they can scan under pressure - a decision tree, not paragraphs, because nobody reads prose at three in the morning, and that is a genuinely different document from the runbook even when it covers the same system. Somebody asking why we work this way needs explanation, read when they are calm rather than when something is on fire. And the fifth one is the one documentation cannot do at all: practice, somewhere that breaking it costs nothing. This split is not something we invented - it is close to the Diataxis framework used for technical documentation, which separates tutorials, how-to guides, reference and explanation by the need they serve. The reason to care is our own mistake, and it is worth saying out loud here: the 214,645-word curriculum was not bad writing. It was reference material, written to be complete and correct, handed to people who needed a tutorial. Same facts, wrong form, and it did not land. Then the blue strip at the bottom, and be careful with this one. The instinct to vary the material is right, but the usual reason given for it - matching people's learning styles - does not hold up. The meshing hypothesis has been tested repeatedly; Pashler and colleagues reviewed more than seventy studies and found essentially no support, and it is now generally classed as a neuromyth. The variable that does hold up is prior knowledge. The expertise reversal effect, which has been meta-analysed and generalises well, shows that step-by-step guidance helps novices and actively slows down people who already have the mental model, because they have to keep cross-referencing the help against what they already know. That matches what we found ourselves: prior coding experience predicted who did well, not Jamf Pro familiarity and not age. So for the topics that matter, write two versions - a guided one and a terse one - and let people pick. Note also what is deliberately not on this slide: new-starter onboarding, which gets its own slide shortly with the artifacts pack, the skills check and the buddy.">
   <div class="eyebrow"><i class="dot"></i>12 &middot; Content</div>
-  <h1>Learning content types to consider</h1>
-  <div class="body grid g3">
-    <div class="card" style="min-height:270px"><h3>Tailored to learning styles</h3><p>Mix video, written runbooks, and hands-on labs. Don't default to one format.</p></div>
-    <div class="card" style="min-height:270px"><h3>Runbooks for common ops</h3><p>Step-by-step for everyday CLI: clone &rarr; branch &rarr; PR, Terraform init/plan/apply, common errors.</p></div>
-    <div class="card" style="min-height:270px"><h3>New-starter bootstrapping</h3><p>A Mac provisioning flow in Jamf to ship tools, config &amp; environment automatically.</p></div>
-    <div class="card" style="min-height:270px"><h3>Scenario-based lab packs</h3><p>Pre-built non-prod 'fix this broken config' challenges &mdash; not hello-world examples.</p></div>
-    <div class="card" style="min-height:270px"><h3>Short video walkthroughs</h3><p>3&ndash;5 min recordings of real tasks. Don't over-produce &mdash; screen recording with good audio is enough.</p></div>
-    <div class="card" style="min-height:270px;background:var(--surface-2);border-color:var(--border-soft)"><h3>Structured onboarding plan</h3><p>A written 4&ndash;8 week plan per new engineer, with clear milestones and a named buddy from day one.</p></div>
+  <h1>Match the content to the moment</h1>
+  <div class="sub">The same information in the wrong form is useless. A runbook teaches nobody, and a tutorial is worthless at 3am.</div>
+  <div class="body grid g5" style="margin-top:100px;gap:18px">
+    <div class="moment">
+      <div class="q">&ldquo;I'm new and need to learn this&rdquo;</div>
+      <div class="fm">TUTORIAL</div>
+      <hr class="rl">
+      <p>Guided, hand-held, and it has to work every time. If step four fails they conclude they can't do this. The smallest thing that gets someone to a working PR.</p>
+      <div class="eg"><span class="lb">EXAMPLES</span>Your first Jamf Pro policy in Terraform<br>Clone to merged PR, end to end</div>
+    </div>
+    <div class="moment">
+      <div class="q">&ldquo;I know this &mdash; I just need to do it&rdquo;</div>
+      <div class="fm">HOW-TO &middot; RUNBOOK</div>
+      <hr class="rl">
+      <p>The steps and nothing else. Assumes they already understand it, so no theory, no explanation, no reassurance.</p>
+      <div class="eg"><span class="lb">EXAMPLES</span>Add a new configuration profile<br>Promote a change dev &rarr; stage &rarr; prod</div>
+    </div>
+    <div class="moment">
+      <div class="q">&ldquo;It's broken and I need a fact now&rdquo;</div>
+      <div class="fm">REFERENCE &middot; BREAK GLASS</div>
+      <hr class="rl">
+      <p>Scannable under pressure. A decision tree, not paragraphs &mdash; nobody reads prose at 3am. A different document from the runbook, even for the same system.</p>
+      <div class="eg"><span class="lb">EXAMPLES</span>Roll back a bad apply to Jamf Pro<br>State is locked &mdash; what to do<br>Who to call, what not to touch</div>
+    </div>
+    <div class="moment">
+      <div class="q">&ldquo;Why do we work this way?&rdquo;</div>
+      <div class="fm">EXPLANATION</div>
+      <hr class="rl">
+      <p>Read when they're calm, never when something is on fire. The reasoning behind the setup, and the decisions that were already taken for them.</p>
+      <div class="eg"><span class="lb">EXAMPLES</span>Why multi instance management is complex<br>What state is, and why drift matters</div>
+    </div>
+    <div class="moment on">
+      <div class="q">&ldquo;I need to practise before it's real&rdquo;</div>
+      <div class="fm">PRACTICE &middot; SCENARIO</div>
+      <hr class="rl">
+      <p>Deliberate failure somewhere that breaking it costs nothing. The one thing no document can do for you, and the one we got right.</p>
+      <div class="eg"><span class="lb">EXAMPLES</span>A Jamf repo with faults planted in it<br>Game day: a smart group vanished</div>
+    </div>
+  </div>
+  <div class="modline">
+    <div class="mk">AND VARY IT</div>
+    <div class="mv">Prior knowledge is the variable that matters, not learning style. Step-by-step guidance speeds novices up and actively slows down anyone who already has the model &mdash; so the topics that matter need a guided version and a terse one.</div>
   </div>
 </section>
 
