@@ -192,6 +192,7 @@ body {
 }
 .tag-actions { color: var(--c-text-muted); }
 .tag-manage  { color: var(--c-accent); }
+.tag-read    { color: var(--c-accent-2); }
 .tag-rejected { color: var(--c-danger); }
 .tag-chosen {
   color: var(--c-bg);
@@ -471,6 +472,13 @@ body.reader .reader-extra {
 .control-note { margin-top: var(--sp-4); max-width: 1560px; }
 .control-note strong { color: var(--c-accent); }
 
+/* ============================ Singletons ============================ */
+.s-single-grid { display: grid; grid-template-columns: 420px 1fr; gap: var(--sp-4); align-items: start; }
+.s-single-grid > div { display: flex; flex-direction: column; gap: var(--sp-3); }
+.s-single-grid .control-note { margin-top: 0; max-width: none; }
+.s-single-grid .takeaway { margin-top: 0; }
+.s-single-code { margin: 0; font-size: 22px; line-height: 1.35; }
+
 /* ============================ S07 ============================ */
 .checklist { list-style: none; display: flex; flex-direction: column; gap: var(--sp-4); max-width: 1450px; }
 .checklist li { display: flex; align-items: flex-start; gap: var(--sp-3); }
@@ -613,7 +621,10 @@ body.reader .reader-extra {
   font-size: var(--fs-caption);
   color: var(--c-text-muted);
 }
+.speaker-photo.has-photo { border-style: solid; border-color: var(--c-border); background-size: cover; background-position: center; }
+.speaker-initials { font-family: var(--f-mono); font-size: var(--fs-h1); color: var(--c-text-muted); }
 .speaker-name { font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); }
+.speaker-role { font-family: var(--f-mono); font-size: var(--fs-chip); text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-accent-2); }
 
 /* placeholder logo mark (Q1) */
 .logo-placeholder {
@@ -722,7 +733,6 @@ body.presenter #viewport { display: none; }
       </footer>
       <div class="s00-mark">
         <p><span class="logo-placeholder">placeholder-logo</span></p>
-        <span class="todo">TODO Q1: logo assets</span>
       </div>
       <aside class="notes">
         <p>Welcome. Premise in one line: three Jamf Pro instances, 1,500+ resources, moved from click-ops to Terraform - and what it took to do that inside a bank.</p>
@@ -732,8 +742,7 @@ body.presenter #viewport { display: none; }
 
     <!-- ============================ S00b - Who we are ============================ -->
     <section class="slide" id="s00b" aria-label="Who we are" data-when="2025-11">
-      <h1 class="slide-title">Who we are
-        <span class="todo">TODO: roles + photos</span></h1>
+      <h1 class="slide-title">Who we are</h1>
       <!-- Cards are built from ../_shared/speakers.js - see the render block at the end of body. -->
       <div class="speakers"></div>
       <aside class="notes">
@@ -785,7 +794,7 @@ body.presenter #viewport { display: none; }
       <div class="teams">
         <div class="card team">
           <h2 class="team-name">Support</h2>
-          <span class="todo">TODO: access model</span>
+          <span class="tag tag-actions">Actions only</span>
         </div>
         <div class="card team">
           <h2 class="team-name">Mac@LBG</h2>
@@ -804,9 +813,9 @@ body.presenter #viewport { display: none; }
           <span class="tag tag-actions">Read-only, on demand</span>
         </div>
       </div>
-      <p class="teams-note">Five teams touch Jamf Pro - four manage change, auditors verify it. Because the HCL is self-documenting, the repo itself doubles as the audit trail and can be handed straight to auditors.</p>
+      <p class="teams-note">Five teams touch Jamf Pro - three manage resources, Support takes actions only, auditors verify it. Because the HCL is self-documenting, the repo itself doubles as the audit trail and can be handed straight to auditors.</p>
       <aside class="notes">
-        <p>Four teams manage, one config surface. Splitting the repo by team would fragment ownership of shared dependencies like categories and scripts.</p>
+        <p>Three teams manage resources, one config surface. Support acts on Jamf Pro day to day but doesn't hold resource-management access. Splitting the repo by team would fragment ownership of shared dependencies like categories and scripts.</p>
         <p>Auditors don't manage resources, but they do touch Jamf Pro - and because Terraform HCL is self-documenting, the repo can be given straight to them instead of building a separate audit trail.</p>
       </aside>
     </section>
@@ -922,26 +931,29 @@ body.presenter #viewport { display: none; }
     <!-- ============================ Singletons first ============================ -->
     <section class="slide" id="s-singletons" aria-label="Singletons first" data-when="2025-11">
       <h1 class="slide-title">Singletons first</h1>
-      <p class="lead">Settings panes are single-instance resources - there's only ever one. Import stayed the default; apply was the fallback.</p>
-      <div class="pipeline-band card">
-        <div class="pipeline">
-          <span class="pipe-node">HCL to match the UI</span>
-          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node">Import (default)</span>
-          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node pipe-off">Apply (fallback)</span>
-          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node">In state - managed</span>
+      <div class="s-single-grid">
+        <div>
+          <p>Settings panes are single-instance resources - there's only ever one. Import stayed the default; apply was the fallback.</p>
+          <div class="card control-note">
+            <p><strong>Don't skip import if you can.</strong> Apply was only the fallback when no import statement existed.</p>
+          </div>
+          <p class="takeaway">Every settings resource under management in about a day.</p>
         </div>
+        <pre class="code s-single-code"><span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_client_checkin"</span> <span class="tk-str">"jamfpro_client_checkin"</span> {
+  check_in_frequency                  = <span class="tk-num">30</span> <span class="tk-cm">// Valid values: 5, 15, 30, 60</span>
+  create_startup_script               = true
+  startup_log                         = true <span class="tk-cm">// requires create_startup_script</span>
+  startup_ssh                         = true <span class="tk-cm">// requires create_startup_script</span>
+  startup_policies                    = true <span class="tk-cm">// requires create_startup_script</span>
+  create_hooks                        = true
+  hook_log                            = true <span class="tk-cm">// requires create_hooks</span>
+  hook_policies                       = true <span class="tk-cm">// requires create_hooks</span>
+  enable_local_configuration_profiles = true
+  allow_network_state_change_triggers = true
+}
+
+<span class="tk-kw">import</span> {}</pre>
       </div>
-      <div class="card control-note">
-        <p><strong>Don't skip import if you can.</strong> Apply was only the fallback when no import statement existed.</p>
-      </div>
-      <pre class="code code-narrow"><span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_client_checkin"</span> <span class="tk-str">"settings"</span> {
-  check_in_frequency = <span class="tk-num">15</span>
-}</pre>
-      <p class="takeaway">Every settings resource under management in about a day.
-        <span class="todo">TODO: real singleton example</span></p>
       <details class="reader-extra">
         <summary>More detail</summary>
         <div class="detail-body">
@@ -1384,7 +1396,6 @@ body.presenter #viewport { display: none; }
           <span class="stat-label">lines of HCL</span>
         </div>
       </div>
-      <p class="slide-note"><span class="todo">TODO: pre-Nov 2025 provider-development timeline</span></p>
       <aside class="notes">
         <p>April 2025 is the provider-development start; nothing was imported before November 2025. v1.0.0 landed May 2026.</p>
       </aside>
@@ -1439,8 +1450,8 @@ body.presenter #viewport { display: none; }
 <script src="../_shared/speakers.js"></script>
 <script>
 // Speaker names on the title slide and the S00b cards, built from the shared
-// records so both decks stay in step. This deck shows name and org only - roles
-// and photos are still open TODOs here, so the extra shared fields go unused.
+// records so both decks stay in step. Photo falls back to initials when the
+// shared record has none yet.
 (function () {
   var people = window.JNUC_SPEAKERS;
   var order = ['joseph', 'gordon', 'dafydd'];
@@ -1464,11 +1475,23 @@ body.presenter #viewport { display: none; }
     var photo = document.createElement('div');
     photo.className = 'speaker-photo';
     photo.setAttribute('aria-hidden', 'true');
-    photo.textContent = 'photo';
+    if (p.photo) {
+      photo.classList.add('has-photo');
+      photo.style.backgroundImage = 'url(' + p.photo + ')';
+    } else {
+      var initials = document.createElement('span');
+      initials.className = 'speaker-initials';
+      initials.textContent = p.initials || '';
+      photo.appendChild(initials);
+    }
 
     var name = document.createElement('h2');
     name.className = 'speaker-name';
     name.textContent = p.name;
+
+    var role = document.createElement('p');
+    role.className = 'speaker-role';
+    role.textContent = p.role || '';
 
     var org = document.createElement('p');
     org.className = 'caption muted';
@@ -1476,6 +1499,7 @@ body.presenter #viewport { display: none; }
 
     card.appendChild(photo);
     card.appendChild(name);
+    if (p.role) card.appendChild(role);
     card.appendChild(org);
     host.appendChild(card);
   });
