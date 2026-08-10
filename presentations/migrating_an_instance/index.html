@@ -382,14 +382,14 @@ body.reader .reader-extra {
 .constraints {
   list-style: none;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: var(--sp-2);
   margin-top: var(--sp-3);
 }
 .constraints li { font-size: var(--fs-caption); }
 
 /* ============================ S02 ============================ */
-.teams { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3); }
+.teams { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-3); }
 .team {
   display: flex;
   flex-direction: column;
@@ -744,6 +744,7 @@ body.presenter #viewport { display: none; }
     <!-- ============================ S01 - Context ============================ -->
     <section class="slide" id="s01" aria-label="Context, requirements, constraints" data-when="2025-11">
       <h1 class="slide-title">Context, requirements, constraints</h1>
+      <p class="pipeline-label caption muted">No precedent to follow - nobody had migrated a live, in-use Jamf Pro estate to Terraform at this scale before, let alone inside a bank.</p>
       <div class="pipeline-band card">
         <p class="pipeline-label caption muted">The estate at the start - three Jamf Pro instances</p>
         <div class="pipeline">
@@ -763,6 +764,7 @@ body.presenter #viewport { display: none; }
         <li class="card">Post-migration, all create/update/delete operations happen through Terraform only.</li>
         <li class="card">All HCL must satisfy org linters.</li>
         <li class="card">Versioned releases, with change history findable when it is needed.</li>
+        <li class="card">Tidy up each tenant before import - stale, non-active resources don't get carried into Terraform.</li>
       </ul>
       <p class="slide-note">Staging was supposed to mirror production. In practice it had drifted - and there was no history that could bring the two back in line. Hold that thought.</p>
       <details class="reader-extra">
@@ -797,10 +799,15 @@ body.presenter #viewport { display: none; }
           <h2 class="team-name">App Packaging &amp; Deployment</h2>
           <span class="tag tag-manage">Resource management</span>
         </div>
+        <div class="card team">
+          <h2 class="team-name">Auditors</h2>
+          <span class="tag tag-actions">Read-only, on demand</span>
+        </div>
       </div>
-      <p class="teams-note">Four teams, one config surface.</p>
+      <p class="teams-note">Five teams touch Jamf Pro - four manage change, auditors verify it. Because the HCL is self-documenting, the repo itself doubles as the audit trail and can be handed straight to auditors.</p>
       <aside class="notes">
-        <p>Four teams, one config surface. Splitting the repo by team would fragment ownership of shared dependencies like categories and scripts.</p>
+        <p>Four teams manage, one config surface. Splitting the repo by team would fragment ownership of shared dependencies like categories and scripts.</p>
+        <p>Auditors don't manage resources, but they do touch Jamf Pro - and because Terraform HCL is self-documenting, the repo can be given straight to them instead of building a separate audit trail.</p>
       </aside>
     </section>
 
@@ -848,8 +855,7 @@ body.presenter #viewport { display: none; }
             <span class="tag tag-rejected">Rejected</span>
             <s>Per-team Terraform modules scoped to each team's resources</s>
           </div>
-          <p class="reject-why">Too much internal approval complexity.
-            <span class="todo">TODO: expand on the approval complexity</span></p>
+          <p class="reject-why">Every change needs Mac team approval regardless of which repo it lives in. Splitting by team would just mean chasing that same approval across several repos instead of one - one repo keeps every approval flowing through a single place.</p>
         </div>
         <div class="reject">
           <div class="card reject-idea">
@@ -869,6 +875,7 @@ body.presenter #viewport { display: none; }
     <!-- ============================ S05 - Instance migration order ============================ -->
     <section class="slide" id="s05" aria-label="Instance migration order" data-when="2025-11">
       <h1 class="slide-title">Instance migration order</h1>
+      <p class="lead">Staging and production had already drifted apart long before migration started - by November 2025 the two instances were no longer aligned.</p>
       <div class="options">
         <div class="card option option-dimmed">
           <span class="option-label">Option</span>
@@ -898,60 +905,63 @@ body.presenter #viewport { display: none; }
 
     <!-- ============================ S07 - Instance prep ============================ -->
     <section class="slide" id="s07" aria-label="Instance prep" data-when="2025-11">
-      <h1 class="slide-title">Instance prep
-        <span class="todo">TODO: add more prep points</span></h1>
+      <h1 class="slide-title">Instance prep</h1>
       <ul class="checklist">
-        <li><span class="check" aria-hidden="true"></span><span>Big tidy-up: removed all non-active resources from the tenant.</span></li>
+        <li><span class="check" aria-hidden="true"></span><span>Big tidy-up: used PRUNE to export JSON of every unused resource, then removed them with a bespoke tool - <code class="inline">jamf-resource-deleter</code> - which backs each resource up to JSON before deleting it, with a restore path if anything was needed back.</span></li>
         <li><span class="check" aria-hidden="true"></span><span>Verified API credentials per client were valid and complete.</span></li>
         <li><span class="check" aria-hidden="true"></span><span>Confirmed the Jamf Pro instance version met provider requirements.</span></li>
+        <li><span class="check" aria-hidden="true"></span><span>Tested the connection to Terraform Cloud end-to-end and confirmed every client's credentials were being read correctly.</span></li>
         <li><span class="check" aria-hidden="true"></span><span>Stored credentials for every instance's API clients in the secrets manager.</span></li>
+        <li><span class="check" aria-hidden="true"></span><span>Split the estate into resource-type sections up front, so migration could proceed safely, one section at a time.</span></li>
       </ul>
       <aside class="notes">
-        <p>The tidy-up mattered - importing dead config would have codified years of cruft.</p>
+        <p>The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back.</p>
       </aside>
     </section>
 
     <!-- ============================ Singletons first ============================ -->
     <section class="slide" id="s-singletons" aria-label="Singletons first" data-when="2025-11">
       <h1 class="slide-title">Singletons first</h1>
-      <p class="lead">Settings panes are single-instance resources - there is only ever one, so there is nothing to import.</p>
+      <p class="lead">Settings panes are single-instance resources - there's only ever one. Import stayed the default; apply was the fallback.</p>
       <div class="pipeline-band card">
         <div class="pipeline">
           <span class="pipe-node">HCL to match the UI</span>
           <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node">Apply</span>
+          <span class="pipe-node">Import (default)</span>
           <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node">The "create" is a no-op</span>
+          <span class="pipe-node pipe-off">Apply (fallback)</span>
           <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
           <span class="pipe-node">In state - managed</span>
         </div>
       </div>
+      <div class="card control-note">
+        <p><strong>Don't skip import if you can.</strong> Apply was only the fallback when no import statement existed.</p>
+      </div>
       <pre class="code code-narrow"><span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_client_checkin"</span> <span class="tk-str">"settings"</span> {
   check_in_frequency = <span class="tk-num">15</span>
-  <span class="tk-cm"># values mirror the UI - the apply changes nothing</span>
 }</pre>
       <p class="takeaway">Every settings resource under management in about a day.
         <span class="todo">TODO: real singleton example</span></p>
       <details class="reader-extra">
         <summary>More detail</summary>
         <div class="detail-body">
-          <p>Settings panes always exist, so Terraform's "create" simply writes the values the UI already shows - a no-op change that leaves the resource tracked in state. No import block, no import command, and no Sentinel exception needed for these.</p>
+          <p>Most settings panes were imported like any other resource, tracked in state via <code class="inline">terraform import</code>. The apply-only path was reserved for the handful whose provider had no import statement - there, Terraform's "create" simply writes the values the UI already shows, a no-op change that leaves the resource tracked in state without ever touching the server.</p>
         </div>
       </details>
       <aside class="notes">
         <p>November 2025 - the first real state in the repo.</p>
-        <p>Mechanic: the apply sets the same values the UI shows; nothing changes, but the resource is now in state. All settings panes done in about a day.</p>
+        <p>Mechanic: import first if the provider supports it - only fall back to apply where there's no import statement. The apply just sets the same values the UI shows, so nothing changes, but the resource lands in state. All settings panes done in about a day.</p>
       </aside>
     </section>
 
     <!-- ============================ Getting past Sentinel ============================ -->
     <section class="slide" id="s-sentinel" aria-label="Getting past Sentinel" data-when="2025-11:2026-01">
       <h1 class="slide-title">Getting past Sentinel</h1>
-      <p class="lead">Terraform at LBG runs the bank's public cloud, and every run passes Sentinel policy. One policy bans <code class="inline">import</code> blocks outright - importing would let one workspace adopt resources someone else manages.</p>
+      <p class="lead">At LBG, every Terraform run - across the bank's entire public cloud estate - passes through Sentinel policy checks before it can apply. One of those policies bans <code class="inline">import</code> blocks outright, because importing lets a workspace adopt resources someone else already manages.</p>
       <ol class="gates gates-3">
         <li class="card gate gate-final">
           <span class="gate-num">1</span>
-          <p><strong>Blocked.</strong> No <code class="inline">import</code> blocks anywhere - and no CLI access to production workspaces, so no <code class="inline">terraform import</code> fallback either.</p>
+          <p><strong>Ruled out.</strong> Import blocks are banned outright, and with no CLI access to production workspaces there's no <code class="inline">terraform import</code> fallback either.</p>
         </li>
         <li class="card gate">
           <span class="gate-num">2</span>
@@ -979,35 +989,30 @@ body.presenter #viewport { display: none; }
       <h1 class="slide-title">Resource sequencing
         <span class="todo">TODO (Gordon Deacon): real resource-type names per band</span></h1>
       <p class="s10-intro">One resource type at a time, end to end in production - not one instance at a time. The order came from the matrix: a group-built spreadsheet of every resource type and its dependencies.</p>
-      <svg class="s10-svg" viewBox="0 0 1728 720" aria-label="Five migration tiers with dependency arrows flowing downward into the policies band">
+      <svg class="s10-svg" viewBox="0 0 1728 720" aria-label="Four migration tiers with dependency arrows flowing downward into the profiles and policies band">
         <defs>
           <marker id="s10-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
             <path d="M0 0 L10 5 L0 10 z" fill="var(--c-accent-2)"/>
           </marker>
         </defs>
-        <rect class="dg-box band-1" x="1" y="1" width="1726" height="104" rx="12"/>
-        <text class="dg-label" x="40" y="61"><tspan class="dg-ix">1</tspan><tspan dx="18">Singletons and resources that rarely change</tspan></text>
-        <rect class="dg-box band-2" x="1" y="155" width="1726" height="104" rx="12"/>
-        <text class="dg-label" x="40" y="215"><tspan class="dg-ix">2</tspan><tspan dx="18">Dependency targets - resources other resources depend on</tspan></text>
-        <rect class="dg-box band-3" x="1" y="309" width="1726" height="104" rx="12"/>
-        <text class="dg-label" x="40" y="369"><tspan class="dg-ix">3</tspan><tspan dx="18">Resources with one or two dependencies</tspan></text>
-        <rect class="dg-box band-4" x="1" y="463" width="1726" height="104" rx="12"/>
-        <text class="dg-label" x="40" y="523"><tspan class="dg-ix">4</tspan><tspan dx="18">Resources with more than two dependencies</tspan></text>
-        <rect class="dg-box band-5" x="1" y="617" width="1726" height="102" rx="12"/>
-        <text class="dg-label" x="40" y="676"><tspan class="dg-ix">5</tspan><tspan dx="18">Policies</tspan></text>
+        <rect class="dg-box band-1" x="1" y="1" width="1726" height="140" rx="12"/>
+        <text class="dg-label" x="40" y="79"><tspan class="dg-ix">1</tspan><tspan dx="18">Singletons</tspan></text>
+        <rect class="dg-box band-2" x="1" y="191" width="1726" height="140" rx="12"/>
+        <text class="dg-label" x="40" y="269"><tspan class="dg-ix">2</tspan><tspan dx="18">Resources without dependencies</tspan></text>
+        <rect class="dg-box band-3" x="1" y="381" width="1726" height="140" rx="12"/>
+        <text class="dg-label" x="40" y="459"><tspan class="dg-ix">3</tspan><tspan dx="18">Resources that depended on those</tspan></text>
+        <rect class="dg-box band-5" x="1" y="571" width="1726" height="140" rx="12"/>
+        <text class="dg-label" x="40" y="649"><tspan class="dg-ix">4</tspan><tspan dx="18">Larger dependency resources - profiles and policies</tspan></text>
         <g marker-end="url(#s10-ah)">
-          <line class="dg-edge" x1="480" y1="112" x2="480" y2="146"/>
-          <line class="dg-edge" x1="864" y1="112" x2="864" y2="146"/>
-          <line class="dg-edge" x1="1248" y1="112" x2="1248" y2="146"/>
-          <line class="dg-edge" x1="480" y1="266" x2="480" y2="300"/>
-          <line class="dg-edge" x1="864" y1="266" x2="864" y2="300"/>
-          <line class="dg-edge" x1="1248" y1="266" x2="1248" y2="300"/>
-          <line class="dg-edge" x1="480" y1="420" x2="480" y2="454"/>
-          <line class="dg-edge" x1="864" y1="420" x2="864" y2="454"/>
-          <line class="dg-edge" x1="1248" y1="420" x2="1248" y2="454"/>
-          <line class="dg-edge" x1="480" y1="574" x2="480" y2="608"/>
-          <line class="dg-edge" x1="864" y1="574" x2="864" y2="608"/>
-          <line class="dg-edge" x1="1248" y1="574" x2="1248" y2="608"/>
+          <line class="dg-edge" x1="480" y1="148" x2="480" y2="182"/>
+          <line class="dg-edge" x1="864" y1="148" x2="864" y2="182"/>
+          <line class="dg-edge" x1="1248" y1="148" x2="1248" y2="182"/>
+          <line class="dg-edge" x1="480" y1="338" x2="480" y2="372"/>
+          <line class="dg-edge" x1="864" y1="338" x2="864" y2="372"/>
+          <line class="dg-edge" x1="1248" y1="338" x2="1248" y2="372"/>
+          <line class="dg-edge" x1="480" y1="528" x2="480" y2="562"/>
+          <line class="dg-edge" x1="864" y1="528" x2="864" y2="562"/>
+          <line class="dg-edge" x1="1248" y1="528" x2="1248" y2="562"/>
         </g>
       </svg>
       <aside class="notes">
@@ -1088,6 +1093,7 @@ body.presenter #viewport { display: none; }
           <text class="dg-label" x="280" y="704" text-anchor="middle">Import</text>
         </svg>
         <ul class="dash-bullets">
+          <li>Tidy-up tooling: <code class="inline">PRUNE</code> exported JSON of unused resources; <code class="inline">jamf-resource-deleter</code> (PyPI) deleted them, backing each one up to JSON with a restore path.</li>
           <li>Extraction driven by the jamfpro Python SDK.</li>
           <li>Each migration candidate got a script that pulled live config and emitted a structured map, shaped for a Terraform <code class="inline">local</code> - duplicates and all.</li>
           <li>Map pasted into a <code class="inline">local</code>; a single resource block with <code class="inline">for_each</code>, conditionals and dynamic blocks loops over it to create/import every instance of that type.</li>
@@ -1295,6 +1301,7 @@ body.presenter #viewport { display: none; }
       </ol>
       <p class="takeaway">Staging no longer claims parity with production - it inherits it, built from the same modules.
         <span class="todo">TODO (Mac engineer): confirm kept-items and timing</span></p>
+      <p class="slide-note">This is also where the module split earned its keep - a lot was learned here about designing one repo to serve multiple environments cleanly.</p>
       <details class="reader-extra">
         <summary>More detail</summary>
         <div class="detail-body">
