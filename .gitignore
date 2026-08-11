@@ -52,3 +52,6 @@ scratch/
 *.psd
 *.ai
 *.sketch
+
+# LLM Created Folders
+.claude/
