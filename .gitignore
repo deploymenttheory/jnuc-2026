@@ -41,12 +41,10 @@ build/
 export/
 exports/
 
-# ...except the two decks the landing page offers as downloads. These are the
-# original PowerPoints, not exports of the HTML decks, so nothing regenerates
-# them. They have to be tracked or the deploy syncs a bucket without them and
-# both download links 403.
-!presentations/migrating_an_instance/from-clicks-to-code-jnuc2026.pptx
-!presentations/training_a_team/ClickOps_to_GitOps.pptx
+# The two deck .pptx files stay ignored even though the landing page links to
+# them: the deploy builds them from the HTML with tools/build-pptx.mjs and syncs
+# them straight to S3. They are build output, and committing them would put a
+# fresh multi-megabyte binary in history on every push.
 
 # Speaker/scratch material that should not ship
 *.local.html

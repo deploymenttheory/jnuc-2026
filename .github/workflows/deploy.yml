@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - "presentations/**"
+      - "tools/**"
+      - "package.json"
+      - "package-lock.json"
       - ".github/workflows/deploy.yml"
   workflow_dispatch:
 
@@ -30,6 +33,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install build dependencies
+        run: npm ci
+
+      # --with-deps pulls the system libraries and the font packages Chromium
+      # needs; a runner without them renders boxes instead of text.
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      # Writes a .pptx into each deck directory from the deck's own HTML. These
+      # are gitignored build output - they exist only for the sync below, so the
+      # download always matches the site being deployed in the same run.
+      - name: Build the PowerPoint downloads
+        run: npm run build:pptx
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
