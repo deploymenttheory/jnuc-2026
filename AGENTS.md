@@ -256,7 +256,7 @@ Three chips still carry question numbers from the first build (`TODO Q1`, `TODO 
 **"ClickOps to GitOps - Learning Journey"**, in `index.html`. Renamed from
 `clickops-to-gitops.html` when the site moved to path-per-deck: the CloudFront Function
 resolves `/training_a_team/` to `index.html`, so any other filename is only reachable by its
-full path. 20 slides. `ClickOps_to_GitOps.pptx` appears alongside it after a build - gitignored
+full path. 19 slides. `ClickOps_to_GitOps.pptx` appears alongside it after a build - gitignored
 output from `tools/build-pptx.mjs`, not a source file. Dropped in as a finished-looking deck; no
 spec, notes file or slot length has been recorded here yet. Content work has now begun, slide by slide (Aug 2026):
 
@@ -398,7 +398,7 @@ ones, so existing rules keep working, but new work should use `--accent`, `--alt
 - **Slide copy must stay theme-neutral.** Do not write "the green bands" or "the green chip"
   when a theme can turn them blue.
 
-When changing anything colour-related, screenshot all 20 slides on `default` before and after
+When changing anything colour-related, screenshot all 19 slides on `default` before and after
 and `cmp` them. Tokenising must never alter the default rendering; that check is what catches
 a wrong substitution.
 
