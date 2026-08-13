@@ -72,26 +72,18 @@
   }
 
   .card {
-    display: block;
     padding: 28px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    text-decoration: none;
-    color: inherit;
     transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
   }
 
   .card:hover,
-  .card:focus-visible {
+  .card:focus-within {
     background: var(--surface-hover);
     border-color: var(--border-hover);
     transform: translateY(-2px);
-  }
-
-  .card:focus-visible {
-    outline: 2px solid var(--green-bright);
-    outline-offset: 3px;
   }
 
   .card h2 {
@@ -106,12 +98,31 @@
     font-size: 15px;
   }
 
-  .go {
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 20px;
+  }
+
+  .go,
+  .download {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     font-size: 14px;
     font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+  }
+
+  .go:focus-visible,
+  .download:focus-visible {
+    outline: 2px solid var(--green-bright);
+    outline-offset: 4px;
+  }
+
+  .go {
     color: var(--green-bright);
   }
 
@@ -119,9 +130,25 @@
     transition: transform 160ms ease;
   }
 
-  .card:hover .go svg,
-  .card:focus-visible .go svg {
+  .go:hover svg,
+  .go:focus-visible svg {
     transform: translateX(3px);
+  }
+
+  /* Secondary to "Open deck" - the deck is the point, the file is a takeaway. */
+  .download {
+    color: var(--muted);
+    transition: color 160ms ease;
+  }
+
+  .download:hover,
+  .download:focus-visible {
+    color: var(--text);
+  }
+
+  .download .size {
+    font-weight: 400;
+    color: var(--muted);
   }
 
   footer {
@@ -131,9 +158,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .card, .go svg { transition: none; }
-    .card:hover, .card:focus-visible { transform: none; }
-    .card:hover .go svg, .card:focus-visible .go svg { transform: none; }
+    .card, .go svg, .download { transition: none; }
+    .card:hover, .card:focus-within { transform: none; }
+    .go:hover svg, .go:focus-visible svg { transform: none; }
   }
 </style>
 </head>
@@ -146,29 +173,48 @@
     </header>
 
     <main class="decks">
-      <a class="card" href="migrating_an_instance/">
+      <article class="card">
         <h2>From Clicks to Code</h2>
         <p>Migrating Jamf Pro to Terraform at Lloyds Banking Group.</p>
-        <span class="go">
-          Open deck
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-      </a>
+        <div class="actions">
+          <a class="go" href="migrating_an_instance/">
+            Open deck
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="download" href="migrating_an_instance/from-clicks-to-code-jnuc2026.pptx"
+             download>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 3v7m0 0L5 7m3 3 3-3M3.5 12.5h9" stroke="currentColor" stroke-width="1.6"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Download PowerPoint <span class="size">881 KB</span>
+          </a>
+        </div>
+      </article>
 
-      <a class="card" href="training_a_team/">
+      <article class="card">
         <h2>ClickOps to GitOps</h2>
         <p>Learning journey.</p>
-        <span class="go">
-          Open deck
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-      </a>
+        <div class="actions">
+          <a class="go" href="training_a_team/">
+            Open deck
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="download" href="training_a_team/ClickOps_to_GitOps.pptx" download>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 3v7m0 0L5 7m3 3 3-3M3.5 12.5h9" stroke="currentColor" stroke-width="1.6"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Download PowerPoint <span class="size">16 MB</span>
+          </a>
+        </div>
+      </article>
     </main>
 
     <footer>

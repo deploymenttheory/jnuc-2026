@@ -15,7 +15,9 @@ expected.
 | `presentations/training_a_team` | Deck dropped in, not yet worked on here. Full detail below. |
 
 `presentations/index.html` is the landing page rather than a deck. It serves the site root and
-links to each deck by hand, so a new deck needs a card adding to it.
+links to each deck by hand, so a new deck needs a card adding to it. Each card carries two
+links: "Open deck" and a download for that deck's original PowerPoint, with its size written
+into the markup by hand.
 
 The two decks look nothing like each other - one is a light LBG-green theme, the other is
 near-black. That is deliberate. Do not harmonise their styling. The landing page sits apart
@@ -27,11 +29,13 @@ from both: near-black, anchored on `#006A4D`, the one green they have in common.
 |---|---|
 | `presentations/<slug>/` | One talk. Snake-case slug. Each deck owns its own HTML, tokens and script; decks do not import from each other beyond `_shared/`. |
 | `presentations/_shared/` | Data used by more than one deck. Currently `speakers.js` only. Content, not styling - see below. |
-| `.github/workflows/` | Empty. There is no CI. |
+| `.github/workflows/` | `deploy.yml` only - the S3 sync and CloudFront invalidation. See Deployment. |
 | `README.md`, `LICENSE` | Repo boilerplate. |
 
-`.github/workflows/` is empty, so git does not track it - it exists on Joseph's machine only
-until something is committed inside it.
+`.gitignore` blanket-ignores `*.pptx`, then negates the two deck files by full path. Those two
+are originals, not exports, and the landing page links to them, so they must stay tracked - an
+ignored deck file syncs a bucket without it and the download link 403s. A new deck's PowerPoint
+needs its own negation line; nothing globs it in.
 
 ## Shared speaker data
 
@@ -100,6 +104,7 @@ If that happens, that is the first real candidate for `_shared/`.
 | File | Role |
 |---|---|
 | `index.html` | The deck. Needs `../_shared/speakers.js` alongside it for the title credit and the S00b cards. |
+| `from-clicks-to-code-jnuc2026.pptx` | The original PowerPoint, offered as a download from the landing page. Tracked by a `.gitignore` negation. Rename it and the landing page link breaks. |
 | `presenter.json` | Per-slide speaker notes and timer lengths plus the 30-minute talk limit. Notes are a copy of the deck's `<aside class="notes">` text - keep both in sync when notes change. Timer allocations are proposed, not rehearsed. Nothing reads this file yet. |
 | `spec.md` | Spec and change history: the original build runbook, Joseph's source narrative and full repo tree, all three Q&A rounds answered inline, and a decision index. **Historical** - sections marked SUPERSEDED (deck order, palette values, open-questions index) predate the story restructure. |
 
@@ -252,7 +257,9 @@ Three chips still carry question numbers from the first build (`TODO Q1`, `TODO 
 **"ClickOps to GitOps - Learning Journey"**, in `index.html`. Renamed from
 `clickops-to-gitops.html` when the site moved to path-per-deck: the CloudFront Function
 resolves `/training_a_team/` to `index.html`, so any other filename is only reachable by its
-full path. 20 slides. Dropped in as a finished-looking deck; no spec, notes file or slot
+full path. 20 slides. `ClickOps_to_GitOps.pptx` sits alongside it - the original PowerPoint,
+offered as a download from the landing page and tracked by a `.gitignore` negation, so renaming
+it breaks that link. Dropped in as a finished-looking deck; no spec, notes file or slot
 length has been recorded here yet. Content work has now begun, slide by slide (Aug 2026):
 
 - **Goals** (`#3`): new learning-outcome cards, a "what success looked like" behaviours block,
@@ -458,7 +465,11 @@ Things that will bite you:
 - **Adding a deck is two edits, not one.** The directory gives you the URL, but it will not
   be reachable from anywhere until you add a card to `presentations/index.html`. That list is
   hand-maintained on purpose: generating it would mean client-side JS or a build step, and
-  this site has neither.
+  this site has neither. A deck shipping a PowerPoint is three edits - the card, the file, and
+  the `.gitignore` negation that lets the file be committed at all.
+- **The download file sizes are hardcoded.** The landing page prints "881 KB" and "16 MB" as
+  literal text; nothing measures the files. Replacing a deck's PowerPoint means editing that
+  span too.
 - **The README's link is generated.** Any `*.cloudfront.net` URL in `README.md` gets
   overwritten on the next deploy, so edit the distribution, not the file. The rewrite is a
   regex over the whole file - a different CloudFront URL added there would be clobbered too.

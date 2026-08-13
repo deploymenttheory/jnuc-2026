@@ -41,6 +41,13 @@ build/
 export/
 exports/
 
+# ...except the two decks the landing page offers as downloads. These are the
+# original PowerPoints, not exports of the HTML decks, so nothing regenerates
+# them. They have to be tracked or the deploy syncs a bucket without them and
+# both download links 403.
+!presentations/migrating_an_instance/from-clicks-to-code-jnuc2026.pptx
+!presentations/training_a_team/ClickOps_to_GitOps.pptx
+
 # Speaker/scratch material that should not ship
 *.local.html
 notes.local.md
