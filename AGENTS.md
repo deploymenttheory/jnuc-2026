@@ -6,22 +6,28 @@ in the same change whenever anything here becomes inaccurate or stale.
 ## What this repo is
 
 Home for all public JNUC 2026 materials. It holds more than one conference talk. Each talk is
-a self-contained folder under `presentations/`. One deck is ported in so far; a second is
-expected.
+a self-contained folder under `presentations/`.
 
 | Deck | Status |
 |---|---|
 | `presentations/migrating_an_instance` | Ported in and being worked on. Full detail below. |
-| `presentations/training_a_team` | Deck dropped in, not yet worked on here. Full detail below. |
+| `presentations/training_a_team` | Content work ongoing, slide by slide. Full detail below. |
 
 `presentations/index.html` is the landing page rather than a deck. It serves the site root and
 links to each deck by hand, so a new deck needs a card adding to it. Each card carries two
-links: "Open deck" and a PowerPoint download. The HTML deck is the source of truth - the
-`.pptx` is built from it during the deploy and never committed. See Building the downloads.
+links: "Open deck" and a Keynote download. The HTML deck is the source of truth - the `.key`
+is built from it on a Mac and committed. See Building the downloads.
 
-The two decks look nothing like each other - one is a light LBG-green theme, the other is
-near-black. That is deliberate. Do not harmonise their styling. The landing page sits apart
-from both: near-black, anchored on `#006A4D`, the one green they have in common.
+**Both decks follow the Jamf-supplied JNUC 2026 Keynote template** (`template.key` at the repo
+root, committed as the canonical style reference). The template's mandatory slides appear
+directly in each deck - a session-title slide carrying the speakers, a "Questions? Your turn!"
+slide and a Thank You close - and every other slide keeps its own content but adopts the
+template's formatting. The template look: royal blue `#273FAB` canvas, dark navy `#152143`
+panels/alternate ground, lime `#D1F682` as the single accent, off-white `#F4F4F4` text,
+cornflower `#5E79D7` for secondary data series, HelveticaNeue (stack:
+`"Helvetica Neue", Helvetica, Arial, sans-serif` - no webfonts), cube-wireframe background
+pattern, jamf + JNUC 2026 logos (embedded as data URIs, extracted from the template). The
+landing page keeps its own near-black look - it is not a deck.
 
 ## Layout
 
@@ -29,12 +35,13 @@ from both: near-black, anchored on `#006A4D`, the one green they have in common.
 |---|---|
 | `presentations/<slug>/` | One talk. Snake-case slug. Each deck owns its own HTML, tokens and script; decks do not import from each other beyond `_shared/`. |
 | `presentations/_shared/` | Data used by more than one deck. Currently `speakers.js` only. Content, not styling - see below. |
+| `template.key` | The Jamf-supplied JNUC 2026 Keynote template. Canonical reference for palette, typography and mandatory slides. |
 | `.github/workflows/` | `deploy.yml` only - the S3 sync and CloudFront invalidation. See Deployment. |
-| `tools/` | `build-pptx.mjs`, which builds the PowerPoint downloads from the decks. The only thing `package.json` exists for. |
+| `tools/` | `build-key.mjs`, which builds the Keynote downloads from the decks on a Mac. The only thing `package.json` exists for. |
 | `README.md`, `LICENSE` | Repo boilerplate. |
 
-The decks have no build step. Node is in this repo purely for `tools/build-pptx.mjs`, which the
-deploy runs; nothing about editing a deck requires `npm install`.
+The decks have no build step. Node is in this repo purely for `tools/build-key.mjs`, which is
+run by hand on a Mac; nothing about editing a deck requires `npm install`.
 
 ## Shared speaker data
 
@@ -46,18 +53,16 @@ sets `window.JNUC_SPEAKERS`, keyed by `dafydd` / `joseph` / `gordon`, each with 
   a `file://` page is blocked by CORS; a classic script tag is not, so the decks still work
   opened straight off disk. Verified in headless Chrome over both `file://` and `http://`.
 - The fields are a **superset**. Each deck renders only what its own layout uses, in its own
-  order, with its own classes, from a small render block just before its main script. Adding
-  a field here changes nothing until a deck asks for it.
+  order, with its own classes, from a small render block just before its main script.
 - Strings are plain text, injected with `textContent`, so write `&` not `&amp;`.
-- `migrating_an_instance` uses `name` and `org` only. It deliberately ignores `role` and
-  `photo` - that deck still carries a "roles + photos" TODO and its own photo treatment is
-  unsettled. The data is there whenever that TODO is picked up.
-- `training_a_team` uses `initials`, `name`, `role`, `bio` and `photo`. Only Dafydd has a
-  photo; the render skips the `<img>` for anyone whose `photo` is `null`.
-- The title-slide credit line in `migrating_an_instance` keeps its hardcoded names as a
-  fallback so the opening slide is never blank if `_shared/` goes missing. The shared file
-  overwrites it on load and always wins. The speaker cards have no such fallback - three
-  duplicated cards were not worth the drift risk.
+- **Both decks now render the template's three-speaker title-slide cards** from this file:
+  photo square (or an initials placeholder while a photo is missing), NAME AND SURNAME in
+  caps, the role + org line in lime, and the bio. Speaker order on both title slides:
+  Joseph, Gordon, Dafydd. Only Dafydd has a photo; each title slide carries one amber TODO
+  chip for the missing Joseph/Gordon photos.
+- `migrating_an_instance` keeps hardcoded names in the title cards as a fallback so the
+  opening slide is never blank if `_shared/` goes missing; the shared file overwrites them on
+  load and always wins.
 
 `_shared/` must ship anywhere a deck ships. A deck copied out on its own loses its speakers.
 
@@ -65,6 +70,9 @@ sets `window.JNUC_SPEAKERS`, keyed by `dafydd` / `joseph` / `gordon`, each with 
 
 These apply to any deck in this repo, current or future.
 
+- **Adhere to the JNUC 2026 template** (`template.key`). Mandatory slides transfer directly
+  (title with speakers, Questions, Thank You); everything else adopts the template's
+  formatting - palette, HelveticaNeue stack, title/kicker treatment, footer chrome.
 - One HTML file per deck, holding its own CSS, JS and images. Zero requests off the machine:
   no CDNs, webfonts, remote JS or remote images. The only local file a deck may reference is
   `../_shared/speakers.js`. A deck must work opened straight off disk.
@@ -82,12 +90,17 @@ These apply to any deck in this repo, current or future.
 - 1920x1080 canvas scaled to viewport; arrow/space/Home/End navigation, plus single-finger
   horizontal swipe on touch devices (60px threshold, pinches and vertical drags ignored);
   URL hash per slide; respect `prefers-reduced-motion`.
-- Every slide carries speaker notes in a hidden `<aside class="notes">` (last element of the
-  section). Notes are delivery cues in full sentences; they ship inside the HTML, so keep
+- Every slide carries speaker notes (in `migrating_an_instance` a hidden
+  `<aside class="notes">` as the section's last element; in `training_a_team` a `data-notes`
+  attribute). Notes are delivery cues in full sentences; they ship inside the HTML, so keep
   them safe for public reading or strip them from any copy that gets distributed.
 - Nothing in a deck may depend on where it is served from. The presenter window opens off
   `location.pathname`, which is why the move into `presentations/` needed no code change -
   keep it that way.
+- **The build interface is load-bearing**: `section.slide` elements, an `.active` class on
+  the current slide, and ArrowRight advancing exactly one slide with no intra-slide
+  fragments. `tools/build-key.mjs` depends on all three and fails loudly if a deck stops
+  advancing.
 
 The presenter view and reader mode below are implemented inside `migrating_an_instance`'s
 `index.html`, not in shared code. A second deck wanting them has to copy the pattern across.
@@ -102,26 +115,36 @@ If that happens, that is the first real candidate for `_shared/`.
 
 | File | Role |
 |---|---|
-| `index.html` | The deck. Needs `../_shared/speakers.js` alongside it for the title credit and the S00b cards. |
-| `from-clicks-to-code-jnuc2026.pptx` | Build output, gitignored. Written by `tools/build-pptx.mjs` during the deploy; the landing page links to this exact filename, so it is set in the script, not chosen freely. |
+| `index.html` | The deck. Needs `../_shared/speakers.js` alongside it for the title-slide speaker cards. |
+| `from-clicks-to-code-jnuc2026.pptx` | Gone. The download is now the committed `.key` below. |
+| `from-clicks-to-code-jnuc2026.key` | The committed Keynote download, written by `tools/build-key.mjs`. The landing page links to this exact filename, so it is set in the script, not chosen freely. Rebuild and commit it with any deck edit. |
 | `presenter.json` | Per-slide speaker notes and timer lengths plus the 30-minute talk limit. Notes are a copy of the deck's `<aside class="notes">` text - keep both in sync when notes change. Timer allocations are proposed, not rehearsed. Nothing reads this file yet. |
-| `spec.md` | Spec and change history: the original build runbook, Joseph's source narrative and full repo tree, all three Q&A rounds answered inline, and a decision index. **Historical** - sections marked SUPERSEDED (deck order, palette values, open-questions index) predate the story restructure. |
+| `spec.md` | Spec and change history: the original build runbook, Joseph's source narrative and full repo tree, all three Q&A rounds answered inline, and a decision index. **Historical** - sections marked SUPERSEDED (deck order, palette values, open-questions index) predate the story restructure, and everything it says about the light LBG-green palette predates the JNUC template adoption. |
 
 `spec.md` is provenance for every fact in the deck. Do not delete it; do not treat its
-superseded sections as current. This file wins wherever the two disagree. Note that `spec.md`
-predates the move into `presentations/`, so any repo tree or path it quotes is stale.
+superseded sections as current. This file wins wherever the two disagree on story facts.
+Note that `spec.md` predates the move into `presentations/`, so any repo tree or path it
+quotes is stale.
 
 ### Deck-specific authoring rules
 
+- **Palette and type are the JNUC template's**, wired through the deck's token block: royal
+  blue stage, navy panels and code blocks, lime accent, off-white text, cornflower reserved
+  for navy surfaces, HelveticaNeue stack. Code blocks map hand-tokenised HCL to lime
+  keywords, light-cornflower strings and amber numbers; TODO chips are solid amber with navy
+  ink. Logos (jamf white, JNUC 2026) live in tokens as data URIs.
 - **Dates live on the persistent timeline, not in slide content.** Every `<section>` carries
   `data-when="YYYY-MM"` or `data-when="YYYY-MM:YYYY-MM"` (a month range). A fixed strip at
   the bottom of the stage runs Nov 2025 -> Jul 2026 (present day); the active slide's range
   is highlighted, earlier months tinted. Pre-migration scene-setting slides sit at Nov 2025;
   keep positions monotonically non-decreasing through the deck. Don't add per-slide date
   chips. Elements that sit near a slide's bottom-left must clear the strip - use the
-  `--tl-clear` token for their bottom offset.
+  `--tl-clear` token for their bottom offset. The template's brand footer (jamf + JNUC
+  logos) appears on the title, Questions and Thank You slides only, sitting above the strip;
+  content slides keep the timeline strip and counter as their bottom chrome - the two would
+  collide otherwise, and the strip is deck content.
 - **The highlight only goes accent when the story moves.** A slide whose `data-when` range
-  repeats the previous slide's renders those cells grey (`--c-tl-static`, applied via
+  repeats the previous slide's renders those cells in the muted static state (via
   `#timeline.tl-static`); the month label stays accent either way. Comparison is deck order,
   so a slide's state is fixed regardless of how you navigated to it, and the first slide
   always counts as advancing. Reordering slides or editing a `data-when` therefore changes
@@ -129,10 +152,8 @@ predates the move into `presentations/`, so any repo tree or path it quotes is s
 - Code blocks are hand-tokenised HCL (`tk-kw`, `tk-str`, `tk-num`, `tk-cm` spans). Diagrams
   are inline SVG using the `dg-*` primitives so they inherit tokens.
 - The recurring motif is clicks vs code: UI-chrome fragments in muted text giving way to
-  monospace HCL in the accent colour. Title slide and close only - never on every slide.
-  Currently carried by the title wording rather than a drawn device.
-- Palette is a light LBG-green theme; fonts prefer GT Ultra with system fallbacks. Both are
-  placeholders until logo/brand assets arrive (Q1).
+  monospace HCL in the accent colour. Carried by the title wording rather than a drawn
+  device.
 
 ### Presenter view and reader mode
 
@@ -156,35 +177,37 @@ predates the move into `presentations/`, so any repo tree or path it quotes is s
 ### Current slide order (story arc)
 
 Context -> decisions -> first wins -> the wall -> the loop -> growing pains -> payoff.
-23 slides, trimmed from 27 to fit the 30-minute slot. Legacy section ids kept stable across
-reorders (so `s10` no longer sits at position 10); new story slides use semantic ids.
+23 slides. Legacy section ids kept stable across reorders (so `s10` no longer sits at
+position 10); new story slides use semantic ids.
 
-1. `s00` Title
-2. `s00b` Who we are
-3. `s01` Context, requirements, constraints (estate at the start: Sandbox / Staging / Production, parity notes)
-4. `s02` Who touches Jamf Pro
-5. `s03` Migration objectives and design decisions
-6. `s04` Ideas rejected, and why (3 architectural rejects; the other 2 moved into the story)
-7. `s05` Instance migration order (prod first + read-only API client control)
-8. `s07` Instance prep
-9. `s-singletons` Singletons first (Nov 2025, no-import trick)
-10. `s-sentinel` Getting past Sentinel (blocked -> per-window exceptions -> standing exception)
-11. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram)
-12. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk)
-13. `s11` Tools and helpers (JamfPy -> script -> map -> for_each)
-14. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split)
-15. `s13` for_each exceptions (policies, dock items)
-16. `s14` Validating a migration
-17. `s-pivot` Growing pains (FQDN conditionals -> Mar 2026 module pivot)
-18. `s15b` The module structure (module tree -> workspaces + workspace TODO chips)
-19. `s-staging` Rebuilding staging (the highlight)
-20. `s-today` Refinements along the way (DevTest in, Sandbox out, Release Please -> CalVer)
-21. `s16b` By the numbers
-22. `s17` Questions
-23. `s18` Links
+1. `s00` Title (template session-title layout with the three speaker cards)
+2. `s01` Context, requirements, constraints (estate at the start: Sandbox / Staging / Production, parity notes)
+3. `s02` Who touches Jamf Pro
+4. `s03` Migration objectives and design decisions
+5. `s04` Ideas rejected, and why (3 architectural rejects; the other 2 moved into the story)
+6. `s05` Instance migration order (prod first + read-only API client control)
+7. `s07` Instance prep
+8. `s-singletons` Singletons first (Nov 2025, no-import trick)
+9. `s-sentinel` Getting past Sentinel (blocked -> per-window exceptions -> standing exception)
+10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram)
+11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk)
+12. `s11` Tools and helpers (JamfPy -> script -> map -> for_each)
+13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split)
+14. `s13` for_each exceptions (policies, dock items)
+15. `s14` Validating a migration
+16. `s-pivot` Growing pains (FQDN conditionals -> Mar 2026 module pivot)
+17. `s15b` The module structure (module tree -> workspaces + workspace TODO chips)
+18. `s-staging` Rebuilding staging (the highlight)
+19. `s-today` Refinements along the way (DevTest in, Sandbox out, Release Please -> CalVer)
+20. `s16b` By the numbers
+21. `s17` Questions (template "Questions? Your turn!", navy)
+22. `s18` Links
+23. `s-thanks` Thank You (template close, royal blue)
 
-Former slides folded away in the trim: `s06` (into s10's intro), `s09` (into s10),
-`s-refine` (into s12), `s15` (chips moved to s15b; its 500/1,500/5,000 figures remain on s04).
+The old `s00b` "Who we are" slide was folded into the title slide when the template's
+three-speaker title layout arrived. Former slides folded away in the earlier trim: `s06`
+(into s10's intro), `s09` (into s10), `s-refine` (into s12), `s15` (chips moved to s15b; its
+500/1,500/5,000 figures remain on s04).
 
 ### Settled story facts (do not re-ask, do not contradict)
 
@@ -232,12 +255,7 @@ Former slides folded away in the trim: `s06` (into s10's intro), `s09` (into s10
 
 | Slide | TODO | Owner |
 |---|---|---|
-| `s00` | Logo/brand assets (Q1) | Joseph |
-| `s00b` | Speaker roles + photos. Real roles and Dafydd's photo now exist in `_shared/speakers.js`; this deck ignores them on purpose until the treatment is decided | Joseph |
-| `s02` | Support team access model (unconfirmed prior reading in `spec.md` §2.4 S02: 1st/2nd line actions only, 3rd line resource management) | Joseph |
-| `s04` | Expand per-team-modules approval complexity | Joseph |
-| `s07` | More prep points (Joseph wants to explain why) | Joseph |
-| `s-singletons` | Real singleton HCL example (placeholder: `jamfpro_client_checkin`) | Joseph/Gordon |
+| `s00` | Photos for Joseph and Gordon (add to `_shared/speakers.js`; Dafydd's is in) | Joseph |
 | `s10` | Real resource-type names per band | Gordon Deacon |
 | `s11` | Confirm generate-config-out rationale wording (old Q9) | Joseph |
 | `s12` | Sanitised real HCL | Joseph/Gordon |
@@ -245,62 +263,69 @@ Former slides folded away in the trim: `s06` (into s10's intro), `s09` (into s10
 | `s15b` | Sandbox workspace layout; plan-time figures | Joseph |
 | `s-staging` | Confirm kept-items and timing | Mac engineer |
 | `s-today` | Clarify instance roles (DevTest vs Sandbox) | Mac engineer |
-| `s16b` | Pre-Nov 2025 provider-development timeline (optional slide) | Joseph |
 | `s18` | URLs, contact, socials (Q12) | Joseph |
 
-Three chips still carry question numbers from the first build (`TODO Q1`, `TODO Q9`,
-`TODO Q12`). Those resolve in `spec.md` §2.5 and §4.
+Two chips still carry question numbers from the first build (`TODO Q9`, `TODO Q12`). Those
+resolve in `spec.md` §2.5 and §4. The old logo/brand-assets chip died when the template
+arrived. Three earlier table rows (s02 support-team access model, s04 per-team-modules
+approval complexity, s07 more prep points) remain outstanding as content work but carry no
+chip in the deck; their context is in `spec.md` and the git history of this file.
 
 ## Deck: presentations/training_a_team
 
 **"ClickOps to GitOps - Learning Journey"**, in `index.html`. Renamed from
 `clickops-to-gitops.html` when the site moved to path-per-deck: the CloudFront Function
 resolves `/training_a_team/` to `index.html`, so any other filename is only reachable by its
-full path. 19 slides. `ClickOps_to_GitOps.pptx` appears alongside it after a build - gitignored
-output from `tools/build-pptx.mjs`, not a source file. Dropped in as a finished-looking deck; no
-spec, notes file or slot length has been recorded here yet. Content work has now begun, slide by slide (Aug 2026):
+full path. **21 slides.** `ClickOps_to_GitOps.key` alongside it is the committed Keynote
+download from `tools/build-key.mjs`. No spec, notes file or slot length has been recorded
+here yet. Content work is ongoing, slide by slide (Aug 2026).
 
-- **Goals** (`#3`): new learning-outcome cards, a "what success looked like" behaviours block,
+Slide map after the template adoption: `#1` title (template three-speaker layout, LBG logo in
+the template's customer-logo slot, stats row kept), `#2` "Where we are today" (the old
+half-speakers slide kept its real content - the estate statecards, centred and enlarged -
+when the speakers moved to `#1`), `#3`-`#18` the content slides (same numbers as before the
+adoption), `#19` Questions ("Questions? Your turn!", navy), `#20` Thank You, `#21` the colour
+appendix (post-matter for readers; Thank You closes the talk).
+
+Notable content slides:
+
+- **Goals** (`#3`): learning-outcome cards, a "what success looked like" behaviours block,
   a non-goals strip and a trained-bar definition.
-- **Execution** (`#4`): rebuilt from scratch. The old six-box left-to-right pathway is gone,
-  replaced by a fan-out - a hub panel (one engineer seconded into the DevOps CoE, 3 months,
-  train-the-trainer) bracketed by an SVG to five outcome cards (materials, session design,
-  hackathons and homework, migration waves, handover), with two full-width arrows underneath
-  showing the two-way trade: domain context in, GitOps practice back. Classes `.fanout`,
-  `.hub`, `.brace`, `.spokes`/`.spoke`, `.flow`/`.flowrow`; the old `.pathway`, `.stepcard`,
-  `.chev` and `.insight` rules were deleted with it.
-- **What didn't work** (`#6`): rebuilt, replacing two cards and an `xxx` placeholder. A hero
-  SVG chart runs across the top: green bands mark teaching sessions, and a gradient line
-  rises through each one then decays through the gap that follows, trending down over six
-  months. **That curve is illustrative, not measured**, and the slide says so in a
-  `SHAPE IS ILLUSTRATIVE` label - keep that label if the chart is edited. Below it sit eight
-  chips: seven failures plus one green chip for what replaced the programme, then a quote
-  strip. Classes `.chartwrap`/`.chd`, `.fchips`/`.fchip` (`.won` for the green one) and
-  `.qstrip`, plus a `--red-light` token. The earlier `.failcard`, `.quotecard`, `.swapcard`
-  and `dense6` rules were deleted with the layout they served.
-- **Conditions** (`#7`): rebuilt from seven equal `numcard` boxes into a hero layout. A large
-  left panel gives psychological safety the weight the copy always claimed for it ("the most
-  evidenced condition of all") with three practical points under it; the other six conditions,
-  including the added "Expect the dip", sit right as compact numbered cards. Classes
-  `.herowrap`, `.heropanel`, `.supp`/`.suppcard` (`.dip` for the blue one); `.numcard` was
-  deleted with the layout it served.
-- **Learning priorities by role** (`#8`): realigned with the three curriculum slides that
-  follow it, and rebuilt around **two org scenarios**. The three role cards run across the
-  top; below them sit two radar webs (grid rings plus spokes, thin outlines, translucent
-  fills), each carrying all three roles. Left is a small org with no DevOps function, where
-  every shape is broad because if the Mac team does not own the pipeline, the state backend
-  and the guardrails then nobody does. Right is a large org like LBG, where the shapes narrow
-  but spike on Jamf APIs and Mentoring while Environment and GitOps pull back to the platform
-  team. Classes `.roles3`, `.scen2`. The colour chip in each role-card header is the chart
-  key, so **chip and polygon colours must stay in step**: junior `--accent-strong`, engineer
-  `--accent`, senior `--alt`.
+- **Execution** (`#4`): a fan-out - a hub panel (one engineer seconded into the DevOps CoE,
+  3 months, train-the-trainer) bracketed by an SVG to five outcome cards (materials, session
+  design, hackathons and homework, migration waves, handover), with two full-width arrows
+  underneath showing the two-way trade: domain context in, GitOps practice back. Classes
+  `.fanout`, `.hub`, `.brace`, `.spokes`/`.spoke`, `.flow`/`.flowrow`.
+- **What didn't work** (`#6`): a hero SVG chart across the top - bands mark teaching
+  sessions, a gradient line rises through each then decays through the gap that follows,
+  trending down over six months. **That curve is illustrative, not measured**, and the slide
+  says so in a `SHAPE IS ILLUSTRATIVE` label - keep that label if the chart is edited. Below
+  it, eight chips: seven failures plus one accent chip for what replaced the programme, then
+  a quote strip. Classes `.chartwrap`/`.chd`, `.fchips`/`.fchip` (`.won` for the accent one)
+  and `.qstrip`.
+- **Conditions** (`#7`): a hero layout - a large left panel gives psychological safety the
+  weight the copy claims for it ("the most evidenced condition of all") with three practical
+  points under it; the other six conditions, including "Expect the dip", sit right as
+  compact numbered cards. Classes `.herowrap`, `.heropanel`, `.supp`/`.suppcard` (`.dip`).
+- **Learning priorities by role** (`#8`): three role cards across the top; below them two
+  radar webs (grid rings plus spokes, thin outlines, translucent fills), each carrying all
+  three roles. Left is a small org with no DevOps function, where every shape is broad;
+  right is a large org like LBG, where the shapes narrow but spike on Jamf APIs and
+  Mentoring while Environment and GitOps pull back to the platform team. Classes `.roles3`,
+  `.scen2`. The colour chip in each role-card header is the chart key, so **chip and polygon
+  colours must stay in step**: junior `--accent` (lime), engineer `--alt-light`
+  (cornflower), senior `--text-2` (off-white). The mapping is documented in the `.roles3`
+  CSS comment.
 
-Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an `--amber`
-token for exactly that. Earlier work wired its speakers to `_shared/`.
+Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an amber
+token for exactly that. Current chips (7): photos for Joseph and Gordon (`#1`); confirm which
+behaviours were observed, confirm the trained bar the team actually used, confirm real
+non-goals (all `#3`); verify the quote (`#6`); how long the dip lasts (`#7`); the 3-4 minute
+interview with Louise.
 
 **The four disciplines are a shared vocabulary.** `#9` (pathway matrix), `#10` (timeline) and
 `#12` (skills map) are all built on **Environment, Git, Terraform, GitOps**, and `#12` calls
-them "the four core disciplines" in its subtitle. `#8`'s radar now uses those same four plus
+them "the four core disciplines" in its subtitle. `#8`'s radar uses those same four plus
 Jamf APIs and Mentoring, the two that only start to matter as people move up. If you rename
 or re-cut a discipline on any of those four slides, change all four.
 
@@ -308,10 +333,8 @@ Two deliberate decisions on `#8` worth not undoing:
 
 - **Provider architecture and SDK design were removed.** Building the Terraform provider is a
   different job from using it, and no Mac team needs a Go developer to adopt this. It was
-  replaced with Jamf Pro API knowledge, which the deck previously never taught at all -
-  before this change the only mention of an API anywhere in the deck was one bullet on the
-  hiring slide. The senior row now owns the "resource isn't supported yet" triage: does the
-  API support it, is it a provider gap, is it worth raising.
+  replaced with Jamf Pro API knowledge. The senior row owns the "resource isn't supported
+  yet" triage: does the API support it, is it a provider gap, is it worth raising.
 - **The senior label is "The escalation point", not "End-to-end mastery"**, because seniors
   are defined here by responsibility rather than by a completed body of knowledge.
 
@@ -373,93 +396,104 @@ colour-named tokens (`--green`, `--blue-light`, `--red`) survive as aliases of t
 ones, so existing rules keep working, but new work should use `--accent`, `--alt`, `--warn`,
 `--surface`, `--text-dim` and friends.
 
-- **Six presets**, three dark and three light. Dark: `default` (the original near-black, and
-  the only one with no `[data-theme]` block), `deep-green`, `contrast`. Light: `light-paper`,
-  `light-slate`, and `jamf` - which is modelled directly on the Jamf Pro admin console
-  (white cards on a faint grey canvas, hairline borders, near-black type, Jamf Blue as the
-  only strong colour, console icon-tile pastels as the washes). Add a preset by copying a
-  block and adding its name to `THEMES` in the theme script.
+- **The unthemed default is the JNUC 2026 template look** (royal blue canvas, navy surfaces,
+  lime accent, off-white text, cornflower secondary) - the bare `:root`, no `[data-theme]`
+  block. **Seven presets** in `THEMES`: `default`, `midnight` (the deck's original near-black
+  look, preserved verbatim when the JNUC default landed), `light-paper`, `light-slate`,
+  `jamf` (modelled on the Jamf Pro admin console), `deep-green`, `contrast`. Add a preset by
+  copying a block and adding its name to `THEMES` in the theme script.
 - **Controls**: `T` cycles, `Shift+T` cycles back, `K` opens the knobs panel. `?theme=<name>`
   wins on load; `?knobs=1` opens the panel. The choice persists in `localStorage`, wrapped in
   try/catch because `file://` can have an opaque origin - losing persistence is fine, throwing
   is not.
 - **The knobs panel** lists the primary knobs, hides the fine tints behind a toggle, and
   "Copy CSS" emits a paste-ready `[data-theme="my-theme"]{…}` block.
-- **Values marked DERIVED** in the token block are not from the slide 20 colour system; they
-  are tints worked out from a documented brand colour, and each says which. Brand colours
-  (Mountain Meadow, Tropical Rain Forest, Jamf Blue, Alert Red) are always used exactly.
-- **Slide 20 stays canonical.** Its chips keep literal hexes under every theme, because it
-  documents the brand palette rather than the active UI. Do not tokenise them.
-- **Embedded artwork**: several logos are white-on-transparent PNGs drawn for a dark stage.
-  `--art-mono-filter` inverts the monochrome marks (Octocat, cursor) and `--art-plate` sits
-  the multicolour ones (Jamf) on a dark plate. These rules are scoped to `html[data-theme]`
-  on purpose: applying `filter` at all promotes a compositing layer and shifts antialiasing,
-  so the unthemed default must not carry them.
-- **Slide copy must stay theme-neutral.** Do not write "the green bands" or "the green chip"
-  when a theme can turn them blue.
+- **Values marked DERIVED** in the token block are not from the brand colour system; they
+  are tints worked out from a documented colour (template or brand), and each says which.
+  Brand colours (Mountain Meadow, Tropical Rain Forest, Jamf Blue, Alert Red) and the
+  template palette values are always used exactly.
+- **The colour appendix (`#21`) stays canonical.** Its chips keep literal hexes under every
+  theme, because it documents the brand palette rather than the active UI. Do not tokenise
+  them.
+- **Embedded artwork**: several logos are white-on-transparent PNGs/SVGs drawn for a dark
+  stage (Octocat, cursor, the white jamf and JNUC logos). `--art-mono-filter` inverts the
+  monochrome marks and `--art-plate` sits the white/multicolour ones on a plate where a
+  light theme needs it. These rules are scoped per-theme; the royal-blue default carries the
+  white artwork unfiltered.
+- **Slide copy must stay theme-neutral.** Do not write "the green bands" or "the lime chip"
+  when a theme can turn them another colour.
 
-When changing anything colour-related, screenshot all 19 slides on `default` before and after
-and `cmp` them. Tokenising must never alter the default rendering; that check is what catches
-a wrong substitution.
+When changing anything colour-related, screenshot all 21 slides on `default` before and after
+and `cmp` them. A pure tokenising change must not alter the rendering of any theme you did
+not intend to change; that check is what catches a wrong substitution.
 
 - Slides are `<section class="slide">` with no ids except `#s1`. Navigation is by index -
-  the URL hash is `#1`..`#20`, not a slide name.
+  the URL hash is `#1`..`#21`, not a slide name. Removing or adding a slide renumbers
+  everything after it - update this file's slide references when that happens.
 - Notes live in a `data-notes` attribute on each section, shown in an overlay toggled with
   `n`. There is no second-window presenter view and no `presenter.json`.
-- Keys: arrows / PageUp / PageDown / space / Home / End to move, `n` notes, `f` fullscreen.
-  Clicking the left 28% of the screen goes back, anywhere else forward.
-- Speakers are on slide 2 (`#2`), rendered from `_shared/speakers.js`.
+- Keys: arrows / PageUp / PageDown / space / Home / End to move, `n` notes, `f` fullscreen,
+  `T`/`Shift+T` themes, `K` knobs. Clicking the left 28% of the screen goes back, anywhere
+  else forward.
+- The footer hairline and JNUC logo sit slightly lower than the template's geometry so dense
+  slides can never collide with them; the slide counter sits bottom-left above the help
+  strip.
 
 Known gaps, none of them addressed:
 
-- The deck uses em-dashes throughout (9 literal, 34 `&mdash;`), against the repo-wide
-  no-em-dash rule. Pre-existing; the working rule is that any slide touched by content work
-  is brought fully to house style (the Goals and Conditions slides already have been), the
-  rest are left alone until touched.
 - No spec or provenance file, so the facts on its slides have no recorded source.
 - Slot length and which of the three speakers present it are unrecorded.
 
+(The deck's em-dashes were all removed when the template restyle touched every slide, so
+that former gap is closed.)
+
 ## Building the downloads
 
-Each deck's `.pptx` is generated from the deck's own HTML by `tools/build-pptx.mjs`, so the
-download on the landing page always matches the site that just deployed. Run it by hand with
-`npm run build:pptx` (needs `npm ci` and `npx playwright install chromium` once). Takes about
-20 seconds for both decks.
+Each deck's `.key` is generated from the deck's own HTML by `tools/build-key.mjs`. GitHub's
+runners do not ship Keynote, so **the build runs on a Mac by hand and the `.key` files are
+committed** - the deploy only syncs them. Run `npm run build:key` (needs `npm ci` and
+`npx playwright install chromium` once, plus Keynote installed). **Rebuild and commit the
+`.key` files in the same change as any deck edit**, or the download on the landing page goes
+stale - nothing in CI checks this.
 
 Playwright opens each deck over `file://`, presses ArrowRight through it and screenshots the
-viewport at 1920x1080; PptxGenJS assembles the PNGs into a 16:9 deck. Both decks happen to
-share the interface it relies on - `section.slide` elements, an `.active` class on the current
-one, and ArrowRight advancing exactly one slide with no intra-slide fragments. A deck that
-breaks any of those needs the script updating, and the script fails loudly rather than
-silently emitting duplicate slides: after each keypress it asserts the deck actually moved.
+viewport at 1920x1080; AppleScript then drives Keynote to assemble the PNGs into a
+1920x1080 deck and save it. Both decks share the interface the script relies on -
+`section.slide` elements, an `.active` class on the current one, and ArrowRight advancing
+exactly one slide with no intra-slide fragments. A deck that breaks any of those needs the
+script updating, and the script fails loudly rather than silently emitting duplicate slides:
+after each keypress it asserts the deck actually moved.
 
 - **Every slide is a full-bleed image.** These decks are hand-built HTML with SVG, gradients
-  and absolute positioning; none of that survives translation into PowerPoint shapes. The
+  and absolute positioning; none of that survives translation into Keynote shapes. The
   download is for handing out, not for editing.
 - **Speaker notes are real text**, read from `<aside class="notes">` (`migrating_an_instance`)
-  or `data-notes` (`training_a_team`) and written into the notes pane. That one expression
-  covers both decks, so neither needs per-deck config.
+  or `data-notes` (`training_a_team`) and written into the presenter notes. That one
+  expression covers both decks, so neither needs per-deck config.
 - **`#help` is hidden during capture** - a keyboard hint means nothing in a downloaded file.
   The slide counters and the timeline strip are deliberately kept: the counter is useful on
   paper and the timeline is deck content.
-- **Fonts come from the runner, not from your Mac.** `migrating_an_instance` asks for GT Ultra,
-  which is licensed and not installed on a GitHub runner, so the built file falls back the same
-  way any visitor without the font sees the live site. Fidelity to what Joseph sees locally
-  would mean shipping the font to CI, which the licence has to allow first.
+- **Keynote quirks the script already handles**: Keynote must be started via
+  `open -ga Keynote` and polled until scriptable (an AppleScript `launch` inside the tell
+  block errors with -600 when it is not already running); the whole build runs inside
+  `with timeout of 900 seconds` because saving a 20-odd-slide document outlasts the default
+  AppleEvent reply timeout; and a failed osascript gets one clean Keynote relaunch and retry
+  (the connection can drop with -609 under a long scripted build).
 - **Output filenames are fixed in the script** because `presentations/index.html` hardcodes
   them. Changing one means changing both.
-- The files are gitignored. Never commit them - they are rebuilt on every deploy, and
-  PptxGenJS stamps a creation timestamp, so the bytes differ run to run even when nothing has.
+- The `.key` files ARE committed (unlike the old CI-built `.pptx` downloads, which were
+  gitignored). Fonts and rendering therefore match the Mac that ran the build.
 
 ## Deployment
 
 `.github/workflows/deploy.yml` deploys this repo on merge to `main` (only when
-`presentations/**`, `tools/**`, `package*.json` or the workflow itself changes) and on manual
-dispatch. It builds the PowerPoint downloads before syncing, so the sync uploads HTML and
-`.pptx` together. It syncs `presentations/` to S3 with `--delete`, then creates a CloudFront
-invalidation and waits for it. A sync alone is not enough, because the distribution uses CachingOptimized and holds
-objects at the edge for a day. Last, it rewrites the CloudFront link in `README.md` to
-whatever the distribution actually reports and pushes that back to `main`.
+`presentations/**` or the workflow itself changes) and on manual dispatch. It syncs
+`presentations/` to S3 with `--delete` (the committed `.key` downloads ride along like any
+other file), then creates a CloudFront invalidation and waits for it. A sync alone is not
+enough, because the distribution uses CachingOptimized and holds objects at the edge for a
+day. Last, it rewrites the CloudFront link in `README.md` to whatever the distribution
+actually reports and pushes that back to `main`. There is no build step in CI any more -
+`tools/**` and `package*.json` changes do not trigger a deploy.
 
 The bucket mirrors `presentations/` exactly, so the URL layout is the repo layout:
 
@@ -493,14 +527,15 @@ Things that will bite you:
   `../_shared/speakers.js`, which resolves to `/_shared/speakers.js` only because every deck
   sits one level down in a single bucket. A deck nested deeper, or moved to its own bucket,
   loses its speakers.
-- **Adding a deck is two edits, not one.** The directory gives you the URL, but it will not
-  be reachable from anywhere until you add a card to `presentations/index.html`. That list is
-  hand-maintained on purpose: generating it would mean client-side JS or a build step, and
-  this site has neither. A deck wanting a PowerPoint download is three edits - the card, an
-  entry in `DECKS` in `tools/build-pptx.mjs`, and nothing else; the file builds itself.
-- **The build runs before the sync, and a build failure fails the deploy.** That is deliberate.
-  A deck that stops responding to ArrowRight would otherwise ship a bucket full of duplicate
-  slides, and the sync's `--delete` means a half-built run is worse than no run.
+- **Adding a deck is two edits plus a build.** The directory gives you the URL, but it will
+  not be reachable from anywhere until you add a card to `presentations/index.html`. That
+  list is hand-maintained on purpose: generating it would mean client-side JS or a build
+  step, and this site has neither. A deck wanting a Keynote download needs the card, an
+  entry in `DECKS` in `tools/build-key.mjs`, and a local `npm run build:key` with the
+  result committed.
+- **The download can go stale.** CI no longer rebuilds it, so a deck edit shipped without a
+  rebuilt `.key` deploys an out-of-date download. The rule is above: rebuild and commit in
+  the same change.
 - **The README's link is generated.** Any `*.cloudfront.net` URL in `README.md` gets
   overwritten on the next deploy, so edit the distribution, not the file. The rewrite is a
   regex over the whole file - a different CloudFront URL added there would be clobbered too.
@@ -542,12 +577,12 @@ instance - prove it rather than eyeballing it. Screenshot before, screenshot aft
 deck directory gives a baseline to serve alongside the working copy (delete it afterwards).
 
 Anything touching `_shared/` also needs a `file://` check, since that is where a relative
-script src would break:
+script src would break - both decks render their title-slide speaker cards from it:
 
 ```sh
 "$CHROME" --headless --disable-gpu --window-size=1920,1080 --hide-scrollbars \
   --virtual-time-budget=3000 --screenshot=/tmp/file.png \
-  "file:///Users/josephlittle/Github/jnuc-2026/presentations/migrating_an_instance/index.html#s00b"
+  "file:///Users/josephlittle/Github/jnuc-2026/presentations/migrating_an_instance/index.html#s00"
 ```
 
 Also check after any structural change:
@@ -557,8 +592,11 @@ Also check after any structural change:
 - Timeline: any slide with low-sitting content - the month labels must not clip at the
   canvas edge and content must not collide with the strip.
 - Timeline grey state: `#s10` and `#s08` share a range, so shoot both - `s10` highlights in
-  accent, `s08` in grey, with the "Dec 25" label accent in both. `#s00` accent, `#s00b` grey
-  covers the first-slide case.
+  accent, `s08` in the muted static state, with the "Dec 25" label accent in both. `#s00`
+  accent, `#s01` grey covers the first-slide case.
+- Both decks: ArrowRight must advance exactly one slide per press end to end (the `.key`
+  build depends on it), and a deck edit means `npm run build:key` + committing the fresh
+  `.key`.
 
 (Serving over HTTP avoids file:// restrictions and is required for presenter sync; any port
 works. The timeline and reader-mode checks are `migrating_an_instance` specifics -

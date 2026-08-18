@@ -41,10 +41,11 @@ build/
 export/
 exports/
 
-# The two deck .pptx files stay ignored even though the landing page links to
-# them: the deploy builds them from the HTML with tools/build-pptx.mjs and syncs
-# them straight to S3. They are build output, and committing them would put a
-# fresh multi-megabyte binary in history on every push.
+# The deck .key downloads are the exception: GitHub runners have no Keynote, so
+# tools/build-key.mjs builds them on a Mac by hand and they ARE committed - the
+# deploy only syncs them. Rebuild and commit them alongside any deck edit.
+# template.key (the Jamf-supplied JNUC template) is committed as the canonical
+# style reference.
 
 # Speaker/scratch material that should not ship
 *.local.html

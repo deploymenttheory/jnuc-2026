@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light">
-<!-- Favicon mirrors --c-accent and --c-bg; the data URL keeps the deck self-contained. -->
-<link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23006A4D'/%3E%3Cpath d='M15 16l16 16-16 16M35 48h15' fill='none' stroke='%23F6F8F7' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta name="color-scheme" content="dark">
+<!-- Favicon mirrors --c-bg and --c-accent; the data URL keeps the deck self-contained. -->
+<link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23273FAB'/%3E%3Cpath d='M15 16l16 16-16 16M35 48h15' fill='none' stroke='%23D1F682' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <title>From Clicks to Code - JNUC 2026</title>
 <style>
 /* =====================================================================
-   Tokens - spec §2. Palette (Q1) and type (Q2) values are placeholders
-   by design; structure is final. All styling below derives from these.
+   Tokens - palette and type follow the official JNUC 2026 Keynote
+   template (template.key): royal blue stage, navy panels, lime accent,
+   Helvetica Neue. All styling below derives from these.
    ===================================================================== */
 :root {
   /* Canvas */
@@ -18,21 +19,31 @@
   --slide-h: 1080px;
   --slide-pad: 96px;
 
-  /* Palette - light theme, LBG-green flavoured (Q1: logo assets still pending) */
-  --c-bg: #F6F8F7;          /* base background */
-  --c-surface: #FFFFFF;     /* cards, code blocks */
-  --c-border: #D9E0DD;
-  --c-text: #0F1F1A;
-  --c-text-muted: #5B6A64;
-  --c-accent: #006A4D;      /* primary accent: chosen paths, highlights */
-  --c-accent-2: #0B5FA5;    /* secondary accent: links, diagram edges */
-  --c-danger: #BE3A2E;      /* rejected ideas, revoked permissions */
-  --c-success: #177A4C;     /* validated / managed states */
-  --c-warn: #9A6A00;        /* TODO placeholder chips, freeze notices */
+  /* Palette - JNUC 2026 template */
+  --c-bg: #273FAB;          /* royal blue stage */
+  --c-surface: #152143;     /* dark navy - cards, code blocks, alternate slide bg */
+  --c-border: rgba(244, 244, 244, 0.28);
+  --c-hairline: rgba(244, 244, 244, 0.6);
+  --c-text: #F4F4F4;
+  --c-text-muted: #C9D2F0;  /* derived light tint of the template cornflower */
+  --c-accent: #D1F682;      /* lime - the template's single accent */
+  --c-accent-2: #5E79D7;    /* cornflower - secondary, safe on navy surfaces only */
+  --c-line: #F4F4F4;        /* diagram edges / connectors - the template draws lines in white */
+  --c-ink: #152143;         /* dark text on lime or amber fills */
+  --c-danger: #FF9E8A;      /* rejected ideas, revoked permissions - legible on royal blue */
+  --c-success: #D1F682;     /* validated / managed states - the template has one accent */
+  --c-warn: #FFC24B;        /* TODO placeholder chips, freeze notices */
+  --c-photo: #FFFFFF;       /* speaker photo placeholder squares, per the template */
+  --c-code-str: #AABCF5;    /* derived light cornflower - HCL strings on navy */
+  --c-code-cm: #8B96C9;     /* derived dim cornflower - HCL comments on navy */
 
-  /* Typography - GT Ultra (LBG brand) where installed; system fallbacks otherwise */
-  --f-display: "GT Ultra", "GT Ultra Standard", Georgia, "Times New Roman", serif;
-  --f-body: "GT Ultra", -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Brand artwork from template.key, embedded so the deck stays self-contained */
+  --logo-jamf: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 163.6 56.9'%3E%3Cg%3E%3Cg id='Layer_1'%3E%3Cg%3E%3Cpath fill='%23F4F4F4' d='M91.5,26.2c0-4.3-4.3-5.3-7.7-5.3s-4.7.6-7.2,1.8l-1.9-3.8c3.9-1.6,7-2,9.3-2,6.2,0,12,2.7,12,8.9v17.8h-4.2v-2.8c-2.3,2.4-4.8,3.4-8.2,3.4-6.3,0-11.3-3.6-11.3-9.4s4-9,11.2-9,5.6.8,8,3v-2.7h0ZM84.3,30c-5.5,0-7.3,2.7-7.3,5.2s1.8,5.2,7.3,5.2,7.3-2.7,7.3-5.2-1.8-5.2-7.3-5.2Z'/%3E%3Cpath fill='%23F4F4F4' d='M138.6,27.8c0-4.5-2.6-6.5-5.7-6.5s-6.5,2.4-6.5,6.7v15.8h-4.5v-16c0-4.5-2.6-6.5-5.7-6.5s-6.5,2.4-6.5,6.7v15.8h-4.5v-26.1h4.5v3.1h0c1.2-2.7,4.4-3.7,7.2-3.7s5.5.7,7.6,4.5c1.6-3.3,5-4.5,8.4-4.5,5.6,0,9.9,3.4,9.9,10.2v16.5h-4.5v-16Z'/%3E%3Cpath fill='%23F4F4F4' d='M154.1,13.7c0-5.5,3.7-8.1,8.9-8.3v4.5h-.9c-2.3,0-3.5,1.9-3.5,4.2v3.6h4.2v4h-4.2v22.1h-4.5v-22.1h-3.9v-4h3.9v-4h0Z'/%3E%3Cpath fill='%23F4F4F4' d='M61,17.5h4.5s.1,29.4.1,29.4c0,6.8-4.4,9.1-9.3,9.1h-1.6v-4.2c1.2,0,1.6,0,1.6,0,4.4,0,4.8-2.4,4.8-4.7v-29.7c-.1,0-.1,0-.1,0ZM63.1,6.1c1.7,0,3.1,1.4,3.1,3.1s-1.4,3.2-3.1,3.2c-1.7,0-3.1-1.4-3.1-3.1s1.4-3.2,3.1-3.2Z'/%3E%3C/g%3E%3Cg%3E%3Cpath fill='%23F4F4F4' d='M3,.8C1.8.8.7,1.9.7,3.2v16.3c0,1.3,1.1,2.3,2.4,2.3h8.2c3.8,0,8.9-.9,10.3-7.5,0,0,1.4-6.7,2.2-10.7.3-1.5-.8-2.8-2.3-2.8,0,0-18.4,0-18.4,0Z'/%3E%3Cpath fill='%23F4F4F4' d='M34.5,8.4c-5.5,0-8.8,2.4-10.3,7.4,0,0-3.8,12-3.8,12-1.4,3.9-3.7,5.6-7.8,5.6H2.9c-1.2,0-2.2,1-2.2,2.2v6.1c0,1.2,1,2.1,2.1,2.1h38.9c1.2,0,2.2-1.2,2.2-2.4V10.5c0-1.2-1.1-2.1-2.3-2.1h-7.2,0Z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  --logo-jnuc: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' id='Logo' viewBox='0 0 900 500'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B fill: %236f82c6; %7D .cls-2 %7B fill: %23465bb8; %7D .cls-3 %7B fill: %23fff; %7D %3C/style%3E%3C/defs%3E%3Cpolyline class='cls-2' points='371.7 252.11 423.83 252.11 423.83 304.24'/%3E%3Cpolyline class='cls-2' points='579.16 258.75 579.16 310.89 527.02 310.89'/%3E%3Cg%3E%3Crect class='cls-1' x='482.58' y='212.78' width='81.28' height='81.28' transform='translate(332.44 -295.75) rotate(45)'/%3E%3Crect class='cls-1' x='370.07' y='194.07' width='53.76' height='53.76'/%3E%3Cg%3E%3Cpolygon class='cls-3' points='310.54 347.6 304.57 354.74 304.57 347.6 300.07 347.6 300.07 368.6 304.57 368.6 304.57 361.73 305.17 361.01 310.54 368.6 316.42 368.6 308.11 357.5 316.42 347.6 310.54 347.6'/%3E%3Cpath class='cls-3' d='M329.59,347.6l-7.62,21h4.77l1.2-3.3h8.37l1.2,3.3h4.77l-7.62-21h-5.07ZM329.59,360.8l2.52-6.96,2.55,6.96h-5.07Z'/%3E%3Cpolygon class='cls-3' points='361.72 360.47 354.04 347.6 349.18 347.6 349.18 368.6 353.68 368.6 353.68 355.73 361.36 368.6 366.22 368.6 366.22 347.6 361.72 347.6 361.72 360.47'/%3E%3Cpath class='cls-3' d='M380.33,352c.53-.18,1.08-.26,1.67-.25.65,0,1.24.08,1.77.25.53.17.97.39,1.31.65.35.27.57.54.67.83l4.23-1.53c-.35-.99-.93-1.84-1.74-2.55-.81-.71-1.76-1.25-2.84-1.63s-2.22-.56-3.4-.56c-1.41,0-2.72.28-3.94.83s-2.19,1.32-2.93,2.3-1.11,2.13-1.11,3.44.35,2.5,1.04,3.39c.69.89,1.65,1.59,2.85,2.09s2.57.87,4.09,1.09c.56.08,1.11.2,1.64.37.53.17.98.38,1.32.66.35.28.52.62.52,1.04s-.17.77-.5,1.08c-.33.31-.76.55-1.29.73-.53.18-1.09.26-1.69.26-.65,0-1.24-.09-1.77-.26-.53-.17-.97-.4-1.31-.67-.34-.27-.57-.55-.67-.84l-4.23,1.56c.36.98.94,1.82,1.75,2.53s1.75,1.25,2.83,1.62,2.21.56,3.39.56c1.43,0,2.75-.28,3.96-.83s2.18-1.32,2.92-2.3c.73-.99,1.1-2.13,1.1-3.44s-.37-2.38-1.09-3.28c-.73-.9-1.7-1.62-2.91-2.16s-2.54-.92-3.98-1.12c-.63-.09-1.21-.19-1.73-.3-.52-.11-.95-.3-1.27-.56-.32-.27-.48-.67-.48-1.21,0-.39.17-.74.51-1.05s.77-.55,1.31-.74Z'/%3E%3Cpath class='cls-3' d='M403.3,347.6l-7.62,21h4.77l1.2-3.3h8.37l1.2,3.3h4.77l-7.62-21h-5.07ZM403.3,360.8l2.52-6.96,2.55,6.96h-5.07Z'/%3E%3Cpath class='cls-3' d='M427.7,352c.53-.18,1.08-.26,1.67-.25.65,0,1.24.08,1.77.25.53.17.97.39,1.31.65.35.27.57.54.67.83l4.23-1.53c-.35-.99-.93-1.84-1.74-2.55-.81-.71-1.76-1.25-2.84-1.63s-2.22-.56-3.4-.56c-1.41,0-2.72.28-3.94.83s-2.19,1.32-2.93,2.3-1.11,2.13-1.11,3.44.35,2.5,1.04,3.39c.69.89,1.65,1.59,2.85,2.09s2.57.87,4.09,1.09c.56.08,1.11.2,1.64.37.53.17.98.38,1.32.66.35.28.52.62.52,1.04s-.17.77-.5,1.08c-.33.31-.76.55-1.29.73-.53.18-1.09.26-1.69.26-.65,0-1.24-.09-1.77-.26-.53-.17-.97-.4-1.31-.67-.34-.27-.57-.55-.67-.84l-4.23,1.56c.36.98.94,1.82,1.75,2.53s1.75,1.25,2.83,1.62,2.21.56,3.39.56c1.43,0,2.75-.28,3.96-.83s2.18-1.32,2.92-2.3c.73-.99,1.1-2.13,1.1-3.44s-.37-2.38-1.09-3.28c-.73-.9-1.7-1.62-2.91-2.16s-2.54-.92-3.98-1.12c-.63-.09-1.21-.19-1.73-.3-.52-.11-.95-.3-1.27-.56-.32-.27-.48-.67-.48-1.21,0-.39.17-.74.51-1.05s.77-.55,1.31-.74Z'/%3E%3Cpath class='cls-3' d='M462.45,353.58c.54-.58,1.16-1.04,1.86-1.37.7-.33,1.46-.5,2.26-.5.84,0,1.62.18,2.35.54.73.36,1.35.84,1.88,1.44l4.02-2.16c-.94-1.31-2.12-2.36-3.56-3.14s-3-1.18-4.69-1.18c-1.42,0-2.75.28-4,.85-1.25.57-2.35,1.35-3.29,2.34-.95,1-1.69,2.15-2.22,3.47-.54,1.31-.8,2.73-.8,4.24s.27,2.91.8,4.22c.53,1.31,1.27,2.47,2.22,3.47.94,1,2.04,1.78,3.29,2.35,1.25.57,2.58.85,4,.85,1.7,0,3.26-.39,4.69-1.18s2.62-1.83,3.56-3.14l-4.02-2.19c-.52.61-1.15,1.1-1.88,1.46-.73.37-1.52.55-2.35.55s-1.55-.17-2.26-.5c-.71-.33-1.33-.8-1.86-1.38s-.95-1.26-1.25-2.03c-.3-.77-.45-1.59-.45-2.47s.15-1.72.45-2.49c.3-.77.72-1.45,1.25-2.03Z'/%3E%3Crect class='cls-3' x='482.47' y='347.6' width='4.5' height='21'/%3E%3Cpolygon class='cls-3' points='494.92 352.1 500.92 352.1 500.92 368.6 505.42 368.6 505.42 352.1 511.42 352.1 511.42 347.6 494.92 347.6 494.92 352.1'/%3E%3Cpolygon class='cls-3' points='527.56 354.26 523.33 347.6 518.02 347.6 525.31 359.15 525.31 368.6 529.81 368.6 529.81 359.15 537.1 347.6 531.79 347.6 527.56 354.26'/%3E%3Cpolygon class='cls-3' points='541.3 370.28 544.3 370.28 546.73 365.21 542.23 365.21 541.3 370.28'/%3E%3Cpolygon class='cls-3' points='583.87 347.6 579.16 359.99 574.45 347.6 570.61 347.6 566.53 368.6 571.12 368.6 573.31 357.26 577.6 368.6 580.72 368.6 585.01 357.26 587.2 368.6 591.79 368.6 587.71 347.6 583.87 347.6'/%3E%3Crect class='cls-3' x='599.74' y='347.6' width='4.5' height='21'/%3E%3Cpath class='cls-3' d='M618.8,352c.53-.18,1.08-.26,1.67-.25.65,0,1.24.08,1.77.25.53.17.97.39,1.31.65.35.27.57.54.67.83l4.23-1.53c-.35-.99-.93-1.84-1.74-2.55-.81-.71-1.76-1.25-2.84-1.63s-2.22-.56-3.4-.56c-1.41,0-2.72.28-3.94.83s-2.19,1.32-2.93,2.3-1.11,2.13-1.11,3.44.35,2.5,1.04,3.39c.69.89,1.65,1.59,2.85,2.09s2.57.87,4.09,1.09c.56.08,1.11.2,1.64.37.53.17.98.38,1.32.66.35.28.52.62.52,1.04s-.17.77-.5,1.08c-.33.31-.76.55-1.29.73-.53.18-1.09.26-1.69.26-.65,0-1.24-.09-1.77-.26-.53-.17-.97-.4-1.31-.67-.34-.27-.57-.55-.67-.84l-4.23,1.56c.36.98.94,1.82,1.75,2.53s1.75,1.25,2.83,1.62,2.21.56,3.39.56c1.43,0,2.75-.28,3.96-.83s2.18-1.32,2.92-2.3c.73-.99,1.1-2.13,1.1-3.44s-.37-2.38-1.09-3.28c-.73-.9-1.7-1.62-2.91-2.16s-2.54-.92-3.98-1.12c-.63-.09-1.21-.19-1.73-.3-.52-.11-.95-.3-1.27-.56-.32-.27-.48-.67-.48-1.21,0-.39.17-.74.51-1.05s.77-.55,1.31-.74Z'/%3E%3Cpath class='cls-3' d='M642.26,352c.53-.18,1.08-.26,1.67-.25.65,0,1.24.08,1.77.25.53.17.97.39,1.31.65.35.27.57.54.67.83l4.23-1.53c-.35-.99-.93-1.84-1.74-2.55-.81-.71-1.76-1.25-2.84-1.63s-2.22-.56-3.4-.56c-1.41,0-2.72.28-3.94.83s-2.19,1.32-2.93,2.3-1.11,2.13-1.11,3.44.35,2.5,1.04,3.39c.69.89,1.65,1.59,2.85,2.09s2.57.87,4.09,1.09c.56.08,1.11.2,1.64.37.53.17.98.38,1.32.66.35.28.52.62.52,1.04s-.17.77-.5,1.08c-.33.31-.76.55-1.29.73-.53.18-1.09.26-1.69.26-.65,0-1.24-.09-1.77-.26-.53-.17-.97-.4-1.31-.67-.34-.27-.57-.55-.67-.84l-4.23,1.56c.36.98.94,1.82,1.75,2.53s1.75,1.25,2.83,1.62,2.21.56,3.39.56c1.43,0,2.75-.28,3.96-.83s2.18-1.32,2.92-2.3c.73-.99,1.1-2.13,1.1-3.44s-.37-2.38-1.09-3.28c-.73-.9-1.7-1.62-2.91-2.16s-2.54-.92-3.98-1.12c-.63-.09-1.21-.19-1.73-.3-.52-.11-.95-.3-1.27-.56-.32-.27-.48-.67-.48-1.21,0-.39.17-.74.51-1.05s.77-.55,1.31-.74Z'/%3E%3Cpath class='cls-3' d='M676.33,350.41c-.95-1-2.05-1.78-3.3-2.35-1.25-.56-2.59-.85-4.02-.85s-2.75.28-4,.85c-1.25.57-2.35,1.35-3.3,2.35-.95,1-1.7,2.16-2.24,3.47-.54,1.32-.81,2.72-.81,4.22s.27,2.91.81,4.22c.54,1.31,1.29,2.47,2.24,3.47.95,1,2.05,1.78,3.3,2.35,1.25.57,2.58.85,4,.85s2.77-.28,4.02-.85c1.25-.56,2.35-1.35,3.3-2.35.95-1,1.69-2.16,2.23-3.47.53-1.32.8-2.72.8-4.22s-.27-2.91-.8-4.22c-.54-1.31-1.28-2.47-2.23-3.47ZM674.4,360.58c-.31.77-.73,1.45-1.27,2.03s-1.16,1.05-1.87,1.38-1.46.5-2.26.5-1.55-.17-2.26-.5-1.33-.8-1.87-1.38-.96-1.26-1.27-2.03c-.31-.77-.46-1.59-.46-2.47s.15-1.71.46-2.48c.3-.77.73-1.45,1.27-2.03s1.16-1.04,1.87-1.38,1.46-.5,2.26-.5,1.55.17,2.26.5,1.33.79,1.87,1.38.96,1.26,1.27,2.03c.31.77.46,1.6.46,2.48s-.15,1.71-.46,2.47Z'/%3E%3Cpath class='cls-3' d='M699.13,359.84c0,.86-.16,1.64-.47,2.35s-.76,1.27-1.36,1.68-1.33.62-2.19.62-1.58-.21-2.18-.63-1.07-.98-1.39-1.69c-.32-.71-.48-1.48-.48-2.33v-12.24h-4.5v12.24c0,1.69.36,3.23,1.09,4.61.72,1.38,1.73,2.49,3.01,3.31,1.29.82,2.77,1.23,4.45,1.23,1.26,0,2.41-.24,3.45-.71s1.94-1.12,2.7-1.96c.76-.84,1.34-1.81,1.75-2.92.41-1.11.62-2.29.62-3.56v-12.24h-4.5v12.24Z'/%3E%3Cpath class='cls-3' d='M724.24,358.59c.55-.59.98-1.28,1.28-2.05.3-.78.45-1.61.45-2.51,0-1.17-.27-2.24-.82-3.22-.55-.97-1.28-1.75-2.21-2.33-.93-.58-1.97-.87-3.12-.87h-8.55v21h4.5v-8.16h1.56l4.74,8.16h5.19l-4.98-8.58c.75-.36,1.4-.84,1.96-1.43ZM721.18,354.82c-.2.34-.47.61-.8.82-.33.21-.69.31-1.09.31h-3.51v-4.5h3.51c.4,0,.77.1,1.09.31.33.21.6.48.8.82.2.34.3.71.3,1.12s-.1.79-.3,1.12Z'/%3E%3Crect class='cls-3' x='734.62' y='347.6' width='4.5' height='21'/%3E%3Cpath class='cls-3' d='M168.92,361.92c.66-.67,1.25-1.32,1.76-1.93.51-.61.94-1.21,1.28-1.79.34-.58.61-1.18.79-1.79.18-.6.27-1.24.27-1.91,0-1.35-.33-2.58-.98-3.68-.65-1.1-1.53-1.98-2.63-2.63-1.1-.65-2.32-.98-3.65-.98s-2.52.32-3.62.96c-1.1.64-1.99,1.51-2.66,2.61s-1,2.34-1,3.72h4.5c0-.51.13-.98.38-1.4.26-.42.59-.76,1.01-1.01.42-.25.88-.38,1.4-.38s.97.13,1.39.38c.41.25.75.59,1,1.01.25.43.38.89.38,1.4s-.25,1.11-.76,1.84c-.51.73-1.17,1.49-1.97,2.3-.81.8-1.67,1.6-2.6,2.38-.92.78-1.81,1.48-2.65,2.11-.84.62-1.54,1.11-2.1,1.46v4.02h14.58v-4.5h-6.3c.8-.78,1.53-1.51,2.2-2.18Z'/%3E%3Cpath class='cls-3' d='M193.63,350.41c-.73-1-1.6-1.78-2.6-2.35s-2.11-.85-3.31-.85-2.3.28-3.31.85c-1,.56-1.88,1.35-2.62,2.35-.74,1-1.31,2.16-1.72,3.47-.4,1.32-.61,2.72-.61,4.22s.2,2.91.61,4.22c.41,1.31.98,2.47,1.72,3.47.74,1,1.61,1.78,2.62,2.35,1.01.56,2.11.85,3.31.85s2.3-.28,3.31-.85,1.87-1.35,2.6-2.35c.73-1,1.3-2.16,1.7-3.47.4-1.31.61-2.72.61-4.22s-.2-2.91-.61-4.22c-.41-1.31-.97-2.47-1.7-3.47ZM191.32,361.2c-.28.97-.72,1.77-1.31,2.38-.6.61-1.36.92-2.29.92s-1.68-.31-2.28-.92c-.6-.61-1.05-1.41-1.33-2.38-.29-.98-.44-2-.44-3.08,0-.82.08-1.61.24-2.37.16-.76.41-1.44.74-2.05.33-.6.75-1.08,1.26-1.44.51-.35,1.11-.53,1.81-.53.89,0,1.63.29,2.23.88.59.58,1.04,1.36,1.34,2.33.3.97.45,2.03.45,3.18,0,1.09-.14,2.12-.42,3.1Z'/%3E%3Cpath class='cls-3' d='M213.02,361.92c.66-.67,1.25-1.32,1.76-1.93.51-.61.94-1.21,1.28-1.79.34-.58.61-1.18.79-1.79.18-.6.27-1.24.27-1.91,0-1.35-.33-2.58-.98-3.68-.65-1.1-1.53-1.98-2.63-2.63-1.1-.65-2.32-.98-3.65-.98s-2.52.32-3.62.96c-1.1.64-1.99,1.51-2.66,2.61s-1,2.34-1,3.72h4.5c0-.51.13-.98.38-1.4.26-.42.59-.76,1.01-1.01.42-.25.88-.38,1.4-.38s.97.13,1.39.38c.41.25.75.59,1,1.01.25.43.38.89.38,1.4s-.25,1.11-.76,1.84c-.51.73-1.17,1.49-1.97,2.3-.81.8-1.67,1.6-2.6,2.38-.92.78-1.81,1.48-2.65,2.11-.84.62-1.54,1.11-2.1,1.46v4.02h14.58v-4.5h-6.3c.8-.78,1.53-1.51,2.2-2.18Z'/%3E%3Cpath class='cls-3' d='M237.92,357.34c-.4-.6-.88-1.13-1.42-1.6-.55-.47-1.16-.85-1.84-1.14-.68-.29-1.39-.49-2.15-.58l3.72-6.42h-5.22l-5.85,10.14c-.34.58-.59,1.19-.75,1.82-.16.64-.24,1.28-.24,1.93,0,1.38.34,2.64,1.02,3.77.68,1.13,1.58,2.04,2.71,2.71,1.13.68,2.38,1.01,3.74,1.01,1.04,0,2.01-.2,2.92-.58.91-.39,1.71-.93,2.4-1.62s1.23-1.49,1.62-2.39c.39-.9.58-1.87.58-2.9,0-.77-.11-1.5-.32-2.21-.22-.7-.52-1.35-.92-1.95ZM234.27,362.95c-.27.46-.62.83-1.08,1.11-.46.29-.97.43-1.55.43-.51,0-.99-.13-1.44-.39-.45-.26-.82-.61-1.1-1.06-.29-.44-.43-.95-.43-1.52,0-.52.12-1.01.38-1.47s.6-.83,1.05-1.12c.45-.29.98-.44,1.58-.44s1.08.14,1.54.41c.45.27.81.64,1.07,1.1.26.46.39.97.39,1.52,0,.5-.13.98-.4,1.43Z'/%3E%3Crect class='cls-3' x='267.26' y='347.46' width='5' height='21.06'/%3E%3C/g%3E%3Cg%3E%3Cpath class='cls-3' d='M423.28,132.83v55.65h-54.35l-57.87-57.87c-1.94-1.94-5.35-.51-5.35,2.22v169.19l-40.8-40.8c.22-2.76.35-5.61.35-8.56v-119.13c0-1.66-1.34-3-3-3h-40.03c-1.66,0-3,1.34-3,3v119.38c0,14.17-4.66,18.95-18.46,18.95h-38.39c-1.66,0-3,1.34-3,3v38.1c0,1.66,1.34,3,3,3h43.69c18.87,0,33.63-5.56,43.86-16.54,7.27-7.8,11.97-18.07,14.06-30.63l41.83,41.83c.15.15.3.27.47.38.57.81,1.5,1.35,2.57,1.35,1.73,0,3.13-1.4,3.13-3.14v-110l112.22,112.22c1.94,1.94,5.36.52,5.36-2.22v-176.36c0-4.05-6.27-4.05-6.27,0ZM245.53,295.31c-9.05,9.71-22.33,14.63-39.47,14.63h-40.69v-32.1h35.39c17.15,0,24.46-7.46,24.46-24.95v-22.88l33.45,33.45c-1.5,13.38-5.89,24.07-13.14,31.85ZM259.25,252.65c0,.97-.02,1.92-.05,2.87l-33.14-33.14c-.25-.25-.54-.44-.85-.58v-85.28h34.03v116.13ZM364.49,242.83l-52.52-52.52v-49.92l52.52,52.52v49.92ZM370.76,199.19l48.08,48.08h-48.08v-48.08ZM423.28,301.62l-48.08-48.08h48.08v48.08ZM423.28,242.83l-48.08-48.08h48.08v48.08Z'/%3E%3Cpath class='cls-3' d='M715.17,173.94c6.71,0,14.61.82,22.84,2.36.88.16,1.78-.07,2.47-.64.69-.57,1.08-1.42,1.08-2.31v-36.9c0-1.47-1.07-2.73-2.52-2.96-8.79-1.42-18.21-2.21-26.53-2.21-28.37,0-52.72,9.02-70.42,26.07-5.61,5.4-10.37,11.45-14.28,18.06l-43.39-42.24c-.17-.17-.36-.3-.55-.42-1.77-1.5-5.27-.74-5.27,2.29v110l-52.52-52.52v-57.49c0-1.71-1.43-3.14-3.14-3.14h-58.79c-1.7,0-3.13,1.43-3.13,3.14v117.58c0,.82.33,1.63.92,2.22l58.79,58.79c.57.58,1.41.92,2.22.92h58.79c1.7,0,3.13-1.43,3.13-3.14v-169.42l39.99,38.93c-6.5,13.09-9.88,28.1-9.88,44.53,0,27.45,9.38,50.99,27.11,68.09,17.7,17.06,42.05,26.07,70.42,26.07,8.32,0,17.74-.78,26.53-2.21,1.45-.24,2.52-1.49,2.52-2.96v-36.9c0-.89-.4-1.74-1.08-2.31-.69-.57-1.59-.8-2.47-.64-8.23,1.54-16.13,2.36-22.84,2.36-32.51,0-52.71-19.73-52.71-51.5s20.2-51.5,52.71-51.5ZM519.82,303.84l-48.09-48.08h48.09v48.08ZM519.82,249.49h-48.09l48.09-48.08v48.08ZM519.82,192.54l-52.52,52.52v-106.87h52.52v54.36ZM526.09,201.4l51.22,51.22-51.22,51.21v-102.43ZM578.61,308.27h-48.09l48.09-48.08v48.08ZM672.38,267.41c10.39,10.16,25.19,15.54,42.79,15.54,6.09,0,13.08-.63,20.39-1.84v30.75c-7.74,1.13-15.83,1.74-23.05,1.74-54.75,0-91.54-35.43-91.54-88.16,0-14.9,2.94-28.41,8.39-40.14l28.17,27.43c-.71,4.04-1.08,8.28-1.08,12.71,0,17.27,5.5,31.78,15.91,41.97ZM659.15,205.92l-26.9-26.19c14.87-26.46,43.51-42.45,80.27-42.45,7.22,0,15.31.62,23.05,1.74v30.75c-7.31-1.21-14.3-1.84-20.39-1.84-17.6,0-32.4,5.37-42.79,15.54-6.19,6.06-10.63,13.65-13.23,22.44Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+  /* Typography - Helvetica Neue per the template; system fallbacks otherwise */
+  --f-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --f-mono: "SF Mono", "Cascadia Code", Consolas, monospace;
   --fs-hero: 88px;
   --fs-h1: 64px;
@@ -57,13 +68,13 @@
   --bw-2: 2px;
   --bw-3: 3px;
   --fs-chip: 18px;
-  --shadow-pop: 0 8px 24px rgba(15, 31, 26, 0.15);
+  --shadow-pop: 0 8px 24px rgba(0, 0, 0, 0.35);
   --tl-w: 1560px;           /* persistent timeline width */
   --tl-bottom: 48px;        /* timeline offset - leaves room for its month labels */
   --tl-clear: 88px;         /* bottom offset for elements that must sit above it */
   /* timeline cells on a slide that repeats the previous slide's range - must stay
      distinct from both --c-border (future cells) and the .past tint next to it */
-  --c-tl-static: color-mix(in srgb, var(--c-text-muted) 70%, var(--c-surface));
+  --c-tl-static: color-mix(in srgb, var(--c-text) 42%, var(--c-bg));
 }
 
 /* ============================ base ============================ */
@@ -75,7 +86,7 @@ body {
   line-height: var(--lh-body);
   color: var(--c-text);
 }
-:focus-visible { outline: var(--bw-3) solid var(--c-accent-2); outline-offset: var(--bw-2); }
+:focus-visible { outline: var(--bw-3) solid var(--c-accent); outline-offset: var(--bw-2); }
 
 #viewport { position: fixed; inset: 0; overflow: hidden; }
 #stage {
@@ -129,7 +140,7 @@ body {
   position: relative;
   transition: background var(--transition-slide);
 }
-.tl-cell.past { background: color-mix(in srgb, var(--c-accent) 25%, var(--c-surface)); }
+.tl-cell.past { background: color-mix(in srgb, var(--c-accent) 35%, var(--c-bg)); }
 .tl-cell.now { background: var(--c-accent); }
 /* the story didn't move on this slide - grey the highlight, keep the label accent */
 #timeline.tl-static .tl-cell.now { background: var(--c-tl-static); }
@@ -148,7 +159,7 @@ body {
 .slide-title {
   font-family: var(--f-display);
   font-size: var(--fs-h1);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--lh-tight);
   margin-bottom: var(--sp-4);
 }
@@ -163,9 +174,10 @@ body {
   font-size: var(--fs-chip);
   font-weight: 400;
   line-height: var(--lh-body);
-  color: var(--c-warn);
-  background: color-mix(in srgb, var(--c-warn) 12%, transparent);
-  border: var(--bw-1) solid var(--c-warn);
+  /* solid amber with dark ink - an outline chip is illegible on the blue stage */
+  color: var(--c-ink);
+  background: var(--c-warn);
+  border: none;
   border-radius: var(--radius-sm);
   padding: 0 var(--sp-2);
   white-space: nowrap;
@@ -195,7 +207,7 @@ body {
 .tag-read    { color: var(--c-accent-2); }
 .tag-rejected { color: var(--c-danger); }
 .tag-chosen {
-  color: var(--c-bg);
+  color: var(--c-ink);
   background: var(--c-accent);
   border-color: var(--c-accent);
 }
@@ -203,7 +215,7 @@ body {
 code.inline {
   font-family: var(--f-mono);
   font-size: 0.88em;
-  color: var(--c-accent-2);
+  color: var(--c-accent);
   background: var(--c-surface);
   border: var(--bw-1) solid var(--c-border);
   border-radius: var(--radius-sm);
@@ -225,20 +237,20 @@ code.inline {
   tab-size: 2;
 }
 .code-narrow { margin-top: var(--sp-4); max-width: 1240px; }
-.tk-kw  { color: var(--c-accent-2); }
-.tk-str { color: var(--c-accent); }
+.tk-kw  { color: var(--c-accent); }
+.tk-str { color: var(--c-code-str); }
 .tk-num { color: var(--c-warn); }
-.tk-cm  { color: var(--c-text-muted); }
+.tk-cm  { color: var(--c-code-cm); }
 
 /* horizontal chevron arrow between pipeline nodes */
 .h-arrow { width: var(--sp-4); flex: none; }
-.h-arrow path { stroke: var(--c-accent-2); stroke-width: var(--bw-3); fill: none; }
+.h-arrow path { stroke: var(--c-line); stroke-width: var(--bw-3); fill: none; }
 
 /* diagram primitives (inline SVG) */
 .dg-box   { fill: var(--c-surface); stroke: var(--c-border); stroke-width: var(--bw-1); }
 .dg-label { font-family: var(--f-mono); font-size: var(--fs-caption); fill: var(--c-text); }
-.dg-edge  { stroke: var(--c-accent-2); stroke-width: var(--bw-3); fill: none; }
-.dg-ix    { fill: var(--c-accent-2); }
+.dg-edge  { stroke: var(--c-line); stroke-width: var(--bw-3); fill: none; }
+.dg-ix    { fill: var(--c-accent); }
 
 /* dashed shared bullets (tools, topology) */
 .dash-bullets { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); }
@@ -250,7 +262,7 @@ code.inline {
   top: 0.55em;
   width: var(--sp-2);
   height: var(--bw-2);
-  background: var(--c-accent-2);
+  background: var(--c-accent);
 }
 
 /* presenter notes - hidden in the deck; shown only in the presenter window */
@@ -270,9 +282,9 @@ body.reader .reader-extra {
   list-style: none;
   font-family: var(--f-mono);
   font-size: var(--fs-chip);
-  color: var(--c-accent-2);
+  color: var(--c-accent);
   background: var(--c-surface);
-  border: var(--bw-1) solid var(--c-accent-2);
+  border: var(--bw-1) solid var(--c-accent);
   border-radius: var(--radius-sm);
   padding: 0 var(--sp-2);
 }
@@ -283,19 +295,21 @@ body.reader .reader-extra {
   left: 0;
   width: 1100px;
   background: var(--c-surface);
-  border: var(--bw-1) solid var(--c-accent-2);
+  border: var(--bw-1) solid var(--c-accent);
   border-radius: var(--radius);
   padding: var(--sp-3);
   font-size: var(--fs-caption);
   box-shadow: var(--shadow-pop);
 }
 
-/* ============================ S00 / S17 title slides ============================ */
-.s00-head { margin-top: var(--sp-5); max-width: 1500px; }
+/* ============================ S00 title / S17 questions / s-thanks ============================ */
+/* Template session-title layout: hero top-left, three speaker cards, lime
+   up-left arrow, jamf + JNUC brand footer. See template.key exports 04/19/20. */
+.s00-head { margin-top: var(--sp-2); max-width: 1500px; }
 .hero {
   font-family: var(--f-display);
   font-size: var(--fs-hero);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--lh-tight);
 }
 .hero-sub {
@@ -304,57 +318,100 @@ body.reader .reader-extra {
   font-weight: 400;
   line-height: var(--lh-tight);
   margin-top: var(--sp-2);
+  color: var(--c-text-muted);
 }
-.s00-subtitle { margin-top: var(--sp-3); color: var(--c-text-muted); }
 
-.motif {
+.tspeakers {
   position: absolute;
-  right: var(--slide-pad);
-  bottom: 280px;
-  width: 980px;
+  left: var(--slide-pad);
+  top: 380px;
+  display: grid;
+  grid-template-columns: repeat(3, 400px);
+  gap: var(--sp-4);
 }
-.motif-ui rect, .motif-ui line, .motif-ui circle { stroke: var(--c-text-muted); stroke-width: var(--bw-2); fill: none; }
-.motif-ui .ui-fill { fill: var(--c-border); stroke: none; }
-.motif-ui .ui-window { fill: var(--c-surface); }
-.motif-cursor { fill: var(--c-text); stroke: var(--c-bg); stroke-width: var(--bw-1); }
-.motif-code text {
-  font-family: var(--f-mono);
+.tsp-photo {
+  width: 150px;
+  height: 150px;
+  background: var(--c-photo) no-repeat center / cover;
+  display: grid;
+  place-items: center;
+}
+.tsp-initials {
+  font-family: var(--f-display);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  color: var(--c-bg);
+}
+.tsp-rule { width: 150px; height: var(--bw-2); background: var(--c-text); margin-top: var(--sp-3); }
+.tsp-name {
+  margin-top: var(--sp-3);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+  max-width: 340px;
+}
+.tsp-role {
+  margin-top: var(--sp-2);
+  font-size: 26px;
+  line-height: 1.3;
+  color: var(--c-accent);
+  max-width: 380px;
+}
+.tsp-bio {
+  margin-top: var(--sp-2);
   font-size: var(--fs-caption);
-  fill: var(--c-accent);
+  line-height: var(--lh-body);
+  max-width: 380px;
 }
-.motif-caret { fill: var(--c-accent); }
 
-.s00-credit { position: absolute; left: var(--slide-pad); bottom: var(--tl-clear); }
-.s00-credit .credit-name { font-size: var(--fs-body); }
-.s00-credit .credit-line { margin-top: var(--sp-1); }
-.s00-mark {
+.title-arrow { position: absolute; right: 150px; top: 330px; width: 250px; height: 250px; }
+.title-arrow .arrow-fill { fill: var(--c-accent); }
+.title-arrow .arrow-shaft { stroke: var(--c-accent); stroke-width: 42px; }
+.title-todo { position: absolute; right: var(--slide-pad); top: var(--slide-pad); }
+
+/* jamf + hairline + JNUC footer - title and close slides only; content slides
+   keep the timeline strip as their bottom chrome */
+.brand-footer {
   position: absolute;
+  left: var(--slide-pad);
   right: var(--slide-pad);
   bottom: var(--tl-clear);
-  text-align: right;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
 }
-.s00-mark .logo-placeholder { margin-bottom: var(--sp-1); }
+.brand-jamf { width: 150px; height: 52px; background: var(--logo-jamf) no-repeat left center / contain; flex: none; }
+.brand-rule { flex: 1; height: var(--bw-1); background: var(--c-hairline); }
+.brand-jnuc { width: 200px; height: 112px; background: var(--logo-jnuc) no-repeat right center / contain; flex: none; }
 
-.closing {
+/* Big-word close slides - outline word over solid word, both lime */
+.slide-navy { background: var(--c-surface); }
+.big-close {
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: var(--sp-4);
 }
-.motif-resolved {
+.big-outline, .big-solid {
+  font-family: var(--f-display);
+  font-size: 170px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: var(--c-accent);
-  text-align: left;
 }
-.motif-resolved .caret {
-  display: inline-block;
-  width: 0.6em;
-  height: 1em;
-  vertical-align: text-bottom;
-  background: var(--c-accent);
+.big-outline {
+  color: transparent;
+  -webkit-text-stroke: 3px var(--c-accent);
 }
+.corner-arrow { position: absolute; left: 0; top: 0; width: 360px; height: 320px; }
+.corner-arrow .arrow-fill { fill: var(--c-accent); }
+.corner-arrow .arrow-shaft { stroke: var(--c-accent); stroke-width: 64px; }
+
 .closing-links {
   display: flex;
   gap: var(--sp-4);
@@ -419,7 +476,7 @@ body.reader .reader-extra {
 .obj-list li { display: flex; gap: var(--sp-2); }
 .obj-num {
   font-family: var(--f-mono);
-  color: var(--c-accent-2);
+  color: var(--c-accent);
   flex: none;
   min-width: var(--sp-4);
 }
@@ -515,7 +572,7 @@ body.reader .reader-extra {
 .step-num {
   font-family: var(--f-mono);
   font-size: var(--fs-h2);
-  color: var(--c-accent-2);
+  color: var(--c-accent);
   line-height: var(--lh-tight);
 }
 .step-lock .step-num { color: var(--c-danger); }
@@ -529,10 +586,10 @@ body.reader .reader-extra {
 .s10-intro { max-width: 1600px; margin-bottom: var(--sp-3); }
 .s10-svg { width: 100%; max-width: 1440px; height: auto; display: block; }
 .s10-svg .band-1 { fill: var(--c-surface); }
-.s10-svg .band-2 { fill: color-mix(in srgb, var(--c-accent) 5%, var(--c-surface)); }
-.s10-svg .band-3 { fill: color-mix(in srgb, var(--c-accent) 10%, var(--c-surface)); }
-.s10-svg .band-4 { fill: color-mix(in srgb, var(--c-accent) 15%, var(--c-surface)); }
-.s10-svg .band-5 { fill: color-mix(in srgb, var(--c-accent) 22%, var(--c-surface)); stroke: var(--c-accent); }
+.s10-svg .band-2 { fill: color-mix(in srgb, var(--c-accent) 9%, var(--c-surface)); }
+.s10-svg .band-3 { fill: color-mix(in srgb, var(--c-accent) 18%, var(--c-surface)); }
+.s10-svg .band-4 { fill: color-mix(in srgb, var(--c-accent) 26%, var(--c-surface)); }
+.s10-svg .band-5 { fill: color-mix(in srgb, var(--c-accent) 34%, var(--c-surface)); stroke: var(--c-accent); }
 
 /* ============================ S11 ============================ */
 .s11-grid { display: grid; grid-template-columns: 560px 1fr; gap: var(--sp-5); align-items: start; }
@@ -581,7 +638,7 @@ body.reader .reader-extra {
 .gates { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3); }
 .gates-3 { grid-template-columns: repeat(3, 1fr); }
 .gate { font-size: var(--fs-caption); display: flex; flex-direction: column; gap: var(--sp-2); }
-.gate-num { font-family: var(--f-mono); font-size: var(--fs-h2); color: var(--c-accent-2); line-height: var(--lh-tight); }
+.gate-num { font-family: var(--f-mono); font-size: var(--fs-h2); color: var(--c-accent); line-height: var(--lh-tight); }
 .gate-final .gate-num { color: var(--c-danger); }
 .gate-final { border-color: var(--c-danger); }
 .gate-ok .gate-num { color: var(--c-success); }
@@ -606,36 +663,6 @@ body.reader .reader-extra {
 .stat-num { display: block; font-family: var(--f-display); font-size: var(--fs-hero); line-height: var(--lh-tight); }
 .stat-num-sm { font-size: var(--fs-h1); }
 .stat-label { display: block; margin-top: var(--sp-2); font-size: var(--fs-caption); color: var(--c-text-muted); }
-
-/* ============================ S00b speakers ============================ */
-.speakers { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
-.speaker { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-2); padding: var(--sp-4); }
-.speaker-photo {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  display: grid;
-  place-items: center;
-  border: var(--bw-1) dashed var(--c-text-muted);
-  border-radius: var(--radius);
-  font-family: var(--f-mono);
-  font-size: var(--fs-caption);
-  color: var(--c-text-muted);
-}
-.speaker-photo.has-photo { border-style: solid; border-color: var(--c-border); background-size: cover; background-position: center; }
-.speaker-initials { font-family: var(--f-mono); font-size: var(--fs-h1); color: var(--c-text-muted); }
-.speaker-name { font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); }
-.speaker-role { font-family: var(--f-mono); font-size: var(--fs-chip); text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-accent-2); }
-
-/* placeholder logo mark (Q1) */
-.logo-placeholder {
-  display: inline-block;
-  font-family: var(--f-mono);
-  font-size: var(--fs-caption);
-  color: var(--c-text-muted);
-  border: var(--bw-1) dashed var(--c-text-muted);
-  border-radius: var(--radius-sm);
-  padding: var(--sp-2) var(--sp-3);
-}
 
 /* ============================ story additions ============================ */
 .evolution { margin-top: var(--sp-4); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
@@ -689,64 +716,53 @@ body.presenter #viewport { display: none; }
   <div id="stage">
 
     <!-- ============================ S00 - Title ============================ -->
+    <!-- Template session-title layout (template.key, three-speaker variant). -->
     <section class="slide" id="s00" aria-label="Title" data-when="2025-11">
       <div class="s00-head">
         <h1 class="hero">From Clicks to Code</h1>
         <p class="hero-sub">Migrating Jamf Pro to Terraform at Lloyds Banking Group</p>
       </div>
+      <span class="todo title-todo">TODO: photos - Joseph, Gordon</span>
 
-      <!-- Signature motif: UI chrome resolving into HCL -->
-      <svg class="motif" viewBox="0 0 1000 330" aria-hidden="true">
-        <g class="motif-ui">
-          <rect class="ui-window" x="4" y="4" width="340" height="290" rx="14"/>
-          <line x1="4" y1="52" x2="344" y2="52"/>
-          <circle cx="30" cy="28" r="6"/>
-          <circle cx="56" cy="28" r="6"/>
-          <circle cx="82" cy="28" r="6"/>
-          <rect x="32" y="82" width="26" height="26" rx="5"/>
-          <path d="M38 95 l7 8 l13 -15" fill="none"/>
-          <rect class="ui-fill" x="76" y="88" width="180" height="13" rx="6"/>
-          <rect x="32" y="130" width="26" height="26" rx="5"/>
-          <rect class="ui-fill" x="76" y="136" width="140" height="13" rx="6"/>
-          <circle cx="45" cy="192" r="13"/>
-          <circle class="ui-fill" cx="45" cy="192" r="5"/>
-          <rect class="ui-fill" x="76" y="185" width="160" height="13" rx="6"/>
-          <rect x="32" y="228" width="150" height="42" rx="8"/>
-          <rect class="ui-fill" x="58" y="243" width="98" height="12" rx="6"/>
-          <path class="motif-cursor" d="M164 250 l0 34 l7.5 -7 l5.5 13 l6 -2.5 l-5.5 -13 l10 -1 z"/>
-        </g>
-        <path class="dg-edge" d="M376 150 h56 m-16 -13 l18 13 l-18 13"/>
-        <g class="motif-code">
-          <text x="470" y="106" xml:space="preserve">resource "jamfpro_category" "managed" {</text>
-          <text x="496" y="146" xml:space="preserve">for_each = local.categories</text>
-          <text x="496" y="186" xml:space="preserve">name     = each.key</text>
-          <text x="470" y="226" xml:space="preserve">}</text>
-          <rect class="motif-caret" x="492" y="208" width="13" height="24"/>
-        </g>
+      <!-- Cards are filled from ../_shared/speakers.js at load. Names and org are
+           hardcoded as a fallback so the title slide is never blank if _shared/
+           goes missing; the shared file always wins. -->
+      <div class="tspeakers">
+        <div class="tspeaker" data-speaker="joseph">
+          <div class="tsp-photo" aria-hidden="true"><span class="tsp-initials">JL</span></div>
+          <div class="tsp-rule" aria-hidden="true"></div>
+          <h2 class="tsp-name">Joseph Little</h2>
+          <p class="tsp-role">Lloyds Banking Group</p>
+          <p class="tsp-bio"></p>
+        </div>
+        <div class="tspeaker" data-speaker="gordon">
+          <div class="tsp-photo" aria-hidden="true"><span class="tsp-initials">GD</span></div>
+          <div class="tsp-rule" aria-hidden="true"></div>
+          <h2 class="tsp-name">Gordon Deacon</h2>
+          <p class="tsp-role">Lloyds Banking Group</p>
+          <p class="tsp-bio"></p>
+        </div>
+        <div class="tspeaker" data-speaker="dafydd">
+          <div class="tsp-photo" aria-hidden="true"><span class="tsp-initials">DW</span></div>
+          <div class="tsp-rule" aria-hidden="true"></div>
+          <h2 class="tsp-name">Dafydd Watkins</h2>
+          <p class="tsp-role">Lloyds Banking Group</p>
+          <p class="tsp-bio"></p>
+        </div>
+      </div>
+
+      <!-- Template up-left arrow motif -->
+      <svg class="title-arrow" viewBox="0 0 260 260" aria-hidden="true">
+        <path class="arrow-fill" d="M20 20 h172 v42 h-130 v130 h-42 z"/>
+        <line class="arrow-shaft" x1="72" y1="72" x2="224" y2="224"/>
       </svg>
 
-      <footer class="s00-credit">
-        <!-- Overwritten from ../_shared/speakers.js at load. Kept here as a fallback so the
-             title slide is never blank if _shared/ goes missing; the shared file always wins. -->
-        <p class="credit-name">Joseph Little &middot; Gordon Deacon &middot; Dafydd Watkins</p>
-        <p class="credit-line caption muted">Lloyds Banking Group</p>
+      <footer class="brand-footer" aria-hidden="true">
+        <span class="brand-jamf"></span><span class="brand-rule"></span><span class="brand-jnuc"></span>
       </footer>
-      <div class="s00-mark">
-        <p><span class="logo-placeholder">placeholder-logo</span></p>
-      </div>
       <aside class="notes">
         <p>Welcome. Premise in one line: three Jamf Pro instances, 1,500+ resources, moved from click-ops to Terraform - and what it took to do that inside a bank.</p>
-        <p>Hand to introductions.</p>
-      </aside>
-    </section>
-
-    <!-- ============================ S00b - Who we are ============================ -->
-    <section class="slide" id="s00b" aria-label="Who we are" data-when="2025-11">
-      <h1 class="slide-title">Who we are</h1>
-      <!-- Cards are built from ../_shared/speakers.js - see the render block at the end of body. -->
-      <div class="speakers"></div>
-      <aside class="notes">
-        <p>Quick intros - name, role, and which part of the story each person tells.</p>
+        <p>Quick intros from the slide - name, role, and which part of the story each person tells.</p>
       </aside>
     </section>
 
@@ -1004,7 +1020,7 @@ body.presenter #viewport { display: none; }
       <svg class="s10-svg" viewBox="0 0 1728 720" aria-label="Four migration tiers with dependency arrows flowing downward into the profiles and policies band">
         <defs>
           <marker id="s10-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M0 0 L10 5 L0 10 z" fill="var(--c-accent-2)"/>
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--c-line)"/>
           </marker>
         </defs>
         <rect class="dg-box band-1" x="1" y="1" width="1726" height="140" rx="12"/>
@@ -1083,7 +1099,7 @@ body.presenter #viewport { display: none; }
         <svg class="s11-svg" viewBox="0 0 560 740" aria-label="Import pipeline from Python SDK to Terraform import">
           <defs>
             <marker id="s11-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M0 0 L10 5 L0 10 z" fill="var(--c-accent-2)"/>
+              <path d="M0 0 L10 5 L0 10 z" fill="var(--c-line)"/>
             </marker>
           </defs>
           <rect class="dg-box" x="8" y="1" width="544" height="80" rx="12"/>
@@ -1401,21 +1417,22 @@ body.presenter #viewport { display: none; }
       </aside>
     </section>
 
-    <!-- ============================ S17 - Closing ============================ -->
-    <section class="slide" id="s17" aria-label="Closing and questions" data-when="2026-07">
-      <div class="closing">
-        <!-- Signature motif, fully resolved into code -->
-        <pre class="code motif-resolved" aria-hidden="true">resource "jamfpro_category" "managed" {
-  for_each = local.categories
-  name     = each.key
-}<span class="caret"></span></pre>
-        <h1 class="hero">Questions</h1>
-        <div>
-          <p class="hero-sub">From Clicks to Code - Migrating Jamf Pro to Terraform at Lloyds Banking Group</p>
-        </div>
+    <!-- ============================ S17 - Questions ============================ -->
+    <!-- Template close slide: navy stage, outline + solid lime words, corner arrow. -->
+    <section class="slide slide-navy" id="s17" aria-label="Questions" data-when="2026-07">
+      <svg class="corner-arrow" viewBox="0 0 420 360" aria-hidden="true">
+        <line class="arrow-shaft" x1="-40" y1="-80" x2="290" y2="238"/>
+        <path class="arrow-fill" d="M305 30 h55 v292 h-295 v-55 h240 z"/>
+      </svg>
+      <div class="big-close">
+        <h1 class="big-outline">Questions?</h1>
+        <p class="big-solid">Your turn!</p>
       </div>
+      <footer class="brand-footer" aria-hidden="true">
+        <span class="brand-jamf"></span><span class="brand-rule"></span><span class="brand-jnuc"></span>
+      </footer>
       <aside class="notes">
-        <p>Open the floor. Keep the links slide ready as the backdrop for the walk-out.</p>
+        <p>Open the floor. The links slide is next, ready as the backdrop while questions run.</p>
       </aside>
     </section>
 
@@ -1429,6 +1446,25 @@ body.presenter #viewport { display: none; }
       <span class="todo">TODO Q12: URLs, contact and socials</span>
       <aside class="notes">
         <p>Point at the provider and jamfpy repos; contact details.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ Thank you ============================ -->
+    <!-- Template close slide, royal blue variant. -->
+    <section class="slide" id="s-thanks" aria-label="Thank you" data-when="2026-07">
+      <svg class="corner-arrow" viewBox="0 0 420 360" aria-hidden="true">
+        <line class="arrow-shaft" x1="-40" y1="-80" x2="290" y2="238"/>
+        <path class="arrow-fill" d="M305 30 h55 v292 h-295 v-55 h240 z"/>
+      </svg>
+      <div class="big-close">
+        <h1 class="big-outline">Thank</h1>
+        <p class="big-solid">You</p>
+      </div>
+      <footer class="brand-footer" aria-hidden="true">
+        <span class="brand-jamf"></span><span class="brand-rule"></span><span class="brand-jnuc"></span>
+      </footer>
+      <aside class="notes">
+        <p>Thank the room and close - this is the walk-out backdrop.</p>
       </aside>
     </section>
 
@@ -1449,59 +1485,25 @@ body.presenter #viewport { display: none; }
 
 <script src="../_shared/speakers.js"></script>
 <script>
-// Speaker names on the title slide and the S00b cards, built from the shared
-// records so both decks stay in step. Photo falls back to initials when the
-// shared record has none yet.
+// Speaker cards on the title slide, built from the shared records so both decks
+// stay in step. The markup carries name + org as a fallback; this fills in the
+// role line, bio and photo (initials when the shared record has no photo yet).
 (function () {
   var people = window.JNUC_SPEAKERS;
-  var order = ['joseph', 'gordon', 'dafydd'];
   if (!people) return;
-
-  var credit = document.querySelector('#s00 .credit-name');
-  if (credit) {
-    credit.textContent = order.map(function (id) {
-      return people[id] ? people[id].name : '';
-    }).filter(Boolean).join(' · ');
-  }
-
-  var host = document.querySelector('#s00b .speakers');
-  if (!host) return;
-  order.forEach(function (id) {
-    var p = people[id];
+  Array.prototype.forEach.call(document.querySelectorAll('#s00 .tspeaker'), function (card) {
+    var p = people[card.getAttribute('data-speaker')];
     if (!p) return;
-    var card = document.createElement('div');
-    card.className = 'card speaker';
-
-    var photo = document.createElement('div');
-    photo.className = 'speaker-photo';
-    photo.setAttribute('aria-hidden', 'true');
+    var photo = card.querySelector('.tsp-photo');
     if (p.photo) {
-      photo.classList.add('has-photo');
+      photo.textContent = '';
       photo.style.backgroundImage = 'url(' + p.photo + ')';
     } else {
-      var initials = document.createElement('span');
-      initials.className = 'speaker-initials';
-      initials.textContent = p.initials || '';
-      photo.appendChild(initials);
+      photo.querySelector('.tsp-initials').textContent = p.initials || '';
     }
-
-    var name = document.createElement('h2');
-    name.className = 'speaker-name';
-    name.textContent = p.name;
-
-    var role = document.createElement('p');
-    role.className = 'speaker-role';
-    role.textContent = p.role || '';
-
-    var org = document.createElement('p');
-    org.className = 'caption muted';
-    org.textContent = p.org;
-
-    card.appendChild(photo);
-    card.appendChild(name);
-    if (p.role) card.appendChild(role);
-    card.appendChild(org);
-    host.appendChild(card);
+    card.querySelector('.tsp-name').textContent = p.name;
+    card.querySelector('.tsp-role').textContent = (p.role ? p.role + ', ' : '') + p.org;
+    card.querySelector('.tsp-bio').textContent = p.bio || '';
   });
 })();
 </script>

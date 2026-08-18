@@ -4,18 +4,10 @@
     {
       "id": "s00",
       "title": "Title",
-      "timerSeconds": 45,
+      "timerSeconds": 90,
       "notes": [
         "Welcome. Premise in one line: three Jamf Pro instances, 1,500+ resources, moved from click-ops to Terraform - and what it took to do that inside a bank.",
-        "Hand to introductions."
-      ]
-    },
-    {
-      "id": "s00b",
-      "title": "Who we are",
-      "timerSeconds": 60,
-      "notes": [
-        "Quick intros - name, role, and which part of the story each person tells."
+        "Quick intros from the slide - name, role, and which part of the story each person tells."
       ]
     },
     {
@@ -32,7 +24,8 @@
       "title": "Who touches Jamf Pro",
       "timerSeconds": 45,
       "notes": [
-        "Four teams, one config surface. Splitting the repo by team would fragment ownership of shared dependencies like categories and scripts."
+        "Three teams manage resources, one config surface. Support acts on Jamf Pro day to day but doesn't hold resource-management access. Splitting the repo by team would fragment ownership of shared dependencies like categories and scripts.",
+        "Auditors don't manage resources, but they do touch Jamf Pro - and because Terraform HCL is self-documenting, the repo can be given straight to them instead of building a separate audit trail."
       ]
     },
     {
@@ -66,7 +59,7 @@
       "title": "Instance prep",
       "timerSeconds": 30,
       "notes": [
-        "The tidy-up mattered - importing dead config would have codified years of cruft."
+        "The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back."
       ]
     },
     {
@@ -75,7 +68,7 @@
       "timerSeconds": 75,
       "notes": [
         "November 2025 - the first real state in the repo.",
-        "Mechanic: the apply sets the same values the UI shows; nothing changes, but the resource is now in state. All settings panes done in about a day."
+        "Mechanic: import first if the provider supports it - only fall back to apply where there's no import statement. The apply just sets the same values the UI shows, so nothing changes, but the resource lands in state. All settings panes done in about a day."
       ]
     },
     {
@@ -186,10 +179,10 @@
     },
     {
       "id": "s17",
-      "title": "Closing and questions",
+      "title": "Questions",
       "timerSeconds": 300,
       "notes": [
-        "Open the floor. Keep the links slide ready as the backdrop for the walk-out."
+        "Open the floor. The links slide is next, ready as the backdrop while questions run."
       ]
     },
     {
@@ -198,6 +191,14 @@
       "timerSeconds": 30,
       "notes": [
         "Point at the provider and jamfpy repos; contact details."
+      ]
+    },
+    {
+      "id": "s-thanks",
+      "title": "Thank you",
+      "timerSeconds": 15,
+      "notes": [
+        "Thank the room and close - this is the walk-out backdrop."
       ]
     }
   ]
