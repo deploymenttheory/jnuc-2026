@@ -739,6 +739,17 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .res p{font-size:20px;color:var(--text-dimmer);margin-top:8px;line-height:1.4}
 .res .url{font-family:var(--mono);font-size:20px;color:var(--green-bright);margin-top:12px;word-break:break-all}
 .res .url.b{color:var(--blue-light)}
+/* two card stacks plus a narrow QR rail; the cards tighten to pay for the rail */
+.res3{display:grid;grid-template-columns:1fr 1fr 400px;gap:48px}
+.res3 .res h3{line-height:1.25}
+/* the border does nothing on the dark themes, but it stops the white tile
+   dissolving into the page on light-paper and light-slate. The white is a
+   deliberate literal: a QR code stays black-on-white under every theme. */
+.qr-tile{background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px;
+  width:400px;height:400px}
+.qr-tile img{display:block;width:100%;height:100%;image-rendering:pixelated}
+.qr-rail .cap{font-family:var(--mono);font-size:19px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-dim);margin-top:24px;line-height:1.6}
 
 /* ---------- slide 19 ---------- */
 .palcol h4{font-family:var(--mono);font-size:20px;letter-spacing:.2em;color:var(--muted);
@@ -762,6 +773,24 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 #notes h5{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--green-bright);
   margin-bottom:10px;font-weight:400}
 #help{position:fixed;left:22px;bottom:16px;font-family:var(--mono);font-size:13px;color:var(--faint);z-index:50}
+
+/* ---------- speaker overlay (press S) ----------
+   Who has the room on this slide, read off data-speaker on each section. Off
+   by default: it is a rehearsal aid, not part of the deck, and leaving it on
+   would put it in the Keynote capture. Slides with nobody assigned say so
+   rather than silently inheriting the previous name. Sits top-left because
+   every slide's own content starts 88px down. */
+#speaker{position:fixed;left:22px;top:14px;z-index:70;display:none;align-items:center;gap:11px;
+  padding:8px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--border);
+  font-family:var(--mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase}
+#speaker.on{display:flex}
+#speaker .dot{width:10px;height:10px;border-radius:2px;background:var(--sp,var(--muted-2));flex:none}
+#speaker .who{color:var(--sp,var(--muted))}
+#speaker .role{color:var(--muted);letter-spacing:.1em;text-transform:none}
+#speaker[data-who="Dafydd"]{--sp:var(--green-bright)}
+#speaker[data-who="Joseph"]{--sp:var(--blue-light)}
+#speaker[data-who="Gordon"]{--sp:var(--amber)}
+#speaker[data-who="All"]{--sp:var(--text)}
 
 /* ---------- knobs panel (press K) ---------- */
 #knobs{position:fixed;top:0;right:0;bottom:0;width:352px;z-index:90;display:none;
@@ -833,7 +862,7 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   #deck{transform:none!important;width:1920px;height:auto}
   .slide{display:block!important;position:relative;inset:auto;width:1920px;height:1080px;
     page-break-after:always;break-after:page}
-  #progress,#counter,#notes,#help,#knobs{display:none!important}
+  #progress,#counter,#notes,#help,#knobs,#speaker{display:none!important}
   @page{size:1920px 1080px;margin:0}
 }
 </style>
@@ -865,8 +894,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 2 · CONTEXT ============ -->
-<section class="slide estate" data-notes="Where the team is today, before the story starts. Fully operational: every change through a PR, 1,500+ resources, GUI is breakglass only. And the whole Mac team trained, with the packaging and endpoint security teams now following. The speakers were introduced on the title slide.">
-  <div class="eyebrow"><i class="dot"></i>01 &middot; Context</div>
+<section class="slide estate" data-speaker="All" data-speaker-note="intro" data-notes="Where the team is today, before the story starts. Fully operational: every change through a PR, 1,500+ resources, GUI is breakglass only. And the whole Mac team trained, with the packaging and endpoint security teams now following. The speakers were introduced on the title slide.">
+  <div class="eyebrow"><i class="dot"></i>02 &middot; Context</div>
   <h1>Where we are today</h1>
   <div class="body split">
     <div>
@@ -892,8 +921,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 3 · GOALS ============ -->
-<section class="slide dense3" data-notes="Two halves: what engineers can do once trained, and what success looked like when it arrived. The learning outcomes are capabilities, not policies: collaborating through self-documenting code, the confidence to take any change end to end, recovery to a known good configuration, reading a plan well enough to predict its effect before approving, and the judgement to know when breakglass GUI access or a second opinion is the right call. Fast recovery has a second-order effect worth calling out: once mistakes were recoverable, engineers took on changes they would previously have avoided or escalated. Success was observable, not abstract: design conversations moved into pull request threads, juniors reviewed seniors' changes, and questions about how the estate reached its current state were answered with a commit link. Be honest about non-goals too: not everyone becomes a Terraform expert, incidents still happen, and Jamf GUI knowledge still matters for breakglass. And name the finish line: an engineer counted as trained when they could take a real change from branch to production unaided.">
-  <div class="eyebrow"><i class="dot"></i>02 &middot; Goals</div>
+<section class="slide dense3" data-speaker="Dafydd" data-notes="Two halves: what engineers can do once trained, and what success looked like when it arrived. The learning outcomes are capabilities, not policies: collaborating through self-documenting code, the confidence to take any change end to end, recovery to a known good configuration, reading a plan well enough to predict its effect before approving, and the judgement to know when breakglass GUI access or a second opinion is the right call. Fast recovery has a second-order effect worth calling out: once mistakes were recoverable, engineers took on changes they would previously have avoided or escalated. Success was observable, not abstract: design conversations moved into pull request threads, juniors reviewed seniors' changes, and questions about how the estate reached its current state were answered with a commit link. Be honest about non-goals too: not everyone becomes a Terraform expert, incidents still happen, and Jamf GUI knowledge still matters for breakglass. And name the finish line: an engineer counted as trained when they could take a real change from branch to production unaided.">
+  <div class="eyebrow"><i class="dot"></i>03 &middot; Goals</div>
   <h1>Learning outcomes &amp; what success looked like</h1>
   <div class="body" style="margin-top:24px">
     <div class="split" style="gap:60px">
@@ -949,8 +978,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 4 · EXECUTION ============ -->
-<section class="slide" data-notes="Everything here came out of one decision. We seconded a Mac engineer into the DevOps Centre of Excellence full time for three months on a train-the-trainer model. That is the whole slide: a posting, not a course, and long enough to hold macOS and Jamf Pro domain depth and GitOps practice in the same person. Five things came out of it. We wrote the training materials together, so the CoE brought the Terraform and Git content and the seconded engineer put it in Mac language and cut what did not apply. We designed the in-person and remote sessions separately rather than delivering one deck twice. We built hackathons as in-person labs on tasks the team already recognised, and set homework between sessions so nothing decayed in the gaps. Then the same engineer ran a large share of the Jamf Pro migration waves, which did two jobs at once: it kept the reasoning behind every migration decision inside the Mac team instead of leaving it in the CoE to be asked for later, and it took that engineer well past the fundamentals by making the real estate the advanced lesson. Full handover followed. The arrows at the bottom are the point: this was a two-way trade. Mac domain context went into the CoE, and Terraform, Git and GitOps practice came back.">
-  <div class="eyebrow"><i class="dot"></i>03 &middot; Execution</div>
+<section class="slide" data-speaker="Joseph" data-notes="Everything here came out of one decision. We seconded a Mac engineer into the DevOps Centre of Excellence full time for three months on a train-the-trainer model. That is the whole slide: a posting, not a course, and long enough to hold macOS and Jamf Pro domain depth and GitOps practice in the same person. Five things came out of it. We wrote the training materials together, so the CoE brought the Terraform and Git content and the seconded engineer put it in Mac language and cut what did not apply. We designed the in-person and remote sessions separately rather than delivering one deck twice. We built hackathons as in-person labs on tasks the team already recognised, and set homework between sessions so nothing decayed in the gaps. Then the same engineer ran a large share of the Jamf Pro migration waves, which did two jobs at once: it kept the reasoning behind every migration decision inside the Mac team instead of leaving it in the CoE to be asked for later, and it took that engineer well past the fundamentals by making the real estate the advanced lesson. Full handover followed. The arrows at the bottom are the point: this was a two-way trade. Mac domain context went into the CoE, and Terraform, Git and GitOps practice came back.">
+  <div class="eyebrow"><i class="dot"></i>04 &middot; Execution</div>
   <h1>How we ran it</h1>
   <div class="body" style="margin-top:36px">
     <div class="fanout" style="height:632px">
@@ -992,8 +1021,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 5 · WHAT WORKED ============ -->
-<section class="slide" data-notes="Git has a bad mental model for beginners - it's difficult to teach and learn because it conceals its work in a hidden directory and is typically used through a command line interface.">
-  <div class="eyebrow"><i class="dot"></i>04 &middot; Retrospective</div>
+<section class="slide" data-speaker="Joseph" data-notes="Git has a bad mental model for beginners - it's difficult to teach and learn because it conceals its work in a hidden directory and is typically used through a command line interface.">
+  <div class="eyebrow"><i class="dot"></i>05 &middot; Retrospective</div>
   <h1>What worked</h1>
   <div class="body grid g2" style="gap:20px">
     <div class="icard">
@@ -1029,8 +1058,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 6 · WHAT DIDN'T WORK ============ -->
-<section class="slide" data-notes="This is the most useful slide in the deck for anyone planning their own programme, so do not rush it. Walk the chart first. The shaded bands are the teaching sessions. Every one of them lifts confidence, and every gap that follows gives most of it back, which is why the line trends down across six months even though the teaching itself was good. Be clear that the shape is illustrative rather than measured. The important thing is the total: 144 hours is roughly four weeks of learning, which for this many topics is about right. It was not the volume that hurt us, it was the calendar. Spread four weeks of content across six months and people learn a bit, stop, let it settle, come back, and somewhere in there interest wanders off. Two of the gaps were genuinely outside our control: our internal developer platform was not ready and online when engineers needed it, so practice slipped weeks behind the teaching. That was not a delivery failure, but it cost us just the same. Then take the chips underneath. Mixed-ability cohorts: everyone in the room together and the pace was wrong at both ends. What actually predicted who would do well was prior coding experience, not Jamf Pro familiarity and not age, which surprised us. Theory before the hands-on: no mental model formed and the words went in one ear and out the other. Step-by-step tutorials: engineers completed them and retained almost nothing, because following instructions is not the same as solving a problem. A curriculum shaped like a reference manual: 214,645 words of genuinely good content, written to be complete rather than to be learned from. And effort stayed invisible until handover, because nothing in the programme showed who had genuinely put the hours in. The highlighted chip is the answer to all of it: 3,778 words, two modules and four labs, one of which hands you someone else's broken configuration with faults planted in it and asks you to find them. That is 57 times smaller, and we wrote it after direct feedback that the first was too heavy going and too theoretical. Both are public in the training repo, so people can judge for themselves.">
-  <div class="eyebrow red"><i class="dot"></i>05 &middot; Retrospective</div>
+<section class="slide" data-speaker="Gordon" data-notes="This is the most useful slide in the deck for anyone planning their own programme, so do not rush it. Walk the chart first. The shaded bands are the teaching sessions. Every one of them lifts confidence, and every gap that follows gives most of it back, which is why the line trends down across six months even though the teaching itself was good. Be clear that the shape is illustrative rather than measured. The important thing is the total: 144 hours is roughly four weeks of learning, which for this many topics is about right. It was not the volume that hurt us, it was the calendar. Spread four weeks of content across six months and people learn a bit, stop, let it settle, come back, and somewhere in there interest wanders off. Two of the gaps were genuinely outside our control: our internal developer platform was not ready and online when engineers needed it, so practice slipped weeks behind the teaching. That was not a delivery failure, but it cost us just the same. Then take the chips underneath. Mixed-ability cohorts: everyone in the room together and the pace was wrong at both ends. What actually predicted who would do well was prior coding experience, not Jamf Pro familiarity and not age, which surprised us. Theory before the hands-on: no mental model formed and the words went in one ear and out the other. Step-by-step tutorials: engineers completed them and retained almost nothing, because following instructions is not the same as solving a problem. A curriculum shaped like a reference manual: 214,645 words of genuinely good content, written to be complete rather than to be learned from. And effort stayed invisible until handover, because nothing in the programme showed who had genuinely put the hours in. The highlighted chip is the answer to all of it: 3,778 words, two modules and four labs, one of which hands you someone else's broken configuration with faults planted in it and asks you to find them. That is 57 times smaller, and we wrote it after direct feedback that the first was too heavy going and too theoretical. Both are public in the training repo, so people can judge for themselves.">
+  <div class="eyebrow red"><i class="dot"></i>06 &middot; Retrospective</div>
   <h1>What didn't work</h1>
   <div class="body" style="margin-top:30px">
     <div class="chartwrap">
@@ -1096,8 +1125,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 7 · CONDITIONS ============ -->
-<section class="slide" data-notes="Lead with the panel on the left, and give it time. Of everything on this slide, psychological safety is the one that carries the rest, and it is the most evidenced: teams that treat mistakes as learning rather than blame retain skills faster and ship more reliably. Three practical things follow from that. Make it explicit, out loud and more than once, because assuming it is understood is not the same as saying it. Do not assume it already exists just because the team seems friendly to each other. And it has to still hold the week somebody breaks something that matters, which is the only real test of it. Then take the six on the right briskly, because they are all conditions we have already touched elsewhere in the talk. Get stakeholder buy-in before you start; ours were slow to get it and that cost us early momentum. Gate workshop attendance on completed pre-requisites, with no exceptions, because the engineers who skipped the pre-work held back their whole cohort. Keep days rather than weeks between learning something and practising it. Do the pairing and labs in person. Build the relationship with whoever owns Terraform and GitHub early, because you will need them for access, guardrails and troubleshooting throughout. And expect the dip: the team gets slower before it gets faster, so set that expectation up front and early friction reads as part of the plan rather than as failure.">
-  <div class="eyebrow"><i class="dot"></i>06 &middot; Conditions</div>
+<section class="slide" data-speaker="Gordon" data-notes="Lead with the panel on the left, and give it time. Of everything on this slide, psychological safety is the one that carries the rest, and it is the most evidenced: teams that treat mistakes as learning rather than blame retain skills faster and ship more reliably. Three practical things follow from that. Make it explicit, out loud and more than once, because assuming it is understood is not the same as saying it. Do not assume it already exists just because the team seems friendly to each other. And it has to still hold the week somebody breaks something that matters, which is the only real test of it. Then take the six on the right briskly, because they are all conditions we have already touched elsewhere in the talk. Get stakeholder buy-in before you start; ours were slow to get it and that cost us early momentum. Gate workshop attendance on completed pre-requisites, with no exceptions, because the engineers who skipped the pre-work held back their whole cohort. Keep days rather than weeks between learning something and practising it. Do the pairing and labs in person. Build the relationship with whoever owns Terraform and GitHub early, because you will need them for access, guardrails and troubleshooting throughout. And expect the dip: the team gets slower before it gets faster, so set that expectation up front and early friction reads as part of the plan rather than as failure.">
+  <div class="eyebrow"><i class="dot"></i>07 &middot; Conditions</div>
   <h1>Creating the conditions for success</h1>
   <div class="body herowrap" style="margin-top:38px">
     <div class="heropanel">
@@ -1122,8 +1151,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 8 · CURRICULUM BY ROLE ============ -->
-<section class="slide dense8" data-notes="Teach to the role, but the real point of this slide is the pair of charts underneath. The three roles are the same in both, and the coloured chip on each card is the key to the shapes. Juniors need breadth over depth: a working environment, Git basics, branching fundamentals, and enough Terraform to read a plan and predict what it will change. The test is simple - can they write a working PR and apply a change safely. Engineers own modules and everyday resource changes, review each other's work, and go to the Jamf Pro API docs directly when the provider documentation is ambiguous. Seniors are the escalation point rather than a separate species: advanced Terraform, release management, and a strong understanding of the Jamf Pro API, including working out whether an unsupported resource is an API gap or a provider gap and whether it is worth raising upstream. Note what is deliberately absent: provider architecture and SDK design. Building the provider is a different job from using it, and no Mac team needs a Go developer in order to adopt any of this. Now the two charts, and there are two things to draw out. First, look at Jamf APIs. That score is identical in both, deliberately. No external team is ever going to know your own service's APIs better than the team that owns the service, so org size makes no difference to it whatsoever. Second, and this is the real distinction, look at Environment. In a small organisation you design it, build it and maintain it: the toolchain, the runners, the state backend, all of it, because nobody provisions a repo for you. In a large organisation that arrives from the internal developer platform as a template, so the burden lifts. But be careful how you say the rest, because Git and GitOps barely move between the two. In a large organisation you still own your branching strategy, you still wire the event triggers into your own environments, and you still handle merges to main and releases. What you lose is not the knowledge, it is the authority: every PR needs a second approver, your GitHub access stops at the edges of what you own, and you cannot turn off Checkov or the linters even if you want to. That is the sentence worth landing. You still need to know how the platform is designed, but your workflow will have to conform with wider company standards, and how much of it you can change is entirely dependent on your own organisation. Note the wording on both panels: in either case you are managing the Jamf Terraform workflows. What differs is whether you also design, build and maintain the platform underneath them, or consume it inside somebody else's guardrails.">
-  <div class="eyebrow"><i class="dot"></i>07 &middot; Curriculum</div>
+<section class="slide dense8" data-speaker="Dafydd" data-notes="Teach to the role, but the real point of this slide is the pair of charts underneath. The three roles are the same in both, and the coloured chip on each card is the key to the shapes. Juniors need breadth over depth: a working environment, Git basics, branching fundamentals, and enough Terraform to read a plan and predict what it will change. The test is simple - can they write a working PR and apply a change safely. Engineers own modules and everyday resource changes, review each other's work, and go to the Jamf Pro API docs directly when the provider documentation is ambiguous. Seniors are the escalation point rather than a separate species: advanced Terraform, release management, and a strong understanding of the Jamf Pro API, including working out whether an unsupported resource is an API gap or a provider gap and whether it is worth raising upstream. Note what is deliberately absent: provider architecture and SDK design. Building the provider is a different job from using it, and no Mac team needs a Go developer in order to adopt any of this. Now the two charts, and there are two things to draw out. First, look at Jamf APIs. That score is identical in both, deliberately. No external team is ever going to know your own service's APIs better than the team that owns the service, so org size makes no difference to it whatsoever. Second, and this is the real distinction, look at Environment. In a small organisation you design it, build it and maintain it: the toolchain, the runners, the state backend, all of it, because nobody provisions a repo for you. In a large organisation that arrives from the internal developer platform as a template, so the burden lifts. But be careful how you say the rest, because Git and GitOps barely move between the two. In a large organisation you still own your branching strategy, you still wire the event triggers into your own environments, and you still handle merges to main and releases. What you lose is not the knowledge, it is the authority: every PR needs a second approver, your GitHub access stops at the edges of what you own, and you cannot turn off Checkov or the linters even if you want to. That is the sentence worth landing. You still need to know how the platform is designed, but your workflow will have to conform with wider company standards, and how much of it you can change is entirely dependent on your own organisation. Note the wording on both panels: in either case you are managing the Jamf Terraform workflows. What differs is whether you also design, build and maintain the platform underneath them, or consume it inside somebody else's guardrails.">
+  <div class="eyebrow"><i class="dot"></i>08 &middot; Curriculum</div>
   <h1>Learning priorities by role</h1>
   <div class="sub">The same three roles. How far each has to stretch depends on who else is in the building.</div>
   <div class="body" style="margin-top:24px">
@@ -1225,8 +1254,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 9 · PATHWAY MATRIX ============ -->
-<section class="slide" data-notes="A discipline-by-stage matrix: Git, Terraform and GitOps advancing in parallel, one skill per discipline at each milestone.">
-  <div class="eyebrow"><i class="dot"></i>08 &middot; Curriculum</div>
+<section class="slide" data-speaker="Gordon" data-notes="A discipline-by-stage matrix: Git, Terraform and GitOps advancing in parallel, one skill per discipline at each milestone.">
+  <div class="eyebrow"><i class="dot"></i>09 &middot; Curriculum</div>
   <h1>The learning pathway that worked for us</h1>
   <div class="sub">Git, Terraform and GitOps grow together - one skill per discipline at each milestone.</div>
   <div class="body" style="margin-top:34px">
@@ -1269,8 +1298,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 10 · TIMELINE ============ -->
-<section class="slide tight" data-notes="A week-by-week view of the same pathway for a typical engineer. Weeks 1 to 3 are environment, Git fundamentals and Terraform foundations. Weeks 4 to 6 are first plan and apply, branching and pull requests, and the full GitOps change flow. From week 7 they take a real task solo, then modules and review, then release ownership by month four.">
-  <div class="eyebrow"><i class="dot"></i>09 &middot; Curriculum</div>
+<section class="slide tight" data-speaker="Gordon" data-notes="A week-by-week view of the same pathway for a typical engineer. Weeks 1 to 3 are environment, Git fundamentals and Terraform foundations. Weeks 4 to 6 are first plan and apply, branching and pull requests, and the full GitOps change flow. From week 7 they take a real task solo, then modules and review, then release ownership by month four.">
+  <div class="eyebrow"><i class="dot"></i>10 &middot; Curriculum</div>
   <div class="tlkey" style="position:absolute;top:88px;right:122px">
     <span><i style="background:var(--accent-strong)"></i><span class="g">GIT</span></span>
     <span><i style="background:var(--accent)"></i><span class="gm">TERRAFORM</span></span>
@@ -1377,67 +1406,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   </div>
 </section>
 
-<!-- ============ 11 · SKILLS MAP ============ -->
-<section class="slide" data-notes="The full skills map. Environment covers editor, terminal, language support and quality gates. Git runs from foundations through daily workflow, collaboration and advanced history work. Terraform goes foundations through state, HCP Terraform collaboration and certification. GitOps covers the change flow, collaboration, release management and policy-as-code guardrails.">
-  <div class="eyebrow"><i class="dot"></i>10 &middot; Curriculum</div>
-  <h1>What engineers need to learn</h1>
-  <div class="sub">The full skills map for reskilling into GitOps - foundations through advanced, across the four core disciplines.</div>
-  <div class="body grid g4" style="margin-top:32px;gap:20px">
-    <div class="skillcol">
-      <div class="hd"><i style="background:var(--accent)"></i><h3>Environment</h3></div>
-      <div class="sec g">EDITOR &amp; TERMINAL</div>
-      <ul><li>VS Code / JetBrains / Neovim + terminal</li><li>Git ext: inline diff, blame, staging</li><li>Editor for commits; .editorconfig</li></ul>
-      <div class="sec g">LANGUAGE SUPPORT</div>
-      <ul><li>terraform-ls: complete, hover, defs</li><li>Format-on-save &rarr; terraform fmt</li><li>YAML ext with schema validation</li><li>Confirm TF binary is on PATH</li></ul>
-      <div class="sec g">QUALITY GATES</div>
-      <ul><li>pre-commit: fmt &middot; tflint &middot; secrets scan</li><li>tfsec / trivy security scanning</li><li>Go: gopls, golangci-lint (if providers)</li></ul>
-      <div class="sec g">ACCESS &amp; FIRST COMMIT</div>
-      <ul><li>SSH keys / credential helper</li><li>.gitignore template pre first commit</li></ul>
-    </div>
-    <div class="skillcol">
-      <div class="hd"><i style="background:var(--alt)"></i><h3>Git</h3></div>
-      <div class="sec bl">FOUNDATIONS</div>
-      <ul><li>Version control &amp; the distributed model</li><li>Git vs GitHub / GitLab; why it matters</li><li>git config &amp; init; working &rarr; staging &rarr; remote</li></ul>
-      <div class="sec bl">DAILY WORKFLOW</div>
-      <ul><li>add &middot; commit &middot; status &middot; log &middot; diff</li><li>.gitignore for artefacts, secrets, env files</li><li>Branch, switch, merge (ff vs no-ff)</li></ul>
-      <div class="sec bl">COLLABORATION</div>
-      <ul><li>clone &middot; push &middot; pull &middot; fetch; SSH keys</li><li>Pull requests, code review, issue tracking</li><li>Resolve merge conflicts confidently</li></ul>
-      <div class="sec bl">ADVANCED</div>
-      <ul><li>Rebase vs merge; tagging &amp; stashing</li><li>Revert / reset, history rewrite, recovery</li><li>GitHub Flow team branching strategy</li><li>Git 3.0: SHA-256 &amp; reftable (late 2026)</li></ul>
-    </div>
-    <div class="skillcol">
-      <div class="hd"><i style="background:var(--alt)"></i><h3>Terraform</h3></div>
-      <div class="sec bl">FOUNDATIONS</div>
-      <ul><li>IaC principles &amp; declarative config</li><li>Install Terraform + provider CLI / creds</li></ul>
-      <div class="sec bl">DAILY WORKFLOW</div>
-      <ul><li>init &rarr; fmt &rarr; validate &rarr; plan &rarr; apply &rarr; destroy</li><li>Providers, resources, data, variables, outputs</li><li>Dependency graph, version pinning, lock file</li></ul>
-      <div class="sec bl">REUSABILITY &amp; STRUCTURE</div>
-      <ul><li>Variables (types, validation), locals, functions</li><li>count &amp; for_each for dynamic resources</li><li>Reusable modules with inputs &amp; outputs</li></ul>
-      <div class="sec bl">STATE MANAGEMENT</div>
-      <ul><li>Local vs remote backends; state locking</li><li>Drift, terraform import, state moves</li></ul>
-      <div class="sec bl">COLLABORATION - HCP TERRAFORM</div>
-      <ul><li>Workspaces, projects, VCS &amp; CLI runs</li><li>Variable sets, dynamic creds, RBAC</li><li>Policy-as-code (Sentinel), drift detection</li></ul>
-      <div class="sec bl">CERTIFICATION</div>
-      <ul><li>Terraform Associate 004 (live Jan 2026)</li><li>Authoring &amp; Operations Professional</li></ul>
-    </div>
-    <div class="skillcol">
-      <div class="hd"><i style="background:var(--accent)"></i><h3>GitOps</h3></div>
-      <div class="sec g">FOUNDATIONS</div>
-      <ul><li>Git as the single source of truth</li><li>Desired vs live state &amp; reconciliation</li><li>Principles: declarative, versioned, pulled, reconciled</li></ul>
-      <div class="sec g">DAILY WORKFLOW</div>
-      <ul><li>Change flow: branch &rarr; PR &rarr; plan &rarr; merge &rarr; apply</li><li>Every change via PR - no manual / GUI edits</li><li>CI/CD pipeline: fmt &rarr; validate &rarr; plan &rarr; apply</li><li>Drift detection &amp; alerts on manual change</li><li>Keep secrets out of code (Vault / SOPS / KMS)</li></ul>
-      <div class="sec g">COLLABORATION</div>
-      <ul><li>Branch protection &amp; required status checks</li><li>Multi-team PR review &amp; CODEOWNERS</li><li>Audit trail: commit &rarr; author &rarr; ticket</li><li>Jira / ServiceNow tickets + Slack / Teams alerts</li></ul>
-      <div class="sec g">RELEASE MANAGEMENT</div>
-      <ul><li>Version tagging &amp; semantic releases</li><li>Environment promotion: dev &rarr; stage &rarr; prod</li><li>Rollback by revert &amp; re-apply</li><li>Dependency &amp; module version pinning</li></ul>
-      <div class="sec g">ADVANCED</div>
-      <ul><li>Policy-as-code guardrails (OPA / Sentinel)</li><li>Cost estimation on PRs (Infracost)</li><li>Self-service via workspaces &amp; RBAC guardrails</li><li>Private module registry &amp; versioned publishing</li></ul>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 12 · DELIVERY ============ -->
-<section class="slide" data-notes="The point of this slide is the small print, not the headings. Anyone can tell you to do training in person. What people actually need is the reason, because the reason is what they can apply to their own material. Left column, and every one of these comes down to the same thing: what you can see, and how cheap it is to ask. First exposure - in a room you can see somebody is lost from across the table, before they have said a word. On a call, asking for help means unmuting and stopping everyone else, so people sit there quietly instead, and you find out three weeks later. Debugging a broken config - somebody is looking at your screen the second you go wrong, not ten minutes later after you have piled three more mistakes on top of the first one. That is why the replacement curriculum hands people a config with faults planted in it. Pairing - and be precise here, because the research does not say what people assume. Distributed pairing, including a 2023 systematic review, performs about as well as sitting together, provided both people can actually type. What the same review found really matters is whether the pair get on. Two people who do not know each other will not share a keyboard honestly, and that trust gets built in the chat around the work, which a scheduled call has none of. So form the pair in the room; after that it can go remote quite happily. Game days and hacks - here it is simply the atmosphere. Ideas bounce, people overhear each other, and a team forms while they are solving something. Nobody has ever built that on a call. And the week someone breaks something - owning up to a screen is much harder than owning up to a room, and in a room everyone else watches the reaction be help rather than blame, which is what makes them speak up sooner the next time. That is the whole mechanism behind psychological safety, and it is why remote can maintain it but rarely creates it. Right column, and the heading matters: with conditions. Pre-requisites - nobody needs to watch you install a toolchain, so do not waste a room on it. But ungated, it does not get finished: median completion for self-paced online content sits around 12.6%, against 60 to 90% for a cohort with a date on it. That is the evidence behind condition 02 earlier. Recorded walkthroughs - a recording can be paused, rewound and watched again at 11pm, which a room genuinely cannot do. What it cannot do is answer a question back, so it is for the parts with a fixed answer. Co-editing - if both people can type it holds up; if only one can, the other is watching somebody work, which is not learning. Pull request review is the easy one to justify, because it is how review works in the job anyway - doing it remotely is not a compromise, it is the real thing. And pull requests by their nature need time for reflection and analysis, which is exactly what a room does not give you. And keep clinics short, because video genuinely drains people faster than a room does - videoconference fatigue shows up on EEG and ECG within about fifteen minutes and is significant by fifty. So under an hour, with a break in the middle. Past that they are still on the call but they have stopped learning, and a full day of remote workshop is a wasted day. Then the rule at the bottom, which is the sentence to leave them with, and it is just the two columns said once. Everything on the left is there because the learning depends on other people - being seen when you are lost, being caught at the moment you go wrong, being reassured when you break something. Everything on the right is between a learner and the material, where there is one right answer, or where they need to pause, re-read and think. So: if the learning depends on other people, put it in the room; if it is between a learner and the material, remote is fine and often better. And the two asides on the right matter more than they look. Environment setup belongs in neither column - automate it, which is exactly what our platform arriving late cost us. And reference material is not a session in its own right - it should be carried out separately, which is the 214,645-word manual said as a delivery rule.">
+<!-- ============ 11 · DELIVERY ============ -->
+<section class="slide" data-speaker="Joseph" data-notes="The point of this slide is the small print, not the headings. Anyone can tell you to do training in person. What people actually need is the reason, because the reason is what they can apply to their own material. Left column, and every one of these comes down to the same thing: what you can see, and how cheap it is to ask. First exposure - in a room you can see somebody is lost from across the table, before they have said a word. On a call, asking for help means unmuting and stopping everyone else, so people sit there quietly instead, and you find out three weeks later. Debugging a broken config - somebody is looking at your screen the second you go wrong, not ten minutes later after you have piled three more mistakes on top of the first one. That is why the replacement curriculum hands people a config with faults planted in it. Pairing - and be precise here, because the research does not say what people assume. Distributed pairing, including a 2023 systematic review, performs about as well as sitting together, provided both people can actually type. What the same review found really matters is whether the pair get on. Two people who do not know each other will not share a keyboard honestly, and that trust gets built in the chat around the work, which a scheduled call has none of. So form the pair in the room; after that it can go remote quite happily. Game days and hacks - here it is simply the atmosphere. Ideas bounce, people overhear each other, and a team forms while they are solving something. Nobody has ever built that on a call. And the week someone breaks something - owning up to a screen is much harder than owning up to a room, and in a room everyone else watches the reaction be help rather than blame, which is what makes them speak up sooner the next time. That is the whole mechanism behind psychological safety, and it is why remote can maintain it but rarely creates it. Right column, and the heading matters: with conditions. Pre-requisites - nobody needs to watch you install a toolchain, so do not waste a room on it. But ungated, it does not get finished: median completion for self-paced online content sits around 12.6%, against 60 to 90% for a cohort with a date on it. That is the evidence behind condition 02 earlier. Recorded walkthroughs - a recording can be paused, rewound and watched again at 11pm, which a room genuinely cannot do. What it cannot do is answer a question back, so it is for the parts with a fixed answer. Co-editing - if both people can type it holds up; if only one can, the other is watching somebody work, which is not learning. Pull request review is the easy one to justify, because it is how review works in the job anyway - doing it remotely is not a compromise, it is the real thing. And pull requests by their nature need time for reflection and analysis, which is exactly what a room does not give you. And keep clinics short, because video genuinely drains people faster than a room does - videoconference fatigue shows up on EEG and ECG within about fifteen minutes and is significant by fifty. So under an hour, with a break in the middle. Past that they are still on the call but they have stopped learning, and a full day of remote workshop is a wasted day. Then the rule at the bottom, which is the sentence to leave them with, and it is just the two columns said once. Everything on the left is there because the learning depends on other people - being seen when you are lost, being caught at the moment you go wrong, being reassured when you break something. Everything on the right is between a learner and the material, where there is one right answer, or where they need to pause, re-read and think. So: if the learning depends on other people, put it in the room; if it is between a learner and the material, remote is fine and often better. And the two asides on the right matter more than they look. Environment setup belongs in neither column - automate it, which is exactly what our platform arriving late cost us. And reference material is not a session in its own right - it should be carried out separately, which is the 214,645-word manual said as a delivery rule.">
   <div class="eyebrow"><i class="dot"></i>11 &middot; Delivery</div>
   <h1>What lands well in the room together, what lands well remotely</h1>
   <div class="sub">When delivering technical training, you should consider the following:</div>
@@ -1474,8 +1444,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   </div>
 </section>
 
-<!-- ============ 13 · CONTENT TYPES ============ -->
-<section class="slide" data-notes="The headings on this slide are deliberately the moment the person is in, not the type of document, because the moment is what tells you which document to write. Five moments, five different pieces of material, and the same facts in the wrong one of them are useless. Somebody learning this for the first time needs a tutorial - guided, hand-held, and it has to work every time, because if step four fails they conclude they cannot do this. Somebody who already understands it and is just doing the job needs a runbook: the steps, no theory. Somebody in the middle of an incident needs reference material they can scan under pressure - a decision tree, not paragraphs, because nobody reads prose at three in the morning, and that is a genuinely different document from the runbook even when it covers the same system. Somebody asking why we work this way needs explanation, read when they are calm rather than when something is on fire. And the fifth one is the one documentation cannot do at all: practice, somewhere that breaking it costs nothing. This split is not something we invented - it is close to the Diataxis framework used for technical documentation, which separates tutorials, how-to guides, reference and explanation by the need they serve. The reason to care is our own mistake, and it is worth saying out loud here: the 214,645-word curriculum was not bad writing. It was reference material, written to be complete and correct, handed to people who needed a tutorial. Same facts, wrong form, and it did not land. Then the blue strip at the bottom, and be careful with this one. The instinct to vary the material is right, but the usual reason given for it - matching people's learning styles - does not hold up. The meshing hypothesis has been tested repeatedly; Pashler and colleagues reviewed more than seventy studies and found essentially no support, and it is now generally classed as a neuromyth. The variable that does hold up is prior knowledge. The expertise reversal effect, which has been meta-analysed and generalises well, shows that step-by-step guidance helps novices and actively slows down people who already have the mental model, because they have to keep cross-referencing the help against what they already know. That matches what we found ourselves: prior coding experience predicted who did well, not Jamf Pro familiarity and not age. So for the topics that matter, write two versions - a guided one and a terse one - and let people pick. Note also what is deliberately not on this slide: new-starter onboarding, which gets its own slide shortly with the artifacts pack, the skills check and the buddy.">
+<!-- ============ 12 · CONTENT TYPES ============ -->
+<section class="slide" data-speaker="Joseph" data-notes="The headings on this slide are deliberately the moment the person is in, not the type of document, because the moment is what tells you which document to write. Five moments, five different pieces of material, and the same facts in the wrong one of them are useless. Somebody learning this for the first time needs a tutorial - guided, hand-held, and it has to work every time, because if step four fails they conclude they cannot do this. Somebody who already understands it and is just doing the job needs a runbook: the steps, no theory. Somebody in the middle of an incident needs reference material they can scan under pressure - a decision tree, not paragraphs, because nobody reads prose at three in the morning, and that is a genuinely different document from the runbook even when it covers the same system. Somebody asking why we work this way needs explanation, read when they are calm rather than when something is on fire. And the fifth one is the one documentation cannot do at all: practice, somewhere that breaking it costs nothing. This split is not something we invented - it is close to the Diataxis framework used for technical documentation, which separates tutorials, how-to guides, reference and explanation by the need they serve. The reason to care is our own mistake, and it is worth saying out loud here: the 214,645-word curriculum was not bad writing. It was reference material, written to be complete and correct, handed to people who needed a tutorial. Same facts, wrong form, and it did not land. Then the blue strip at the bottom, and be careful with this one. The instinct to vary the material is right, but the usual reason given for it - matching people's learning styles - does not hold up. The meshing hypothesis has been tested repeatedly; Pashler and colleagues reviewed more than seventy studies and found essentially no support, and it is now generally classed as a neuromyth. The variable that does hold up is prior knowledge. The expertise reversal effect, which has been meta-analysed and generalises well, shows that step-by-step guidance helps novices and actively slows down people who already have the mental model, because they have to keep cross-referencing the help against what they already know. That matches what we found ourselves: prior coding experience predicted who did well, not Jamf Pro familiarity and not age. So for the topics that matter, write two versions - a guided one and a terse one - and let people pick. Note also what is deliberately not on this slide: new-starter onboarding, which gets its own slide shortly with the artifacts pack, the skills check and the buddy.">
   <div class="eyebrow"><i class="dot"></i>12 &middot; Content</div>
   <h1>Match the content to the moment</h1>
   <div class="sub">The same information in the wrong form is useless. A runbook teaches nobody, and a tutorial is worthless at 3am.</div>
@@ -1522,8 +1492,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   </div>
 </section>
 
-<!-- ============ 14 · CASE STUDY ============ -->
-<section class="slide" data-notes="Louise's story shows this is achievable from any starting point. No prior CLI, Mac support background. State clicked in week four after a real incident. Her turning point was the first solo PR merged to main. Her advice: don't skip the fundamentals. Replace the placeholder with the 3-4 minute interview.">
+<!-- ============ 13 · CASE STUDY ============ -->
+<section class="slide" data-speaker="Dafydd" data-speaker-note="intro, then video" data-notes="Louise's story shows this is achievable from any starting point. No prior CLI, Mac support background. State clicked in week four after a real incident. Her turning point was the first solo PR merged to main. Her advice: don't skip the fundamentals. Replace the placeholder with the 3-4 minute interview.">
   <div class="eyebrow"><i class="dot"></i>13 &middot; Case study</div>
   <h1>Louise's journey</h1>
   <div class="body split">
@@ -1542,8 +1512,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   </div>
 </section>
 
-<!-- ============ 15 · SCOPE ============ -->
-<section class="slide" data-notes="The transition does not stop at the core Mac team, and this slide is how you work out how far it does go. Five responsibilities sit behind Jamf Pro: endpoint security, device management, Jamf platform ops, support and escalations, and application packaging. Every organisation has all five. What differs is how many teams they are spread across. Ask people to find their own organisation in one of the three columns. On the left, a small organisation, where one team owns all five - that is the single tall box, and it is one cohort to train. In the middle, a mid-sized organisation, and this is the most common shape by a distance: device management, Jamf platform ops and application packaging stay together as one engineering team, security engineering has broken out on its own, and the service desk takes support and escalations. Three boxes, three cohorts. On the right, a very large organisation, where each responsibility is somebody's whole job and you have five separate teams to teach. The instruction is simple: count the boxes in your column, and that is the number of cohorts you have to run. Worth saying explicitly that the curriculum barely changes between those three columns - what changes is how many times you deliver it, how much coordination it takes, and how many different managers you need bought in before you start, which is condition 01 from earlier. The grouping in the middle column is the common one rather than the only one; if security has not broken out in their organisation yet, the middle column is a two-box column for them. And a rule worth keeping from the way we scoped this: a team that only triggers actions does not need to author Terraform, but a team that manages resources does. That is what decides whether a cohort gets the full authoring curriculum or a shorter read-and-triage one.">
+<!-- ============ 14 · SCOPE ============ -->
+<section class="slide" data-speaker="Dafydd" data-notes="The transition does not stop at the core Mac team, and this slide is how you work out how far it does go. Five responsibilities sit behind Jamf Pro: endpoint security, device management, Jamf platform ops, support and escalations, and application packaging. Every organisation has all five. What differs is how many teams they are spread across. Ask people to find their own organisation in one of the three columns. On the left, a small organisation, where one team owns all five - that is the single tall box, and it is one cohort to train. In the middle, a mid-sized organisation, and this is the most common shape by a distance: device management, Jamf platform ops and application packaging stay together as one engineering team, security engineering has broken out on its own, and the service desk takes support and escalations. Three boxes, three cohorts. On the right, a very large organisation, where each responsibility is somebody's whole job and you have five separate teams to teach. The instruction is simple: count the boxes in your column, and that is the number of cohorts you have to run. Worth saying explicitly that the curriculum barely changes between those three columns - what changes is how many times you deliver it, how much coordination it takes, and how many different managers you need bought in before you start, which is condition 01 from earlier. The grouping in the middle column is the common one rather than the only one; if security has not broken out in their organisation yet, the middle column is a two-box column for them. And a rule worth keeping from the way we scoped this: a team that only triggers actions does not need to author Terraform, but a team that manages resources does. That is what decides whether a cohort gets the full authoring curriculum or a shorter read-and-triage one.">
   <div class="eyebrow"><i class="dot"></i>14 &middot; Scope</div>
   <h1>Don't forget to train your sister engineering teams as well</h1>
   <div class="sub">The larger the organisation the larger the amount of teams that will be required to go on this journey.</div>
@@ -1580,8 +1550,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   </div>
 </section>
 
-<!-- ============ 16 · ONBOARDING ============ -->
-<section class="slide onb" data-notes="This one is practical advice, so pitch it at the room: these are the practices that made us good at taking someone on, and most of them are cheap. Start with the description at the top, because the why is contextual and nobody can write it for you. In a regulated organisation it is change control and a history you can audit; everywhere it is Git as the single source of truth. Name who asked for it and what it buys them, or everything underneath reads as process for its own sake. Then the left column, which is the work the team does once and then benefits from for every person who follows. One documentation home, a repo or Confluence, rather than five bookmarks and a folder somebody left on a share. The environment architecture written down. The common helper scripts centralised so nobody writes the same one twice, and the VS Code guidance and config shared. A getting started reference covering the dull blockers that actually stop somebody in week one: access requests and security group membership. Then the people, and these are the two that get skipped when everyone is busy. Facilitated 1:1s between the new starter and whoever owns each thing, booked in rather than hoped for, covering workflows, the structure of the modules, the remote state backend, the git triggers and the pull request process. And a named senior buddy for eight weeks, a peer rather than a manager, who pairs, reviews and takes the first questions. Then the standard. A ways of working document in the repo carrying the coding standards and the style guide, and a written definition of what a good pull request looks like on this team, expected of everyone and not just of new starters. Dwell on that one, because it is the payoff for the whole slide: write it down once and review stops being about naming and indentation, so CODEOWNERS spend their attention on the change itself. Then the fortnightly code review that anyone can attend, which does two jobs at once. Less confident engineers get their changes looked at without it being an event, and CODEOWNERS talk through their reasoning out loud, so people learn what is acceptable and on what basis instead of one correction at a time. Then the right column, and be straight about it without being po-faced. You can put every item on the left in place and it will still not carry somebody on its own. The new starter has to set the time aside, because this does not happen in the gaps between other work. They have to bring the questions they could not answer themselves. They have to name their own gaps rather than hope nobody notices, and actually read the documentation and the coding standards before committing their first pull request, so that review is spent on the change and not on everything around it. Worth saying plainly that this is the half you cannot do for them, and that it is the reason aptitude and attitude matter more in hiring than a Terraform CV.">
+<!-- ============ 15 · ONBOARDING ============ -->
+<section class="slide onb" data-speaker="Dafydd" data-notes="This one is practical advice, so pitch it at the room: these are the practices that made us good at taking someone on, and most of them are cheap. Start with the description at the top, because the why is contextual and nobody can write it for you. In a regulated organisation it is change control and a history you can audit; everywhere it is Git as the single source of truth. Name who asked for it and what it buys them, or everything underneath reads as process for its own sake. Then the left column, which is the work the team does once and then benefits from for every person who follows. One documentation home, a repo or Confluence, rather than five bookmarks and a folder somebody left on a share. The environment architecture written down. The common helper scripts centralised so nobody writes the same one twice, and the VS Code guidance and config shared. A getting started reference covering the dull blockers that actually stop somebody in week one: access requests and security group membership. Then the people, and these are the two that get skipped when everyone is busy. Facilitated 1:1s between the new starter and whoever owns each thing, booked in rather than hoped for, covering workflows, the structure of the modules, the remote state backend, the git triggers and the pull request process. And a named senior buddy for eight weeks, a peer rather than a manager, who pairs, reviews and takes the first questions. Then the standard. A ways of working document in the repo carrying the coding standards and the style guide, and a written definition of what a good pull request looks like on this team, expected of everyone and not just of new starters. Dwell on that one, because it is the payoff for the whole slide: write it down once and review stops being about naming and indentation, so CODEOWNERS spend their attention on the change itself. Then the fortnightly code review that anyone can attend, which does two jobs at once. Less confident engineers get their changes looked at without it being an event, and CODEOWNERS talk through their reasoning out loud, so people learn what is acceptable and on what basis instead of one correction at a time. Then the right column, and be straight about it without being po-faced. You can put every item on the left in place and it will still not carry somebody on its own. The new starter has to set the time aside, because this does not happen in the gaps between other work. They have to bring the questions they could not answer themselves. They have to name their own gaps rather than hope nobody notices, and actually read the documentation and the coding standards before committing their first pull request, so that review is spent on the change and not on everything around it. Worth saying plainly that this is the half you cannot do for them, and that it is the reason aptitude and attitude matter more in hiring than a Terraform CV.">
   <div class="eyebrow"><i class="dot"></i>15 &middot; Onboarding</div>
   <h1>Onboarding new starters without Terraform experience</h1>
   <div class="sub">The practices that make a team good at onboarding new starters into a GitOps
@@ -1638,8 +1608,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   </div>
 </section>
 
-<!-- ============ 17 · HIRING ============ -->
-<section class="slide" data-notes="Hire for aptitude. Hunt for Terraform on any provider, daily Git CLI use, any scripting, CI/CD, API familiarity, and open-source contribution. The market: TF skills are still emerging in the Mac space, the pool is small, and Jamf-plus-Terraform commands a premium. Often the best move is to train your strongest Mac admins.">
+<!-- ============ 16 · HIRING ============ -->
+<section class="slide" data-speaker="Dafydd" data-notes="Hire for aptitude. Hunt for Terraform on any provider, daily Git CLI use, any scripting, CI/CD, API familiarity, and open-source contribution. The market: TF skills are still emerging in the Mac space, the pool is small, and Jamf-plus-Terraform commands a premium. Often the best move is to train your strongest Mac admins.">
   <div class="eyebrow"><i class="dot"></i>16 &middot; Hiring</div>
   <h1>Hiring for the new world</h1>
   <div class="body grid g2">
@@ -1667,11 +1637,11 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   </div>
 </section>
 
-<!-- ============ 18 · RESOURCES ============ -->
-<section class="slide" data-notes="Where to send people. Start with the Deployment Theory Terraform registry and demo repo, and the training repo built for workplace engineers. Then the community and official set: Jamf developer docs, the Jamf blog IaC walkthrough, the MacAdmins Slack channel, and Neil Martin's starter repo.">
+<!-- ============ 17 · RESOURCES ============ -->
+<section class="slide" data-speaker="Dafydd" data-speaker-note="questions" data-notes="Where to send people. Start with the Deployment Theory Terraform registry and demo repo, and the training repo built for workplace engineers. Then the community and official set: Jamf developer docs, the Jamf blog IaC walkthrough, the MacAdmins Slack channel, and Neil Martin's starter repo. Point at the QR code on the right and leave this slide up while you take questions - it opens a link to this presentation, so nobody needs to photograph the URLs.">
   <div class="eyebrow"><i class="dot"></i>17 &middot; Resources</div>
   <h1>Learning materials</h1>
-  <div class="body split">
+  <div class="body res3">
     <div>
       <div class="collabel" style="color:var(--green-bright)">Start here: Deployment Theory</div>
       <div class="res hi">
@@ -1709,10 +1679,15 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
         <div class="url b">github.com/neilmartin83/terraform-jamfpro-starter</div>
       </div>
     </div>
+    <div class="qr-rail">
+      <div class="collabel">Take it with you</div>
+      <div class="qr-tile"><img src="../_shared/qr-code.png" alt="QR code linking to this presentation"></div>
+      <div class="cap">Scan for a link to<br>this presentation</div>
+    </div>
   </div>
 </section>
 
-<!-- ============ 19 · QUESTIONS ============ -->
+<!-- ============ 18 · QUESTIONS ============ -->
 <section class="slide qa brand" data-notes="Open the floor. Point people at the resources slide for links, and at the appendix for the colour system behind the original deck design.">
   <svg class="cornerarrow" viewBox="0 0 100 100" aria-hidden="true">
     <!-- Mirrored to point down-right, matching the template's corner arrow. -->
@@ -1726,7 +1701,7 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   <div class="jamfmark" aria-hidden="true"></div>
 </section>
 
-<!-- ============ 20 · THANK YOU ============ -->
+<!-- ============ 19 · THANK YOU ============ -->
 <section class="slide brand" data-notes="Thank the audience and close. The appendix slide after this one is reference material for readers of the published deck, not part of the talk.">
   <svg class="cornerarrow" viewBox="0 0 100 100" aria-hidden="true">
     <!-- Mirrored to point down-right, matching the template's corner arrow. -->
@@ -1738,6 +1713,65 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   </svg>
   <div class="closebig"><span class="out">Thank</span><span class="fill">You</span></div>
   <div class="jamfmark" aria-hidden="true"></div>
+</section>
+
+<!-- ============ 20 · SKILLS MAP ============ -->
+<section class="slide" data-notes="The full skills map. Environment covers editor, terminal, language support and quality gates. Git runs from foundations through daily workflow, collaboration and advanced history work. Terraform goes foundations through state, HCP Terraform collaboration and certification. GitOps covers the change flow, collaboration, release management and policy-as-code guardrails.">
+  <div class="eyebrow"><i class="dot"></i>20 &middot; Curriculum</div>
+  <h1>What engineers need to learn</h1>
+  <div class="sub">The full skills map for reskilling into GitOps - foundations through advanced, across the four core disciplines.</div>
+  <div class="body grid g4" style="margin-top:32px;gap:20px">
+    <div class="skillcol">
+      <div class="hd"><i style="background:var(--accent)"></i><h3>Environment</h3></div>
+      <div class="sec g">EDITOR &amp; TERMINAL</div>
+      <ul><li>VS Code / JetBrains / Neovim + terminal</li><li>Git ext: inline diff, blame, staging</li><li>Editor for commits; .editorconfig</li></ul>
+      <div class="sec g">LANGUAGE SUPPORT</div>
+      <ul><li>terraform-ls: complete, hover, defs</li><li>Format-on-save &rarr; terraform fmt</li><li>YAML ext with schema validation</li><li>Confirm TF binary is on PATH</li></ul>
+      <div class="sec g">QUALITY GATES</div>
+      <ul><li>pre-commit: fmt &middot; tflint &middot; secrets scan</li><li>tfsec / trivy security scanning</li><li>Go: gopls, golangci-lint (if providers)</li></ul>
+      <div class="sec g">ACCESS &amp; FIRST COMMIT</div>
+      <ul><li>SSH keys / credential helper</li><li>.gitignore template pre first commit</li></ul>
+    </div>
+    <div class="skillcol">
+      <div class="hd"><i style="background:var(--alt)"></i><h3>Git</h3></div>
+      <div class="sec bl">FOUNDATIONS</div>
+      <ul><li>Version control &amp; the distributed model</li><li>Git vs GitHub / GitLab; why it matters</li><li>git config &amp; init; working &rarr; staging &rarr; remote</li></ul>
+      <div class="sec bl">DAILY WORKFLOW</div>
+      <ul><li>add &middot; commit &middot; status &middot; log &middot; diff</li><li>.gitignore for artefacts, secrets, env files</li><li>Branch, switch, merge (ff vs no-ff)</li></ul>
+      <div class="sec bl">COLLABORATION</div>
+      <ul><li>clone &middot; push &middot; pull &middot; fetch; SSH keys</li><li>Pull requests, code review, issue tracking</li><li>Resolve merge conflicts confidently</li></ul>
+      <div class="sec bl">ADVANCED</div>
+      <ul><li>Rebase vs merge; tagging &amp; stashing</li><li>Revert / reset, history rewrite, recovery</li><li>GitHub Flow team branching strategy</li><li>Git 3.0: SHA-256 &amp; reftable (late 2026)</li></ul>
+    </div>
+    <div class="skillcol">
+      <div class="hd"><i style="background:var(--alt)"></i><h3>Terraform</h3></div>
+      <div class="sec bl">FOUNDATIONS</div>
+      <ul><li>IaC principles &amp; declarative config</li><li>Install Terraform + provider CLI / creds</li></ul>
+      <div class="sec bl">DAILY WORKFLOW</div>
+      <ul><li>init &rarr; fmt &rarr; validate &rarr; plan &rarr; apply &rarr; destroy</li><li>Providers, resources, data, variables, outputs</li><li>Dependency graph, version pinning, lock file</li></ul>
+      <div class="sec bl">REUSABILITY &amp; STRUCTURE</div>
+      <ul><li>Variables (types, validation), locals, functions</li><li>count &amp; for_each for dynamic resources</li><li>Reusable modules with inputs &amp; outputs</li></ul>
+      <div class="sec bl">STATE MANAGEMENT</div>
+      <ul><li>Local vs remote backends; state locking</li><li>Drift, terraform import, state moves</li></ul>
+      <div class="sec bl">COLLABORATION - HCP TERRAFORM</div>
+      <ul><li>Workspaces, projects, VCS &amp; CLI runs</li><li>Variable sets, dynamic creds, RBAC</li><li>Policy-as-code (Sentinel), drift detection</li></ul>
+      <div class="sec bl">CERTIFICATION</div>
+      <ul><li>Terraform Associate 004 (live Jan 2026)</li><li>Authoring &amp; Operations Professional</li></ul>
+    </div>
+    <div class="skillcol">
+      <div class="hd"><i style="background:var(--accent)"></i><h3>GitOps</h3></div>
+      <div class="sec g">FOUNDATIONS</div>
+      <ul><li>Git as the single source of truth</li><li>Desired vs live state &amp; reconciliation</li><li>Principles: declarative, versioned, pulled, reconciled</li></ul>
+      <div class="sec g">DAILY WORKFLOW</div>
+      <ul><li>Change flow: branch &rarr; PR &rarr; plan &rarr; merge &rarr; apply</li><li>Every change via PR - no manual / GUI edits</li><li>CI/CD pipeline: fmt &rarr; validate &rarr; plan &rarr; apply</li><li>Drift detection &amp; alerts on manual change</li><li>Keep secrets out of code (Vault / SOPS / KMS)</li></ul>
+      <div class="sec g">COLLABORATION</div>
+      <ul><li>Branch protection &amp; required status checks</li><li>Multi-team PR review &amp; CODEOWNERS</li><li>Audit trail: commit &rarr; author &rarr; ticket</li><li>Jira / ServiceNow tickets + Slack / Teams alerts</li></ul>
+      <div class="sec g">RELEASE MANAGEMENT</div>
+      <ul><li>Version tagging &amp; semantic releases</li><li>Environment promotion: dev &rarr; stage &rarr; prod</li><li>Rollback by revert &amp; re-apply</li><li>Dependency &amp; module version pinning</li></ul>
+      <div class="sec g">ADVANCED</div>
+      <ul><li>Policy-as-code guardrails (OPA / Sentinel)</li><li>Cost estimation on PRs (Infracost)</li><li>Self-service via workspaces &amp; RBAC guardrails</li><li>Private module registry &amp; versioned publishing</li></ul>
+    </div>
+  </div>
 </section>
 
 <!-- ============ 21 · APPENDIX ============ -->
@@ -1777,7 +1811,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </div></div>
 <div id="progress"></div>
 <div id="counter"></div>
-<div id="help">&larr; &rarr; move &middot; N notes &middot; F full &middot; T theme &middot; K knobs</div>
+<div id="speaker"><i class="dot"></i><span class="who"></span><span class="role"></span></div>
+<div id="help">&larr; &rarr; move &middot; N notes &middot; S speaker &middot; F full &middot; T theme &middot; K knobs</div>
 <div id="notes"><h5>Speaker notes</h5><div id="notestext"></div></div>
 <div id="knobs" aria-label="Colour knobs">
   <header>
@@ -1961,8 +1996,10 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 (function(){
   var deck=document.getElementById('deck');
   var slides=[].slice.call(deck.querySelectorAll('.slide'));
-  var i=0, notesOn=false;
+  var i=0, notesOn=false, speakerOn=false;
   var notes=document.getElementById('notes'), ntext=document.getElementById('notestext');
+  var speaker=document.getElementById('speaker');
+  var speakerWho=speaker.querySelector('.who'), speakerRole=speaker.querySelector('.role');
 
   function fit(){
     var s=Math.min(window.innerWidth/1920, window.innerHeight/1080);
@@ -1974,6 +2011,11 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
     document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
     document.getElementById('counter').textContent=String(i+1).padStart(2,'0')+' / '+slides.length;
     ntext.textContent=slides[i].getAttribute('data-notes')||'No notes for this slide.';
+    var who=slides[i].getAttribute('data-speaker')||'';
+    var role=slides[i].getAttribute('data-speaker-note')||'';
+    speaker.setAttribute('data-who',who);
+    speakerWho.textContent=who||'No speaker assigned';
+    speakerRole.textContent=role?'· '+role:'';
     if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
   }
   document.addEventListener('keydown',function(e){
@@ -1983,6 +2025,7 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
     else if(e.key==='Home'){show(0)}
     else if(e.key==='End'){show(slides.length-1)}
     else if(e.key==='n'||e.key==='N'){notesOn=!notesOn;notes.classList.toggle('on',notesOn)}
+    else if(e.key==='s'||e.key==='S'){speakerOn=!speakerOn;speaker.classList.toggle('on',speakerOn)}
     else if(e.key==='t'||e.key==='T'){window.JNUC_THEME.cycle(e.shiftKey?-1:1)}
     else if(e.key==='k'||e.key==='K'){window.JNUC_THEME.togglePanel()}
     else if(e.key==='f'||e.key==='F'){

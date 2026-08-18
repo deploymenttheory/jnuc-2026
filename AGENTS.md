@@ -34,7 +34,7 @@ landing page keeps its own near-black look - it is not a deck.
 | Path | Role |
 |---|---|
 | `presentations/<slug>/` | One talk. Snake-case slug. Each deck owns its own HTML, tokens and script; decks do not import from each other beyond `_shared/`. |
-| `presentations/_shared/` | Data used by more than one deck. Currently `speakers.js` only. Content, not styling - see below. |
+| `presentations/_shared/` | Data used by more than one deck: `speakers.js` and `qr-code.png` (the training deck's take-it-with-you code). Content, not styling - see below. |
 | `template.key` | The Jamf-supplied JNUC 2026 Keynote template. Canonical reference for palette, typography and mandatory slides. |
 | `.github/workflows/` | `deploy.yml` only - the S3 sync and CloudFront invalidation. See Deployment. |
 | `tools/` | `build-key.mjs`, which builds the Keynote downloads from the decks on a Mac. The only thing `package.json` exists for. |
@@ -74,8 +74,9 @@ These apply to any deck in this repo, current or future.
   (title with speakers, Questions, Thank You); everything else adopts the template's
   formatting - palette, HelveticaNeue stack, title/kicker treatment, footer chrome.
 - One HTML file per deck, holding its own CSS, JS and images. Zero requests off the machine:
-  no CDNs, webfonts, remote JS or remote images. The only local file a deck may reference is
-  `../_shared/speakers.js`. A deck must work opened straight off disk.
+  no CDNs, webfonts, remote JS or remote images. The only local files a deck may reference
+  are in `../_shared/` (`speakers.js`, and `qr-code.png` where used). A deck must work opened
+  straight off disk.
 - All styling derives from the token block in that deck's `:root`. Never hardcode a
   colour/font/size in slide markup - add a token if a new value is needed.
 - **Never invent facts, numbers, resource names, or rationale.** Anything unconfirmed gets an
@@ -280,12 +281,30 @@ full path. **21 slides.** `ClickOps_to_GitOps.key` alongside it is the committed
 download from `tools/build-key.mjs`. No spec, notes file or slot length has been recorded
 here yet. Content work is ongoing, slide by slide (Aug 2026).
 
-Slide map after the template adoption: `#1` title (template three-speaker layout, LBG logo in
-the template's customer-logo slot, stats row kept), `#2` "Where we are today" (the old
-half-speakers slide kept its real content - the estate statecards, centred and enlarged -
-when the speakers moved to `#1`), `#3`-`#18` the content slides (same numbers as before the
-adoption), `#19` Questions ("Questions? Your turn!", navy), `#20` Thank You, `#21` the colour
-appendix (post-matter for readers; Thank You closes the talk).
+Slide map (after the template adoption and the merge with Dafydd's Aug 2026 edits): `#1`
+title (template three-speaker layout, LBG logo in the template's customer-logo slot, stats
+row kept), `#2` "Where we are today" (the old half-speakers slide kept its real content -
+the estate statecards, centred and enlarged - when the speakers moved to `#1`), `#3` goals,
+`#4` execution, `#5` what worked, `#6` what didn't work, `#7` conditions, `#8` learning
+priorities by role, `#9` pathway matrix, `#10` timeline, `#11` delivery, `#12` content
+types, `#13` case study, `#14` scope, `#15` onboarding, `#16` hiring, `#17` resources (with
+the QR rail - see below), `#18` Questions ("Questions? Your turn!", navy), `#19` Thank You,
+`#20` the skills map (moved to post-matter by Dafydd, kept there), `#21` the colour appendix.
+Thank You closes the talk; `#20`-`#21` are reference material for readers. Eyebrow numbers
+match slide numbers (Dafydd's convention) - renumber them when slides move.
+
+Merged in from Dafydd's edits, on top of the restyle:
+
+- **QR rail on `#17`**: a third grid column (`.res3`, `.qr-rail`, `.qr-tile`) holding
+  `../_shared/qr-code.png` with a "take it with you" caption; the delivery note says to
+  leave it up while taking questions. The tile's white background is a deliberate literal -
+  a QR code stays black-on-white under every theme - with a `var(--border)` hairline so it
+  doesn't dissolve on the light themes.
+- **Speaker overlay (press `S`)**: a fixed top-left pill showing who has the room, read off
+  each section's `data-speaker` / `data-speaker-note` attributes (16 slides carry them;
+  unassigned slides say "No speaker assigned" rather than inheriting). It is a rehearsal
+  aid, off by default so it never lands in the Keynote capture, and hidden in print. Person
+  colours: Dafydd `--green-bright`, Joseph `--blue-light`, Gordon `--amber`.
 
 Notable content slides:
 
@@ -324,7 +343,7 @@ non-goals (all `#3`); verify the quote (`#6`); how long the dip lasts (`#7`); th
 interview with Louise.
 
 **The four disciplines are a shared vocabulary.** `#9` (pathway matrix), `#10` (timeline) and
-`#12` (skills map) are all built on **Environment, Git, Terraform, GitOps**, and `#12` calls
+`#20` (skills map) are all built on **Environment, Git, Terraform, GitOps**, and `#20` calls
 them "the four core disciplines" in its subtitle. `#8`'s radar uses those same four plus
 Jamf APIs and Mentoring, the two that only start to matter as people move up. If you rename
 or re-cut a discipline on any of those four slides, change all four.
@@ -432,9 +451,9 @@ not intend to change; that check is what catches a wrong substitution.
   everything after it - update this file's slide references when that happens.
 - Notes live in a `data-notes` attribute on each section, shown in an overlay toggled with
   `n`. There is no second-window presenter view and no `presenter.json`.
-- Keys: arrows / PageUp / PageDown / space / Home / End to move, `n` notes, `f` fullscreen,
-  `T`/`Shift+T` themes, `K` knobs. Clicking the left 28% of the screen goes back, anywhere
-  else forward.
+- Keys: arrows / PageUp / PageDown / space / Home / End to move, `n` notes, `s` speaker
+  overlay, `f` fullscreen, `T`/`Shift+T` themes, `K` knobs. Click-to-advance lives in an
+  inch-wide gutter down each screen edge.
 - The footer hairline and JNUC logo sit slightly lower than the template's geometry so dense
   slides can never collide with them; the slide counter sits bottom-left above the help
   strip.
@@ -524,9 +543,9 @@ Things that will bite you:
   to `/<deck>/index.html` and 301s a bare `/<deck>` to `/<deck>/`. Any other filename is
   only reachable by its full path.
 - **Keep shared assets relative and one level up.** Both decks load
-  `../_shared/speakers.js`, which resolves to `/_shared/speakers.js` only because every deck
-  sits one level down in a single bucket. A deck nested deeper, or moved to its own bucket,
-  loses its speakers.
+  `../_shared/speakers.js` (and the training deck `../_shared/qr-code.png`), which resolve
+  under `/_shared/` only because every deck sits one level down in a single bucket. A deck
+  nested deeper, or moved to its own bucket, loses its speakers.
 - **Adding a deck is two edits plus a build.** The directory gives you the URL, but it will
   not be reachable from anywhere until you add a card to `presentations/index.html`. That
   list is hand-maintained on purpose: generating it would mean client-side JS or a build
