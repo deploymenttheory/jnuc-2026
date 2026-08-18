@@ -60,6 +60,15 @@ jobs:
             --exclude "*.md" \
             --exclude ".DS_Store"
 
+      # The sync guesses MIME types from the extension and .key maps to
+      # application/pgp-keys, so re-upload the Keynote downloads with the type
+      # Keynote files actually carry.
+      - name: Correct the Keynote content type
+        run: |
+          aws s3 cp presentations/ "s3://${BUCKET}/" --recursive \
+            --exclude "*" --include "*.key" \
+            --content-type application/vnd.apple.keynote
+
       # CachingOptimized holds objects at the edge for a day, so a sync alone
       # will not show up.
       - name: Invalidate CloudFront
