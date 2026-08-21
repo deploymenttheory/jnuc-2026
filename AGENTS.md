@@ -105,7 +105,10 @@ These apply to any deck in this repo, current or future.
 
 The presenter view and reader mode below are implemented inside `migrating_an_instance`'s
 `index.html`, not in shared code. A second deck wanting them has to copy the pattern across.
-If that happens, that is the first real candidate for `_shared/`.
+If that happens, that is the first real candidate for `_shared/`. The speaker overlay is
+already in that position: both decks have one, each with its own markup, styling and key
+handler, sharing only the `data-speaker` / `data-speaker-note` attribute contract. Change
+one and the other does not follow.
 
 ## Deck: presentations/migrating_an_instance
 
@@ -169,6 +172,16 @@ quotes is stale.
   1800-second `timeLimitSeconds`). It is not wired into the presenter view; the deploy sync
   ships it to S3 (only `*.md` and `.DS_Store` are excluded), which is fine while it only
   duplicates the already-public notes.
+- **Speaker overlay**: press `s`. A pill in the stage's top-right gutter showing who has
+  the room on this slide, read off each section's `data-speaker` / `data-speaker-note`
+  attributes. Off by default - it is a rehearsal aid, not deck content, so it never lands in
+  the Keynote capture - and unassigned slides say "No speaker assigned" rather than
+  inheriting the previous name. Person colours: Dafydd `--c-accent`, Joseph `--c-code-str`,
+  Gordon `--c-warn`, All/Anyone `--c-text`. Top-right rather than the training deck's
+  top-left because the template's corner arrow owns the top-left of the title and close
+  slides. Note `data-speaker` does double duty in this deck: on a `<section>` it is the
+  presenter's display name, on a `.tspeaker` card it is the `speakers.js` key.
+
 - **Reader mode**: press `d` or open with `?reader=1`. Reveals "More detail"
   `<details class="reader-extra">` popovers on selected slides (currently s01, s05,
   s-singletons, s-sentinel, s12, s15b, s-staging, s-today) for post-presentation viewers.
@@ -179,31 +192,33 @@ quotes is stale.
 
 Context -> decisions -> first wins -> the wall -> the loop -> growing pains -> payoff.
 23 slides. Legacy section ids kept stable across reorders (so `s10` no longer sits at
-position 10); new story slides use semantic ids.
+position 10); new story slides use semantic ids. The bold name on each line is who
+presents it, held in the slide's `data-speaker` attribute and surfaced by the speaker
+overlay - keep the two in step when slides move.
 
-1. `s00` Title (template session-title layout with the three speaker cards)
-2. `s01` Context, requirements, constraints (estate at the start: Sandbox / Staging / Production, parity notes)
-3. `s02` Who touches Jamf Pro
-4. `s03` Migration objectives and design decisions
-5. `s04` Ideas rejected, and why (3 architectural rejects; the other 2 moved into the story)
-6. `s05` Instance migration order (prod first + read-only API client control)
-7. `s07` Instance prep
-8. `s-singletons` Singletons first (Nov 2025, no-import trick)
-9. `s-sentinel` Getting past Sentinel (blocked -> per-window exceptions -> standing exception)
-10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram)
-11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk)
-12. `s11` Tools and helpers (JamfPy -> script -> map -> for_each)
-13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split)
-14. `s13` for_each exceptions (policies, dock items)
-15. `s14` Validating a migration
-16. `s-pivot` Growing pains (FQDN conditionals -> Mar 2026 module pivot)
-17. `s15b` The module structure (module tree -> workspaces + workspace TODO chips)
-18. `s-staging` Rebuilding staging (the highlight)
-19. `s-today` Refinements along the way (DevTest in, Sandbox out, Release Please -> CalVer)
-20. `s16b` By the numbers
-21. `s17` Questions (template "Questions? Your turn!", navy)
-22. `s18` Links
-23. `s-thanks` Thank You (template close, royal blue)
+1. `s00` Title (template session-title layout with the three speaker cards) - **All (intros)**
+2. `s01` Context, requirements, constraints (estate at the start: Sandbox / Staging / Production, parity notes) - **All**
+3. `s02` Who touches Jamf Pro - **Dafydd**
+4. `s03` Migration objectives and design decisions - **Dafydd**
+5. `s04` Ideas rejected, and why (3 architectural rejects; the other 2 moved into the story) - **Joseph**
+6. `s05` Instance migration order (prod first + read-only API client control) - **Joseph**
+7. `s07` Instance prep - **Joseph**
+8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
+9. `s-sentinel` Getting past Sentinel (blocked -> per-window exceptions -> standing exception) - **Gordon**
+10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
+11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk) - **Dafydd**
+12. `s11` Tools and helpers (JamfPy -> script -> map -> for_each) - **Gordon**
+13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Gordon**
+14. `s13` for_each exceptions (policies, dock items) - **Joseph**
+15. `s14` Validating a migration - **Joseph**
+16. `s-pivot` Growing pains (FQDN conditionals -> Mar 2026 module pivot) - **Joseph**
+17. `s15b` The module structure (module tree -> workspaces + workspace TODO chips) - **Dafydd**
+18. `s-staging` Rebuilding staging (the highlight) - **Dafydd**
+19. `s-today` Refinements along the way (DevTest in, Sandbox out, Release Please -> CalVer) - **Gordon**
+20. `s16b` By the numbers - **Gordon**
+21. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
+22. `s18` Links - **Anyone**
+23. `s-thanks` Thank You (template close, royal blue) - **nobody assigned**
 
 The old `s00b` "Who we are" slide was folded into the title slide when the template's
 three-speaker title layout arrived. Former slides folded away in the earlier trim: `s06`

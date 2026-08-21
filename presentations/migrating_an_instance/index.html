@@ -123,6 +123,47 @@ body {
   color: var(--c-text-muted);
 }
 
+/* ---------- speaker overlay (press s) ----------
+   Who has the room on this slide, read off data-speaker on each section. Off by
+   default: it is a rehearsal aid, not deck content, and leaving it on would put it
+   in the Keynote capture. Slides with nobody assigned say so rather than silently
+   inheriting the previous name. Lives inside #stage, like the counter and the
+   timeline, so it scales with everything else. Top-right, not top-left like the
+   training deck's: the template's corner arrow owns the top-left of the title and
+   close slides, and the gutter above the 96px padding is clear everywhere else. */
+#speaker {
+  position: absolute;
+  right: var(--slide-pad);
+  top: var(--sp-3);
+  z-index: 5;
+  display: none;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: 999px;
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-border);
+  font-family: var(--f-mono);
+  font-size: var(--fs-chip);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+#speaker.on { display: flex; }
+#speaker .sp-dot {
+  width: var(--sp-2);
+  height: var(--sp-2);
+  border-radius: var(--radius-sm);
+  background: var(--sp, var(--c-text-muted));
+  flex: none;
+}
+#speaker .sp-who { color: var(--sp, var(--c-text-muted)); }
+#speaker .sp-role { color: var(--c-text-muted); letter-spacing: 0.1em; text-transform: none; }
+#speaker[data-who="Dafydd"] { --sp: var(--c-accent); }
+#speaker[data-who="Joseph"] { --sp: var(--c-code-str); }
+#speaker[data-who="Gordon"] { --sp: var(--c-warn); }
+#speaker[data-who="All"],
+#speaker[data-who="Anyone"] { --sp: var(--c-text); }
+
 /* persistent story timeline - Nov 2025 to present day, driven by data-when */
 #timeline {
   position: absolute;
@@ -717,7 +758,7 @@ body.presenter #viewport { display: none; }
 
     <!-- ============================ S00 - Title ============================ -->
     <!-- Template session-title layout (template.key, three-speaker variant). -->
-    <section class="slide" id="s00" aria-label="Title" data-when="2025-11">
+    <section class="slide" id="s00" aria-label="Title" data-speaker="All" data-speaker-note="intro" data-when="2025-11">
       <div class="s00-head">
         <h1 class="hero">From Clicks to Code</h1>
         <p class="hero-sub">Migrating Jamf Pro to Terraform at Lloyds Banking Group</p>
@@ -767,7 +808,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S01 - Context ============================ -->
-    <section class="slide" id="s01" aria-label="Context, requirements, constraints" data-when="2025-11">
+    <section class="slide" id="s01" aria-label="Context, requirements, constraints" data-speaker="All" data-when="2025-11">
       <h1 class="slide-title">Context, requirements, constraints</h1>
       <p class="pipeline-label caption muted">No precedent to follow - nobody had migrated a live, in-use Jamf Pro estate to Terraform at this scale before, let alone inside a bank.</p>
       <div class="pipeline-band card">
@@ -805,7 +846,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S02 - Who touches Jamf Pro ============================ -->
-    <section class="slide" id="s02" aria-label="Who touches Jamf Pro" data-when="2025-11">
+    <section class="slide" id="s02" aria-label="Who touches Jamf Pro" data-speaker="Dafydd" data-when="2025-11">
       <h1 class="slide-title">Who touches Jamf Pro</h1>
       <div class="teams">
         <div class="card team">
@@ -837,7 +878,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S03 - Objectives ============================ -->
-    <section class="slide" id="s03" aria-label="Migration objectives and design decisions" data-when="2025-11">
+    <section class="slide" id="s03" aria-label="Migration objectives and design decisions" data-speaker="Dafydd" data-when="2025-11">
       <h1 class="slide-title">Migration objectives and design decisions</h1>
       <div class="obj-groups">
         <div class="card obj-group">
@@ -865,7 +906,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S04 - Ideas rejected up front ============================ -->
-    <section class="slide" id="s04" aria-label="Ideas rejected, and why" data-when="2025-11">
+    <section class="slide" id="s04" aria-label="Ideas rejected, and why" data-speaker="Joseph" data-when="2025-11">
       <h1 class="slide-title">Ideas rejected, and why</h1>
       <div class="rejects">
         <div class="reject">
@@ -898,7 +939,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S05 - Instance migration order ============================ -->
-    <section class="slide" id="s05" aria-label="Instance migration order" data-when="2025-11">
+    <section class="slide" id="s05" aria-label="Instance migration order" data-speaker="Joseph" data-when="2025-11">
       <h1 class="slide-title">Instance migration order</h1>
       <p class="lead">Staging and production had already drifted apart long before migration started - by November 2025 the two instances were no longer aligned.</p>
       <div class="options">
@@ -929,7 +970,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S07 - Instance prep ============================ -->
-    <section class="slide" id="s07" aria-label="Instance prep" data-when="2025-11">
+    <section class="slide" id="s07" aria-label="Instance prep" data-speaker="Joseph" data-when="2025-11">
       <h1 class="slide-title">Instance prep</h1>
       <ul class="checklist">
         <li><span class="check" aria-hidden="true"></span><span>Big tidy-up: used PRUNE to export JSON of every unused resource, then removed them with a bespoke tool - <code class="inline">jamf-resource-deleter</code> - which backs each resource up to JSON before deleting it, with a restore path if anything was needed back.</span></li>
@@ -945,7 +986,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ Singletons first ============================ -->
-    <section class="slide" id="s-singletons" aria-label="Singletons first" data-when="2025-11">
+    <section class="slide" id="s-singletons" aria-label="Singletons first" data-speaker="Gordon" data-when="2025-11">
       <h1 class="slide-title">Singletons first</h1>
       <div class="s-single-grid">
         <div>
@@ -983,7 +1024,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ Getting past Sentinel ============================ -->
-    <section class="slide" id="s-sentinel" aria-label="Getting past Sentinel" data-when="2025-11:2026-01">
+    <section class="slide" id="s-sentinel" aria-label="Getting past Sentinel" data-speaker="Gordon" data-when="2025-11:2026-01">
       <h1 class="slide-title">Getting past Sentinel</h1>
       <p class="lead">At LBG, every Terraform run - across the bank's entire public cloud estate - passes through Sentinel policy checks before it can apply. One of those policies bans <code class="inline">import</code> blocks outright, because importing lets a workspace adopt resources someone else already manages.</p>
       <ol class="gates gates-3">
@@ -1013,7 +1054,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S10 - Resource sequencing ============================ -->
-    <section class="slide" id="s10" aria-label="Resource sequencing" data-when="2025-12:2026-01">
+    <section class="slide" id="s10" aria-label="Resource sequencing" data-speaker="Dafydd" data-when="2025-12:2026-01">
       <h1 class="slide-title">Resource sequencing
         <span class="todo">TODO (Gordon Deacon): real resource-type names per band</span></h1>
       <p class="s10-intro">One resource type at a time, end to end in production - not one instance at a time. The order came from the matrix: a group-built spreadsheet of every resource type and its dependencies.</p>
@@ -1050,7 +1091,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S08 - Migration wave workflow ============================ -->
-    <section class="slide" id="s08" aria-label="Migration wave workflow" data-when="2025-12:2026-01">
+    <section class="slide" id="s08" aria-label="Migration wave workflow" data-speaker="Dafydd" data-when="2025-12:2026-01">
       <h1 class="slide-title">Migration wave workflow</h1>
       <ol class="stepper">
         <li class="card step">
@@ -1093,7 +1134,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S11 - Tools and helpers ============================ -->
-    <section class="slide" id="s11" aria-label="Tools and helpers" data-when="2025-12:2026-01">
+    <section class="slide" id="s11" aria-label="Tools and helpers" data-speaker="Gordon" data-when="2025-12:2026-01">
       <h1 class="slide-title">Tools and helpers</h1>
       <div class="s11-grid">
         <svg class="s11-svg" viewBox="0 0 560 740" aria-label="Import pipeline from Python SDK to Terraform import">
@@ -1139,7 +1180,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S12 - for_each ============================ -->
-    <section class="slide" id="s12" aria-label="Dynamic creation with for_each" data-when="2026-02:2026-03">
+    <section class="slide" id="s12" aria-label="Dynamic creation with for_each" data-speaker="Gordon" data-when="2026-02:2026-03">
       <h1 class="slide-title">Dynamic creation with <span class="mono">for_each</span>
         <span class="todo">TODO: paste sanitised real HCL</span></h1>
       <div class="compare">
@@ -1191,7 +1232,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S13 - for_each exceptions ============================ -->
-    <section class="slide" id="s13" aria-label="for_each exceptions" data-when="2026-02:2026-03">
+    <section class="slide" id="s13" aria-label="for_each exceptions" data-speaker="Joseph" data-when="2026-02:2026-03">
       <h1 class="slide-title"><span class="mono">for_each</span> exceptions</h1>
       <p class="lead">The parameter-map pattern is a default, not dogma.</p>
       <div class="exceptions">
@@ -1217,7 +1258,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S14 - Validating a migration ============================ -->
-    <section class="slide" id="s14" aria-label="Validating a migration" data-when="2026-02:2026-03">
+    <section class="slide" id="s14" aria-label="Validating a migration" data-speaker="Joseph" data-when="2026-02:2026-03">
       <h1 class="slide-title">Validating a migration</h1>
       <div class="card terminal">
         <div class="term-head" aria-hidden="true">
@@ -1252,7 +1293,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ Growing pains ============================ -->
-    <section class="slide" id="s-pivot" aria-label="Growing pains" data-when="2026-03">
+    <section class="slide" id="s-pivot" aria-label="Growing pains" data-speaker="Joseph" data-when="2026-03">
       <h1 class="slide-title">Growing pains</h1>
       <p class="lead">By March, one directory - <code class="inline">terraform/jamfpro</code> - served every instance, and instance-specific behaviour hung off conditionals keyed on the FQDN.</p>
       <pre class="code code-narrow"><span class="tk-kw">locals</span> {
@@ -1272,7 +1313,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ The module structure ============================ -->
-    <section class="slide" id="s15b" aria-label="The module structure" data-when="2026-03">
+    <section class="slide" id="s15b" aria-label="The module structure" data-speaker="Dafydd" data-when="2026-03">
       <h1 class="slide-title">The module structure</h1>
       <div class="s15b-grid">
         <pre class="code">terraform/
@@ -1310,7 +1351,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ Rebuilding staging ============================ -->
-    <section class="slide" id="s-staging" aria-label="Rebuilding staging" data-when="2026-04:2026-05">
+    <section class="slide" id="s-staging" aria-label="Rebuilding staging" data-speaker="Dafydd" data-when="2026-04:2026-05">
       <h1 class="slide-title">Rebuilding staging</h1>
       <p class="lead">Production was fully code. Staging was still years of drift - importing that drift would only have enshrined it. So it was not imported at all.</p>
       <ol class="gates gates-3">
@@ -1343,7 +1384,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ Refinements along the way ============================ -->
-    <section class="slide" id="s-today" aria-label="Refinements along the way" data-when="2026-06:2026-07">
+    <section class="slide" id="s-today" aria-label="Refinements along the way" data-speaker="Gordon" data-when="2026-06:2026-07">
       <h1 class="slide-title">Refinements along the way</h1>
       <div class="pipeline-band card">
         <p class="pipeline-label caption muted">Route to live, today</p>
@@ -1384,7 +1425,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S16b - By the numbers ============================ -->
-    <section class="slide" id="s16b" aria-label="By the numbers" data-when="2026-07">
+    <section class="slide" id="s16b" aria-label="By the numbers" data-speaker="Gordon" data-when="2026-07">
       <h1 class="slide-title">By the numbers</h1>
       <div class="stats">
         <div class="card stat">
@@ -1419,7 +1460,7 @@ body.presenter #viewport { display: none; }
 
     <!-- ============================ S17 - Questions ============================ -->
     <!-- Template close slide: navy stage, outline + solid lime words, corner arrow. -->
-    <section class="slide slide-navy" id="s17" aria-label="Questions" data-when="2026-07">
+    <section class="slide slide-navy" id="s17" aria-label="Questions" data-speaker="Anyone" data-speaker-note="questions" data-when="2026-07">
       <svg class="corner-arrow" viewBox="0 0 420 360" aria-hidden="true">
         <line class="arrow-shaft" x1="-40" y1="-80" x2="290" y2="238"/>
         <path class="arrow-fill" d="M305 30 h55 v292 h-295 v-55 h240 z"/>
@@ -1437,7 +1478,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S18 - Links ============================ -->
-    <section class="slide slide-centred" id="s18" aria-label="Links" data-when="2026-07">
+    <section class="slide slide-centred" id="s18" aria-label="Links" data-speaker="Anyone" data-when="2026-07">
       <h1 class="slide-title">Links</h1>
       <div class="closing-links">
         <span>Provider: deploymenttheory/jamfpro</span>
@@ -1469,6 +1510,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <div id="counter" aria-hidden="true"></div>
+    <div id="speaker" aria-hidden="true"><i class="sp-dot"></i><span class="sp-who"></span><span class="sp-role"></span></div>
     <div id="timeline" aria-hidden="true">
       <span class="tl-cell"><span class="tl-label">Nov 25</span></span>
       <span class="tl-cell"><span class="tl-label">Dec</span></span>
@@ -1514,6 +1556,9 @@ body.presenter #viewport { display: none; }
   var stage = document.getElementById('stage');
   var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
   var counter = document.getElementById('counter');
+  var speaker = document.getElementById('speaker');
+  var speakerWho = speaker.querySelector('.sp-who');
+  var speakerRole = speaker.querySelector('.sp-role');
   var idx = -1;
   if (qs.get('reader') === '1') document.body.classList.add('reader');
 
@@ -1553,6 +1598,16 @@ body.presenter #viewport { display: none; }
     try { localStorage.setItem('jnuc-deck-sync', JSON.stringify({ idx: i, t: Date.now() })); } catch (e) {}
   }
 
+  // Rehearsal aid - who has the room on this slide, per data-speaker. Unassigned
+  // slides say so rather than carrying the previous slide's name over.
+  function renderSpeaker() {
+    var who = slides[idx].getAttribute('data-speaker') || '';
+    var role = slides[idx].getAttribute('data-speaker-note') || '';
+    speaker.setAttribute('data-who', who);
+    speakerWho.textContent = who || 'No speaker assigned';
+    speakerRole.textContent = role ? '\u00b7 ' + role : '';
+  }
+
   function renderCounter() {
     counter.textContent = String(idx + 1).padStart(2, '0') + ' / ' + slides.length +
       (document.body.classList.contains('reader') ? ' · reader' : '');
@@ -1570,6 +1625,7 @@ body.presenter #viewport { display: none; }
     s.classList.add('active');
     s.removeAttribute('aria-hidden');
     renderCounter();
+    renderSpeaker();
     updateTimeline(i);
     if (updateHash !== false && '#' + s.id !== location.hash) {
       history.replaceState(null, '', '#' + s.id);
@@ -1647,6 +1703,11 @@ body.presenter #viewport { display: none; }
         e.preventDefault();
         document.body.classList.toggle('reader');
         renderCounter();
+        break;
+      case 's':
+      case 'S':
+        e.preventDefault();
+        speaker.classList.toggle('on');
         break;
     }
   });
