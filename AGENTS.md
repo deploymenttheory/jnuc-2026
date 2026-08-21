@@ -197,7 +197,7 @@ presents it, held in the slide's `data-speaker` attribute and surfaced by the sp
 overlay - keep the two in step when slides move.
 
 1. `s00` Title (template session-title layout with the three speaker cards) - **All (intros)**
-2. `s01` Context, requirements, constraints (estate at the start: Sandbox / Staging / Production, parity notes) - **All**
+2. `s01` Context, requirements, constraints (estate at the start: Sandbox / Staging / Production, parity notes) - **Dafydd**
 3. `s02` Who touches Jamf Pro - **Dafydd**
 4. `s03` Migration objectives and design decisions - **Dafydd**
 5. `s04` Ideas rejected, and why (3 architectural rejects; the other 2 moved into the story) - **Joseph**
