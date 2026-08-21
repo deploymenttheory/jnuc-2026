@@ -300,7 +300,7 @@ Slide map (after the template adoption and the merge with Dafydd's Aug 2026 edit
 title (template three-speaker layout, LBG logo in the template's customer-logo slot, stats
 row kept), `#2` "Where we are today" (the old half-speakers slide kept its real content -
 the estate statecards, centred and enlarged - when the speakers moved to `#1`), `#3` goals,
-`#4` execution, `#5` what worked, `#6` what didn't work, `#7` conditions, `#8` learning
+`#4` execution, `#5` what didn't work, `#6` what worked, `#7` conditions, `#8` learning
 priorities by role, `#9` pathway matrix, `#10` timeline, `#11` delivery, `#12` content
 types, `#13` case study, `#14` scope, `#15` onboarding, `#16` hiring, `#17` resources (with
 the QR rail - see below), `#18` Questions ("Questions? Your turn!", navy), `#19` Thank You,
@@ -330,7 +330,7 @@ Notable content slides:
   design, hackathons and homework, migration waves, handover), with two full-width arrows
   underneath showing the two-way trade: domain context in, GitOps practice back. Classes
   `.fanout`, `.hub`, `.brace`, `.spokes`/`.spoke`, `.flow`/`.flowrow`.
-- **What didn't work** (`#6`): a hero SVG chart across the top - bands mark teaching
+- **What didn't work** (`#5`): a hero SVG chart across the top - bands mark teaching
   sessions, a gradient line rises through each then decays through the gap that follows,
   trending down over six months. **That curve is illustrative, not measured**, and the slide
   says so in a `SHAPE IS ILLUSTRATIVE` label - keep that label if the chart is edited. Below
@@ -354,7 +354,7 @@ Notable content slides:
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an amber
 token for exactly that. Current chips (7): photos for Joseph and Gordon (`#1`); confirm which
 behaviours were observed, confirm the trained bar the team actually used, confirm real
-non-goals (all `#3`); verify the quote (`#6`); how long the dip lasts (`#7`); the 3-4 minute
+non-goals (all `#3`); verify the quote (`#5`); how long the dip lasts (`#7`); the 3-4 minute
 interview with Louise.
 
 **The four disciplines are a shared vocabulary.** `#9` (pathway matrix), `#10` (timeline) and
@@ -373,7 +373,7 @@ Two deliberate decisions on `#8` worth not undoing:
   are defined here by responsibility rather than by a completed body of knowledge.
 
 Known tension, left as-is on purpose: `#8` organises the curriculum by job grade, while `#9`
-organises it by stage of learning (Oriented, Safe Contributor, and so on) and `#6` reports
+organises it by stage of learning (Oriented, Safe Contributor, and so on) and `#5` reports
 that prior coding experience predicted success rather than seniority. The speaker owns that
 framing and chose to keep grades, since that is how the audience's own org charts read.
 
@@ -406,7 +406,7 @@ framing and chose to keep grades, since that is how the audience's own org chart
 - Mentoring is low in the small org (fewer people, one person often spans all three roles)
   and high in the large one (bigger team, plus the packaging and endpoint security teams).
 
-The figures on `#6` are measured, not estimated. They come from
+The figures on `#5` are measured, not estimated. They come from
 `github.com/deploymenttheory/terraform-training-jamfpro` at the time of writing: 214,645
 words across 51 markdown files in `training_materials/` (of which 20 Terraform modules sit in
 a `WIP/` folder) against 3,778 words across 6 files in `training_essentials/`, a ratio of

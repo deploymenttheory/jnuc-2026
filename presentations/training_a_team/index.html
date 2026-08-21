@@ -434,13 +434,6 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .flowrow.back .cap{color:var(--blue)}
 
 /* ---------- slide 5 ---------- */
-.icard{display:flex;gap:22px;align-items:flex-start;background:var(--surface);
-  border:1px solid var(--border);border-radius:12px;padding:26px 30px}
-.icard svg{width:32px;height:32px;flex:none;stroke:var(--green-bright);fill:none;stroke-width:1.6;margin-top:4px}
-.icard h3{font-size:25px;font-weight:700}
-.icard p{font-size:19px;line-height:1.42;color:var(--text-dimmer);margin-top:8px}
-
-/* ---------- slide 6 ---------- */
 .chartwrap{border:1px solid var(--border);border-radius:10px;background:var(--surface);
   padding:20px 26px 14px}
 .chartwrap .chd{display:flex;align-items:baseline;gap:16px;margin-bottom:6px}
@@ -459,6 +452,13 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .qstrip .qt{font-size:23px;line-height:1.3}
 .qstrip .at{font-family:var(--mono);font-size:16px;color:var(--muted);margin-left:auto;
   flex:none;text-align:right;line-height:1.9}
+
+/* ---------- slide 6 ---------- */
+.icard{display:flex;gap:22px;align-items:flex-start;background:var(--surface);
+  border:1px solid var(--border);border-radius:12px;padding:26px 30px}
+.icard svg{width:32px;height:32px;flex:none;stroke:var(--green-bright);fill:none;stroke-width:1.6;margin-top:4px}
+.icard h3{font-size:25px;font-weight:700}
+.icard p{font-size:19px;line-height:1.42;color:var(--text-dimmer);margin-top:8px}
 
 /* ---------- slide 7 ---------- */
 .herowrap{display:grid;grid-template-columns:640px 1fr;gap:40px;height:706px}
@@ -1020,46 +1020,9 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   </div>
 </section>
 
-<!-- ============ 5 · WHAT WORKED ============ -->
-<section class="slide" data-speaker="Joseph" data-notes="Git has a bad mental model for beginners - it's difficult to teach and learn because it conceals its work in a hidden directory and is typically used through a command line interface.">
-  <div class="eyebrow"><i class="dot"></i>05 &middot; Retrospective</div>
-  <h1>What worked</h1>
-  <div class="body grid g2" style="gap:20px">
-    <div class="icard">
-      <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M15.5 14.2c2.6.3 4.5 1.9 4.5 4.8"/></svg>
-
-      <div><h3>Paired programming</h3><p>Real-time knowledge transfer. Engineers learn faster from a peer than from documentation alone. Effective pairs that transfer knowledge well share a disciplined (one topic at a time, staged clarification, deliberately pushing context rather than only answering questions asked) approach.</p></div>
-    </div>
-    <div class="icard">
-      <svg viewBox="0 0 24 24"><path d="M10 3v6.5L4.5 19a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 9.5V3"/><path d="M8.5 3h7"/></svg>
-      <div><h3>Scenario-based hack labs</h3><p>Interactive, visual, hands-on learning beats abstract exercises, always. This is especially true when learning git for the first time. Engineers learn the 'why' immediately and hands on helps build a mental model quicker. Learning scenarios should be tied to real life team operations. Provide sequenced learning before open-ended practice.</p></div>
-    </div>
-    <div class="icard">
-      <svg viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="M3 12.5 12 17l9-4.5"/><path d="M3 17.5 12 22l9-4.5"/></svg>
-      <div><h3>Ability-grouped learning cohorts</h3><p>Grouping engineers at similar skill levels keeps pace right, no one gets bored or is left behind.</p></div>
-    </div>
-    <div class="icard">
-      <svg viewBox="0 0 24 24"><path d="M12 2.5 20 6v6c0 5-3.4 8.4-8 9.5-4.6-1.1-8-4.5-8-9.5V6l8-3.5Z"/><path d="m8.7 12 2.2 2.2 4.4-4.4"/></svg>
-      <div><h3>Safe lab environments</h3><p>Ensure that you have dedicated non-prod sandboxes for engineers to experiment freely and without fear of breaking production. Do not YOLO in prod!</p></div>
-    </div>
-    <div class="icard">
-      <svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="12.5" rx="1.5"/><path d="M9 20.5h6M12 16.5v4"/><path d="m9.5 8.5 3 2-3 2"/></svg>
-      <div><h3>Secondments to DevOps teams</h3><p>Team shadowing (even on other tf providers) gives real grounding and broad exposure.</p></div>
-    </div>
-    <div class="icard">
-      <svg viewBox="0 0 24 24"><path d="M5 3.5h9l5 5v12a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 4 20.5v-16A1 1 0 0 1 5 3.5Z"/><path d="M14 3.5v5h5"/><path d="M8 13h8M8 17h5"/></svg>
-      <div><h3>Good documentation</h3><p>Make use of the terraform registry for known good working examples for each resource. Read our and others open-sourced training and reference implementations for your own learning or to build your own syllabus</p></div>
-    </div>
-    <div class="icard">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.4l3.4 2"/></svg>
-      <div><h3>Patience. It takes time&hellip;..</h3><p>The sheer size of conceptual surface area that needs to be covered is large.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 6 · WHAT DIDN'T WORK ============ -->
+<!-- ============ 5 · WHAT DIDN'T WORK ============ -->
 <section class="slide" data-speaker="Gordon" data-notes="This is the most useful slide in the deck for anyone planning their own programme, so do not rush it. Walk the chart first. The shaded bands are the teaching sessions. Every one of them lifts confidence, and every gap that follows gives most of it back, which is why the line trends down across six months even though the teaching itself was good. Be clear that the shape is illustrative rather than measured. The important thing is the total: 144 hours is roughly four weeks of learning, which for this many topics is about right. It was not the volume that hurt us, it was the calendar. Spread four weeks of content across six months and people learn a bit, stop, let it settle, come back, and somewhere in there interest wanders off. Two of the gaps were genuinely outside our control: our internal developer platform was not ready and online when engineers needed it, so practice slipped weeks behind the teaching. That was not a delivery failure, but it cost us just the same. Then take the chips underneath. Mixed-ability cohorts: everyone in the room together and the pace was wrong at both ends. What actually predicted who would do well was prior coding experience, not Jamf Pro familiarity and not age, which surprised us. Theory before the hands-on: no mental model formed and the words went in one ear and out the other. Step-by-step tutorials: engineers completed them and retained almost nothing, because following instructions is not the same as solving a problem. A curriculum shaped like a reference manual: 214,645 words of genuinely good content, written to be complete rather than to be learned from. And effort stayed invisible until handover, because nothing in the programme showed who had genuinely put the hours in. The highlighted chip is the answer to all of it: 3,778 words, two modules and four labs, one of which hands you someone else's broken configuration with faults planted in it and asks you to find them. That is 57 times smaller, and we wrote it after direct feedback that the first was too heavy going and too theoretical. Both are public in the training repo, so people can judge for themselves.">
-  <div class="eyebrow red"><i class="dot"></i>06 &middot; Retrospective</div>
+  <div class="eyebrow red"><i class="dot"></i>05 &middot; Retrospective</div>
   <h1>What didn't work</h1>
   <div class="body" style="margin-top:30px">
     <div class="chartwrap">
@@ -1120,6 +1083,43 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
       <div class="qm">&ldquo;</div>
       <div class="qt">I understood the slides but had no idea what to actually do when I opened VS Code.</div>
       <div class="at">Engineer feedback<br><span class="todo">TODO: verify quote</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 · WHAT WORKED ============ -->
+<section class="slide" data-speaker="Joseph" data-notes="Git has a bad mental model for beginners - it's difficult to teach and learn because it conceals its work in a hidden directory and is typically used through a command line interface.">
+  <div class="eyebrow"><i class="dot"></i>06 &middot; Retrospective</div>
+  <h1>What worked</h1>
+  <div class="body grid g2" style="gap:20px">
+    <div class="icard">
+      <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M15.5 14.2c2.6.3 4.5 1.9 4.5 4.8"/></svg>
+
+      <div><h3>Paired programming</h3><p>Real-time knowledge transfer. Engineers learn faster from a peer than from documentation alone. Effective pairs that transfer knowledge well share a disciplined (one topic at a time, staged clarification, deliberately pushing context rather than only answering questions asked) approach.</p></div>
+    </div>
+    <div class="icard">
+      <svg viewBox="0 0 24 24"><path d="M10 3v6.5L4.5 19a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 9.5V3"/><path d="M8.5 3h7"/></svg>
+      <div><h3>Scenario-based hack labs</h3><p>Interactive, visual, hands-on learning beats abstract exercises, always. This is especially true when learning git for the first time. Engineers learn the 'why' immediately and hands on helps build a mental model quicker. Learning scenarios should be tied to real life team operations. Provide sequenced learning before open-ended practice.</p></div>
+    </div>
+    <div class="icard">
+      <svg viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="M3 12.5 12 17l9-4.5"/><path d="M3 17.5 12 22l9-4.5"/></svg>
+      <div><h3>Ability-grouped learning cohorts</h3><p>Grouping engineers at similar skill levels keeps pace right, no one gets bored or is left behind.</p></div>
+    </div>
+    <div class="icard">
+      <svg viewBox="0 0 24 24"><path d="M12 2.5 20 6v6c0 5-3.4 8.4-8 9.5-4.6-1.1-8-4.5-8-9.5V6l8-3.5Z"/><path d="m8.7 12 2.2 2.2 4.4-4.4"/></svg>
+      <div><h3>Safe lab environments</h3><p>Ensure that you have dedicated non-prod sandboxes for engineers to experiment freely and without fear of breaking production. Do not YOLO in prod!</p></div>
+    </div>
+    <div class="icard">
+      <svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="12.5" rx="1.5"/><path d="M9 20.5h6M12 16.5v4"/><path d="m9.5 8.5 3 2-3 2"/></svg>
+      <div><h3>Secondments to DevOps teams</h3><p>Team shadowing (even on other tf providers) gives real grounding and broad exposure.</p></div>
+    </div>
+    <div class="icard">
+      <svg viewBox="0 0 24 24"><path d="M5 3.5h9l5 5v12a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 4 20.5v-16A1 1 0 0 1 5 3.5Z"/><path d="M14 3.5v5h5"/><path d="M8 13h8M8 17h5"/></svg>
+      <div><h3>Good documentation</h3><p>Make use of the terraform registry for known good working examples for each resource. Read our and others open-sourced training and reference implementations for your own learning or to build your own syllabus</p></div>
+    </div>
+    <div class="icard">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.4l3.4 2"/></svg>
+      <div><h3>Patience. It takes time&hellip;..</h3><p>The sheer size of conceptual surface area that needs to be covered is large.</p></div>
     </div>
   </div>
 </section>
