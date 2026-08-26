@@ -292,6 +292,7 @@ code.inline {
 .dg-label { font-family: var(--f-mono); font-size: var(--fs-caption); fill: var(--c-text); }
 .dg-edge  { stroke: var(--c-line); stroke-width: var(--bw-3); fill: none; }
 .dg-ix    { fill: var(--c-accent); }
+.dg-eg    { font-family: var(--f-mono); font-size: var(--fs-chip); fill: var(--c-text-muted); }
 
 /* dashed shared bullets (tools, topology) */
 .dash-bullets { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); }
@@ -970,7 +971,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S07 - Instance prep ============================ -->
-    <section class="slide" id="s07" aria-label="Instance prep" data-speaker="Joseph" data-when="2025-11">
+    <section class="slide" id="s07" aria-label="Instance prep" data-speaker="Gordon" data-when="2025-11">
       <h1 class="slide-title">Instance prep</h1>
       <ul class="checklist">
         <li><span class="check" aria-hidden="true"></span><span>Big tidy-up: used PRUNE to export JSON of every unused resource, then removed them with a bespoke tool - <code class="inline">jamf-resource-deleter</code> - which backs each resource up to JSON before deleting it, with a restore path if anything was needed back.</span></li>
@@ -1024,8 +1025,8 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ Getting past Sentinel ============================ -->
-    <section class="slide" id="s-sentinel" aria-label="Getting past Sentinel" data-speaker="Gordon" data-when="2025-11:2026-01">
-      <h1 class="slide-title">Getting past Sentinel</h1>
+    <section class="slide" id="s-sentinel" aria-label="Guardrails you don't own" data-speaker="Gordon" data-when="2025-11:2026-01">
+      <h1 class="slide-title">Guardrails you don't own</h1>
       <p class="lead">At LBG, every Terraform run - across the bank's entire public cloud estate - passes through Sentinel policy checks before it can apply. One of those policies bans <code class="inline">import</code> blocks outright, because importing lets a workspace adopt resources someone else already manages.</p>
       <ol class="gates gates-3">
         <li class="card gate gate-final">
@@ -1055,8 +1056,7 @@ body.presenter #viewport { display: none; }
 
     <!-- ============================ S10 - Resource sequencing ============================ -->
     <section class="slide" id="s10" aria-label="Resource sequencing" data-speaker="Dafydd" data-when="2025-12:2026-01">
-      <h1 class="slide-title">Resource sequencing
-        <span class="todo">TODO (Gordon Deacon): real resource-type names per band</span></h1>
+      <h1 class="slide-title">Resource sequencing</h1>
       <p class="s10-intro">One resource type at a time, end to end in production - not one instance at a time. The order came from the matrix: a group-built spreadsheet of every resource type and its dependencies.</p>
       <svg class="s10-svg" viewBox="0 0 1728 720" aria-label="Four migration tiers with dependency arrows flowing downward into the profiles and policies band">
         <defs>
@@ -1066,12 +1066,16 @@ body.presenter #viewport { display: none; }
         </defs>
         <rect class="dg-box band-1" x="1" y="1" width="1726" height="140" rx="12"/>
         <text class="dg-label" x="40" y="79"><tspan class="dg-ix">1</tspan><tspan dx="18">Singletons</tspan></text>
+        <text class="dg-eg" x="1688" y="79" text-anchor="end">client check-in · inventory collection · activation code</text>
         <rect class="dg-box band-2" x="1" y="191" width="1726" height="140" rx="12"/>
         <text class="dg-label" x="40" y="269"><tspan class="dg-ix">2</tspan><tspan dx="18">Resources without dependencies</tspan></text>
+        <text class="dg-eg" x="1688" y="269" text-anchor="end">scripts · categories · departments</text>
         <rect class="dg-box band-3" x="1" y="381" width="1726" height="140" rx="12"/>
         <text class="dg-label" x="40" y="459"><tspan class="dg-ix">3</tspan><tspan dx="18">Resources that depended on those</tspan></text>
+        <text class="dg-eg" x="1688" y="459" text-anchor="end">smart groups · advanced searches · extension attributes</text>
         <rect class="dg-box band-5" x="1" y="571" width="1726" height="140" rx="12"/>
         <text class="dg-label" x="40" y="649"><tspan class="dg-ix">4</tspan><tspan dx="18">Larger dependency resources - profiles and policies</tspan></text>
+        <text class="dg-eg" x="1688" y="649" text-anchor="end">configuration profiles · policies</text>
         <g marker-end="url(#s10-ah)">
           <line class="dg-edge" x1="480" y1="148" x2="480" y2="182"/>
           <line class="dg-edge" x1="864" y1="148" x2="864" y2="182"/>
@@ -1085,7 +1089,7 @@ body.presenter #viewport { display: none; }
         </g>
       </svg>
       <aside class="notes">
-        <p>The matrix is a spreadsheet the team built together. Risk scales with dependency fan-in; policies sit on top of everything, so they close the migration.</p>
+        <p>The matrix is a spreadsheet the team built together. Risk scales with dependency fan-in: singletons carry none, scripts and categories and departments stand alone, smart groups and advanced searches and extension attributes sit on top of those, and profiles and policies sit on top of everything - so they close the migration.</p>
         <p>Also considered migrating instance-by-instance - rejected in favour of one resource type at a time, end to end.</p>
       </aside>
     </section>
@@ -1167,8 +1171,7 @@ body.presenter #viewport { display: none; }
           <li>Each migration candidate got a script that pulled live config and emitted a structured map, shaped for a Terraform <code class="inline">local</code> - duplicates and all.</li>
           <li>Map pasted into a <code class="inline">local</code>; a single resource block with <code class="inline">for_each</code>, conditionals and dynamic blocks loops over it to create/import every instance of that type.</li>
           <li>Regex mop-up pass to tidy the generated output.</li>
-          <li>Rejected <code class="inline">terraform plan -generate-config-out</code>: it emits one HCL block per resource; we wanted one block per resource type driven by data.
-            <span class="todo">TODO Q9: confirm truncated sentence</span></li>
+          <li>Rejected <code class="inline">terraform plan -generate-config-out</code>: it emits one HCL block per resource; we wanted one block per resource type driven by data.</li>
           <li>AI-assisted validation of configuration and dependency links - mostly Copilot CLI.</li>
         </ul>
       </div>
@@ -1180,44 +1183,44 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S12 - for_each ============================ -->
-    <section class="slide" id="s12" aria-label="Dynamic creation with for_each" data-speaker="Gordon" data-when="2026-02:2026-03">
-      <h1 class="slide-title">Dynamic creation with <span class="mono">for_each</span>
-        <span class="todo">TODO: paste sanitised real HCL</span></h1>
+    <section class="slide" id="s12" aria-label="Dynamic creation with for_each" data-speaker="Joseph" data-when="2026-02:2026-03">
+      <h1 class="slide-title">Dynamic creation with <span class="mono">for_each</span></h1>
       <div class="compare">
         <div class="panel">
           <h2 class="panel-title">generate-config-out style</h2>
-          <pre class="code"><span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_script"</span> <span class="tk-str">"homebrew"</span> {
-  name        = <span class="tk-str">"Install Homebrew"</span>
-  category_id = <span class="tk-num">9</span>
-  <span class="tk-cm"># ... a dozen more attributes</span>
+          <pre class="code"><span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_category"</span> <span class="tk-str">"category_1"</span> {
+  name = <span class="tk-str">"Category 1"</span>
 }
 
-<span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_script"</span> <span class="tk-str">"homebrew_intel"</span> {
-  name        = <span class="tk-str">"Install Homebrew (Intel)"</span>
-  category_id = <span class="tk-num">9</span>
-  <span class="tk-cm"># ... a dozen more attributes</span>
+<span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_category"</span> <span class="tk-str">"category_2"</span> {
+  name = <span class="tk-str">"Category 2"</span>
 }
 
-<span class="tk-cm"># one block per script, for every script</span></pre>
+<span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_category"</span> <span class="tk-str">"category_3"</span> {
+  name = <span class="tk-str">"Category 3"</span>
+}
+
+<span class="tk-cm"># one block per category, for every category</span></pre>
         </div>
         <div class="panel panel-ours">
           <h2 class="panel-title">Ours, after the passes</h2>
           <pre class="code"><span class="tk-kw">locals</span> {
-  scripts = {
-    <span class="tk-str">"Install Homebrew"</span>         = <span class="tk-str">"Engineering"</span>
-    <span class="tk-str">"Install Homebrew (Intel)"</span> = <span class="tk-str">"Engineering"</span>
+  categories = [
+    <span class="tk-str">"Category 1"</span>,
+    <span class="tk-str">"Category 2"</span>,
+    <span class="tk-str">"Category 3"</span>,
     <span class="tk-cm"># BAU change = append one line here</span>
-  }
+  ]
 }
 
-<span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_script"</span> <span class="tk-str">"managed"</span> {
-  <span class="tk-kw">for_each</span>    = local.scripts
-  name        = each.key
-  category_id = local.category_ids[each.value]
+<span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_category"</span> <span class="tk-str">"example"</span> {
+  <span class="tk-kw">for_each</span> = toset(local.categories)
+
+  name = each.value
 }</pre>
         </div>
       </div>
-      <p class="takeaway">Adding script number two hundred is a one-line diff. Reviews read the data, not the boilerplate.</p>
+      <p class="takeaway">Adding category number two hundred is a one-line diff. Reviews read the data, not the boilerplate.</p>
       <p class="slide-note">The refinement passes, repeated until zero diff - Gordon imported verbosely; Joseph deduplicated, named the IDs and shared the locals, through February and March.</p>
       <details class="reader-extra">
         <summary>More detail</summary>
@@ -1226,7 +1229,7 @@ body.presenter #viewport { display: none; }
         </div>
       </details>
       <aside class="notes">
-        <p>The technical centrepiece. One block per type; adding script two hundred is a one-line diff; reviews diff data, not boilerplate.</p>
+        <p>The technical centrepiece. One block per type; adding category two hundred is a one-line diff; reviews diff data, not boilerplate.</p>
         <p>Division of labour: Gordon imported verbosely, Joseph refined in passes - dedup, name the IDs, share the locals - with a zero-diff plan after every pass, through February and March.</p>
       </aside>
     </section>
@@ -1292,10 +1295,44 @@ body.presenter #viewport { display: none; }
       </aside>
     </section>
 
+    <!-- ============================ Rebuilding staging ============================ -->
+    <section class="slide" id="s-staging" aria-label="Rebuilding staging" data-speaker="Dafydd" data-when="2026-04:2026-05">
+      <h1 class="slide-title">Rebuilding staging</h1>
+      <p class="lead">Production was fully code. Staging was still years of drift - importing that drift would only have enshrined it. So it was not imported at all.</p>
+      <ol class="gates gates-3">
+        <li class="card gate gate-final">
+          <span class="gate-num">1</span>
+          <p><strong>Wipe.</strong> Staging cleared out, keeping only the essentials - APNS, cloud identity provider.</p>
+        </li>
+        <li class="card gate">
+          <span class="gate-num">2</span>
+          <p><strong>Apply.</strong> Production's configuration pointed at the empty instance.</p>
+        </li>
+        <li class="card gate gate-ok">
+          <span class="gate-num">3</span>
+          <p><strong>Iterate.</strong> Plenty of errors, pass after pass of refinement, until the run came back clean.</p>
+        </li>
+      </ol>
+      <p class="takeaway">Staging no longer claims parity with production - it inherits it, built from the same modules.
+        <span class="todo">TODO: confirm month (drives the timeline bar)</span></p>
+      <p class="slide-note">And this is what forced the module split. Once staging was a real environment again, we wanted to deploy there first - without the change automatically mirroring to production. The repo could not do that yet.</p>
+      <details class="reader-extra">
+        <summary>More detail</summary>
+        <div class="detail-body">
+          <p>The wipe kept the things a rebuild cannot recreate without touching the fleet - the APNS connection and the cloud identity provider integration. Everything else on the instance was recreated by pointing production's modules at it and iterating until the run came back clean.</p>
+        </div>
+      </details>
+      <aside class="notes">
+        <p>The highlight - slow down here.</p>
+        <p>Importing staging would have enshrined years of drift. So: wipe (keep APNS and the cloud IdP), apply production's modules, iterate through the errors until clean. Parity is now inherited, not claimed.</p>
+        <p>Set up the next two slides: rebuilding staging is what exposed the repo problem. A real staging environment is only useful if you can deploy to it first, and back then a change there mirrored straight to production.</p>
+      </aside>
+    </section>
+
     <!-- ============================ Growing pains ============================ -->
     <section class="slide" id="s-pivot" aria-label="Growing pains" data-speaker="Joseph" data-when="2026-03">
       <h1 class="slide-title">Growing pains</h1>
-      <p class="lead">By March, one directory - <code class="inline">terraform/jamfpro</code> - served every instance, and instance-specific behaviour hung off conditionals keyed on the FQDN.</p>
+      <p class="lead">Deploying to staging first meant telling one directory - <code class="inline">terraform/jamfpro</code> - to treat two instances differently. Instance-specific behaviour hung off conditionals keyed on the FQDN.</p>
       <pre class="code code-narrow"><span class="tk-kw">locals</span> {
   is_staging = can(regex(<span class="tk-str">"staging"</span>, var.jamfpro_fqdn))
 }
@@ -1307,7 +1344,7 @@ body.presenter #viewport { display: none; }
       <p class="statement">It got out of hand. The pivot: shared modules own the configuration; thin per-instance roots own only what genuinely differs.
         <span class="todo">TODO: real conditional example</span></p>
       <aside class="notes">
-        <p>The FQDN conditionals were everywhere by March - behaviour inferred from a URL.</p>
+        <p>The trigger was the staging rebuild: we wanted staging-first deploys without mirroring to production, and the only lever the repo had was an FQDN conditional. They were everywhere before long - deployment behaviour inferred from a URL.</p>
         <p>The pivot: modules own configuration, thin per-instance roots own only genuine differences.</p>
       </aside>
     </section>
@@ -1333,11 +1370,11 @@ body.presenter #viewport { display: none; }
         <ul class="dash-bullets">
           <li>Three shared modules hold the configuration - and its payloads: privilege-set JSON, <code class="inline">.mobileconfig</code> profiles, scripts, Self Service icons, descriptions.</li>
           <li>Each instance calls the modules from thin roots, plus a small <code class="inline">specific_to_here.tf</code> for genuine differences.</li>
-          <li>Every root maps one-to-one to an HCP Terraform workspace - three per instance, bounding the blast radius of any single run.</li>
+          <li>Every root maps one-to-one to an HCP Terraform workspace - three per instance, bounding the blast radius of any single run and holding plan times at a consistent four to six minutes.</li>
           <li>Divergence is visible, not hidden: staging-only profiles sit in the module as <code class="inline">profile_staging_only/</code>.</li>
         </ul>
       </div>
-      <p class="slide-note"><span class="todo">TODO: sandbox workspace layout</span> <span class="todo">TODO: plan-time figures</span></p>
+      <p class="slide-note">Sandbox has no workspace at all - it is local dev only, driven from the CLI. Plans on these workspaces run consistently in four to six minutes.</p>
       <details class="reader-extra">
         <summary>More detail</summary>
         <div class="detail-body">
@@ -1350,63 +1387,29 @@ body.presenter #viewport { display: none; }
       </aside>
     </section>
 
-    <!-- ============================ Rebuilding staging ============================ -->
-    <section class="slide" id="s-staging" aria-label="Rebuilding staging" data-speaker="Dafydd" data-when="2026-04:2026-05">
-      <h1 class="slide-title">Rebuilding staging</h1>
-      <p class="lead">Production was fully code. Staging was still years of drift - importing that drift would only have enshrined it. So it was not imported at all.</p>
-      <ol class="gates gates-3">
-        <li class="card gate gate-final">
-          <span class="gate-num">1</span>
-          <p><strong>Wipe.</strong> Staging cleared out, keeping only the essentials - APNS, cloud identity provider.</p>
-        </li>
-        <li class="card gate">
-          <span class="gate-num">2</span>
-          <p><strong>Apply.</strong> Production's configuration pointed at the empty instance.</p>
-        </li>
-        <li class="card gate gate-ok">
-          <span class="gate-num">3</span>
-          <p><strong>Iterate.</strong> Plenty of errors, pass after pass of refinement, until the run came back clean.</p>
-        </li>
-      </ol>
-      <p class="takeaway">Staging no longer claims parity with production - it inherits it, built from the same modules.
-        <span class="todo">TODO (Mac engineer): confirm kept-items and timing</span></p>
-      <p class="slide-note">This is also where the module split earned its keep - a lot was learned here about designing one repo to serve multiple environments cleanly.</p>
-      <details class="reader-extra">
-        <summary>More detail</summary>
-        <div class="detail-body">
-          <p>The wipe kept the things a rebuild cannot recreate without touching the fleet - the APNS connection and the cloud identity provider integration. Everything else on the instance was recreated by pointing production's modules at it and iterating until the run came back clean.</p>
-        </div>
-      </details>
-      <aside class="notes">
-        <p>The highlight - slow down here.</p>
-        <p>Importing staging would have enshrined years of drift. So: wipe (keep APNS and the cloud IdP), apply production's modules, iterate through the errors until clean. Parity is now inherited, not claimed.</p>
-      </aside>
-    </section>
-
     <!-- ============================ Refinements along the way ============================ -->
-    <section class="slide" id="s-today" aria-label="Refinements along the way" data-speaker="Gordon" data-when="2026-06:2026-07">
-      <h1 class="slide-title">Refinements along the way</h1>
+    <section class="slide" id="s-today" aria-label="The estate today" data-speaker="Gordon" data-when="2026-06:2026-07">
+      <h1 class="slide-title">The estate today</h1>
       <div class="pipeline-band card">
         <p class="pipeline-label caption muted">Route to live, today</p>
         <div class="pipeline">
-          <span class="pipe-node">DevTest</span>
+          <span class="pipe-node">DevTest<small>IdP and compliance, no change control</small></span>
           <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node">Staging</span>
+          <span class="pipe-node">Staging<small>mirrors production - the final gate</small></span>
           <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node">Production</span>
+          <span class="pipe-node">Production<small>the live estate</small></span>
           <span class="pipe-gap"></span>
-          <span class="pipe-node pipe-off">Sandbox - CLI-only</span>
+          <span class="pipe-node pipe-off">Sandbox - CLI-only<small>isolated - break it, reset, start again</small></span>
         </div>
       </div>
       <div class="evolution">
         <div class="card">
           <h2 class="evo-title">DevTest joins</h2>
-          <p class="caption muted">Brought in recently as the first stop on the route to live - a single CLI-triggered workspace.</p>
-          <span class="todo">TODO (Mac engineer): clarify instance roles</span>
+          <p class="caption muted">Brought in recently as the first stop on the route to live - a single CLI-triggered workspace. Under IdP and device compliance, but not change controlled: prove a change out here before it goes near staging.</p>
         </div>
         <div class="card">
           <h2 class="evo-title">Sandbox steps out</h2>
-          <p class="caption muted">Trialled inside the route to live, then removed and kept separate - now a CLI-only instance.</p>
+          <p class="caption muted">Trialled inside the route to live, then removed and kept separate - now a CLI-only instance with no workspace behind it, local dev only. Nothing here is safe, and that is the point: it is where new engineers meet Terraform, and where we have put leadership hands-on with it.</p>
         </div>
         <div class="card">
           <h2 class="evo-title">Release Please → CalVer</h2>
@@ -1420,7 +1423,8 @@ body.presenter #viewport { display: none; }
         </div>
       </details>
       <aside class="notes">
-        <p>The estate as it stands: DevTest joined recently with a single CLI workspace, sandbox stepped out to CLI-only, and Release Please gave way to calendar versioning - releases findable by date when a flood of tickets lands.</p>
+        <p>Walk the four tiers by role, not by name. Sandbox: isolated, no restrictions, CLI and GUI both open - break it, reset, start again; onboarding and leadership demos live here. DevTest: under IdP and device compliance but not change controlled - prove a change out fast. Staging: an exact replica, to the point that a device enrolled there is indistinguishable bar the MDM certificate - and it is only true because of the rebuild on the previous slide. Production: minimal downtime, because everything upstream has already done the work.</p>
+        <p>Then CalVer: we defaulted to SemVer like typical devs, but v1.64.3 tells you nothing about a Jamf Pro estate. A date does - roll back to the day the incidents were raised.</p>
       </aside>
     </section>
 
@@ -1430,7 +1434,7 @@ body.presenter #viewport { display: none; }
       <div class="stats">
         <div class="card stat">
           <span class="stat-num stat-num-sm">Apr 2025 → May 2026</span>
-          <span class="stat-label">provider development to v1.0.0</span>
+          <span class="stat-label">provider development to v1.0.0 and final handover</span>
         </div>
         <div class="card stat">
           <span class="stat-num">14+</span>
@@ -1454,7 +1458,8 @@ body.presenter #viewport { display: none; }
         </div>
       </div>
       <aside class="notes">
-        <p>April 2025 is the provider-development start; nothing was imported before November 2025. v1.0.0 landed May 2026.</p>
+        <p>Split the timeline or the room hears thirteen months of migration. April 2025 is the provider-development start; nothing was imported before November 2025. May 2026 is both v1.0.0 and the final handover, with the Mac engineering team working proficiently on their own.</p>
+        <p>Close on the handover, not the stats: approaching a thousand pull requests now, and none of the three of us are on that team any more. The estate is still moving. That is the real number on the slide.</p>
       </aside>
     </section>
 

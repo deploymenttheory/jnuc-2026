@@ -202,19 +202,19 @@ overlay - keep the two in step when slides move.
 4. `s03` Migration objectives and design decisions - **Dafydd**
 5. `s04` Ideas rejected, and why (3 architectural rejects; the other 2 moved into the story) - **Joseph**
 6. `s05` Instance migration order (prod first + read-only API client control) - **Joseph**
-7. `s07` Instance prep - **Joseph**
+7. `s07` Instance prep - **Gordon**
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
-9. `s-sentinel` Getting past Sentinel (blocked -> per-window exceptions -> standing exception) - **Gordon**
+9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception) - **Gordon**
 10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
 11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk) - **Dafydd**
 12. `s11` Tools and helpers (JamfPy -> script -> map -> for_each) - **Gordon**
-13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Gordon**
+13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Joseph**
 14. `s13` for_each exceptions (policies, dock items) - **Joseph**
 15. `s14` Validating a migration - **Joseph**
-16. `s-pivot` Growing pains (FQDN conditionals -> Mar 2026 module pivot) - **Joseph**
-17. `s15b` The module structure (module tree -> workspaces + workspace TODO chips) - **Dafydd**
-18. `s-staging` Rebuilding staging (the highlight) - **Dafydd**
-19. `s-today` Refinements along the way (DevTest in, Sandbox out, Release Please -> CalVer) - **Gordon**
+16. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused) - **Dafydd**
+17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals -> module pivot) - **Joseph**
+18. `s15b` The module structure (module tree -> workspaces) - **Dafydd**
+19. `s-today` The estate today (four-tier route to live + Release Please -> CalVer) - **Gordon**
 20. `s16b` By the numbers - **Gordon**
 21. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
 22. `s18` Links - **Anyone**
@@ -248,19 +248,32 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   raw IDs -> named locals like `local.category_ids["Name"]`, shared locals), zero-diff plan
   gating every pass. Gordon: scripts + verbose imports. Joseph: refinement passes.
 - **Bulk imports** Dec 2025 - Jan 2026; refinement through Feb - Mar 2026.
-- **Module pivot (Mar 2026):** one `terraform/jamfpro` dir with FQDN-keyed conditionals got
-  out of hand -> shared modules (`iam_main`, `profiles_policies_main`, `root_main`) + thin
+- **Sequencing bands:** 1 singletons (client check-in, inventory collection, activation code);
+  2 no dependencies (scripts, categories, departments); 3 dependent (smart groups, advanced
+  searches, extension attributes); 4 configuration profiles and policies. Confirmed by Gordon
+  Deacon, Aug 2026.
+- **Module pivot:** happened *after* the staging rebuild, and was caused by it - the team wanted
+  to deploy to staging first without the change mirroring straight to production, and the only
+  lever the repo had was an FQDN conditional. One `terraform/jamfpro` dir with FQDN-keyed
+  conditionals got out of hand -> shared modules (`iam_main`, `profiles_policies_main`, `root_main`) + thin
   per-instance roots (`prod/lbgstaging`, `prod/lbgbusiness`, each with `iam` /
   `profiles_policies` / `root`). Modules carry payloads (privilege-set JSON, .mobileconfig,
   scripts, icons, descriptions; `profile_staging_only/` for staging-only profiles).
 - **Workspaces:** 3 per instance (iam / profiles_policies / root) for staging and prod, for
-  blast radius. DevTest: 1 CLI workspace. Sandbox layout: TODO.
+  blast radius. DevTest: 1 CLI workspace. Sandbox: no workspace at all - local dev only, driven
+  from the CLI. Plans run consistently in 4-6 minutes. Confirmed by Gordon Deacon, Aug 2026.
 - **Staging migration:** not imported - nuked bar essentials (APNS, cloud IdP), then prod's
   configuration pointed at it and iterated through errors to a clean run. Presented as a
-  highlight of the talk.
+  highlight of the talk. Sequenced *before* the module pivot, which it caused. Kept-items
+  confirmed by Gordon Deacon, Aug 2026; the month is still open and drives the timeline bar.
+- **Route to live (today):** Sandbox (isolated, CLI and GUI, no restrictions - onboarding and
+  leadership hands-on; sits outside the route) -> DevTest (under IdP and device compliance, not
+  change controlled) -> Staging (exact replica of prod: IdP, device compliance, directory access
+  all mirror; a device enrolled there is indistinguishable bar the MDM certificate) ->
+  Production. Confirmed by Gordon Deacon, Aug 2026.
 - **CalVer:** started on Release Please; cadence unsustainable, tracking unclear; switched to
   calendar versioning much later, around the time DevTest arrived.
-- **Numbers:** Apr 2025 (provider development start) -> May 2026 (v1.0.0); 14+ contributors;
+- **Numbers:** Apr 2025 (provider development start) -> May 2026 (v1.0.0 and final handover); 14+ contributors;
   526+ PRs; 1,902 commits; 127 Terraform files; 19,000+ lines of HCL.
 - **for_each exceptions:** policies and dock items (payload complexity, readability).
 - **Rejected up front:** single workspace (blast radius / plan time, 500-1,500-5,000
@@ -272,17 +285,12 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
 | Slide | TODO | Owner |
 |---|---|---|
 | `s00` | Photos for Joseph and Gordon (add to `_shared/speakers.js`; Dafydd's is in) | Joseph |
-| `s10` | Real resource-type names per band | Gordon Deacon |
-| `s11` | Confirm generate-config-out rationale wording (old Q9) | Joseph |
-| `s12` | Sanitised real HCL | Joseph/Gordon |
-| `s-pivot` | Real FQDN-conditional example | Joseph/Gordon |
-| `s15b` | Sandbox workspace layout; plan-time figures | Joseph |
-| `s-staging` | Confirm kept-items and timing | Mac engineer |
-| `s-today` | Clarify instance roles (DevTest vs Sandbox) | Mac engineer |
+| `s-pivot` | Real FQDN-conditional example | Joseph |
+| `s-staging` | Confirm the month - drives the timeline bar | Gordon Deacon |
 | `s18` | URLs, contact, socials (Q12) | Joseph |
 
-Two chips still carry question numbers from the first build (`TODO Q9`, `TODO Q12`). Those
-resolve in `spec.md` §2.5 and §4. The old logo/brand-assets chip died when the template
+One chip still carries a question number from the first build (`TODO Q12`). It resolves in
+`spec.md` §4. The old logo/brand-assets chip died when the template
 arrived. Three earlier table rows (s02 support-team access model, s04 per-team-modules
 approval complexity, s07 more prep points) remain outstanding as content work but carry no
 chip in the deck; their context is in `spec.md` and the git history of this file.
