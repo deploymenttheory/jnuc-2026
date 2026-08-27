@@ -401,7 +401,7 @@ it up - either way it is on disk for a recovering session.
   a subgrid so the title row and both item rows share heights across all three panels;
   `#s01 .constraints-title` sits in accent display type; items are plain hairline-separated
   rows (the `card` class dropped from the six `<li>`s). Sandbox page deleted, index entry
-  retired to a `.done` line. PR #7.
+  retired to a `.done` line. PR #8.
 - **2026-08-27, process changed to one PR per instruction.** Joseph: every instruction goes
   to an agent that returns one PR; the orchestrator only merges, resolves conflicts, pushes
   and reports. This file rewritten accordingly.
