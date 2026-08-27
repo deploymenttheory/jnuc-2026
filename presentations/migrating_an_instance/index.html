@@ -225,6 +225,7 @@ body {
 }
 
 .slide-note { margin-top: var(--sp-4); color: var(--c-text-muted); font-size: var(--fs-caption); }
+.slide-sub { margin-bottom: var(--sp-3); color: var(--c-text-muted); font-size: var(--fs-body); line-height: var(--lh-body); max-width: 1560px; }
 
 .card {
   background: var(--c-surface);
@@ -537,10 +538,6 @@ body.reader .reader-extra {
 }
 .reject:last-child { border-bottom: none; }
 .reject-idea { display: flex; flex-direction: column; gap: var(--sp-1); align-items: flex-start; }
-.reject-idea s {
-  text-decoration-color: var(--c-danger);
-  text-decoration-thickness: var(--bw-2);
-}
 .reject-why { font-size: var(--fs-caption); color: var(--c-text-muted); }
 
 /* ============================ S05 option cards ============================ */
@@ -889,33 +886,34 @@ body.presenter #viewport { display: none; }
       </aside>
     </section>
 
-    <!-- ============================ S04 - Ideas rejected up front ============================ -->
-    <section class="slide" id="s04" aria-label="Ideas rejected, and why" data-speaker="Joseph" data-when="2025-11">
-      <h1 class="slide-title">Ideas rejected, and why</h1>
+    <!-- ============================ S04 - Ideas dropped during the migration ============================ -->
+    <section class="slide" id="s04" aria-label="Migration outcomes we considered and rejected" data-speaker="Joseph" data-when="2025-11">
+      <h1 class="slide-title">Migration outcomes we considered and rejected</h1>
+      <p class="slide-sub">We had a number of ideas that initially felt correct, but as we started to understand the implications they were dropped.</p>
       <div class="rejects">
         <div class="reject">
           <div class="card reject-idea">
             <span class="tag tag-rejected">Rejected</span>
-            <s>A single workspace for all resources</s>
+            <span>A single workspace for all resources</span>
           </div>
           <p class="reject-why">Blast radius and plan execution time. Guidance suggests roughly 500 resources per workspace; the estate holds 1,500+. At ~5,000, things break down.</p>
         </div>
         <div class="reject">
           <div class="card reject-idea">
             <span class="tag tag-rejected">Rejected</span>
-            <s>Per-team Terraform modules scoped to each team's resources</s>
+            <span>Per-team Terraform modules scoped to each team's resources</span>
           </div>
           <p class="reject-why">Every change needs Mac team approval regardless of which repo it lives in. Splitting by team would just mean chasing that same approval across several repos instead of one - one repo keeps every approval flowing through a single place.</p>
         </div>
         <div class="reject">
           <div class="card reject-idea">
             <span class="tag tag-rejected">Rejected</span>
-            <s>Managing everything with Terraform</s>
+            <span>Managing everything with Terraform</span>
           </div>
           <p class="reject-why">Static group membership stays unmanaged to protect the support experience - troubleshooting should not require a pull request.</p>
         </div>
       </div>
-      <p class="slide-note">Two more ideas fell later in the journey - they come up where they happened.</p>
+      <p class="slide-note">Two more were dropped later. They come up where they happened.</p>
       <aside class="notes">
         <p>Expect pushback on "not everything in Terraform" - defend it: troubleshooting must not require a pull request.</p>
         <p>Tease the closing line: two more ideas got dropped later, and they show up where they happened in the story.</p>
