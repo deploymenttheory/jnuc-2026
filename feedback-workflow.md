@@ -554,6 +554,16 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 10 (`#s10`) option C accepted - everything bigger, diagram reflowed.**
+  Joseph picked option C from the `s10-diagram-text` sandbox page: the tier labels move up
+  to `--fs-body` and the right-hand examples to `--fs-code`, both a step further than the
+  modest bump already shipping, and the four diagram bands grow from 140 to 156 user units
+  (viewBox 1728x720 to 1728x784) so the bigger text keeps the same breathing room and stays
+  clear of the timeline strip. The sandbox page did the band reflow with a DOM edit in its
+  `load` handler; the deck carries it as a direct edit of the SVG's band heights, y positions
+  and viewBox, so no script is needed. Speaker notes and `presenter.json` untouched - neither
+  mentions the diagram's text size - and the check prints OK. Sandbox page deleted, index
+  entry marked `.done`, `AGENTS.md`'s Sandbox section updated. PR #<PR_NUMBER>.
 - **2026-08-27, slide 6 (`#s05`) control note folded into path 03, sandbox options added.**
   Joseph asked for the annotation at the foot of the slide to go, its message to be condensed
   into option 3, and everything to expand into the space so the slide feels less busy. Applied

@@ -780,10 +780,11 @@ body.reader .reader-extra {
 .s10-svg .band-3 { fill: color-mix(in srgb, var(--c-accent) 18%, var(--c-surface)); }
 .s10-svg .band-4 { fill: color-mix(in srgb, var(--c-accent) 26%, var(--c-surface)); }
 .s10-svg .band-5 { fill: color-mix(in srgb, var(--c-accent) 34%, var(--c-surface)); stroke: var(--c-accent); }
-/* Diagram text bumped one step up the scale (tier labels and the right-hand examples
-   alike) - Joseph asked for the text in this diagram a little bigger. */
-#s10 .dg-label { font-size: var(--fs-code); }
-#s10 .dg-eg { font-size: var(--fs-caption); }
+/* Diagram text bumped further still - tier labels to body size, examples to code size -
+   with the four bands grown to match so the bigger text keeps the same breathing room.
+   Joseph accepted option C from the s10-diagram-text sandbox review. */
+#s10 .dg-label { font-size: var(--fs-body); }
+#s10 .dg-eg { font-size: var(--fs-code); }
 
 /* ============================ S11 ============================ */
 .s11-grid { display: grid; grid-template-columns: 560px 1fr; gap: var(--sp-5); align-items: start; }
@@ -1487,34 +1488,34 @@ body.presenter #viewport { display: none; }
     <section class="slide" id="s10" aria-label="Resource sequencing" data-speaker="Dafydd" data-when="2025-12:2026-01">
       <h1 class="slide-title">Resource sequencing</h1>
       <p class="s10-intro">One resource type at a time, end to end in production - not one instance at a time. The order came from the matrix: a group-built spreadsheet of every resource type and its dependencies.</p>
-      <svg class="s10-svg" viewBox="0 0 1728 720" aria-label="Four migration tiers with dependency arrows flowing downward into the profiles and policies band">
+      <svg class="s10-svg" viewBox="0 0 1728 784" aria-label="Four migration tiers with dependency arrows flowing downward into the profiles and policies band">
         <defs>
           <marker id="s10-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
             <path d="M0 0 L10 5 L0 10 z" fill="var(--c-line)"/>
           </marker>
         </defs>
-        <rect class="dg-box band-1" x="1" y="1" width="1726" height="140" rx="12"/>
-        <text class="dg-label" x="40" y="79"><tspan class="dg-ix">1</tspan><tspan dx="18">Singletons</tspan></text>
-        <text class="dg-eg" x="1688" y="79" text-anchor="end">client check-in · inventory collection · activation code</text>
-        <rect class="dg-box band-2" x="1" y="191" width="1726" height="140" rx="12"/>
-        <text class="dg-label" x="40" y="269"><tspan class="dg-ix">2</tspan><tspan dx="18">Resources without dependencies</tspan></text>
-        <text class="dg-eg" x="1688" y="269" text-anchor="end">scripts · categories · departments</text>
-        <rect class="dg-box band-3" x="1" y="381" width="1726" height="140" rx="12"/>
-        <text class="dg-label" x="40" y="459"><tspan class="dg-ix">3</tspan><tspan dx="18">Resources that depended on those</tspan></text>
-        <text class="dg-eg" x="1688" y="459" text-anchor="end">smart groups · advanced searches · extension attributes</text>
-        <rect class="dg-box band-5" x="1" y="571" width="1726" height="140" rx="12"/>
-        <text class="dg-label" x="40" y="649"><tspan class="dg-ix">4</tspan><tspan dx="18">Larger dependency resources - profiles and policies</tspan></text>
-        <text class="dg-eg" x="1688" y="649" text-anchor="end">configuration profiles · policies</text>
+        <rect class="dg-box band-1" x="1" y="1" width="1726" height="156" rx="12"/>
+        <text class="dg-label" x="40" y="88"><tspan class="dg-ix">1</tspan><tspan dx="18">Singletons</tspan></text>
+        <text class="dg-eg" x="1688" y="88" text-anchor="end">client check-in · inventory collection · activation code</text>
+        <rect class="dg-box band-2" x="1" y="207" width="1726" height="156" rx="12"/>
+        <text class="dg-label" x="40" y="294"><tspan class="dg-ix">2</tspan><tspan dx="18">Resources without dependencies</tspan></text>
+        <text class="dg-eg" x="1688" y="294" text-anchor="end">scripts · categories · departments</text>
+        <rect class="dg-box band-3" x="1" y="413" width="1726" height="156" rx="12"/>
+        <text class="dg-label" x="40" y="500"><tspan class="dg-ix">3</tspan><tspan dx="18">Resources that depended on those</tspan></text>
+        <text class="dg-eg" x="1688" y="500" text-anchor="end">smart groups · advanced searches · extension attributes</text>
+        <rect class="dg-box band-5" x="1" y="619" width="1726" height="156" rx="12"/>
+        <text class="dg-label" x="40" y="706"><tspan class="dg-ix">4</tspan><tspan dx="18">Larger dependency resources - profiles and policies</tspan></text>
+        <text class="dg-eg" x="1688" y="706" text-anchor="end">configuration profiles · policies</text>
         <g marker-end="url(#s10-ah)">
-          <line class="dg-edge" x1="480" y1="148" x2="480" y2="182"/>
-          <line class="dg-edge" x1="864" y1="148" x2="864" y2="182"/>
-          <line class="dg-edge" x1="1248" y1="148" x2="1248" y2="182"/>
-          <line class="dg-edge" x1="480" y1="338" x2="480" y2="372"/>
-          <line class="dg-edge" x1="864" y1="338" x2="864" y2="372"/>
-          <line class="dg-edge" x1="1248" y1="338" x2="1248" y2="372"/>
-          <line class="dg-edge" x1="480" y1="528" x2="480" y2="562"/>
-          <line class="dg-edge" x1="864" y1="528" x2="864" y2="562"/>
-          <line class="dg-edge" x1="1248" y1="528" x2="1248" y2="562"/>
+          <line class="dg-edge" x1="480" y1="164" x2="480" y2="198"/>
+          <line class="dg-edge" x1="864" y1="164" x2="864" y2="198"/>
+          <line class="dg-edge" x1="1248" y1="164" x2="1248" y2="198"/>
+          <line class="dg-edge" x1="480" y1="370" x2="480" y2="404"/>
+          <line class="dg-edge" x1="864" y1="370" x2="864" y2="404"/>
+          <line class="dg-edge" x1="1248" y1="370" x2="1248" y2="404"/>
+          <line class="dg-edge" x1="480" y1="576" x2="480" y2="610"/>
+          <line class="dg-edge" x1="864" y1="576" x2="864" y2="610"/>
+          <line class="dg-edge" x1="1248" y1="576" x2="1248" y2="610"/>
         </g>
       </svg>
       <aside class="notes">
