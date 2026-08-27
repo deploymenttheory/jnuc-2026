@@ -400,6 +400,10 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 5 (`#s05`) option wording amended.** The left option card now
+  explains the striped approach (one resource at a time across the whole route to live,
+  staging then production); the chosen card lost "But production is the configuration that
+  matters." At Joseph's request, no options. PR #TBD.
 - **2026-08-27, presenter and AGENTS.md slide titles aligned with the deck.** A
   collaborator's direct push to main (`7e1a99b`) retitled slide 4's `<h1>`/`aria-label`
   without mirroring `presenter.json`; two earlier renames (`#s-sentinel`, `#s-today`) were
