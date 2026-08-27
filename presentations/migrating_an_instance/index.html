@@ -477,6 +477,10 @@ body.reader .reader-extra {
   padding: var(--sp-1) var(--sp-3);
 }
 .pipe-node small { display: block; font-size: var(--fs-chip); color: var(--c-text-muted); }
+/* s01 has only three nodes and no annotations, so let them share the band evenly. */
+#s01 .pipeline { gap: var(--sp-4); }
+#s01 .pipe-node { flex: 1; font-size: var(--fs-h2); padding: var(--sp-2) var(--sp-3); }
+#s01 .h-arrow { width: var(--sp-5); }
 .pipe-off { border-style: dashed; color: var(--c-text-muted); }
 .pipe-gap { flex: 1; }
 .constraints {
@@ -813,13 +817,13 @@ body.presenter #viewport { display: none; }
       <h1 class="slide-title">Context, requirements, constraints</h1>
       <p class="pipeline-label caption muted">No precedent to follow - nobody had migrated a live, in-use Jamf Pro estate to Terraform at this scale before, let alone inside a bank.</p>
       <div class="pipeline-band card">
-        <p class="pipeline-label caption muted">The estate at the start - three Jamf Pro instances</p>
+        <p class="pipeline-label caption muted">Our environment before the migration</p>
         <div class="pipeline">
-          <span class="pipe-node">Sandbox<small>no parity</small></span>
+          <span class="pipe-node">Sandbox</span>
           <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node">Staging<small>parity on paper</small></span>
+          <span class="pipe-node">Staging</span>
           <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node">Production<small>the real estate</small></span>
+          <span class="pipe-node">Production</span>
         </div>
       </div>
       <ul class="constraints">
@@ -831,9 +835,8 @@ body.presenter #viewport { display: none; }
         <li class="card">Post-migration, all create/update/delete operations happen through Terraform only.</li>
         <li class="card">All HCL must satisfy org linters.</li>
         <li class="card">Versioned releases, with change history findable when it is needed.</li>
-        <li class="card">Tidy up each tenant before import - stale, non-active resources don't get carried into Terraform.</li>
+        <li class="card">Tidy up each tenant before import.</li>
       </ul>
-      <p class="slide-note">Staging was supposed to mirror production. In practice it had drifted - and there was no history that could bring the two back in line. Hold that thought.</p>
       <details class="reader-extra">
         <summary>More detail</summary>
         <div class="detail-body">
@@ -842,7 +845,7 @@ body.presenter #viewport { display: none; }
       </details>
       <aside class="notes">
         <p>This is a bank - the constraints are the story. No CLI outside dev means no local applies and no local state: everything flows through VCS-triggered runs.</p>
-        <p>Point at the parity notes on the pipeline - staging drift drives both the prod-first decision and the staging rebuild later.</p>
+        <p>Staging was meant to mirror production but had drifted - that drift drives both the prod-first decision and the staging rebuild later.</p>
       </aside>
     </section>
 

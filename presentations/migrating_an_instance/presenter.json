@@ -16,7 +16,7 @@
       "timerSeconds": 90,
       "notes": [
         "This is a bank - the constraints are the story. No CLI outside dev means no local applies and no local state: everything flows through VCS-triggered runs.",
-        "Point at the parity notes on the pipeline - staging drift drives both the prod-first decision and the staging rebuild later."
+        "Staging was meant to mirror production but had drifted - that drift drives both the prod-first decision and the staging rebuild later."
       ]
     },
     {
