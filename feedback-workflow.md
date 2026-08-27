@@ -568,7 +568,7 @@ it up - either way it is on disk for a recovering session.
   panel with the two discounted paths shrunk and dimmed above it), C (the diagrams for 01 and
   02 dropped entirely, one drawing left on the slide and the control line as a closing
   statement) and D (each path as its own bordered panel with the diagram centred inside it) -
-  awaits a decision. PR #TBC.
+  awaits a decision. PR #33.
 - **2026-08-27, slide 14 (`#s13`) cut back to policies, four options offered.** Dock items
   were never a `for_each` exception, so the dock items card, its column and the mention in
   the speaker note are gone, and the reason for the policies exception is reworded from
