@@ -563,7 +563,7 @@ it up - either way it is on disk for a recovering session.
   rather than layering on top. Speaker notes and `presenter.json` needed no change - neither
   pointed at the layout. Sandbox page deleted, its index entry retired to `.done`, and
   `AGENTS.md`'s slide-11 summary and the Sandbox section's "Current pages"/"Decided" lines
-  updated. Presenter check prints OK. PR #TBD.
+  updated. Presenter check prints OK. PR #35.
 - **2026-08-27, slide 6 (`#s05`) control note folded into path 03, sandbox options added.**
   Joseph asked for the annotation at the foot of the slide to go, its message to be condensed
   into option 3, and everything to expand into the space so the slide feels less busy. Applied
