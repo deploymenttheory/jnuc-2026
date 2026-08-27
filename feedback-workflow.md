@@ -554,6 +554,19 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 15 (`#s14`) option B accepted - the terminal as a real window.**
+  Joseph picked option B from the `s14-terminal-excerpt` sandbox page: the block becomes a
+  window sitting on the stage rather than a card lying flat on it, with a light chrome bar,
+  red, amber and lime traffic-light dots, a centred `joseph@jnuc - zsh` title, the command
+  in bold white against the lime result, and a lime block cursor blinking on a fresh prompt
+  line underneath, plus a drop shadow. Applied as the net result: the window title span and
+  the fresh-prompt cursor markup are now the slide's plain markup, and the CSS is one clean
+  `#s14`-scoped block replacing the old unscoped `.terminal`/`.term-*` rules rather than
+  stacking on them; the shared `.gates`/`.gate*` rules are untouched. `prefers-reduced-motion`
+  still stops the cursor blink; every colour stays a token. Speaker notes and
+  `presenter.json` needed no change - neither references the block's styling - and the check
+  prints OK. Sandbox page deleted, index entry marked `.done`, `AGENTS.md`'s slide-15
+  summary and the Sandbox section's "Current pages"/"Decided" lines updated. PR #39.
 - **2026-08-27, slide 15 (`#s14`) terminal excerpt options offered.** Joseph said the diagram
   at the top of the slide is not obviously a terminal excerpt and asked for styling options
   that make it read as one. Nothing in the feedback was deterministic, so the deck is
