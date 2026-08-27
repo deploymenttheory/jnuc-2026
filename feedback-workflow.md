@@ -572,7 +572,7 @@ it up - either way it is on disk for a recovering session.
   with the TODO chip closing the stack; D, the conditional as an editor window with a
   `terraform/jamfpro/` file tab, a line-number gutter and line 2 picked out with a
   current-line band. C and D ship as `.s-pivot-opt-c` / `-opt-d` wrappers hidden by one
-  `#s-pivot` rule. Awaiting a decision. PR #TBD.
+  `#s-pivot` rule. Awaiting a decision. PR #41.
 - **2026-08-27, slide 15 (`#s14`) option B accepted - the terminal as a real window.**
   Joseph picked option B from the `s14-terminal-excerpt` sandbox page: the block becomes a
   window sitting on the stage rather than a card lying flat on it, with a light chrome bar,
