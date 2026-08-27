@@ -554,6 +554,18 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 15 (`#s14`) gate 2 says remote backend, drops the Copilot namedrop.**
+  Joseph: "state should just be storeed in remote backend. Just say use AI, do not
+  namedrop copilot." Edited in place: gate 2 becomes "State is stored in a remote backend
+  and not locally inspectable - AI-assisted checks confirmed each resource exists with the
+  correct dependencies assigned." (was "State is centralised in HCP and not locally
+  inspectable - AI-assisted checks (Copilot CLI) confirmed..."), and the matching speaker
+  note becomes "State lives in a remote backend and is not locally inspectable, hence the
+  AI checks in gate 2." (was "...hence the Copilot CLI checks..."), mirrored into
+  `presenter.json`; the check prints OK. `s11` also names Copilot CLI for the same
+  underlying fact (spec.md Q8) but is a different slide, out of scope here - left
+  untouched. Other "HCP" mentions (`s-workspace`, `s-sentinel`, `s-today`) describe the
+  real HCP Terraform tooling, unrelated to this gate's wording - left as is. PR #42.
 - **2026-08-27, slide 17 (`#s-pivot`) pivot line cut, four display options on the sandbox.**
   Joseph: "the pivot is too LLM. That line can be removed. Give options on the display."
   Applied deterministically: the `.statement` paragraph ("It got out of hand. The pivot:

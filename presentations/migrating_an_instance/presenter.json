@@ -134,7 +134,7 @@
       "timerSeconds": 60,
       "notes": [
         "Gate 4 is the point of no return - and the point of the whole exercise.",
-        "State lives in HCP and is not locally inspectable, hence the Copilot CLI checks in gate 2."
+        "State lives in a remote backend and is not locally inspectable, hence the AI checks in gate 2."
       ]
     },
     {
