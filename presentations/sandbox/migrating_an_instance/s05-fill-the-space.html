@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sandbox - slide 6 filling the space</title>
+<link rel="stylesheet" href="../sandbox.css">
+</head>
+<body>
+<div class="wrap">
+  <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / From Clicks to Code / slide 6</p>
+  <h1>Slide 6 - filling the space</h1>
+  <p class="lede">Joseph asked for the annotation at the foot of the slide to go, its message to be condensed into option 3, and everything to expand into the space so the slide feels less busy. The first two parts are the same in all four options and already in this PR: the control-note card is gone and path 03 now carries a one-line version of it, "The Terraform API client held read-only scopes, so importing built state with no surface to change the server. Write access came only when it was time to manage." What differs below is how the freed space gets used. Each render is the real slide with only that option's CSS on top.</p>
+  <nav class="jump" aria-label="Options">
+    <a href="#a">A</a><a href="#b">B</a><a href="#c">C</a><a href="#d">D</a>
+  </nav>
+
+  <section class="option" id="a">
+    <h2>Option A - every row bigger <span class="tag">live now</span></h2>
+    <p>The deck as it ships from this PR. The three flow diagrams only ever drew across three quarters of the slide, so each one's viewBox is cropped close to its drawn width and the boxes, the environment names and the resource labels all scale up by about a quarter to fill the width. The row order and rhythm are untouched: three equal rows, a hairline between them, the freed height going to the diagrams rather than to gaps. Pick this if the slide should stay a like-for-like comparison of three options, just bigger and easier to read from the back of the room.</p>
+    <div class="frame"><iframe data-variant="a" src="../../migrating_an_instance/index.html#s05" title="Option A"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-a"></pre></details>
+  </section>
+
+  <section class="option" id="b">
+    <h2>Option B - the chosen path takes the room</h2>
+    <p>The two paths that were discounted shrink to about half width, drop to muted text and lose their hairline, sitting as a quiet pair at the top. Path 03 becomes a bordered panel in the accent colour holding the bottom half of the slide, its name at heading size and the read-only-scopes line at body size, so the decision is the thing you land on rather than one of three equal rows. Pick this if the point of the slide is the choice, not the shortlist.</p>
+    <div class="frame"><iframe data-variant="b" src="../../migrating_an_instance/index.html#s05" title="Option B"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-b"></pre></details>
+  </section>
+
+  <section class="option" id="c">
+    <h2>Option C - only the chosen path is drawn</h2>
+    <p>The strongest edit of the four. The diagrams for paths 01 and 02 come off the slide entirely: each becomes a short titled entry, the two of them side by side in a pair of columns under the subtitle, which is enough to talk them through. Everything below belongs to path 03 - the name at heading size, the one diagram on the slide at full width, and the read-only-scopes line moved beneath it at heading size as the closing statement. One drawing instead of three, so it is much the calmest. Pick this if you are happy to say the rejected paths out loud rather than show them.</p>
+    <div class="frame"><iframe data-variant="c" src="../../migrating_an_instance/index.html#s05" title="Option C"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-c"></pre></details>
+  </section>
+
+  <section class="option" id="d">
+    <h2>Option D - three framed blocks</h2>
+    <p>The hairlines become full bordered panels, one per path, with the chosen one edged in the accent colour, and each diagram sits centred inside its panel with air all round it rather than running edge to edge. The diagrams end up slightly smaller than option A; the calm comes from the three rows reading as three deliberate blocks of equal weight instead of three uneven bands of content. Pick this if the busyness is the lack of structure rather than the size of the type.</p>
+    <div class="frame"><iframe data-variant="d" src="../../migrating_an_instance/index.html#s05" title="Option D"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-d"></pre></details>
+  </section>
+
+  <p class="foot">To choose: name the option in chat, or describe what to change and this page gets a new set. Renders need the site served over HTTP - opened from disk the iframes load but the option CSS cannot be injected.</p>
+</div>
+
+<script>
+  // Each option is CSS layered onto the real deck slide. Option A is the deck as it ships
+  // from this PR, so it injects nothing. Rules only touch #s05 and only use the deck's own
+  // tokens, so an accepted option can be pasted into the deck as-is.
+  const VARIANTS = {
+    a: ``,
+    b: `
+/* Option B - the chosen path takes the room. */
+#s05 .mp-paths { gap: var(--sp-2); }
+#s05 .mp-path.mp-dim { border-bottom: none; padding-bottom: 0; opacity: .75; }
+#s05 .mp-dim .mp-flow { width: 60%; }
+#s05 .mp-dim .mp-name { font-size: var(--fs-caption); font-weight: 400; color: var(--c-text-muted); }
+#s05 .mp-dim .mp-why { font-size: var(--fs-chip); }
+#s05 .mp-path.mp-chosen {
+  border: var(--bw-2) solid var(--c-accent);
+  border-radius: var(--radius);
+  padding: var(--sp-3) var(--sp-3) var(--sp-2);
+  margin-top: var(--sp-2);
+}
+#s05 .mp-chosen .mp-name { font-size: var(--fs-h2); }
+#s05 .mp-chosen .mp-why { font-size: var(--fs-body); color: var(--c-text); }
+#s05 .mp-chosen .mp-control { font-size: var(--fs-body); color: var(--c-text); margin-bottom: var(--sp-2); }
+`,
+    c: `
+/* Option C - only the chosen path is drawn. */
+#s05 .mp-paths {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--sp-5);
+  row-gap: var(--sp-4);
+  align-items: start;
+}
+#s05 .mp-path.mp-dim {
+  border-bottom: none;
+  border-left: var(--bw-2) solid var(--c-border);
+  padding: 0 0 0 var(--sp-3);
+}
+#s05 .mp-dim .mp-flow { display: none; }
+#s05 .mp-dim .mp-head { display: block; }
+#s05 .mp-dim .mp-num { display: block; margin-bottom: var(--sp-1); }
+#s05 .mp-dim .mp-name { font-size: var(--fs-body); font-weight: 400; color: var(--c-text-muted); }
+#s05 .mp-dim .mp-why { display: block; margin: var(--sp-1) 0 0; text-align: left; }
+#s05 .mp-path.mp-chosen {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  border-top: var(--bw-1) solid var(--c-border);
+  padding-top: var(--sp-3);
+}
+#s05 .mp-chosen .mp-name { font-size: var(--fs-h2); }
+#s05 .mp-chosen .mp-why { font-size: var(--fs-body); color: var(--c-text); }
+#s05 .mp-chosen .mp-control {
+  order: 3;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-body);
+  color: var(--c-text);
+  margin: var(--sp-3) 0 0;
+  max-width: var(--tl-w);
+}
+`,
+    d: `
+/* Option D - three framed blocks. */
+#s05 .mp-paths { gap: var(--sp-2); }
+#s05 .mp-path {
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius);
+  padding: var(--sp-2) var(--sp-3);
+}
+#s05 .mp-path.mp-chosen {
+  border: var(--bw-2) solid var(--c-accent);
+  padding: var(--sp-2) var(--sp-3);
+}
+#s05 .mp-num { font-size: var(--fs-body); }
+#s05 .mp-name { font-size: var(--fs-body); }
+#s05 .mp-flow { width: 70%; margin: 0 auto; }
+#s05 .mp-control { margin: 0 0 var(--sp-2); }
+`,
+  };
+
+  for (const [key, css] of Object.entries(VARIANTS)) {
+    document.getElementById('css-' + key).textContent = css || '/* nothing - this is the deck as deployed */';
+  }
+
+  document.querySelectorAll('iframe[data-variant]').forEach((frame) => {
+    frame.addEventListener('load', () => {
+      const css = VARIANTS[frame.dataset.variant];
+      if (!css) return;
+      let doc;
+      try { doc = frame.contentDocument; } catch (e) { doc = null; }
+      if (!doc) return; // file:// - cross-origin iframe, nothing we can do
+      const style = doc.createElement('style');
+      style.textContent = css;
+      doc.head.appendChild(style);
+    });
+  });
+</script>
+</body>
+</html>

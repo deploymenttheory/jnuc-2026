@@ -554,6 +554,21 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 6 (`#s05`) control note folded into path 03, sandbox options added.**
+  Joseph asked for the annotation at the foot of the slide to go, its message to be condensed
+  into option 3, and everything to expand into the space so the slide feels less busy. Applied
+  deterministically: the `.card.control-note` block is out of `#s05` (the class is shared with
+  `#s-singletons`, so only the slide's own two rules and its markup went; the shared rules
+  stay) and path 03 carries a one-line version of it. The speaker notes already told the
+  read-only-scopes story on path 03, so none pointed at the removed card and `presenter.json`
+  is untouched; the check prints OK. The expansion ships as option A: each flow's viewBox
+  cropped close to its drawn width so the diagrams scale up by about a quarter and fill the
+  slide instead of leaving a quarter of every row empty. Sandbox page
+  `s05-fill-the-space.html` offers A (that expansion, live), B (the chosen path in an accent
+  panel with the two discounted paths shrunk and dimmed above it), C (the diagrams for 01 and
+  02 dropped entirely, one drawing left on the slide and the control line as a closing
+  statement) and D (each path as its own bordered panel with the diagram centred inside it) -
+  awaits a decision. PR #TBC.
 - **2026-08-27, slide 10 (`#s10`) diagram text bumped, sandbox options added.** Joseph's
   "text glitches until refresh" report investigated - fonts, transitions, transform/
   clip-path/filter/contain on text, and the SVG's `tspan dx` labels all checked; could not

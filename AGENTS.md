@@ -205,7 +205,7 @@ overlay - keep the two in step when slides move.
 4. `s-workspace` What a Terraform workspace is (definition, HashiCorp workspace-anatomy
    diagram, four lenses that decide how an instance gets carved up) - **Dafydd (TBC)**
 5. `s04` Migration outcomes we considered and rejected (3 architectural rejects; the other 2 moved into the story) - **Joseph**
-6. `s05` Migration path options (three paths as flow diagrams, prod-first chosen + read-only API client control) - **Joseph**
+6. `s05` Migration path options (three paths as flow diagrams sized to the full slide width, prod-first chosen; the read-only API client control reads as a line inside path 03 rather than a card at the foot of the slide) - **Joseph**
 7. `s07` Prerequisites (two portions, instance prep and migration prep, each a tidied
    checklist) - **Gordon**
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
@@ -618,7 +618,8 @@ automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages: `s10-diagram-text` (2026-08-27, awaiting a decision - resource-sequencing
-diagram text size). Decided (all under `presentations/sandbox/migrating_an_instance/`):
+diagram text size); `s05-fill-the-space` (2026-08-27, awaiting a decision - four layouts for
+the space the migration-path slide's control-note card left behind). Decided (all under `presentations/sandbox/migrating_an_instance/`):
 `s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
 one three-segment chevron arrow - applied to the deck's `#s01` rules; the page is deleted,
 the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
