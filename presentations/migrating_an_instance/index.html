@@ -479,7 +479,7 @@ body.reader .reader-extra {
 }
 .pipe-node small { display: block; font-size: var(--fs-chip); color: var(--c-text-muted); }
 /* s01: the three instances are notched segments of one chevron arrow spanning the band
-   (sandbox option B, accepted 2026-08-27). Scoped by id - s-today keeps the plain boxes. */
+   (sandbox option B, accepted 2026-08-27). Scoped to #s01 only. */
 #s01 .pipeline { gap: var(--sp-1); }
 #s01 .pipe-node {
   flex: 1;
@@ -492,8 +492,6 @@ body.reader .reader-extra {
 #s01 .pipe-node:first-child {
   clip-path: polygon(0 0, calc(100% - var(--sp-4)) 0, 100% 50%, calc(100% - var(--sp-4)) 100%, 0 100%);
 }
-.pipe-off { border-style: dashed; color: var(--c-text-muted); }
-.pipe-gap { flex: 1; }
 .constraints {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -957,110 +955,15 @@ body.reader .reader-extra {
 #s-staging .takeaway { margin-top: var(--sp-4); font-size: var(--fs-body); }
 
 /* ============================ S-PIVOT ============================ */
-/* Three layouts ship in the markup; only s-pivot-opt-a shows by default. The sandbox page
-   s-pivot-display.html swaps which wrapper is visible per option - see AGENTS.md Sandbox.
-   Option A is what the deck ships after the "It got out of hand. The pivot: ..." statement
-   came off (Joseph, 2026-08-27): the lead and the conditional as one aligned column. C is
-   the sprawl option (code beside what the URL decided), D the editor window. Option B on
-   the sandbox page is A's markup with CSS on top, so it has no wrapper here. */
-#s-pivot .s-pivot-opt-c, #s-pivot .s-pivot-opt-d { display: none; }
-
-/* option A - the lead and the code share one column edge, the code a step up the type
-   scale so the block carries the slide on its own. */
-#s-pivot .s-pivot-opt-a .lead { margin-bottom: var(--sp-4); }
-#s-pivot .s-pivot-opt-a .s-pivot-code {
+/* The lead and the code share one column edge, the code a step up the type scale so the
+   block carries the slide on its own. */
+#s-pivot .lead { margin-bottom: var(--sp-4); }
+#s-pivot .s-pivot-code {
   max-width: 1560px;
   font-size: var(--fs-body);
   padding: var(--sp-4);
 }
 #s-pivot .s-pivot-chip { margin-top: var(--sp-3); }
-
-/* option C - the code on the left, what the FQDN actually decided stacked beside it. */
-#s-pivot .s-pivot-opt-c .lead { font-size: var(--fs-body); margin-bottom: var(--sp-4); max-width: none; }
-#s-pivot .s-pivot-spread {
-  display: grid;
-  grid-template-columns: 1fr 560px;
-  gap: var(--sp-5);
-  align-items: stretch;
-}
-#s-pivot .s-pivot-spread .s-pivot-code { font-size: var(--fs-body); padding: var(--sp-4); }
-#s-pivot .s-pivot-where-title {
-  font-family: var(--f-mono);
-  font-size: var(--fs-chip);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--c-accent);
-  padding-bottom: var(--sp-2);
-  border-bottom: var(--bw-2) solid var(--c-accent);
-  margin-bottom: var(--sp-3);
-}
-#s-pivot .s-pivot-where-list { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); }
-#s-pivot .s-pivot-where-list li {
-  font-size: var(--fs-h2);
-  line-height: var(--lh-tight);
-  padding-bottom: var(--sp-3);
-  border-bottom: var(--bw-1) solid var(--c-border);
-}
-#s-pivot .s-pivot-where-list li:last-child { border-bottom: none; padding-bottom: 0; }
-#s-pivot .s-pivot-where-list small {
-  display: block;
-  margin-top: var(--sp-2);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  color: var(--c-text-muted);
-}
-/* the one code sub-line stays on a single row at this column width */
-#s-pivot .s-pivot-where-list small.mono { font-size: var(--fs-code); }
-
-/* option D - the conditional shown where it lived: a file tab, a line-number gutter and
-   the FQDN line picked out. */
-#s-pivot .s-pivot-window {
-  background: var(--c-surface);
-  border: var(--bw-1) solid var(--c-border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-#s-pivot .s-pivot-tabbar {
-  background: var(--c-bg);
-  border-bottom: var(--bw-1) solid var(--c-border);
-  padding-left: var(--sp-3);
-}
-#s-pivot .s-pivot-tab {
-  display: inline-block;
-  font-family: var(--f-mono);
-  font-size: var(--fs-caption);
-  background: var(--c-surface);
-  border-top: var(--bw-3) solid var(--c-accent);
-  padding: var(--sp-2) var(--sp-4);
-}
-#s-pivot .s-pivot-editor { display: flex; align-items: stretch; }
-#s-pivot .s-pivot-nums {
-  font-family: var(--f-mono);
-  font-size: var(--fs-h2);
-  line-height: var(--lh-body);
-  white-space: pre;
-  text-align: right;
-  color: var(--c-code-cm);
-  padding: var(--sp-4) var(--sp-3);
-  border-right: var(--bw-1) solid var(--c-border);
-}
-#s-pivot .s-pivot-num-hl { color: var(--c-accent); }
-#s-pivot .s-pivot-editor .s-pivot-code {
-  flex: 1;
-  background: none;
-  border: none;
-  border-radius: 0;
-  font-size: var(--fs-h2);
-  padding: var(--sp-4);
-}
-/* a full-width current-line band: the span reaches back out through the pre's padding */
-#s-pivot .s-pivot-hl {
-  display: block;
-  background: color-mix(in srgb, var(--c-accent) 16%, transparent);
-  margin: 0 calc(-1 * var(--sp-4));
-  padding: 0 var(--sp-4);
-}
-#s-pivot .s-pivot-caption { margin-top: var(--sp-4); font-size: var(--fs-caption); color: var(--c-text-muted); max-width: none; }
 
 /* ============================ S15b topology ============================ */
 .s15b-grid { display: grid; grid-template-columns: 780px 1fr; gap: var(--sp-5); align-items: start; }
@@ -1209,11 +1112,6 @@ body.reader .reader-extra {
 #s16b .s16b-total { display: flex; align-items: baseline; gap: var(--sp-3); }
 #s16b .s16b-total-num { font-family: var(--f-display); font-size: var(--fs-h1); line-height: var(--lh-tight); }
 #s16b .s16b-total-label { font-size: var(--fs-body); color: var(--c-text-muted); }
-
-/* ============================ story additions ============================ */
-.evolution { margin-top: var(--sp-4); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
-.evolution .card { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-2); padding: var(--sp-4); }
-.evo-title { font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); }
 
 /* ============================ presenter window ============================ */
 body.presenter #viewport { display: none; }
@@ -1997,12 +1895,8 @@ body.presenter #viewport { display: none; }
     <section class="slide" id="s-pivot" aria-label="Growing pains" data-speaker="Joseph" data-when="2026-03">
       <h1 class="slide-title">Growing pains</h1>
 
-      <!-- Option A ships. C and D are sandbox alternatives, hidden by the #s-pivot rule in
-           the stylesheet; the sandbox page flips which wrapper shows. B is option A's
-           markup with CSS on top, so it needs no wrapper of its own. -->
-      <div class="s-pivot-opt s-pivot-opt-a">
-        <p class="lead">Deploying to staging first meant telling one directory - <code class="inline">terraform/jamfpro</code> - to treat two instances differently. Instance-specific behaviour hung off conditionals keyed on the FQDN.</p>
-        <pre class="code s-pivot-code"><span class="tk-kw">locals</span> {
+      <p class="lead">Deploying to staging first meant telling one directory - <code class="inline">terraform/jamfpro</code> - to treat two instances differently. Instance-specific behaviour hung off conditionals keyed on the FQDN.</p>
+      <pre class="code s-pivot-code"><span class="tk-kw">locals</span> {
   is_staging = can(regex(<span class="tk-str">"staging"</span>, var.jamfpro_fqdn))
 }
 
@@ -2010,53 +1904,7 @@ body.presenter #viewport { display: none; }
   count = local.is_staging ? <span class="tk-num">0</span> : <span class="tk-num">1</span>
   <span class="tk-cm"># deployment behaviour inferred from a URL - everywhere</span>
 }</pre>
-        <p class="s-pivot-chip"><span class="todo">TODO: real conditional example</span></p>
-      </div>
-
-      <div class="s-pivot-opt s-pivot-opt-c">
-        <p class="lead">Deploying to staging first meant telling one directory - <code class="inline">terraform/jamfpro</code> - to treat two instances differently. Instance-specific behaviour hung off conditionals keyed on the FQDN.</p>
-        <div class="s-pivot-spread">
-          <pre class="code s-pivot-code"><span class="tk-kw">locals</span> {
-  is_staging = can(regex(<span class="tk-str">"staging"</span>, var.jamfpro_fqdn))
-}
-
-<span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_policy"</span> <span class="tk-str">"maintenance"</span> {
-  count = local.is_staging ? <span class="tk-num">0</span> : <span class="tk-num">1</span>
-  <span class="tk-cm"># deployment behaviour inferred from a URL - everywhere</span>
-}</pre>
-          <div class="s-pivot-where">
-            <p class="s-pivot-where-title">What one URL decided</p>
-            <ul class="s-pivot-where-list">
-              <li>Whether a resource existed at all<small class="mono">count = local.is_staging ? 0 : 1</small></li>
-              <li>Deployment behaviour<small>inferred from a URL, everywhere the two instances had to differ</small></li>
-              <li><span class="todo">TODO: real conditional example</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="s-pivot-opt s-pivot-opt-d">
-        <div class="s-pivot-window">
-          <div class="s-pivot-tabbar"><span class="s-pivot-tab">terraform/jamfpro/</span></div>
-          <div class="s-pivot-editor">
-            <pre class="s-pivot-nums" aria-hidden="true">1
-<span class="s-pivot-num-hl">2</span>
-3
-4
-5
-6
-7
-8</pre>
-            <pre class="code s-pivot-code"><span class="tk-kw">locals</span> {<span class="s-pivot-hl">  is_staging = can(regex(<span class="tk-str">"staging"</span>, var.jamfpro_fqdn))</span>}
-
-<span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_policy"</span> <span class="tk-str">"maintenance"</span> {
-  count = local.is_staging ? <span class="tk-num">0</span> : <span class="tk-num">1</span>
-  <span class="tk-cm"># deployment behaviour inferred from a URL - everywhere</span>
-}</pre>
-          </div>
-        </div>
-        <p class="lead s-pivot-caption">Deploying to staging first meant telling one directory - <code class="inline">terraform/jamfpro</code> - to treat two instances differently. Instance-specific behaviour hung off conditionals keyed on the FQDN. <span class="todo">TODO: real conditional example</span></p>
-      </div>
+      <p class="s-pivot-chip"><span class="todo">TODO: real conditional example</span></p>
 
       <aside class="notes">
         <p>The trigger was the staging rebuild: we wanted staging-first deploys without mirroring to production, and the only lever the repo had was an FQDN conditional. They were everywhere before long - deployment behaviour inferred from a URL.</p>
@@ -2099,47 +1947,6 @@ body.presenter #viewport { display: none; }
       <aside class="notes">
         <p>Three workspaces per instance is the blast radius control - guidance says ~500 resources per workspace and the estate holds 1,500+.</p>
         <p>Payloads live in the modules too. Staging-only profiles sit in a visible directory, so divergence is explicit.</p>
-      </aside>
-    </section>
-
-    <!-- ============================ Refinements along the way ============================ -->
-    <section class="slide" id="s-today" aria-label="The estate today" data-speaker="Gordon" data-when="2026-06:2026-07">
-      <h1 class="slide-title">The estate today</h1>
-      <div class="pipeline-band card">
-        <p class="pipeline-label caption muted">Route to live, today</p>
-        <div class="pipeline">
-          <span class="pipe-node">DevTest<small>IdP and compliance, no change control</small></span>
-          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node">Staging<small>mirrors production - the final gate</small></span>
-          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node">Production<small>the live estate</small></span>
-          <span class="pipe-gap"></span>
-          <span class="pipe-node pipe-off">Sandbox - CLI-only<small>isolated - break it, reset, start again</small></span>
-        </div>
-      </div>
-      <div class="evolution">
-        <div class="card">
-          <h2 class="evo-title">DevTest joins</h2>
-          <p class="caption muted">Brought in recently as the first stop on the route to live - a single CLI-triggered workspace. Under IdP and device compliance, but not change controlled: prove a change out here before it goes near staging.</p>
-        </div>
-        <div class="card">
-          <h2 class="evo-title">Sandbox steps out</h2>
-          <p class="caption muted">Trialled inside the route to live, then removed and kept separate - now a CLI-only instance with no workspace behind it, local dev only. Nothing here is safe, and that is the point: it is where new engineers meet Terraform, and where we have put leadership hands-on with it.</p>
-        </div>
-        <div class="card">
-          <h2 class="evo-title">Release Please → CalVer</h2>
-          <p class="caption muted">The release cadence was hard to sustain and releases needed clearer tracking. Calendar versioning instead: when a flood of tickets lands on 1 December, the matching release and its change history are findable by date.</p>
-        </div>
-      </div>
-      <details class="reader-extra">
-        <summary>More detail</summary>
-        <div class="detail-body">
-          <p>Calendar versioning tags releases by date rather than by semantic version, so an incident report from 1 December maps directly to the releases shipped around that date - no changelog archaeology required.</p>
-        </div>
-      </details>
-      <aside class="notes">
-        <p>Walk the four tiers by role, not by name. Sandbox: isolated, no restrictions, CLI and GUI both open - break it, reset, start again; onboarding and leadership demos live here. DevTest: under IdP and device compliance but not change controlled - prove a change out fast. Staging: an exact replica, to the point that a device enrolled there is indistinguishable bar the MDM certificate - and it is only true because of the rebuild on the previous slide. Production: minimal downtime, because everything upstream has already done the work.</p>
-        <p>Then CalVer: we defaulted to SemVer like typical devs, but v1.64.3 tells you nothing about a Jamf Pro estate. A date does - roll back to the day the incidents were raised.</p>
       </aside>
     </section>
 

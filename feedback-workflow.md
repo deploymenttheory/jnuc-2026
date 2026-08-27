@@ -554,7 +554,7 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
-- **2026-08-27, slide 20 (`#s16b`) refreshed figures, three visualisations offered.**
+- **2026-08-27, slide 19 (`#s16b`) refreshed figures, three visualisations offered.**
   Joseph: "Updated stats for the by the numbers side - 35-40 contributers / 19,000+ lines
   of code / 900 PRs merged / 134 HCL Files Give options, think graphs, or visualisations.
   Keep the currnet layout as A." The figures are deterministic and ship in this PR across
@@ -576,6 +576,23 @@ it up - either way it is on disk for a recovering session.
   rule holding the three figures that will not take that treatment. B, C and D ship as
   `.s16b-opt-b` / `-opt-c` / `-opt-d` wrappers hidden by one `#s16b` rule. Awaiting a
   decision. PR #TBC.
+- **2026-08-27, slide 17 (`#s-pivot`) sandbox closed.** Joseph: "Close the slide 17
+  sandbox." No option chosen: the live slide (option A) kept. The `.s-pivot-opt-c` and
+  `.s-pivot-opt-d` wrappers and their markup removed, along with the CSS that only served
+  them; the `.s-pivot-opt-a` wrapper unwrapped so the slide's markup is plain, and the
+  `#s-pivot` CSS left as one clean block for the live layout - screenshots before and after
+  the edit `cmp` identical. The sandbox page deleted, its index entry retired to a `.done`
+  line; `AGENTS.md`'s slide list and Sandbox section updated to match; the presenter check
+  prints OK. PR #44.
+- **2026-08-27, slide 19 (`#s-today`) deleted.** Joseph: "Remove 19." "The estate today"
+  removed at Joseph's request: section (four-tier route to live diagram, Release Please ->
+  CalVer cards), its `presenter.json` entry, the `.evolution`/`.evo-title` CSS (used nowhere
+  else) and `.pipe-off`/`.pipe-gap` (used only by this section's pipeline row); the shared
+  `.pipe-node`/`.pipeline-label`/`.pipeline-band` rules stay, still used by `#s01`, and the
+  S01 CSS comment no longer mentions `s-today`. Its 60 s moved to `s17` (Questions, now
+  360 s) so the timers still sum to 1800. `AGENTS.md` slide list renumbered to 22, the
+  reader-extras list and folded-away-slides note updated. No other slide pointed forward to
+  it. PR #43.
 - **2026-08-27, slide 15 (`#s14`) gate 2 says remote backend, drops the Copilot namedrop.**
   Joseph: "state should just be storeed in remote backend. Just say use AI, do not
   namedrop copilot." Edited in place: gate 2 becomes "State is stored in a remote backend

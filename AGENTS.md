@@ -187,14 +187,14 @@ quotes is stale.
 
 - **Reader mode**: press `d` or open with `?reader=1`. Reveals "More detail"
   `<details class="reader-extra">` popovers on selected slides (currently s01, s05,
-  s-singletons, s-sentinel, s12, s15b, s-staging, s-today) for post-presentation viewers.
+  s-singletons, s-sentinel, s12, s15b, s-staging) for post-presentation viewers.
   The counter shows a "reader" tag while active. Popover content follows the same
   no-invented-facts rule.
 
 ### Current slide order (story arc)
 
 Context -> decisions -> first wins -> the wall -> the loop -> growing pains -> payoff.
-23 slides. Legacy section ids kept stable across reorders (so `s10` no longer sits at
+22 slides. Legacy section ids kept stable across reorders (so `s10` no longer sits at
 position 10); new story slides use semantic ids. The bold name on each line is who
 presents it, held in the slide's `data-speaker` attribute and surfaced by the speaker
 overlay - keep the two in step when slides move.
@@ -228,20 +228,19 @@ overlay - keep the two in step when slides move.
     paragraph is gone from the slide because the speaker notes carry it) - **Dafydd**
 17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals; the lead and one
     HCL block, no closing statement - the "It got out of hand. The pivot: ..." line came off
-    2026-08-27 for reading as machine-written, and its TODO chip moved onto the code block.
-    Option C and D wrappers for the sandbox page ship hidden inside the section) - **Joseph**
+    2026-08-27 for reading as machine-written, and its TODO chip moved onto the code block)
+    - **Joseph**
 18. `s15b` The module structure (module tree -> workspaces) - **Dafydd**
-19. `s-today` The estate today (four-tier route to live + Release Please -> CalVer) - **Gordon**
-20. `s16b` By the numbers (six stat tiles carrying the refreshed 2026-08-27 figures; option B,
+19. `s16b` By the numbers (six stat tiles carrying the refreshed 2026-08-27 figures; option B,
     C and D wrappers for the sandbox page ship hidden inside the section) - **Gordon**
-21. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
-22. `s18` Links - **Anyone**
-23. `s-thanks` Thank You (template close, royal blue) - **nobody assigned**
+20. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
+21. `s18` Links - **Anyone**
+22. `s-thanks` Thank You (template close, royal blue) - **nobody assigned**
 
 The old `s00b` "Who we are" slide was folded into the title slide when the template's
 three-speaker title layout arrived. Former slides folded away in the earlier trim: `s06`
 (into s10's intro), `s09` (into s10), `s-refine` (into s12), `s15` (chips moved to s15b; its
-500/1,500/5,000 figures remain on s04).
+500/1,500/5,000 figures remain on s04), `s-today` (removed 2026-08-27 at Joseph's request).
 
 ### Settled story facts (do not re-ask, do not contradict)
 
@@ -643,11 +642,7 @@ Current pages (all under `presentations/sandbox/migrating_an_instance/`):
 first, all four pure CSS on the same markup: A three full-height panels, B a numbered run
 down the left with a quiet right-hand column, C one flow strip in the deck's diagram style,
 D the wipe as a hero panel; the rewritten wording ships in all four);
-`s-pivot-display` (2026-08-27, slide 17 - four ways to hold the slide now the pivot
-statement is gone: A the lead over the code as one column and what the deck ships, B the
-code filling the slide with the "everywhere" comment as the punchline, C the code beside
-what one URL decided, D the conditional as an editor window with a file tab and line
-numbers); `s16b-numbers` (2026-08-27, slide 20 - the refreshed figures ship in all four
+`s16b-numbers` (2026-08-27, slide 19 - the refreshed figures ship in all four
 renders; A the six stat tiles the deck already has, B five gauge bars each measured against
 its own next round number with the ranges drawn as open ends, C one hero number - 900 PRs
 merged - with the other four as a quiet supporting row, D unit grids of one mark per
@@ -680,7 +675,9 @@ of the three redesigned alternatives captured the point; the page is deleted, th
 keeps the record as a non-linked `.done` entry); `s10-diagram-text` (2026-08-27, option C -
 tier labels and examples pushed further up the font scale and the four bands grown to
 match - applied to the deck's `#s10` rules and SVG; the page is deleted, the index keeps
-the record as a non-linked `.done` entry). `presentations/sandbox/training_a_team/`
+the record as a non-linked `.done` entry); `s-pivot-display` (2026-08-27, closed without a
+decision - live slide (option A) kept, B to D not chosen; the page is deleted, the index
+keeps the record as a non-linked `.done` entry). `presentations/sandbox/training_a_team/`
 has no pages yet.
 
 ## Deployment
