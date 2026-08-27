@@ -540,7 +540,7 @@ What is pending:
 
 Commit range for the day: `1a26530` (repo consolidated) to `fa62824` (current `origin/main`
 tip, PR #27's merge); PR numbers 4 to 27. This docs update is a separate PR, opened after
-that range.
+that range: PR #28.
 
 ### In flight
 
@@ -554,6 +554,15 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, feedback-workflow.md updated for the handover.** Today's learnings folded
+  in: the exceptions to "no repo edits", the collaborator-PR rule, model choice, agent
+  naming, the acceptance-with-a-change rule, the fetch-and-merge-first requirement for
+  agents, per-file merge-conflict resolution rules, the sandbox wrapper mechanism for a new
+  slide or full redesign, the per-deck sandbox path recipe, the presenter-check script
+  isolation gotcha, the auto-mode `git merge` refusal, and untracked source files in the
+  repo root. A new "State at handover (2026-08-27)" section added to the Log with a
+  per-slide status for `migrating_an_instance` and what is pending. `AGENTS.md` checked
+  against that state and needed no changes - PR #27 had already brought it current. PR #28.
 - **2026-08-27, slide 4 (`#s-workspace`) decided.** The live collaborator slide (PR #21)
   kept; round-three options B to D rejected (none captured the point) and removed from the
   deck, along with their CSS rules. The sandbox page deleted, its index entry retired to a
