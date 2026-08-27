@@ -24,8 +24,8 @@
   </section>
 
   <section class="option" id="b">
-    <h2>Option B - hero tiles, no band</h2>
-    <p>Drop the band's card background and let the three instances stand as large navy tiles at the h1 size, matching the constraint cards below. Uses the vertical room freed by the removed sentence rather than leaving it empty.</p>
+    <h2>Option B - one arrow, three segments</h2>
+    <p>The three instances become segments of a single large arrow running the full width of the band, each segment notched into the next so the row reads as one flow from Sandbox to Production. The separate arrow glyphs go; the chevron shape carries the direction. Taller than A, still inside the navy band.</p>
     <div class="frame"><iframe data-variant="b" src="../migrating_an_instance/index.html#s01" title="Option B"></iframe></div>
     <details><summary>CSS on top of the deck</summary><pre id="css-b"></pre></details>
   </section>
@@ -46,11 +46,17 @@
   // deck's own tokens, so an accepted option can be pasted into the deck as-is.
   const VARIANTS = {
     a: '',
-    b: `#s01 .pipeline-band { background: transparent; border: 0; padding: var(--sp-2) 0; }
-#s01 .pipeline-band .pipeline-label { font-size: var(--fs-body); }
-#s01 .pipeline { gap: var(--sp-5); }
-#s01 .pipe-node { background: var(--c-surface); border: 0; font-size: var(--fs-h1); padding: var(--sp-2) var(--sp-3); }
-#s01 .h-arrow { width: var(--sp-6); }`,
+    b: `#s01 .pipeline { gap: var(--sp-1); }
+#s01 .h-arrow { display: none; }
+#s01 .pipe-node {
+  border: 0; border-radius: 0;
+  font-size: var(--fs-h2);
+  padding: var(--sp-3) var(--sp-5);
+  clip-path: polygon(0 0, calc(100% - var(--sp-4)) 0, 100% 50%, calc(100% - var(--sp-4)) 100%, 0 100%, var(--sp-4) 50%);
+}
+#s01 .pipe-node:first-child {
+  clip-path: polygon(0 0, calc(100% - var(--sp-4)) 0, 100% 50%, calc(100% - var(--sp-4)) 100%, 0 100%);
+}`,
     c: `#s01 .pipe-node { padding: var(--sp-3); }
 #s01 .pipe-node:last-child { border-color: var(--c-accent); color: var(--c-accent); }
 #s01 .h-arrow path { stroke: var(--c-accent); }`,
