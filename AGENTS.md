@@ -205,7 +205,7 @@ overlay - keep the two in step when slides move.
 4. `s-workspace` What a Terraform workspace is (definition, HashiCorp workspace-anatomy
    diagram, four lenses that decide how an instance gets carved up) - **Dafydd (TBC)**
 5. `s04` Migration outcomes we considered and rejected (3 architectural rejects; the other 2 moved into the story) - **Joseph**
-6. `s05` Instance migration order (prod first + read-only API client control) - **Joseph**
+6. `s05` Migration path options (three paths as flow diagrams, prod-first chosen + read-only API client control) - **Joseph**
 7. `s07` Prerequisites (two portions, instance prep and migration prep, each a tidied
    checklist) - **Gordon**
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
