@@ -571,7 +571,11 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages: none. Decided (all under `presentations/sandbox/migrating_an_instance/`):
+Current pages: `presentations/sandbox/migrating_an_instance/s08-use-of-space.html` (2026-08-27,
+slide 11 `#s08`, four layouts for the migration wave workflow - the live single row, two rows
+of four then three, seven bands stepping down, and the freeze as a full-height centre panel -
+awaiting a decision; layout only, the content is unchanged). Decided (all under
+`presentations/sandbox/migrating_an_instance/`):
 `s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
 one three-segment chevron arrow - applied to the deck's `#s01` rules; the page is deleted,
 the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
