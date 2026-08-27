@@ -577,7 +577,7 @@ it up - either way it is on disk for a recovering session.
   the lead dropped and the takeaway as the closing statement) and D (the wipe as a
   full-height hero panel at `--fs-hero`, apply and iterate stacked beside it) - all four
   pure CSS on the same markup, so whichever wins pastes straight in. Awaits a decision.
-  PR number to follow.
+  PR #40.
 - **2026-08-27, slide 15 (`#s14`) option B accepted - the terminal as a real window.**
   Joseph picked option B from the `s14-terminal-excerpt` sandbox page: the block becomes a
   window sitting on the stage rather than a card lying flat on it, with a light chrome bar,
