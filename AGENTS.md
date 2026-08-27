@@ -360,10 +360,15 @@ Notable content slides:
   CSS comment.
 
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an amber
-token for exactly that. Current chips (7): photos for Joseph and Gordon (`#1`); confirm which
+token for exactly that. Current chips (6): photos for Joseph and Gordon (`#1`); confirm which
 behaviours were observed, confirm the trained bar the team actually used, confirm real
-non-goals (all `#3`); verify the quote (`#5`); how long the dip lasts (`#7`); the 3-4 minute
-interview with Louise.
+non-goals (all `#3`); how long the dip lasts (`#7`); the 3-4 minute interview with Louise.
+The `#5` engineer quote was confirmed by Gordon Deacon, Aug 2026, and its chip is gone.
+
+Speakers (`data-speaker`): `#5`, `#7`, `#9`, `#10` and `#15` are Gordon; `#4`, `#6`, `#11`,
+`#12` and `#14` are Joseph; `#3`, `#8`, `#13`, `#16` and `#17` are Dafydd. `#14` (scope) moved
+from Dafydd to Joseph and `#15` (onboarding) from Dafydd to Gordon, Aug 2026. `#2` is still
+marked **All** but Gordon's notes assign it to Dafydd - unresolved.
 
 **The four disciplines are a shared vocabulary.** `#9` (pathway matrix), `#10` (timeline) and
 `#20` (skills map) are all built on **Environment, Git, Terraform, GitOps**, and `#20` calls
