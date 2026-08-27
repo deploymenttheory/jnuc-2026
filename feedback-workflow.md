@@ -397,7 +397,7 @@ purpose.
 ### In flight
 
 slide 4 (#s-workspace) - branch feedback/s-workspace-round2 - dispatched 2026-08-27 - options, round two - PR #14 - feedback: round one rejected; three bespoke options, one a diagram, detailing what a workspace is - option D added from the Microsoft 365 provider workspace design guide, PR #15
-slide 7 (#s07) - branch feedback/s07-checklist - dispatched 2026-08-27 - options - PR #13 - feedback: keep the checklist vibe but tidy it up so it reads as a real checklist, credentials points consolidated, split-estate point removed - option D added (two portions: instance prep and migration prep with runner line of sight and backout plan), PR #17 - renamed to Prerequisites 2026-08-27, no PR yet
+slide 7 (#s07) - branch feedback/s07-checklist - dispatched 2026-08-27 - options - PR #13 - feedback: keep the checklist vibe but tidy it up so it reads as a real checklist, credentials points consolidated, split-estate point removed - option D added (two portions: instance prep and migration prep with runner line of sight and backout plan), PR #17 - renamed to Prerequisites 2026-08-27, PR #23
 
 (Format: `slide N (#id) - branch feedback/<id>-<slug> - dispatched
 <date time> - <options|acceptance X> - PR #n or "no PR yet" - feedback: <one line>`.)
