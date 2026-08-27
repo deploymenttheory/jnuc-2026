@@ -391,6 +391,7 @@ purpose.
 ### In flight
 
 slide 4 (#s-workspace) - branch feedback/s-workspace-new - dispatched 2026-08-27 - options - PR #10 - feedback: new slide after slide 3 explaining plainly what a Terraform workspace is, three options
+slide 8 (#s07) - branch feedback/s07-checklist - dispatched 2026-08-27 - options - PR #13 - feedback: keep the checklist vibe but tidy it up so it reads as a real checklist, credentials points consolidated, split-estate point removed
 
 (Format: `slide N (#id) - branch feedback/<id>-<slug> - dispatched
 <date time> - <options|acceptance X> - PR #n or "no PR yet" - feedback: <one line>`.)

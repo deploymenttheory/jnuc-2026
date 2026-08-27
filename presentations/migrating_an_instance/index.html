@@ -640,13 +640,15 @@ body.reader .reader-extra {
 .s-single-code { margin: 0; font-size: 22px; line-height: 1.35; }
 
 /* ============================ S07 ============================ */
-.checklist { list-style: none; display: flex; flex-direction: column; gap: var(--sp-4); max-width: 1450px; }
-.checklist li { display: flex; align-items: flex-start; gap: var(--sp-3); }
+/* Tidied down to three items (sandbox option A, accepted 2026-08-27): bigger row
+   gap now there's room, a bold lead-in per row and the detail dropped to caption
+   size so each row scans lead first. */
+.checklist { list-style: none; display: flex; flex-direction: column; gap: var(--sp-5); max-width: 1560px; }
+.checklist li { display: flex; align-items: center; gap: var(--sp-4); }
 .check {
   flex: none;
   width: 1.25em;
   height: 1.25em;
-  margin-top: 0.1em;
   border: var(--bw-2) solid var(--c-success);
   border-radius: var(--radius-sm);
   position: relative;
@@ -662,6 +664,9 @@ body.reader .reader-extra {
   border-bottom: var(--bw-2) solid var(--c-success);
   transform: rotate(45deg);
 }
+.check-body { display: flex; flex-direction: column; gap: var(--sp-1); }
+.check-lead { font-size: var(--fs-body); font-weight: 600; line-height: var(--lh-tight); color: var(--c-accent); }
+.check-detail { font-size: var(--fs-caption); line-height: var(--lh-body); color: var(--c-text-muted); }
 
 /* ============================ S08 ============================ */
 .stepper {
@@ -1097,12 +1102,27 @@ body.presenter #viewport { display: none; }
     <section class="slide" id="s07" aria-label="Instance prep" data-speaker="Gordon" data-when="2025-11">
       <h1 class="slide-title">Instance prep</h1>
       <ul class="checklist">
-        <li><span class="check" aria-hidden="true"></span><span>Big tidy-up: used PRUNE to export JSON of every unused resource, then removed them with a bespoke tool - <code class="inline">jamf-resource-deleter</code> - which backs each resource up to JSON before deleting it, with a restore path if anything was needed back.</span></li>
-        <li><span class="check" aria-hidden="true"></span><span>Verified API credentials per client were valid and complete.</span></li>
-        <li><span class="check" aria-hidden="true"></span><span>Confirmed the Jamf Pro instance version met provider requirements.</span></li>
-        <li><span class="check" aria-hidden="true"></span><span>Tested the connection to Terraform Cloud end-to-end and confirmed every client's credentials were being read correctly.</span></li>
-        <li><span class="check" aria-hidden="true"></span><span>Stored credentials for every instance's API clients in the secrets manager.</span></li>
-        <li><span class="check" aria-hidden="true"></span><span>Split the estate into resource-type sections up front, so migration could proceed safely, one section at a time.</span></li>
+        <li>
+          <span class="check" aria-hidden="true"></span>
+          <span class="check-body">
+            <strong class="check-lead">Tidy-up</strong>
+            <span class="check-detail">Big tidy-up: used PRUNE to export JSON of every unused resource, then removed them with a bespoke tool - <code class="inline">jamf-resource-deleter</code> - which backs each resource up to JSON before deleting it, with a restore path if anything was needed back.</span>
+          </span>
+        </li>
+        <li>
+          <span class="check" aria-hidden="true"></span>
+          <span class="check-body">
+            <strong class="check-lead">Credentials</strong>
+            <span class="check-detail">Stored every instance's API client credentials in the secrets manager, verified each set was valid and complete, and tested the connection to Terraform Cloud end-to-end to confirm they were read correctly.</span>
+          </span>
+        </li>
+        <li>
+          <span class="check" aria-hidden="true"></span>
+          <span class="check-body">
+            <strong class="check-lead">Version check</strong>
+            <span class="check-detail">Confirmed the Jamf Pro instance version met provider requirements.</span>
+          </span>
+        </li>
       </ul>
       <aside class="notes">
         <p>The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back.</p>
