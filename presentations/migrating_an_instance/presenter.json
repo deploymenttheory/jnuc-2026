@@ -33,8 +33,7 @@
       "title": "Ideas rejected, and why",
       "timerSeconds": 75,
       "notes": [
-        "Expect pushback on \"not everything in Terraform\" - defend it: troubleshooting must not require a pull request.",
-        "Tease the closing line: two more ideas got dropped later, and they show up where they happened in the story."
+        "Expect pushback on \"not everything in Terraform\" - defend it: troubleshooting must not require a pull request."
       ]
     },
     {

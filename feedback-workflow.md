@@ -396,6 +396,10 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 4 (`#s04`) closing line removed.** The "two more were dropped
+  later, they come up where they happened" slide-note and its matching "tease the
+  closing line" speaker note removed at Joseph's request; `.slide-note` CSS left in
+  place (used elsewhere on the deck). `presenter.json` updated to match. PR #(pending).
 - **2026-08-27, process changed to one PR per instruction.** Joseph: every instruction goes
   to an agent that returns one PR; the orchestrator only merges, resolves conflicts, pushes
   and reports. This file rewritten accordingly.
