@@ -575,7 +575,7 @@ it up - either way it is on disk for a recovering session.
   which is the range drawn honestly) and one mark per HCL file, under a "Too many to draw"
   rule holding the three figures that will not take that treatment. B, C and D ship as
   `.s16b-opt-b` / `-opt-c` / `-opt-d` wrappers hidden by one `#s16b` rule. Awaiting a
-  decision. PR #TBC.
+  decision. PR #46.
 - **2026-08-27, timeline adherence doc added.** Joseph: "Generate a timeline adhereance
   doc for this deck." `docs/timeline-adherence.md` added: one row per slide of
   `migrating_an_instance` as it stands on `main` (id, title, speaker, timer,
