@@ -563,7 +563,7 @@ it up - either way it is on disk for a recovering session.
   `load` handler; the deck carries it as a direct edit of the SVG's band heights, y positions
   and viewBox, so no script is needed. Speaker notes and `presenter.json` untouched - neither
   mentions the diagram's text size - and the check prints OK. Sandbox page deleted, index
-  entry marked `.done`, `AGENTS.md`'s Sandbox section updated. PR #<PR_NUMBER>.
+  entry marked `.done`, `AGENTS.md`'s Sandbox section updated. PR #34.
 - **2026-08-27, slide 6 (`#s05`) control note folded into path 03, sandbox options added.**
   Joseph asked for the annotation at the foot of the slide to go, its message to be condensed
   into option 3, and everything to expand into the space so the slide feels less busy. Applied
