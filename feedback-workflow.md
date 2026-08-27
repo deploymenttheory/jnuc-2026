@@ -407,6 +407,10 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, Joseph's and Gordon's photos added to both decks.** Both photos
+  centre-cropped, resized and compressed in `_shared/speakers.js` to match Dafydd's
+  existing 420x420 JPEG (byte size matched to his ~27KB); the amber TODO chip for the
+  missing photos removed from the title slide of both decks; `AGENTS.md` updated. PR #20.
 - **2026-08-27, sandbox split one per deck.** `presentations/sandbox/` restructured: a
   minimal chooser stays at the top alongside the shared `sandbox.css`, and each deck now has
   its own subdirectory (`migrating_an_instance/`, `training_a_team/`) with its own
