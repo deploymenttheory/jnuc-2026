@@ -21,8 +21,8 @@ process. Last revised 2026-08-27.
   can go straight into the deck, but if in doubt offer options rather than decide.
 - Work from `main`, push to `main`, deploy on every push. Do not ask.
 - Fan out: one Sonnet agent per instruction, each with an explicit self-contained brief. Its
-  PR carries the slide or sandbox edit, the sandbox page, the
-  `presentations/sandbox/index.html` entry, any `AGENTS.md` updates the change makes
+  PR carries the slide or sandbox edit, the sandbox page, the deck's
+  `presentations/sandbox/<deck>/index.html` entry, any `AGENTS.md` updates the change makes
   necessary, and the Log entry in this file. The orchestrator merges the PR, resolves any
   conflicts with other agents' PRs, pushes and deploys - nothing more.
 - The orchestrator is Joseph's point of contact and does not do slide work itself. The chat
@@ -48,7 +48,7 @@ sandbox link. Owns only the files agents may not touch: `tools/`,
 an acceptance, a wording change, a process change), working in its own git worktree on its
 own branch. Delivers everything the instruction needs in a single PR: the slide or sandbox
 edit (its section, its CSS block, its `presenter.json` entry), the sandbox page and its
-`presentations/sandbox/index.html` entry, any `AGENTS.md` updates the change makes necessary,
+deck's `presentations/sandbox/<deck>/index.html` entry, any `AGENTS.md` updates the change makes necessary,
 and the Log entry in this file. Verifies with screenshots, opens the PR, reports the PR
 number and evidence. Never touches another slide's markup or CSS, the `:root` token block,
 `sandbox.css`, `tools/`, package files, or any `.key` file.
@@ -83,14 +83,14 @@ or a comment with no action, answer it and stay idle.
    prompt built from the brief template below with every placeholder filled. Never bundle
    two instructions into one agent.
 3. **Collect.** Each agent returns a PR number, branch name, and its evidence: the four
-   verify outputs, the sandbox index entry, the `AGENTS.md` diff, the Log entry and the
-   presenter check result. If an agent returns without a PR, read its report, fix the brief,
-   and re-dispatch that instruction only.
+   verify outputs, the deck's sandbox index entry, the `AGENTS.md` diff, the Log entry and
+   the presenter check result. If an agent returns without a PR, read its report, fix the
+   brief, and re-dispatch that instruction only.
 4. **Verify (optional).** Only when an agent's own evidence is incomplete or inconsistent,
    dispatch one verifier agent for that PR using the verifier brief below. Do not verify by
    default - speed comes first.
 5. **Merge.** From the main checkout: fetch, then `git merge --no-ff` the branch into `main`
-   (commands below). Conflicts are expected on `presentations/sandbox/index.html`,
+   (commands below). Conflicts are expected on `presentations/sandbox/<deck>/index.html`,
    `AGENTS.md`, this file's Log section and `presenter.json`, because agents edit them
    directly - resolve by keeping both agents' entries, newest first in each list. Make no
    other edits.
@@ -145,16 +145,17 @@ WHAT TO DO
    deck as it will ship from this PR (after step 1) and injects nothing; B and C are CSS
    layered on top.
 3. Build the sandbox page: copy tools/sandbox-template.html to
-   presentations/sandbox/{{SLIDE_ID}}-{{SLUG}}.html and replace every {{PLACEHOLDER}}.
-   DECK_DIR is migrating_an_instance, DECK_TITLE is "From Clicks to Code". Each option gets
+   presentations/sandbox/{{DECK_DIR}}/{{SLIDE_ID}}-{{SLUG}}.html and replace every
+   {{PLACEHOLDER}}. DECK_DIR is migrating_an_instance, DECK_TITLE is "From Clicks to Code".
+   Each option gets
    a name, a paragraph on what it does and why someone would pick it, and its CSS. Variant
    CSS must be scoped to `#{{SLIDE_ID}}`, use only the deck's existing tokens (`--sp-*`,
    `--fs-*`, `--c-*`, `--bw-*`, `--radius*`), and never hardcode a colour, font or size. If
    an option truly needs a markup change, do it in the `load` handler on the iframe document,
    keep it minimal, and describe the equivalent deck edit in the option's paragraph.
-4. Add this page to presentations/sandbox/index.html, in the same hand-written style as the
-   existing entries: date, deck, slide, speaker, "awaiting a decision". Match the existing
-   entries' format exactly - do not restructure the file.
+4. Add this page to presentations/sandbox/{{DECK_DIR}}/index.html, in the same hand-written
+   style as the existing entries: date, deck, slide, speaker, "awaiting a decision". Match
+   the existing entries' format exactly - do not restructure the file.
 5. Update AGENTS.md: the slide list entry for {{SLIDE_NUMBER}} if its title or content
    summary changed, the "Current pages" line in the Sandbox section (add your page), and
    anything else your change makes stale (timers, slide count, other cross-references).
@@ -211,11 +212,11 @@ a. Slide screenshot from disk:
    OUT=$(mktemp -d) && "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --window-size=1920,1080 --hide-scrollbars --virtual-time-budget=3000 --screenshot="$OUT/{{SLIDE_ID}}.png" "file://$(git rev-parse --show-toplevel)/presentations/migrating_an_instance/index.html#{{SLIDE_ID}}" 2>/dev/null; echo "$OUT/{{SLIDE_ID}}.png"
    Open the PNG with the Read tool and check for overflow, collisions and the timeline strip.
 b. Sandbox screenshot over HTTP (pick a free port; kill the server in the same command):
-   cd "$(git rev-parse --show-toplevel)/presentations" && OUT=$(mktemp -d) && (python3 -m http.server {{PORT}} >/dev/null 2>&1 & echo $! > "$OUT/srv.pid") && sleep 1 && "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --window-size=1400,3000 --hide-scrollbars --virtual-time-budget=8000 --screenshot="$OUT/sandbox.png" "http://localhost:{{PORT}}/sandbox/{{SLIDE_ID}}-{{SLUG}}.html" 2>/dev/null; kill "$(cat "$OUT/srv.pid")"; echo "$OUT/sandbox.png"
+   cd "$(git rev-parse --show-toplevel)/presentations" && OUT=$(mktemp -d) && (python3 -m http.server {{PORT}} >/dev/null 2>&1 & echo $! > "$OUT/srv.pid") && sleep 1 && "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --window-size=1400,3000 --hide-scrollbars --virtual-time-budget=8000 --screenshot="$OUT/sandbox.png" "http://localhost:{{PORT}}/sandbox/{{DECK_DIR}}/{{SLIDE_ID}}-{{SLUG}}.html" 2>/dev/null; kill "$(cat "$OUT/srv.pid")"; echo "$OUT/sandbox.png"
    Open it (crop with PIL if it is too tall to read) and confirm all three options render
    differently and none pushes content onto the timeline strip.
 c. Dash lint - expect no lines before the echo:
-   cd "$(git rev-parse --show-toplevel)" && grep -n -e "—" -e "–" presentations/migrating_an_instance/index.html presentations/migrating_an_instance/presenter.json presentations/sandbox/{{SLIDE_ID}}-{{SLUG}}.html; echo "dash hits above (expect none)"
+   cd "$(git rev-parse --show-toplevel)" && grep -n -e "—" -e "–" presentations/migrating_an_instance/index.html presentations/migrating_an_instance/presenter.json presentations/sandbox/{{DECK_DIR}}/{{SLIDE_ID}}-{{SLUG}}.html; echo "dash hits above (expect none)"
 d. Scope check - the diff touches only your slide, its CSS block, its presenter.json entry
    and your new sandbox page:
    git diff --stat main && git diff main -- presentations/migrating_an_instance/index.html | grep '^@@'
@@ -238,12 +239,12 @@ For an acceptance round, replace WHAT TO DO with:
 ```
 WHAT TO DO
 1. Joseph accepted option {{LETTER}} ("{{OPTION_NAME}}") from
-   presentations/sandbox/{{SLIDE_ID}}-{{SLUG}}.html. Write it into the deck as the net
-   result - one clean block of rules in the slide's CSS block, not the option layered over
-   whatever was there - and remove any markup the option makes redundant.
-2. git rm the sandbox page. In presentations/sandbox/index.html, turn its entry into a
-   non-linked `.done` line with the date and the option chosen, in the same style as the
-   existing decided entries.
+   presentations/sandbox/{{DECK_DIR}}/{{SLIDE_ID}}-{{SLUG}}.html. Write it into the deck as
+   the net result - one clean block of rules in the slide's CSS block, not the option
+   layered over whatever was there - and remove any markup the option makes redundant.
+2. git rm the sandbox page. In presentations/sandbox/{{DECK_DIR}}/index.html, turn its entry
+   into a non-linked `.done` line with the date and the option chosen, in the same style as
+   the existing decided entries.
 3. Update AGENTS.md: the slide list entry if the title or content summary changed, and the
    "Current pages" and "Decided" lines in the Sandbox section to match.
 4. Reread the speaker notes and presenter.json as before.
@@ -270,9 +271,10 @@ The agent's brief was:
 Check, with commands, and report each as PASS or FAIL with the evidence:
 1. `gh pr diff {{PR_NUMBER}} --name-only` lists only: presentations/migrating_an_instance/
    index.html, presentations/migrating_an_instance/presenter.json (optional),
-   presentations/sandbox/{{SLIDE_ID}}-{{SLUG}}.html (present for an options round, deleted
-   for an acceptance round), presentations/sandbox/index.html, AGENTS.md (if the change made
-   it stale) and feedback-workflow.md (the Log entry). Nothing else.
+   presentations/sandbox/{{DECK_DIR}}/{{SLIDE_ID}}-{{SLUG}}.html (present for an options
+   round, deleted for an acceptance round), presentations/sandbox/{{DECK_DIR}}/index.html,
+   AGENTS.md (if the change made it stale) and feedback-workflow.md (the Log entry). Nothing
+   else.
 2. Every hunk in presentations/migrating_an_instance/index.html sits inside
    `#{{SLIDE_ID}}`'s section or its CSS block. Hunks elsewhere are a FAIL - name them.
 3. Every feedback point in the brief is addressed - quote the before and after for each.
@@ -299,11 +301,11 @@ cd /Users/josephlittle/Github/jnuc-2026 && git fetch origin && git checkout main
 git merge --no-ff origin/feedback/<slide-id>-<slug> -m "Merge slide <n>: <what changed> (#<pr>)"
 ```
 
-Conflicts are expected on `presentations/sandbox/index.html`, `AGENTS.md`, this file's Log
-section and `presenter.json` when two agents' PRs both touch them, because agents now edit
-those directly. Resolve by keeping both agents' entries, newest first in each list - never
-drop either side. The main checkout should be clean before and after; if it is not, find out
-why before pushing.
+Conflicts are expected on `presentations/sandbox/<deck>/index.html`, `AGENTS.md`, this
+file's Log section and `presenter.json` when two agents' PRs both touch them, because agents
+now edit those directly. Resolve by keeping both agents' entries, newest first in each list -
+never drop either side. The main checkout should be clean before and after; if it is not,
+find out why before pushing.
 
 Push, confirm, clean up:
 
@@ -312,7 +314,7 @@ git push origin main
 # the run can take a few seconds to appear; match on the new commit
 gh run list --workflow=deploy.yml --limit 2 --json databaseId,status,conclusion,headSha -q '.[] | "\(.databaseId) \(.status) \(.conclusion) \(.headSha[0:7])"'
 gh run watch --exit-status <id>
-curl -s -o /dev/null -w "%{http_code}\n" https://d3ga0oyittaf77.cloudfront.net/sandbox/<slide-id>-<slug>.html
+curl -s -o /dev/null -w "%{http_code}\n" https://d3ga0oyittaf77.cloudfront.net/sandbox/<deck>/<slide-id>-<slug>.html
 git push origin --delete feedback/<slide-id>-<slug>    # one per merged branch
 git worktree prune
 ```
@@ -324,15 +326,18 @@ site returns 403, not 404.
 ## Sandbox
 
 Documented in `AGENTS.md` under "Sandbox"; the short version: `presentations/sandbox/` holds
-`index.html` (hand-maintained list, edited by whichever agent's PR adds or resolves a page),
-`sandbox.css` (shared, orchestrator-owned) and one page per slide change named
-`<slide-id>-<slug>.html`, created from `tools/sandbox-template.html`. A page embeds the live
-deck slide three times in iframes and injects one CSS variant into each on `load`; the
-options are therefore always the deployed deck plus a few rules and track deck edits
-automatically. Injection needs HTTP -
-from `file://` the iframes load but every option renders as the plain deck. Live at
-https://d3ga0oyittaf77.cloudfront.net/sandbox/ , `noindex`, linked from the landing page's
-Sandbox button.
+one sandbox per deck. `index.html` at the top is a minimal chooser (orchestrator-owned,
+static, rarely changes) linking to `migrating_an_instance/` and `training_a_team/`;
+`sandbox.css` (shared, orchestrator-owned) also sits at the top. Each deck subdirectory has
+its own `index.html` (hand-maintained list, edited by whichever agent's PR adds or resolves
+a page) and one page per slide change named `<slide-id>-<slug>.html`, created from
+`tools/sandbox-template.html`. A page embeds the live deck slide three times in iframes
+(two levels up from the page to `presentations/`, then into the deck) and injects one CSS
+variant into each on `load`; the options are therefore always the deployed deck plus a few
+rules and track deck edits automatically. Injection needs HTTP - from `file://` the iframes
+load but every option renders as the plain deck. Live at
+https://d3ga0oyittaf77.cloudfront.net/sandbox/ , `noindex`, linked from a Sandbox button on
+each deck card on the landing page.
 
 ## Gotchas
 
@@ -346,10 +351,10 @@ Sandbox button.
   content down onto it - always look at the 1920x1080 screenshot.
 - Parallel agents all edit `presentations/migrating_an_instance/index.html`. Different
   slides sit in different regions, so `--no-ff` merges are clean there in practice. Agents
-  now also edit `presentations/sandbox/index.html`, `AGENTS.md`, this file's Log section and
-  `presenter.json` directly, so conflicts on those four are expected whenever two agents'
-  PRs land close together - resolve by keeping both agents' entries, newest first in each
-  list, never by dropping one side.
+  now also edit `presentations/sandbox/<deck>/index.html`, `AGENTS.md`, this file's Log
+  section and `presenter.json` directly, so conflicts on those four are expected whenever
+  two agents' PRs land close together - resolve by keeping both agents' entries, newest
+  first in each list, never by dropping one side.
 - Slide agents must not rely on the live site: their iframes point at the deck relative to
   the sandbox page, so their local HTTP screenshot shows their branch's deck, and the
   deployed page shows `main`. After the merge those are the same.
@@ -368,7 +373,7 @@ cd /Users/josephlittle/Github/jnuc-2026 && git fetch origin --prune
 gh pr list --state open --json number,headRefName,title,updatedAt      # PRs awaiting merge
 git branch -r | grep feedback/                                          # branches, merged or not
 git worktree list                                                       # agents that were mid-work
-ls presentations/sandbox/                                               # pages awaiting a decision
+ls presentations/sandbox/*/*.html                                       # pages awaiting a decision
 git log --oneline origin/main -10
 ```
 
@@ -402,6 +407,14 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, sandbox split one per deck.** `presentations/sandbox/` restructured: a
+  minimal chooser stays at the top alongside the shared `sandbox.css`, and each deck now has
+  its own subdirectory (`migrating_an_instance/`, `training_a_team/`) with its own
+  hand-maintained index and pages. `migrating_an_instance`'s existing index and pages moved
+  in with `git mv`; `training_a_team`'s index starts empty. The landing page's single global
+  Sandbox button replaced with one Sandbox button per deck card. `tools/sandbox-template.html`
+  and this file's paths and URLs updated to match, `AGENTS.md`'s Sandbox section rewritten.
+  At Joseph's request. PR #{{PR_NUMBER}}.
 - **2026-08-27, Sandbox button added to the landing page.** A button-style link (`.go`,
   reused from the deck cards) to `sandbox/` now sits under the deck cards on
   `presentations/index.html`, with a one-line caption. `AGENTS.md` and this file updated to
