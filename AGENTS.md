@@ -35,6 +35,7 @@ landing page keeps its own near-black look - it is not a deck.
 |---|---|
 | `presentations/<slug>/` | One talk. Snake-case slug. Each deck owns its own HTML, tokens and script; decks do not import from each other beyond `_shared/`. |
 | `presentations/_shared/` | Data used by more than one deck: `speakers.js` and `qr-code.png` (the training deck's take-it-with-you code). Content, not styling - see below. |
+| `presentations/sandbox/` | Feedback review pages: one page per deck change showing three implementation options as live renders of the real slide, plus a hand-maintained `index.html` and `sandbox.css`. Deploys with the site at `/sandbox/`. See Sandbox. |
 | `template.key` | The Jamf-supplied JNUC 2026 Keynote template. Canonical reference for palette, typography and mandatory slides. |
 | `.github/workflows/` | `deploy.yml` only - the S3 sync and CloudFront invalidation. See Deployment. |
 | `tools/` | `build-key.mjs`, which builds the Keynote downloads from the decks on a Mac. The only thing `package.json` exists for. |
@@ -526,6 +527,37 @@ after each keypress it asserts the deck actually moved.
 - The `.key` files ARE committed (unlike the old CI-built `.pptx` downloads, which were
   gitignored). Fonts and rendering therefore match the Mac that ran the build.
 
+## Sandbox (feedback review pages)
+
+Feedback on the clicks-to-code deck arrives in rounds via `feedback-clickstocode.md` at the
+repo root (Joseph's working file, untracked). Each change gets a review page under
+`presentations/sandbox/` showing three implementation options; Joseph picks one there or
+asks for another set, and the winner goes into the deck. `index.html` lists the pages by
+hand and `sandbox.css` styles them (landing-page look, not the JNUC template - this is
+tooling, not a deck). Every page carries `<meta name="robots" content="noindex">` and
+nothing links to `/sandbox/` from the landing page.
+
+How a review page works: it embeds the real slide three times in iframes
+(`../<deck>/index.html#<slide-id>`) and, on each iframe's `load`, appends a `<style>` with
+that option's CSS to the iframe document. The options are therefore always the deployed deck
+plus a few rules, never a copy of the deck, and they track deck edits automatically.
+
+- Option A is by convention whatever the deck currently ships and injects nothing.
+- Variant CSS only touches the slide's `#id` and only uses the deck's own tokens, so an
+  accepted option pastes into the deck unchanged.
+- Injection needs same-origin access, so it only works over HTTP. Opened from `file://` the
+  iframes load but every option renders as the plain deck. Verify with a local server (see
+  Verifying) and a tall headless window, e.g. `--window-size=1400,3000`.
+- Check each option for overflow into the timeline strip, and for rules leaking onto other
+  elements that share a class - on `s01` the top caption shares `.pipeline-label` with the
+  band label, so band rules must be scoped to `#s01 .pipeline-band .pipeline-label`.
+- Page names: `<slide-id>-<what>.html`. The index entry records date, deck, slide, speaker
+  and decision state. Once an option is accepted, apply it to the deck and mark the entry
+  decided (or delete the page and its entry).
+
+Current pages: `s01-environment-band.html` (2026-08-27, three layouts for the Sandbox /
+Staging / Production row on slide 2; A is live, awaiting a decision).
+
 ## Deployment
 
 `.github/workflows/deploy.yml` deploys this repo on merge to `main` (only when
@@ -545,6 +577,7 @@ The bucket mirrors `presentations/` exactly, so the URL layout is the repo layou
 | `/migrating_an_instance/` | `presentations/migrating_an_instance/index.html` |
 | `/training_a_team/` | `presentations/training_a_team/index.html` |
 | `/_shared/speakers.js` | `presentations/_shared/speakers.js` |
+| `/sandbox/` | `presentations/sandbox/index.html` (feedback review pages, one per change, not linked from the landing page) |
 
 Live at https://d3ga0oyittaf77.cloudfront.net - CloudFront in front of a private S3 bucket
 (`jl-html-presentation-2026`, OAC access). Infra is `~/Github/terraform/presentation.tf`, an
