@@ -232,7 +232,8 @@ overlay - keep the two in step when slides move.
     2026-08-27 for reading as machine-written, and its TODO chip moved onto the code block)
     - **Joseph**
 18. `s15b` The module structure (module tree -> workspaces) - **Dafydd**
-19. `s16b` By the numbers - **Gordon**
+19. `s16b` By the numbers (six stat tiles carrying the refreshed 2026-08-27 figures; option B,
+    C and D wrappers for the sandbox page ship hidden inside the section) - **Gordon**
 20. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
 21. `s18` Links - **Anyone**
 22. `s-thanks` Thank You (template close, royal blue) - **nobody assigned**
@@ -290,8 +291,12 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   Production. Confirmed by Gordon Deacon, Aug 2026.
 - **CalVer:** started on Release Please; cadence unsustainable, tracking unclear; switched to
   calendar versioning much later, around the time DevTest arrived.
-- **Numbers:** Apr 2025 (provider development start) -> May 2026 (v1.0.0 and final handover); 14+ contributors;
-  526+ PRs; 1,902 commits; 127 Terraform files; 19,000+ lines of HCL.
+- **Numbers:** Apr 2025 (provider development start) -> May 2026 (v1.0.0 and final handover); 35-40
+  contributors; 900 PRs merged; 1,902 commits; 134 HCL files; 19,000+ lines of code. Refreshed by
+  Joseph, 2026-08-27 (was 14+ contributors, 526+ PRs, 127 Terraform files); he gave "lines of code"
+  rather than "lines of HCL" and that wording is now what `s16b` shows. The commit count is the one
+  figure he did not restate, so 1,902 is carried over from the first build and is probably stale -
+  worth confirming before the talk.
 - **for_each exceptions:** policies only. Dock items were never an exception (corrected by
   Joseph, 2026-08-27). The reason is how diverse policies are: they vary so widely from one
   to the next that a `for_each` map has to carry every field any policy might need, which
@@ -637,7 +642,13 @@ Current pages (all under `presentations/sandbox/migrating_an_instance/`):
 `s-staging-steps-first` (2026-08-27, slide 16 - four ways to put the three rebuild steps
 first, all four pure CSS on the same markup: A three full-height panels, B a numbered run
 down the left with a quiet right-hand column, C one flow strip in the deck's diagram style,
-D the wipe as a hero panel; the rewritten wording ships in all four). Decided (all under
+D the wipe as a hero panel; the rewritten wording ships in all four);
+`s16b-numbers` (2026-08-27, slide 19 - the refreshed figures ship in all four
+renders; A the six stat tiles the deck already has, B five gauge bars each measured against
+its own next round number with the ranges drawn as open ends, C one hero number - 900 PRs
+merged - with the other four as a quiet supporting row, D unit grids of one mark per
+contributor and one mark per HCL file with the three uncountable totals stated below; B, C
+and D ship as hidden `.s16b-opt-*` wrappers). Decided (all under
 `presentations/sandbox/migrating_an_instance/`):
 `s14-terminal-excerpt` (2026-08-27, option B - the `terraform plan` block as a real window:
 a light chrome bar, red/amber/lime traffic-light dots, a centred `joseph@jnuc - zsh` title,
