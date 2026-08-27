@@ -228,8 +228,8 @@ overlay - keep the two in step when slides move.
     paragraph is gone from the slide because the speaker notes carry it) - **Dafydd**
 17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals; the lead and one
     HCL block, no closing statement - the "It got out of hand. The pivot: ..." line came off
-    2026-08-27 for reading as machine-written, and its TODO chip moved onto the code block.
-    Option C and D wrappers for the sandbox page ship hidden inside the section) - **Joseph**
+    2026-08-27 for reading as machine-written, and its TODO chip moved onto the code block)
+    - **Joseph**
 18. `s15b` The module structure (module tree -> workspaces) - **Dafydd**
 19. `s16b` By the numbers - **Gordon**
 20. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
@@ -636,12 +636,8 @@ Current pages (all under `presentations/sandbox/migrating_an_instance/`):
 `s-staging-steps-first` (2026-08-27, slide 16 - four ways to put the three rebuild steps
 first, all four pure CSS on the same markup: A three full-height panels, B a numbered run
 down the left with a quiet right-hand column, C one flow strip in the deck's diagram style,
-D the wipe as a hero panel; the rewritten wording ships in all four);
-`s-pivot-display` (2026-08-27, slide 17 - four ways to hold the slide now the pivot
-statement is gone: A the lead over the code as one column and what the deck ships, B the
-code filling the slide with the "everywhere" comment as the punchline, C the code beside
-what one URL decided, D the conditional as an editor window with a file tab and line
-numbers). Decided (all under `presentations/sandbox/migrating_an_instance/`):
+D the wipe as a hero panel; the rewritten wording ships in all four). Decided (all under
+`presentations/sandbox/migrating_an_instance/`):
 `s14-terminal-excerpt` (2026-08-27, option B - the `terraform plan` block as a real window:
 a light chrome bar, red/amber/lime traffic-light dots, a centred `joseph@jnuc - zsh` title,
 white bold command text against the lime result, and a blinking cursor on a fresh prompt
@@ -668,7 +664,9 @@ of the three redesigned alternatives captured the point; the page is deleted, th
 keeps the record as a non-linked `.done` entry); `s10-diagram-text` (2026-08-27, option C -
 tier labels and examples pushed further up the font scale and the four bands grown to
 match - applied to the deck's `#s10` rules and SVG; the page is deleted, the index keeps
-the record as a non-linked `.done` entry). `presentations/sandbox/training_a_team/`
+the record as a non-linked `.done` entry); `s-pivot-display` (2026-08-27, closed without a
+decision - live slide (option A) kept, B to D not chosen; the page is deleted, the index
+keeps the record as a non-linked `.done` entry). `presentations/sandbox/training_a_team/`
 has no pages yet.
 
 ## Deployment
