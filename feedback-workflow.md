@@ -567,6 +567,18 @@ it up - either way it is on disk for a recovering session.
   its reason in large type. Sandbox page
   `presentations/sandbox/migrating_an_instance/s13-policies-only.html`, awaiting a decision.
   PR #32.
+- **2026-08-27, slide 11 (`#s08`) three layouts offered for the empty half of the slide.**
+  Joseph's feedback was that the content of the migration wave workflow is already good and
+  only the use of the space needs work. The disk screenshot confirmed it: seven narrow cards
+  in one row across the top third, body text at caption size, and roughly 400px of empty
+  stage below them. Layout round only, so nothing deterministic to apply and the deck itself
+  is untouched - option A is the live slide. Sandbox page `s08-use-of-space.html` offers B
+  (two rows, four then three, body text up to `--fs-body` and chevrons in the gaps carrying
+  the direction of travel), C (seven full-width bands stepping down the slide, one step per
+  line, numbers in an aligned gutter, right edges flush) and D (three columns at three
+  weights - steps 1 and 2 left, the permissions revoke as a full-height centre panel with
+  the lock at scale, steps 4 to 7 right). All three are CSS on the existing markup, scoped
+  to `#s08`, tokens only, so no wrappers were needed in the deck. Awaits a decision. PR #31.
 - **2026-08-27, slide 10 (`#s10`) diagram text bumped, sandbox options added.** Joseph's
   "text glitches until refresh" report investigated - fonts, transitions, transform/
   clip-path/filter/contain on text, and the SVG's `tspan dx` labels all checked; could not
