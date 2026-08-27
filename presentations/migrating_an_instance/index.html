@@ -719,6 +719,10 @@ body.reader .reader-extra {
 #s05 .mp-env { font-family: var(--f-display); font-size: 30px; font-weight: 600; fill: var(--c-text); }
 #s05 .mp-dim .mp-env { fill: var(--c-text-muted); }
 #s05 .mp-stripe { fill: var(--c-accent); }
+/* One colour per resource type, so the same kind is recognisable in both environments. */
+#s05 .mp-k1 { fill: var(--c-accent); }
+#s05 .mp-k2 { fill: var(--c-warn); }
+#s05 .mp-k3 { fill: var(--c-code-str); }
 #s05 .mp-loop { stroke: var(--c-text-muted); stroke-width: var(--bw-2); fill: none; }
 #s05 .mp-loop-label { font-family: var(--f-mono); font-size: var(--fs-chip); fill: var(--c-text-muted); }
 #s05 .control-note { margin-top: var(--sp-3); }
@@ -1264,17 +1268,27 @@ body.presenter #viewport { display: none; }
             <span class="mp-name">Staging first, then production</span>
             <span class="mp-why">Two divergent sets of configuration to import, and the drifted one gets validated first.</span>
           </div>
-          <svg class="mp-flow" viewBox="0 0 1728 128" role="img" aria-label="One resource type into staging, then the same resource type into production, repeating for the next resource type.">
-            <rect class="dg-box mp-box" x="2" y="2" width="560" height="76" rx="12"/>
-            <text class="mp-env" x="28" y="36">Staging</text>
-            <text class="dg-eg" x="28" y="62">one resource type</text>
-            <path class="dg-edge" d="M596 40 H676 M666 30 L682 40 L666 50"/>
-            <rect class="dg-box mp-box" x="716" y="2" width="560" height="76" rx="12"/>
-            <text class="mp-env" x="742" y="36">Production</text>
-            <text class="dg-eg" x="742" y="62">the same resource type</text>
-            <path class="mp-loop" d="M1250 78 V104 H300 V78"/>
-            <path class="mp-loop" d="M314 96 L298 104 L314 112"/>
-            <text class="dg-eg mp-loop-label" x="775" y="124" text-anchor="middle">then the next resource type, all the way through</text>
+          <svg class="mp-flow" viewBox="0 0 1728 148" role="img" aria-label="One resource type into staging, then the same resource type into production, repeating for the next resource type. Each resource type is colour coded and appears in both environments.">
+            <rect class="dg-box mp-box" x="2" y="2" width="560" height="92" rx="12"/>
+            <text class="mp-env" x="28" y="34">Staging</text>
+            <rect class="mp-k1" x="28" y="54" width="18" height="18" rx="4"/>
+            <text class="dg-eg" x="54" y="69">scripts</text>
+            <rect class="mp-k2" x="190" y="54" width="18" height="18" rx="4"/>
+            <text class="dg-eg" x="216" y="69">dock items</text>
+            <rect class="mp-k3" x="380" y="54" width="18" height="18" rx="4"/>
+            <text class="dg-eg" x="406" y="69">categories</text>
+            <path class="dg-edge" d="M596 48 H676 M666 38 L682 48 L666 58"/>
+            <rect class="dg-box mp-box" x="716" y="2" width="560" height="92" rx="12"/>
+            <text class="mp-env" x="742" y="34">Production</text>
+            <rect class="mp-k1" x="742" y="54" width="18" height="18" rx="4"/>
+            <text class="dg-eg" x="768" y="69">scripts</text>
+            <rect class="mp-k2" x="904" y="54" width="18" height="18" rx="4"/>
+            <text class="dg-eg" x="930" y="69">dock items</text>
+            <rect class="mp-k3" x="1094" y="54" width="18" height="18" rx="4"/>
+            <text class="dg-eg" x="1120" y="69">categories</text>
+            <path class="mp-loop" d="M1250 94 V120 H300 V94"/>
+            <path class="mp-loop" d="M314 112 L298 120 L314 128"/>
+            <text class="dg-eg mp-loop-label" x="775" y="142" text-anchor="middle">all of one resource type across both, then the next</text>
           </svg>
         </div>
 
@@ -1334,6 +1348,7 @@ body.presenter #viewport { display: none; }
       </details>
       <aside class="notes">
         <p>Three paths were genuinely on the table. Walk each diagram left to right - the left box is where a change lands first, the right box is where it goes next.</p>
+        <p>On path one the colour is the resource type - scripts, then dock items, then categories - and the same colour appears in both environments, so you can see all of one kind crossing before the next one starts.</p>
         <p>The first two repeat per resource type, and that return arrow is the cost: you switch instances constantly and you are validating against a drifted staging as you go. Path three does not repeat, and that is the whole difference between it and path two.</p>
         <p>Prod first is counterintuitive on purpose. Importing is read-then-manage - with a read-only API client there is no write surface, so it is safer than it sounds. Write scopes were only widened once imports were stable at zero diff.</p>
       </aside>
