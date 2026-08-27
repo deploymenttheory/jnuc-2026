@@ -331,7 +331,8 @@ deck slide three times in iframes and injects one CSS variant into each on `load
 options are therefore always the deployed deck plus a few rules and track deck edits
 automatically. Injection needs HTTP -
 from `file://` the iframes load but every option renders as the plain deck. Live at
-https://d3ga0oyittaf77.cloudfront.net/sandbox/ , `noindex`, not linked from the landing page.
+https://d3ga0oyittaf77.cloudfront.net/sandbox/ , `noindex`, linked from the landing page's
+Sandbox button.
 
 ## Gotchas
 
@@ -401,6 +402,11 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, Sandbox button added to the landing page.** A button-style link (`.go`,
+  reused from the deck cards) to `sandbox/` now sits under the deck cards on
+  `presentations/index.html`, with a one-line caption. `AGENTS.md` and this file updated to
+  match - both said nothing linked to the sandbox from the landing page. At Joseph's
+  request. PR #16.
 - **2026-08-27, slide 6 (`#s05`) option card blurb reduced.** `.option` is only used on
   this slide, but the blurb had no explicit font-size rule of its own - it inherited the
   body default. Added `#s05 .option p { font-size: var(--fs-caption); }` (down from the
