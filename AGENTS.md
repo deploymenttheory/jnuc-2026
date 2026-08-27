@@ -571,7 +571,8 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages: none. Decided (all under `presentations/sandbox/migrating_an_instance/`):
+Current pages: `s10-diagram-text` (2026-08-27, awaiting a decision - resource-sequencing
+diagram text size). Decided (all under `presentations/sandbox/migrating_an_instance/`):
 `s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
 one three-segment chevron arrow - applied to the deck's `#s01` rules; the page is deleted,
 the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
