@@ -38,7 +38,7 @@ landing page keeps its own near-black look - it is not a deck.
 | `presentations/sandbox/` | Feedback review pages: one page per deck change showing three implementation options as live renders of the real slide, plus a hand-maintained `index.html` and `sandbox.css`. Deploys with the site at `/sandbox/`. See Sandbox. |
 | `template.key` | The Jamf-supplied JNUC 2026 Keynote template. Canonical reference for palette, typography and mandatory slides. |
 | `.github/workflows/` | `deploy.yml` only - the S3 sync and CloudFront invalidation. See Deployment. |
-| `tools/` | `build-key.mjs`, which builds the Keynote downloads from the decks on a Mac. The only thing `package.json` exists for. |
+| `tools/` | `build-key.mjs`, which builds the Keynote downloads from the decks on a Mac (the only thing `package.json` exists for), and `sandbox-template.html`, the starting point for every sandbox review page. |
 | `README.md`, `LICENSE` | Repo boilerplate. |
 
 The decks have no build step. Node is in this repo purely for `tools/build-key.mjs`, which is
@@ -529,11 +529,13 @@ after each keypress it asserts the deck actually moved.
 
 ## Sandbox (feedback review pages)
 
-Feedback on the clicks-to-code deck arrives in rounds via `feedback-workflow.md` at the
-repo root (Joseph's working file, untracked: his standing instructions, the change requests,
-and handover notes for whoever runs the next round - read it first). Each change gets a review page under
-`presentations/sandbox/` showing three implementation options; Joseph picks one there or
-asks for another set, and the winner goes into the deck. `index.html` lists the pages by
+Feedback on the clicks-to-code deck arrives in chat. The loop that turns it into deployed
+changes - an orchestrator session dispatching one Sonnet agent per slide, each delivering a
+PR that the orchestrator merges, consolidates and deploys - is written down in
+`feedback-workflow.md` at the repo root (Joseph's working file, untracked; read it first).
+Each change gets a review page under `presentations/sandbox/`, created from
+`tools/sandbox-template.html`, showing three implementation options; Joseph picks one in
+chat or asks for another set, and the winner goes into the deck. `index.html` lists the pages by
 hand and `sandbox.css` styles them (landing-page look, not the JNUC template - this is
 tooling, not a deck). Every page carries `<meta name="robots" content="noindex">` and
 nothing links to `/sandbox/` from the landing page.
