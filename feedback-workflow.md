@@ -554,6 +554,13 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, timeline adherence doc added.** Joseph: "Generate a timeline adhereance
+  doc for this deck." `docs/timeline-adherence.md` added: one row per slide of
+  `migrating_an_instance` as it stands on `main` (id, title, speaker, timer,
+  current `data-when`), a blank "Month (fill in)" column for Joseph, and a "Current
+  stops on the strip" summary showing the pile-ups on 2025-11 and 2026-07 and the gap
+  at 2026-06. No slide, CSS or `presenter.json` touched. `AGENTS.md`'s file-layout table
+  gained one row for the doc. PR #45.
 - **2026-08-27, slide 17 (`#s-pivot`) sandbox closed.** Joseph: "Close the slide 17
   sandbox." No option chosen: the live slide (option A) kept. The `.s-pivot-opt-c` and
   `.s-pivot-opt-d` wrappers and their markup removed, along with the CSS that only served
