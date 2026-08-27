@@ -194,7 +194,7 @@ quotes is stale.
 ### Current slide order (story arc)
 
 Context -> decisions -> first wins -> the wall -> the loop -> growing pains -> payoff.
-22 slides. Legacy section ids kept stable across reorders (so `s10` no longer sits at
+23 slides. Legacy section ids kept stable across reorders (so `s10` no longer sits at
 position 10); new story slides use semantic ids. The bold name on each line is who
 presents it, held in the slide's `data-speaker` attribute and surfaced by the speaker
 overlay - keep the two in step when slides move.
@@ -202,25 +202,26 @@ overlay - keep the two in step when slides move.
 1. `s00` Title (template session-title layout with the three speaker cards) - **All (intros)**
 2. `s01` Context, requirements, constraints (our environment before the migration: Sandbox / Staging / Production as one three-segment chevron arrow, `clip-path` rules scoped to `#s01`, no annotations; six constraints as plain rows in three bordered column panels, Context / Requirements / Constraints, with a subgrid keeping each panel's title and row heights aligned, via `.constraints-col` and `.constraints-title` scoped to `#s01`) - **Dafydd**
 3. `s02` Who touches Jamf Pro - **Dafydd**
-4. `s04` Migration outcomes we considered and rejected (3 architectural rejects; the other 2 moved into the story) - **Joseph**
-5. `s05` Instance migration order (prod first + read-only API client control) - **Joseph**
-6. `s07` Instance prep - **Gordon**
-7. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
-8. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception) - **Gordon**
-9. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
-10. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk) - **Dafydd**
-11. `s11` Tools and helpers (JamfPy -> script -> map -> for_each) - **Gordon**
-12. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Joseph**
-13. `s13` for_each exceptions (policies, dock items) - **Joseph**
-14. `s14` Validating a migration - **Joseph**
-15. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused) - **Dafydd**
-16. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals -> module pivot) - **Joseph**
-17. `s15b` The module structure (module tree -> workspaces) - **Dafydd**
-18. `s-today` The estate today (four-tier route to live + Release Please -> CalVer) - **Gordon**
-19. `s16b` By the numbers - **Gordon**
-20. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
-21. `s18` Links - **Anyone**
-22. `s-thanks` Thank You (template close, royal blue) - **nobody assigned**
+4. `s-workspace` What a Terraform workspace is - **Dafydd (TBC)**
+5. `s04` Migration outcomes we considered and rejected (3 architectural rejects; the other 2 moved into the story) - **Joseph**
+6. `s05` Instance migration order (prod first + read-only API client control) - **Joseph**
+7. `s07` Instance prep - **Gordon**
+8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
+9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception) - **Gordon**
+10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
+11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk) - **Dafydd**
+12. `s11` Tools and helpers (JamfPy -> script -> map -> for_each) - **Gordon**
+13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Joseph**
+14. `s13` for_each exceptions (policies, dock items) - **Joseph**
+15. `s14` Validating a migration - **Joseph**
+16. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused) - **Dafydd**
+17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals -> module pivot) - **Joseph**
+18. `s15b` The module structure (module tree -> workspaces) - **Dafydd**
+19. `s-today` The estate today (four-tier route to live + Release Please -> CalVer) - **Gordon**
+20. `s16b` By the numbers - **Gordon**
+21. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
+22. `s18` Links - **Anyone**
+23. `s-thanks` Thank You (template close, royal blue) - **nobody assigned**
 
 The old `s00b` "Who we are" slide was folded into the title slide when the template's
 three-speaker title layout arrived. Former slides folded away in the earlier trim: `s06`
@@ -560,7 +561,7 @@ plus a few rules, never a copy of the deck, and they track deck edits automatica
   and decision state. Once an option is accepted, apply it to the deck and mark the entry
   decided (or delete the page and its entry).
 
-Current pages: none. Decided: `s01-environment-band` (2026-08-27, option B - the Sandbox /
+Current pages: `s-workspace-new` (awaiting a decision). Decided: `s01-environment-band` (2026-08-27, option B - the Sandbox /
 Staging / Production row as one three-segment chevron arrow - applied to the deck's `#s01`
 rules; the page is deleted, the index keeps the record as a non-linked `.done` entry);
 `s01-column-titles` (2026-08-27, option C - bordered column panels with aligned dividers -
