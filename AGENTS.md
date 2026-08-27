@@ -309,10 +309,44 @@ title (template three-speaker layout, LBG logo in the template's customer-logo s
 row kept), `#2` "Where we are today" (the old half-speakers slide kept its real content -
 the estate statecards, centred and enlarged - when the speakers moved to `#1`), `#3` goals,
 `#4` execution, `#5` what didn't work, `#6` what worked, `#7` conditions, `#8` learning
-priorities by role, `#9` pathway matrix, `#10` timeline, `#11` delivery, `#12` content
-types, `#13` case study, `#14` scope, `#15` onboarding, `#16` hiring, `#17` resources (with
-the QR rail - see below), `#18` Questions ("Questions? Your turn!", navy), `#19` Thank You,
-`#20` the skills map (moved to post-matter by Dafydd, kept there), `#21` the colour appendix.
+priorities by role, `#9` the learning pathway (four phases - **merges the old `#9` matrix and
+`#10` timeline**, Aug 2026: both said the same thing twice and neither described what the team
+actually did). Titled "the pathway we **followed**", not "that worked": phase 1 front-loaded
+all the theory and the team only found out afterwards that it did not land, so that card
+carries a "we'd change this" flag and agrees with `#5` rather than contradicting it. Phase 3
+teaches Git *after* two phases of Terraform, deliberately - nobody had anything to put in Git
+yet; the thing that needs versioning has to exist before you can version it. Both confirmed by
+Gordon Deacon, Aug 2026. The four phases are his: 1 front-load the theory (flagged), 2 ground
+the concepts, 3 Git/GitHub/GitOps, 4 advanced - aimed at the seniors who would own the repo
+after handover, and closing on PR review, which is condition 07 from `#7` arriving again.
+
+`#9` deliberately does **not** use the bordered-card grid the rest of the deck runs on (`#7`,
+`#8`, `#11`, `#14` all do). It is drawn as a **route**: one rising SVG track with four stop
+dots, and the text for each phase hanging beneath its own stop. **The track and the dots share
+one coordinate space** - an earlier attempt put the line in an SVG and the dots in CSS and they
+never met. The viewBox is `0 0 1676 376`, where **1676 is the real content box**: the deck is
+1920x1080 and `.slide` padding is `88px 122px 72px`, so 1920 - 2x122 = 1676. Get that number
+wrong and `preserveAspectRatio="none"` stretches the whole SVG - the track overshoots the last
+stop and the dots render as ovals. Columns are (1676 - 3x40 gap) / 4 = 389 wide, left edges at
+0/429/858/1287, each dot one radius (9px) in: cx 9/438/867/1296, cy 83/62/41/20. The track runs
+`M9 83 L1296 20` - it starts on stop 1 and ends on stop 4. The `.route-stops` grid is stepped
+by the same 21px the dots rise (`margin-top` 83/62/41/20), so moving a dot means moving its
+text block by the same amount. Phase 1's dot is a hollow `--warn` ring and its
+number and warning line are `--warn`; the rest are `--accent`. Keep the Jamf palette tokens -
+the difference from the other slides is layout only.
+
+A dashed `--alt-light` **gate** sits in the column gap after stop 3 (75.7%): an engineer was
+competent to change a live production instance from the end of phase 3, once Git and the GitOps
+flow were in. Everything left of the gate is the whole team; phase 4 is the maintainers only.
+Confirmed by Gordon Deacon, Aug 2026. Move the gate and you must move the `.gate-label` width
+with it - the label is right-aligned inside a box the same width as the gate offset. Then `#10` delivery, `#11` content types, `#12` case study, `#13` scope, `#14`
+onboarding, `#15` hiring, `#16` resources (with the QR rail - see below), `#17` Questions
+("Questions? Your turn!", navy), `#18` Thank You, `#19` the skills map (moved to post-matter by
+Dafydd, kept there), `#20` and `#21` the two slides the merge replaced - the old pathway matrix
+and the old week-by-week timeline, kept as appendix reference at Gordon's request (Aug 2026),
+with `data-speaker` stripped so they stay out of the speaking rotation - and `#22` the colour
+appendix. The deck is **22 slides**; eyebrow numbers and section banners were renumbered to
+match. `#17`-`#22` are post-matter: Thank You closes the talk.
 Thank You closes the talk; `#20`-`#21` are reference material for readers. Eyebrow numbers
 match slide numbers (Dafydd's convention) - renumber them when slides move.
 
@@ -365,13 +399,19 @@ behaviours were observed, confirm the trained bar the team actually used, confir
 non-goals (all `#3`); how long the dip lasts (`#7`); the 3-4 minute interview with Louise.
 The `#5` engineer quote was confirmed by Gordon Deacon, Aug 2026, and its chip is gone.
 
-Speakers (`data-speaker`): `#5`, `#7`, `#9`, `#10` and `#15` are Gordon; `#4`, `#6`, `#11`,
-`#12` and `#14` are Joseph; `#3`, `#8`, `#13`, `#16` and `#17` are Dafydd. `#14` (scope) moved
-from Dafydd to Joseph and `#15` (onboarding) from Dafydd to Gordon, Aug 2026. `#2` is still
+Speakers (`data-speaker`), after the `#9`/`#10` merge: `#5`, `#7`, `#9` and `#14` are Gordon;
+`#4`, `#6`, `#10`, `#11` and `#13` are Joseph; `#3`, `#8`, `#12`, `#15` and `#16` are Dafydd.
+Scope moved from Dafydd to Joseph and onboarding from Dafydd to Gordon, Aug 2026. `#2` is still
 marked **All** but Gordon's notes assign it to Dafydd - unresolved.
 
-**The four disciplines are a shared vocabulary.** `#9` (pathway matrix), `#10` (timeline) and
-`#20` (skills map) are all built on **Environment, Git, Terraform, GitOps**, and `#20` calls
+`#7` carries a seventh condition, "Decide who approves the pull requests" (`.suppcard.wide`,
+full-width across the 2-column grid), and its hero panel is now **Two kinds of safety** -
+operational (leadership) and psychological (engineers) - rather than psychological alone.
+Both from Gordon, Aug 2026. The dip lasted 2-3 months.
+
+**The four disciplines are a shared vocabulary.** `#19` (skills map) is built on
+**Environment, Git, Terraform, GitOps**. The merged `#9` deliberately drops the discipline
+tagging to stay readable from the back of the room; `#19` still calls
 them "the four core disciplines" in its subtitle. `#8`'s radar uses those same four plus
 Jamf APIs and Mentoring, the two that only start to matter as people move up. If you rename
 or re-cut a discipline on any of those four slides, change all four.
