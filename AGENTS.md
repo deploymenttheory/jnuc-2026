@@ -35,9 +35,12 @@ landing page keeps its own near-black look - it is not a deck.
 |---|---|
 | `presentations/<slug>/` | One talk. Snake-case slug. Each deck owns its own HTML, tokens and script; decks do not import from each other beyond `_shared/`. |
 | `presentations/_shared/` | Data used by more than one deck: `speakers.js` and `qr-code.png` (the training deck's take-it-with-you code). Content, not styling - see below. |
+| `presentations/sandbox/` | Feedback review pages, one sandbox per deck: a shared `sandbox.css`, a minimal chooser `index.html`, and one subdirectory per deck (`migrating_an_instance/`, `training_a_team/`) each with its own hand-maintained `index.html` listing that deck's pages, one page per change showing three implementation options as live renders of the real slide. Deploys with the site at `/sandbox/`, linked from a Sandbox button on each deck card on the landing page (added 2026-08-27 at Joseph's request; split into one sandbox per deck the same day). See Sandbox. |
 | `template.key` | The Jamf-supplied JNUC 2026 Keynote template. Canonical reference for palette, typography and mandatory slides. |
 | `.github/workflows/` | `deploy.yml` only - the S3 sync and CloudFront invalidation. See Deployment. |
-| `tools/` | `build-key.mjs`, which builds the Keynote downloads from the decks on a Mac. The only thing `package.json` exists for. |
+| `tools/` | `build-key.mjs`, which builds the Keynote downloads from the decks on a Mac (the only thing `package.json` exists for), and `sandbox-template.html`, the starting point for every sandbox review page. |
+| `feedback-workflow.md` | The deck feedback loop: standing rules, orchestrator and slide-agent roles, brief templates, commands, recovery steps and a log. Read it before touching a deck in response to feedback. Not shipped (`*.md` is excluded from the deploy). |
+| `docs/superpowers/plans/` | The first-round implementation plan, superseded by `feedback-workflow.md` and kept for its triage table. Not shipped. |
 | `README.md`, `LICENSE` | Repo boilerplate. |
 
 The decks have no build step. Node is in this repo purely for `tools/build-key.mjs`, which is
@@ -58,8 +61,8 @@ sets `window.JNUC_SPEAKERS`, keyed by `dafydd` / `joseph` / `gordon`, each with 
 - **Both decks now render the template's three-speaker title-slide cards** from this file:
   photo square (or an initials placeholder while a photo is missing), NAME AND SURNAME in
   caps, the role + org line in lime, and the bio. Speaker order on both title slides:
-  Joseph, Gordon, Dafydd. Only Dafydd has a photo; each title slide carries one amber TODO
-  chip for the missing Joseph/Gordon photos.
+  Joseph, Gordon, Dafydd. All three speakers have photos (Joseph and Gordon added
+  2026-08-27).
 - `migrating_an_instance` keeps hardcoded names in the title cards as a fallback so the
   opening slide is never blank if `_shared/` goes missing; the shared file overwrites them on
   load and always wins.
@@ -122,7 +125,7 @@ one and the other does not follow.
 | `index.html` | The deck. Needs `../_shared/speakers.js` alongside it for the title-slide speaker cards. |
 | `from-clicks-to-code-jnuc2026.pptx` | Gone. The download is now the committed `.key` below. |
 | `from-clicks-to-code-jnuc2026.key` | The committed Keynote download, written by `tools/build-key.mjs`. The landing page links to this exact filename, so it is set in the script, not chosen freely. Rebuild and commit it with any deck edit. |
-| `presenter.json` | Per-slide speaker notes and timer lengths plus the 30-minute talk limit. Notes are a copy of the deck's `<aside class="notes">` text - keep both in sync when notes change. Timer allocations are proposed, not rehearsed. Nothing reads this file yet. |
+| `presenter.json` | Per-slide speaker notes and timer lengths plus the 30-minute talk limit. Notes are a copy of the deck's `<aside class="notes">` text and the slide order mirrors the deck - the deck wins when they differ, and `feedback-workflow.md` carries a check that must print `OK` before every push. Regenerated from the deck on 2026-08-27 (timers kept). Timer allocations are proposed, not rehearsed. Nothing reads this file yet. |
 | `spec.md` | Spec and change history: the original build runbook, Joseph's source narrative and full repo tree, all three Q&A rounds answered inline, and a decision index. **Historical** - sections marked SUPERSEDED (deck order, palette values, open-questions index) predate the story restructure, and everything it says about the light LBG-green palette predates the JNUC template adoption. |
 
 `spec.md` is provenance for every fact in the deck. Do not delete it; do not treat its
@@ -197,12 +200,14 @@ presents it, held in the slide's `data-speaker` attribute and surfaced by the sp
 overlay - keep the two in step when slides move.
 
 1. `s00` Title (template session-title layout with the three speaker cards) - **All (intros)**
-2. `s01` Context, requirements, constraints (estate at the start: Sandbox / Staging / Production, parity notes) - **Dafydd**
+2. `s01` Context, requirements, constraints (our environment before the migration: Sandbox / Staging / Production as one three-segment chevron arrow, `clip-path` rules scoped to `#s01`, no annotations; six constraints as plain rows in three bordered column panels, Context / Requirements / Constraints, with a subgrid keeping each panel's title and row heights aligned, via `.constraints-col` and `.constraints-title` scoped to `#s01`) - **Dafydd**
 3. `s02` Who touches Jamf Pro - **Dafydd**
-4. `s03` Migration objectives and design decisions - **Dafydd**
-5. `s04` Ideas rejected, and why (3 architectural rejects; the other 2 moved into the story) - **Joseph**
+4. `s-workspace` What a Terraform workspace is (definition, HashiCorp workspace-anatomy
+   diagram, four lenses that decide how an instance gets carved up) - **Dafydd (TBC)**
+5. `s04` Migration outcomes we considered and rejected (3 architectural rejects; the other 2 moved into the story) - **Joseph**
 6. `s05` Instance migration order (prod first + read-only API client control) - **Joseph**
-7. `s07` Instance prep - **Gordon**
+7. `s07` Prerequisites (two portions, instance prep and migration prep, each a tidied
+   checklist) - **Gordon**
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
 9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception) - **Gordon**
 10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
@@ -284,7 +289,6 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
 
 | Slide | TODO | Owner |
 |---|---|---|
-| `s00` | Photos for Joseph and Gordon (add to `_shared/speakers.js`; Dafydd's is in) | Joseph |
 | `s-pivot` | Real FQDN-conditional example | Joseph |
 | `s-staging` | Confirm the month - drives the timeline bar | Gordon Deacon |
 | `s18` | URLs, contact, socials (Q12) | Joseph |
@@ -571,6 +575,62 @@ after each keypress it asserts the deck actually moved.
 - The `.key` files ARE committed (unlike the old CI-built `.pptx` downloads, which were
   gitignored). Fonts and rendering therefore match the Mac that ran the build.
 
+## Sandbox (feedback review pages)
+
+Feedback on a deck arrives in chat. The loop that turns it into deployed changes - an
+orchestrator session dispatching one Sonnet agent per slide, each delivering a single PR
+that carries the slide edit, the sandbox page, the index entry below and any `AGENTS.md`
+updates the change needs, with the orchestrator only merging and deploying - is written
+down in `feedback-workflow.md` at the repo root (committed; read it first).
+
+`presentations/sandbox/` holds one sandbox per deck. `sandbox.css` (landing-page look, not
+the JNUC template - this is tooling, not a deck) is shared by all of them.
+`presentations/sandbox/index.html` is a minimal chooser: a two-item list linking to each
+deck's own sandbox, `presentations/sandbox/migrating_an_instance/` and
+`presentations/sandbox/training_a_team/`. Each of those subdirectories has its own
+hand-maintained `index.html` listing that deck's pages by hand, and holds that deck's
+review pages alongside it. Each change gets a review page under
+`presentations/sandbox/<deck>/`, created from `tools/sandbox-template.html`, showing three
+implementation options; Joseph picks one in chat or asks for another set, and the winner
+goes into the deck. Every page carries `<meta name="robots" content="noindex">`. The
+landing page carries a "Sandbox" button on each deck card, linking to that deck's sandbox
+(added 2026-08-27 at Joseph's request; moved from one global button to one per deck card
+the same day, when the sandbox itself split one-per-deck).
+
+How a review page works: it embeds the real slide three times in iframes
+(`../../<deck>/index.html#<slide-id>` - two levels up from `presentations/sandbox/<deck>/`
+to `presentations/`, then into the deck) and, on each iframe's `load`, appends a `<style>`
+with that option's CSS to the iframe document. The options are therefore always the
+deployed deck plus a few rules, never a copy of the deck, and they track deck edits
+automatically.
+
+- Option A is by convention whatever the deck currently ships and injects nothing.
+- Variant CSS only touches the slide's `#id` and only uses the deck's own tokens, so an
+  accepted option pastes into the deck unchanged.
+- Injection needs same-origin access, so it only works over HTTP. Opened from `file://` the
+  iframes load but every option renders as the plain deck. Verify with a local server (see
+  Verifying) and a tall headless window, e.g. `--window-size=1400,3000`.
+- Check each option for overflow into the timeline strip, and for rules leaking onto other
+  elements that share a class - on `s01` the top caption shares `.pipeline-label` with the
+  band label, so band rules must be scoped to `#s01 .pipeline-band .pipeline-label`.
+- Page names: `presentations/sandbox/<deck>/<slide-id>-<what>.html`. The deck's own index
+  entry records date, deck, slide, speaker and decision state. Once an option is accepted,
+  apply it to the deck and mark the entry decided (or delete the page and its entry).
+
+Current pages: `s10-diagram-text` (2026-08-27, awaiting a decision - resource-sequencing
+diagram text size). Decided (all under `presentations/sandbox/migrating_an_instance/`):
+`s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
+one three-segment chevron arrow - applied to the deck's `#s01` rules; the page is deleted,
+the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
+(2026-08-27, option C - bordered column panels with aligned dividers - applied to the
+deck's `#s01` rules; the page is deleted, the index keeps the record as a non-linked
+`.done` entry); `s07-checklist` (2026-08-27, option D - two portions - applied to the
+deck's `#s07` rules; the page is deleted, the index keeps the record as a non-linked
+`.done` entry); `s-workspace-round3` (2026-08-27, live slide kept, B to D rejected - none
+of the three redesigned alternatives captured the point; the page is deleted, the index
+keeps the record as a non-linked `.done` entry). `presentations/sandbox/training_a_team/`
+has no pages yet.
+
 ## Deployment
 
 `.github/workflows/deploy.yml` deploys this repo on merge to `main` (only when
@@ -590,6 +650,7 @@ The bucket mirrors `presentations/` exactly, so the URL layout is the repo layou
 | `/migrating_an_instance/` | `presentations/migrating_an_instance/index.html` |
 | `/training_a_team/` | `presentations/training_a_team/index.html` |
 | `/_shared/speakers.js` | `presentations/_shared/speakers.js` |
+| `/sandbox/` | `presentations/sandbox/index.html`, a chooser linking to `/sandbox/migrating_an_instance/` and `/sandbox/training_a_team/` (feedback review pages, one sandbox per deck, linked from each deck card's Sandbox button) |
 
 Live at https://d3ga0oyittaf77.cloudfront.net - CloudFront in front of a private S3 bucket
 (`jl-html-presentation-2026`, OAC access). Infra is `~/Github/terraform/presentation.tf`, an

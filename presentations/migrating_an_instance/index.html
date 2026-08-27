@@ -225,6 +225,7 @@ body {
 }
 
 .slide-note { margin-top: var(--sp-4); color: var(--c-text-muted); font-size: var(--fs-caption); }
+.slide-sub { margin-bottom: var(--sp-3); color: var(--c-text-muted); font-size: var(--fs-body); line-height: var(--lh-body); max-width: 1560px; }
 
 .card {
   background: var(--c-surface);
@@ -477,16 +478,58 @@ body.reader .reader-extra {
   padding: var(--sp-1) var(--sp-3);
 }
 .pipe-node small { display: block; font-size: var(--fs-chip); color: var(--c-text-muted); }
+/* s01: the three instances are notched segments of one chevron arrow spanning the band
+   (sandbox option B, accepted 2026-08-27). Scoped by id - s-today keeps the plain boxes. */
+#s01 .pipeline { gap: var(--sp-1); }
+#s01 .pipe-node {
+  flex: 1;
+  border: 0;
+  border-radius: 0;
+  font-size: var(--fs-h2);
+  padding: var(--sp-3) var(--sp-5);
+  clip-path: polygon(0 0, calc(100% - var(--sp-4)) 0, 100% 50%, calc(100% - var(--sp-4)) 100%, 0 100%, var(--sp-4) 50%);
+}
+#s01 .pipe-node:first-child {
+  clip-path: polygon(0 0, calc(100% - var(--sp-4)) 0, 100% 50%, calc(100% - var(--sp-4)) 100%, 0 100%);
+}
 .pipe-off { border-style: dashed; color: var(--c-text-muted); }
 .pipe-gap { flex: 1; }
 .constraints {
-  list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: var(--sp-2);
   margin-top: var(--sp-3);
 }
+/* Bordered panel per column with a subgrid so the title row and both item rows share
+   heights across all three panels (sandbox option C, accepted 2026-08-27). */
+#s01 .constraints-col {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: var(--sp-2);
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius);
+  padding: var(--sp-3);
+}
+#s01 .constraints-title {
+  font-family: var(--f-display);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--c-accent);
+}
+#s01 .constraints-col ul { list-style: none; display: contents; }
 .constraints li { font-size: var(--fs-caption); }
+#s01 .constraints-col li {
+  padding: var(--sp-2) 0;
+  border-bottom: var(--bw-1) solid var(--c-hairline);
+}
+#s01 .constraints-col li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
 
 /* ============================ S02 ============================ */
 .teams { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-3); }
@@ -502,26 +545,98 @@ body.reader .reader-extra {
 .team .tag { align-self: flex-start; }
 .teams-note { margin-top: var(--sp-4); color: var(--c-text-muted); font-size: var(--fs-caption); }
 
-/* ============================ S03 ============================ */
-.obj-groups { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
-.obj-group { padding: var(--sp-4); }
-.obj-group-title {
-  font-family: var(--f-mono);
-  font-size: var(--fs-caption);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--c-text-muted);
-  margin-bottom: var(--sp-3);
-}
-.obj-list { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); }
-.obj-list li { display: flex; gap: var(--sp-2); }
-.obj-num {
-  font-family: var(--f-mono);
-  color: var(--c-accent);
+/* ============================ s-workspace ============================ */
+/* The collaborator's rebuild (PR #21, merged 2026-08-27): the definition up front, the
+   HashiCorp workspace anatomy, and the four lenses that decide how an instance gets
+   carved up. Round three's B, C and D alternatives were rejected 2026-08-27 (none
+   captured the point) and removed from the deck - see AGENTS.md Sandbox.
+   The diagram follows HashiCorp's own workspace anatomy - code in, one boundary holding
+   state, variables, permissions and workflow, run stages out to a target. The cost stage
+   of that diagram is left out on purpose: it estimates cloud spend and does nothing for
+   a Jamf Pro instance. */
+#s-workspace .slide-title { margin-bottom: var(--sp-2); }
+#s-workspace .wsx { display: flex; align-items: stretch; gap: var(--sp-3); }
+#s-workspace .wsx-io {
   flex: none;
-  min-width: var(--sp-4);
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--sp-1);
 }
+#s-workspace .wsx-io-title { font-family: var(--f-display); font-size: var(--fs-code); font-weight: 600; line-height: var(--lh-tight); }
+#s-workspace .wsx-io-sub { font-size: var(--fs-chip); color: var(--c-text-muted); }
+#s-workspace .wsx-platform {
+  flex: 1;
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius);
+  padding: var(--sp-2) var(--sp-3) var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+#s-workspace .wsx-platform-title {
+  font-family: var(--f-display);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+#s-workspace .wsx-platform-body { display: flex; align-items: stretch; gap: var(--sp-3); }
+#s-workspace .wsx-ws {
+  flex: 1;
+  border: var(--bw-2) solid var(--c-accent);
+  border-radius: var(--radius);
+  padding: var(--sp-2) var(--sp-3) var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+#s-workspace .wsx-ws-title {
+  font-family: var(--f-display);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  color: var(--c-accent);
+  line-height: var(--lh-tight);
+}
+#s-workspace .wsx-ws-def { font-size: var(--fs-caption); color: var(--c-text-muted); line-height: var(--lh-body); }
+#s-workspace .wsx-parts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-1); margin-top: var(--sp-1); }
+#s-workspace .wsx-part {
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-1) var(--sp-2);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-tight);
+}
+#s-workspace .wsx-part-more { color: var(--c-text-muted); font-style: italic; }
+#s-workspace .wsx-stages { display: flex; gap: var(--sp-1); }
+#s-workspace .wsx-stage {
+  writing-mode: vertical-rl;
+  background: var(--c-accent-2);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-3) var(--sp-2);
+  font-family: var(--f-display);
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--c-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* the lenses: the four the guidance puts first, then everything that refines the choice */
+#s-workspace .wsx-lenses { margin-top: var(--sp-3); }
+#s-workspace .wsx-lenses-lead { font-size: var(--fs-body); line-height: var(--lh-body); margin-bottom: var(--sp-2); }
+#s-workspace .wsx-lens-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); }
+#s-workspace .wsx-lens { display: flex; flex-direction: column; gap: 6px; }
+#s-workspace .wsx-lens-name { font-family: var(--f-display); font-size: var(--fs-code); font-weight: 600; color: var(--c-accent); line-height: var(--lh-tight); }
+#s-workspace .wsx-lens-desc { font-size: var(--fs-caption); color: var(--c-text-muted); line-height: var(--lh-body); }
+#s-workspace .wsx-lenses-note { margin-top: var(--sp-2); }
 
 /* ============================ S04 ============================ */
 .rejects { display: flex; flex-direction: column; gap: var(--sp-2); }
@@ -535,10 +650,6 @@ body.reader .reader-extra {
 }
 .reject:last-child { border-bottom: none; }
 .reject-idea { display: flex; flex-direction: column; gap: var(--sp-1); align-items: flex-start; }
-.reject-idea s {
-  text-decoration-color: var(--c-danger);
-  text-decoration-thickness: var(--bw-2);
-}
 .reject-why { font-size: var(--fs-caption); color: var(--c-text-muted); }
 
 /* ============================ S05 option cards ============================ */
@@ -559,6 +670,7 @@ body.reader .reader-extra {
   color: var(--c-text-muted);
 }
 .option-title { font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); }
+#s05 .option p { font-size: var(--fs-caption); }
 .option-dimmed { color: var(--c-text-muted); }
 .option-dimmed .option-title { color: var(--c-text-muted); }
 .option-chosen { border: var(--bw-3) solid var(--c-accent); }
@@ -579,13 +691,15 @@ body.reader .reader-extra {
 .s-single-code { margin: 0; font-size: 22px; line-height: 1.35; }
 
 /* ============================ S07 ============================ */
-.checklist { list-style: none; display: flex; flex-direction: column; gap: var(--sp-4); max-width: 1450px; }
-.checklist li { display: flex; align-items: flex-start; gap: var(--sp-3); }
+/* Tidied down to three items (sandbox option A, accepted 2026-08-27): bigger row
+   gap now there's room, a bold lead-in per row and the detail dropped to caption
+   size so each row scans lead first. */
+.checklist { list-style: none; display: flex; flex-direction: column; gap: var(--sp-5); max-width: 1560px; }
+.checklist li { display: flex; align-items: center; gap: var(--sp-4); }
 .check {
   flex: none;
   width: 1.25em;
   height: 1.25em;
-  margin-top: 0.1em;
   border: var(--bw-2) solid var(--c-success);
   border-radius: var(--radius-sm);
   position: relative;
@@ -601,6 +715,15 @@ body.reader .reader-extra {
   border-bottom: var(--bw-2) solid var(--c-success);
   transform: rotate(45deg);
 }
+.check-body { display: flex; flex-direction: column; gap: var(--sp-1); }
+.check-lead { font-size: var(--fs-body); font-weight: 600; line-height: var(--lh-tight); color: var(--c-accent); }
+.check-detail { font-size: var(--fs-caption); line-height: var(--lh-body); color: var(--c-text-muted); }
+/* Two-portion split, sandbox option D, accepted 2026-08-27: instance prep and migration
+   prep side by side. */
+.prep-portions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); align-items: start; }
+.prep-heading { font-family: var(--f-display); font-size: var(--fs-h2); font-weight: 700; line-height: var(--lh-tight); color: var(--c-accent); margin-bottom: var(--sp-3); }
+.prep-portion-migration { padding-left: var(--sp-4); border-left: var(--bw-1) solid var(--c-hairline); }
+.prep-portion .checklist { max-width: none; gap: var(--sp-4); }
 
 /* ============================ S08 ============================ */
 .stepper {
@@ -632,6 +755,10 @@ body.reader .reader-extra {
 .s10-svg .band-3 { fill: color-mix(in srgb, var(--c-accent) 18%, var(--c-surface)); }
 .s10-svg .band-4 { fill: color-mix(in srgb, var(--c-accent) 26%, var(--c-surface)); }
 .s10-svg .band-5 { fill: color-mix(in srgb, var(--c-accent) 34%, var(--c-surface)); stroke: var(--c-accent); }
+/* Diagram text bumped one step up the scale (tier labels and the right-hand examples
+   alike) - Joseph asked for the text in this diagram a little bigger. */
+#s10 .dg-label { font-size: var(--fs-code); }
+#s10 .dg-eg { font-size: var(--fs-caption); }
 
 /* ============================ S11 ============================ */
 .s11-grid { display: grid; grid-template-columns: 560px 1fr; gap: var(--sp-5); align-items: start; }
@@ -764,8 +891,6 @@ body.presenter #viewport { display: none; }
         <h1 class="hero">From Clicks to Code</h1>
         <p class="hero-sub">Migrating Jamf Pro to Terraform at Lloyds Banking Group</p>
       </div>
-      <span class="todo title-todo">TODO: photos - Joseph, Gordon</span>
-
       <!-- Cards are filled from ../_shared/speakers.js at load. Names and org are
            hardcoded as a fallback so the title slide is never blank if _shared/
            goes missing; the shared file always wins. -->
@@ -813,27 +938,36 @@ body.presenter #viewport { display: none; }
       <h1 class="slide-title">Context, requirements, constraints</h1>
       <p class="pipeline-label caption muted">No precedent to follow - nobody had migrated a live, in-use Jamf Pro estate to Terraform at this scale before, let alone inside a bank.</p>
       <div class="pipeline-band card">
-        <p class="pipeline-label caption muted">The estate at the start - three Jamf Pro instances</p>
+        <p class="pipeline-label caption muted">Our environment before the migration</p>
         <div class="pipeline">
-          <span class="pipe-node">Sandbox<small>no parity</small></span>
-          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node">Staging<small>parity on paper</small></span>
-          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node">Production<small>the real estate</small></span>
+          <span class="pipe-node">Sandbox</span>
+          <span class="pipe-node">Staging</span>
+          <span class="pipe-node">Production</span>
         </div>
       </div>
-      <ul class="constraints">
-        <li class="card">No hardcoded secrets, anywhere.</li>
-        <li class="card">Every production change gated by peer review.</li>
-        <li class="card">Align with the bank's strategic tooling: GitHub, VCS-triggered Terraform runs, internally hosted HashiCorp Vault, HCP Terraform for remote state and run execution on HCP private runners.</li>
-        <li class="card">Terraform CLI available only in development environments.</li>
-        <li class="card">One shared source of truth for every team - resources are not split by org structure.</li>
-        <li class="card">Post-migration, all create/update/delete operations happen through Terraform only.</li>
-        <li class="card">All HCL must satisfy org linters.</li>
-        <li class="card">Versioned releases, with change history findable when it is needed.</li>
-        <li class="card">Tidy up each tenant before import - stale, non-active resources don't get carried into Terraform.</li>
-      </ul>
-      <p class="slide-note">Staging was supposed to mirror production. In practice it had drifted - and there was no history that could bring the two back in line. Hold that thought.</p>
+      <div class="constraints">
+        <div class="constraints-col">
+          <h2 class="constraints-title">Context</h2>
+          <ul>
+            <li>No hardcoded secrets, anywhere, and all HCL must satisfy org linters.</li>
+            <li>Terraform CLI available only in development environments.</li>
+          </ul>
+        </div>
+        <div class="constraints-col">
+          <h2 class="constraints-title">Requirements</h2>
+          <ul>
+            <li>Every production change gated by peer review, from one shared source of truth for every team - resources are not split by org structure.</li>
+            <li>Versioned releases, with change history findable when it is needed.</li>
+          </ul>
+        </div>
+        <div class="constraints-col">
+          <h2 class="constraints-title">Constraints</h2>
+          <ul>
+            <li>Align with the bank's strategic tooling: GitHub, VCS-triggered Terraform runs, internally hosted HashiCorp Vault, HCP Terraform for remote state and run execution on HCP private runners.</li>
+            <li>Post-migration, all create/update/delete operations happen through Terraform only.</li>
+          </ul>
+        </div>
+      </div>
       <details class="reader-extra">
         <summary>More detail</summary>
         <div class="detail-body">
@@ -842,7 +976,7 @@ body.presenter #viewport { display: none; }
       </details>
       <aside class="notes">
         <p>This is a bank - the constraints are the story. No CLI outside dev means no local applies and no local state: everything flows through VCS-triggered runs.</p>
-        <p>Point at the parity notes on the pipeline - staging drift drives both the prod-first decision and the staging rebuild later.</p>
+        <p>Staging was meant to mirror production but had drifted - that drift drives both the prod-first decision and the staging rebuild later.</p>
       </aside>
     </section>
 
@@ -878,64 +1012,105 @@ body.presenter #viewport { display: none; }
       </aside>
     </section>
 
-    <!-- ============================ S03 - Objectives ============================ -->
-    <section class="slide" id="s03" aria-label="Migration objectives and design decisions" data-speaker="Dafydd" data-when="2025-11">
-      <h1 class="slide-title">Migration objectives and design decisions</h1>
-      <div class="obj-groups">
-        <div class="card obj-group">
-          <h2 class="obj-group-title">Governance</h2>
-          <ul class="obj-list">
-            <li><span class="obj-num">1</span><span>A monorepo is the single source of truth for every instance.</span></li>
-            <li><span class="obj-num">2</span><span>Every merge to main requires at least one peer review from another engineer.</span></li>
-            <li><span class="obj-num">3</span><span>Post-migration, all engineers drop to read-only in Jamf Pro; only the Terraform machine identity holds full CRUD.</span></li>
-            <li><span class="obj-num">4</span><span>Break-glass account available, held in PAM (Privileged Access Management).</span></li>
-          </ul>
+    <!-- ============================ What a Terraform workspace is ============================ -->
+    <section class="slide" id="s-workspace" aria-label="What a Terraform workspace is" data-speaker="Dafydd" data-when="2025-11">
+      <h1 class="slide-title">What a Terraform workspace is</h1>
+
+      <p class="slide-sub">One set of Terraform code linked to one state file. How you carve a Jamf Pro instance into workspaces is a decision worth taking slowly, and there are more lenses on it than you would expect.</p>
+
+      <div class="wsx">
+        <div class="card wsx-io">
+          <span class="wsx-io-title">Terraform code</span>
+          <span class="wsx-io-sub">one configuration, from the repository</span>
         </div>
-        <div class="card obj-group">
-          <h2 class="obj-group-title">Architecture and DX</h2>
-          <ul class="obj-list">
-            <li><span class="obj-num">5</span><span>One Terraform definition drives all instances.</span></li>
-            <li><span class="obj-num">6</span><span>Secrets centralised in an internally hosted HashiCorp Vault - set once by humans, read by Terraform via data sources.</span></li>
-            <li><span class="obj-num">7</span><span>Branching strategy supports three environments with VCS-based triggers (one instance is CLI-triggered).</span></li>
-            <li><span class="obj-num">8</span><span>Developer experience: BAU change is a one-line edit to a parameter map, not hand-written HCL.</span></li>
-          </ul>
+        <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
+        <div class="wsx-platform">
+          <span class="wsx-platform-title">HCP Terraform</span>
+          <div class="wsx-platform-body">
+            <div class="wsx-ws">
+              <span class="wsx-ws-title">Workspace</span>
+              <span class="wsx-ws-def">The administration boundary that owns the whole lifecycle of that code.</span>
+              <div class="wsx-parts">
+                <span class="wsx-part">State file</span>
+                <span class="wsx-part">Variables and secrets</span>
+                <span class="wsx-part">Permissions</span>
+                <span class="wsx-part">Workflow</span>
+                <span class="wsx-part">Notifications</span>
+                <span class="wsx-part wsx-part-more">and more</span>
+              </div>
+            </div>
+            <div class="wsx-stages">
+              <span class="wsx-stage">Plan</span>
+              <span class="wsx-stage">Policy</span>
+              <span class="wsx-stage">Apply</span>
+            </div>
+          </div>
+        </div>
+        <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
+        <div class="card wsx-io">
+          <span class="wsx-io-title">One Jamf Pro instance</span>
+          <span class="wsx-io-sub">the target</span>
         </div>
       </div>
+
+      <div class="wsx-lenses">
+        <p class="wsx-lenses-lead">Deciding how to carve an instance into workspaces is the part to slow down on. It is far cheaper to think it through than to re-cut it later. Four lenses come first:</p>
+        <div class="wsx-lens-grid">
+          <div class="wsx-lens">
+            <span class="wsx-lens-name">Team structure</span>
+            <span class="wsx-lens-desc">Who owns what, and who needs to ship without waiting on somebody else's apply.</span>
+          </div>
+          <div class="wsx-lens">
+            <span class="wsx-lens-name">Deployment frequency</span>
+            <span class="wsx-lens-desc">How often each part actually changes, and whether those rates are anywhere near each other.</span>
+          </div>
+          <div class="wsx-lens">
+            <span class="wsx-lens-name">Scale</span>
+            <span class="wsx-lens-desc">Resource count, state size and plan time. Guidance puts the ceiling at roughly 500 resources per workspace.</span>
+          </div>
+          <div class="wsx-lens">
+            <span class="wsx-lens-name">What changes together</span>
+            <span class="wsx-lens-desc">Things that move at the same time belong together. Things that never move should not be dragged along.</span>
+          </div>
+        </div>
+        <p class="caption muted wsx-lenses-note">Then refine against the rest: blast radius and risk appetite, dependencies between workspaces, environment strategy, approval and audit requirements, and how much orchestration you can realistically operate.</p>
+      </div>
       <aside class="notes">
-        <p>Objective 8 is aimed squarely at Mac engineers new to Terraform: the contribution bar is "edit a map", not "write HCL from scratch".</p>
+        <p>Define it plainly first - one set of Terraform code linked to one state file. Walk the diagram left to right: code goes in, the workspace is the boundary that holds the state, the variables and secrets, the permissions and the workflow, and a run comes out as a plan, then a policy check, then an apply against one Jamf Pro instance.</p>
+        <p>Then make the real point. How you carve an instance into workspaces is worth spending serious time on. Do not rush it. Re-cutting it later means moving state, which is a much harder day than getting the boundaries roughly right at the start.</p>
+        <p>Take the four lenses in order and give an example of each from our own split rather than reading them out. The last line is the honest caveat - there are more considerations than fit on a slide, and they refine the choice rather than drive it.</p>
       </aside>
     </section>
 
-    <!-- ============================ S04 - Ideas rejected up front ============================ -->
-    <section class="slide" id="s04" aria-label="Ideas rejected, and why" data-speaker="Joseph" data-when="2025-11">
-      <h1 class="slide-title">Ideas rejected, and why</h1>
+    <!-- ============================ S04 - Ideas dropped during the migration ============================ -->
+    <section class="slide" id="s04" aria-label="Migration outcomes we considered and rejected" data-speaker="Joseph" data-when="2025-11">
+      <h1 class="slide-title">Migration outcomes we considered and rejected</h1>
+      <p class="slide-sub">We had a number of ideas that initially felt correct, but as we started to understand the implications they were dropped.</p>
       <div class="rejects">
         <div class="reject">
           <div class="card reject-idea">
             <span class="tag tag-rejected">Rejected</span>
-            <s>A single workspace for all resources</s>
+            <span>A single workspace for all resources</span>
           </div>
           <p class="reject-why">Blast radius and plan execution time. Guidance suggests roughly 500 resources per workspace; the estate holds 1,500+. At ~5,000, things break down.</p>
         </div>
         <div class="reject">
           <div class="card reject-idea">
             <span class="tag tag-rejected">Rejected</span>
-            <s>Per-team Terraform modules scoped to each team's resources</s>
+            <span>Per-team Terraform modules scoped to each team's resources</span>
           </div>
           <p class="reject-why">Every change needs Mac team approval regardless of which repo it lives in. Splitting by team would just mean chasing that same approval across several repos instead of one - one repo keeps every approval flowing through a single place.</p>
         </div>
         <div class="reject">
           <div class="card reject-idea">
             <span class="tag tag-rejected">Rejected</span>
-            <s>Managing everything with Terraform</s>
+            <span>Managing everything with Terraform</span>
           </div>
           <p class="reject-why">Static group membership stays unmanaged to protect the support experience - troubleshooting should not require a pull request.</p>
         </div>
       </div>
-      <p class="slide-note">Two more ideas fell later in the journey - they come up where they happened.</p>
       <aside class="notes">
         <p>Expect pushback on "not everything in Terraform" - defend it: troubleshooting must not require a pull request.</p>
-        <p>Tease the closing line: two more ideas got dropped later, and they show up where they happened in the story.</p>
       </aside>
     </section>
 
@@ -947,12 +1122,12 @@ body.presenter #viewport { display: none; }
         <div class="card option option-dimmed">
           <span class="option-label">Option</span>
           <h2 class="option-title">Staging → Production</h2>
-          <p>Two divergent sets of configuration to import - and the drifted one gets validated first.</p>
+          <p>Striped - one resource at a time across the whole route to live, staging then production. Two divergent sets of configuration to import, and the drifted one gets validated first.</p>
         </div>
         <div class="card option option-chosen">
           <span class="tag tag-chosen">Chosen</span>
           <h2 class="option-title">Production first</h2>
-          <p>Riskier on paper. But production is the configuration that matters.</p>
+          <p>Riskier on paper.</p>
         </div>
       </div>
       <div class="card control-note">
@@ -970,19 +1145,65 @@ body.presenter #viewport { display: none; }
       </aside>
     </section>
 
-    <!-- ============================ S07 - Instance prep ============================ -->
-    <section class="slide" id="s07" aria-label="Instance prep" data-speaker="Gordon" data-when="2025-11">
-      <h1 class="slide-title">Instance prep</h1>
-      <ul class="checklist">
-        <li><span class="check" aria-hidden="true"></span><span>Big tidy-up: used PRUNE to export JSON of every unused resource, then removed them with a bespoke tool - <code class="inline">jamf-resource-deleter</code> - which backs each resource up to JSON before deleting it, with a restore path if anything was needed back.</span></li>
-        <li><span class="check" aria-hidden="true"></span><span>Verified API credentials per client were valid and complete.</span></li>
-        <li><span class="check" aria-hidden="true"></span><span>Confirmed the Jamf Pro instance version met provider requirements.</span></li>
-        <li><span class="check" aria-hidden="true"></span><span>Tested the connection to Terraform Cloud end-to-end and confirmed every client's credentials were being read correctly.</span></li>
-        <li><span class="check" aria-hidden="true"></span><span>Stored credentials for every instance's API clients in the secrets manager.</span></li>
-        <li><span class="check" aria-hidden="true"></span><span>Split the estate into resource-type sections up front, so migration could proceed safely, one section at a time.</span></li>
-      </ul>
+    <!-- ============================ S07 - Prerequisites ============================ -->
+    <section class="slide" id="s07" aria-label="Prerequisites" data-speaker="Gordon" data-when="2025-11">
+      <h1 class="slide-title">Prerequisites</h1>
+      <div class="prep-portions">
+        <div class="prep-portion">
+          <h2 class="prep-heading">Instance prep</h2>
+          <ul class="checklist">
+            <li>
+              <span class="check" aria-hidden="true"></span>
+              <span class="check-body">
+                <strong class="check-lead">Tidy-up</strong>
+                <span class="check-detail">Big tidy-up: used PRUNE to export JSON of every unused resource, then removed them with a bespoke tool - <code class="inline">jamf-resource-deleter</code> - which backs each resource up to JSON before deleting it, with a restore path if anything was needed back.</span>
+              </span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"></span>
+              <span class="check-body">
+                <strong class="check-lead">Credentials</strong>
+                <span class="check-detail">Stored every instance's API client credentials in the secrets manager, verified each set was valid and complete, and tested the connection to Terraform Cloud end-to-end to confirm they were read correctly.</span>
+              </span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"></span>
+              <span class="check-body">
+                <strong class="check-lead">Version check</strong>
+                <span class="check-detail">Confirmed the Jamf Pro instance version met provider requirements.</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="prep-portion prep-portion-migration">
+          <h2 class="prep-heading">Migration prep</h2>
+          <ul class="checklist">
+            <li>
+              <span class="check" aria-hidden="true"></span>
+              <span class="check-body">
+                <strong class="check-lead">Runner line of sight</strong>
+                <span class="check-detail">Confirm that your Terraform runtime environment has line of sight to each of your Jamf Pro instances.</span>
+              </span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"></span>
+              <span class="check-body">
+                <strong class="check-lead">Backout plan</strong>
+                <span class="check-detail">Agreed how to back out an import that went wrong before starting it.</span>
+              </span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"></span>
+              <span class="check-body">
+                <strong class="check-lead">Org-wide policies</strong>
+                <span class="check-detail">Ensure there are no org-wide policies blocking the actions you intend to take, specifically for Terraform or existing infra.</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
       <aside class="notes">
-        <p>The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back.</p>
+        <p>The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back. Migration prep sits alongside it: runner line of sight, a backout plan and a check for org-wide policies, agreed before the first import.</p>
       </aside>
     </section>
 
@@ -1010,7 +1231,10 @@ body.presenter #viewport { display: none; }
   allow_network_state_change_triggers = true
 }
 
-<span class="tk-kw">import</span> {}</pre>
+<span class="tk-kw">import</span> {
+  to = jamfpro_client_checkin.jamfpro_client_checkin
+  id = <span class="tk-str">"jamfpro_client_checkin_singleton"</span>
+}</pre>
       </div>
       <details class="reader-extra">
         <summary>More detail</summary>
