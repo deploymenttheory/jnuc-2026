@@ -548,17 +548,23 @@ body.reader .reader-extra {
 /* ============================ s-workspace ============================ */
 /* Four layouts ship in the markup; only ws-opt-a shows by default. The sandbox
    page swaps which wrapper is visible per option - see AGENTS.md Sandbox. Round two set
-   (2026-08-27): A the anatomy diagram, B a parts table, C five Mac-admin questions,
-   D the design logic behind the split (added 2026-08-27, distilled from the Microsoft
-   365 provider's Terraform Cloud workspace-design guide). */
+   (2026-08-27): A the anatomy diagram plus the lenses that decide the split, B a parts
+   table, C five Mac-admin questions, D the design logic behind the split (added
+   2026-08-27, distilled from the Microsoft 365 provider's Terraform Cloud
+   workspace-design guide). A was rebuilt 2026-08-27 to carry both halves of the message:
+   what a workspace is, and that carving an instance up deserves unhurried thought. */
 #s-workspace .ws-opt-b, #s-workspace .ws-opt-c, #s-workspace .ws-opt-d { display: none; }
 
-/* option A: the anatomy of a workspace - one bordered box, its compartments, in and out */
-#s-workspace .ws-anatomy { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-3); }
-#s-workspace .ws-anatomy-io {
+/* option A: what a workspace is, then the lenses that decide how the estate gets carved up.
+   The diagram follows HashiCorp's own workspace anatomy - code in, one boundary holding
+   state, variables, permissions and workflow, run stages out to a target. The cost stage
+   of that diagram is left out on purpose: it estimates cloud spend and does nothing for
+   a Jamf Pro instance. */
+#s-workspace .slide-title { margin-bottom: var(--sp-2); }
+#s-workspace .wsx { display: flex; align-items: stretch; gap: var(--sp-3); }
+#s-workspace .wsx-io {
   flex: none;
-  width: 270px;
-  min-height: 120px;
+  width: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -566,36 +572,77 @@ body.reader .reader-extra {
   text-align: center;
   gap: var(--sp-1);
 }
-#s-workspace .ws-anatomy-io-title { font-family: var(--f-display); font-size: var(--fs-code); font-weight: 600; line-height: var(--lh-tight); }
-#s-workspace .ws-anatomy-io-sub { font-size: var(--fs-chip); color: var(--c-text-muted); }
-#s-workspace .ws-anatomy-box {
+#s-workspace .wsx-io-title { font-family: var(--f-display); font-size: var(--fs-code); font-weight: 600; line-height: var(--lh-tight); }
+#s-workspace .wsx-io-sub { font-size: var(--fs-chip); color: var(--c-text-muted); }
+#s-workspace .wsx-platform {
+  flex: 1;
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius);
+  padding: var(--sp-2) var(--sp-3) var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+#s-workspace .wsx-platform-title {
+  font-family: var(--f-display);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+#s-workspace .wsx-platform-body { display: flex; align-items: stretch; gap: var(--sp-3); }
+#s-workspace .wsx-ws {
   flex: 1;
   border: var(--bw-2) solid var(--c-accent);
   border-radius: var(--radius);
-  padding: var(--sp-3) var(--sp-4);
+  padding: var(--sp-2) var(--sp-3) var(--sp-3);
   display: flex;
   flex-direction: column;
-  gap: var(--sp-3);
+  gap: var(--sp-1);
 }
-#s-workspace .ws-anatomy-box-title {
+#s-workspace .wsx-ws-title {
   font-family: var(--f-display);
   font-size: var(--fs-h2);
   font-weight: 600;
   color: var(--c-accent);
   line-height: var(--lh-tight);
 }
-#s-workspace .ws-anatomy-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-2); }
-#s-workspace .ws-anatomy-part {
+#s-workspace .wsx-ws-def { font-size: var(--fs-caption); color: var(--c-text-muted); line-height: var(--lh-body); }
+#s-workspace .wsx-parts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-1); margin-top: var(--sp-1); }
+#s-workspace .wsx-part {
   border: var(--bw-1) solid var(--c-border);
   border-radius: var(--radius-sm);
-  padding: var(--sp-2);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  padding: var(--sp-1) var(--sp-2);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-tight);
 }
-#s-workspace .ws-anatomy-part-name { font-size: var(--fs-caption); font-weight: 600; line-height: var(--lh-tight); }
-#s-workspace .ws-anatomy-part-desc { font-size: var(--fs-chip); color: var(--c-text-muted); line-height: var(--lh-body); }
-#s-workspace .ws-anatomy-caption { margin-top: var(--sp-4); }
+#s-workspace .wsx-part-more { color: var(--c-text-muted); font-style: italic; }
+#s-workspace .wsx-stages { display: flex; gap: var(--sp-1); }
+#s-workspace .wsx-stage {
+  writing-mode: vertical-rl;
+  background: var(--c-accent-2);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-3) var(--sp-2);
+  font-family: var(--f-display);
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--c-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* the lenses: the four the guidance puts first, then everything that refines the choice */
+#s-workspace .wsx-lenses { margin-top: var(--sp-3); }
+#s-workspace .wsx-lenses-lead { font-size: var(--fs-body); line-height: var(--lh-body); margin-bottom: var(--sp-2); }
+#s-workspace .wsx-lens-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); }
+#s-workspace .wsx-lens { display: flex; flex-direction: column; gap: 6px; }
+#s-workspace .wsx-lens-name { font-family: var(--f-display); font-size: var(--fs-code); font-weight: 600; color: var(--c-accent); line-height: var(--lh-tight); }
+#s-workspace .wsx-lens-desc { font-size: var(--fs-caption); color: var(--c-text-muted); line-height: var(--lh-body); }
+#s-workspace .wsx-lenses-note { margin-top: var(--sp-2); }
 
 /* option B: a parts table - what each thing is, and what it means for this estate */
 #s-workspace .ws-table { width: 100%; border-collapse: collapse; margin-top: var(--sp-2); table-layout: fixed; }
@@ -1006,46 +1053,66 @@ body.presenter #viewport { display: none; }
     <!-- ============================ What a Terraform workspace is ============================ -->
     <section class="slide" id="s-workspace" aria-label="What a Terraform workspace is" data-speaker="Dafydd" data-when="2025-11">
       <h1 class="slide-title">What a Terraform workspace is</h1>
+      <p class="slide-sub">One set of Terraform code linked to one state file. How you carve a Jamf Pro instance into workspaces is a decision worth taking slowly, and there are more lenses on it than you would expect.</p>
 
       <div class="ws-opt ws-opt-a">
-        <div class="ws-anatomy">
-          <div class="card ws-anatomy-io">
-            <span class="ws-anatomy-io-title">A commit to the repository</span>
-            <span class="ws-anatomy-io-sub">triggers a run</span>
+        <div class="wsx">
+          <div class="card wsx-io">
+            <span class="wsx-io-title">Terraform code</span>
+            <span class="wsx-io-sub">one configuration, from the repository</span>
           </div>
           <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <div class="ws-anatomy-box">
-            <span class="ws-anatomy-box-title">One workspace</span>
-            <div class="ws-anatomy-grid">
-              <div class="ws-anatomy-part">
-                <span class="ws-anatomy-part-name">Linked configuration</span>
-                <span class="ws-anatomy-part-desc">One Terraform configuration, usually from this repository.</span>
+          <div class="wsx-platform">
+            <span class="wsx-platform-title">HCP Terraform</span>
+            <div class="wsx-platform-body">
+              <div class="wsx-ws">
+                <span class="wsx-ws-title">Workspace</span>
+                <span class="wsx-ws-def">The administration boundary that owns the whole lifecycle of that code.</span>
+                <div class="wsx-parts">
+                  <span class="wsx-part">State file</span>
+                  <span class="wsx-part">Variables and secrets</span>
+                  <span class="wsx-part">Permissions</span>
+                  <span class="wsx-part">Workflow</span>
+                  <span class="wsx-part">Notifications</span>
+                  <span class="wsx-part wsx-part-more">and more</span>
+                </div>
               </div>
-              <div class="ws-anatomy-part">
-                <span class="ws-anatomy-part-name">Variables and secrets</span>
-                <span class="ws-anatomy-part-desc">Read from Vault, kept apart from every other workspace.</span>
-              </div>
-              <div class="ws-anatomy-part">
-                <span class="ws-anatomy-part-name">State</span>
-                <span class="ws-anatomy-part-desc">A record of what has already been applied here.</span>
-              </div>
-              <div class="ws-anatomy-part">
-                <span class="ws-anatomy-part-name">Run queue</span>
-                <span class="ws-anatomy-part-desc">Plan, then, on approval, apply.</span>
-              </div>
-              <div class="ws-anatomy-part">
-                <span class="ws-anatomy-part-name">Permissions</span>
-                <span class="ws-anatomy-part-desc">Who can queue, approve and apply a run.</span>
+              <div class="wsx-stages">
+                <span class="wsx-stage">Plan</span>
+                <span class="wsx-stage">Policy</span>
+                <span class="wsx-stage">Apply</span>
               </div>
             </div>
           </div>
           <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <div class="card ws-anatomy-io">
-            <span class="ws-anatomy-io-title">One Jamf Pro instance</span>
-            <span class="ws-anatomy-io-sub">the target</span>
+          <div class="card wsx-io">
+            <span class="wsx-io-title">One Jamf Pro instance</span>
+            <span class="wsx-io-sub">the target</span>
           </div>
         </div>
-        <p class="caption muted ws-anatomy-caption">One workspace applies to one target - here, a single Jamf Pro instance.</p>
+
+        <div class="wsx-lenses">
+          <p class="wsx-lenses-lead">Deciding how to carve an instance into workspaces is the part to slow down on. It is far cheaper to think it through than to re-cut it later. Four lenses come first:</p>
+          <div class="wsx-lens-grid">
+            <div class="wsx-lens">
+              <span class="wsx-lens-name">Team structure</span>
+              <span class="wsx-lens-desc">Who owns what, and who needs to ship without waiting on somebody else's apply.</span>
+            </div>
+            <div class="wsx-lens">
+              <span class="wsx-lens-name">Deployment frequency</span>
+              <span class="wsx-lens-desc">How often each part actually changes, and whether those rates are anywhere near each other.</span>
+            </div>
+            <div class="wsx-lens">
+              <span class="wsx-lens-name">Scale</span>
+              <span class="wsx-lens-desc">Resource count, state size and plan time. Guidance puts the ceiling at roughly 500 resources per workspace.</span>
+            </div>
+            <div class="wsx-lens">
+              <span class="wsx-lens-name">What changes together</span>
+              <span class="wsx-lens-desc">Things that move at the same time belong together. Things that never move should not be dragged along.</span>
+            </div>
+          </div>
+          <p class="caption muted wsx-lenses-note">Then refine against the rest: blast radius and risk appetite, dependencies between workspaces, environment strategy, approval and audit requirements, and how much orchestration you can realistically operate.</p>
+        </div>
       </div>
 
       <div class="ws-opt ws-opt-b">
@@ -1139,8 +1206,9 @@ body.presenter #viewport { display: none; }
       </div>
 
       <aside class="notes">
-        <p>Walk the shape before the detail - a workspace links one configuration and holds its own state, its own variables and secrets, and its own run history, and a run is always a plan followed, on approval, by an apply.</p>
-        <p>Land why it matters for our estate - state, secrets and run history stay separate per workspace, so a credential or a change in one instance can never reach another by accident.</p>
+        <p>Define it plainly first - one set of Terraform code linked to one state file. Walk the diagram left to right: code goes in, the workspace is the boundary that holds the state, the variables and secrets, the permissions and the workflow, and a run comes out as a plan, then a policy check, then an apply against one Jamf Pro instance.</p>
+        <p>Then make the real point. How you carve an instance into workspaces is worth spending serious time on. Do not rush it. Re-cutting it later means moving state, which is a much harder day than getting the boundaries roughly right at the start.</p>
+        <p>Take the four lenses in order and give an example of each from our own split rather than reading them out. The last line is the honest caveat - there are more considerations than fit on a slide, and they refine the choice rather than drive it.</p>
       </aside>
     </section>
 
