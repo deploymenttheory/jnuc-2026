@@ -805,12 +805,118 @@ body.reader .reader-extra {
 .takeaway { margin-top: var(--sp-4); font-weight: 600; }
 
 /* ============================ S13 ============================ */
+/* .lead is shared with s01, s-sentinel, s-staging and s-pivot - do not restyle it here. */
 .lead { font-size: var(--fs-h2); line-height: var(--lh-body); margin-bottom: var(--sp-5); max-width: 1560px; }
-.exceptions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
-.exception { padding: var(--sp-5); }
-.exception-title { font-family: var(--f-mono); font-size: var(--fs-h2); font-weight: 600; margin-bottom: var(--sp-3); }
-.exception-conditions { list-style: none; display: flex; flex-direction: column; gap: var(--sp-2); color: var(--c-text-muted); }
 .s13-close { margin-top: var(--sp-5); color: var(--c-text-muted); }
+
+/* Four layouts ship in the markup; only s13-opt-a shows by default. The sandbox page
+   s13-policies-only.html flips which wrapper is visible per option - see AGENTS.md
+   Sandbox. A is the deck as it ships after 2026-08-27: dock items removed (they were
+   never an exception) and the policies half re-laid as one full-width panel, with the
+   reason reworded from payload complexity to how diverse policies are. B, C and D are
+   the alternatives awaiting a decision: B draws the diversity as payload silhouettes,
+   C sets a for_each attempt against the plain HCL that won, D states the exception in
+   large type. Accepting one means deleting the other three wrappers and their rules. */
+#s13 .s13-opt-b, #s13 .s13-opt-c, #s13 .s13-opt-d { display: none; }
+
+/* option A: one exception, one panel. The name column carries enough weight that the row
+   does not read as a two-card grid with a card missing. */
+#s13 .s13-single {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--sp-5);
+  align-items: center;
+  padding: var(--sp-5);
+}
+#s13 .s13-single-name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding-right: var(--sp-5);
+  border-right: var(--bw-1) solid var(--c-border);
+}
+#s13 .s13-name {
+  font-family: var(--f-mono);
+  font-size: var(--fs-h1);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  color: var(--c-accent);
+}
+#s13 .s13-why-lead { font-size: var(--fs-h2); line-height: var(--lh-tight); margin-bottom: var(--sp-3); }
+#s13 .s13-why-body { color: var(--c-text-muted); }
+
+/* option B: the diversity drawn rather than asserted. Five policies as payload
+   silhouettes, no two the same shape, then the union of all of them in accent outline,
+   deliberately taller than its column so it runs off the bottom. The blocks are
+   abstract on purpose - naming which payloads vary would be inventing a fact. */
+#s13 .s13-b-lead { font-size: var(--fs-h2); line-height: var(--lh-tight); margin-bottom: var(--sp-4); }
+#s13 .s13-shapes { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--sp-3); }
+#s13 .s13-shape { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-3); }
+#s13 .s13-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  min-height: calc(var(--sp-6) * 3);
+}
+#s13 .s13-blk { flex: none; border-radius: var(--radius-sm); background: var(--c-accent-2); }
+#s13 .s13-blk-s  { height: var(--sp-3); }
+#s13 .s13-blk-m  { height: var(--sp-4); }
+#s13 .s13-blk-l  { height: var(--sp-5); }
+#s13 .s13-blk-xl { height: var(--sp-6); }
+#s13 .s13-in-1 { margin-left: var(--sp-3); }
+#s13 .s13-in-2 { margin-left: var(--sp-5); }
+#s13 .s13-w-mid { width: 76%; }
+#s13 .s13-w-nar { width: 52%; }
+#s13 .s13-shape-cap {
+  font-family: var(--f-mono);
+  font-size: var(--fs-chip);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+#s13 .s13-shape-union { border-color: var(--c-accent); }
+#s13 .s13-shape-union .s13-blocks { max-height: calc(var(--sp-6) * 3); overflow: hidden; }
+#s13 .s13-shape-union .s13-blk { background: none; border: var(--bw-1) dashed var(--c-accent); }
+#s13 .s13-shape-union .s13-shape-cap { color: var(--c-accent); }
+#s13 .s13-b-close { margin-top: var(--sp-4); color: var(--c-text-muted); font-size: var(--fs-caption); }
+
+/* option C: the map attempt against the plain HCL that replaced it. The winner is the
+   wider column and the only one at full strength, so the verdict reads before the code. */
+#s13 .s13-versus { display: grid; grid-template-columns: 5fr 6fr; gap: var(--sp-4); align-items: start; }
+#s13 .s13-try { opacity: 0.66; }
+#s13 .s13-c-title {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  margin-bottom: var(--sp-2);
+}
+#s13 .s13-c-code { font-size: var(--fs-caption); }
+#s13 .s13-won .s13-c-title { color: var(--c-accent); }
+#s13 .s13-won .s13-c-code { border: var(--bw-3) solid var(--c-accent); }
+#s13 .s13-c-close { margin-top: var(--sp-4); color: var(--c-text-muted); font-size: var(--fs-caption); }
+
+/* option D: the exception and its reason, nothing else. */
+#s13 .s13-opt-d { padding-top: var(--sp-5); max-width: 1560px; }
+#s13 .s13-d-kicker {
+  font-family: var(--f-mono);
+  font-size: var(--fs-chip);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  padding-bottom: var(--sp-3);
+  border-bottom: var(--bw-2) solid var(--c-accent);
+  margin-bottom: var(--sp-4);
+}
+#s13 .s13-d-statement { font-size: var(--fs-hero); font-weight: 700; line-height: var(--lh-tight); }
+#s13 .s13-d-hl { color: var(--c-accent); }
+#s13 .s13-d-reason { font-size: var(--fs-h2); line-height: var(--lh-body); margin-top: var(--sp-4); max-width: 1240px; }
+#s13 .s13-d-close { margin-top: var(--sp-5); color: var(--c-text-muted); font-size: var(--fs-caption); }
 
 /* ============================ S14 / gate cards ============================ */
 .terminal { max-width: 1240px; margin: 0 auto var(--sp-5); padding: 0; overflow: hidden; }
@@ -1560,26 +1666,140 @@ body.presenter #viewport { display: none; }
     <!-- ============================ S13 - for_each exceptions ============================ -->
     <section class="slide" id="s13" aria-label="for_each exceptions" data-speaker="Joseph" data-when="2026-02:2026-03">
       <h1 class="slide-title"><span class="mono">for_each</span> exceptions</h1>
-      <p class="lead">The parameter-map pattern is a default, not dogma.</p>
-      <div class="exceptions">
-        <div class="card exception">
-          <h2 class="exception-title">Policies</h2>
-          <ul class="exception-conditions">
-            <li>Payload complexity</li>
-            <li>Readability</li>
-          </ul>
+
+      <!-- Option A is what ships. B, C and D are the alternatives on the sandbox page
+           s13-policies-only.html; only A shows by default (see the S13 CSS block). -->
+      <div class="s13-opt s13-opt-a">
+        <p class="lead">The parameter-map pattern is a default, not dogma. Policies are the one resource type we left in plain HCL.</p>
+        <div class="card s13-single">
+          <div class="s13-single-name">
+            <h2 class="s13-name">Policies</h2>
+            <span class="tag tag-manage">plain HCL</span>
+          </div>
+          <div class="s13-single-why">
+            <p class="s13-why-lead">Too diverse to share one shape.</p>
+            <p class="s13-why-body">Policies vary so widely from one to the next that a single <span class="mono">for_each</span> map has to carry every field any policy might need. Written out one at a time, each policy still reads on its own terms.</p>
+          </div>
         </div>
-        <div class="card exception">
-          <h2 class="exception-title">Dock Items</h2>
-          <ul class="exception-conditions">
-            <li>Payload complexity</li>
-            <li>Readability</li>
-          </ul>
-        </div>
+        <p class="s13-close">When the map becomes harder to read than plain HCL, the pattern has stopped paying for itself.</p>
       </div>
-      <p class="s13-close">When the map becomes harder to read than plain HCL, the pattern has stopped paying for itself.</p>
+
+      <div class="s13-opt s13-opt-b">
+        <p class="s13-b-lead">No two policies are the same shape, so no one map fits them.</p>
+        <div class="s13-shapes">
+          <div class="card s13-shape">
+            <div class="s13-blocks">
+              <div class="s13-blk s13-blk-m"></div>
+              <div class="s13-blk s13-blk-s s13-in-1 s13-w-mid"></div>
+              <div class="s13-blk s13-blk-l"></div>
+            </div>
+            <p class="s13-shape-cap">Policy</p>
+          </div>
+          <div class="card s13-shape">
+            <div class="s13-blocks">
+              <div class="s13-blk s13-blk-s"></div>
+              <div class="s13-blk s13-blk-xl"></div>
+              <div class="s13-blk s13-blk-m s13-in-1 s13-w-mid"></div>
+              <div class="s13-blk s13-blk-s s13-in-2 s13-w-nar"></div>
+            </div>
+            <p class="s13-shape-cap">Policy</p>
+          </div>
+          <div class="card s13-shape">
+            <div class="s13-blocks">
+              <div class="s13-blk s13-blk-l"></div>
+              <div class="s13-blk s13-blk-s s13-in-1 s13-w-nar"></div>
+              <div class="s13-blk s13-blk-m"></div>
+              <div class="s13-blk s13-blk-s s13-in-1 s13-w-mid"></div>
+              <div class="s13-blk s13-blk-l"></div>
+            </div>
+            <p class="s13-shape-cap">Policy</p>
+          </div>
+          <div class="card s13-shape">
+            <div class="s13-blocks">
+              <div class="s13-blk s13-blk-xl"></div>
+            </div>
+            <p class="s13-shape-cap">Policy</p>
+          </div>
+          <div class="card s13-shape">
+            <div class="s13-blocks">
+              <div class="s13-blk s13-blk-s s13-in-1 s13-w-mid"></div>
+              <div class="s13-blk s13-blk-m"></div>
+              <div class="s13-blk s13-blk-xl s13-in-1"></div>
+              <div class="s13-blk s13-blk-s"></div>
+              <div class="s13-blk s13-blk-m s13-in-2 s13-w-nar"></div>
+            </div>
+            <p class="s13-shape-cap">Policy</p>
+          </div>
+          <div class="card s13-shape s13-shape-union">
+            <div class="s13-blocks">
+              <div class="s13-blk s13-blk-m"></div>
+              <div class="s13-blk s13-blk-s s13-in-1 s13-w-mid"></div>
+              <div class="s13-blk s13-blk-l"></div>
+              <div class="s13-blk s13-blk-xl"></div>
+              <div class="s13-blk s13-blk-m s13-in-1 s13-w-mid"></div>
+              <div class="s13-blk s13-blk-s s13-in-2 s13-w-nar"></div>
+              <div class="s13-blk s13-blk-l"></div>
+              <div class="s13-blk s13-blk-m"></div>
+              <div class="s13-blk s13-blk-xl s13-in-1"></div>
+              <div class="s13-blk s13-blk-s"></div>
+            </div>
+            <p class="s13-shape-cap">One map</p>
+          </div>
+        </div>
+        <p class="s13-b-close">The map would have to hold every field any policy might use, and it would still not read as well as the policy itself. So policies stayed in plain HCL. <span class="todo">TODO: confirm which policy payloads to name here</span></p>
+      </div>
+
+      <div class="s13-opt s13-opt-c">
+        <div class="s13-versus">
+          <div class="s13-try">
+            <h2 class="s13-c-title">One map over every policy <span class="tag tag-rejected">dropped</span></h2>
+            <pre class="code s13-c-code"><span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_policy"</span> <span class="tk-str">"example"</span> {
+  <span class="tk-kw">for_each</span> = local.policies
+
+  name = each.value.name
+
+  <span class="tk-kw">dynamic</span> <span class="tk-str">"scope"</span> {
+    for_each = lookup(each.value, <span class="tk-str">"scope"</span>, [])
+    content { ... }
+  }
+
+  <span class="tk-kw">dynamic</span> <span class="tk-str">"payloads"</span> {
+    for_each = lookup(each.value, <span class="tk-str">"payloads"</span>, [])
+    content { ... }
+  }
+}</pre>
+          </div>
+          <div class="s13-won">
+            <h2 class="s13-c-title">One policy at a time <span class="tag tag-chosen">kept</span></h2>
+            <pre class="code s13-c-code"><span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_policy"</span> <span class="tk-str">"install_vpn_client"</span> {
+  name    = <span class="tk-str">"Install VPN client"</span>
+  enabled = <span class="tk-kw">true</span>
+
+  scope {
+    computer_group_ids = [local.group_ids[<span class="tk-str">"VPN pilot"</span>]]
+  }
+
+  payloads {
+    packages {
+      id     = local.package_ids[<span class="tk-str">"VPNClient.pkg"</span>]
+      action = <span class="tk-str">"Install"</span>
+    }
+  }
+}</pre>
+          </div>
+        </div>
+        <p class="s13-c-close">Every policy differs enough that the map ends up mostly <span class="mono">lookup</span> and <span class="mono">dynamic</span>. Written straight out, it is shorter and it is readable. <span class="todo">TODO: confirm the jamfpro_policy field names against the provider schema</span></p>
+      </div>
+
+      <div class="s13-opt s13-opt-d">
+        <p class="s13-d-kicker">One exception</p>
+        <p class="s13-d-statement">Policies stayed in <span class="s13-d-hl">plain HCL</span>.</p>
+        <p class="s13-d-reason">They are too diverse. One <span class="mono">for_each</span> map would have to hold every field any policy might need, and nobody would be able to read it.</p>
+        <p class="s13-d-close">When the map becomes harder to read than plain HCL, the pattern has stopped paying for itself.</p>
+      </div>
+
       <aside class="notes">
-        <p>The honesty slide: when the map is harder to read than plain HCL, the pattern has stopped paying for itself. Policies and dock items got plain HCL.</p>
+        <p>The honesty slide: when the map is harder to read than plain HCL, the pattern has stopped paying for itself. Policies were the exception - they are too diverse for one map to hold, so they stayed in plain HCL.</p>
       </aside>
     </section>
 
