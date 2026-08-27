@@ -567,6 +567,16 @@ it up - either way it is on disk for a recovering session.
   its reason in large type. Sandbox page
   `presentations/sandbox/migrating_an_instance/s13-policies-only.html`, awaiting a decision.
   PR #TBD.
+- **2026-08-27, slide 10 (`#s10`) diagram text bumped, sandbox options added.** Joseph's
+  "text glitches until refresh" report investigated - fonts, transitions, transform/
+  clip-path/filter/contain on text, and the SVG's `tspan dx` labels all checked; could not
+  reproduce across `--virtual-time-budget` 500/3000 disk screenshots or real keyboard
+  navigation to s10 followed by a hard refresh over HTTP, so no fix invented. The size
+  request applied deterministically: `#s10 .dg-label` and `#s10 .dg-eg` both move one step
+  up the `--fs-*` scale (ships now). Sandbox page `s10-diagram-text.html` offers A (that
+  same modest bump, live), B (tier labels pushed further, examples left alone) and C (both
+  pushed further, four bands reflowed to stay clear of the timeline strip) - awaits a
+  decision. PR #29.
 - **2026-08-27, feedback-workflow.md updated for the handover.** Today's learnings folded
   in: the exceptions to "no repo edits", the collaborator-PR rule, model choice, agent
   naming, the acceptance-with-a-change rule, the fetch-and-merge-first requirement for
