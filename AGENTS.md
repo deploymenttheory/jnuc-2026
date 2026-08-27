@@ -252,6 +252,13 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   with conditionals/dynamic blocks -> apply with zero changes -> refinement passes (dedup,
   raw IDs -> named locals like `local.category_ids["Name"]`, shared locals), zero-diff plan
   gating every pass. Gordon: scripts + verbose imports. Joseph: refinement passes.
+- **Write-permission removal goes FIRST, not last.** GUI/UI write access for the in-scope
+  resource types is revoked at the *start* of a wave (step 3 of the wave workflow), before the
+  import - so nobody can make a change you do not know about, which would surface as a diff you
+  then have to chase. The validation slide used to present it as the final gate; that was the
+  order things happened to run in on some waves, but it is not the advice, and it contradicted
+  the wave-workflow slide. Corrected by Gordon Deacon, Aug 2026. A zero diff is only meaningful
+  because write access went first - say that, rather than treating the removal as a finish line.
 - **Bulk imports** Dec 2025 - Jan 2026; refinement through Feb - Mar 2026.
 - **Sequencing bands:** 1 singletons (client check-in, inventory collection, activation code);
   2 no dependencies (scripts, categories, departments); 3 dependent (smart groups, advanced
