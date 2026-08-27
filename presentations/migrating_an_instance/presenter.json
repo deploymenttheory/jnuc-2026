@@ -125,7 +125,7 @@
       "title": "for_each exceptions",
       "timerSeconds": 45,
       "notes": [
-        "The honesty slide: when the map is harder to read than plain HCL, the pattern has stopped paying for itself. Policies were the exception - they are too diverse for one map to hold, so they stayed in plain HCL."
+        "This is the honesty slide - when the map's harder to read than plain HCL, the pattern isn't earning its keep. Policies were the one exception - they're too different from each other for one map to hold, so we kept them in plain HCL."
       ]
     },
     {
