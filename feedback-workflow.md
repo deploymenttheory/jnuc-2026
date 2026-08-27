@@ -168,13 +168,17 @@ WHAT TO DO
    const pj = JSON.parse(fs.readFileSync('presentations/migrating_an_instance/presenter.json', 'utf8'));
    const clean = (s) => s.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
    const deck = [...html.matchAll(/<section class="slide[^"]*" id="([^"]+)"[\s\S]*?<aside class="notes">([\s\S]*?)<\/aside>/g)]
-     .map((m) => ({ id: m[1], notes: [...m[2].matchAll(/<p>([\s\S]*?)<\/p>/g)].map((p) => clean(p[1])) }));
+     .map((m) => {
+       const h1 = m[0].match(/<h1 class="slide-title">([\s\S]*?)<\/h1>/);
+       return { id: m[1], notes: [...m[2].matchAll(/<p>([\s\S]*?)<\/p>/g)].map((p) => clean(p[1])), h1: h1 ? h1[1] : null };
+     });
    let bad = 0;
    if (deck.length !== pj.slides.length) { console.log('slide count', deck.length, 'deck vs', pj.slides.length, 'presenter.json'); bad++; }
    deck.forEach((d, i) => {
      const p = pj.slides[i];
      if (!p || p.id !== d.id) { console.log('order mismatch at', i, d.id, 'vs', p && p.id); bad++; return; }
      if (JSON.stringify(p.notes) !== JSON.stringify(d.notes)) { console.log('notes differ:', d.id); bad++; }
+     if (d.h1 !== null && clean(d.h1) !== p.title) { console.log('title differs:', d.id); bad++; }
    });
    const total = pj.slides.reduce((a, s) => a + s.timerSeconds, 0);
    if (total !== pj.timeLimitSeconds) { console.log('timers sum to', total, 'not', pj.timeLimitSeconds); bad++; }
@@ -396,6 +400,12 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, presenter and AGENTS.md slide titles aligned with the deck.** A
+  collaborator's direct push to main (`7e1a99b`) retitled slide 4's `<h1>`/`aria-label`
+  without mirroring `presenter.json`; two earlier renames (`#s-sentinel`, `#s-today`) were
+  never mirrored either. `presenter.json` titles for `s04`, `s-sentinel` and `s-today` now
+  match the deck; AGENTS.md's `s04` slide-order entry updated to match. The presenter sync
+  check in this file now also compares titles, not just notes. PR #TBD.
 - **2026-08-27, slide 2 (`#s01`) column titles decided.** Option C ("Bordered column
   panel") accepted and applied: `#s01 .constraints-col` is a bordered panel per column with
   a subgrid so the title row and both item rows share heights across all three panels;
