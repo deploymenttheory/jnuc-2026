@@ -751,26 +751,49 @@ body.reader .reader-extra {
 .prep-portion .checklist { max-width: none; gap: var(--sp-4); }
 
 /* ============================ S08 ============================ */
+/* Seven bands stepping down the slide (option C, accepted 2026-08-27): one step per
+   line at slide size, each band starting a notch further in than the one above and all
+   of them ending flush right, so the sequence reads as a descent rather than a grid.
+   Uses the full slide height instead of a strip across the top. */
+#s08 { display: flex; flex-direction: column; }
 .stepper {
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   gap: var(--sp-2);
-  align-items: stretch;
+  flex: 1;
 }
-.step { font-size: var(--fs-caption); display: flex; flex-direction: column; gap: var(--sp-2); }
+.step {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--sp-4);
+  font-size: var(--fs-body);
+  padding: var(--sp-2) var(--sp-4);
+  border-left-width: var(--bw-3);
+  border-left-color: var(--c-accent);
+}
 .step-num {
   font-family: var(--f-mono);
   font-size: var(--fs-h2);
   color: var(--c-accent);
   line-height: var(--lh-tight);
+  min-width: var(--sp-5);
+  text-align: right;
 }
 .step-lock .step-num { color: var(--c-danger); }
-.step-lock { border-color: var(--c-danger); }
-.lock-glyph { width: var(--sp-3); }
+.step-lock { border-left-color: var(--c-danger); }
+.lock-glyph { width: var(--sp-4); flex: none; }
 .lock-glyph .lock-body { fill: var(--c-danger); }
 .lock-glyph .lock-shackle { fill: none; stroke: var(--c-danger); stroke-width: var(--bw-2); }
 .step .todo { white-space: normal; align-self: flex-start; }
+.step:nth-child(2) { margin-left: var(--sp-3); }
+.step:nth-child(3) { margin-left: calc(var(--sp-3) * 2); }
+.step:nth-child(4) { margin-left: calc(var(--sp-3) * 3); }
+.step:nth-child(5) { margin-left: calc(var(--sp-3) * 4); }
+.step:nth-child(6) { margin-left: calc(var(--sp-3) * 5); }
+.step:nth-child(7) { margin-left: calc(var(--sp-3) * 6); }
 
 /* ============================ S10 sequencing ============================ */
 .s10-intro { max-width: 1600px; margin-bottom: var(--sp-3); }

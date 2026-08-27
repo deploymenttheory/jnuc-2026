@@ -554,6 +554,16 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 11 (`#s08`) migration wave workflow, option C applied.** Joseph picked
+  option C from `s08-use-of-space.html`: the seven steps become full-width bands stepping
+  down the slide, each one starting a notch further in than the band above it and all
+  ending flush right, one step per line at slide size with the numbers in an aligned gutter
+  and a coloured left edge - lime, red on step 3's freeze. Pure CSS on the existing markup,
+  folded into the `#s08` block as one clean set of rules replacing the old single-row grid
+  rather than layering on top. Speaker notes and `presenter.json` needed no change - neither
+  pointed at the layout. Sandbox page deleted, its index entry retired to `.done`, and
+  `AGENTS.md`'s slide-11 summary and the Sandbox section's "Current pages"/"Decided" lines
+  updated. Presenter check prints OK. PR #TBD.
 - **2026-08-27, slide 6 (`#s05`) control note folded into path 03, sandbox options added.**
   Joseph asked for the annotation at the foot of the slide to go, its message to be condensed
   into option 3, and everything to expand into the space so the slide feels less busy. Applied
