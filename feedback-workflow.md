@@ -560,7 +560,7 @@ it up - either way it is on disk for a recovering session.
   current `data-when`), a blank "Month (fill in)" column for Joseph, and a "Current
   stops on the strip" summary showing the pile-ups on 2025-11 and 2026-07 and the gap
   at 2026-06. No slide, CSS or `presenter.json` touched. `AGENTS.md`'s file-layout table
-  gained one row for the doc. PR #TODO.
+  gained one row for the doc. PR #45.
 - **2026-08-27, slide 19 (`#s-today`) deleted.** Joseph: "Remove 19." "The estate today"
   removed at Joseph's request: section (four-tier route to live diagram, Release Please ->
   CalVer cards), its `presenter.json` entry, the `.evolution`/`.evo-title` CSS (used nowhere
