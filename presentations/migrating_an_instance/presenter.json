@@ -29,6 +29,15 @@
       ]
     },
     {
+      "id": "s-workspace",
+      "title": "What a Terraform workspace is",
+      "timerSeconds": 60,
+      "notes": [
+        "Keep this simple and concrete - a workspace is just the thing HCP Terraform runs one configuration against, with its own state, its own variables and its own run history.",
+        "Land the \"why it matters\" line for each - Mac admins have never worked this way, so the value is in what stays separated, not the mechanics."
+      ]
+    },
+    {
       "id": "s04",
       "title": "Ideas rejected, and why",
       "timerSeconds": 75,
@@ -174,7 +183,7 @@
     {
       "id": "s17",
       "title": "Questions",
-      "timerSeconds": 360,
+      "timerSeconds": 300,
       "notes": [
         "Open the floor. The links slide is next, ready as the backdrop while questions run."
       ]
