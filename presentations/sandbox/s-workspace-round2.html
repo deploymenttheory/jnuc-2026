@@ -14,9 +14,9 @@
 <div class="wrap">
   <p class="crumb"><a href="./">Sandbox</a> / From Clicks to Code / slide 4</p>
   <h1>Slide 4 - what a Terraform workspace is, round two</h1>
-  <p class="lede">Joseph rejected all three options from the first round. This is a fresh set: three bespoke explanations of what a Terraform workspace is, one of them a diagram, for Mac admins who have never used Terraform. All three markup wrappers already ship inside the real <code>#s-workspace</code> section; each render below is that same slide with only a CSS rule on top choosing which wrapper shows. Accepting an option means deleting the other two wrappers from the deck.</p>
+  <p class="lede">Joseph rejected all three options from the first round. This is a fresh set: three bespoke explanations of what a Terraform workspace is, one of them a diagram, for Mac admins who have never used Terraform. Option D followed, based on the Microsoft 365 provider's <a href="https://github.com/deploymenttheory/terraform-provider-microsoft365/blob/main/docs/guides/terraform_cloud_workspace_design.md">Terraform Cloud workspace-design guide</a>. All four markup wrappers already ship inside the real <code>#s-workspace</code> section; each render below is that same slide with only a CSS rule on top choosing which wrapper shows. Accepting an option means deleting the other three wrappers from the deck.</p>
   <nav class="jump" aria-label="Options">
-    <a href="#a">A</a><a href="#b">B</a><a href="#c">C</a>
+    <a href="#a">A</a><a href="#b">B</a><a href="#c">C</a><a href="#d">D</a>
   </nav>
 
   <section class="option" id="a">
@@ -40,6 +40,13 @@
     <details><summary>CSS on top of the deck</summary><pre id="css-c"></pre></details>
   </section>
 
+  <section class="option" id="d">
+    <h2>Option D - the design logic behind the split</h2>
+    <p>Four numbered moves, not a diagram or a table: one link and one state is what a workspace actually is; scale forces the first split (guidance's roughly-500 ceiling against this estate's 1,500+); then split by what changes together, which is why each instance runs three workspaces - iam, profiles_policies, root - rather than one; then stop splitting once it stops paying off, which is why DevTest gets one workspace and Sandbox gets none. Distilled from the Microsoft 365 provider's <a href="https://github.com/deploymenttheory/terraform-provider-microsoft365/blob/main/docs/guides/terraform_cloud_workspace_design.md">Terraform Cloud workspace-design guide</a> - its workspace-to-repository/state model, its resource-scale and blast-radius thresholds, its service-domain splitting pattern, and its "when not to split" guidance - transposed from Microsoft 365 tenants to Jamf Pro instances and grounded only in what this deck already confirms (s04's resource-count figures, s15b's module and workspace structure, s-today's DevTest and Sandbox shape). Pick this if the goal is to explain the reasoning behind the split rather than the shape of one workspace. Accepting it means deleting the <code>ws-opt-a</code>, <code>ws-opt-b</code> and <code>ws-opt-c</code> wrappers from the <code>#s-workspace</code> section.</p>
+    <div class="frame"><iframe data-variant="d" src="../migrating_an_instance/index.html#s-workspace" title="Option D"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-d"></pre></details>
+  </section>
+
   <p class="foot">To choose: name the option in chat, or describe what to change and this page gets a new set. Renders need the site served over HTTP - opened from disk the iframes load but the option CSS cannot be injected.</p>
 </div>
 
@@ -53,6 +60,8 @@
 #s-workspace .ws-opt-b { display: block; }`,
     c: `#s-workspace .ws-opt-a { display: none; }
 #s-workspace .ws-opt-c { display: block; }`,
+    d: `#s-workspace .ws-opt-a { display: none; }
+#s-workspace .ws-opt-d { display: block; }`,
   };
 
   for (const [key, css] of Object.entries(VARIANTS)) {

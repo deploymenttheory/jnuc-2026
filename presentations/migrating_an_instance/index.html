@@ -546,10 +546,12 @@ body.reader .reader-extra {
 .teams-note { margin-top: var(--sp-4); color: var(--c-text-muted); font-size: var(--fs-caption); }
 
 /* ============================ s-workspace ============================ */
-/* Three layouts ship in the markup; only ws-opt-a shows by default. The sandbox
+/* Four layouts ship in the markup; only ws-opt-a shows by default. The sandbox
    page swaps which wrapper is visible per option - see AGENTS.md Sandbox. Round two set
-   (2026-08-27): A the anatomy diagram, B a parts table, C five Mac-admin questions. */
-#s-workspace .ws-opt-b, #s-workspace .ws-opt-c { display: none; }
+   (2026-08-27): A the anatomy diagram, B a parts table, C five Mac-admin questions,
+   D the design logic behind the split (added 2026-08-27, distilled from the Microsoft
+   365 provider's Terraform Cloud workspace-design guide). */
+#s-workspace .ws-opt-b, #s-workspace .ws-opt-c, #s-workspace .ws-opt-d { display: none; }
 
 /* option A: the anatomy of a workspace - one bordered box, its compartments, in and out */
 #s-workspace .ws-anatomy { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-3); }
@@ -622,6 +624,14 @@ body.reader .reader-extra {
 #s-workspace .ws-qa-item { display: flex; flex-direction: column; gap: var(--sp-1); }
 #s-workspace .ws-qa-q { font-family: var(--f-display); font-size: var(--fs-h2); font-weight: 600; color: var(--c-accent); line-height: var(--lh-tight); }
 #s-workspace .ws-qa-a { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--c-text-muted); }
+
+/* option D: the design logic behind the split - one link and one state, then split for
+   scale, then for what changes together, then stop once splitting further stops paying off */
+#s-workspace .ws-moves { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3); margin-top: var(--sp-3); }
+#s-workspace .ws-move { display: flex; flex-direction: column; gap: var(--sp-2); }
+#s-workspace .ws-move-num { font-family: var(--f-mono); font-size: var(--fs-h2); color: var(--c-accent); line-height: var(--lh-tight); }
+#s-workspace .ws-move p { font-size: var(--fs-caption); line-height: var(--lh-body); color: var(--c-text-muted); }
+#s-workspace .ws-move strong { color: var(--c-text); }
 
 /* ============================ S04 ============================ */
 .rejects { display: flex; flex-direction: column; gap: var(--sp-2); }
@@ -1101,6 +1111,27 @@ body.presenter #viewport { display: none; }
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="ws-opt ws-opt-d">
+        <ol class="ws-moves">
+          <li class="card ws-move">
+            <span class="ws-move-num">01</span>
+            <p><strong>One link, one state.</strong> A workspace connects to exactly one Terraform configuration and keeps one state file - that link, not an org chart, is what actually keeps one deployable unit separate from the next.</p>
+          </li>
+          <li class="card ws-move">
+            <span class="ws-move-num">02</span>
+            <p><strong>Scale forces the first split.</strong> Guidance puts the ceiling at roughly 500 resources per workspace; this estate holds 1,500+, so one workspace for everything was ruled out before team boundaries even came into it.</p>
+          </li>
+          <li class="card ws-move">
+            <span class="ws-move-num">03</span>
+            <p><strong>Split by what changes together.</strong> iam, profiles_policies and root change at different rates and carry different risk, so each instance runs three workspaces rather than one - narrower blast radius, plans held at four to six minutes.</p>
+          </li>
+          <li class="card ws-move">
+            <span class="ws-move-num">04</span>
+            <p><strong>Not every instance needs three.</strong> DevTest runs one CLI-triggered workspace; Sandbox runs none at all, local dev only. More workspaces only pay for themselves once there is scale, or a boundary, to protect.</p>
+          </li>
+        </ol>
       </div>
 
       <aside class="notes">
