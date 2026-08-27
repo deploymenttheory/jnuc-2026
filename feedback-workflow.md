@@ -398,7 +398,6 @@ purpose.
 
 slide 4 (#s-workspace) - branch feedback/s-workspace-lenses - dispatched 2026-08-27 - acceptance, direct - PR pending - feedback: Dafydd specified the design directly, so no options round; rebuild option A to carry both halves of the message - a workspace is one set of Terraform code linked to one state file, and carving an instance up deserves unhurried thought - with the HashiCorp workspace anatomy diagram he supplied and the decision lenses from the Microsoft 365 workspace design guide, naming no patterns
 slide 4 (#s-workspace) - branch feedback/s-workspace-round2 - dispatched 2026-08-27 - options, round two - PR #14 - feedback: round one rejected; three bespoke options, one a diagram, detailing what a workspace is - option D added from the Microsoft 365 provider workspace design guide, PR #15
-slide 7 (#s07) - branch feedback/s07-checklist - dispatched 2026-08-27 - options - PR #13 - feedback: keep the checklist vibe but tidy it up so it reads as a real checklist, credentials points consolidated, split-estate point removed - option D added (two portions: instance prep and migration prep with runner line of sight and backout plan), PR #17 - renamed to Prerequisites 2026-08-27, PR #23
 
 (Format: `slide N (#id) - branch feedback/<id>-<slug> - dispatched
 <date time> - <options|acceptance X> - PR #n or "no PR yet" - feedback: <one line>`.)
@@ -408,6 +407,11 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 7 (`#s07`) option D accepted.** Sandbox option D ("two portions")
+  applied to the deck's `#s07` rules after the slide's earlier rename to Prerequisites:
+  instance prep and migration prep now sit side by side. The sandbox page deleted, its
+  index entry retired to a `.done` line; the two TODO chips on the migration rows remain,
+  pending Gordon's wording. PR #24.
 - **2026-08-27, Joseph's and Gordon's photos added to both decks.** Both photos
   centre-cropped, resized and compressed in `_shared/speakers.js` to match Dafydd's
   existing 420x420 JPEG (byte size matched to his ~27KB); the amber TODO chip for the

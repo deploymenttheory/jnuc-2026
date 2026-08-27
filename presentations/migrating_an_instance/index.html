@@ -760,12 +760,12 @@ body.reader .reader-extra {
 .check-body { display: flex; flex-direction: column; gap: var(--sp-1); }
 .check-lead { font-size: var(--fs-body); font-weight: 600; line-height: var(--lh-tight); color: var(--c-accent); }
 .check-detail { font-size: var(--fs-caption); line-height: var(--lh-body); color: var(--c-text-muted); }
-/* Two-portion split (sandbox option D, instance prep / migration prep) is markup-ready but
-   not chosen: hide the portion headings and the migration portion so the slide still
-   renders as the tidied single list above. An accepted option D removes these two rules
-   and adds its own #s07 layout on top, per the sandbox page. */
-.prep-heading { display: none; }
-.prep-portion-migration { display: none; }
+/* Two-portion split, sandbox option D, accepted 2026-08-27: instance prep and migration
+   prep side by side. */
+.prep-portions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); align-items: start; }
+.prep-heading { font-family: var(--f-display); font-size: var(--fs-h2); font-weight: 700; line-height: var(--lh-tight); color: var(--c-accent); margin-bottom: var(--sp-3); }
+.prep-portion-migration { padding-left: var(--sp-4); border-left: var(--bw-1) solid var(--c-hairline); }
+.prep-portion .checklist { max-width: none; gap: var(--sp-4); }
 
 /* ============================ S08 ============================ */
 .stepper {
@@ -1275,7 +1275,7 @@ body.presenter #viewport { display: none; }
       </aside>
     </section>
 
-    <!-- ============================ S07 - Instance prep ============================ -->
+    <!-- ============================ S07 - Prerequisites ============================ -->
     <section class="slide" id="s07" aria-label="Prerequisites" data-speaker="Gordon" data-when="2025-11">
       <h1 class="slide-title">Prerequisites</h1>
       <div class="prep-portions">
@@ -1326,7 +1326,7 @@ body.presenter #viewport { display: none; }
         </div>
       </div>
       <aside class="notes">
-        <p>The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back.</p>
+        <p>The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back. Migration prep sits alongside it: runner line of sight and a backout plan, agreed before the first import.</p>
       </aside>
     </section>
 
