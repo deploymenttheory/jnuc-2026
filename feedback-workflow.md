@@ -409,7 +409,7 @@ it up - either way it is on disk for a recovering session.
 - **2026-08-27, slide 4 (`#s-workspace`) decided.** The live collaborator slide (PR #21)
   kept; round-three options B to D rejected (none captured the point) and removed from the
   deck, along with their CSS rules. The sandbox page deleted, its index entry retired to a
-  `.done` line. PR #<FILL IN>.
+  `.done` line. PR #27.
 - **2026-08-27, slide 7 (`#s07`) runner line of sight row reworded, TODO chips cleared.**
   Migration prep's runner line of sight row reworded to Joseph's live wording; a third
   row, "Org-wide policies", added after backout plan (no chip); both remaining TODO chips
