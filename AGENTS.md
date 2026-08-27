@@ -561,7 +561,7 @@ plus a few rules, never a copy of the deck, and they track deck edits automatica
   and decision state. Once an option is accepted, apply it to the deck and mark the entry
   decided (or delete the page and its entry).
 
-Current pages: `s-workspace-new` (awaiting a decision). Decided: `s01-environment-band` (2026-08-27, option B - the Sandbox /
+Current pages: `s-workspace-round2` (awaiting a decision). Decided: `s01-environment-band` (2026-08-27, option B - the Sandbox /
 Staging / Production row as one three-segment chevron arrow - applied to the deck's `#s01`
 rules; the page is deleted, the index keeps the record as a non-linked `.done` entry);
 `s01-column-titles` (2026-08-27, option C - bordered column panels with aligned dividers -
