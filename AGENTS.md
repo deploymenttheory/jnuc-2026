@@ -628,8 +628,7 @@ Current pages (all under `presentations/sandbox/migrating_an_instance/`):
 `s05-fill-the-space` (2026-08-27, awaiting a decision - slide 6 `#s05`, four layouts for the
 space the control-note card left behind: every row scaled to the full width, the chosen path
 in an accent panel, only the chosen path drawn, and each path as its own framed block);
-`s10-diagram-text` (2026-08-27, awaiting a decision - resource-sequencing
-diagram text size); `s13-policies-only` (2026-08-27, slide 14 `#s13`, four options for a
+`s13-policies-only` (2026-08-27, slide 14 `#s13`, four options for a
 slide covering a single `for_each` exception now that dock items are gone - awaiting a
 decision). Decided (all under `presentations/sandbox/migrating_an_instance/`):
 `s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
@@ -644,7 +643,10 @@ stepping down the slide, each starting a notch further in than the one above - a
 the deck's `#s08` rules; the page is deleted, the index keeps the record as a non-linked
 `.done` entry); `s-workspace-round3` (2026-08-27, live slide kept, B to D rejected - none
 of the three redesigned alternatives captured the point; the page is deleted, the index
-keeps the record as a non-linked `.done` entry). `presentations/sandbox/training_a_team/`
+keeps the record as a non-linked `.done` entry); `s10-diagram-text` (2026-08-27, option C -
+tier labels and examples pushed further up the font scale and the four bands grown to
+match - applied to the deck's `#s10` rules and SVG; the page is deleted, the index keeps
+the record as a non-linked `.done` entry). `presentations/sandbox/training_a_team/`
 has no pages yet.
 
 ## Deployment
