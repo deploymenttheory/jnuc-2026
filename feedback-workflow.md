@@ -405,7 +405,7 @@ it up - either way it is on disk for a recovering session.
 - **2026-08-27, Joseph's and Gordon's photos added to both decks.** Both photos
   centre-cropped, resized and compressed in `_shared/speakers.js` to match Dafydd's
   existing 420x420 JPEG (byte size matched to his ~27KB); the amber TODO chip for the
-  missing photos removed from the title slide of both decks; `AGENTS.md` updated. PR #TBD.
+  missing photos removed from the title slide of both decks; `AGENTS.md` updated. PR #20.
 - **2026-08-27, slide 8 (`#s-singletons`) import block filled in.** The empty
   `import {}` in the `jamfpro_client_checkin` code sample now reads `to =
   jamfpro_client_checkin.jamfpro_client_checkin` / `id =
