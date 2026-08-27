@@ -402,6 +402,15 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 8 (`#s-singletons`) import block filled in.** The empty
+  `import {}` in the `jamfpro_client_checkin` code sample now reads `to =
+  jamfpro_client_checkin.jamfpro_client_checkin` / `id =
+  "jamfpro_client_checkin_singleton"`. The provider's `client_checkin.md` docs carry no
+  Import section, so the id came from the provider source
+  (`internal/services/client_checkin/resource_crud.go`, which fixes the resource's id to
+  `jamfpro_client_checkin_singleton` on create/read/update), corroborated by the identical
+  `jamfpro_activation_code_singleton` pattern on the sibling singleton resource. At
+  Joseph's request, no options. PR #TODO.
 - **2026-08-27, Sandbox button added to the landing page.** A button-style link (`.go`,
   reused from the deck cards) to `sandbox/` now sits under the deck cards on
   `presentations/index.html`, with a one-line caption. `AGENTS.md` and this file updated to
