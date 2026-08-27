@@ -554,6 +554,19 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 14 (`#s13`) cut back to policies, four options offered.** Dock items
+  were never a `for_each` exception, so the dock items card, its column and the mention in
+  the speaker note are gone, and the reason for the policies exception is reworded from
+  payload complexity and readability to how diverse policies are - a map has to carry every
+  field any policy might need. `presenter.json` mirrored, `AGENTS.md`'s slide-order entry
+  and the "for_each exceptions" settled fact updated to say policies only with diversity as
+  the reason. Because the slide loses half its content, four layouts ship as wrappers inside
+  `#s13`: A the removal done cleanly, policies re-laid as one full-width panel (live);
+  B five policy silhouettes with a sixth column showing everything one map would hold;
+  C the `for_each` attempt set against the plain HCL that replaced it; D the exception and
+  its reason in large type. Sandbox page
+  `presentations/sandbox/migrating_an_instance/s13-policies-only.html`, awaiting a decision.
+  PR #TBD.
 - **2026-08-27, feedback-workflow.md updated for the handover.** Today's learnings folded
   in: the exceptions to "no repo edits", the collaborator-PR rule, model choice, agent
   naming, the acceptance-with-a-change rule, the fetch-and-merge-first requirement for

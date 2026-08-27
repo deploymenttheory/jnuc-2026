@@ -214,7 +214,8 @@ overlay - keep the two in step when slides move.
 11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk) - **Dafydd**
 12. `s11` Tools and helpers (JamfPy -> script -> map -> for_each) - **Gordon**
 13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Joseph**
-14. `s13` for_each exceptions (policies, dock items) - **Joseph**
+14. `s13` for_each exceptions (policies only - dock items removed 2026-08-27, they were
+    never an exception) - **Joseph**
 15. `s14` Validating a migration - **Joseph**
 16. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused) - **Dafydd**
 17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals -> module pivot) - **Joseph**
@@ -280,7 +281,11 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   calendar versioning much later, around the time DevTest arrived.
 - **Numbers:** Apr 2025 (provider development start) -> May 2026 (v1.0.0 and final handover); 14+ contributors;
   526+ PRs; 1,902 commits; 127 Terraform files; 19,000+ lines of HCL.
-- **for_each exceptions:** policies and dock items (payload complexity, readability).
+- **for_each exceptions:** policies only. Dock items were never an exception (corrected by
+  Joseph, 2026-08-27). The reason is how diverse policies are: they vary so widely from one
+  to the next that a `for_each` map has to carry every field any policy might need, which
+  makes it harder to read than plain HCL. Which policy fields vary is not recorded - do not
+  invent examples.
 - **Rejected up front:** single workspace (blast radius / plan time, 500-1,500-5,000
   figures); per-team modules (internal approval complexity - expansion TODO); managing
   everything (static group membership unmanaged to protect support).
@@ -571,7 +576,9 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages: none. Decided (all under `presentations/sandbox/migrating_an_instance/`):
+Current pages: `migrating_an_instance/s13-policies-only` (2026-08-27, slide 14 `#s13`, four
+options for a slide covering a single `for_each` exception now that dock items are gone -
+awaiting a decision). Decided (all under `presentations/sandbox/migrating_an_instance/`):
 `s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
 one three-segment chevron arrow - applied to the deck's `#s01` rules; the page is deleted,
 the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
