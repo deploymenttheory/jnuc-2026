@@ -617,7 +617,11 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages: `s10-diagram-text` (2026-08-27, awaiting a decision - resource-sequencing
+Current pages (both under `presentations/sandbox/migrating_an_instance/`):
+`s08-use-of-space` (2026-08-27, awaiting a decision - slide 11 `#s08`, four layouts for the
+migration wave workflow: the live single row, two rows of four then three, seven bands
+stepping down, and the freeze as a full-height centre panel; layout only, the content is
+unchanged); `s10-diagram-text` (2026-08-27, awaiting a decision - resource-sequencing
 diagram text size). Decided (all under `presentations/sandbox/migrating_an_instance/`):
 `s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
 one three-segment chevron arrow - applied to the deck's `#s01` rules; the page is deleted,
