@@ -390,7 +390,7 @@ purpose.
 
 ### In flight
 
-slide 4 (#s-workspace) - branch feedback/s-workspace-round2 - dispatched 2026-08-27 - options, round two - PR #n - feedback: round one rejected; three bespoke options, one a diagram, detailing what a workspace is
+slide 4 (#s-workspace) - branch feedback/s-workspace-round2 - dispatched 2026-08-27 - options, round two - PR #14 - feedback: round one rejected; three bespoke options, one a diagram, detailing what a workspace is
 
 (Format: `slide N (#id) - branch feedback/<id>-<slug> - dispatched
 <date time> - <options|acceptance X> - PR #n or "no PR yet" - feedback: <one line>`.)
