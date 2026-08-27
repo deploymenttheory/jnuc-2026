@@ -625,12 +625,8 @@ automatically.
 Current pages (all under `presentations/sandbox/migrating_an_instance/`):
 `s05-fill-the-space` (2026-08-27, awaiting a decision - slide 6 `#s05`, four layouts for the
 space the control-note card left behind: every row scaled to the full width, the chosen path
-in an accent panel, only the chosen path drawn, and each path as its own framed block);
-`s08-use-of-space` (2026-08-27, awaiting a decision - slide 11 `#s08`, four layouts for the
-migration wave workflow: the live single row, two rows of four then three, seven bands
-stepping down, and the freeze as a full-height centre panel; layout only, the content is
-unchanged); `s10-diagram-text` (2026-08-27, awaiting a decision - resource-sequencing
-diagram text size). Decided (all under `presentations/sandbox/migrating_an_instance/`):
+in an accent panel, only the chosen path drawn, and each path as its own framed block).
+Decided (all under `presentations/sandbox/migrating_an_instance/`):
 `s13-policies-only` (2026-08-27, option D - the exception and its reason in large type,
 nothing else, wording made more human - applied to the deck's `#s13` rules; the page is
 deleted, the index keeps the record as a non-linked `.done` entry);
@@ -641,9 +637,15 @@ the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
 deck's `#s01` rules; the page is deleted, the index keeps the record as a non-linked
 `.done` entry); `s07-checklist` (2026-08-27, option D - two portions - applied to the
 deck's `#s07` rules; the page is deleted, the index keeps the record as a non-linked
+`.done` entry); `s08-use-of-space` (2026-08-27, option C - seven full-width bands
+stepping down the slide, each starting a notch further in than the one above - applied to
+the deck's `#s08` rules; the page is deleted, the index keeps the record as a non-linked
 `.done` entry); `s-workspace-round3` (2026-08-27, live slide kept, B to D rejected - none
 of the three redesigned alternatives captured the point; the page is deleted, the index
-keeps the record as a non-linked `.done` entry). `presentations/sandbox/training_a_team/`
+keeps the record as a non-linked `.done` entry); `s10-diagram-text` (2026-08-27, option C -
+tier labels and examples pushed further up the font scale and the four bands grown to
+match - applied to the deck's `#s10` rules and SVG; the page is deleted, the index keeps
+the record as a non-linked `.done` entry). `presentations/sandbox/training_a_team/`
 has no pages yet.
 
 ## Deployment
