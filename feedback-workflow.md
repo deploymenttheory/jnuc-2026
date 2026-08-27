@@ -554,6 +554,20 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 14 (`#s13`) option D accepted, wording made more human.** Joseph
+  picked option D from the `s13-policies-only` sandbox page - the exception and its reason
+  in large type, nothing else - with one change: reword it so it sounds spoken rather than
+  written. Applied as the net result: the `.s13-opt-a`/`-b`/`-c`/`-d` wrappers and the hide
+  rule are gone, D's four lines are the slide's plain markup, and the CSS is one clean
+  `#s13` block. New wording - kicker "Just one exception"; statement "We kept policies in
+  plain HCL."; reason "They're too different from each other. One `for_each` map would have
+  to carry every field any policy might need, and nobody could read it."; close "Once the
+  map gets harder to read than plain HCL, the pattern isn't earning its keep any more." Same
+  facts throughout: policies were the one exception, too diverse for one map, so they stayed
+  in plain HCL, and the pattern stops paying when the map is harder to read than the HCL.
+  Speaker note eased the same way and mirrored into `presenter.json`; the check prints OK.
+  Sandbox page deleted, index entry marked `.done`, `AGENTS.md`'s slide-14 summary and the
+  Sandbox section's "Current pages"/"Decided" lines updated. PR #37.
 - **2026-08-27, slide 6 (`#s05`) option D accepted - each path in its own panel.**
   Joseph picked option D from the `s05-fill-the-space` sandbox page: the hairlines between
   paths become full bordered panels, one per path, with the chosen path (03) edged in the
