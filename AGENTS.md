@@ -631,7 +631,11 @@ migration wave workflow: the live single row, two rows of four then three, seven
 stepping down, and the freeze as a full-height centre panel; layout only, the content is
 unchanged); `s13-policies-only` (2026-08-27, slide 14 `#s13`, four options for a
 slide covering a single `for_each` exception now that dock items are gone - awaiting a
-decision). Decided (all under `presentations/sandbox/migrating_an_instance/`):
+decision); `s14-terminal-excerpt` (2026-08-27, awaiting a decision - slide 15 `#s14`, four
+treatments of the `terraform plan` block so it reads as an excerpt from a terminal rather
+than another card: the live block, a real window with chrome and a blinking cursor, a
+full-width console dump with no chrome, and a labelled quoted excerpt; wording and the four
+gates unchanged, and the deck itself unchanged this round). Decided (all under `presentations/sandbox/migrating_an_instance/`):
 `s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
 one three-segment chevron arrow - applied to the deck's `#s01` rules; the page is deleted,
 the index keeps the record as a non-linked `.done` entry); `s01-column-titles`

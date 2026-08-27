@@ -554,6 +554,25 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 15 (`#s14`) terminal excerpt options offered.** Joseph said the diagram
+  at the top of the slide is not obviously a terminal excerpt and asked for styling options
+  that make it read as one. Nothing in the feedback was deterministic, so the deck is
+  untouched this round: wording, the `terraform plan` line, the result and the four gates all
+  stay, and the speaker notes and `presenter.json` need nothing (neither mentions the block's
+  styling); the check prints OK. Sandbox page
+  `presentations/sandbox/migrating_an_instance/s14-terminal-excerpt.html` offers A (the block
+  as it stands, live now - the same navy card surface, border and radius as the four gate
+  cards below it, which is the problem), B (a real window: a light grey chrome bar, red,
+  amber and lime traffic lights, a `joseph@jnuc - zsh` title, the command in bold white
+  against the lime result, a blinking cursor on a fresh prompt and a drop shadow, gates
+  untouched), C (the opposite - no chrome at all, the block full width behind an 8px lime
+  rule with square corners at 44px type, and the gate cards stripped to bare columns under
+  hairline rules so the console is the only solid object on the slide) and D (a quoted
+  excerpt: a lime "Terminal" tab on the corner, a gradient and scanlines on the surface, the
+  command dropped to caption size and the result promoted to 44px bold behind a lime tick,
+  gates kept but unfilled) - awaits a decision. All the option CSS is scoped to `#s14`
+  because `.terminal`, the `.term-*` classes, `.card`, `.gate` and `.muted` are shared or
+  generic. No PR yet.
 - **2026-08-27, slide 10 (`#s10`) option C accepted - everything bigger, diagram reflowed.**
   Joseph picked option C from the `s10-diagram-text` sandbox page: the tier labels move up
   to `--fs-body` and the right-hand examples to `--fs-code`, both a step further than the
