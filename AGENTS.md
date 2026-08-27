@@ -532,8 +532,9 @@ after each keypress it asserts the deck actually moved.
 
 Feedback on the clicks-to-code deck arrives in chat. The loop that turns it into deployed
 changes - an orchestrator session dispatching one Sonnet agent per slide, each delivering a
-PR that the orchestrator merges, consolidates and deploys - is written down in
-`feedback-workflow.md` at the repo root (committed; read it first).
+single PR that carries the slide edit, the sandbox page, the index entry below and any
+`AGENTS.md` updates the change needs, with the orchestrator only merging and deploying - is
+written down in `feedback-workflow.md` at the repo root (committed; read it first).
 Each change gets a review page under `presentations/sandbox/`, created from
 `tools/sandbox-template.html`, showing three implementation options; Joseph picks one in
 chat or asks for another set, and the winner goes into the deck. `index.html` lists the pages by
