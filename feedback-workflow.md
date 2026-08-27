@@ -573,6 +573,38 @@ it up - either way it is on disk for a recovering session.
   `terraform/jamfpro/` file tab, a line-number gutter and line 2 picked out with a
   current-line band. C and D ship as `.s-pivot-opt-c` / `-opt-d` wrappers hidden by one
   `#s-pivot` rule. Awaiting a decision. PR #TBD.
+- **2026-08-27, slide 15 (`#s14`) option B accepted - the terminal as a real window.**
+  Joseph picked option B from the `s14-terminal-excerpt` sandbox page: the block becomes a
+  window sitting on the stage rather than a card lying flat on it, with a light chrome bar,
+  red, amber and lime traffic-light dots, a centred `joseph@jnuc - zsh` title, the command
+  in bold white against the lime result, and a lime block cursor blinking on a fresh prompt
+  line underneath, plus a drop shadow. Applied as the net result: the window title span and
+  the fresh-prompt cursor markup are now the slide's plain markup, and the CSS is one clean
+  `#s14`-scoped block replacing the old unscoped `.terminal`/`.term-*` rules rather than
+  stacking on them; the shared `.gates`/`.gate*` rules are untouched. `prefers-reduced-motion`
+  still stops the cursor blink; every colour stays a token. Speaker notes and
+  `presenter.json` needed no change - neither references the block's styling - and the check
+  prints OK. Sandbox page deleted, index entry marked `.done`, `AGENTS.md`'s slide-15
+  summary and the Sandbox section's "Current pages"/"Decided" lines updated. PR #39.
+- **2026-08-27, slide 15 (`#s14`) terminal excerpt options offered.** Joseph said the diagram
+  at the top of the slide is not obviously a terminal excerpt and asked for styling options
+  that make it read as one. Nothing in the feedback was deterministic, so the deck is
+  untouched this round: wording, the `terraform plan` line, the result and the four gates all
+  stay, and the speaker notes and `presenter.json` need nothing (neither mentions the block's
+  styling); the check prints OK. Sandbox page
+  `presentations/sandbox/migrating_an_instance/s14-terminal-excerpt.html` offers A (the block
+  as it stands, live now - the same navy card surface, border and radius as the four gate
+  cards below it, which is the problem), B (a real window: a light grey chrome bar, red,
+  amber and lime traffic lights, a `joseph@jnuc - zsh` title, the command in bold white
+  against the lime result, a blinking cursor on a fresh prompt and a drop shadow, gates
+  untouched), C (the opposite - no chrome at all, the block full width behind an 8px lime
+  rule with square corners at 44px type, and the gate cards stripped to bare columns under
+  hairline rules so the console is the only solid object on the slide) and D (a quoted
+  excerpt: a lime "Terminal" tab on the corner, a gradient and scanlines on the surface, the
+  command dropped to caption size and the result promoted to 44px bold behind a lime tick,
+  gates kept but unfilled) - awaits a decision. All the option CSS is scoped to `#s14`
+  because `.terminal`, the `.term-*` classes, `.card`, `.gate` and `.muted` are shared or
+  generic. PR #38.
 - **2026-08-27, slide 14 (`#s13`) option D accepted, wording made more human.** Joseph
   picked option D from the `s13-policies-only` sandbox page - the exception and its reason
   in large type, nothing else - with one change: reword it so it sounds spoken rather than

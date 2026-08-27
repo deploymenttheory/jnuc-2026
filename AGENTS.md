@@ -218,7 +218,10 @@ overlay - keep the two in step when slides move.
 13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Joseph**
 14. `s13` for_each exceptions (single statement - policies stayed in plain HCL because
     they are too diverse for one map) - **Joseph**
-15. `s14` Validating a migration - **Joseph**
+15. `s14` Validating a migration (the `terraform plan` block reads as a real terminal
+    window - light chrome bar, red/amber/lime traffic-light dots, a centred
+    `joseph@jnuc - zsh` title, and a blinking cursor on a fresh prompt line below the
+    result; four gate cards unchanged) - **Joseph**
 16. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused) - **Dafydd**
 17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals; the lead and one
     HCL block, no closing statement - the "It got out of hand. The pivot: ..." line came off
@@ -633,7 +636,12 @@ statement is gone: A the lead over the code as one column and what the deck ship
 code filling the slide with the "everywhere" comment as the punchline, C the code beside
 what one URL decided, D the conditional as an editor window with a file tab and line
 numbers). Decided (all under `presentations/sandbox/migrating_an_instance/`):
-`s13-policies-only` (2026-08-27, option D - the exception and its reason in large type,
+`s14-terminal-excerpt` (2026-08-27, option B - the `terraform plan` block as a real window:
+a light chrome bar, red/amber/lime traffic-light dots, a centred `joseph@jnuc - zsh` title,
+white bold command text against the lime result, and a blinking cursor on a fresh prompt
+line below it - applied to the deck's `#s14` rules; the page is deleted, the index keeps
+the record as a non-linked `.done` entry); `s13-policies-only` (2026-08-27, option D - the
+exception and its reason in large type,
 nothing else, wording made more human - applied to the deck's `#s13` rules; the page is
 deleted, the index keeps the record as a non-linked `.done` entry);
 `s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
