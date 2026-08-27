@@ -391,7 +391,7 @@ purpose.
 
 ### In flight
 
-slide 4 (#s-workspace) - branch feedback/s-workspace-round2 - dispatched 2026-08-27 - options, round two - PR #14 - feedback: round one rejected; three bespoke options, one a diagram, detailing what a workspace is - option D added from the Microsoft 365 provider workspace design guide, PR #15
+slide 4 (#s-workspace) - branch feedback/s-workspace-round3 - dispatched 2026-08-27 - options, round three - PR #n - feedback: rounds one and two rejected as generic; four redesigned options explaining what an HCP workspace is and why it matters, captivating design
 slide 7 (#s07) - branch feedback/s07-checklist - dispatched 2026-08-27 - options - PR #13 - feedback: keep the checklist vibe but tidy it up so it reads as a real checklist, credentials points consolidated, split-estate point removed
 
 (Format: `slide N (#id) - branch feedback/<id>-<slug> - dispatched

@@ -33,8 +33,9 @@
       "title": "What a Terraform workspace is",
       "timerSeconds": 60,
       "notes": [
-        "Walk the shape before the detail - a workspace links one configuration and holds its own state, its own variables and secrets, and its own run history, and a run is always a plan followed, on approval, by an apply.",
-        "Land why it matters for our estate - state, secrets and run history stay separate per workspace, so a credential or a change in one instance can never reach another by accident."
+        "A workspace is the one place HCP Terraform runs a single configuration against a single Jamf Pro instance, and it holds that instance's state, its variables and secrets, its run history and its permissions.",
+        "Say plainly what that buys us: the state never sits on anyone's Mac, the secrets are read from Vault per workspace, and a plan has to be approved by a person before anything applies.",
+        "Close on the boundary - separate workspaces mean a change or a credential in one instance cannot reach another by accident, which is why the estate is split this way rather than run from one place."
       ]
     },
     {
