@@ -202,7 +202,8 @@ overlay - keep the two in step when slides move.
 1. `s00` Title (template session-title layout with the three speaker cards) - **All (intros)**
 2. `s01` Context, requirements, constraints (our environment before the migration: Sandbox / Staging / Production as one three-segment chevron arrow, `clip-path` rules scoped to `#s01`, no annotations; six constraints as plain rows in three bordered column panels, Context / Requirements / Constraints, with a subgrid keeping each panel's title and row heights aligned, via `.constraints-col` and `.constraints-title` scoped to `#s01`) - **Dafydd**
 3. `s02` Who touches Jamf Pro - **Dafydd**
-4. `s-workspace` What a Terraform workspace is - **Dafydd (TBC)**
+4. `s-workspace` What a Terraform workspace is (definition, HashiCorp workspace-anatomy
+   diagram, four lenses that decide how an instance gets carved up) - **Dafydd (TBC)**
 5. `s04` Migration outcomes we considered and rejected (3 architectural rejects; the other 2 moved into the story) - **Joseph**
 6. `s05` Instance migration order (prod first + read-only API client control) - **Joseph**
 7. `s07` Prerequisites (two portions, instance prep and migration prep, each a tidied
@@ -570,8 +571,7 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages (all under `presentations/sandbox/migrating_an_instance/`):
-`s-workspace-round3` (awaiting a decision). Decided:
+Current pages: none. Decided (all under `presentations/sandbox/migrating_an_instance/`):
 `s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
 one three-segment chevron arrow - applied to the deck's `#s01` rules; the page is deleted,
 the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
@@ -579,7 +579,10 @@ the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
 deck's `#s01` rules; the page is deleted, the index keeps the record as a non-linked
 `.done` entry); `s07-checklist` (2026-08-27, option D - two portions - applied to the
 deck's `#s07` rules; the page is deleted, the index keeps the record as a non-linked
-`.done` entry). `presentations/sandbox/training_a_team/` has no pages yet.
+`.done` entry); `s-workspace-round3` (2026-08-27, live slide kept, B to D rejected - none
+of the three redesigned alternatives captured the point; the page is deleted, the index
+keeps the record as a non-linked `.done` entry). `presentations/sandbox/training_a_team/`
+has no pages yet.
 
 ## Deployment
 

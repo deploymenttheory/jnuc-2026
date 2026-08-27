@@ -546,16 +546,10 @@ body.reader .reader-extra {
 .teams-note { margin-top: var(--sp-4); color: var(--c-text-muted); font-size: var(--fs-caption); }
 
 /* ============================ s-workspace ============================ */
-/* Four layouts ship in the markup; only ws-opt-a shows by default. The sandbox
-   page swaps which wrapper is visible per option - see AGENTS.md Sandbox. Option A is
-   the collaborator's rebuild (PR #21, merged 2026-08-27): the definition up front, the
+/* The collaborator's rebuild (PR #21, merged 2026-08-27): the definition up front, the
    HashiCorp workspace anatomy, and the four lenses that decide how an instance gets
-   carved up. B, C and D are the round three alternatives (2026-08-27), still awaiting a
-   decision: B a laptop against a workspace, C three instances behind walls, D one policy
-   change followed from the commit to the Macs. */
-#s-workspace .ws-opt-b, #s-workspace .ws-opt-c, #s-workspace .ws-opt-d { display: none; }
-
-/* option A: what a workspace is, then the lenses that decide how the estate gets carved up.
+   carved up. Round three's B, C and D alternatives were rejected 2026-08-27 (none
+   captured the point) and removed from the deck - see AGENTS.md Sandbox.
    The diagram follows HashiCorp's own workspace anatomy - code in, one boundary holding
    state, variables, permissions and workflow, run stages out to a target. The cost stage
    of that diagram is left out on purpose: it estimates cloud spend and does nothing for
@@ -643,220 +637,6 @@ body.reader .reader-extra {
 #s-workspace .wsx-lens-name { font-family: var(--f-display); font-size: var(--fs-code); font-weight: 600; color: var(--c-accent); line-height: var(--lh-tight); }
 #s-workspace .wsx-lens-desc { font-size: var(--fs-caption); color: var(--c-text-muted); line-height: var(--lh-body); }
 #s-workspace .wsx-lenses-note { margin-top: var(--sp-2); }
-
-/* ---------------- option B: a laptop against a workspace ----------------
-   The left half is drawn at half strength - no panel, muted ink, a small laptop
-   silhouette. The right half is the same story at full strength: a filled panel
-   with a lime edge, larger type, stretched to the taller of the two. */
-#s-workspace .ws-b { display: grid; grid-template-columns: 600px 1fr; gap: var(--sp-5); align-items: stretch; }
-#s-workspace .ws-b-kicker {
-  display: block;
-  font-family: var(--f-mono);
-  font-size: var(--fs-chip);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--c-text-muted);
-}
-#s-workspace .ws-b-head {
-  font-family: var(--f-display);
-  font-size: var(--fs-h1);
-  line-height: var(--lh-tight);
-  margin-top: var(--sp-1);
-}
-#s-workspace .ws-b-then { color: var(--c-text-muted); }
-#s-workspace .ws-b-then .ws-b-head { font-weight: 400; }
-#s-workspace .ws-b-laptop { margin: var(--sp-4) var(--sp-4) var(--sp-4) 0; }
-#s-workspace .ws-b-screen {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-1);
-  padding: var(--sp-3);
-  border: var(--bw-2) solid var(--c-border);
-  border-radius: var(--radius-sm);
-  font-family: var(--f-mono);
-  font-size: var(--fs-code);
-}
-#s-workspace .ws-b-base {
-  height: var(--sp-2);
-  margin: 0 calc(-1 * var(--sp-4));
-  background: var(--c-border);
-  clip-path: polygon(0 0, 100% 0, 97% 100%, 3% 100%);
-}
-#s-workspace .ws-b-list { list-style: none; display: flex; flex-direction: column; gap: var(--sp-2); font-size: var(--fs-caption); line-height: var(--lh-body); }
-#s-workspace .ws-b-now {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: var(--sp-4) var(--sp-5);
-  background: var(--c-surface);
-  border-left: var(--sp-1) solid var(--c-accent);
-  border-radius: 0 var(--radius) var(--radius) 0;
-}
-#s-workspace .ws-b-now .ws-b-head { font-weight: 700; }
-#s-workspace .ws-b-now .ws-b-list {
-  margin-top: var(--sp-4);
-  gap: var(--sp-3);
-  font-size: var(--fs-body);
-  color: var(--c-text-muted);
-}
-#s-workspace .ws-b-now .ws-b-list strong { color: var(--c-text); font-weight: 600; }
-#s-workspace .ws-b-close { margin-top: var(--sp-4); font-size: var(--fs-body); line-height: var(--lh-body); color: var(--c-text-muted); max-width: 1620px; }
-#s-workspace .ws-b-close strong { color: var(--c-text); font-weight: 600; }
-
-/* ---------------- option C: three instances, one set of modules ----------------
-   One repository bar feeds three instance columns. The columns get wider and heavier
-   left to right, so production reads as the one that matters, and a hatched wall
-   stands between them. The arrow row and the room row share a column template - keep
-   the two rules in step. */
-#s-workspace .ws-c-repo {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--sp-4);
-  padding: var(--sp-3) var(--sp-4);
-  background: var(--c-surface);
-  border: var(--bw-1) solid var(--c-border);
-  border-radius: var(--radius);
-}
-#s-workspace .ws-c-repo-name { font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); }
-#s-workspace .ws-c-repo-path { font-family: var(--f-mono); font-size: var(--fs-code); color: var(--c-text-muted); }
-#s-workspace .ws-c-feed,
-#s-workspace .ws-c-rooms {
-  display: grid;
-  grid-template-columns: 1fr var(--sp-1) 1.15fr var(--sp-1) 1.4fr;
-  gap: var(--sp-3);
-}
-#s-workspace .ws-c-feed { height: var(--sp-5); }
-#s-workspace .ws-c-feed svg { width: var(--sp-3); height: 100%; justify-self: center; }
-#s-workspace .ws-c-feed path { stroke: var(--c-line); stroke-width: var(--bw-3); fill: none; }
-#s-workspace .ws-c-rooms { align-items: start; }
-#s-workspace .ws-c-wall {
-  align-self: stretch;
-  border-radius: var(--radius-sm);
-  background: repeating-linear-gradient(to bottom, var(--c-hairline) 0 12px, transparent 12px 26px);
-}
-#s-workspace .ws-c-room {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-2);
-  padding: var(--sp-3);
-  background: var(--c-surface);
-  border: var(--bw-1) solid var(--c-border);
-  border-radius: var(--radius);
-}
-#s-workspace .ws-c-room-prod { border-color: var(--c-accent); }
-#s-workspace .ws-c-name { font-family: var(--f-display); font-size: var(--fs-h2); font-weight: 700; line-height: var(--lh-tight); }
-#s-workspace .ws-c-room-prod .ws-c-name { color: var(--c-accent); }
-#s-workspace .ws-c-chips { display: flex; flex-wrap: wrap; gap: var(--sp-1); }
-#s-workspace .ws-c-chips span {
-  font-family: var(--f-mono);
-  font-size: var(--fs-chip);
-  color: var(--c-text-muted);
-  border: var(--bw-1) solid var(--c-border);
-  border-radius: var(--radius-sm);
-  padding: 0 var(--sp-2);
-}
-#s-workspace .ws-c-rows { display: flex; flex-direction: column; }
-#s-workspace .ws-c-rows > div {
-  display: grid;
-  grid-template-columns: 130px 1fr;
-  gap: var(--sp-2);
-  padding: var(--sp-2) 0;
-  border-top: var(--bw-1) solid var(--c-border);
-}
-#s-workspace .ws-c-rows dt {
-  font-family: var(--f-mono);
-  font-size: var(--fs-chip);
-  line-height: var(--lh-body);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--c-text-muted);
-}
-#s-workspace .ws-c-rows dd { font-size: var(--fs-caption); line-height: var(--lh-body); }
-#s-workspace .ws-c-point { margin-top: var(--sp-4); font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); max-width: 1620px; }
-
-/* ---------------- option D: follow one change ----------------
-   One policy change traced left to right. The rail is drawn at 1:1 with the slide's
-   content width (1728px), so its chevrons line up with the seven stops without
-   distortion; stops alternate above and below it, and the navy band behind the middle
-   five is the workspace itself. */
-#s-workspace .ws-d-say {
-  font-family: var(--f-display);
-  font-size: var(--fs-h1);
-  font-weight: 400;
-  line-height: var(--lh-tight);
-  max-width: 1620px;
-  margin-bottom: var(--sp-4);
-}
-#s-workspace .ws-d-path {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: 1fr var(--sp-3) 1fr;
-  min-height: 480px;
-}
-#s-workspace .ws-d-band {
-  position: absolute;
-  top: 0;
-  bottom: var(--sp-4);
-  left: calc(100% / 7);
-  right: calc(100% / 7);
-  background: var(--c-surface);
-  border: var(--bw-1) solid var(--c-border);
-  border-radius: var(--radius);
-}
-#s-workspace .ws-d-band-label {
-  position: absolute;
-  top: var(--sp-3);
-  left: calc(100% / 7 + var(--sp-3));
-  font-family: var(--f-mono);
-  font-size: var(--fs-chip);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--c-text-muted);
-}
-#s-workspace .ws-d-rail {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  height: var(--sp-3);
-  transform: translateY(-50%);
-}
-#s-workspace .ws-d-rail path { stroke: var(--c-accent); stroke-width: var(--bw-3); fill: none; }
-#s-workspace .ws-d-stop {
-  position: relative;
-  display: grid;
-  grid-template-rows: subgrid;
-  grid-row: span 3;
-  justify-items: center;
-  padding: 0 var(--sp-2);
-  text-align: center;
-}
-#s-workspace .ws-d-dot {
-  grid-row: 2;
-  align-self: center;
-  width: var(--sp-3);
-  height: var(--sp-3);
-  border-radius: 50%;
-  background: var(--c-accent);
-}
-#s-workspace .ws-d-up .ws-d-card { grid-row: 1; align-self: end; padding-bottom: var(--sp-3); }
-#s-workspace .ws-d-down .ws-d-card { grid-row: 3; align-self: start; padding-top: var(--sp-3); }
-#s-workspace .ws-d-name { display: block; font-family: var(--f-display); font-size: var(--fs-code); font-weight: 600; line-height: var(--lh-tight); }
-#s-workspace .ws-d-note {
-  display: block;
-  margin-top: var(--sp-1);
-  font-family: var(--f-mono);
-  font-size: var(--fs-chip);
-  line-height: var(--lh-body);
-  color: var(--c-text-muted);
-}
-#s-workspace .ws-d-edge .ws-d-name { font-weight: 400; color: var(--c-text-muted); }
-#s-workspace .ws-d-key .ws-d-name { font-size: var(--fs-h2); }
-#s-workspace .ws-d-key .ws-d-dot { width: var(--sp-4); height: var(--sp-4); }
-#s-workspace .ws-d-close { margin-top: var(--sp-4); font-size: var(--fs-body); line-height: var(--lh-body); color: var(--c-text-muted); max-width: 1620px; }
-#s-workspace .ws-d-close strong { color: var(--c-text); font-weight: 600; }
 
 /* ============================ S04 ============================ */
 .rejects { display: flex; flex-direction: column; gap: var(--sp-2); }
@@ -1232,187 +1012,65 @@ body.presenter #viewport { display: none; }
     <section class="slide" id="s-workspace" aria-label="What a Terraform workspace is" data-speaker="Dafydd" data-when="2025-11">
       <h1 class="slide-title">What a Terraform workspace is</h1>
 
-      <div class="ws-opt ws-opt-a">
-        <p class="slide-sub">One set of Terraform code linked to one state file. How you carve a Jamf Pro instance into workspaces is a decision worth taking slowly, and there are more lenses on it than you would expect.</p>
+      <p class="slide-sub">One set of Terraform code linked to one state file. How you carve a Jamf Pro instance into workspaces is a decision worth taking slowly, and there are more lenses on it than you would expect.</p>
 
-        <div class="wsx">
-          <div class="card wsx-io">
-            <span class="wsx-io-title">Terraform code</span>
-            <span class="wsx-io-sub">one configuration, from the repository</span>
-          </div>
-          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <div class="wsx-platform">
-            <span class="wsx-platform-title">HCP Terraform</span>
-            <div class="wsx-platform-body">
-              <div class="wsx-ws">
-                <span class="wsx-ws-title">Workspace</span>
-                <span class="wsx-ws-def">The administration boundary that owns the whole lifecycle of that code.</span>
-                <div class="wsx-parts">
-                  <span class="wsx-part">State file</span>
-                  <span class="wsx-part">Variables and secrets</span>
-                  <span class="wsx-part">Permissions</span>
-                  <span class="wsx-part">Workflow</span>
-                  <span class="wsx-part">Notifications</span>
-                  <span class="wsx-part wsx-part-more">and more</span>
-                </div>
-              </div>
-              <div class="wsx-stages">
-                <span class="wsx-stage">Plan</span>
-                <span class="wsx-stage">Policy</span>
-                <span class="wsx-stage">Apply</span>
+      <div class="wsx">
+        <div class="card wsx-io">
+          <span class="wsx-io-title">Terraform code</span>
+          <span class="wsx-io-sub">one configuration, from the repository</span>
+        </div>
+        <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
+        <div class="wsx-platform">
+          <span class="wsx-platform-title">HCP Terraform</span>
+          <div class="wsx-platform-body">
+            <div class="wsx-ws">
+              <span class="wsx-ws-title">Workspace</span>
+              <span class="wsx-ws-def">The administration boundary that owns the whole lifecycle of that code.</span>
+              <div class="wsx-parts">
+                <span class="wsx-part">State file</span>
+                <span class="wsx-part">Variables and secrets</span>
+                <span class="wsx-part">Permissions</span>
+                <span class="wsx-part">Workflow</span>
+                <span class="wsx-part">Notifications</span>
+                <span class="wsx-part wsx-part-more">and more</span>
               </div>
             </div>
-          </div>
-          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <div class="card wsx-io">
-            <span class="wsx-io-title">One Jamf Pro instance</span>
-            <span class="wsx-io-sub">the target</span>
+            <div class="wsx-stages">
+              <span class="wsx-stage">Plan</span>
+              <span class="wsx-stage">Policy</span>
+              <span class="wsx-stage">Apply</span>
+            </div>
           </div>
         </div>
-
-        <div class="wsx-lenses">
-          <p class="wsx-lenses-lead">Deciding how to carve an instance into workspaces is the part to slow down on. It is far cheaper to think it through than to re-cut it later. Four lenses come first:</p>
-          <div class="wsx-lens-grid">
-            <div class="wsx-lens">
-              <span class="wsx-lens-name">Team structure</span>
-              <span class="wsx-lens-desc">Who owns what, and who needs to ship without waiting on somebody else's apply.</span>
-            </div>
-            <div class="wsx-lens">
-              <span class="wsx-lens-name">Deployment frequency</span>
-              <span class="wsx-lens-desc">How often each part actually changes, and whether those rates are anywhere near each other.</span>
-            </div>
-            <div class="wsx-lens">
-              <span class="wsx-lens-name">Scale</span>
-              <span class="wsx-lens-desc">Resource count, state size and plan time. Guidance puts the ceiling at roughly 500 resources per workspace.</span>
-            </div>
-            <div class="wsx-lens">
-              <span class="wsx-lens-name">What changes together</span>
-              <span class="wsx-lens-desc">Things that move at the same time belong together. Things that never move should not be dragged along.</span>
-            </div>
-          </div>
-          <p class="caption muted wsx-lenses-note">Then refine against the rest: blast radius and risk appetite, dependencies between workspaces, environment strategy, approval and audit requirements, and how much orchestration you can realistically operate.</p>
+        <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
+        <div class="card wsx-io">
+          <span class="wsx-io-title">One Jamf Pro instance</span>
+          <span class="wsx-io-sub">the target</span>
         </div>
       </div>
 
-      <div class="ws-opt ws-opt-b">
-        <div class="ws-b">
-          <div class="ws-b-then">
-            <span class="ws-b-kicker">how Terraform usually starts</span>
-            <h2 class="ws-b-head">On a laptop</h2>
-            <div class="ws-b-laptop">
-              <div class="ws-b-screen">
-                <span>terraform.tfstate</span>
-                <span>terraform.tfvars</span>
-                <span>$ terraform apply</span>
-              </div>
-              <div class="ws-b-base" aria-hidden="true"></div>
-            </div>
-            <ul class="ws-b-list">
-              <li>The state is a file in a folder on one disk.</li>
-              <li>The credentials sit next to it, in plain text.</li>
-              <li>One person types apply, and nobody sees it first.</li>
-              <li>When that laptop goes, so does the only history.</li>
-            </ul>
+      <div class="wsx-lenses">
+        <p class="wsx-lenses-lead">Deciding how to carve an instance into workspaces is the part to slow down on. It is far cheaper to think it through than to re-cut it later. Four lenses come first:</p>
+        <div class="wsx-lens-grid">
+          <div class="wsx-lens">
+            <span class="wsx-lens-name">Team structure</span>
+            <span class="wsx-lens-desc">Who owns what, and who needs to ship without waiting on somebody else's apply.</span>
           </div>
-          <div class="ws-b-now">
-            <span class="ws-b-kicker">how it works here</span>
-            <h2 class="ws-b-head">In a workspace</h2>
-            <ul class="ws-b-list">
-              <li><strong>The state is held by HCP Terraform</strong>, never on anyone's Mac.</li>
-              <li><strong>The secrets are read from Vault</strong>, set on this workspace alone.</li>
-              <li><strong>Plans and applies run on private runners</strong> inside the bank's network.</li>
-              <li><strong>A commit opens a plan, and a person approves the apply.</strong></li>
-              <li><strong>Every run is kept</strong> - what changed, who approved it, when.</li>
-            </ul>
+          <div class="wsx-lens">
+            <span class="wsx-lens-name">Deployment frequency</span>
+            <span class="wsx-lens-desc">How often each part actually changes, and whether those rates are anywhere near each other.</span>
+          </div>
+          <div class="wsx-lens">
+            <span class="wsx-lens-name">Scale</span>
+            <span class="wsx-lens-desc">Resource count, state size and plan time. Guidance puts the ceiling at roughly 500 resources per workspace.</span>
+          </div>
+          <div class="wsx-lens">
+            <span class="wsx-lens-name">What changes together</span>
+            <span class="wsx-lens-desc">Things that move at the same time belong together. Things that never move should not be dragged along.</span>
           </div>
         </div>
-        <p class="ws-b-close"><strong>It is the same Terraform either way.</strong> What the workspace adds is somewhere safe to keep the state, somewhere to read the secrets from, and somebody who has to say yes.</p>
+        <p class="caption muted wsx-lenses-note">Then refine against the rest: blast radius and risk appetite, dependencies between workspaces, environment strategy, approval and audit requirements, and how much orchestration you can realistically operate.</p>
       </div>
-
-      <div class="ws-opt ws-opt-c">
-        <div class="ws-c-repo">
-          <span class="ws-c-repo-name">One repository, one set of modules</span>
-          <span class="ws-c-repo-path">iam_main &nbsp;·&nbsp; profiles_policies_main &nbsp;·&nbsp; root_main</span>
-        </div>
-        <div class="ws-c-feed" aria-hidden="true">
-          <svg viewBox="0 0 24 64"><path d="M12 0 V52 M3 43 L12 55 L21 43"/></svg>
-          <span></span>
-          <svg viewBox="0 0 24 64"><path d="M12 0 V52 M3 43 L12 55 L21 43"/></svg>
-          <span></span>
-          <svg viewBox="0 0 24 64"><path d="M12 0 V52 M3 43 L12 55 L21 43"/></svg>
-        </div>
-        <div class="ws-c-rooms">
-          <div class="ws-c-room">
-            <span class="ws-c-name">DevTest</span>
-            <div class="ws-c-chips"><span>one workspace</span></div>
-            <dl class="ws-c-rows">
-              <div><dt>state</dt><dd>its own, separate from staging</dd></div>
-              <div><dt>runs</dt><dd>triggered from the CLI, not change controlled</dd></div>
-            </dl>
-          </div>
-          <span class="ws-c-wall" aria-hidden="true"></span>
-          <div class="ws-c-room">
-            <span class="ws-c-name">Staging</span>
-            <div class="ws-c-chips"><span>iam</span><span>profiles_policies</span><span>root</span></div>
-            <dl class="ws-c-rows">
-              <div><dt>state</dt><dd>one per workspace, three for this instance</dd></div>
-              <div><dt>secrets</dt><dd>read from Vault, on these workspaces alone</dd></div>
-              <div><dt>runs</dt><dd>a commit plans it, an approval applies it</dd></div>
-            </dl>
-          </div>
-          <span class="ws-c-wall" aria-hidden="true"></span>
-          <div class="ws-c-room ws-c-room-prod">
-            <span class="ws-c-name">Production</span>
-            <div class="ws-c-chips"><span>iam</span><span>profiles_policies</span><span>root</span></div>
-            <dl class="ws-c-rows">
-              <div><dt>state</dt><dd>one per workspace, three for this instance</dd></div>
-              <div><dt>secrets</dt><dd>read from Vault, on these workspaces alone</dd></div>
-              <div><dt>runs</dt><dd>a commit plans it, an approval applies it</dd></div>
-              <div><dt>review</dt><dd>every change is peer reviewed first</dd></div>
-            </dl>
-          </div>
-        </div>
-        <p class="ws-c-point">The same modules, applied separately in each place, so a mistake in DevTest cannot reach production.</p>
-      </div>
-
-      <div class="ws-opt ws-opt-d">
-        <p class="ws-d-say">Follow one policy change from a commit to a Mac.</p>
-        <div class="ws-d-path">
-          <span class="ws-d-band" aria-hidden="true"></span>
-          <span class="ws-d-band-label">inside the workspace</span>
-          <svg class="ws-d-rail" viewBox="0 0 1728 24" aria-hidden="true"><path d="M0 12 H1704 M1688 4 L1704 12 L1688 20 M239 4 L255 12 L239 20 M486 4 L502 12 L486 20 M733 4 L749 12 L733 20 M979 4 L995 12 L979 20 M1226 4 L1242 12 L1226 20 M1473 4 L1489 12 L1473 20"/></svg>
-          <div class="ws-d-stop ws-d-down ws-d-edge">
-            <span class="ws-d-dot" aria-hidden="true"></span>
-            <span class="ws-d-card"><span class="ws-d-name">A commit</span><span class="ws-d-note">someone edits a policy in the repository</span></span>
-          </div>
-          <div class="ws-d-stop ws-d-up">
-            <span class="ws-d-dot" aria-hidden="true"></span>
-            <span class="ws-d-card"><span class="ws-d-name">Picked up</span><span class="ws-d-note">one workspace, one instance, one run queued</span></span>
-          </div>
-          <div class="ws-d-stop ws-d-down">
-            <span class="ws-d-dot" aria-hidden="true"></span>
-            <span class="ws-d-card"><span class="ws-d-name">Plan</span><span class="ws-d-note">on a private runner inside the bank</span></span>
-          </div>
-          <div class="ws-d-stop ws-d-up ws-d-key">
-            <span class="ws-d-dot" aria-hidden="true"></span>
-            <span class="ws-d-card"><span class="ws-d-name">Approval</span><span class="ws-d-note">a person has to say yes before anything applies</span></span>
-          </div>
-          <div class="ws-d-stop ws-d-down">
-            <span class="ws-d-dot" aria-hidden="true"></span>
-            <span class="ws-d-card"><span class="ws-d-name">Apply</span><span class="ws-d-note">the change reaches Jamf Pro</span></span>
-          </div>
-          <div class="ws-d-stop ws-d-up">
-            <span class="ws-d-dot" aria-hidden="true"></span>
-            <span class="ws-d-card"><span class="ws-d-name">Recorded</span><span class="ws-d-note">the state updated, the run kept</span></span>
-          </div>
-          <div class="ws-d-stop ws-d-down ws-d-edge">
-            <span class="ws-d-dot" aria-hidden="true"></span>
-            <span class="ws-d-card"><span class="ws-d-name">The instance</span><span class="ws-d-note">the policy is live on the Macs</span></span>
-          </div>
-        </div>
-        <p class="ws-d-close"><strong>The workspace is everything between the two ends.</strong> It queues the run, plans it inside the bank, holds the approval and keeps the record.</p>
-      </div>
-
       <aside class="notes">
         <p>Define it plainly first - one set of Terraform code linked to one state file. Walk the diagram left to right: code goes in, the workspace is the boundary that holds the state, the variables and secrets, the permissions and the workflow, and a run comes out as a plan, then a policy check, then an apply against one Jamf Pro instance.</p>
         <p>Then make the real point. How you carve an instance into workspaces is worth spending serious time on. Do not rush it. Re-cutting it later means moving state, which is a much harder day than getting the boundaries roughly right at the start.</p>
