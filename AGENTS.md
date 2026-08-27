@@ -41,6 +41,7 @@ landing page keeps its own near-black look - it is not a deck.
 | `tools/` | `build-key.mjs`, which builds the Keynote downloads from the decks on a Mac (the only thing `package.json` exists for), and `sandbox-template.html`, the starting point for every sandbox review page. |
 | `feedback-workflow.md` | The deck feedback loop: standing rules, orchestrator and slide-agent roles, brief templates, commands, recovery steps and a log. Read it before touching a deck in response to feedback. Not shipped (`*.md` is excluded from the deploy). |
 | `docs/superpowers/plans/` | The first-round implementation plan, superseded by `feedback-workflow.md` and kept for its triage table. Not shipped. |
+| `docs/timeline-adherence.md` | Per-slide table of `migrating_an_instance`'s current `data-when` values, timers and speakers, with a blank column for Joseph to fill in the intended month, for a later round of `data-when` corrections. Not shipped. |
 | `README.md`, `LICENSE` | Repo boilerplate. |
 
 The decks have no build step. Node is in this repo purely for `tools/build-key.mjs`, which is
@@ -187,14 +188,14 @@ quotes is stale.
 
 - **Reader mode**: press `d` or open with `?reader=1`. Reveals "More detail"
   `<details class="reader-extra">` popovers on selected slides (currently s01, s05,
-  s-singletons, s-sentinel, s12, s15b, s-staging, s-today) for post-presentation viewers.
+  s-singletons, s-sentinel, s12, s15b, s-staging) for post-presentation viewers.
   The counter shows a "reader" tag while active. Popover content follows the same
   no-invented-facts rule.
 
 ### Current slide order (story arc)
 
 Context -> decisions -> first wins -> the wall -> the loop -> growing pains -> payoff.
-23 slides. Legacy section ids kept stable across reorders (so `s10` no longer sits at
+22 slides. Legacy section ids kept stable across reorders (so `s10` no longer sits at
 position 10); new story slides use semantic ids. The bold name on each line is who
 presents it, held in the slide's `data-speaker` attribute and surfaced by the speaker
 overlay - keep the two in step when slides move.
@@ -205,30 +206,42 @@ overlay - keep the two in step when slides move.
 4. `s-workspace` What a Terraform workspace is (definition, HashiCorp workspace-anatomy
    diagram, four lenses that decide how an instance gets carved up) - **Dafydd (TBC)**
 5. `s04` Migration outcomes we considered and rejected (3 architectural rejects; the other 2 moved into the story) - **Joseph**
-6. `s05` Instance migration order (prod first + read-only API client control) - **Joseph**
+6. `s05` Migration path options (three paths, each its own bordered panel with the flow diagram centred inside, chosen path's panel edged in the accent colour, prod-first chosen; the read-only API client control reads as a line inside path 03 rather than a card at the foot of the slide) - **Joseph**
 7. `s07` Prerequisites (two portions, instance prep and migration prep, each a tidied
    checklist) - **Gordon**
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
 9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception) - **Gordon**
 10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
-11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk) - **Dafydd**
+11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; seven steps as full-width
+    bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
+    with a red left edge) - **Dafydd**
 12. `s11` Tools and helpers (JamfPy -> script -> map -> for_each) - **Gordon**
 13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Joseph**
-14. `s13` for_each exceptions (policies, dock items) - **Joseph**
-15. `s14` Validating a migration - **Joseph**
-16. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused) - **Dafydd**
-17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals -> module pivot) - **Joseph**
+14. `s13` for_each exceptions (single statement - policies stayed in plain HCL because
+    they are too diverse for one map) - **Joseph**
+15. `s14` Validating a migration (the `terraform plan` block reads as a real terminal
+    window - light chrome bar, red/amber/lime traffic-light dots, a centred
+    `joseph@jnuc - zsh` title, and a blinking cursor on a fresh prompt line below the
+    result; four gate cards unchanged) - **Joseph**
+16. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused;
+    steps first - the three gate cards are full-height panels with the verb at title size,
+    the lead is one muted line above and the takeaway one line below, and the module-split
+    paragraph is gone from the slide because the speaker notes carry it) - **Dafydd**
+17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals; the lead and one
+    HCL block, no closing statement - the "It got out of hand. The pivot: ..." line came off
+    2026-08-27 for reading as machine-written, and its TODO chip moved onto the code block)
+    - **Joseph**
 18. `s15b` The module structure (module tree -> workspaces) - **Dafydd**
-19. `s-today` The estate today (four-tier route to live + Release Please -> CalVer) - **Gordon**
-20. `s16b` By the numbers - **Gordon**
-21. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
-22. `s18` Links - **Anyone**
-23. `s-thanks` Thank You (template close, royal blue) - **nobody assigned**
+19. `s16b` By the numbers (six stat tiles carrying the refreshed 2026-08-27 figures; option B,
+    C and D wrappers for the sandbox page ship hidden inside the section) - **Gordon**
+20. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
+21. `s18` Links - **Anyone**
+22. `s-thanks` Thank You (template close, royal blue) - **nobody assigned**
 
 The old `s00b` "Who we are" slide was folded into the title slide when the template's
 three-speaker title layout arrived. Former slides folded away in the earlier trim: `s06`
 (into s10's intro), `s09` (into s10), `s-refine` (into s12), `s15` (chips moved to s15b; its
-500/1,500/5,000 figures remain on s04).
+500/1,500/5,000 figures remain on s04), `s-today` (removed 2026-08-27 at Joseph's request).
 
 ### Settled story facts (do not re-ask, do not contradict)
 
@@ -285,9 +298,17 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   Production. Confirmed by Gordon Deacon, Aug 2026.
 - **CalVer:** started on Release Please; cadence unsustainable, tracking unclear; switched to
   calendar versioning much later, around the time DevTest arrived.
-- **Numbers:** Apr 2025 (provider development start) -> May 2026 (v1.0.0 and final handover); 14+ contributors;
-  526+ PRs; 1,902 commits; 127 Terraform files; 19,000+ lines of HCL.
-- **for_each exceptions:** policies and dock items (payload complexity, readability).
+- **Numbers:** Apr 2025 (provider development start) -> May 2026 (v1.0.0 and final handover); 35-40
+  contributors; 900 PRs merged; 1,902 commits; 134 HCL files; 19,000+ lines of code. Refreshed by
+  Joseph, 2026-08-27 (was 14+ contributors, 526+ PRs, 127 Terraform files); he gave "lines of code"
+  rather than "lines of HCL" and that wording is now what `s16b` shows. The commit count is the one
+  figure he did not restate, so 1,902 is carried over from the first build and is probably stale -
+  worth confirming before the talk.
+- **for_each exceptions:** policies only. Dock items were never an exception (corrected by
+  Joseph, 2026-08-27). The reason is how diverse policies are: they vary so widely from one
+  to the next that a `for_each` map has to carry every field any policy might need, which
+  makes it harder to read than plain HCL. Which policy fields vary is not recorded - do not
+  invent examples.
 - **Rejected up front:** single workspace (blast radius / plan time, 500-1,500-5,000
   figures); per-team modules (internal approval complexity - expansion TODO); managing
   everything (static group membership unmanaged to protect support).
@@ -624,8 +645,26 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages: `s10-diagram-text` (2026-08-27, awaiting a decision - resource-sequencing
-diagram text size). Decided (all under `presentations/sandbox/migrating_an_instance/`):
+Current pages (all under `presentations/sandbox/migrating_an_instance/`):
+`s-staging-steps-first` (2026-08-27, slide 16 - four ways to put the three rebuild steps
+first, all four pure CSS on the same markup: A three full-height panels, B a numbered run
+down the left with a quiet right-hand column, C one flow strip in the deck's diagram style,
+D the wipe as a hero panel; the rewritten wording ships in all four);
+`s16b-numbers` (2026-08-27, slide 19 - the refreshed figures ship in all four
+renders; A the six stat tiles the deck already has, B five gauge bars each measured against
+its own next round number with the ranges drawn as open ends, C one hero number - 900 PRs
+merged - with the other four as a quiet supporting row, D unit grids of one mark per
+contributor and one mark per HCL file with the three uncountable totals stated below; B, C
+and D ship as hidden `.s16b-opt-*` wrappers). Decided (all under
+`presentations/sandbox/migrating_an_instance/`):
+`s14-terminal-excerpt` (2026-08-27, option B - the `terraform plan` block as a real window:
+a light chrome bar, red/amber/lime traffic-light dots, a centred `joseph@jnuc - zsh` title,
+white bold command text against the lime result, and a blinking cursor on a fresh prompt
+line below it - applied to the deck's `#s14` rules; the page is deleted, the index keeps
+the record as a non-linked `.done` entry); `s13-policies-only` (2026-08-27, option D - the
+exception and its reason in large type,
+nothing else, wording made more human - applied to the deck's `#s13` rules; the page is
+deleted, the index keeps the record as a non-linked `.done` entry);
 `s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
 one three-segment chevron arrow - applied to the deck's `#s01` rules; the page is deleted,
 the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
@@ -633,8 +672,19 @@ the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
 deck's `#s01` rules; the page is deleted, the index keeps the record as a non-linked
 `.done` entry); `s07-checklist` (2026-08-27, option D - two portions - applied to the
 deck's `#s07` rules; the page is deleted, the index keeps the record as a non-linked
-`.done` entry); `s-workspace-round3` (2026-08-27, live slide kept, B to D rejected - none
+`.done` entry); `s08-use-of-space` (2026-08-27, option C - seven full-width bands
+stepping down the slide, each starting a notch further in than the one above - applied to
+the deck's `#s08` rules; the page is deleted, the index keeps the record as a non-linked
+`.done` entry); `s05-fill-the-space` (2026-08-27, option D - each path as its own bordered
+panel with the diagram centred inside - applied to the deck's `#s05` rules; the page is
+deleted, the index keeps the record as a non-linked `.done` entry); `s-workspace-round3`
+(2026-08-27, live slide kept, B to D rejected - none
 of the three redesigned alternatives captured the point; the page is deleted, the index
+keeps the record as a non-linked `.done` entry); `s10-diagram-text` (2026-08-27, option C -
+tier labels and examples pushed further up the font scale and the four bands grown to
+match - applied to the deck's `#s10` rules and SVG; the page is deleted, the index keeps
+the record as a non-linked `.done` entry); `s-pivot-display` (2026-08-27, closed without a
+decision - live slide (option A) kept, B to D not chosen; the page is deleted, the index
 keeps the record as a non-linked `.done` entry). `presentations/sandbox/training_a_team/`
 has no pages yet.
 

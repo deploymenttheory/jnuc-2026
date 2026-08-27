@@ -48,11 +48,13 @@
     },
     {
       "id": "s05",
-      "title": "Instance migration order",
+      "title": "Migration path options",
       "timerSeconds": 90,
       "notes": [
-        "Counterintuitive on purpose. Importing is read-then-manage - with a read-only API client there is no write surface, so prod-first is safer than it sounds.",
-        "Write scopes were only widened once imports were stable at zero diff."
+        "Three paths were genuinely on the table. Walk each diagram left to right - the left box is where a change lands first, the right box is where it goes next.",
+        "On path one the colour is the resource type - scripts, then dock items, then categories - and the same colour appears in both environments, so you can see all of one kind crossing before the next one starts.",
+        "Paths one and two both keep staging in the loop while production is still being built, and that is what killed them: staging was not representative, so validating against it proved nothing. Path three leaves staging until production is finished, which is the whole difference between it and path two.",
+        "Prod first is counterintuitive on purpose. Importing is read-then-manage - with a read-only API client there is no write surface, so it is safer than it sounds. Write scopes were only widened once imports were stable at zero diff."
       ]
     },
     {
@@ -123,7 +125,7 @@
       "title": "for_each exceptions",
       "timerSeconds": 45,
       "notes": [
-        "The honesty slide: when the map is harder to read than plain HCL, the pattern has stopped paying for itself. Policies and dock items got plain HCL."
+        "This is the honesty slide - when the map's harder to read than plain HCL, the pattern isn't earning its keep. Policies were the one exception - they're too different from each other for one map to hold, so we kept them in plain HCL."
       ]
     },
     {
@@ -132,7 +134,7 @@
       "timerSeconds": 60,
       "notes": [
         "Gate 4 is the point of no return - and the point of the whole exercise.",
-        "State lives in HCP and is not locally inspectable, hence the Copilot CLI checks in gate 2."
+        "State lives in a remote backend and is not locally inspectable, hence the AI checks in gate 2."
       ]
     },
     {
@@ -140,9 +142,9 @@
       "title": "Rebuilding staging",
       "timerSeconds": 120,
       "notes": [
-        "The highlight - slow down here.",
-        "Importing staging would have enshrined years of drift. So: wipe (keep APNS and the cloud IdP), apply production's modules, iterate through the errors until clean. Parity is now inherited, not claimed.",
-        "Set up the next two slides: rebuilding staging is what exposed the repo problem. A real staging environment is only useful if you can deploy to it first, and back then a change there mirrored straight to production."
+        "This is the highlight - slow down here.",
+        "Importing staging would have locked in years of drift. So we wiped it, kept APNS and the cloud identity provider, pointed production's configuration at it, and worked through the errors until the run came back clean. Parity is inherited now, not claimed.",
+        "Set up the next two slides. Rebuilding staging is what showed up the repo problem: a real staging environment is only useful if you can deploy there first, and back then a change there went straight to production too."
       ]
     },
     {
@@ -151,7 +153,7 @@
       "timerSeconds": 60,
       "notes": [
         "The trigger was the staging rebuild: we wanted staging-first deploys without mirroring to production, and the only lever the repo had was an FQDN conditional. They were everywhere before long - deployment behaviour inferred from a URL.",
-        "The pivot: modules own configuration, thin per-instance roots own only genuine differences."
+        "Where we ended up: the modules hold the configuration and each instance's root only holds what is actually different."
       ]
     },
     {
@@ -161,15 +163,6 @@
       "notes": [
         "Three workspaces per instance is the blast radius control - guidance says ~500 resources per workspace and the estate holds 1,500+.",
         "Payloads live in the modules too. Staging-only profiles sit in a visible directory, so divergence is explicit."
-      ]
-    },
-    {
-      "id": "s-today",
-      "title": "The estate today",
-      "timerSeconds": 60,
-      "notes": [
-        "Walk the four tiers by role, not by name. Sandbox: isolated, no restrictions, CLI and GUI both open - break it, reset, start again; onboarding and leadership demos live here. DevTest: under IdP and device compliance but not change controlled - prove a change out fast. Staging: an exact replica, to the point that a device enrolled there is indistinguishable bar the MDM certificate - and it is only true because of the rebuild on the previous slide. Production: minimal downtime, because everything upstream has already done the work.",
-        "Then CalVer: we defaulted to SemVer like typical devs, but v1.64.3 tells you nothing about a Jamf Pro estate. A date does - roll back to the day the incidents were raised."
       ]
     },
     {
@@ -184,7 +177,7 @@
     {
       "id": "s17",
       "title": "Questions",
-      "timerSeconds": 300,
+      "timerSeconds": 360,
       "notes": [
         "Open the floor. The links slide is next, ready as the backdrop while questions run."
       ]

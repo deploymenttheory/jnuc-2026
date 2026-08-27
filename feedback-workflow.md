@@ -554,6 +554,224 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 19 (`#s16b`) refreshed figures, three visualisations offered.**
+  Joseph: "Updated stats for the by the numbers side - 35-40 contributers / 19,000+ lines
+  of code / 900 PRs merged / 134 HCL Files Give options, think graphs, or visualisations.
+  Keep the currnet layout as A." The figures are deterministic and ship in this PR across
+  all four renders: 14+ becomes 35-40 contributors, 526+ pull requests becomes 900 PRs
+  merged, 127 Terraform files becomes 134 HCL files, and the lines figure stays at 19,000+
+  but takes Joseph's wording, "lines of code" rather than "lines of HCL". The date range
+  and the 1,902 commits are untouched because he did not restate them; the slide carries no
+  chips on its stat tiles so the stale commit count is flagged in the PR body rather than
+  chipped onto the slide, and `AGENTS.md`'s settled Numbers fact now records that it needs
+  confirming. The speaker notes needed no change - "approaching a thousand pull requests
+  now" still reads correctly against 900, and nothing else in them states a figure - and
+  the check prints OK. The visualisation question ships as `s16b-numbers.html`: A, the six
+  tiles with the new figures, which is what the deck ships; B, five gauge bars, one per
+  countable figure, each scaled to its own next round number and saying so, with 35-40 and
+  19,000+ ending in open outlined segments because they are floors rather than counts;
+  C, 900 PRs merged as a hero number at roughly four times hero size with the other four
+  reduced to a quiet row; D, unit grids of one mark per contributor (the last five outlined,
+  which is the range drawn honestly) and one mark per HCL file, under a "Too many to draw"
+  rule holding the three figures that will not take that treatment. B, C and D ship as
+  `.s16b-opt-b` / `-opt-c` / `-opt-d` wrappers hidden by one `#s16b` rule. Awaiting a
+  decision. PR #46.
+- **2026-08-27, timeline adherence doc added.** Joseph: "Generate a timeline adhereance
+  doc for this deck." `docs/timeline-adherence.md` added: one row per slide of
+  `migrating_an_instance` as it stands on `main` (id, title, speaker, timer,
+  current `data-when`), a blank "Month (fill in)" column for Joseph, and a "Current
+  stops on the strip" summary showing the pile-ups on 2025-11 and 2026-07 and the gap
+  at 2026-06. No slide, CSS or `presenter.json` touched. `AGENTS.md`'s file-layout table
+  gained one row for the doc. PR #45.
+- **2026-08-27, slide 17 (`#s-pivot`) sandbox closed.** Joseph: "Close the slide 17
+  sandbox." No option chosen: the live slide (option A) kept. The `.s-pivot-opt-c` and
+  `.s-pivot-opt-d` wrappers and their markup removed, along with the CSS that only served
+  them; the `.s-pivot-opt-a` wrapper unwrapped so the slide's markup is plain, and the
+  `#s-pivot` CSS left as one clean block for the live layout - screenshots before and after
+  the edit `cmp` identical. The sandbox page deleted, its index entry retired to a `.done`
+  line; `AGENTS.md`'s slide list and Sandbox section updated to match; the presenter check
+  prints OK. PR #44.
+- **2026-08-27, slide 19 (`#s-today`) deleted.** Joseph: "Remove 19." "The estate today"
+  removed at Joseph's request: section (four-tier route to live diagram, Release Please ->
+  CalVer cards), its `presenter.json` entry, the `.evolution`/`.evo-title` CSS (used nowhere
+  else) and `.pipe-off`/`.pipe-gap` (used only by this section's pipeline row); the shared
+  `.pipe-node`/`.pipeline-label`/`.pipeline-band` rules stay, still used by `#s01`, and the
+  S01 CSS comment no longer mentions `s-today`. Its 60 s moved to `s17` (Questions, now
+  360 s) so the timers still sum to 1800. `AGENTS.md` slide list renumbered to 22, the
+  reader-extras list and folded-away-slides note updated. No other slide pointed forward to
+  it. PR #43.
+- **2026-08-27, slide 15 (`#s14`) gate 2 says remote backend, drops the Copilot namedrop.**
+  Joseph: "state should just be storeed in remote backend. Just say use AI, do not
+  namedrop copilot." Edited in place: gate 2 becomes "State is stored in a remote backend
+  and not locally inspectable - AI-assisted checks confirmed each resource exists with the
+  correct dependencies assigned." (was "State is centralised in HCP and not locally
+  inspectable - AI-assisted checks (Copilot CLI) confirmed..."), and the matching speaker
+  note becomes "State lives in a remote backend and is not locally inspectable, hence the
+  AI checks in gate 2." (was "...hence the Copilot CLI checks..."), mirrored into
+  `presenter.json`; the check prints OK. `s11` also names Copilot CLI for the same
+  underlying fact (spec.md Q8) but is a different slide, out of scope here - left
+  untouched. Other "HCP" mentions (`s-workspace`, `s-sentinel`, `s-today`) describe the
+  real HCP Terraform tooling, unrelated to this gate's wording - left as is. PR #42.
+- **2026-08-27, slide 17 (`#s-pivot`) pivot line cut, four display options on the sandbox.**
+  Joseph: "the pivot is too LLM. That line can be removed. Give options on the display."
+  Applied deterministically: the `.statement` paragraph ("It got out of hand. The pivot:
+  shared modules own the configuration; thin per-instance roots own only what genuinely
+  differs.") is gone and its TODO chip moved onto the code block as `.s-pivot-chip`, so the
+  reminder survives. `#s-pivot` was the only user of the shared `.statement` rule; the rule
+  stays where it is, untouched, per the shared-CSS rule. The second speaker note used the
+  same phrasing and is reworded to "Where we ended up: the modules hold the configuration
+  and each instance's root only holds what is actually different." - same fact, mirrored
+  into `presenter.json`, and the check prints OK. The display question ships as
+  `s-pivot-display.html`: A, the lead over the code as one aligned column with the code a
+  step up the type scale (what the deck ships from this PR); B, the lead demoted to a
+  kicker and the code filling the slide at heading size with the "everywhere" comment turned
+  lime as the punchline (pure CSS on A's markup); C, two columns - the code on the left,
+  what one URL decided stacked on the right, drawn only from the code block and the notes
+  with the TODO chip closing the stack; D, the conditional as an editor window with a
+  `terraform/jamfpro/` file tab, a line-number gutter and line 2 picked out with a
+  current-line band. C and D ship as `.s-pivot-opt-c` / `-opt-d` wrappers hidden by one
+  `#s-pivot` rule. Awaiting a decision. PR #41.
+- **2026-08-27, slide 16 (`#s-staging`) plainer wording, steps first, four layouts offered.**
+  Joseph asked for the text to be far more human and for the slide to lean on the steps
+  rather than the words around them. The rewrite is deterministic and ships in this PR:
+  lead "Production was fully code. Staging was still years of drift - importing that drift
+  would only have enshrined it. So it was not imported at all." becomes "Production was
+  code. Staging was years of drift, so we didn't import it."; the three steps become
+  "Wipe. We cleared staging out, keeping APNS and the cloud identity provider.", "Apply. We
+  pointed production's configuration at the empty instance." and "Iterate. We fixed the
+  errors, pass after pass, until the run came back clean."; the takeaway becomes "Staging
+  doesn't claim parity any more. It inherits it, from the same modules." with the month
+  chip kept; and the `.slide-note` about the module split is gone from the slide because
+  the speaker notes already set up the next two slides. Notes eased the same way and
+  mirrored into `presenter.json`; the check prints OK. Same facts throughout. Option A -
+  what ships - is the steps-first arrangement: the three cards grow to full-height panels
+  with the verb at `--fs-h1` in the card's own colour, the lead drops to muted body text
+  and the takeaway to one line, all in a new `#s-staging` CSS block after the S14 gate-card
+  block so the shared `.lead`, `.gates` and `.gate*` rules are untouched (`#s14` verified
+  unchanged). Sandbox page `s-staging-steps-first.html` offers A plus B (a numbered run
+  down the left on a vertical rail, the lead and takeaway as a quiet right-hand column), C
+  (one left-to-right flow strip in the deck's diagram style, chevrons between the nodes,
+  the lead dropped and the takeaway as the closing statement) and D (the wipe as a
+  full-height hero panel at `--fs-hero`, apply and iterate stacked beside it) - all four
+  pure CSS on the same markup, so whichever wins pastes straight in. Awaits a decision.
+  PR #40.
+- **2026-08-27, slide 15 (`#s14`) option B accepted - the terminal as a real window.**
+  Joseph picked option B from the `s14-terminal-excerpt` sandbox page: the block becomes a
+  window sitting on the stage rather than a card lying flat on it, with a light chrome bar,
+  red, amber and lime traffic-light dots, a centred `joseph@jnuc - zsh` title, the command
+  in bold white against the lime result, and a lime block cursor blinking on a fresh prompt
+  line underneath, plus a drop shadow. Applied as the net result: the window title span and
+  the fresh-prompt cursor markup are now the slide's plain markup, and the CSS is one clean
+  `#s14`-scoped block replacing the old unscoped `.terminal`/`.term-*` rules rather than
+  stacking on them; the shared `.gates`/`.gate*` rules are untouched. `prefers-reduced-motion`
+  still stops the cursor blink; every colour stays a token. Speaker notes and
+  `presenter.json` needed no change - neither references the block's styling - and the check
+  prints OK. Sandbox page deleted, index entry marked `.done`, `AGENTS.md`'s slide-15
+  summary and the Sandbox section's "Current pages"/"Decided" lines updated. PR #39.
+- **2026-08-27, slide 15 (`#s14`) terminal excerpt options offered.** Joseph said the diagram
+  at the top of the slide is not obviously a terminal excerpt and asked for styling options
+  that make it read as one. Nothing in the feedback was deterministic, so the deck is
+  untouched this round: wording, the `terraform plan` line, the result and the four gates all
+  stay, and the speaker notes and `presenter.json` need nothing (neither mentions the block's
+  styling); the check prints OK. Sandbox page
+  `presentations/sandbox/migrating_an_instance/s14-terminal-excerpt.html` offers A (the block
+  as it stands, live now - the same navy card surface, border and radius as the four gate
+  cards below it, which is the problem), B (a real window: a light grey chrome bar, red,
+  amber and lime traffic lights, a `joseph@jnuc - zsh` title, the command in bold white
+  against the lime result, a blinking cursor on a fresh prompt and a drop shadow, gates
+  untouched), C (the opposite - no chrome at all, the block full width behind an 8px lime
+  rule with square corners at 44px type, and the gate cards stripped to bare columns under
+  hairline rules so the console is the only solid object on the slide) and D (a quoted
+  excerpt: a lime "Terminal" tab on the corner, a gradient and scanlines on the surface, the
+  command dropped to caption size and the result promoted to 44px bold behind a lime tick,
+  gates kept but unfilled) - awaits a decision. All the option CSS is scoped to `#s14`
+  because `.terminal`, the `.term-*` classes, `.card`, `.gate` and `.muted` are shared or
+  generic. PR #38.
+- **2026-08-27, slide 14 (`#s13`) option D accepted, wording made more human.** Joseph
+  picked option D from the `s13-policies-only` sandbox page - the exception and its reason
+  in large type, nothing else - with one change: reword it so it sounds spoken rather than
+  written. Applied as the net result: the `.s13-opt-a`/`-b`/`-c`/`-d` wrappers and the hide
+  rule are gone, D's four lines are the slide's plain markup, and the CSS is one clean
+  `#s13` block. New wording - kicker "Just one exception"; statement "We kept policies in
+  plain HCL."; reason "They're too different from each other. One `for_each` map would have
+  to carry every field any policy might need, and nobody could read it."; close "Once the
+  map gets harder to read than plain HCL, the pattern isn't earning its keep any more." Same
+  facts throughout: policies were the one exception, too diverse for one map, so they stayed
+  in plain HCL, and the pattern stops paying when the map is harder to read than the HCL.
+  Speaker note eased the same way and mirrored into `presenter.json`; the check prints OK.
+  Sandbox page deleted, index entry marked `.done`, `AGENTS.md`'s slide-14 summary and the
+  Sandbox section's "Current pages"/"Decided" lines updated. PR #37.
+- **2026-08-27, slide 6 (`#s05`) option D accepted - each path in its own panel.**
+  Joseph picked option D from the `s05-fill-the-space` sandbox page: the hairlines between
+  paths become full bordered panels, one per path, with the chosen path (03) edged in the
+  accent colour, and each flow diagram sits centred inside its panel at 70% width rather
+  than running edge to edge. Pure CSS on the existing markup - the option's rules folded
+  into the S05 block as the net result, replacing the rules they override rather than
+  stacking on top (the old border-bottom-only path separator and `last-child` rule are
+  gone, replaced by a full border and radius on every panel). Speaker notes and
+  `presenter.json` untouched - neither references the old layout - and the check prints OK.
+  Sandbox page deleted, index entry marked `.done`, `AGENTS.md`'s slide-6 summary and
+  Sandbox section updated. PR #36.
+- **2026-08-27, slide 11 (`#s08`) migration wave workflow, option C applied.** Joseph picked
+  option C from `s08-use-of-space.html`: the seven steps become full-width bands stepping
+  down the slide, each one starting a notch further in than the band above it and all
+  ending flush right, one step per line at slide size with the numbers in an aligned gutter
+  and a coloured left edge - lime, red on step 3's freeze. Pure CSS on the existing markup,
+  folded into the `#s08` block as one clean set of rules replacing the old single-row grid
+  rather than layering on top. Speaker notes and `presenter.json` needed no change - neither
+  pointed at the layout. Sandbox page deleted, its index entry retired to `.done`, and
+  `AGENTS.md`'s slide-11 summary and the Sandbox section's "Current pages"/"Decided" lines
+  updated. Presenter check prints OK. PR #35.
+- **2026-08-27, slide 10 (`#s10`) option C accepted - everything bigger, diagram reflowed.**
+  Joseph picked option C from the `s10-diagram-text` sandbox page: the tier labels move up
+  to `--fs-body` and the right-hand examples to `--fs-code`, both a step further than the
+  modest bump already shipping, and the four diagram bands grow from 140 to 156 user units
+  (viewBox 1728x720 to 1728x784) so the bigger text keeps the same breathing room and stays
+  clear of the timeline strip. The sandbox page did the band reflow with a DOM edit in its
+  `load` handler; the deck carries it as a direct edit of the SVG's band heights, y positions
+  and viewBox, so no script is needed. Speaker notes and `presenter.json` untouched - neither
+  mentions the diagram's text size - and the check prints OK. Sandbox page deleted, index
+  entry marked `.done`, `AGENTS.md`'s Sandbox section updated. PR #34.
+- **2026-08-27, slide 6 (`#s05`) control note folded into path 03, sandbox options added.**
+  Joseph asked for the annotation at the foot of the slide to go, its message to be condensed
+  into option 3, and everything to expand into the space so the slide feels less busy. Applied
+  deterministically: the `.card.control-note` block is out of `#s05` (the class is shared with
+  `#s-singletons`, so only the slide's own two rules and its markup went; the shared rules
+  stay) and path 03 carries a one-line version of it. The speaker notes already told the
+  read-only-scopes story on path 03, so none pointed at the removed card and `presenter.json`
+  is untouched; the check prints OK. The expansion ships as option A: each flow's viewBox
+  cropped close to its drawn width so the diagrams scale up by about a quarter and fill the
+  slide instead of leaving a quarter of every row empty. Sandbox page
+  `s05-fill-the-space.html` offers A (that expansion, live), B (the chosen path in an accent
+  panel with the two discounted paths shrunk and dimmed above it), C (the diagrams for 01 and
+  02 dropped entirely, one drawing left on the slide and the control line as a closing
+  statement) and D (each path as its own bordered panel with the diagram centred inside it) -
+  awaits a decision. PR #33.
+- **2026-08-27, slide 14 (`#s13`) cut back to policies, four options offered.** Dock items
+  were never a `for_each` exception, so the dock items card, its column and the mention in
+  the speaker note are gone, and the reason for the policies exception is reworded from
+  payload complexity and readability to how diverse policies are - a map has to carry every
+  field any policy might need. `presenter.json` mirrored, `AGENTS.md`'s slide-order entry
+  and the "for_each exceptions" settled fact updated to say policies only with diversity as
+  the reason. Because the slide loses half its content, four layouts ship as wrappers inside
+  `#s13`: A the removal done cleanly, policies re-laid as one full-width panel (live);
+  B five policy silhouettes with a sixth column showing everything one map would hold;
+  C the `for_each` attempt set against the plain HCL that replaced it; D the exception and
+  its reason in large type. Sandbox page
+  `presentations/sandbox/migrating_an_instance/s13-policies-only.html`, awaiting a decision.
+  PR #32.
+- **2026-08-27, slide 11 (`#s08`) three layouts offered for the empty half of the slide.**
+  Joseph's feedback was that the content of the migration wave workflow is already good and
+  only the use of the space needs work. The disk screenshot confirmed it: seven narrow cards
+  in one row across the top third, body text at caption size, and roughly 400px of empty
+  stage below them. Layout round only, so nothing deterministic to apply and the deck itself
+  is untouched - option A is the live slide. Sandbox page `s08-use-of-space.html` offers B
+  (two rows, four then three, body text up to `--fs-body` and chevrons in the gaps carrying
+  the direction of travel), C (seven full-width bands stepping down the slide, one step per
+  line, numbers in an aligned gutter, right edges flush) and D (three columns at three
+  weights - steps 1 and 2 left, the permissions revoke as a full-height centre panel with
+  the lock at scale, steps 4 to 7 right). All three are CSS on the existing markup, scoped
+  to `#s08`, tokens only, so no wrappers were needed in the deck. Awaits a decision. PR #31.
 - **2026-08-27, slide 10 (`#s10`) diagram text bumped, sandbox options added.** Joseph's
   "text glitches until refresh" report investigated - fonts, transitions, transform/
   clip-path/filter/contain on text, and the SVG's `tspan dx` labels all checked; could not

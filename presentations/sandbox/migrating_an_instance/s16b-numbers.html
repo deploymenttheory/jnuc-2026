@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<!-- Built from tools/sandbox-template.html, extended to a fourth option the way the
+     s-staging steps-first page is. The mechanism is documented in AGENTS.md under Sandbox
+     and the loop in feedback-workflow.md. -->
+<title>Sandbox - slide 19 by the numbers</title>
+<link rel="stylesheet" href="../sandbox.css">
+</head>
+<body>
+<div class="wrap">
+  <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / From Clicks to Code / slide 19</p>
+  <h1>Slide 19 - by the numbers</h1>
+  <p class="lede">Joseph sent fresh figures: 35-40 contributors, 900 PRs merged, 134 HCL files, 19,000+ lines of code. Those are already in the deck and in all four renders below, along with the two labels he reworded ("PRs merged", "HCL files") and his phrase "lines of code" in place of "lines of HCL". The date range and the 1,902 commits are untouched, because he did not restate them - the commit count is the one number on this slide that is probably out of date. What is open is whether these stay as six tiles or get drawn. Option A is the tiles with the new figures and is what the deck ships; B, C and D are three ways of visualising them, and because each needs markup their wrappers already sit inside the section, hidden by a single <code>#s16b</code> rule, so the CSS here only flips which one shows. Each render is the real <code>#s16b</code> section with that option's CSS layered on top.</p>
+  <nav class="jump" aria-label="Options">
+    <a href="#a">A</a><a href="#b">B</a><a href="#c">C</a><a href="#d">D</a>
+  </nav>
+
+  <section class="option" id="a">
+    <h2>Option A - the six tiles, new figures <span class="tag">live now</span></h2>
+    <p>The layout Joseph asked to keep: six navy tiles, three across and two down, each a figure over a label, with the date range holding the first tile at the smaller size so it fits on two lines. Nothing is drawn and nothing is ranked, which means every figure gets the same weight and Gordon decides in the room which one he lingers on. It is also the only option that survives a figure changing without any thought - swap the text and it still looks right, where all three visualisations have a proportion or a mark count that has to move with it. Pick this if the slide is a quick roll-call on the way to the handover line in the notes rather than a moment the room is meant to stop at.</p>
+    <div class="frame"><iframe data-variant="a" src="../../migrating_an_instance/index.html#s16b" title="Option A"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-a"></pre></details>
+  </section>
+
+  <section class="option" id="b">
+    <h2>Option B - five gauges, each against its own next round number</h2>
+    <p>The five countable figures as horizontal bars, the number in display type on the left and the bar running out to a ceiling named in mono on the right: 35-40 of 40, 900 of 1,000, 1,902 of 2,000, 134 of 150, 19,000+ of 20,000. The bars deliberately do not share an axis - people, pull requests, commits, files and lines are five different units, and charting them against one another would be meaningless - so every row is scaled to its own ceiling and the slide says so in a line underneath. What the five rows have in common is the finding: every one of them is a short run from the number it is about to pass, which is the same thing Gordon's closing note says out loud ("approaching a thousand pull requests now, the estate is still moving"). The two figures that are floors rather than counts, 35-40 and 19,000+, end in an open outlined segment instead of a solid fill, so the uncertainty is drawn rather than hidden. Pick this if the point is momentum. The cost is upkeep: each bar's width is a percentage in the CSS and has to be recalculated whenever a figure changes.</p>
+    <div class="frame"><iframe data-variant="b" src="../../migrating_an_instance/index.html#s16b" title="Option B"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-b"></pre></details>
+  </section>
+
+  <section class="option" id="c">
+    <h2>Option C - one number carries the slide</h2>
+    <p>900 PRs merged at roughly four times hero size in the accent colour, with "pull requests merged" set beside it on the same baseline, and the other four figures reduced to a quiet row along a hairline below. The date range sits above as a single caption line. Only one number is meant to land, and it is the one the speaker notes already build to; everything else is there for anyone who wants to read it rather than for anyone who is meant to hear it. It is the least busy of the four by a wide margin and the easiest to read from the back of a room. Pick this if the slide is a full stop rather than a summary - and say early which number you would rather have carry it, because swapping the hero for 19,000+ lines is a one-line change but it changes what the slide is about.</p>
+    <div class="frame"><iframe data-variant="c" src="../../migrating_an_instance/index.html#s16b" title="Option C"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-c"></pre></details>
+  </section>
+
+  <section class="option" id="d">
+    <h2>Option D - what you can count, and what you can only state</h2>
+    <p>The two small figures drawn one mark to a thing: forty marks for the contributors, of which the last five are outlined rather than filled because the count sits between 35 and 40, and 134 marks for the HCL files, laid thirty to a row so the estate is a block you can actually count. Under a hairline, headed "Too many to draw", the three figures that will not fit that treatment - 900 PRs merged, 1,902 commits, 19,000+ lines of code - stay as plain numbers. The composition is the argument: the small numbers stop being abstractions and the large ones are admitted to be abstractions, which is a more honest slide than six tiles that pretend 35 and 19,000 are the same kind of fact. The range drawn as five open marks is also the clearest reading of "35-40" anywhere in this set. Pick this if the human scale of the thing matters more than the totals. The cost is that the mark count is real markup - changing 134 means changing the number of spans.</p>
+    <div class="frame"><iframe data-variant="d" src="../../migrating_an_instance/index.html#s16b" title="Option D"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-d"></pre></details>
+  </section>
+
+  <p class="foot">To choose: name the option in chat, or describe what to change and this page gets a new set. Renders need the site served over HTTP - opened from disk the iframes load but the option CSS cannot be injected.</p>
+</div>
+
+<script>
+  // Each option is CSS layered onto the real deck slide. An option that is the deck as it
+  // ships injects nothing (empty string). Rules only touch #s16b and only use the deck's
+  // own tokens, so an accepted option can be pasted into the deck as-is. B, C and D each
+  // need markup, so their wrappers live in the section already and this only flips which
+  // one is visible.
+  const VARIANTS = {
+    a: ``,
+    b: `#s16b .stats { display: none; }
+#s16b .s16b-opt-b { display: block; }`,
+    c: `#s16b .stats { display: none; }
+#s16b .s16b-opt-c { display: block; }`,
+    d: `#s16b .stats { display: none; }
+#s16b .s16b-opt-d { display: block; }`,
+  };
+
+  for (const [key, css] of Object.entries(VARIANTS)) {
+    document.getElementById('css-' + key).textContent = css || '/* nothing - this is the deck as deployed */';
+  }
+
+  document.querySelectorAll('iframe[data-variant]').forEach((frame) => {
+    frame.addEventListener('load', () => {
+      const css = VARIANTS[frame.dataset.variant];
+      if (!css) return;
+      let doc;
+      try { doc = frame.contentDocument; } catch (e) { doc = null; }
+      if (!doc) return; // file:// - cross-origin iframe, nothing we can do
+      const style = doc.createElement('style');
+      style.textContent = css;
+      doc.head.appendChild(style);
+      // If an option needs a markup change as well as CSS, make it here on `doc`, keep it
+      // minimal, and describe the equivalent deck edit in the option's paragraph above.
+    });
+  });
+</script>
+</body>
+</html>
