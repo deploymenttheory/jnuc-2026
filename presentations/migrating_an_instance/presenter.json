@@ -30,7 +30,7 @@
     },
     {
       "id": "s04",
-      "title": "Ideas rejected, and why",
+      "title": "Migration outcomes we considered and rejected",
       "timerSeconds": 75,
       "notes": [
         "Expect pushback on \"not everything in Terraform\" - defend it: troubleshooting must not require a pull request."
@@ -64,7 +64,7 @@
     },
     {
       "id": "s-sentinel",
-      "title": "Getting past Sentinel",
+      "title": "Guardrails you don't own",
       "timerSeconds": 90,
       "notes": [
         "Why the ban exists: Terraform runs the bank's whole public cloud - import blocks would let one workspace adopt someone else's resources. The policy is right; it just did not fit a sole-actor migration.",
@@ -155,7 +155,7 @@
     },
     {
       "id": "s-today",
-      "title": "Refinements along the way",
+      "title": "The estate today",
       "timerSeconds": 60,
       "notes": [
         "Walk the four tiers by role, not by name. Sandbox: isolated, no restrictions, CLI and GUI both open - break it, reset, start again; onboarding and leadership demos live here. DevTest: under IdP and device compliance but not change controlled - prove a change out fast. Staging: an exact replica, to the point that a device enrolled there is indistinguishable bar the MDM certificate - and it is only true because of the rebuild on the previous slide. Production: minimal downtime, because everything upstream has already done the work.",
