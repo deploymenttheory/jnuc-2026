@@ -554,6 +554,15 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 19 (`#s-today`) deleted.** Joseph: "Remove 19." "The estate today"
+  removed at Joseph's request: section (four-tier route to live diagram, Release Please ->
+  CalVer cards), its `presenter.json` entry, the `.evolution`/`.evo-title` CSS (used nowhere
+  else) and `.pipe-off`/`.pipe-gap` (used only by this section's pipeline row); the shared
+  `.pipe-node`/`.pipeline-label`/`.pipeline-band` rules stay, still used by `#s01`, and the
+  S01 CSS comment no longer mentions `s-today`. Its 60 s moved to `s17` (Questions, now
+  360 s) so the timers still sum to 1800. `AGENTS.md` slide list renumbered to 22, the
+  reader-extras list and folded-away-slides note updated. No other slide pointed forward to
+  it. PR #43.
 - **2026-08-27, slide 15 (`#s14`) gate 2 says remote backend, drops the Copilot namedrop.**
   Joseph: "state should just be storeed in remote backend. Just say use AI, do not
   namedrop copilot." Edited in place: gate 2 becomes "State is stored in a remote backend
