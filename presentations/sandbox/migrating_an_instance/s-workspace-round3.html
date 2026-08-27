@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<!-- Built from tools/sandbox-template.html, extended to four options the way the round two
-     page was. The mechanism is documented in AGENTS.md under Sandbox and the loop in
+<!-- Built from tools/sandbox-template.html, extended to a fourth option the way the round
+     two page was. The mechanism is documented in AGENTS.md under Sandbox and the loop in
      feedback-workflow.md. -->
 <title>Sandbox - slide 4 what a Terraform workspace is, round three</title>
-<link rel="stylesheet" href="sandbox.css">
+<link rel="stylesheet" href="../sandbox.css">
 </head>
 <body>
 <div class="wrap">
-  <p class="crumb"><a href="./">Sandbox</a> / From Clicks to Code / slide 4</p>
+  <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / From Clicks to Code / slide 4</p>
   <h1>Slide 4 - what a Terraform workspace is, round three</h1>
   <p class="lede">Rounds one and two were both rejected for looking generic - uniform boxes in rows, a heading and a sentence fragment in each, nothing for the eye to land on. This is a completely new set. Every option explains what an HCP Terraform workspace is <em>and</em> why it matters to a Mac admin who has never used Terraform, and every one has a single dominant thing rather than a grid of equals. All four markup wrappers ship inside the real <code>#s-workspace</code> section; each render below is that same slide with one CSS rule on top choosing which wrapper shows. Accepting an option means deleting the other three wrappers and their CSS.</p>
   <nav class="jump" aria-label="Options">
@@ -22,28 +22,28 @@
   <section class="option" id="a">
     <h2>Option A - the room <span class="tag">live now</span></h2>
     <p>One statement in display type - a workspace is the room where Terraform does the work for one Jamf Pro instance - and under it a plan view of that room. The state is drawn as the dominant object: a tall lime panel listing, in mono, the resource types it already owns, with the roughly-500-per-workspace guidance figure at its foot. The secrets shelf and the run log are smaller outlined fixtures beside it, deliberately not the same size or shape. The walls carry one doorway in, punched through the border, with a commit outside it, and one doorway out with the instance outside that. The why lands as a single lime line: nothing leaves the room without a plan and an approval. Pick this if the audience needs a picture they can hold, and one sentence they will remember. This is what ships in the deck from this PR.</p>
-    <div class="frame"><iframe data-variant="a" src="../migrating_an_instance/index.html#s-workspace" title="Option A"></iframe></div>
+    <div class="frame"><iframe data-variant="a" src="../../migrating_an_instance/index.html#s-workspace" title="Option A"></iframe></div>
     <details><summary>CSS on top of the deck</summary><pre id="css-a"></pre></details>
   </section>
 
   <section class="option" id="b">
     <h2>Option B - a laptop against a workspace</h2>
     <p>The same story told twice, at two different strengths. The left half is how Terraform starts for most people: a small laptop silhouette with a state file, a variables file and a bare <code>terraform apply</code> on its screen, everything set in muted ink with no panel behind it, and four short lines saying what that actually means - the state is a file on one disk, the credentials sit next to it, one person applies, and the history dies with the machine. The right half is the same list at full strength: a filled navy panel with a lime edge, larger type, state held by HCP Terraform, secrets read from Vault, runs on private runners inside the bank, a person approving every apply. The contrast does the explaining, so there is very little to read. Pick this if the audience has never seen Terraform at all and needs the before to understand the after.</p>
-    <div class="frame"><iframe data-variant="b" src="../migrating_an_instance/index.html#s-workspace" title="Option B"></iframe></div>
+    <div class="frame"><iframe data-variant="b" src="../../migrating_an_instance/index.html#s-workspace" title="Option B"></iframe></div>
     <details><summary>CSS on top of the deck</summary><pre id="css-b"></pre></details>
   </section>
 
   <section class="option" id="c">
     <h2>Option C - three instances, one set of modules</h2>
     <p>One repository bar across the top feeding three instance columns below it - DevTest, Staging, Production - each showing what it holds of its own: its state, its secrets, its runs. The columns get wider and taller from left to right, so DevTest's single CLI-triggered workspace reads as the small one and Production, with its three workspaces and its peer review, reads as the one that matters, and a hatched wall stands between them. It closes on the point: the same modules, applied separately in each place, so a mistake in DevTest cannot reach production. Pick this if the thing worth landing is the boundary rather than the anatomy - why there is more than one workspace at all.</p>
-    <div class="frame"><iframe data-variant="c" src="../migrating_an_instance/index.html#s-workspace" title="Option C"></iframe></div>
+    <div class="frame"><iframe data-variant="c" src="../../migrating_an_instance/index.html#s-workspace" title="Option C"></iframe></div>
     <details><summary>CSS on top of the deck</summary><pre id="css-c"></pre></details>
   </section>
 
   <section class="option" id="d">
     <h2>Option D - follow one change</h2>
     <p>One policy change traced left to right along a lime rail with chevrons running down it: a commit, the workspace picking it up, the plan on a private runner, the approval, the apply, the record, the instance. The stops alternate above and below the rail so the eye travels, and the navy band behind the middle five stops is the workspace itself - which makes the definition visual rather than verbal, since you can see exactly which part of the journey it owns. The approval stop is drawn larger than the rest because it is the part that matters to a bank. Pick this if the clearest way in is watching one real change move rather than being told what a workspace contains.</p>
-    <div class="frame"><iframe data-variant="d" src="../migrating_an_instance/index.html#s-workspace" title="Option D"></iframe></div>
+    <div class="frame"><iframe data-variant="d" src="../../migrating_an_instance/index.html#s-workspace" title="Option D"></iframe></div>
     <details><summary>CSS on top of the deck</summary><pre id="css-d"></pre></details>
   </section>
 

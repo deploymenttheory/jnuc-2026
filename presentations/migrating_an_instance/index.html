@@ -959,6 +959,12 @@ body.reader .reader-extra {
 .check-body { display: flex; flex-direction: column; gap: var(--sp-1); }
 .check-lead { font-size: var(--fs-body); font-weight: 600; line-height: var(--lh-tight); color: var(--c-accent); }
 .check-detail { font-size: var(--fs-caption); line-height: var(--lh-body); color: var(--c-text-muted); }
+/* Two-portion split (sandbox option D, instance prep / migration prep) is markup-ready but
+   not chosen: hide the portion headings and the migration portion so the slide still
+   renders as the tidied single list above. An accepted option D removes these two rules
+   and adds its own #s07 layout on top, per the sandbox page. */
+.prep-heading { display: none; }
+.prep-portion-migration { display: none; }
 
 /* ============================ S08 ============================ */
 .stepper {
@@ -1484,29 +1490,53 @@ body.presenter #viewport { display: none; }
     <!-- ============================ S07 - Instance prep ============================ -->
     <section class="slide" id="s07" aria-label="Instance prep" data-speaker="Gordon" data-when="2025-11">
       <h1 class="slide-title">Instance prep</h1>
-      <ul class="checklist">
-        <li>
-          <span class="check" aria-hidden="true"></span>
-          <span class="check-body">
-            <strong class="check-lead">Tidy-up</strong>
-            <span class="check-detail">Big tidy-up: used PRUNE to export JSON of every unused resource, then removed them with a bespoke tool - <code class="inline">jamf-resource-deleter</code> - which backs each resource up to JSON before deleting it, with a restore path if anything was needed back.</span>
-          </span>
-        </li>
-        <li>
-          <span class="check" aria-hidden="true"></span>
-          <span class="check-body">
-            <strong class="check-lead">Credentials</strong>
-            <span class="check-detail">Stored every instance's API client credentials in the secrets manager, verified each set was valid and complete, and tested the connection to Terraform Cloud end-to-end to confirm they were read correctly.</span>
-          </span>
-        </li>
-        <li>
-          <span class="check" aria-hidden="true"></span>
-          <span class="check-body">
-            <strong class="check-lead">Version check</strong>
-            <span class="check-detail">Confirmed the Jamf Pro instance version met provider requirements.</span>
-          </span>
-        </li>
-      </ul>
+      <div class="prep-portions">
+        <div class="prep-portion">
+          <h2 class="prep-heading">Instance prep</h2>
+          <ul class="checklist">
+            <li>
+              <span class="check" aria-hidden="true"></span>
+              <span class="check-body">
+                <strong class="check-lead">Tidy-up</strong>
+                <span class="check-detail">Big tidy-up: used PRUNE to export JSON of every unused resource, then removed them with a bespoke tool - <code class="inline">jamf-resource-deleter</code> - which backs each resource up to JSON before deleting it, with a restore path if anything was needed back.</span>
+              </span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"></span>
+              <span class="check-body">
+                <strong class="check-lead">Credentials</strong>
+                <span class="check-detail">Stored every instance's API client credentials in the secrets manager, verified each set was valid and complete, and tested the connection to Terraform Cloud end-to-end to confirm they were read correctly.</span>
+              </span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"></span>
+              <span class="check-body">
+                <strong class="check-lead">Version check</strong>
+                <span class="check-detail">Confirmed the Jamf Pro instance version met provider requirements.</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="prep-portion prep-portion-migration">
+          <h2 class="prep-heading">Migration prep</h2>
+          <ul class="checklist">
+            <li>
+              <span class="check" aria-hidden="true"></span>
+              <span class="check-body">
+                <strong class="check-lead">Runner line of sight</strong>
+                <span class="check-detail">Confirmed the HCP private runners could reach every Jamf Pro instance before the first run. <span class="todo">TODO: confirm wording with Gordon</span></span>
+              </span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"></span>
+              <span class="check-body">
+                <strong class="check-lead">Backout plan</strong>
+                <span class="check-detail">Agreed how to back out an import that went wrong before starting it. <span class="todo">TODO: confirm what the plan was</span></span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
       <aside class="notes">
         <p>The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back.</p>
       </aside>
@@ -1536,7 +1566,10 @@ body.presenter #viewport { display: none; }
   allow_network_state_change_triggers = true
 }
 
-<span class="tk-kw">import</span> {}</pre>
+<span class="tk-kw">import</span> {
+  to = jamfpro_client_checkin.jamfpro_client_checkin
+  id = <span class="tk-str">"jamfpro_client_checkin_singleton"</span>
+}</pre>
       </div>
       <details class="reader-extra">
         <summary>More detail</summary>
