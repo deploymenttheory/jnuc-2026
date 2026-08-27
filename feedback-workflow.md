@@ -554,6 +554,13 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, timeline adherence doc added.** Joseph: "Generate a timeline adhereance
+  doc for this deck." `docs/timeline-adherence.md` added: one row per slide of
+  `migrating_an_instance` as it stands on `main` (id, title, speaker, timer,
+  current `data-when`), a blank "Month (fill in)" column for Joseph, and a "Current
+  stops on the strip" summary showing the pile-ups on 2025-11 and 2026-07 and the gap
+  at 2026-06. No slide, CSS or `presenter.json` touched. `AGENTS.md`'s file-layout table
+  gained one row for the doc. PR #TODO.
 - **2026-08-27, slide 19 (`#s-today`) deleted.** Joseph: "Remove 19." "The estate today"
   removed at Joseph's request: section (four-tier route to live diagram, Release Please ->
   CalVer cards), its `presenter.json` entry, the `.evolution`/`.evo-title` CSS (used nowhere

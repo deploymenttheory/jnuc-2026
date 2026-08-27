@@ -41,6 +41,7 @@ landing page keeps its own near-black look - it is not a deck.
 | `tools/` | `build-key.mjs`, which builds the Keynote downloads from the decks on a Mac (the only thing `package.json` exists for), and `sandbox-template.html`, the starting point for every sandbox review page. |
 | `feedback-workflow.md` | The deck feedback loop: standing rules, orchestrator and slide-agent roles, brief templates, commands, recovery steps and a log. Read it before touching a deck in response to feedback. Not shipped (`*.md` is excluded from the deploy). |
 | `docs/superpowers/plans/` | The first-round implementation plan, superseded by `feedback-workflow.md` and kept for its triage table. Not shipped. |
+| `docs/timeline-adherence.md` | Per-slide table of `migrating_an_instance`'s current `data-when` values, timers and speakers, with a blank column for Joseph to fill in the intended month, for a later round of `data-when` corrections. Not shipped. |
 | `README.md`, `LICENSE` | Repo boilerplate. |
 
 The decks have no build step. Node is in this repo purely for `tools/build-key.mjs`, which is
