@@ -11,14 +11,20 @@ process. Last revised 2026-08-27.
 
 - Feedback comes in chat, usually as a list of slides with comments. This file is the
   process, not a change list - do not append requests here.
+- Every instruction gets an agent: slide feedback, a sandbox tweak, a deletion, an
+  acceptance, a wording change, a process change - each one is dispatched to a single agent,
+  one per instruction, and that agent returns exactly one PR carrying everything the change
+  needs. The orchestrator does no repo edits of its own.
 - Every change gets three alternative implementations on the sandbox, with significant
   and worthy differences, unless Joseph says otherwise for that change. He picks one in
   chat, or asks for another set. Pure deletions and wording swaps with no design dimension
   can go straight into the deck, but if in doubt offer options rather than decide.
 - Work from `main`, push to `main`, deploy on every push. Do not ask.
-- Fan out: one Sonnet agent per slide, each with an explicit self-contained brief, each
-  delivering a PR. The orchestrator merges the PRs, consolidates, verifies and deploys. The
-  orchestrator's own consolidation work is done inline - it is small and speed matters.
+- Fan out: one Sonnet agent per instruction, each with an explicit self-contained brief. Its
+  PR carries the slide or sandbox edit, the sandbox page, the
+  `presentations/sandbox/index.html` entry, any `AGENTS.md` updates the change makes
+  necessary, and the Log entry in this file. The orchestrator merges the PR, resolves any
+  conflicts with other agents' PRs, pushes and deploys - nothing more.
 - The orchestrator is Joseph's point of contact and does not do slide work itself. The chat
   stays idle while agents work: every message from Joseph that contains feedback is
   dispatched straight away, without waiting for anything already in flight, and the
@@ -26,33 +32,40 @@ process. Last revised 2026-08-27.
 - Do not rebuild the Keynote `.key` until Joseph says so.
 - Commits are authored by Joseph Little (the global git identity) with no `Co-Authored-By`
   trailer, plain human subjects, British English. No emojis, no em or en dashes anywhere.
-- `AGENTS.md` is updated in the same commit as anything that makes it stale.
+- `AGENTS.md` is updated inside the same PR as anything that makes it stale - the agent that
+  made the change does this, not the orchestrator.
 
 ## Roles
 
-**Orchestrator** - the main session. Turns chat feedback into per-slide work items,
-dispatches and briefs the slide agents, verifies their PRs, merges and consolidates locally,
-pushes `main` once per round, confirms the deploy, and reports back in chat with the sandbox
-links. Owns the files no agent may touch: `AGENTS.md`, `presentations/sandbox/index.html`,
-`presentations/sandbox/sandbox.css`, the deck tokens block, and `tools/`.
+**Orchestrator** - the main session. Turns chat feedback into work items, dispatches and
+briefs the agents, and otherwise makes no repo edits of its own: when a PR lands it merges
+with `--no-ff`, resolves any conflicts with other agents' PRs, pushes `main`, confirms the
+deploy, deletes the remote branch, prunes the worktree, and reports back in chat with the
+sandbox link. Owns only the files agents may not touch: `tools/`,
+`presentations/sandbox/sandbox.css` and the deck's `:root` token block.
 
-**Slide agent** - a Sonnet agent, one per slide, working in its own git worktree on its own
-branch. Edits exactly one slide (its section, its CSS block, its `presenter.json` entry),
-creates that slide's sandbox page, verifies with screenshots, opens a PR, reports the PR
-number and evidence. Never touches another slide, the orchestrator-owned files, or `.key`.
+**Slide agent** - a Sonnet agent, one per instruction (a slide, a sandbox tweak, a deletion,
+an acceptance, a wording change, a process change), working in its own git worktree on its
+own branch. Delivers everything the instruction needs in a single PR: the slide or sandbox
+edit (its section, its CSS block, its `presenter.json` entry), the sandbox page and its
+`presentations/sandbox/index.html` entry, any `AGENTS.md` updates the change makes necessary,
+and the Log entry in this file. Verifies with screenshots, opens the PR, reports the PR
+number and evidence. Never touches another slide's markup or CSS, the `:root` token block,
+`sandbox.css`, `tools/`, package files, or any `.key` file.
 
-**Verifier** - a Sonnet agent, one per PR, read-only. Checks the PR against its brief and
-the checklist below and reports pass or fail with evidence. Run in parallel with the other
-verifiers.
+**Verifier** - optional. A Sonnet agent, read-only, dispatched only when a slide agent's own
+evidence is incomplete or inconsistent - speed comes first. Checks the PR against its brief
+and the checklist below and reports pass or fail with evidence.
 
 ## Continuous mode
 
 Rounds are not batched. Each feedback message is its own round: parse it, dispatch one agent
-per slide it mentions, reply with what was dispatched (slide, branch name, agent), and stop.
-When a PR lands, verify, merge, consolidate and deploy it on its own - do not hold it for
-siblings still running unless two land within a minute of each other. Keep the "In flight"
-list in the Log at the bottom of this file current at every dispatch and every merge; it is
-the recovery point if the session is lost.
+per instruction it contains, reply with what was dispatched (instruction, branch name,
+agent), and stop. When a PR lands, merge, resolve any conflicts, push and deploy it on its
+own - do not hold it for siblings still running unless two land within a minute of each
+other. Each agent writes its own entry into the Log at the bottom of this file, inside its
+PR; the orchestrator does not edit the Log. If the session is lost, recover in-flight state
+from `gh pr list`, branches and worktrees (see "If the session is lost"), not from the Log.
 
 If Joseph's message is a decision ("slide 3, option B") rather than new feedback, it is an
 acceptance round for that slide - same flow with the acceptance brief. If it is a question
@@ -60,41 +73,41 @@ or a comment with no action, answer it and stay idle.
 
 ## A round, start to finish
 
-1. **Parse.** Turn the chat feedback into one work item per slide. Map the visible slide
-   number to the section id using the "Current slide order" list in `AGENTS.md` (slide 2 is
-   `#s01`, slide 3 is `#s02`; the ids are not the numbers). Several comments on one slide
-   are one item. Note the speaker for each slide from the same list. Decide per item which
-   parts are deterministic edits and which need three options.
-2. **Dispatch.** One `Agent` call per slide, all in one message so they run in parallel:
-   `subagent_type: "general-purpose"`, `model: "sonnet"`, `isolation: "worktree"`, prompt
-   built from the brief template below with every placeholder filled. Never bundle two
-   slides into one agent.
-3. **Collect.** Each agent returns a PR number, branch name, the screenshot paths and lint
-   output. If an agent returns without a PR, read its report, fix the brief, and re-dispatch
-   that slide only.
-4. **Verify.** One verifier agent per PR, in parallel, using the verifier brief below. Small
-   failures (a stray dash, a note left stale) the orchestrator fixes on the branch itself;
-   anything larger goes back to the slide agent via `SendMessage` with the verifier's report.
-5. **Merge and consolidate locally** (commands below): fetch, merge each branch into `main`
-   with `--no-ff` in slide order, resolve any conflict, then make one consolidation commit:
-   sandbox index entries for the new pages, the `AGENTS.md` slide list and "Current pages"
-   line, and anything the presenter check flags.
-6. **Verify the whole.** Screenshot every touched slide from the merged `main`, plus any
-   slide that shares a class with a touched one. Dash lint. Presenter sync check.
-7. **Push and deploy.** Push `main` once. Confirm the deploy run, `curl` the live URLs for
-   each sandbox page, delete the remote branches, prune worktrees.
-8. **Report in chat.** One line per slide: the sandbox link and a few words on each of A,
-   B and C. Nothing else - Joseph will reply with choices.
-9. **Acceptance round.** Joseph names an option per slide in chat. Same pipeline with the
+1. **Parse.** Turn the chat feedback into one work item per instruction (usually a slide).
+   Map the visible slide number to the section id using the "Current slide order" list in
+   `AGENTS.md` (slide 2 is `#s01`, slide 3 is `#s02`; the ids are not the numbers). Several
+   comments on one slide are one item. Note the speaker for each slide from the same list.
+   Decide per item which parts are deterministic edits and which need three options.
+2. **Dispatch.** One `Agent` call per instruction, all in one message so they run in
+   parallel: `subagent_type: "general-purpose"`, `model: "sonnet"`, `isolation: "worktree"`,
+   prompt built from the brief template below with every placeholder filled. Never bundle
+   two instructions into one agent.
+3. **Collect.** Each agent returns a PR number, branch name, and its evidence: the four
+   verify outputs, the sandbox index entry, the `AGENTS.md` diff, the Log entry and the
+   presenter check result. If an agent returns without a PR, read its report, fix the brief,
+   and re-dispatch that instruction only.
+4. **Verify (optional).** Only when an agent's own evidence is incomplete or inconsistent,
+   dispatch one verifier agent for that PR using the verifier brief below. Do not verify by
+   default - speed comes first.
+5. **Merge.** From the main checkout: fetch, then `git merge --no-ff` the branch into `main`
+   (commands below). Conflicts are expected on `presentations/sandbox/index.html`,
+   `AGENTS.md`, this file's Log section and `presenter.json`, because agents edit them
+   directly - resolve by keeping both agents' entries, newest first in each list. Make no
+   other edits.
+6. **Push and deploy.** Push `main`. Confirm the deploy run, `curl` the live URL for the new
+   sandbox page, delete the remote branch, prune the worktree.
+7. **Report in chat.** One line: the sandbox link and a few words on each of A, B and C (or,
+   for an acceptance, confirmation it is live). Nothing else - Joseph will reply with
+   choices.
+8. **Acceptance round.** Joseph names an option per slide in chat. Same pipeline with the
    acceptance brief: the agent writes the option into the deck as the net result, removes
-   markup it makes redundant, deletes its sandbox page, and opens a PR. The orchestrator
-   consolidates (index entries become non-linked `.done` lines with date and choice;
-   `AGENTS.md` slide list and "Current pages" updated), pushes, confirms the deploy. A single
-   accepted slide can be done inline by the orchestrator instead of dispatching.
+   markup it makes redundant, deletes its sandbox page, marks the index entry `.done`,
+   updates `AGENTS.md` and the Log, and opens a PR. The orchestrator merges it like any other
+   PR.
 
-Merging locally rather than with `gh pr merge` is deliberate: one push means one deploy for
-the round instead of one per PR, and GitHub still marks each PR as merged once its head
-commit is reachable from `main`.
+Merging locally rather than with `gh pr merge` is deliberate: it lets the orchestrator
+resolve conflicts between agents' PRs before either lands, and GitHub still marks each PR as
+merged once its head commit is reachable from `main`.
 
 ## Slide-agent brief (template)
 
@@ -139,14 +152,48 @@ WHAT TO DO
    `--fs-*`, `--c-*`, `--bw-*`, `--radius*`), and never hardcode a colour, font or size. If
    an option truly needs a markup change, do it in the `load` handler on the iframe document,
    keep it minimal, and describe the equivalent deck edit in the option's paragraph.
-4. Reread the slide's speaker notes after your edits. If a note points at something you
+4. Add this page to presentations/sandbox/index.html, in the same hand-written style as the
+   existing entries: date, deck, slide, speaker, "awaiting a decision". Match the existing
+   entries' format exactly - do not restructure the file.
+5. Update AGENTS.md: the slide list entry for {{SLIDE_NUMBER}} if its title or content
+   summary changed, the "Current pages" line in the Sandbox section (add your page), and
+   anything else your change makes stale (timers, slide count, other cross-references).
+6. Reread the slide's speaker notes after your edits. If a note points at something you
    removed or renamed, fix the note and presenter.json together.
+7. Run the presenter sync check and paste `OK` into your report (write the script to your
+   own worktree's temp dir, not the orchestrator's scratchpad):
+   OUT=$(mktemp -d) && cat > "$OUT/check-presenter.mjs" <<'EOF'
+   import fs from 'node:fs';
+   const html = fs.readFileSync('presentations/migrating_an_instance/index.html', 'utf8');
+   const pj = JSON.parse(fs.readFileSync('presentations/migrating_an_instance/presenter.json', 'utf8'));
+   const clean = (s) => s.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+   const deck = [...html.matchAll(/<section class="slide[^"]*" id="([^"]+)"[\s\S]*?<aside class="notes">([\s\S]*?)<\/aside>/g)]
+     .map((m) => ({ id: m[1], notes: [...m[2].matchAll(/<p>([\s\S]*?)<\/p>/g)].map((p) => clean(p[1])) }));
+   let bad = 0;
+   if (deck.length !== pj.slides.length) { console.log('slide count', deck.length, 'deck vs', pj.slides.length, 'presenter.json'); bad++; }
+   deck.forEach((d, i) => {
+     const p = pj.slides[i];
+     if (!p || p.id !== d.id) { console.log('order mismatch at', i, d.id, 'vs', p && p.id); bad++; return; }
+     if (JSON.stringify(p.notes) !== JSON.stringify(d.notes)) { console.log('notes differ:', d.id); bad++; }
+   });
+   const total = pj.slides.reduce((a, s) => a + s.timerSeconds, 0);
+   if (total !== pj.timeLimitSeconds) { console.log('timers sum to', total, 'not', pj.timeLimitSeconds); bad++; }
+   console.log(bad ? 'FAIL' : 'OK');
+   EOF
+   node "$OUT/check-presenter.mjs"
+   It must print OK before you commit. The deck is the source of truth for notes - when they
+   differ, presenter.json is what gets corrected.
+8. Add a bullet to the top of the Log's `### Done` list at the bottom of
+   feedback-workflow.md, in the same style as the existing entries, describing what you did.
+   For an options round, name the sandbox link and note it awaits a decision. Include your PR
+   number once you have one - if you write this before opening the PR, push a short follow-up
+   commit to add the number once `gh pr create` returns it.
 
 DO NOT TOUCH
 - Any other slide's markup or CSS, the `:root` token block, shared classes used by other
   slides (scope new rules by `#{{SLIDE_ID}}` instead; check with grep before styling a
-  class), AGENTS.md, presentations/sandbox/index.html, presentations/sandbox/sandbox.css,
-  tools/, package files, or any .key file. The orchestrator owns those.
+  class), presentations/sandbox/sandbox.css, tools/, package files, or any .key file. The
+  orchestrator owns those.
 
 STYLE
 - British English, no emojis, no em or en dashes (plain hyphens only), no colon-glued or
@@ -175,9 +222,11 @@ DELIVER
   the three options.
 - git push -u origin feedback/{{SLIDE_ID}}-{{SLUG}}
 - gh pr create --base main --head feedback/{{SLIDE_ID}}-{{SLUG}} --title "Slide {{SLIDE_NUMBER}}: <what changed>" --body "<the same body, plus the verify outputs and screenshot paths>"
+- If your Log entry (step 8) did not yet have a PR number, add it now, commit and push again
+  - the same PR picks up the new commit.
 - Your final message is the report: PR number and URL, branch name, the four verify
-  outputs, the screenshot paths, and anything you could not do and why. Do not summarise
-  the deck or the repo.
+  outputs, the screenshot paths, the presenter check result, and anything you could not do
+  and why. Do not summarise the deck or the repo.
 ```
 
 For an acceptance round, replace WHAT TO DO with:
@@ -188,13 +237,22 @@ WHAT TO DO
    presentations/sandbox/{{SLIDE_ID}}-{{SLUG}}.html. Write it into the deck as the net
    result - one clean block of rules in the slide's CSS block, not the option layered over
    whatever was there - and remove any markup the option makes redundant.
-2. git rm the sandbox page. Leave presentations/sandbox/index.html alone.
-3. Reread the speaker notes and presenter.json as before.
+2. git rm the sandbox page. In presentations/sandbox/index.html, turn its entry into a
+   non-linked `.done` line with the date and the option chosen, in the same style as the
+   existing decided entries.
+3. Update AGENTS.md: the slide list entry if the title or content summary changed, and the
+   "Current pages" and "Decided" lines in the Sandbox section to match.
+4. Reread the speaker notes and presenter.json as before.
+5. Run the presenter sync check (step 7 of the options brief) and paste OK into your report.
+6. Add a Done bullet to the Log (step 8 of the options brief); if this slide had an
+   "In flight" line, remove it as part of the same edit - this PR is what closes it out.
 ```
 
 and drop verify step b.
 
 ## Verifier brief (template)
+
+Optional - dispatch only when a slide agent's own evidence is incomplete or inconsistent.
 
 ```
 Read-only review of PR #{{PR_NUMBER}} on /Users/josephlittle/Github/jnuc-2026 (branch
@@ -207,18 +265,22 @@ The agent's brief was:
 
 Check, with commands, and report each as PASS or FAIL with the evidence:
 1. `gh pr diff {{PR_NUMBER}} --name-only` lists only: presentations/migrating_an_instance/
-   index.html, presentations/migrating_an_instance/presenter.json (optional), and
+   index.html, presentations/migrating_an_instance/presenter.json (optional),
    presentations/sandbox/{{SLIDE_ID}}-{{SLUG}}.html (present for an options round, deleted
-   for an acceptance round). Nothing else.
-2. Every hunk in index.html sits inside `#{{SLIDE_ID}}`'s section or its CSS block. Hunks
-   elsewhere are a FAIL - name them.
+   for an acceptance round), presentations/sandbox/index.html, AGENTS.md (if the change made
+   it stale) and feedback-workflow.md (the Log entry). Nothing else.
+2. Every hunk in presentations/migrating_an_instance/index.html sits inside
+   `#{{SLIDE_ID}}`'s section or its CSS block. Hunks elsewhere are a FAIL - name them.
 3. Every feedback point in the brief is addressed - quote the before and after for each.
 4. Three options with real differences (options round): open the sandbox page and read the
    VARIANTS; every rule scoped to `#{{SLIDE_ID}}`; no hardcoded colours, fonts or sizes; no
    rule that would leak onto another slide (grep each styled class across the deck).
 5. Speaker notes still make sense after the edits and match presenter.json exactly.
 6. Dash lint clean; British English; no emojis; aria-label equals the visible title.
-7. Render it yourself: check out the branch in a temporary worktree (`git worktree add`),
+7. The sandbox index entry (or its `.done` line for an acceptance) matches the format of the
+   existing entries; any AGENTS.md updates the brief called for are correct; the Log entry
+   matches what happened; the presenter check output the agent pasted says OK.
+8. Render it yourself: check out the branch in a temporary worktree (`git worktree add`),
    take the disk screenshot from the brief, look at it, and remove the worktree. Report
    any overflow or timeline-strip collision.
 Final message: a PASS/FAIL line per check, then the evidence. Nothing else.
@@ -226,54 +288,18 @@ Final message: a PASS/FAIL line per check, then the evidence. Nothing else.
 
 ## Orchestrator commands
 
-Merge and consolidate (from the main checkout, on `main`, clean apart from the known
-untracked files):
+Merge (from the main checkout, on `main`, clean apart from the known untracked files):
 
 ```sh
 cd /Users/josephlittle/Github/jnuc-2026 && git fetch origin && git checkout main && git pull --ff-only
-# one per PR, in slide order
 git merge --no-ff origin/feedback/<slide-id>-<slug> -m "Merge slide <n>: <what changed> (#<pr>)"
 ```
 
-Consolidation commit: add the new pages to `presentations/sandbox/index.html` (date, deck,
-slide, speaker, "awaiting a decision"), update the `AGENTS.md` slide list entries and the
-"Current pages" line in its Sandbox section, update the Log in this file, and run the
-presenter check. The main checkout should be clean before and after; if it is not, find out
-why before committing.
-
-Presenter sync check (write once to the scratchpad as `check-presenter.mjs`; must print OK):
-
-```js
-import fs from 'node:fs';
-const html = fs.readFileSync('presentations/migrating_an_instance/index.html', 'utf8');
-const pj = JSON.parse(fs.readFileSync('presentations/migrating_an_instance/presenter.json', 'utf8'));
-const clean = (s) => s.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
-const deck = [...html.matchAll(/<section class="slide[^"]*" id="([^"]+)"[\s\S]*?<aside class="notes">([\s\S]*?)<\/aside>/g)]
-  .map((m) => ({ id: m[1], notes: [...m[2].matchAll(/<p>([\s\S]*?)<\/p>/g)].map((p) => clean(p[1])) }));
-let bad = 0;
-if (deck.length !== pj.slides.length) { console.log('slide count', deck.length, 'deck vs', pj.slides.length, 'presenter.json'); bad++; }
-deck.forEach((d, i) => {
-  const p = pj.slides[i];
-  if (!p || p.id !== d.id) { console.log('order mismatch at', i, d.id, 'vs', p && p.id); bad++; return; }
-  if (JSON.stringify(p.notes) !== JSON.stringify(d.notes)) { console.log('notes differ:', d.id); bad++; }
-});
-const total = pj.slides.reduce((a, s) => a + s.timerSeconds, 0);
-if (total !== pj.timeLimitSeconds) { console.log('timers sum to', total, 'not', pj.timeLimitSeconds); bad++; }
-console.log(bad ? 'FAIL' : 'OK');
-```
-
-Run with `node <scratchpad>/check-presenter.mjs` from the repo root. It must print `OK`
-before every push; it was brought to `OK` on 2026-08-27 (order and notes regenerated from
-the deck, timers kept), so any failure is from the current round. The deck is the source of
-truth for notes - when they differ, `presenter.json` is what gets corrected.
-
-Whole-deck verification:
-
-```sh
-# every touched slide, plus any slide sharing a class with one (see gotchas)
-OUT="$SCRATCH" && for s in s01 s-today; do "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --window-size=1920,1080 --hide-scrollbars --virtual-time-budget=3000 --screenshot="$OUT/$s.png" "file://$PWD/presentations/migrating_an_instance/index.html#$s" 2>/dev/null; done; ls "$OUT"/*.png
-grep -n -e "—" -e "–" AGENTS.md presentations/sandbox/* presentations/migrating_an_instance/index.html presentations/migrating_an_instance/presenter.json; echo "dash hits above (expect none)"
-```
+Conflicts are expected on `presentations/sandbox/index.html`, `AGENTS.md`, this file's Log
+section and `presenter.json` when two agents' PRs both touch them, because agents now edit
+those directly. Resolve by keeping both agents' entries, newest first in each list - never
+drop either side. The main checkout should be clean before and after; if it is not, find out
+why before pushing.
 
 Push, confirm, clean up:
 
@@ -294,11 +320,12 @@ site returns 403, not 404.
 ## Sandbox
 
 Documented in `AGENTS.md` under "Sandbox"; the short version: `presentations/sandbox/` holds
-`index.html` (hand-maintained list, orchestrator-owned), `sandbox.css` (shared,
-orchestrator-owned) and one page per slide change named `<slide-id>-<slug>.html`, created
-from `tools/sandbox-template.html`. A page embeds the live deck slide three times in iframes
-and injects one CSS variant into each on `load`; the options are therefore always the
-deployed deck plus a few rules and track deck edits automatically. Injection needs HTTP -
+`index.html` (hand-maintained list, edited by whichever agent's PR adds or resolves a page),
+`sandbox.css` (shared, orchestrator-owned) and one page per slide change named
+`<slide-id>-<slug>.html`, created from `tools/sandbox-template.html`. A page embeds the live
+deck slide three times in iframes and injects one CSS variant into each on `load`; the
+options are therefore always the deployed deck plus a few rules and track deck edits
+automatically. Injection needs HTTP -
 from `file://` the iframes load but every option renders as the plain deck. Live at
 https://d3ga0oyittaf77.cloudfront.net/sandbox/ , `noindex`, not linked from the landing page.
 
@@ -312,10 +339,12 @@ https://d3ga0oyittaf77.cloudfront.net/sandbox/ , `noindex`, not linked from the 
   notes after every edit; mirror changes into `presenter.json`.
 - Anything near the bottom of a slide must clear the timeline strip. Taller variants push
   content down onto it - always look at the 1920x1080 screenshot.
-- Parallel agents all edit `index.html`. Different slides sit in different regions, so
-  `--no-ff` merges are clean in practice; the files that do conflict are `presenter.json`
-  (adjacent entries) and anything orchestrator-owned, which is why agents may not touch the
-  latter. Resolve `presenter.json` conflicts by keeping both agents' entries.
+- Parallel agents all edit `presentations/migrating_an_instance/index.html`. Different
+  slides sit in different regions, so `--no-ff` merges are clean there in practice. Agents
+  now also edit `presentations/sandbox/index.html`, `AGENTS.md`, this file's Log section and
+  `presenter.json` directly, so conflicts on those four are expected whenever two agents'
+  PRs land close together - resolve by keeping both agents' entries, newest first in each
+  list, never by dropping one side.
 - Slide agents must not rely on the live site: their iframes point at the deck relative to
   the sandbox page, so their local HTTP screenshot shows their branch's deck, and the
   deployed page shows `main`. After the merge those are the same.
@@ -338,11 +367,12 @@ ls presentations/sandbox/                                               # pages 
 git log --oneline origin/main -10
 ```
 
-Then, in order: merge and deploy any open PR that passes verification; re-dispatch any slide
-listed under "In flight" below that has a worktree or branch but no PR (a killed agent - the
-brief is reconstructable from the Log entry); update the Log; tell Joseph in one line what
-was recovered and what is still waiting on him. Unmerged worktrees from a dead session can be
-removed with `git worktree remove --force <path>` once their branch is pushed or abandoned.
+Then, in order: merge any open PR (dispatch a verifier first only if its own evidence looks
+incomplete), resolving conflicts as above, then push and deploy each; re-dispatch any branch
+or worktree that has no PR yet (a killed agent - the brief is reconstructable from the branch
+name and whatever is already committed on it); tell Joseph in one line what was recovered and
+what is still waiting on him. Unmerged worktrees from a dead session can be removed with
+`git worktree remove --force <path>` once their branch is pushed or abandoned.
 
 ## Keynote
 
@@ -366,6 +396,9 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, process changed to one PR per instruction.** Joseph: every instruction goes
+  to an agent that returns one PR; the orchestrator only merges, resolves conflicts, pushes
+  and reports. This file rewritten accordingly.
 - **2026-08-27, slide 4 (`#s03`) deleted.** "Migration objectives and design decisions"
   removed at Joseph's request: section, its `obj-*` CSS block (used nowhere else) and
   its `presenter.json` entry; its 60 s moved to `s17` (Questions, now 360 s) so the
