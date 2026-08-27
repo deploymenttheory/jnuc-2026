@@ -410,7 +410,7 @@ it up - either way it is on disk for a recovering session.
   (`internal/services/client_checkin/resource_crud.go`, which fixes the resource's id to
   `jamfpro_client_checkin_singleton` on create/read/update), corroborated by the identical
   `jamfpro_activation_code_singleton` pattern on the sibling singleton resource. At
-  Joseph's request, no options. PR #TODO.
+  Joseph's request, no options. PR #18.
 - **2026-08-27, Sandbox button added to the landing page.** A button-style link (`.go`,
   reused from the deck cards) to `sandbox/` now sits under the deck cards on
   `presentations/index.html`, with a one-line caption. `AGENTS.md` and this file updated to
