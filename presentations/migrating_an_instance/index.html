@@ -653,31 +653,37 @@ body.reader .reader-extra {
 .reject-why { font-size: var(--fs-caption); color: var(--c-text-muted); }
 
 /* ============================ S05 migration paths ============================ */
-/* Three candidate paths, one row each, separated by a rule. Within a row the flow
-   diagram reads left to right: the left box is the environment the change lands in
-   first, the right box is where it goes next. Paths 1 and 2 carry a return arrow
-   because they repeat per resource type; path 3 does not, which is the whole
-   difference between it and path 2.
+/* Three candidate paths, each its own bordered panel with the diagram centred inside
+   (sandbox option D, accepted 2026-08-27) - the chosen path's panel is edged in the
+   accent colour instead of the neutral border. Within a row the flow diagram reads
+   left to right: the left box is the environment the change lands in first, the
+   right box is where it goes next. Paths 1 and 2 carry a return arrow because they
+   repeat per resource type; path 3 does not, which is the whole difference between
+   it and path 2.
    Each flow's viewBox is cropped close to the drawn width (1360, not the 1728 of
-   the content column), so `width: 100%` scales the boxes and their labels up by a
-   quarter instead of leaving a quarter of every row empty. 1360 rather than the
+   the content column), so a diagram at 70% of the panel width reads at a similar
+   scale to the panel's own text rather than dominating it. 1360 rather than the
    drawn 1280 because a full crop makes the rows taller than the space above the
    timeline strip. */
-#s05 .mp-paths { display: flex; flex-direction: column; gap: var(--sp-1); }
-#s05 .mp-path { padding-bottom: var(--sp-1); border-bottom: var(--bw-1) solid var(--c-border); }
-#s05 .mp-path:last-child { border-bottom: none; }
+#s05 .mp-paths { display: flex; flex-direction: column; gap: var(--sp-2); }
+#s05 .mp-path {
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius);
+  padding: var(--sp-2) var(--sp-3);
+}
 #s05 .mp-head { display: flex; align-items: baseline; gap: var(--sp-2); margin-bottom: var(--sp-1); }
 #s05 .mp-num {
   font-family: var(--f-mono);
-  font-size: var(--fs-caption);
+  font-size: var(--fs-body);
   color: var(--c-text-muted);
   letter-spacing: .12em;
 }
-#s05 .mp-name { font-family: var(--f-display); font-size: var(--fs-code); font-weight: 600; line-height: var(--lh-tight); }
+#s05 .mp-name { font-family: var(--f-display); font-size: var(--fs-body); font-weight: 600; line-height: var(--lh-tight); }
 #s05 .mp-why { margin-left: auto; font-size: var(--fs-caption); color: var(--c-text-muted); text-align: right; }
-#s05 .mp-flow { display: block; width: 100%; height: auto; }
+#s05 .mp-flow { display: block; width: 70%; height: auto; margin: 0 auto; }
 #s05 .mp-chosen .mp-name { color: var(--c-accent); }
 #s05 .mp-chosen .mp-box { stroke: var(--c-accent); stroke-width: var(--bw-2); }
+#s05 .mp-path.mp-chosen { border: var(--bw-2) solid var(--c-accent); }
 #s05 .mp-dim .dg-label, #s05 .mp-dim .dg-eg { fill: var(--c-text-muted); }
 #s05 .mp-env { font-family: var(--f-display); font-size: 30px; font-weight: 600; fill: var(--c-text); }
 #s05 .mp-dim .mp-env { fill: var(--c-text-muted); }
@@ -697,7 +703,7 @@ body.reader .reader-extra {
 /* The read-only-scopes control used to be a card at the foot of the slide. It only ever
    explained path 03, so it rides with path 03 now and the foot of the slide is free
    (Joseph, 2026-08-27). */
-#s05 .mp-control { font-size: var(--fs-caption); color: var(--c-text-muted); margin-bottom: var(--sp-1); }
+#s05 .mp-control { font-size: var(--fs-caption); color: var(--c-text-muted); margin: 0 0 var(--sp-2); }
 #s05 .mp-control strong { color: var(--c-accent); font-weight: 600; }
 .statement {
   margin-top: var(--sp-4);
@@ -751,26 +757,49 @@ body.reader .reader-extra {
 .prep-portion .checklist { max-width: none; gap: var(--sp-4); }
 
 /* ============================ S08 ============================ */
+/* Seven bands stepping down the slide (option C, accepted 2026-08-27): one step per
+   line at slide size, each band starting a notch further in than the one above and all
+   of them ending flush right, so the sequence reads as a descent rather than a grid.
+   Uses the full slide height instead of a strip across the top. */
+#s08 { display: flex; flex-direction: column; }
 .stepper {
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   gap: var(--sp-2);
-  align-items: stretch;
+  flex: 1;
 }
-.step { font-size: var(--fs-caption); display: flex; flex-direction: column; gap: var(--sp-2); }
+.step {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--sp-4);
+  font-size: var(--fs-body);
+  padding: var(--sp-2) var(--sp-4);
+  border-left-width: var(--bw-3);
+  border-left-color: var(--c-accent);
+}
 .step-num {
   font-family: var(--f-mono);
   font-size: var(--fs-h2);
   color: var(--c-accent);
   line-height: var(--lh-tight);
+  min-width: var(--sp-5);
+  text-align: right;
 }
 .step-lock .step-num { color: var(--c-danger); }
-.step-lock { border-color: var(--c-danger); }
-.lock-glyph { width: var(--sp-3); }
+.step-lock { border-left-color: var(--c-danger); }
+.lock-glyph { width: var(--sp-4); flex: none; }
 .lock-glyph .lock-body { fill: var(--c-danger); }
 .lock-glyph .lock-shackle { fill: none; stroke: var(--c-danger); stroke-width: var(--bw-2); }
 .step .todo { white-space: normal; align-self: flex-start; }
+.step:nth-child(2) { margin-left: var(--sp-3); }
+.step:nth-child(3) { margin-left: calc(var(--sp-3) * 2); }
+.step:nth-child(4) { margin-left: calc(var(--sp-3) * 3); }
+.step:nth-child(5) { margin-left: calc(var(--sp-3) * 4); }
+.step:nth-child(6) { margin-left: calc(var(--sp-3) * 5); }
+.step:nth-child(7) { margin-left: calc(var(--sp-3) * 6); }
 
 /* ============================ S10 sequencing ============================ */
 .s10-intro { max-width: 1600px; margin-bottom: var(--sp-3); }
