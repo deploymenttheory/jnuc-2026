@@ -35,7 +35,7 @@ landing page keeps its own near-black look - it is not a deck.
 |---|---|
 | `presentations/<slug>/` | One talk. Snake-case slug. Each deck owns its own HTML, tokens and script; decks do not import from each other beyond `_shared/`. |
 | `presentations/_shared/` | Data used by more than one deck: `speakers.js` and `qr-code.png` (the training deck's take-it-with-you code). Content, not styling - see below. |
-| `presentations/sandbox/` | Feedback review pages: one page per deck change showing three implementation options as live renders of the real slide, plus a hand-maintained `index.html` and `sandbox.css`. Deploys with the site at `/sandbox/`. See Sandbox. |
+| `presentations/sandbox/` | Feedback review pages: one page per deck change showing three implementation options as live renders of the real slide, plus a hand-maintained `index.html` and `sandbox.css`. Deploys with the site at `/sandbox/`, linked from the landing page's Sandbox button (added 2026-08-27 at Joseph's request). See Sandbox. |
 | `template.key` | The Jamf-supplied JNUC 2026 Keynote template. Canonical reference for palette, typography and mandatory slides. |
 | `.github/workflows/` | `deploy.yml` only - the S3 sync and CloudFront invalidation. See Deployment. |
 | `tools/` | `build-key.mjs`, which builds the Keynote downloads from the decks on a Mac (the only thing `package.json` exists for), and `sandbox-template.html`, the starting point for every sandbox review page. |
@@ -540,8 +540,8 @@ Each change gets a review page under `presentations/sandbox/`, created from
 `tools/sandbox-template.html`, showing three implementation options; Joseph picks one in
 chat or asks for another set, and the winner goes into the deck. `index.html` lists the pages by
 hand and `sandbox.css` styles them (landing-page look, not the JNUC template - this is
-tooling, not a deck). Every page carries `<meta name="robots" content="noindex">` and
-nothing links to `/sandbox/` from the landing page.
+tooling, not a deck). Every page carries `<meta name="robots" content="noindex">`. The
+landing page carries a "Sandbox" button linking to it (added 2026-08-27 at Joseph's request).
 
 How a review page works: it embeds the real slide three times in iframes
 (`../<deck>/index.html#<slide-id>`) and, on each iframe's `load`, appends a `<style>` with
@@ -587,7 +587,7 @@ The bucket mirrors `presentations/` exactly, so the URL layout is the repo layou
 | `/migrating_an_instance/` | `presentations/migrating_an_instance/index.html` |
 | `/training_a_team/` | `presentations/training_a_team/index.html` |
 | `/_shared/speakers.js` | `presentations/_shared/speakers.js` |
-| `/sandbox/` | `presentations/sandbox/index.html` (feedback review pages, one per change, not linked from the landing page) |
+| `/sandbox/` | `presentations/sandbox/index.html` (feedback review pages, one per change, linked from the landing page's Sandbox button) |
 
 Live at https://d3ga0oyittaf77.cloudfront.net - CloudFront in front of a private S3 bucket
 (`jl-html-presentation-2026`, OAC access). Infra is `~/Github/terraform/presentation.tf`, an

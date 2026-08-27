@@ -146,6 +146,15 @@
     color: var(--text);
   }
 
+  .sandbox-line {
+    margin: 24px 0 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    color: var(--muted);
+    font-size: 14px;
+  }
 
   footer {
     margin-top: 56px;
@@ -212,6 +221,17 @@
         </div>
       </article>
     </main>
+
+    <p class="sandbox-line">
+      <a class="go" href="sandbox/">
+        Sandbox
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      Implementation options for deck feedback, one page per change.
+    </p>
 
     <footer>
       Decks open in this tab. Use your browser's back button to return here.
