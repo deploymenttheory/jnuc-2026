@@ -85,7 +85,7 @@
       "title": "Resource sequencing",
       "timerSeconds": 75,
       "notes": [
-        "The matrix is a spreadsheet the team built together. Risk scales with dependency fan-in; policies sit on top of everything, so they close the migration.",
+        "The matrix is a spreadsheet the team built together. Risk scales with dependency fan-in: singletons carry none, scripts and categories and departments stand alone, smart groups and advanced searches and extension attributes sit on top of those, and profiles and policies sit on top of everything - so they close the migration.",
         "Also considered migrating instance-by-instance - rejected in favour of one resource type at a time, end to end."
       ]
     },
@@ -113,7 +113,7 @@
       "title": "Dynamic creation with for_each",
       "timerSeconds": 120,
       "notes": [
-        "The technical centrepiece. One block per type; adding script two hundred is a one-line diff; reviews diff data, not boilerplate.",
+        "The technical centrepiece. One block per type; adding category two hundred is a one-line diff; reviews diff data, not boilerplate.",
         "Division of labour: Gordon imported verbosely, Joseph refined in passes - dedup, name the IDs, share the locals - with a zero-diff plan after every pass, through February and March."
       ]
     },
@@ -135,11 +135,21 @@
       ]
     },
     {
+      "id": "s-staging",
+      "title": "Rebuilding staging",
+      "timerSeconds": 120,
+      "notes": [
+        "The highlight - slow down here.",
+        "Importing staging would have enshrined years of drift. So: wipe (keep APNS and the cloud IdP), apply production's modules, iterate through the errors until clean. Parity is now inherited, not claimed.",
+        "Set up the next two slides: rebuilding staging is what exposed the repo problem. A real staging environment is only useful if you can deploy to it first, and back then a change there mirrored straight to production."
+      ]
+    },
+    {
       "id": "s-pivot",
       "title": "Growing pains",
       "timerSeconds": 60,
       "notes": [
-        "The FQDN conditionals were everywhere by March - behaviour inferred from a URL.",
+        "The trigger was the staging rebuild: we wanted staging-first deploys without mirroring to production, and the only lever the repo had was an FQDN conditional. They were everywhere before long - deployment behaviour inferred from a URL.",
         "The pivot: modules own configuration, thin per-instance roots own only genuine differences."
       ]
     },
@@ -153,20 +163,12 @@
       ]
     },
     {
-      "id": "s-staging",
-      "title": "Rebuilding staging",
-      "timerSeconds": 120,
-      "notes": [
-        "The highlight - slow down here.",
-        "Importing staging would have enshrined years of drift. So: wipe (keep APNS and the cloud IdP), apply production's modules, iterate through the errors until clean. Parity is now inherited, not claimed."
-      ]
-    },
-    {
       "id": "s-today",
       "title": "Refinements along the way",
       "timerSeconds": 60,
       "notes": [
-        "The estate as it stands: DevTest joined recently with a single CLI workspace, sandbox stepped out to CLI-only, and Release Please gave way to calendar versioning - releases findable by date when a flood of tickets lands."
+        "Walk the four tiers by role, not by name. Sandbox: isolated, no restrictions, CLI and GUI both open - break it, reset, start again; onboarding and leadership demos live here. DevTest: under IdP and device compliance but not change controlled - prove a change out fast. Staging: an exact replica, to the point that a device enrolled there is indistinguishable bar the MDM certificate - and it is only true because of the rebuild on the previous slide. Production: minimal downtime, because everything upstream has already done the work.",
+        "Then CalVer: we defaulted to SemVer like typical devs, but v1.64.3 tells you nothing about a Jamf Pro estate. A date does - roll back to the day the incidents were raised."
       ]
     },
     {
@@ -174,7 +176,8 @@
       "title": "By the numbers",
       "timerSeconds": 45,
       "notes": [
-        "April 2025 is the provider-development start; nothing was imported before November 2025. v1.0.0 landed May 2026."
+        "Split the timeline or the room hears thirteen months of migration. April 2025 is the provider-development start; nothing was imported before November 2025. May 2026 is both v1.0.0 and the final handover, with the Mac engineering team working proficiently on their own.",
+        "Close on the handover, not the stats: approaching a thousand pull requests now, and none of the three of us are on that team any more. The estate is still moving. That is the real number on the slide."
       ]
     },
     {

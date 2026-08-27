@@ -39,6 +39,8 @@ landing page keeps its own near-black look - it is not a deck.
 | `template.key` | The Jamf-supplied JNUC 2026 Keynote template. Canonical reference for palette, typography and mandatory slides. |
 | `.github/workflows/` | `deploy.yml` only - the S3 sync and CloudFront invalidation. See Deployment. |
 | `tools/` | `build-key.mjs`, which builds the Keynote downloads from the decks on a Mac (the only thing `package.json` exists for), and `sandbox-template.html`, the starting point for every sandbox review page. |
+| `feedback-workflow.md` | The deck feedback loop: standing rules, orchestrator and slide-agent roles, brief templates, commands, recovery steps and a log. Read it before touching a deck in response to feedback. Not shipped (`*.md` is excluded from the deploy). |
+| `docs/superpowers/plans/` | The first-round implementation plan, superseded by `feedback-workflow.md` and kept for its triage table. Not shipped. |
 | `README.md`, `LICENSE` | Repo boilerplate. |
 
 The decks have no build step. Node is in this repo purely for `tools/build-key.mjs`, which is
@@ -123,7 +125,7 @@ one and the other does not follow.
 | `index.html` | The deck. Needs `../_shared/speakers.js` alongside it for the title-slide speaker cards. |
 | `from-clicks-to-code-jnuc2026.pptx` | Gone. The download is now the committed `.key` below. |
 | `from-clicks-to-code-jnuc2026.key` | The committed Keynote download, written by `tools/build-key.mjs`. The landing page links to this exact filename, so it is set in the script, not chosen freely. Rebuild and commit it with any deck edit. |
-| `presenter.json` | Per-slide speaker notes and timer lengths plus the 30-minute talk limit. Notes are a copy of the deck's `<aside class="notes">` text - keep both in sync when notes change. Timer allocations are proposed, not rehearsed. Nothing reads this file yet. |
+| `presenter.json` | Per-slide speaker notes and timer lengths plus the 30-minute talk limit. Notes are a copy of the deck's `<aside class="notes">` text and the slide order mirrors the deck - the deck wins when they differ, and `feedback-workflow.md` carries a check that must print `OK` before every push. Regenerated from the deck on 2026-08-27 (timers kept). Timer allocations are proposed, not rehearsed. Nothing reads this file yet. |
 | `spec.md` | Spec and change history: the original build runbook, Joseph's source narrative and full repo tree, all three Q&A rounds answered inline, and a decision index. **Historical** - sections marked SUPERSEDED (deck order, palette values, open-questions index) predate the story restructure, and everything it says about the light LBG-green palette predates the JNUC template adoption. |
 
 `spec.md` is provenance for every fact in the deck. Do not delete it; do not treat its
@@ -532,7 +534,7 @@ after each keypress it asserts the deck actually moved.
 Feedback on the clicks-to-code deck arrives in chat. The loop that turns it into deployed
 changes - an orchestrator session dispatching one Sonnet agent per slide, each delivering a
 PR that the orchestrator merges, consolidates and deploys - is written down in
-`feedback-workflow.md` at the repo root (Joseph's working file, untracked; read it first).
+`feedback-workflow.md` at the repo root (committed; read it first).
 Each change gets a review page under `presentations/sandbox/`, created from
 `tools/sandbox-template.html`, showing three implementation options; Joseph picks one in
 chat or asks for another set, and the winner goes into the deck. `index.html` lists the pages by
