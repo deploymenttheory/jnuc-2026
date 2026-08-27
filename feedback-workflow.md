@@ -572,7 +572,7 @@ it up - either way it is on disk for a recovering session.
   command dropped to caption size and the result promoted to 44px bold behind a lime tick,
   gates kept but unfilled) - awaits a decision. All the option CSS is scoped to `#s14`
   because `.terminal`, the `.term-*` classes, `.card`, `.gate` and `.muted` are shared or
-  generic. No PR yet.
+  generic. PR #38.
 - **2026-08-27, slide 14 (`#s13`) option D accepted, wording made more human.** Joseph
   picked option D from the `s13-policies-only` sandbox page - the exception and its reason
   in large type, nothing else - with one change: reword it so it sounds spoken rather than
