@@ -407,6 +407,12 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 7 (`#s07`) runner line of sight row reworded, TODO chips cleared.**
+  Migration prep's runner line of sight row reworded to Joseph's live wording; a third
+  row, "Org-wide policies", added after backout plan (no chip); both remaining TODO chips
+  on the slide (runner line of sight, backout plan) removed, with the AGENTS.md chip table
+  and slide-order note updated to match; speaker notes and presenter.json mirrored. PR
+  #TBD.
 - **2026-08-27, slide 7 (`#s07`) option D accepted.** Sandbox option D ("two portions")
   applied to the deck's `#s07` rules after the slide's earlier rename to Prerequisites:
   instance prep and migration prep now sit side by side. The sandbox page deleted, its
