@@ -566,7 +566,7 @@ it up - either way it is on disk for a recovering session.
   still stops the cursor blink; every colour stays a token. Speaker notes and
   `presenter.json` needed no change - neither references the block's styling - and the check
   prints OK. Sandbox page deleted, index entry marked `.done`, `AGENTS.md`'s slide-15
-  summary and the Sandbox section's "Current pages"/"Decided" lines updated. PR #TODO.
+  summary and the Sandbox section's "Current pages"/"Decided" lines updated. PR #39.
 - **2026-08-27, slide 15 (`#s14`) terminal excerpt options offered.** Joseph said the diagram
   at the top of the slide is not obviously a terminal excerpt and asked for styling options
   that make it read as one. Nothing in the feedback was deterministic, so the deck is
