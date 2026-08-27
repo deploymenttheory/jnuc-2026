@@ -205,7 +205,8 @@ overlay - keep the two in step when slides move.
 4. `s-workspace` What a Terraform workspace is - **Dafydd (TBC)**
 5. `s04` Migration outcomes we considered and rejected (3 architectural rejects; the other 2 moved into the story) - **Joseph**
 6. `s05` Instance migration order (prod first + read-only API client control) - **Joseph**
-7. `s07` Instance prep (tidied checklist: tidy-up, credentials, version check) - **Gordon**
+7. `s07` Prerequisites (tidied checklist: tidy-up, credentials, version check; sandbox
+   option D splits it into instance prep and migration prep) - **Gordon**
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
 9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception) - **Gordon**
 10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**

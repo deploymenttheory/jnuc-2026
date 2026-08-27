@@ -57,7 +57,7 @@
     },
     {
       "id": "s07",
-      "title": "Instance prep",
+      "title": "Prerequisites",
       "timerSeconds": 30,
       "notes": [
         "The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back."
