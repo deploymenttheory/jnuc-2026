@@ -479,7 +479,7 @@ body.reader .reader-extra {
 }
 .pipe-node small { display: block; font-size: var(--fs-chip); color: var(--c-text-muted); }
 /* s01: the three instances are notched segments of one chevron arrow spanning the band
-   (sandbox option B, accepted 2026-08-27). Scoped by id - s-today keeps the plain boxes. */
+   (sandbox option B, accepted 2026-08-27). Scoped to #s01 only. */
 #s01 .pipeline { gap: var(--sp-1); }
 #s01 .pipe-node {
   flex: 1;
@@ -492,8 +492,6 @@ body.reader .reader-extra {
 #s01 .pipe-node:first-child {
   clip-path: polygon(0 0, calc(100% - var(--sp-4)) 0, 100% 50%, calc(100% - var(--sp-4)) 100%, 0 100%);
 }
-.pipe-off { border-style: dashed; color: var(--c-text-muted); }
-.pipe-gap { flex: 1; }
 .constraints {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -1080,11 +1078,6 @@ body.reader .reader-extra {
 .stat-num { display: block; font-family: var(--f-display); font-size: var(--fs-hero); line-height: var(--lh-tight); }
 .stat-num-sm { font-size: var(--fs-h1); }
 .stat-label { display: block; margin-top: var(--sp-2); font-size: var(--fs-caption); color: var(--c-text-muted); }
-
-/* ============================ story additions ============================ */
-.evolution { margin-top: var(--sp-4); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
-.evolution .card { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-2); padding: var(--sp-4); }
-.evo-title { font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); }
 
 /* ============================ presenter window ============================ */
 body.presenter #viewport { display: none; }
@@ -1970,47 +1963,6 @@ body.presenter #viewport { display: none; }
       <aside class="notes">
         <p>Three workspaces per instance is the blast radius control - guidance says ~500 resources per workspace and the estate holds 1,500+.</p>
         <p>Payloads live in the modules too. Staging-only profiles sit in a visible directory, so divergence is explicit.</p>
-      </aside>
-    </section>
-
-    <!-- ============================ Refinements along the way ============================ -->
-    <section class="slide" id="s-today" aria-label="The estate today" data-speaker="Gordon" data-when="2026-06:2026-07">
-      <h1 class="slide-title">The estate today</h1>
-      <div class="pipeline-band card">
-        <p class="pipeline-label caption muted">Route to live, today</p>
-        <div class="pipeline">
-          <span class="pipe-node">DevTest<small>IdP and compliance, no change control</small></span>
-          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node">Staging<small>mirrors production - the final gate</small></span>
-          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-          <span class="pipe-node">Production<small>the live estate</small></span>
-          <span class="pipe-gap"></span>
-          <span class="pipe-node pipe-off">Sandbox - CLI-only<small>isolated - break it, reset, start again</small></span>
-        </div>
-      </div>
-      <div class="evolution">
-        <div class="card">
-          <h2 class="evo-title">DevTest joins</h2>
-          <p class="caption muted">Brought in recently as the first stop on the route to live - a single CLI-triggered workspace. Under IdP and device compliance, but not change controlled: prove a change out here before it goes near staging.</p>
-        </div>
-        <div class="card">
-          <h2 class="evo-title">Sandbox steps out</h2>
-          <p class="caption muted">Trialled inside the route to live, then removed and kept separate - now a CLI-only instance with no workspace behind it, local dev only. Nothing here is safe, and that is the point: it is where new engineers meet Terraform, and where we have put leadership hands-on with it.</p>
-        </div>
-        <div class="card">
-          <h2 class="evo-title">Release Please → CalVer</h2>
-          <p class="caption muted">The release cadence was hard to sustain and releases needed clearer tracking. Calendar versioning instead: when a flood of tickets lands on 1 December, the matching release and its change history are findable by date.</p>
-        </div>
-      </div>
-      <details class="reader-extra">
-        <summary>More detail</summary>
-        <div class="detail-body">
-          <p>Calendar versioning tags releases by date rather than by semantic version, so an incident report from 1 December maps directly to the releases shipped around that date - no changelog archaeology required.</p>
-        </div>
-      </details>
-      <aside class="notes">
-        <p>Walk the four tiers by role, not by name. Sandbox: isolated, no restrictions, CLI and GUI both open - break it, reset, start again; onboarding and leadership demos live here. DevTest: under IdP and device compliance but not change controlled - prove a change out fast. Staging: an exact replica, to the point that a device enrolled there is indistinguishable bar the MDM certificate - and it is only true because of the rebuild on the previous slide. Production: minimal downtime, because everything upstream has already done the work.</p>
-        <p>Then CalVer: we defaulted to SemVer like typical devs, but v1.64.3 tells you nothing about a Jamf Pro estate. A date does - roll back to the day the incidents were raised.</p>
       </aside>
     </section>
 

@@ -166,15 +166,6 @@
       ]
     },
     {
-      "id": "s-today",
-      "title": "The estate today",
-      "timerSeconds": 60,
-      "notes": [
-        "Walk the four tiers by role, not by name. Sandbox: isolated, no restrictions, CLI and GUI both open - break it, reset, start again; onboarding and leadership demos live here. DevTest: under IdP and device compliance but not change controlled - prove a change out fast. Staging: an exact replica, to the point that a device enrolled there is indistinguishable bar the MDM certificate - and it is only true because of the rebuild on the previous slide. Production: minimal downtime, because everything upstream has already done the work.",
-        "Then CalVer: we defaulted to SemVer like typical devs, but v1.64.3 tells you nothing about a Jamf Pro estate. A date does - roll back to the day the incidents were raised."
-      ]
-    },
-    {
       "id": "s16b",
       "title": "By the numbers",
       "timerSeconds": 45,
@@ -186,7 +177,7 @@
     {
       "id": "s17",
       "title": "Questions",
-      "timerSeconds": 300,
+      "timerSeconds": 360,
       "notes": [
         "Open the floor. The links slide is next, ready as the backdrop while questions run."
       ]
