@@ -547,45 +547,81 @@ body.reader .reader-extra {
 
 /* ============================ s-workspace ============================ */
 /* Three layouts ship in the markup; only ws-opt-a shows by default. The sandbox
-   page swaps which wrapper is visible per option - see AGENTS.md Sandbox. */
+   page swaps which wrapper is visible per option - see AGENTS.md Sandbox. Round two set
+   (2026-08-27): A the anatomy diagram, B a parts table, C five Mac-admin questions. */
 #s-workspace .ws-opt-b, #s-workspace .ws-opt-c { display: none; }
 
-/* option A: definition + three ownership cards */
-#s-workspace .ws-def {
-  font-family: var(--f-display);
-  font-size: var(--fs-h2);
-  font-weight: 400;
-  line-height: var(--lh-tight);
-  max-width: 1560px;
-  margin-bottom: var(--sp-4);
+/* option A: the anatomy of a workspace - one bordered box, its compartments, in and out */
+#s-workspace .ws-anatomy { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-3); }
+#s-workspace .ws-anatomy-io {
+  flex: none;
+  width: 270px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--sp-1);
 }
-#s-workspace .ws-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
-#s-workspace .ws-card { display: flex; flex-direction: column; gap: var(--sp-2); }
-#s-workspace .ws-card-title { font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); color: var(--c-accent); }
-
-/* option B: one repository feeding three workspaces, each with its own state */
-#s-workspace .ws-diagram { display: flex; align-items: center; gap: var(--sp-5); }
-#s-workspace .ws-repo { flex: none; width: 320px; display: flex; flex-direction: column; gap: var(--sp-1); }
-#s-workspace .ws-targets { flex: 1; display: flex; flex-direction: column; gap: var(--sp-3); }
-#s-workspace .ws-row { display: flex; align-items: center; gap: var(--sp-3); }
-#s-workspace .ws-target { flex: 1; display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); }
-#s-workspace .ws-target-name { font-size: var(--fs-h2); font-weight: 600; }
-#s-workspace .ws-caption { margin-top: var(--sp-4); }
-
-/* option C: assumption vs reality comparison */
-#s-workspace .ws-compare { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-5); }
-#s-workspace .ws-col {
+#s-workspace .ws-anatomy-io-title { font-family: var(--f-display); font-size: var(--fs-code); font-weight: 600; line-height: var(--lh-tight); }
+#s-workspace .ws-anatomy-io-sub { font-size: var(--fs-chip); color: var(--c-text-muted); }
+#s-workspace .ws-anatomy-box {
+  flex: 1;
+  border: var(--bw-2) solid var(--c-accent);
+  border-radius: var(--radius);
+  padding: var(--sp-3) var(--sp-4);
   display: flex;
   flex-direction: column;
   gap: var(--sp-3);
-  padding: var(--sp-4);
-  border: var(--bw-1) solid var(--c-border);
-  border-radius: var(--radius);
 }
-#s-workspace .ws-col-actual { border-color: var(--c-accent); }
-#s-workspace .ws-col-title { font-family: var(--f-display); font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); }
-#s-workspace .ws-col-actual .ws-col-title { color: var(--c-accent); }
-#s-workspace .ws-col-list { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); font-size: var(--fs-body); line-height: var(--lh-body); }
+#s-workspace .ws-anatomy-box-title {
+  font-family: var(--f-display);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  color: var(--c-accent);
+  line-height: var(--lh-tight);
+}
+#s-workspace .ws-anatomy-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-2); }
+#s-workspace .ws-anatomy-part {
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-2);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+#s-workspace .ws-anatomy-part-name { font-size: var(--fs-caption); font-weight: 600; line-height: var(--lh-tight); }
+#s-workspace .ws-anatomy-part-desc { font-size: var(--fs-chip); color: var(--c-text-muted); line-height: var(--lh-body); }
+#s-workspace .ws-anatomy-caption { margin-top: var(--sp-4); }
+
+/* option B: a parts table - what each thing is, and what it means for this estate */
+#s-workspace .ws-table { width: 100%; border-collapse: collapse; margin-top: var(--sp-2); table-layout: fixed; }
+#s-workspace .ws-table th, #s-workspace .ws-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: var(--sp-2) var(--sp-3);
+  border-bottom: var(--bw-1) solid var(--c-border);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-body);
+}
+#s-workspace .ws-table th {
+  font-family: var(--f-display);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--c-accent);
+  border-bottom: var(--bw-2) solid var(--c-accent);
+}
+#s-workspace .ws-table th:first-child, #s-workspace .ws-table td:first-child { width: 260px; }
+#s-workspace .ws-table td:first-child { font-weight: 600; color: var(--c-text); }
+#s-workspace .ws-table td { color: var(--c-text-muted); }
+
+/* option C: five questions a Mac admin would actually ask */
+#s-workspace .ws-qa { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-5); margin-top: var(--sp-3); }
+#s-workspace .ws-qa-col { display: flex; flex-direction: column; gap: var(--sp-4); }
+#s-workspace .ws-qa-item { display: flex; flex-direction: column; gap: var(--sp-1); }
+#s-workspace .ws-qa-q { font-family: var(--f-display); font-size: var(--fs-h2); font-weight: 600; color: var(--c-accent); line-height: var(--lh-tight); }
+#s-workspace .ws-qa-a { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--c-text-muted); }
 
 /* ============================ S04 ============================ */
 .rejects { display: flex; flex-direction: column; gap: var(--sp-2); }
@@ -958,80 +994,118 @@ body.presenter #viewport { display: none; }
       <h1 class="slide-title">What a Terraform workspace is</h1>
 
       <div class="ws-opt ws-opt-a">
-        <p class="ws-def">A workspace is the unit HCP Terraform manages one configuration against - its own state, its own variables and secrets, its own run history, kept apart from every other workspace.</p>
-        <div class="ws-cards">
-          <div class="card ws-card">
-            <h2 class="ws-card-title">Its state</h2>
-            <p class="caption muted">A record of what has already been applied here, so a plan compares against the right target and nowhere else.</p>
+        <div class="ws-anatomy">
+          <div class="card ws-anatomy-io">
+            <span class="ws-anatomy-io-title">A commit to the repository</span>
+            <span class="ws-anatomy-io-sub">triggers a run</span>
           </div>
-          <div class="card ws-card">
-            <h2 class="ws-card-title">Its variables and secrets</h2>
-            <p class="caption muted">Held per workspace, so a credential set for one environment cannot reach another by accident.</p>
+          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
+          <div class="ws-anatomy-box">
+            <span class="ws-anatomy-box-title">One workspace</span>
+            <div class="ws-anatomy-grid">
+              <div class="ws-anatomy-part">
+                <span class="ws-anatomy-part-name">Linked configuration</span>
+                <span class="ws-anatomy-part-desc">One Terraform configuration, usually from this repository.</span>
+              </div>
+              <div class="ws-anatomy-part">
+                <span class="ws-anatomy-part-name">Variables and secrets</span>
+                <span class="ws-anatomy-part-desc">Read from Vault, kept apart from every other workspace.</span>
+              </div>
+              <div class="ws-anatomy-part">
+                <span class="ws-anatomy-part-name">State</span>
+                <span class="ws-anatomy-part-desc">A record of what has already been applied here.</span>
+              </div>
+              <div class="ws-anatomy-part">
+                <span class="ws-anatomy-part-name">Run queue</span>
+                <span class="ws-anatomy-part-desc">Plan, then, on approval, apply.</span>
+              </div>
+              <div class="ws-anatomy-part">
+                <span class="ws-anatomy-part-name">Permissions</span>
+                <span class="ws-anatomy-part-desc">Who can queue, approve and apply a run.</span>
+              </div>
+            </div>
           </div>
-          <div class="card ws-card">
-            <h2 class="ws-card-title">Its run history and permissions</h2>
-            <p class="caption muted">Every plan and apply is logged against the workspace that ran it, and who may run it is set per workspace too.</p>
+          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
+          <div class="card ws-anatomy-io">
+            <span class="ws-anatomy-io-title">One Jamf Pro instance</span>
+            <span class="ws-anatomy-io-sub">the target</span>
           </div>
         </div>
+        <p class="caption muted ws-anatomy-caption">One workspace applies to one target - here, a single Jamf Pro instance.</p>
       </div>
 
       <div class="ws-opt ws-opt-b">
-        <div class="ws-diagram">
-          <div class="card ws-repo">
-            <span class="mono caption">terraform/jamfpro</span>
-            <span class="caption muted">One configuration</span>
-          </div>
-          <div class="ws-targets">
-            <div class="ws-row">
-              <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-              <div class="card ws-target">
-                <span class="ws-target-name">Sandbox</span>
-                <span class="caption muted">own state</span>
-              </div>
-            </div>
-            <div class="ws-row">
-              <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-              <div class="card ws-target">
-                <span class="ws-target-name">Staging</span>
-                <span class="caption muted">own state</span>
-              </div>
-            </div>
-            <div class="ws-row">
-              <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
-              <div class="card ws-target">
-                <span class="ws-target-name">Production</span>
-                <span class="caption muted">own state</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="caption muted ws-caption">Same code, separate state, separate target - a plan against one workspace never touches another's.</p>
+        <table class="ws-table">
+          <thead>
+            <tr><th>Part</th><th>What it is</th><th>What it means here</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Configuration</td>
+              <td>The Terraform code linked to the workspace, typically from a VCS repository.</td>
+              <td>The module code is shared (iam_main, profiles_policies_main, root_main); each workspace's own root - iam, profiles_policies or root - is what makes it separate.</td>
+            </tr>
+            <tr>
+              <td>State</td>
+              <td>A record of what has already been applied, so a plan compares against the right target.</td>
+              <td>Held remotely by HCP Terraform, never on a laptop - the CLI only runs in development environments.</td>
+            </tr>
+            <tr>
+              <td>Variables and secrets</td>
+              <td>Values and credentials set per workspace, including sensitive ones.</td>
+              <td>Read from Vault, not hardcoded - a credential for one instance cannot reach another by accident.</td>
+            </tr>
+            <tr>
+              <td>Runs</td>
+              <td>A plan, then, on approval, an apply, logged in the workspace's run history.</td>
+              <td>Runs trigger from a VCS commit; every production change is gated by peer review before it applies.</td>
+            </tr>
+            <tr>
+              <td>Permissions</td>
+              <td>Who can queue, approve and apply a run, set per workspace.</td>
+              <td>Import ran through an API client scoped read-only, so a mistake could not write to Jamf Pro.</td>
+            </tr>
+            <tr>
+              <td>Runners</td>
+              <td>Where a plan or apply actually executes.</td>
+              <td>HCP private runners, inside the bank's own network.</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="ws-opt ws-opt-c">
-        <div class="ws-compare">
-          <div class="ws-col">
-            <h2 class="ws-col-title muted">What you might assume</h2>
-            <ul class="ws-col-list">
-              <li>A folder of Terraform files</li>
-              <li>Something you name once and forget</li>
-              <li>Another word for an environment</li>
-            </ul>
+        <div class="ws-qa">
+          <div class="ws-qa-col">
+            <div class="ws-qa-item">
+              <span class="ws-qa-q">Is it just a folder of files?</span>
+              <span class="ws-qa-a">No. A workspace is a unit HCP Terraform manages - its own state, its own variables and secrets, and its own run history, not something you track by hand.</span>
+            </div>
+            <div class="ws-qa-item">
+              <span class="ws-qa-q">Is it the same as an environment?</span>
+              <span class="ws-qa-a">Not quite. Staging and Production are each served by three workspaces here - iam, profiles_policies and root - so one environment can sit behind more than one workspace.</span>
+            </div>
+            <div class="ws-qa-item">
+              <span class="ws-qa-q">Where does the state live?</span>
+              <span class="ws-qa-a">In HCP Terraform, not on a laptop. The CLI only runs in development environments, so staging and production state is never local.</span>
+            </div>
           </div>
-          <div class="ws-col ws-col-actual">
-            <h2 class="ws-col-title">What it actually is</h2>
-            <ul class="ws-col-list">
-              <li>A managed unit HCP Terraform tracks, with its own state, variables and secrets</li>
-              <li>Its own run history and its own permissions</li>
-              <li>One configuration applied to one target - Sandbox, Staging and Production each get their own</li>
-            </ul>
+          <div class="ws-qa-col">
+            <div class="ws-qa-item">
+              <span class="ws-qa-q">Who can run an apply?</span>
+              <span class="ws-qa-a">Set per workspace as a permission, and every production change is gated by peer review before it goes live.</span>
+            </div>
+            <div class="ws-qa-item">
+              <span class="ws-qa-q">What happens when I push a change?</span>
+              <span class="ws-qa-a">The commit triggers a run: a plan first, then, once approved, an apply - both logged in that workspace's history.</span>
+            </div>
           </div>
         </div>
       </div>
 
       <aside class="notes">
-        <p>Keep this simple and concrete - a workspace is just the thing HCP Terraform runs one configuration against, with its own state, its own variables and its own run history.</p>
-        <p>Land the "why it matters" line for each - Mac admins have never worked this way, so the value is in what stays separated, not the mechanics.</p>
+        <p>Walk the shape before the detail - a workspace links one configuration and holds its own state, its own variables and secrets, and its own run history, and a run is always a plan followed, on approval, by an apply.</p>
+        <p>Land why it matters for our estate - state, secrets and run history stay separate per workspace, so a credential or a change in one instance can never reach another by accident.</p>
       </aside>
     </section>
 

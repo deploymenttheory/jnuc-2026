@@ -33,8 +33,8 @@
       "title": "What a Terraform workspace is",
       "timerSeconds": 60,
       "notes": [
-        "Keep this simple and concrete - a workspace is just the thing HCP Terraform runs one configuration against, with its own state, its own variables and its own run history.",
-        "Land the \"why it matters\" line for each - Mac admins have never worked this way, so the value is in what stays separated, not the mechanics."
+        "Walk the shape before the detail - a workspace links one configuration and holds its own state, its own variables and secrets, and its own run history, and a run is always a plan followed, on approval, by an apply.",
+        "Land why it matters for our estate - state, secrets and run history stay separate per workspace, so a credential or a change in one instance can never reach another by accident."
       ]
     },
     {
