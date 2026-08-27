@@ -529,8 +529,9 @@ after each keypress it asserts the deck actually moved.
 
 ## Sandbox (feedback review pages)
 
-Feedback on the clicks-to-code deck arrives in rounds via `feedback-clickstocode.md` at the
-repo root (Joseph's working file, untracked). Each change gets a review page under
+Feedback on the clicks-to-code deck arrives in rounds via `feedback-workflow.md` at the
+repo root (Joseph's working file, untracked: his standing instructions, the change requests,
+and handover notes for whoever runs the next round - read it first). Each change gets a review page under
 `presentations/sandbox/` showing three implementation options; Joseph picks one there or
 asks for another set, and the winner goes into the deck. `index.html` lists the pages by
 hand and `sandbox.css` styles them (landing-page look, not the JNUC template - this is
