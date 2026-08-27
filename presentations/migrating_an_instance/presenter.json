@@ -48,11 +48,13 @@
     },
     {
       "id": "s05",
-      "title": "Instance migration order",
+      "title": "Migration path options",
       "timerSeconds": 90,
       "notes": [
-        "Counterintuitive on purpose. Importing is read-then-manage - with a read-only API client there is no write surface, so prod-first is safer than it sounds.",
-        "Write scopes were only widened once imports were stable at zero diff."
+        "Three paths were genuinely on the table. Walk each diagram left to right - the left box is where a change lands first, the right box is where it goes next.",
+        "On path one the colour is the resource type - scripts, then dock items, then categories - and the same colour appears in both environments, so you can see all of one kind crossing before the next one starts.",
+        "Paths one and two both keep staging in the loop while production is still being built, and that is what killed them: staging was not representative, so validating against it proved nothing. Path three leaves staging until production is finished, which is the whole difference between it and path two.",
+        "Prod first is counterintuitive on purpose. Importing is read-then-manage - with a read-only API client there is no write surface, so it is safer than it sounds. Write scopes were only widened once imports were stable at zero diff."
       ]
     },
     {
