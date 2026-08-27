@@ -755,6 +755,10 @@ body.reader .reader-extra {
 .s10-svg .band-3 { fill: color-mix(in srgb, var(--c-accent) 18%, var(--c-surface)); }
 .s10-svg .band-4 { fill: color-mix(in srgb, var(--c-accent) 26%, var(--c-surface)); }
 .s10-svg .band-5 { fill: color-mix(in srgb, var(--c-accent) 34%, var(--c-surface)); stroke: var(--c-accent); }
+/* Diagram text bumped one step up the scale (tier labels and the right-hand examples
+   alike) - Joseph asked for the text in this diagram a little bigger. */
+#s10 .dg-label { font-size: var(--fs-code); }
+#s10 .dg-eg { font-size: var(--fs-caption); }
 
 /* ============================ S11 ============================ */
 .s11-grid { display: grid; grid-template-columns: 560px 1fr; gap: var(--sp-5); align-items: start; }
