@@ -206,7 +206,7 @@ overlay - keep the two in step when slides move.
 5. `s04` Migration outcomes we considered and rejected (3 architectural rejects; the other 2 moved into the story) - **Joseph**
 6. `s05` Instance migration order (prod first + read-only API client control) - **Joseph**
 7. `s07` Prerequisites (two portions, instance prep and migration prep, each a tidied
-   checklist; migration rows carry TODO chips pending Gordon's wording) - **Gordon**
+   checklist) - **Gordon**
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
 9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception) - **Gordon**
 10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
@@ -290,8 +290,6 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
 |---|---|---|
 | `s-pivot` | Real FQDN-conditional example | Joseph |
 | `s-staging` | Confirm the month - drives the timeline bar | Gordon Deacon |
-| `s07` | Confirm wording for the runner line of sight row | Gordon |
-| `s07` | Confirm what the backout plan was | Gordon |
 | `s18` | URLs, contact, socials (Q12) | Joseph |
 
 One chip still carries a question number from the first build (`TODO Q12`). It resolves in

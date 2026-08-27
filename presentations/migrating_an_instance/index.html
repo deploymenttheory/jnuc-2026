@@ -1520,21 +1520,28 @@ body.presenter #viewport { display: none; }
               <span class="check" aria-hidden="true"></span>
               <span class="check-body">
                 <strong class="check-lead">Runner line of sight</strong>
-                <span class="check-detail">Confirmed the HCP private runners could reach every Jamf Pro instance before the first run. <span class="todo">TODO: confirm wording with Gordon</span></span>
+                <span class="check-detail">Confirm that your Terraform runtime environment has line of sight to each of your Jamf Pro instances.</span>
               </span>
             </li>
             <li>
               <span class="check" aria-hidden="true"></span>
               <span class="check-body">
                 <strong class="check-lead">Backout plan</strong>
-                <span class="check-detail">Agreed how to back out an import that went wrong before starting it. <span class="todo">TODO: confirm what the plan was</span></span>
+                <span class="check-detail">Agreed how to back out an import that went wrong before starting it.</span>
+              </span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"></span>
+              <span class="check-body">
+                <strong class="check-lead">Org-wide policies</strong>
+                <span class="check-detail">Ensure there are no org-wide policies blocking the actions you intend to take, specifically for Terraform or existing infra.</span>
               </span>
             </li>
           </ul>
         </div>
       </div>
       <aside class="notes">
-        <p>The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back. Migration prep sits alongside it: runner line of sight and a backout plan, agreed before the first import.</p>
+        <p>The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back. Migration prep sits alongside it: runner line of sight, a backout plan and a check for org-wide policies, agreed before the first import.</p>
       </aside>
     </section>
 
