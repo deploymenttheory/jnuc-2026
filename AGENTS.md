@@ -211,7 +211,9 @@ overlay - keep the two in step when slides move.
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
 9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception) - **Gordon**
 10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
-11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk) - **Dafydd**
+11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; seven steps as full-width
+    bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
+    with a red left edge) - **Dafydd**
 12. `s11` Tools and helpers (JamfPy -> script -> map -> for_each) - **Gordon**
 13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Joseph**
 14. `s13` for_each exceptions (policies only - dock items removed 2026-08-27, they were
@@ -626,10 +628,7 @@ Current pages (all under `presentations/sandbox/migrating_an_instance/`):
 `s05-fill-the-space` (2026-08-27, awaiting a decision - slide 6 `#s05`, four layouts for the
 space the control-note card left behind: every row scaled to the full width, the chosen path
 in an accent panel, only the chosen path drawn, and each path as its own framed block);
-`s08-use-of-space` (2026-08-27, awaiting a decision - slide 11 `#s08`, four layouts for the
-migration wave workflow: the live single row, two rows of four then three, seven bands
-stepping down, and the freeze as a full-height centre panel; layout only, the content is
-unchanged); `s13-policies-only` (2026-08-27, slide 14 `#s13`, four options for a
+`s13-policies-only` (2026-08-27, slide 14 `#s13`, four options for a
 slide covering a single `for_each` exception now that dock items are gone - awaiting a
 decision). Decided (all under `presentations/sandbox/migrating_an_instance/`):
 `s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
@@ -639,6 +638,9 @@ the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
 deck's `#s01` rules; the page is deleted, the index keeps the record as a non-linked
 `.done` entry); `s07-checklist` (2026-08-27, option D - two portions - applied to the
 deck's `#s07` rules; the page is deleted, the index keeps the record as a non-linked
+`.done` entry); `s08-use-of-space` (2026-08-27, option C - seven full-width bands
+stepping down the slide, each starting a notch further in than the one above - applied to
+the deck's `#s08` rules; the page is deleted, the index keeps the record as a non-linked
 `.done` entry); `s-workspace-round3` (2026-08-27, live slide kept, B to D rejected - none
 of the three redesigned alternatives captured the point; the page is deleted, the index
 keeps the record as a non-linked `.done` entry); `s10-diagram-text` (2026-08-27, option C -
