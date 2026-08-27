@@ -500,17 +500,36 @@ body.reader .reader-extra {
   gap: var(--sp-2);
   margin-top: var(--sp-3);
 }
-#s01 .constraints-col { display: flex; flex-direction: column; gap: var(--sp-2); }
-#s01 .constraints-title {
-  font-family: var(--f-mono);
-  font-size: var(--fs-caption);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--c-text-muted);
+/* Bordered panel per column with a subgrid so the title row and both item rows share
+   heights across all three panels (sandbox option C, accepted 2026-08-27). */
+#s01 .constraints-col {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: var(--sp-2);
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius);
+  padding: var(--sp-3);
 }
-#s01 .constraints-col ul { list-style: none; display: flex; flex-direction: column; gap: var(--sp-2); }
+#s01 .constraints-title {
+  font-family: var(--f-display);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--c-accent);
+}
+#s01 .constraints-col ul { list-style: none; display: contents; }
 .constraints li { font-size: var(--fs-caption); }
+#s01 .constraints-col li {
+  padding: var(--sp-2) 0;
+  border-bottom: var(--bw-1) solid var(--c-hairline);
+}
+#s01 .constraints-col li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
 
 /* ============================ S02 ============================ */
 .teams { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-3); }
@@ -823,22 +842,22 @@ body.presenter #viewport { display: none; }
         <div class="constraints-col">
           <h2 class="constraints-title">Context</h2>
           <ul>
-            <li class="card">No hardcoded secrets, anywhere, and all HCL must satisfy org linters.</li>
-            <li class="card">Terraform CLI available only in development environments.</li>
+            <li>No hardcoded secrets, anywhere, and all HCL must satisfy org linters.</li>
+            <li>Terraform CLI available only in development environments.</li>
           </ul>
         </div>
         <div class="constraints-col">
           <h2 class="constraints-title">Requirements</h2>
           <ul>
-            <li class="card">Every production change gated by peer review, from one shared source of truth for every team - resources are not split by org structure.</li>
-            <li class="card">Versioned releases, with change history findable when it is needed.</li>
+            <li>Every production change gated by peer review, from one shared source of truth for every team - resources are not split by org structure.</li>
+            <li>Versioned releases, with change history findable when it is needed.</li>
           </ul>
         </div>
         <div class="constraints-col">
           <h2 class="constraints-title">Constraints</h2>
           <ul>
-            <li class="card">Align with the bank's strategic tooling: GitHub, VCS-triggered Terraform runs, internally hosted HashiCorp Vault, HCP Terraform for remote state and run execution on HCP private runners.</li>
-            <li class="card">Post-migration, all create/update/delete operations happen through Terraform only.</li>
+            <li>Align with the bank's strategic tooling: GitHub, VCS-triggered Terraform runs, internally hosted HashiCorp Vault, HCP Terraform for remote state and run execution on HCP private runners.</li>
+            <li>Post-migration, all create/update/delete operations happen through Terraform only.</li>
           </ul>
         </div>
       </div>

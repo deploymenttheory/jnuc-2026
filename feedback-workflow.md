@@ -386,7 +386,7 @@ purpose.
 
 ### In flight
 
-- slide 2 (#s01) - branch feedback/s01-column-titles - dispatched 2026-08-27 - options - PR #4 merged and deployed, awaiting a decision; option C amended 2026-08-27 (divider at the same height in every panel, subgrid) - feedback: merge secrets+linters, merge peer review+shared source, drop tidy-up, title the three columns Context / Requirements / Constraints.
+Nothing.
 
 (Format: `slide N (#id) - branch feedback/<id>-<slug> - dispatched
 <date time> - <options|acceptance X> - PR #n or "no PR yet" - feedback: <one line>`.)
@@ -396,6 +396,12 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 2 (`#s01`) column titles decided.** Option C ("Bordered column
+  panel") accepted and applied: `#s01 .constraints-col` is a bordered panel per column with
+  a subgrid so the title row and both item rows share heights across all three panels;
+  `#s01 .constraints-title` sits in accent display type; items are plain hairline-separated
+  rows (the `card` class dropped from the six `<li>`s). Sandbox page deleted, index entry
+  retired to a `.done` line. PR #8.
 - **2026-08-27, process changed to one PR per instruction.** Joseph: every instruction goes
   to an agent that returns one PR; the orchestrator only merges, resolves conflicts, pushes
   and reports. This file rewritten accordingly.
