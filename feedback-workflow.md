@@ -554,6 +554,17 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 6 (`#s05`) option D accepted - each path in its own panel.**
+  Joseph picked option D from the `s05-fill-the-space` sandbox page: the hairlines between
+  paths become full bordered panels, one per path, with the chosen path (03) edged in the
+  accent colour, and each flow diagram sits centred inside its panel at 70% width rather
+  than running edge to edge. Pure CSS on the existing markup - the option's rules folded
+  into the S05 block as the net result, replacing the rules they override rather than
+  stacking on top (the old border-bottom-only path separator and `last-child` rule are
+  gone, replaced by a full border and radius on every panel). Speaker notes and
+  `presenter.json` untouched - neither references the old layout - and the check prints OK.
+  Sandbox page deleted, index entry marked `.done`, `AGENTS.md`'s slide-6 summary and
+  Sandbox section updated. PR #36.
 - **2026-08-27, slide 11 (`#s08`) migration wave workflow, option C applied.** Joseph picked
   option C from `s08-use-of-space.html`: the seven steps become full-width bands stepping
   down the slide, each one starting a notch further in than the band above it and all

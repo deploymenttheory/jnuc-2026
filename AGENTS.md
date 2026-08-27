@@ -205,7 +205,7 @@ overlay - keep the two in step when slides move.
 4. `s-workspace` What a Terraform workspace is (definition, HashiCorp workspace-anatomy
    diagram, four lenses that decide how an instance gets carved up) - **Dafydd (TBC)**
 5. `s04` Migration outcomes we considered and rejected (3 architectural rejects; the other 2 moved into the story) - **Joseph**
-6. `s05` Migration path options (three paths as flow diagrams sized to the full slide width, prod-first chosen; the read-only API client control reads as a line inside path 03 rather than a card at the foot of the slide) - **Joseph**
+6. `s05` Migration path options (three paths, each its own bordered panel with the flow diagram centred inside, chosen path's panel edged in the accent colour, prod-first chosen; the read-only API client control reads as a line inside path 03 rather than a card at the foot of the slide) - **Joseph**
 7. `s07` Prerequisites (two portions, instance prep and migration prep, each a tidied
    checklist) - **Gordon**
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
@@ -625,9 +625,6 @@ automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages (all under `presentations/sandbox/migrating_an_instance/`):
-`s05-fill-the-space` (2026-08-27, awaiting a decision - slide 6 `#s05`, four layouts for the
-space the control-note card left behind: every row scaled to the full width, the chosen path
-in an accent panel, only the chosen path drawn, and each path as its own framed block);
 `s13-policies-only` (2026-08-27, slide 14 `#s13`, four options for a
 slide covering a single `for_each` exception now that dock items are gone - awaiting a
 decision). Decided (all under `presentations/sandbox/migrating_an_instance/`):
@@ -641,7 +638,10 @@ deck's `#s07` rules; the page is deleted, the index keeps the record as a non-li
 `.done` entry); `s08-use-of-space` (2026-08-27, option C - seven full-width bands
 stepping down the slide, each starting a notch further in than the one above - applied to
 the deck's `#s08` rules; the page is deleted, the index keeps the record as a non-linked
-`.done` entry); `s-workspace-round3` (2026-08-27, live slide kept, B to D rejected - none
+`.done` entry); `s05-fill-the-space` (2026-08-27, option D - each path as its own bordered
+panel with the diagram centred inside - applied to the deck's `#s05` rules; the page is
+deleted, the index keeps the record as a non-linked `.done` entry); `s-workspace-round3`
+(2026-08-27, live slide kept, B to D rejected - none
 of the three redesigned alternatives captured the point; the page is deleted, the index
 keeps the record as a non-linked `.done` entry); `s10-diagram-text` (2026-08-27, option C -
 tier labels and examples pushed further up the font scale and the four bands grown to
