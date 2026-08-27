@@ -62,5 +62,6 @@ pre {
 }
 .list li:hover { border-color: var(--green); }
 .list a { font-size: 18px; font-weight: 600; text-decoration: none; }
+.list .done { font-size: 18px; font-weight: 600; color: var(--muted); }
 .meta { margin: 4px 0 0; font-size: 14px; }
 .foot { margin-top: 32px; font-size: 14px; max-width: 80ch; }

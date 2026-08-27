@@ -477,10 +477,20 @@ body.reader .reader-extra {
   padding: var(--sp-1) var(--sp-3);
 }
 .pipe-node small { display: block; font-size: var(--fs-chip); color: var(--c-text-muted); }
-/* s01 has only three nodes and no annotations, so let them share the band evenly. */
-#s01 .pipeline { gap: var(--sp-4); }
-#s01 .pipe-node { flex: 1; font-size: var(--fs-h2); padding: var(--sp-2) var(--sp-3); }
-#s01 .h-arrow { width: var(--sp-5); }
+/* s01: the three instances are notched segments of one chevron arrow spanning the band
+   (sandbox option B, accepted 2026-08-27). Scoped by id - s-today keeps the plain boxes. */
+#s01 .pipeline { gap: var(--sp-1); }
+#s01 .pipe-node {
+  flex: 1;
+  border: 0;
+  border-radius: 0;
+  font-size: var(--fs-h2);
+  padding: var(--sp-3) var(--sp-5);
+  clip-path: polygon(0 0, calc(100% - var(--sp-4)) 0, 100% 50%, calc(100% - var(--sp-4)) 100%, 0 100%, var(--sp-4) 50%);
+}
+#s01 .pipe-node:first-child {
+  clip-path: polygon(0 0, calc(100% - var(--sp-4)) 0, 100% 50%, calc(100% - var(--sp-4)) 100%, 0 100%);
+}
 .pipe-off { border-style: dashed; color: var(--c-text-muted); }
 .pipe-gap { flex: 1; }
 .constraints {
@@ -820,9 +830,7 @@ body.presenter #viewport { display: none; }
         <p class="pipeline-label caption muted">Our environment before the migration</p>
         <div class="pipeline">
           <span class="pipe-node">Sandbox</span>
-          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
           <span class="pipe-node">Staging</span>
-          <svg class="h-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12 H40 M30 4 L42 12 L30 20"/></svg>
           <span class="pipe-node">Production</span>
         </div>
       </div>
