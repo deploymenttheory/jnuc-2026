@@ -566,7 +566,7 @@ it up - either way it is on disk for a recovering session.
   C the `for_each` attempt set against the plain HCL that replaced it; D the exception and
   its reason in large type. Sandbox page
   `presentations/sandbox/migrating_an_instance/s13-policies-only.html`, awaiting a decision.
-  PR #TBD.
+  PR #32.
 - **2026-08-27, slide 10 (`#s10`) diagram text bumped, sandbox options added.** Joseph's
   "text glitches until refresh" report investigated - fonts, transitions, transform/
   clip-path/filter/contain on text, and the SVG's `tspan dx` labels all checked; could not
