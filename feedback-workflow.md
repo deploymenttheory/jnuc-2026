@@ -554,6 +554,28 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 20 (`#s16b`) refreshed figures, three visualisations offered.**
+  Joseph: "Updated stats for the by the numbers side - 35-40 contributers / 19,000+ lines
+  of code / 900 PRs merged / 134 HCL Files Give options, think graphs, or visualisations.
+  Keep the currnet layout as A." The figures are deterministic and ship in this PR across
+  all four renders: 14+ becomes 35-40 contributors, 526+ pull requests becomes 900 PRs
+  merged, 127 Terraform files becomes 134 HCL files, and the lines figure stays at 19,000+
+  but takes Joseph's wording, "lines of code" rather than "lines of HCL". The date range
+  and the 1,902 commits are untouched because he did not restate them; the slide carries no
+  chips on its stat tiles so the stale commit count is flagged in the PR body rather than
+  chipped onto the slide, and `AGENTS.md`'s settled Numbers fact now records that it needs
+  confirming. The speaker notes needed no change - "approaching a thousand pull requests
+  now" still reads correctly against 900, and nothing else in them states a figure - and
+  the check prints OK. The visualisation question ships as `s16b-numbers.html`: A, the six
+  tiles with the new figures, which is what the deck ships; B, five gauge bars, one per
+  countable figure, each scaled to its own next round number and saying so, with 35-40 and
+  19,000+ ending in open outlined segments because they are floors rather than counts;
+  C, 900 PRs merged as a hero number at roughly four times hero size with the other four
+  reduced to a quiet row; D, unit grids of one mark per contributor (the last five outlined,
+  which is the range drawn honestly) and one mark per HCL file, under a "Too many to draw"
+  rule holding the three figures that will not take that treatment. B, C and D ship as
+  `.s16b-opt-b` / `-opt-c` / `-opt-d` wrappers hidden by one `#s16b` rule. Awaiting a
+  decision. PR #TBC.
 - **2026-08-27, slide 15 (`#s14`) gate 2 says remote backend, drops the Copilot namedrop.**
   Joseph: "state should just be storeed in remote backend. Just say use AI, do not
   namedrop copilot." Edited in place: gate 2 becomes "State is stored in a remote backend

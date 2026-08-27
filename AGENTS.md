@@ -232,7 +232,8 @@ overlay - keep the two in step when slides move.
     Option C and D wrappers for the sandbox page ship hidden inside the section) - **Joseph**
 18. `s15b` The module structure (module tree -> workspaces) - **Dafydd**
 19. `s-today` The estate today (four-tier route to live + Release Please -> CalVer) - **Gordon**
-20. `s16b` By the numbers - **Gordon**
+20. `s16b` By the numbers (six stat tiles carrying the refreshed 2026-08-27 figures; option B,
+    C and D wrappers for the sandbox page ship hidden inside the section) - **Gordon**
 21. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
 22. `s18` Links - **Anyone**
 23. `s-thanks` Thank You (template close, royal blue) - **nobody assigned**
@@ -290,8 +291,12 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   Production. Confirmed by Gordon Deacon, Aug 2026.
 - **CalVer:** started on Release Please; cadence unsustainable, tracking unclear; switched to
   calendar versioning much later, around the time DevTest arrived.
-- **Numbers:** Apr 2025 (provider development start) -> May 2026 (v1.0.0 and final handover); 14+ contributors;
-  526+ PRs; 1,902 commits; 127 Terraform files; 19,000+ lines of HCL.
+- **Numbers:** Apr 2025 (provider development start) -> May 2026 (v1.0.0 and final handover); 35-40
+  contributors; 900 PRs merged; 1,902 commits; 134 HCL files; 19,000+ lines of code. Refreshed by
+  Joseph, 2026-08-27 (was 14+ contributors, 526+ PRs, 127 Terraform files); he gave "lines of code"
+  rather than "lines of HCL" and that wording is now what `s16b` shows. The commit count is the one
+  figure he did not restate, so 1,902 is carried over from the first build and is probably stale -
+  worth confirming before the talk.
 - **for_each exceptions:** policies only. Dock items were never an exception (corrected by
   Joseph, 2026-08-27). The reason is how diverse policies are: they vary so widely from one
   to the next that a `for_each` map has to carry every field any policy might need, which
@@ -642,7 +647,13 @@ D the wipe as a hero panel; the rewritten wording ships in all four);
 statement is gone: A the lead over the code as one column and what the deck ships, B the
 code filling the slide with the "everywhere" comment as the punchline, C the code beside
 what one URL decided, D the conditional as an editor window with a file tab and line
-numbers). Decided (all under `presentations/sandbox/migrating_an_instance/`):
+numbers); `s16b-numbers` (2026-08-27, slide 20 - the refreshed figures ship in all four
+renders; A the six stat tiles the deck already has, B five gauge bars each measured against
+its own next round number with the ranges drawn as open ends, C one hero number - 900 PRs
+merged - with the other four as a quiet supporting row, D unit grids of one mark per
+contributor and one mark per HCL file with the three uncountable totals stated below; B, C
+and D ship as hidden `.s16b-opt-*` wrappers). Decided (all under
+`presentations/sandbox/migrating_an_instance/`):
 `s14-terminal-excerpt` (2026-08-27, option B - the `terraform plan` block as a real window:
 a light chrome bar, red/amber/lime traffic-light dots, a centred `joseph@jnuc - zsh` title,
 white bold command text against the lime result, and a blinking cursor on a fresh prompt
