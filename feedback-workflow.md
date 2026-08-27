@@ -414,7 +414,7 @@ it up - either way it is on disk for a recovering session.
   in with `git mv`; `training_a_team`'s index starts empty. The landing page's single global
   Sandbox button replaced with one Sandbox button per deck card. `tools/sandbox-template.html`
   and this file's paths and URLs updated to match, `AGENTS.md`'s Sandbox section rewritten.
-  At Joseph's request. PR #{{PR_NUMBER}}.
+  At Joseph's request. PR #19.
 - **2026-08-27, Sandbox button added to the landing page.** A button-style link (`.go`,
   reused from the deck cards) to `sandbox/` now sits under the deck cards on
   `presentations/index.html`, with a one-line caption. `AGENTS.md` and this file updated to
