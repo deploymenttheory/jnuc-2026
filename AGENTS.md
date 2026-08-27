@@ -200,7 +200,7 @@ presents it, held in the slide's `data-speaker` attribute and surfaced by the sp
 overlay - keep the two in step when slides move.
 
 1. `s00` Title (template session-title layout with the three speaker cards) - **All (intros)**
-2. `s01` Context, requirements, constraints (our environment before the migration: Sandbox / Staging / Production as one three-segment chevron arrow, `clip-path` rules scoped to `#s01`, no annotations) - **Dafydd**
+2. `s01` Context, requirements, constraints (our environment before the migration: Sandbox / Staging / Production as one three-segment chevron arrow, `clip-path` rules scoped to `#s01`, no annotations; six constraint cards in three titled columns, Context / Requirements / Constraints, via `.constraints-col` and `.constraints-title` scoped to `#s01`) - **Dafydd**
 3. `s02` Who touches Jamf Pro - **Dafydd**
 4. `s03` Migration objectives and design decisions - **Dafydd**
 5. `s04` Ideas rejected, and why (3 architectural rejects; the other 2 moved into the story) - **Joseph**
@@ -560,7 +560,8 @@ plus a few rules, never a copy of the deck, and they track deck edits automatica
   and decision state. Once an option is accepted, apply it to the deck and mark the entry
   decided (or delete the page and its entry).
 
-Current pages: none. Decided: `s01-environment-band` (2026-08-27, option B - the Sandbox /
+Current pages: `s01-column-titles` (added 2026-08-27, three treatments of the column titles
+on slide 2, awaiting a decision). Decided: `s01-environment-band` (2026-08-27, option B - the Sandbox /
 Staging / Production row as one three-segment chevron arrow - applied to the deck's `#s01`
 rules; the page is deleted, the index keeps the record as a non-linked `.done` entry).
 

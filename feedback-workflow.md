@@ -356,7 +356,10 @@ purpose.
 
 ### In flight
 
-Nothing. (Format when there is: `slide N (#id) - branch feedback/<id>-<slug> - dispatched
+- slide 2 (#s01) - branch feedback/s01-column-titles - dispatched 2026-08-27 - options - PR #4 merged, awaiting a decision - feedback: merge secrets+linters, merge peer review+shared source, drop tidy-up, title the three columns Context / Requirements / Constraints.
+- slide 4 (#s03) - branch feedback/s03-delete - dispatched 2026-08-27 - deletion, no options - no PR yet - feedback: delete slide 4 (Migration objectives and design decisions); its 60 s moved to s17 so the timers still sum to 1800.
+
+(Format: `slide N (#id) - branch feedback/<id>-<slug> - dispatched
 <date time> - <options|acceptance X> - PR #n or "no PR yet" - feedback: <one line>`.)
 Because this file is committed, an in-flight entry is written in the dispatch commit or,
 if there is nothing else to commit, left in the working tree until the merge commit picks
