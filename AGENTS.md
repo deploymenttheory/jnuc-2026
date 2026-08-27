@@ -205,7 +205,7 @@ overlay - keep the two in step when slides move.
 4. `s-workspace` What a Terraform workspace is - **Dafydd (TBC)**
 5. `s04` Migration outcomes we considered and rejected (3 architectural rejects; the other 2 moved into the story) - **Joseph**
 6. `s05` Instance migration order (prod first + read-only API client control) - **Joseph**
-7. `s07` Instance prep - **Gordon**
+7. `s07` Instance prep (tidied checklist: tidy-up, credentials, version check) - **Gordon**
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
 9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception) - **Gordon**
 10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
@@ -561,7 +561,7 @@ plus a few rules, never a copy of the deck, and they track deck edits automatica
   and decision state. Once an option is accepted, apply it to the deck and mark the entry
   decided (or delete the page and its entry).
 
-Current pages: `s-workspace-new` (awaiting a decision). Decided: `s01-environment-band` (2026-08-27, option B - the Sandbox /
+Current pages: `s-workspace-new`, `s07-checklist` (awaiting a decision). Decided: `s01-environment-band` (2026-08-27, option B - the Sandbox /
 Staging / Production row as one three-segment chevron arrow - applied to the deck's `#s01`
 rules; the page is deleted, the index keeps the record as a non-linked `.done` entry);
 `s01-column-titles` (2026-08-27, option C - bordered column panels with aligned dividers -
