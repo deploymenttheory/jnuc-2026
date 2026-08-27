@@ -61,8 +61,8 @@ sets `window.JNUC_SPEAKERS`, keyed by `dafydd` / `joseph` / `gordon`, each with 
 - **Both decks now render the template's three-speaker title-slide cards** from this file:
   photo square (or an initials placeholder while a photo is missing), NAME AND SURNAME in
   caps, the role + org line in lime, and the bio. Speaker order on both title slides:
-  Joseph, Gordon, Dafydd. Only Dafydd has a photo; each title slide carries one amber TODO
-  chip for the missing Joseph/Gordon photos.
+  Joseph, Gordon, Dafydd. All three speakers have photos (Joseph and Gordon added
+  2026-08-27).
 - `migrating_an_instance` keeps hardcoded names in the title cards as a fallback so the
   opening slide is never blank if `_shared/` goes missing; the shared file overwrites them on
   load and always wins.
@@ -287,7 +287,6 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
 
 | Slide | TODO | Owner |
 |---|---|---|
-| `s00` | Photos for Joseph and Gordon (add to `_shared/speakers.js`; Dafydd's is in) | Joseph |
 | `s-pivot` | Real FQDN-conditional example | Joseph |
 | `s-staging` | Confirm the month - drives the timeline bar | Gordon Deacon |
 | `s18` | URLs, contact, socials (Q12) | Joseph |
@@ -363,10 +362,9 @@ Notable content slides:
   CSS comment.
 
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an amber
-token for exactly that. Current chips (7): photos for Joseph and Gordon (`#1`); confirm which
-behaviours were observed, confirm the trained bar the team actually used, confirm real
-non-goals (all `#3`); verify the quote (`#5`); how long the dip lasts (`#7`); the 3-4 minute
-interview with Louise.
+token for exactly that. Current chips (6): confirm which behaviours were observed, confirm
+the trained bar the team actually used, confirm real non-goals (all `#3`); verify the quote
+(`#5`); how long the dip lasts (`#7`); the 3-4 minute interview with Louise.
 
 **The four disciplines are a shared vocabulary.** `#9` (pathway matrix), `#10` (timeline) and
 `#20` (skills map) are all built on **Environment, Git, Terraform, GitOps**, and `#20` calls
