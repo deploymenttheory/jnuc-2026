@@ -220,7 +220,10 @@ overlay - keep the two in step when slides move.
     they are too diverse for one map) - **Joseph**
 15. `s14` Validating a migration - **Joseph**
 16. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused) - **Dafydd**
-17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals -> module pivot) - **Joseph**
+17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals; the lead and one
+    HCL block, no closing statement - the "It got out of hand. The pivot: ..." line came off
+    2026-08-27 for reading as machine-written, and its TODO chip moved onto the code block.
+    Option C and D wrappers for the sandbox page ship hidden inside the section) - **Joseph**
 18. `s15b` The module structure (module tree -> workspaces) - **Dafydd**
 19. `s-today` The estate today (four-tier route to live + Release Please -> CalVer) - **Gordon**
 20. `s16b` By the numbers - **Gordon**
@@ -624,8 +627,12 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages (all under `presentations/sandbox/migrating_an_instance/`): none awaiting a
-decision. Decided (all under `presentations/sandbox/migrating_an_instance/`):
+Current pages (all under `presentations/sandbox/migrating_an_instance/`):
+`s-pivot-display` (2026-08-27, slide 17 - four ways to hold the slide now the pivot
+statement is gone: A the lead over the code as one column and what the deck ships, B the
+code filling the slide with the "everywhere" comment as the punchline, C the code beside
+what one URL decided, D the conditional as an editor window with a file tab and line
+numbers). Decided (all under `presentations/sandbox/migrating_an_instance/`):
 `s13-policies-only` (2026-08-27, option D - the exception and its reason in large type,
 nothing else, wording made more human - applied to the deck's `#s13` rules; the page is
 deleted, the index keeps the record as a non-linked `.done` entry);

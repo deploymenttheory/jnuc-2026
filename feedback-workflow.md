@@ -554,6 +554,25 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 17 (`#s-pivot`) pivot line cut, four display options on the sandbox.**
+  Joseph: "the pivot is too LLM. That line can be removed. Give options on the display."
+  Applied deterministically: the `.statement` paragraph ("It got out of hand. The pivot:
+  shared modules own the configuration; thin per-instance roots own only what genuinely
+  differs.") is gone and its TODO chip moved onto the code block as `.s-pivot-chip`, so the
+  reminder survives. `#s-pivot` was the only user of the shared `.statement` rule; the rule
+  stays where it is, untouched, per the shared-CSS rule. The second speaker note used the
+  same phrasing and is reworded to "Where we ended up: the modules hold the configuration
+  and each instance's root only holds what is actually different." - same fact, mirrored
+  into `presenter.json`, and the check prints OK. The display question ships as
+  `s-pivot-display.html`: A, the lead over the code as one aligned column with the code a
+  step up the type scale (what the deck ships from this PR); B, the lead demoted to a
+  kicker and the code filling the slide at heading size with the "everywhere" comment turned
+  lime as the punchline (pure CSS on A's markup); C, two columns - the code on the left,
+  what one URL decided stacked on the right, drawn only from the code block and the notes
+  with the TODO chip closing the stack; D, the conditional as an editor window with a
+  `terraform/jamfpro/` file tab, a line-number gutter and line 2 picked out with a
+  current-line band. C and D ship as `.s-pivot-opt-c` / `-opt-d` wrappers hidden by one
+  `#s-pivot` rule. Awaiting a decision. PR #TBD.
 - **2026-08-27, slide 14 (`#s13`) option D accepted, wording made more human.** Joseph
   picked option D from the `s13-policies-only` sandbox page - the exception and its reason
   in large type, nothing else - with one change: reword it so it sounds spoken rather than
