@@ -216,8 +216,8 @@ overlay - keep the two in step when slides move.
     with a red left edge) - **Dafydd**
 12. `s11` Tools and helpers (JamfPy -> script -> map -> for_each) - **Gordon**
 13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Joseph**
-14. `s13` for_each exceptions (policies only - dock items removed 2026-08-27, they were
-    never an exception) - **Joseph**
+14. `s13` for_each exceptions (single statement - policies stayed in plain HCL because
+    they are too diverse for one map) - **Joseph**
 15. `s14` Validating a migration - **Joseph**
 16. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused) - **Dafydd**
 17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals -> module pivot) - **Joseph**
@@ -624,10 +624,11 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages (all under `presentations/sandbox/migrating_an_instance/`):
-`s13-policies-only` (2026-08-27, slide 14 `#s13`, four options for a
-slide covering a single `for_each` exception now that dock items are gone - awaiting a
-decision). Decided (all under `presentations/sandbox/migrating_an_instance/`):
+Current pages (all under `presentations/sandbox/migrating_an_instance/`): none awaiting a
+decision. Decided (all under `presentations/sandbox/migrating_an_instance/`):
+`s13-policies-only` (2026-08-27, option D - the exception and its reason in large type,
+nothing else, wording made more human - applied to the deck's `#s13` rules; the page is
+deleted, the index keeps the record as a non-linked `.done` entry);
 `s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
 one three-segment chevron arrow - applied to the deck's `#s01` rules; the page is deleted,
 the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
