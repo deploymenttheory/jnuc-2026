@@ -396,7 +396,7 @@ purpose.
 
 ### In flight
 
-slide 4 (#s-workspace) - branch feedback/s-workspace-round3 - dispatched 2026-08-27 - options, round three - PR #n - feedback: rounds one and two rejected as generic; four redesigned options explaining what an HCP workspace is and why it matters, captivating design
+slide 4 (#s-workspace) - branch feedback/s-workspace-round3 - dispatched 2026-08-27 - options, round three - PR #22 - feedback: rounds one and two rejected as generic; four redesigned options explaining what an HCP workspace is and why it matters, captivating design
 slide 7 (#s07) - branch feedback/s07-checklist - dispatched 2026-08-27 - options - PR #13 - feedback: keep the checklist vibe but tidy it up so it reads as a real checklist, credentials points consolidated, split-estate point removed - option D added (two portions: instance prep and migration prep with runner line of sight and backout plan), PR #17
 
 (Format: `slide N (#id) - branch feedback/<id>-<slug> - dispatched
