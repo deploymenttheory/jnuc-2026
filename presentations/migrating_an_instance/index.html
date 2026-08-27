@@ -525,27 +525,6 @@ body.reader .reader-extra {
 .team .tag { align-self: flex-start; }
 .teams-note { margin-top: var(--sp-4); color: var(--c-text-muted); font-size: var(--fs-caption); }
 
-/* ============================ S03 ============================ */
-.obj-groups { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
-.obj-group { padding: var(--sp-4); }
-.obj-group-title {
-  font-family: var(--f-mono);
-  font-size: var(--fs-caption);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--c-text-muted);
-  margin-bottom: var(--sp-3);
-}
-.obj-list { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); }
-.obj-list li { display: flex; gap: var(--sp-2); }
-.obj-num {
-  font-family: var(--f-mono);
-  color: var(--c-accent);
-  flex: none;
-  min-width: var(--sp-4);
-}
-
 /* ============================ S04 ============================ */
 .rejects { display: flex; flex-direction: column; gap: var(--sp-2); }
 .reject {
@@ -907,34 +886,6 @@ body.presenter #viewport { display: none; }
       <aside class="notes">
         <p>Three teams manage resources, one config surface. Support acts on Jamf Pro day to day but doesn't hold resource-management access. Splitting the repo by team would fragment ownership of shared dependencies like categories and scripts.</p>
         <p>Auditors don't manage resources, but they do touch Jamf Pro - and because Terraform HCL is self-documenting, the repo can be given straight to them instead of building a separate audit trail.</p>
-      </aside>
-    </section>
-
-    <!-- ============================ S03 - Objectives ============================ -->
-    <section class="slide" id="s03" aria-label="Migration objectives and design decisions" data-speaker="Dafydd" data-when="2025-11">
-      <h1 class="slide-title">Migration objectives and design decisions</h1>
-      <div class="obj-groups">
-        <div class="card obj-group">
-          <h2 class="obj-group-title">Governance</h2>
-          <ul class="obj-list">
-            <li><span class="obj-num">1</span><span>A monorepo is the single source of truth for every instance.</span></li>
-            <li><span class="obj-num">2</span><span>Every merge to main requires at least one peer review from another engineer.</span></li>
-            <li><span class="obj-num">3</span><span>Post-migration, all engineers drop to read-only in Jamf Pro; only the Terraform machine identity holds full CRUD.</span></li>
-            <li><span class="obj-num">4</span><span>Break-glass account available, held in PAM (Privileged Access Management).</span></li>
-          </ul>
-        </div>
-        <div class="card obj-group">
-          <h2 class="obj-group-title">Architecture and DX</h2>
-          <ul class="obj-list">
-            <li><span class="obj-num">5</span><span>One Terraform definition drives all instances.</span></li>
-            <li><span class="obj-num">6</span><span>Secrets centralised in an internally hosted HashiCorp Vault - set once by humans, read by Terraform via data sources.</span></li>
-            <li><span class="obj-num">7</span><span>Branching strategy supports three environments with VCS-based triggers (one instance is CLI-triggered).</span></li>
-            <li><span class="obj-num">8</span><span>Developer experience: BAU change is a one-line edit to a parameter map, not hand-written HCL.</span></li>
-          </ul>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Objective 8 is aimed squarely at Mac engineers new to Terraform: the contribution bar is "edit a map", not "write HCL from scratch".</p>
       </aside>
     </section>
 

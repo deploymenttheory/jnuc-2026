@@ -29,14 +29,6 @@
       ]
     },
     {
-      "id": "s03",
-      "title": "Migration objectives and design decisions",
-      "timerSeconds": 60,
-      "notes": [
-        "Objective 8 is aimed squarely at Mac engineers new to Terraform: the contribution bar is \"edit a map\", not \"write HCL from scratch\"."
-      ]
-    },
-    {
       "id": "s04",
       "title": "Ideas rejected, and why",
       "timerSeconds": 75,
@@ -183,7 +175,7 @@
     {
       "id": "s17",
       "title": "Questions",
-      "timerSeconds": 300,
+      "timerSeconds": 360,
       "notes": [
         "Open the floor. The links slide is next, ready as the backdrop while questions run."
       ]
