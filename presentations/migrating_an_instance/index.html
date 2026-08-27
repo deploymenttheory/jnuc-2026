@@ -923,6 +923,39 @@ body.reader .reader-extra {
 .gate-ok { border-color: var(--c-success); }
 .gate .todo { white-space: normal; align-self: flex-start; }
 
+/* ============================ S-STAGING ============================ */
+/* Steps first (Joseph, 2026-08-27): the three steps are the slide. The setup line above
+   them and the takeaway below are deliberately quiet, and the three gate cards grow to
+   full-height panels with the verb at title size. Everything is scoped to #s-staging so
+   the shared .lead and .gate* rules stay exactly as #s01, #s-sentinel, #s-pivot and #s14
+   need them. */
+#s-staging { display: flex; flex-direction: column; }
+#s-staging .lead {
+  font-size: var(--fs-body);
+  color: var(--c-text-muted);
+  margin-bottom: var(--sp-4);
+}
+#s-staging .gates-3 { flex: 1; gap: var(--sp-4); }
+#s-staging .gate {
+  font-size: var(--fs-body);
+  padding: var(--sp-4);
+  gap: var(--sp-4);
+  border-width: var(--bw-2);
+  justify-content: space-between;
+}
+#s-staging .gate-num { font-size: var(--fs-h2); }
+#s-staging .gate p { display: flex; flex-direction: column; gap: var(--sp-3); }
+#s-staging .gate strong {
+  font-family: var(--f-display);
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  color: var(--c-accent);
+}
+#s-staging .gate-final strong { color: var(--c-danger); }
+#s-staging .gate-ok strong { color: var(--c-success); }
+#s-staging .takeaway { margin-top: var(--sp-4); font-size: var(--fs-body); }
+
 /* ============================ S15b topology ============================ */
 .s15b-grid { display: grid; grid-template-columns: 780px 1fr; gap: var(--sp-5); align-items: start; }
 
@@ -1695,24 +1728,23 @@ body.presenter #viewport { display: none; }
     <!-- ============================ Rebuilding staging ============================ -->
     <section class="slide" id="s-staging" aria-label="Rebuilding staging" data-speaker="Dafydd" data-when="2026-04:2026-05">
       <h1 class="slide-title">Rebuilding staging</h1>
-      <p class="lead">Production was fully code. Staging was still years of drift - importing that drift would only have enshrined it. So it was not imported at all.</p>
+      <p class="lead">Production was code. Staging was years of drift, so we didn't import it.</p>
       <ol class="gates gates-3">
         <li class="card gate gate-final">
           <span class="gate-num">1</span>
-          <p><strong>Wipe.</strong> Staging cleared out, keeping only the essentials - APNS, cloud identity provider.</p>
+          <p><strong>Wipe.</strong> We cleared staging out, keeping APNS and the cloud identity provider.</p>
         </li>
         <li class="card gate">
           <span class="gate-num">2</span>
-          <p><strong>Apply.</strong> Production's configuration pointed at the empty instance.</p>
+          <p><strong>Apply.</strong> We pointed production's configuration at the empty instance.</p>
         </li>
         <li class="card gate gate-ok">
           <span class="gate-num">3</span>
-          <p><strong>Iterate.</strong> Plenty of errors, pass after pass of refinement, until the run came back clean.</p>
+          <p><strong>Iterate.</strong> We fixed the errors, pass after pass, until the run came back clean.</p>
         </li>
       </ol>
-      <p class="takeaway">Staging no longer claims parity with production - it inherits it, built from the same modules.
+      <p class="takeaway">Staging doesn't claim parity any more. It inherits it, from the same modules.
         <span class="todo">TODO: confirm month (drives the timeline bar)</span></p>
-      <p class="slide-note">And this is what forced the module split. Once staging was a real environment again, we wanted to deploy there first - without the change automatically mirroring to production. The repo could not do that yet.</p>
       <details class="reader-extra">
         <summary>More detail</summary>
         <div class="detail-body">
@@ -1720,9 +1752,9 @@ body.presenter #viewport { display: none; }
         </div>
       </details>
       <aside class="notes">
-        <p>The highlight - slow down here.</p>
-        <p>Importing staging would have enshrined years of drift. So: wipe (keep APNS and the cloud IdP), apply production's modules, iterate through the errors until clean. Parity is now inherited, not claimed.</p>
-        <p>Set up the next two slides: rebuilding staging is what exposed the repo problem. A real staging environment is only useful if you can deploy to it first, and back then a change there mirrored straight to production.</p>
+        <p>This is the highlight - slow down here.</p>
+        <p>Importing staging would have locked in years of drift. So we wiped it, kept APNS and the cloud identity provider, pointed production's configuration at it, and worked through the errors until the run came back clean. Parity is inherited now, not claimed.</p>
+        <p>Set up the next two slides. Rebuilding staging is what showed up the repo problem: a real staging environment is only useful if you can deploy there first, and back then a change there went straight to production too.</p>
       </aside>
     </section>
 

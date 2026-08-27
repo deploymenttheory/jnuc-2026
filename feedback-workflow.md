@@ -554,6 +554,30 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 16 (`#s-staging`) plainer wording, steps first, four layouts offered.**
+  Joseph asked for the text to be far more human and for the slide to lean on the steps
+  rather than the words around them. The rewrite is deterministic and ships in this PR:
+  lead "Production was fully code. Staging was still years of drift - importing that drift
+  would only have enshrined it. So it was not imported at all." becomes "Production was
+  code. Staging was years of drift, so we didn't import it."; the three steps become
+  "Wipe. We cleared staging out, keeping APNS and the cloud identity provider.", "Apply. We
+  pointed production's configuration at the empty instance." and "Iterate. We fixed the
+  errors, pass after pass, until the run came back clean."; the takeaway becomes "Staging
+  doesn't claim parity any more. It inherits it, from the same modules." with the month
+  chip kept; and the `.slide-note` about the module split is gone from the slide because
+  the speaker notes already set up the next two slides. Notes eased the same way and
+  mirrored into `presenter.json`; the check prints OK. Same facts throughout. Option A -
+  what ships - is the steps-first arrangement: the three cards grow to full-height panels
+  with the verb at `--fs-h1` in the card's own colour, the lead drops to muted body text
+  and the takeaway to one line, all in a new `#s-staging` CSS block after the S14 gate-card
+  block so the shared `.lead`, `.gates` and `.gate*` rules are untouched (`#s14` verified
+  unchanged). Sandbox page `s-staging-steps-first.html` offers A plus B (a numbered run
+  down the left on a vertical rail, the lead and takeaway as a quiet right-hand column), C
+  (one left-to-right flow strip in the deck's diagram style, chevrons between the nodes,
+  the lead dropped and the takeaway as the closing statement) and D (the wipe as a
+  full-height hero panel at `--fs-hero`, apply and iterate stacked beside it) - all four
+  pure CSS on the same markup, so whichever wins pastes straight in. Awaits a decision.
+  PR number to follow.
 - **2026-08-27, slide 15 (`#s14`) option B accepted - the terminal as a real window.**
   Joseph picked option B from the `s14-terminal-excerpt` sandbox page: the block becomes a
   window sitting on the stage rather than a card lying flat on it, with a light chrome bar,

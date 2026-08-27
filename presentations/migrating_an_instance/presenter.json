@@ -142,9 +142,9 @@
       "title": "Rebuilding staging",
       "timerSeconds": 120,
       "notes": [
-        "The highlight - slow down here.",
-        "Importing staging would have enshrined years of drift. So: wipe (keep APNS and the cloud IdP), apply production's modules, iterate through the errors until clean. Parity is now inherited, not claimed.",
-        "Set up the next two slides: rebuilding staging is what exposed the repo problem. A real staging environment is only useful if you can deploy to it first, and back then a change there mirrored straight to production."
+        "This is the highlight - slow down here.",
+        "Importing staging would have locked in years of drift. So we wiped it, kept APNS and the cloud identity provider, pointed production's configuration at it, and worked through the errors until the run came back clean. Parity is inherited now, not claimed.",
+        "Set up the next two slides. Rebuilding staging is what showed up the repo problem: a real staging environment is only useful if you can deploy there first, and back then a change there went straight to production too."
       ]
     },
     {
