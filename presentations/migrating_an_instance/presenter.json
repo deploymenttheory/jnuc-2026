@@ -153,7 +153,7 @@
       "timerSeconds": 60,
       "notes": [
         "The trigger was the staging rebuild: we wanted staging-first deploys without mirroring to production, and the only lever the repo had was an FQDN conditional. They were everywhere before long - deployment behaviour inferred from a URL.",
-        "The pivot: modules own configuration, thin per-instance roots own only genuine differences."
+        "Where we ended up: the modules hold the configuration and each instance's root only holds what is actually different."
       ]
     },
     {
