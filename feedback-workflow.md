@@ -411,7 +411,7 @@ it up - either way it is on disk for a recovering session.
   applied to the deck's `#s07` rules after the slide's earlier rename to Prerequisites:
   instance prep and migration prep now sit side by side. The sandbox page deleted, its
   index entry retired to a `.done` line; the two TODO chips on the migration rows remain,
-  pending Gordon's wording. PR #TBD.
+  pending Gordon's wording. PR #24.
 - **2026-08-27, Joseph's and Gordon's photos added to both decks.** Both photos
   centre-cropped, resized and compressed in `_shared/speakers.js` to match Dafydd's
   existing 420x420 JPEG (byte size matched to his ~27KB); the amber TODO chip for the
