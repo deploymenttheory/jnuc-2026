@@ -205,7 +205,8 @@ overlay - keep the two in step when slides move.
 4. `s-workspace` What a Terraform workspace is - **Dafydd (TBC)**
 5. `s04` Migration outcomes we considered and rejected (3 architectural rejects; the other 2 moved into the story) - **Joseph**
 6. `s05` Instance migration order (prod first + read-only API client control) - **Joseph**
-7. `s07` Instance prep (tidied checklist: tidy-up, credentials, version check) - **Gordon**
+7. `s07` Prerequisites (two portions, instance prep and migration prep, each a tidied
+   checklist; migration rows carry TODO chips pending Gordon's wording) - **Gordon**
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
 9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception) - **Gordon**
 10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
@@ -289,6 +290,8 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
 |---|---|---|
 | `s-pivot` | Real FQDN-conditional example | Joseph |
 | `s-staging` | Confirm the month - drives the timeline bar | Gordon Deacon |
+| `s07` | Confirm wording for the runner line of sight row | Gordon |
+| `s07` | Confirm what the backout plan was | Gordon |
 | `s18` | URLs, contact, socials (Q12) | Joseph |
 
 One chip still carries a question number from the first build (`TODO Q12`). It resolves in
@@ -570,12 +573,14 @@ automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages (all under `presentations/sandbox/migrating_an_instance/`):
-`s-workspace-round3`, `s07-checklist` (awaiting a decision). Decided:
+`s-workspace-round3` (awaiting a decision). Decided:
 `s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
 one three-segment chevron arrow - applied to the deck's `#s01` rules; the page is deleted,
 the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
 (2026-08-27, option C - bordered column panels with aligned dividers - applied to the
 deck's `#s01` rules; the page is deleted, the index keeps the record as a non-linked
+`.done` entry); `s07-checklist` (2026-08-27, option D - two portions - applied to the
+deck's `#s07` rules; the page is deleted, the index keeps the record as a non-linked
 `.done` entry). `presentations/sandbox/training_a_team/` has no pages yet.
 
 ## Deployment

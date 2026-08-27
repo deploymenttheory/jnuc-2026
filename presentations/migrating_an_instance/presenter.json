@@ -33,9 +33,9 @@
       "title": "What a Terraform workspace is",
       "timerSeconds": 60,
       "notes": [
-        "A workspace is the one place HCP Terraform runs a single configuration against a single Jamf Pro instance, and it holds that instance's state, its variables and secrets, its run history and its permissions.",
-        "Say plainly what that buys us: the state never sits on anyone's Mac, the secrets are read from Vault per workspace, and a plan has to be approved by a person before anything applies.",
-        "Close on the boundary - separate workspaces mean a change or a credential in one instance cannot reach another by accident, which is why the estate is split this way rather than run from one place."
+        "Define it plainly first - one set of Terraform code linked to one state file. Walk the diagram left to right: code goes in, the workspace is the boundary that holds the state, the variables and secrets, the permissions and the workflow, and a run comes out as a plan, then a policy check, then an apply against one Jamf Pro instance.",
+        "Then make the real point. How you carve an instance into workspaces is worth spending serious time on. Do not rush it. Re-cutting it later means moving state, which is a much harder day than getting the boundaries roughly right at the start.",
+        "Take the four lenses in order and give an example of each from our own split rather than reading them out. The last line is the honest caveat - there are more considerations than fit on a slide, and they refine the choice rather than drive it."
       ]
     },
     {
@@ -57,10 +57,10 @@
     },
     {
       "id": "s07",
-      "title": "Instance prep",
+      "title": "Prerequisites",
       "timerSeconds": 30,
       "notes": [
-        "The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back."
+        "The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back. Migration prep sits alongside it: runner line of sight and a backout plan, agreed before the first import."
       ]
     },
     {
