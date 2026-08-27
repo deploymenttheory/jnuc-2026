@@ -400,6 +400,12 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 6 (`#s05`) option card blurb reduced.** `.option` is only used on
+  this slide, but the blurb had no explicit font-size rule of its own - it inherited the
+  body default. Added `#s05 .option p { font-size: var(--fs-caption); }` (down from the
+  effective `--fs-body`; `--fs-body` alone made no visible difference, so the fix went
+  straight to `--fs-caption`), which clears the control note from the timeline strip. At
+  Joseph's request. PR #12.
 - **2026-08-27, slide 5 (`#s05`) option wording amended.** The left option card now
   explains the striped approach (one resource at a time across the whole route to live,
   staging then production); the chosen card lost "But production is the configuration that
