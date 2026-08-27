@@ -554,6 +554,14 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 17 (`#s-pivot`) sandbox closed.** Joseph: "Close the slide 17
+  sandbox." No option chosen: the live slide (option A) kept. The `.s-pivot-opt-c` and
+  `.s-pivot-opt-d` wrappers and their markup removed, along with the CSS that only served
+  them; the `.s-pivot-opt-a` wrapper unwrapped so the slide's markup is plain, and the
+  `#s-pivot` CSS left as one clean block for the live layout - screenshots before and after
+  the edit `cmp` identical. The sandbox page deleted, its index entry retired to a `.done`
+  line; `AGENTS.md`'s slide list and Sandbox section updated to match; the presenter check
+  prints OK. PR #44.
 - **2026-08-27, slide 19 (`#s-today`) deleted.** Joseph: "Remove 19." "The estate today"
   removed at Joseph's request: section (four-tier route to live diagram, Release Please ->
   CalVer cards), its `presenter.json` entry, the `.evolution`/`.evo-title` CSS (used nowhere
