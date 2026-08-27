@@ -53,7 +53,7 @@
       "notes": [
         "Three paths were genuinely on the table. Walk each diagram left to right - the left box is where a change lands first, the right box is where it goes next.",
         "On path one the colour is the resource type - scripts, then dock items, then categories - and the same colour appears in both environments, so you can see all of one kind crossing before the next one starts.",
-        "The first two repeat per resource type, and that return arrow is the cost: you switch instances constantly and you are validating against a drifted staging as you go. Path three does not repeat, and that is the whole difference between it and path two.",
+        "Both of the first two repeat per resource type - on path one each type crosses on its own arrow, on path two the loop carries it back. Either way you are switching instances constantly and validating against a drifted staging as you go. Path three does not repeat, and that is the whole difference between it and path two.",
         "Prod first is counterintuitive on purpose. Importing is read-then-manage - with a read-only API client there is no write surface, so it is safer than it sounds. Write scopes were only widened once imports were stable at zero diff."
       ]
     },

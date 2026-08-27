@@ -723,6 +723,12 @@ body.reader .reader-extra {
 #s05 .mp-k1 { fill: var(--c-accent); }
 #s05 .mp-k2 { fill: var(--c-warn); }
 #s05 .mp-k3 { fill: var(--c-code-str); }
+/* One arrow per resource type, carrying that type's colour, so the pairing between
+   the two instances is readable without tracing across the gap. */
+#s05 .mp-a1, #s05 .mp-a2, #s05 .mp-a3 { stroke-width: var(--bw-3); fill: none; }
+#s05 .mp-a1 { stroke: var(--c-accent); }
+#s05 .mp-a2 { stroke: var(--c-warn); }
+#s05 .mp-a3 { stroke: var(--c-code-str); }
 #s05 .mp-loop { stroke: var(--c-text-muted); stroke-width: var(--bw-2); fill: none; }
 #s05 .mp-loop-label { font-family: var(--f-mono); font-size: var(--fs-chip); fill: var(--c-text-muted); }
 #s05 .control-note { margin-top: var(--sp-3); }
@@ -1268,27 +1274,27 @@ body.presenter #viewport { display: none; }
             <span class="mp-name">Staging first, then production</span>
             <span class="mp-why">Discounted because staging was not representative of production.</span>
           </div>
-          <svg class="mp-flow" viewBox="0 0 1728 148" role="img" aria-label="One resource type into staging, then the same resource type into production, repeating for the next resource type. Each resource type is colour coded and appears in both environments.">
-            <rect class="dg-box mp-box" x="2" y="2" width="560" height="92" rx="12"/>
+          <svg class="mp-flow" viewBox="0 0 1728 172" role="img" aria-label="Each resource type crosses on its own arrow: scripts in staging to scripts in production, then dock items, then categories, one resource type fully across both instances before the next begins.">
+            <rect class="dg-box mp-box" x="2" y="2" width="560" height="140" rx="12"/>
             <text class="mp-env" x="28" y="34">Staging</text>
-            <rect class="mp-k1" x="28" y="54" width="18" height="18" rx="4"/>
-            <text class="dg-eg" x="54" y="69">scripts</text>
-            <rect class="mp-k2" x="190" y="54" width="18" height="18" rx="4"/>
-            <text class="dg-eg" x="216" y="69">dock items</text>
-            <rect class="mp-k3" x="380" y="54" width="18" height="18" rx="4"/>
-            <text class="dg-eg" x="406" y="69">categories</text>
-            <path class="dg-edge" d="M596 48 H676 M666 38 L682 48 L666 58"/>
-            <rect class="dg-box mp-box" x="716" y="2" width="560" height="92" rx="12"/>
+            <rect class="mp-k1" x="28" y="52" width="18" height="18" rx="4"/>
+            <text class="dg-eg" x="54" y="67">scripts</text>
+            <rect class="mp-k2" x="28" y="82" width="18" height="18" rx="4"/>
+            <text class="dg-eg" x="54" y="97">dock items</text>
+            <rect class="mp-k3" x="28" y="112" width="18" height="18" rx="4"/>
+            <text class="dg-eg" x="54" y="127">categories</text>
+            <path class="mp-a1" d="M596 61 H676 M666 51 L682 61 L666 71"/>
+            <path class="mp-a2" d="M596 91 H676 M666 81 L682 91 L666 101"/>
+            <path class="mp-a3" d="M596 121 H676 M666 111 L682 121 L666 131"/>
+            <rect class="dg-box mp-box" x="716" y="2" width="560" height="140" rx="12"/>
             <text class="mp-env" x="742" y="34">Production</text>
-            <rect class="mp-k1" x="742" y="54" width="18" height="18" rx="4"/>
-            <text class="dg-eg" x="768" y="69">scripts</text>
-            <rect class="mp-k2" x="904" y="54" width="18" height="18" rx="4"/>
-            <text class="dg-eg" x="930" y="69">dock items</text>
-            <rect class="mp-k3" x="1094" y="54" width="18" height="18" rx="4"/>
-            <text class="dg-eg" x="1120" y="69">categories</text>
-            <path class="mp-loop" d="M1250 94 V120 H300 V94"/>
-            <path class="mp-loop" d="M314 112 L298 120 L314 128"/>
-            <text class="dg-eg mp-loop-label" x="775" y="142" text-anchor="middle">all of one resource type across both instances, then proceed to the next</text>
+            <rect class="mp-k1" x="742" y="52" width="18" height="18" rx="4"/>
+            <text class="dg-eg" x="768" y="67">scripts</text>
+            <rect class="mp-k2" x="742" y="82" width="18" height="18" rx="4"/>
+            <text class="dg-eg" x="768" y="97">dock items</text>
+            <rect class="mp-k3" x="742" y="112" width="18" height="18" rx="4"/>
+            <text class="dg-eg" x="768" y="127">categories</text>
+            <text class="dg-eg mp-loop-label" x="639" y="164" text-anchor="middle">all of one resource type across both instances, then proceed to the next</text>
           </svg>
         </div>
 
@@ -1349,7 +1355,7 @@ body.presenter #viewport { display: none; }
       <aside class="notes">
         <p>Three paths were genuinely on the table. Walk each diagram left to right - the left box is where a change lands first, the right box is where it goes next.</p>
         <p>On path one the colour is the resource type - scripts, then dock items, then categories - and the same colour appears in both environments, so you can see all of one kind crossing before the next one starts.</p>
-        <p>The first two repeat per resource type, and that return arrow is the cost: you switch instances constantly and you are validating against a drifted staging as you go. Path three does not repeat, and that is the whole difference between it and path two.</p>
+        <p>Both of the first two repeat per resource type - on path one each type crosses on its own arrow, on path two the loop carries it back. Either way you are switching instances constantly and validating against a drifted staging as you go. Path three does not repeat, and that is the whole difference between it and path two.</p>
         <p>Prod first is counterintuitive on purpose. Importing is read-then-manage - with a read-only API client there is no write surface, so it is safer than it sounds. Write scopes were only widened once imports were stable at zero diff.</p>
       </aside>
     </section>
