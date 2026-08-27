@@ -573,6 +573,41 @@ it up - either way it is on disk for a recovering session.
   gates kept but unfilled) - awaits a decision. All the option CSS is scoped to `#s14`
   because `.terminal`, the `.term-*` classes, `.card`, `.gate` and `.muted` are shared or
   generic. No PR yet.
+- **2026-08-27, slide 14 (`#s13`) option D accepted, wording made more human.** Joseph
+  picked option D from the `s13-policies-only` sandbox page - the exception and its reason
+  in large type, nothing else - with one change: reword it so it sounds spoken rather than
+  written. Applied as the net result: the `.s13-opt-a`/`-b`/`-c`/`-d` wrappers and the hide
+  rule are gone, D's four lines are the slide's plain markup, and the CSS is one clean
+  `#s13` block. New wording - kicker "Just one exception"; statement "We kept policies in
+  plain HCL."; reason "They're too different from each other. One `for_each` map would have
+  to carry every field any policy might need, and nobody could read it."; close "Once the
+  map gets harder to read than plain HCL, the pattern isn't earning its keep any more." Same
+  facts throughout: policies were the one exception, too diverse for one map, so they stayed
+  in plain HCL, and the pattern stops paying when the map is harder to read than the HCL.
+  Speaker note eased the same way and mirrored into `presenter.json`; the check prints OK.
+  Sandbox page deleted, index entry marked `.done`, `AGENTS.md`'s slide-14 summary and the
+  Sandbox section's "Current pages"/"Decided" lines updated. PR #37.
+- **2026-08-27, slide 6 (`#s05`) option D accepted - each path in its own panel.**
+  Joseph picked option D from the `s05-fill-the-space` sandbox page: the hairlines between
+  paths become full bordered panels, one per path, with the chosen path (03) edged in the
+  accent colour, and each flow diagram sits centred inside its panel at 70% width rather
+  than running edge to edge. Pure CSS on the existing markup - the option's rules folded
+  into the S05 block as the net result, replacing the rules they override rather than
+  stacking on top (the old border-bottom-only path separator and `last-child` rule are
+  gone, replaced by a full border and radius on every panel). Speaker notes and
+  `presenter.json` untouched - neither references the old layout - and the check prints OK.
+  Sandbox page deleted, index entry marked `.done`, `AGENTS.md`'s slide-6 summary and
+  Sandbox section updated. PR #36.
+- **2026-08-27, slide 11 (`#s08`) migration wave workflow, option C applied.** Joseph picked
+  option C from `s08-use-of-space.html`: the seven steps become full-width bands stepping
+  down the slide, each one starting a notch further in than the band above it and all
+  ending flush right, one step per line at slide size with the numbers in an aligned gutter
+  and a coloured left edge - lime, red on step 3's freeze. Pure CSS on the existing markup,
+  folded into the `#s08` block as one clean set of rules replacing the old single-row grid
+  rather than layering on top. Speaker notes and `presenter.json` needed no change - neither
+  pointed at the layout. Sandbox page deleted, its index entry retired to `.done`, and
+  `AGENTS.md`'s slide-11 summary and the Sandbox section's "Current pages"/"Decided" lines
+  updated. Presenter check prints OK. PR #35.
 - **2026-08-27, slide 10 (`#s10`) option C accepted - everything bigger, diagram reflowed.**
   Joseph picked option C from the `s10-diagram-text` sandbox page: the tier labels move up
   to `--fs-body` and the right-hand examples to `--fs-code`, both a step further than the

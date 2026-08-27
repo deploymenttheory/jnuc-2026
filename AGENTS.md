@@ -205,17 +205,19 @@ overlay - keep the two in step when slides move.
 4. `s-workspace` What a Terraform workspace is (definition, HashiCorp workspace-anatomy
    diagram, four lenses that decide how an instance gets carved up) - **Dafydd (TBC)**
 5. `s04` Migration outcomes we considered and rejected (3 architectural rejects; the other 2 moved into the story) - **Joseph**
-6. `s05` Migration path options (three paths as flow diagrams sized to the full slide width, prod-first chosen; the read-only API client control reads as a line inside path 03 rather than a card at the foot of the slide) - **Joseph**
+6. `s05` Migration path options (three paths, each its own bordered panel with the flow diagram centred inside, chosen path's panel edged in the accent colour, prod-first chosen; the read-only API client control reads as a line inside path 03 rather than a card at the foot of the slide) - **Joseph**
 7. `s07` Prerequisites (two portions, instance prep and migration prep, each a tidied
    checklist) - **Gordon**
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
 9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception) - **Gordon**
 10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
-11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk) - **Dafydd**
+11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; seven steps as full-width
+    bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
+    with a red left edge) - **Dafydd**
 12. `s11` Tools and helpers (JamfPy -> script -> map -> for_each) - **Gordon**
 13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Joseph**
-14. `s13` for_each exceptions (policies only - dock items removed 2026-08-27, they were
-    never an exception) - **Joseph**
+14. `s13` for_each exceptions (single statement - policies stayed in plain HCL because
+    they are too diverse for one map) - **Joseph**
 15. `s14` Validating a migration - **Joseph**
 16. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused) - **Dafydd**
 17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals -> module pivot) - **Joseph**
@@ -623,19 +625,15 @@ automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages (all under `presentations/sandbox/migrating_an_instance/`):
-`s05-fill-the-space` (2026-08-27, awaiting a decision - slide 6 `#s05`, four layouts for the
-space the control-note card left behind: every row scaled to the full width, the chosen path
-in an accent panel, only the chosen path drawn, and each path as its own framed block);
-`s08-use-of-space` (2026-08-27, awaiting a decision - slide 11 `#s08`, four layouts for the
-migration wave workflow: the live single row, two rows of four then three, seven bands
-stepping down, and the freeze as a full-height centre panel; layout only, the content is
-unchanged); `s13-policies-only` (2026-08-27, slide 14 `#s13`, four options for a
-slide covering a single `for_each` exception now that dock items are gone - awaiting a
-decision); `s14-terminal-excerpt` (2026-08-27, awaiting a decision - slide 15 `#s14`, four
+`s14-terminal-excerpt` (2026-08-27, awaiting a decision - slide 15 `#s14`, four
 treatments of the `terraform plan` block so it reads as an excerpt from a terminal rather
 than another card: the live block, a real window with chrome and a blinking cursor, a
 full-width console dump with no chrome, and a labelled quoted excerpt; wording and the four
-gates unchanged, and the deck itself unchanged this round). Decided (all under `presentations/sandbox/migrating_an_instance/`):
+gates unchanged, and the deck itself unchanged this round). Decided (all under
+`presentations/sandbox/migrating_an_instance/`):
+`s13-policies-only` (2026-08-27, option D - the exception and its reason in large type,
+nothing else, wording made more human - applied to the deck's `#s13` rules; the page is
+deleted, the index keeps the record as a non-linked `.done` entry);
 `s01-environment-band` (2026-08-27, option B - the Sandbox / Staging / Production row as
 one three-segment chevron arrow - applied to the deck's `#s01` rules; the page is deleted,
 the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
@@ -643,7 +641,13 @@ the index keeps the record as a non-linked `.done` entry); `s01-column-titles`
 deck's `#s01` rules; the page is deleted, the index keeps the record as a non-linked
 `.done` entry); `s07-checklist` (2026-08-27, option D - two portions - applied to the
 deck's `#s07` rules; the page is deleted, the index keeps the record as a non-linked
-`.done` entry); `s-workspace-round3` (2026-08-27, live slide kept, B to D rejected - none
+`.done` entry); `s08-use-of-space` (2026-08-27, option C - seven full-width bands
+stepping down the slide, each starting a notch further in than the one above - applied to
+the deck's `#s08` rules; the page is deleted, the index keeps the record as a non-linked
+`.done` entry); `s05-fill-the-space` (2026-08-27, option D - each path as its own bordered
+panel with the diagram centred inside - applied to the deck's `#s05` rules; the page is
+deleted, the index keeps the record as a non-linked `.done` entry); `s-workspace-round3`
+(2026-08-27, live slide kept, B to D rejected - none
 of the three redesigned alternatives captured the point; the page is deleted, the index
 keeps the record as a non-linked `.done` entry); `s10-diagram-text` (2026-08-27, option C -
 tier labels and examples pushed further up the font scale and the four bands grown to
