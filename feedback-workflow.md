@@ -565,7 +565,7 @@ it up - either way it is on disk for a recovering session.
   line, numbers in an aligned gutter, right edges flush) and D (three columns at three
   weights - steps 1 and 2 left, the permissions revoke as a full-height centre panel with
   the lock at scale, steps 4 to 7 right). All three are CSS on the existing markup, scoped
-  to `#s08`, tokens only, so no wrappers were needed in the deck. Awaits a decision. PR #30.
+  to `#s08`, tokens only, so no wrappers were needed in the deck. Awaits a decision. PR #31.
 - **2026-08-27, slide 10 (`#s10`) diagram text bumped, sandbox options added.** Joseph's
   "text glitches until refresh" report investigated - fonts, transitions, transform/
   clip-path/filter/contain on text, and the SVG's `tspan dx` labels all checked; could not
