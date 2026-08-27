@@ -356,8 +356,7 @@ purpose.
 
 ### In flight
 
-- slide 2 (#s01) - branch feedback/s01-column-titles - dispatched 2026-08-27 - options - PR #4 merged, awaiting a decision - feedback: merge secrets+linters, merge peer review+shared source, drop tidy-up, title the three columns Context / Requirements / Constraints.
-- slide 4 (#s03) - branch feedback/s03-delete - dispatched 2026-08-27 - deletion, no options - no PR yet - feedback: delete slide 4 (Migration objectives and design decisions); its 60 s moved to s17 so the timers still sum to 1800.
+- slide 2 (#s01) - branch feedback/s01-column-titles - dispatched 2026-08-27 - options - PR #4 merged and deployed, awaiting a decision; option C amended 2026-08-27 (divider at the same height in every panel, subgrid) - feedback: merge secrets+linters, merge peer review+shared source, drop tidy-up, title the three columns Context / Requirements / Constraints.
 
 (Format: `slide N (#id) - branch feedback/<id>-<slug> - dispatched
 <date time> - <options|acceptance X> - PR #n or "no PR yet" - feedback: <one line>`.)
@@ -367,6 +366,11 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-27, slide 4 (`#s03`) deleted.** "Migration objectives and design decisions"
+  removed at Joseph's request: section, its `obj-*` CSS block (used nowhere else) and
+  its `presenter.json` entry; its 60 s moved to `s17` (Questions, now 360 s) so the
+  timers still sum to 1800. `AGENTS.md` slide list renumbered to 22. PR #5, merged with
+  `--no-ff`.
 - **Round one, 2026-08-27, slide 2 (`#s01`), run inline before the fan-out existed.**
   Label changed to "Our environment before the migration"; per-tenant annotations, the
   closing "Hold that thought" sentence and the "stale, non-active resources" clause removed;

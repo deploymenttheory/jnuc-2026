@@ -21,7 +21,7 @@
 
   <section class="option" id="a">
     <h2>Option A - Plain heading <span class="tag">live now</span></h2>
-    <p>The title sits as plain heading text in the freed cell - small caps, muted, monospace, matching the deck's existing group-title convention (used on slide 4's objective groups). The two cards below sit unchanged. This is the lightest touch: it reads as a label over each column rather than a shape in the grid, so the three-by-three card rhythm is broken deliberately in favour of a quieter, more editorial page. Pick this if the column grouping should read as organisation rather than as decoration - the titles guide the eye without adding visual weight.</p>
+    <p>The title sits as plain heading text in the freed cell - small caps, muted, monospace, in the deck's existing group-title style. The two cards below sit unchanged. This is the lightest touch: it reads as a label over each column rather than a shape in the grid, so the three-by-three card rhythm is broken deliberately in favour of a quieter, more editorial page. Pick this if the column grouping should read as organisation rather than as decoration - the titles guide the eye without adding visual weight.</p>
     <div class="frame"><iframe data-variant="a" src="../migrating_an_instance/index.html#s01" title="Option A"></iframe></div>
     <details><summary>CSS on top of the deck</summary><pre id="css-a"></pre></details>
   </section>
@@ -35,7 +35,7 @@
 
   <section class="option" id="c">
     <h2>Option C - Bordered column panel</h2>
-    <p>The card treatment moves from the individual items to the column itself: each column becomes one bordered panel with the title as its header and the two cards as plain rows, separated by a hairline, inside it. Pick this if the grouping into three columns is the thing that most needs to read clearly - the panel border does the grouping work that whitespace alone does in A and B, so it is the strongest signal that "these two facts belong together under this heading", at the cost of losing the original nine-card texture.</p>
+    <p>The card treatment moves from the individual items to the column itself: each column becomes one bordered panel with the title as its header and the two cards as plain rows, separated by a hairline, inside it. The three panels share their row heights, so the hairline sits at the same height in every block (amended 2026-08-27 at Joseph's request). Pick this if the grouping into three columns is the thing that most needs to read clearly - the panel border does the grouping work that whitespace alone does in A and B, so it is the strongest signal that "these two facts belong together under this heading", at the cost of losing the original nine-card texture.</p>
     <div class="frame"><iframe data-variant="c" src="../migrating_an_instance/index.html#s01" title="Option C"></iframe></div>
     <details><summary>CSS on top of the deck</summary><pre id="css-c"></pre></details>
   </section>
@@ -69,7 +69,13 @@
   border: var(--bw-1) solid var(--c-border);
   border-radius: var(--radius);
   padding: var(--sp-3);
+  /* subgrid: the title row and both item rows share heights across all three
+     panels, so the divider sits at the same height in each block */
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
 }
+#s01 .constraints-col ul { display: contents; }
 #s01 .constraints-title {
   color: var(--c-accent);
   font-family: var(--f-display);
@@ -78,7 +84,6 @@
   text-transform: none;
   letter-spacing: 0;
 }
-#s01 .constraints-col ul { gap: 0; }
 #s01 .constraints-col li.card {
   background: none;
   border: none;
