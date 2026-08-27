@@ -20,8 +20,8 @@
   </nav>
 
   <section class="option" id="a">
-    <h2>Option A - the anatomy of a workspace <span class="tag">live now</span></h2>
-    <p>A diagram: one large bordered box labelled "One workspace", holding five labelled compartments - its linked configuration, its variables and secrets, its state, its run queue (plan then apply) and its permissions - with an arrow in from a commit to the repository and an arrow out to one Jamf Pro instance, and a caption underneath. Pick this if the plainest way in is seeing the shape of the thing rather than reading a list. This is what ships in the deck from this PR; accepting it means deleting the <code>ws-opt-b</code> and <code>ws-opt-c</code> wrappers from the <code>#s-workspace</code> section.</p>
+    <h2>Option A - the anatomy of a workspace, then the lenses <span class="tag">live now</span></h2>
+    <p>A diagram across the top, following HashiCorp's own workspace anatomy: Terraform code in on the left, an HCP Terraform box holding the workspace boundary and its compartments (state file, variables and secrets, permissions, workflow, notifications, and more), the plan, policy and apply run stages beside it, and an arrow out to one Jamf Pro instance. Underneath, the lenses that decide how an instance gets carved up - team structure, deployment frequency, scale and what changes together - with a closing line for the factors that refine the choice rather than drive it. Deliberately names no patterns. The cost run stage from the source diagram is left out: it estimates cloud spend and does nothing for a Jamf Pro instance. Pick this if the slide has to carry both halves of the message - what a workspace is, and that carving an instance up deserves unhurried thought. This is what ships in the deck from this PR; accepting it means deleting the <code>ws-opt-b</code>, <code>ws-opt-c</code> and <code>ws-opt-d</code> wrappers from the <code>#s-workspace</code> section.</p>
     <div class="frame"><iframe data-variant="a" src="../migrating_an_instance/index.html#s-workspace" title="Option A"></iframe></div>
     <details><summary>CSS on top of the deck</summary><pre id="css-a"></pre></details>
   </section>

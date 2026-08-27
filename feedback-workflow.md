@@ -391,6 +391,7 @@ purpose.
 
 ### In flight
 
+slide 4 (#s-workspace) - branch feedback/s-workspace-lenses - dispatched 2026-08-27 - acceptance, direct - PR pending - feedback: Dafydd specified the design directly, so no options round; rebuild option A to carry both halves of the message - a workspace is one set of Terraform code linked to one state file, and carving an instance up deserves unhurried thought - with the HashiCorp workspace anatomy diagram he supplied and the decision lenses from the Microsoft 365 workspace design guide, naming no patterns
 slide 4 (#s-workspace) - branch feedback/s-workspace-round2 - dispatched 2026-08-27 - options, round two - PR #14 - feedback: round one rejected; three bespoke options, one a diagram, detailing what a workspace is - option D added from the Microsoft 365 provider workspace design guide, PR #15
 slide 7 (#s07) - branch feedback/s07-checklist - dispatched 2026-08-27 - options - PR #13 - feedback: keep the checklist vibe but tidy it up so it reads as a real checklist, credentials points consolidated, split-estate point removed - option D added (two portions: instance prep and migration prep with runner line of sight and backout plan), PR #17
 
