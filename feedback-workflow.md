@@ -405,7 +405,7 @@ it up - either way it is on disk for a recovering session.
   without mirroring `presenter.json`; two earlier renames (`#s-sentinel`, `#s-today`) were
   never mirrored either. `presenter.json` titles for `s04`, `s-sentinel` and `s-today` now
   match the deck; AGENTS.md's `s04` slide-order entry updated to match. The presenter sync
-  check in this file now also compares titles, not just notes. PR #TBD.
+  check in this file now also compares titles, not just notes. PR #9.
 - **2026-08-27, slide 2 (`#s01`) column titles decided.** Option C ("Bordered column
   panel") accepted and applied: `#s01 .constraints-col` is a bordered panel per column with
   a subgrid so the title row and both item rows share heights across all three panels;
