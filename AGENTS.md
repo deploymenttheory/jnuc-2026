@@ -624,8 +624,13 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages (all under `presentations/sandbox/migrating_an_instance/`): none awaiting a
-decision. Decided (all under `presentations/sandbox/migrating_an_instance/`):
+Current pages (all under `presentations/sandbox/migrating_an_instance/`):
+`s14-terminal-excerpt` (2026-08-27, awaiting a decision - slide 15 `#s14`, four
+treatments of the `terraform plan` block so it reads as an excerpt from a terminal rather
+than another card: the live block, a real window with chrome and a blinking cursor, a
+full-width console dump with no chrome, and a labelled quoted excerpt; wording and the four
+gates unchanged, and the deck itself unchanged this round). Decided (all under
+`presentations/sandbox/migrating_an_instance/`):
 `s13-policies-only` (2026-08-27, option D - the exception and its reason in large type,
 nothing else, wording made more human - applied to the deck's `#s13` rules; the page is
 deleted, the index keeps the record as a non-linked `.done` entry);
