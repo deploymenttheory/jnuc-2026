@@ -562,7 +562,7 @@ it up - either way it is on disk for a recovering session.
   `<li>` elements, one entry each, matching every other item in the list; no wording or
   other entries changed. Verified: 14 `<li>` open and close, 14 `.meta` paragraphs,
   `xmllint --html --noout` clean, and a headless-Chrome screenshot over HTTP shows each
-  entry as its own spaced item with the slide 16 link on its own line. PR #TBD.
+  entry as its own spaced item with the slide 16 link on its own line. PR #50.
 
 - **2026-08-28, slide 16 (`#s-staging`) pixel-art icons for the three rebuild steps.**
   Joseph: "Use the pixel art generator to make a good, high quality pixelart for each box on
