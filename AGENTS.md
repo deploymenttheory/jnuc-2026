@@ -222,7 +222,7 @@ overlay - keep the two in step when slides move.
 7. `s07` Prerequisites (two portions, instance prep and migration prep, each a tidied
    checklist) - **Gordon**
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
-9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception; the lead plus three shared gate cards is option A and is what shows. Three hidden alternative wrappers - `.s-sentinel-opt-b`, `-opt-c`, `-opt-d` - also ship in the section for the open sandbox page `s-sentinel-visual`, with the same sentences rearranged: a hatched policy wall crossed three times, a staircase of three growing panels, and the three states on a Nov 2025 to Jan 2026 axis. Option D carries a TODO chip for the number of import windows; it renders only when that wrapper is shown) - **Gordon**
+9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception; the shared `.lead` plus three `.gates-3` cards, and nothing else in the section. The round-one alternative wrappers came back out on 2026-08-28 when Joseph rejected them; the open sandbox page `s-sentinel-round2` is pure CSS on this markup, so the section has no slide-specific rules of its own) - **Gordon**
 10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
 11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; seven steps as full-width
     bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
@@ -670,14 +670,14 @@ automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages (all under `presentations/sandbox/migrating_an_instance/`):
-`s-sentinel-visual` (2026-08-28, slide 9 - four visual treatments, no wording or fact
-changes anywhere: A the live lead-plus-gate-cards slide, B a hatched Sentinel wall crossed
-three times (blocked, a dashed temporary opening, an open one), C a staircase of three
-panels sharing a bottom edge and growing taller left to right with the verb at title size,
-D the lead kept and the three states laid on a Nov 2025 to Jan 2026 axis with the exception
-windows as a repeating tick band. B, C and D ship as hidden wrappers in `#s-sentinel` and
-the page only flips which one shows). Decided (all under
-`presentations/sandbox/migrating_an_instance/`):
+`s-sentinel-round2` (2026-08-28, slide 9 - three fresh treatments after round one was
+rejected, all leaning simpler and all pure CSS on the existing `.lead` / `ol.gates` /
+`li.card.gate` markup scoped to `#s-sentinel`, so nothing new ships in the deck: A the live
+slide, B the cards as three tall columns ruled top and bottom with the number large in mono
+and the only colour on the slide, C the three states as one run of plain blocks joined by
+two arrows in the diagram line colour, D a two-column split with the lead holding the left
+half and the gates stacked down the right as a numbered list with hairlines between).
+Decided (all under `presentations/sandbox/migrating_an_instance/`):
 `s11-bullets-round2` (2026-08-28, slide 12 - four plain treatments of the right-hand
 points, wording unchanged, all four pure CSS on the same list: A the dashed list the deck
 now ships, B the points separated by a hairline rule at full column width, C each point on
@@ -693,6 +693,14 @@ column, which that PR cut from seven bullets to four points, shipped as the mark
 Joseph rejected all four and asked for plain, easily separated bullet points, so the
 wrappers, their markup including the inline-SVG glyphs, and their CSS came out of the deck
 and `s11-bullets-round2` above replaced the page. The page is deleted, the index keeps the
+record as a non-linked `.done` entry);
+`s-sentinel-visual` (2026-08-28, slide 9 - four visual treatments, no wording or fact
+changes anywhere: A the live lead-plus-gate-cards slide, B a hatched Sentinel wall crossed
+three times, C a staircase of three panels growing taller left to right, D the three states
+on a Nov 2025 to Jan 2026 axis with the exception windows as a repeating tick band; B, C
+and D shipped as hidden wrappers in `#s-sentinel`. Superseded 2026-08-28: all three
+rejected, no option chosen, the wrappers and the whole S-SENTINEL CSS block removed from
+the deck and the round two page opened in its place. Page deleted, the index keeps the
 record as a non-linked `.done` entry);
 `s-staging-steps-first` (2026-08-27, slide 16 - four ways to put the three rebuild steps
 first, all four pure CSS on the same markup: A three full-height panels, B a numbered run

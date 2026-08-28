@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sandbox - slide 9 guardrails you don't own, round two</title>
+<link rel="stylesheet" href="../sandbox.css">
+</head>
+<body>
+<div class="wrap">
+  <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / From Clicks to Code / slide 9</p>
+  <h1>Slide 9 - guardrails you don't own, round two</h1>
+  <p class="lede">Round one - the wall, the staircase and the timeline axis - was rejected, and those three wrappers are out of the deck with this PR. This is a fresh set, all leaning simpler: no drawn devices, no invented copy, every sentence exactly as it stands on the slide today. All three are pure CSS on the deck's existing markup - the shared <code>.lead</code>, <code>ol.gates</code> and the three <code>li.card.gate</code> - scoped to <code>#s-sentinel</code>, so nothing new ships in the deck and each render below is the real slide with only that option's rules on top.</p>
+  <nav class="jump" aria-label="Options">
+    <a href="#a">A</a><a href="#b">B</a><a href="#c">C</a><a href="#d">D</a>
+  </nav>
+
+  <section class="option" id="a">
+    <h2>Option A - the slide as it ships <span class="tag">live now</span></h2>
+    <p>The lead at 44px over three navy gate cards. The paragraph takes the top third and the cards are short, so the bottom third of the slide is empty. Nothing is injected here.</p>
+    <div class="frame"><iframe data-variant="a" src="../../migrating_an_instance/index.html#s-sentinel" title="Option A"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-a"></pre></details>
+  </section>
+
+  <section class="option" id="b">
+    <h2>Option B - three tall columns</h2>
+    <p>The cards lose their navy fill and become three columns ruled top and bottom, all the same height and evenly spaced. The number is the only coloured thing on the slide - coral, muted, lime - and it sits large in monospace at the top of each column, with the verb at 44px below it and the sentence at body size under that. The lead drops to body size in the muted tint so it reads as the setup rather than the slide. Quiet, and it gives the three states equal weight.</p>
+    <div class="frame"><iframe data-variant="b" src="../../migrating_an_instance/index.html#s-sentinel" title="Option B"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-b"></pre></details>
+  </section>
+
+  <section class="option" id="c">
+    <h2>Option C - one sequence, three blocks and two arrows</h2>
+    <p>The three states read as one run across the slide: three plain blocks on the deck's card surface, joined by two arrows drawn in the diagram line colour, so the order is the point. The verb sits inside each block at 44px, coloured as the shared gate rules already colour it, over the sentence at code size, with the number as a small mono marker above. The lead sits above the run at code size in the muted tint.</p>
+    <div class="frame"><iframe data-variant="c" src="../../migrating_an_instance/index.html#s-sentinel" title="Option C"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-c"></pre></details>
+  </section>
+
+  <section class="option" id="d">
+    <h2>Option D - the setup on the left, the three states on the right</h2>
+    <p>A straight two-column split. The lead stays at body size and holds the left half on its own, as the setup Gordon talks to. The three gates stack down the right half as a numbered list - number in the gutter, verb over its sentence, a hairline between each and generous space around them. No cards, no fills, nothing drawn. The plainest of the three.</p>
+    <div class="frame"><iframe data-variant="d" src="../../migrating_an_instance/index.html#s-sentinel" title="Option D"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-d"></pre></details>
+  </section>
+
+  <p class="foot">To choose: name the option in chat, or describe what to change and this page gets a new set. Renders need the site served over HTTP - opened from disk the iframes load but the option CSS cannot be injected.</p>
+</div>
+
+<script>
+  // Each option is CSS layered onto the real deck slide. Option A is the deck as it ships
+  // and injects nothing. Rules only touch #s-sentinel and only use the deck's own tokens,
+  // so an accepted option can be pasted into the deck as-is.
+  const VARIANTS = {
+    a: ``,
+    b: `/* Option B - three tall columns, colour on the number only */
+#s-sentinel .lead {
+  font-size: var(--fs-body);
+  color: var(--c-text-muted);
+  max-width: 1728px;
+  margin-bottom: var(--sp-5);
+}
+#s-sentinel .gates-3 { gap: var(--sp-6); }
+#s-sentinel .gate {
+  min-height: 500px;
+  background: none;
+  border: 0;
+  border-top: var(--bw-2) solid var(--c-border);
+  border-bottom: var(--bw-1) solid var(--c-border);
+  border-radius: 0;
+  padding: var(--sp-4) 0;
+  gap: var(--sp-4);
+}
+#s-sentinel .gate-num { font-size: var(--fs-hero); }
+#s-sentinel .gate:nth-child(2) .gate-num { color: var(--c-text-muted); }
+#s-sentinel .gate p { font-size: var(--fs-body); line-height: var(--lh-body); }
+#s-sentinel .gate strong {
+  display: block;
+  font-family: var(--f-display);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  color: var(--c-text);
+  margin-bottom: var(--sp-2);
+}`,
+    c: `/* Option C - one horizontal sequence, three blocks joined by arrows */
+#s-sentinel .lead {
+  font-size: var(--fs-code);
+  color: var(--c-text-muted);
+  max-width: 1560px;
+  margin-bottom: var(--sp-5);
+}
+#s-sentinel .gates-3 { gap: var(--sp-5); }
+#s-sentinel .gate {
+  position: relative;
+  gap: var(--sp-3);
+  min-height: 400px;
+  padding: var(--sp-4);
+  border-color: var(--c-border);
+}
+#s-sentinel .gate-num {
+  font-size: var(--fs-body);
+  color: var(--c-text-muted);
+}
+#s-sentinel .gate p { font-size: var(--fs-code); line-height: var(--lh-body); }
+#s-sentinel .gate strong {
+  display: block;
+  font-family: var(--f-display);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  margin-bottom: var(--sp-2);
+}
+#s-sentinel .gate-final strong { color: var(--c-danger); }
+#s-sentinel .gate-ok strong { color: var(--c-success); }
+/* the arrow sits in the gap between one block and the next, in the diagram line colour */
+#s-sentinel .gate + .gate::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--sp-5) * -1);
+  top: 50%;
+  width: var(--sp-5);
+  height: var(--sp-3);
+  transform: translateY(-50%);
+  background: var(--c-line);
+  clip-path: polygon(0 38%, 58% 38%, 58% 0, 100% 50%, 58% 100%, 58% 62%, 0 62%);
+}`,
+    d: `/* Option D - the lead on the left, the three gates as a numbered list on the right */
+#s-sentinel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  column-gap: var(--sp-6);
+}
+#s-sentinel .slide-title { grid-column: 1 / -1; grid-row: 1; }
+#s-sentinel .lead {
+  grid-column: 1; grid-row: 2;
+  align-self: start;
+  margin: 0;
+  max-width: none;
+  font-size: var(--fs-body);
+}
+#s-sentinel .gates-3 {
+  grid-column: 2; grid-row: 2;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0;
+  padding-bottom: var(--tl-clear);
+}
+#s-sentinel .gate {
+  flex-direction: row;
+  align-items: baseline;
+  gap: var(--sp-3);
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: var(--sp-3) 0;
+}
+#s-sentinel .gate + .gate { border-top: var(--bw-1) solid var(--c-border); }
+#s-sentinel .gate-num { flex: 0 0 var(--sp-4); font-size: var(--fs-h2); }
+#s-sentinel .gate p { flex: 1; font-size: var(--fs-code); line-height: var(--lh-body); }
+#s-sentinel .gate strong {
+  display: block;
+  font-family: var(--f-display);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  margin-bottom: var(--sp-1);
+}`,
+  };
+
+  for (const [key, css] of Object.entries(VARIANTS)) {
+    document.getElementById('css-' + key).textContent = css || '/* nothing - this is the deck as deployed */';
+  }
+
+  document.querySelectorAll('iframe[data-variant]').forEach((frame) => {
+    frame.addEventListener('load', () => {
+      const css = VARIANTS[frame.dataset.variant];
+      if (!css) return;
+      let doc;
+      try { doc = frame.contentDocument; } catch (e) { doc = null; }
+      if (!doc) return; // file:// - cross-origin iframe, nothing we can do
+      const style = doc.createElement('style');
+      style.textContent = css;
+      doc.head.appendChild(style);
+    });
+  });
+</script>
+</body>
+</html>
