@@ -978,77 +978,9 @@ body.reader .reader-extra {
   gap: var(--sp-3);
 }
 .slide-centred .slide-title { margin-bottom: var(--sp-2); }
-.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
-.stat { text-align: center; padding: var(--sp-5) var(--sp-3); }
-.stat-num { display: block; font-family: var(--f-display); font-size: var(--fs-hero); line-height: var(--lh-tight); }
-.stat-num-sm { font-size: var(--fs-h1); }
-.stat-label { display: block; margin-top: var(--sp-2); font-size: var(--fs-caption); color: var(--c-text-muted); }
 
-/* The .stats grid above is s16b's option A and what the deck ships. B, C and D are
-   sandbox alternatives (2026-08-27) whose markup lives inside the section, hidden here;
-   s16b-numbers.html flips which wrapper shows. Everything below is scoped to #s16b so
-   none of it reaches s18, which shares the block. */
-#s16b .s16b-opt-b, #s16b .s16b-opt-c, #s16b .s16b-opt-d { display: none; }
-
-/* option B: one bar per figure, each measured against its own ceiling. Bars of different
-   units must not share an axis, so every row gets its own scale and states it. */
-#s16b .s16b-frame { font-size: var(--fs-caption); color: var(--c-text-muted); margin-bottom: var(--sp-5); }
-#s16b .s16b-bars { display: flex; flex-direction: column; gap: var(--sp-4); }
-#s16b .s16b-bar {
-  display: grid;
-  grid-template-columns: 340px 300px 1fr 180px;
-  align-items: center;
-  column-gap: var(--sp-4);
-}
-#s16b .s16b-bar-num {
-  font-family: var(--f-display);
-  font-size: var(--fs-h1);
-  line-height: var(--lh-tight);
-  text-align: right;
-}
-#s16b .s16b-bar-label { font-size: var(--fs-body); color: var(--c-text-muted); }
-#s16b .s16b-track {
-  position: relative;
-  height: var(--sp-4);
-  border-radius: var(--radius-sm);
-  background: var(--c-surface);
-  border: var(--bw-1) solid var(--c-border);
-}
-#s16b .s16b-fill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  border-radius: var(--radius-sm);
-  background: var(--c-accent);
-}
-/* an open segment means the figure is a floor, not a count - "35-40", "19,000+" */
-#s16b .s16b-fill-open {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  border: var(--bw-2) solid var(--c-accent);
-  border-left: none;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-}
-#s16b .s16b-bar-max { font-family: var(--f-mono); font-size: var(--fs-chip); color: var(--c-text-muted); }
-/* each fill is that row's figure as a fraction of that row's own ceiling */
-#s16b .s16b-bar-people .s16b-fill { width: 87.5%; }
-#s16b .s16b-bar-people .s16b-fill-open { width: 12.5%; }
-#s16b .s16b-bar-prs .s16b-fill { width: 90%; }
-#s16b .s16b-bar-commits .s16b-fill { width: 95.1%; }
-#s16b .s16b-bar-files .s16b-fill { width: 89.3%; }
-#s16b .s16b-bar-lines .s16b-fill { width: 95%; }
-#s16b .s16b-bar-lines .s16b-fill-open { width: 5%; }
-#s16b .s16b-scale-note {
-  margin-top: var(--sp-5);
-  font-size: var(--fs-caption);
-  color: var(--c-text-muted);
-  max-width: 1400px;
-}
-
-/* option C: one number carries the slide, the rest support it in a quiet row */
+/* s16b: one hero number carries the slide, the rest support it in a quiet row below.
+   Scoped to #s16b so none of it reaches s18, which shares this block. */
 #s16b .s16b-hero-kicker { font-size: var(--fs-caption); color: var(--c-text-muted); }
 #s16b .s16b-hero {
   display: flex;
@@ -1074,44 +1006,6 @@ body.reader .reader-extra {
 #s16b .s16b-support-item { display: flex; flex-direction: column; gap: var(--sp-1); }
 #s16b .s16b-support-num { font-family: var(--f-display); font-size: var(--fs-h2); line-height: var(--lh-tight); }
 #s16b .s16b-support-label { font-size: var(--fs-caption); color: var(--c-text-muted); }
-
-/* option D: the two small figures drawn one mark each, the three large ones stated */
-#s16b .s16b-units { display: grid; grid-template-columns: 460px 1fr; gap: var(--sp-5); align-items: start; }
-#s16b .s16b-unit-head { display: flex; align-items: baseline; gap: var(--sp-3); margin-bottom: var(--sp-3); }
-#s16b .s16b-unit-num { font-family: var(--f-display); font-size: var(--fs-h1); line-height: var(--lh-tight); }
-#s16b .s16b-unit-label { font-size: var(--fs-body); color: var(--c-text-muted); }
-#s16b .s16b-dots { display: grid; gap: var(--sp-2); justify-content: start; }
-#s16b .s16b-u {
-  display: block;
-  width: var(--sp-3);
-  height: var(--sp-3);
-  border-radius: var(--radius-sm);
-  background: var(--c-accent);
-}
-#s16b .s16b-u-open { background: none; border: var(--bw-2) solid var(--c-accent); }
-/* fixed columns so the two grids stay countable rows rather than reflowing */
-#s16b .s16b-dots-people { grid-template-columns: repeat(10, var(--sp-3)); }
-#s16b .s16b-dots-files { grid-template-columns: repeat(30, var(--sp-3)); }
-#s16b .s16b-unit-note {
-  margin-top: var(--sp-3);
-  font-size: var(--fs-caption);
-  color: var(--c-text-muted);
-  max-width: 640px;
-}
-#s16b .s16b-totals {
-  margin-top: var(--sp-5);
-  border-top: var(--bw-1) solid var(--c-border);
-  padding-top: var(--sp-3);
-}
-#s16b .s16b-totals-head {
-  font-size: var(--fs-caption);
-  color: var(--c-text-muted);
-  margin-bottom: var(--sp-3);
-}
-#s16b .s16b-totals-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
-#s16b .s16b-total { display: flex; align-items: baseline; gap: var(--sp-3); }
-#s16b .s16b-total-num { font-family: var(--f-display); font-size: var(--fs-h1); line-height: var(--lh-tight); }
-#s16b .s16b-total-label { font-size: var(--fs-body); color: var(--c-text-muted); }
 
 /* ============================ presenter window ============================ */
 body.presenter #viewport { display: none; }
@@ -1953,104 +1847,13 @@ body.presenter #viewport { display: none; }
     <!-- ============================ S16b - By the numbers ============================ -->
     <section class="slide" id="s16b" aria-label="By the numbers" data-speaker="Gordon" data-when="2026-07">
       <h1 class="slide-title">By the numbers</h1>
-      <div class="stats">
-        <div class="card stat">
-          <span class="stat-num stat-num-sm">Apr 2025 → May 2026</span>
-          <span class="stat-label">provider development to v1.0.0 and final handover</span>
-        </div>
-        <div class="card stat">
-          <span class="stat-num">35-40</span>
-          <span class="stat-label">contributors</span>
-        </div>
-        <div class="card stat">
-          <span class="stat-num">900</span>
-          <span class="stat-label">PRs merged</span>
-        </div>
-        <div class="card stat">
-          <span class="stat-num">1,902</span>
-          <span class="stat-label">commits</span>
-        </div>
-        <div class="card stat">
-          <span class="stat-num">134</span>
-          <span class="stat-label">HCL files</span>
-        </div>
-        <div class="card stat">
-          <span class="stat-num">19,000+</span>
-          <span class="stat-label">lines of code</span>
-        </div>
-      </div>
-
-      <!-- The .stats grid above is option A and what the deck ships. B, C and D are the
-           sandbox alternatives, hidden by the #s16b rule in the stylesheet;
-           s16b-numbers.html flips which wrapper shows. -->
-      <div class="s16b-opt s16b-opt-b">
-        <p class="s16b-frame">Apr 2025 → May 2026, provider development to v1.0.0 and final handover</p>
-        <div class="s16b-bars">
-          <div class="s16b-bar s16b-bar-people">
-            <span class="s16b-bar-num">35-40</span>
-            <span class="s16b-bar-label">contributors</span>
-            <span class="s16b-track"><span class="s16b-fill"></span><span class="s16b-fill-open"></span></span>
-            <span class="s16b-bar-max">of 40</span>
-          </div>
-          <div class="s16b-bar s16b-bar-prs">
-            <span class="s16b-bar-num">900</span>
-            <span class="s16b-bar-label">PRs merged</span>
-            <span class="s16b-track"><span class="s16b-fill"></span></span>
-            <span class="s16b-bar-max">of 1,000</span>
-          </div>
-          <div class="s16b-bar s16b-bar-commits">
-            <span class="s16b-bar-num">1,902</span>
-            <span class="s16b-bar-label">commits</span>
-            <span class="s16b-track"><span class="s16b-fill"></span></span>
-            <span class="s16b-bar-max">of 2,000</span>
-          </div>
-          <div class="s16b-bar s16b-bar-files">
-            <span class="s16b-bar-num">134</span>
-            <span class="s16b-bar-label">HCL files</span>
-            <span class="s16b-track"><span class="s16b-fill"></span></span>
-            <span class="s16b-bar-max">of 150</span>
-          </div>
-          <div class="s16b-bar s16b-bar-lines">
-            <span class="s16b-bar-num">19,000+</span>
-            <span class="s16b-bar-label">lines of code</span>
-            <span class="s16b-track"><span class="s16b-fill"></span><span class="s16b-fill-open"></span></span>
-            <span class="s16b-bar-max">of 20,000</span>
-          </div>
-        </div>
-        <p class="s16b-scale-note">Every row runs on its own scale, up to the round number on its right. The bars do not compare with each other, they compare each figure with the number it is about to pass - which is the same story on all five rows. Open ends are floors rather than counts.</p>
-      </div>
-      <div class="s16b-opt s16b-opt-c">
-        <p class="s16b-hero-kicker">Apr 2025 → May 2026, provider development to v1.0.0 and final handover</p>
-        <p class="s16b-hero"><span class="s16b-hero-num">900</span><span class="s16b-hero-label">pull requests merged</span></p>
-        <div class="s16b-support">
-          <div class="s16b-support-item"><span class="s16b-support-num">35-40</span><span class="s16b-support-label">contributors</span></div>
-          <div class="s16b-support-item"><span class="s16b-support-num">1,902</span><span class="s16b-support-label">commits</span></div>
-          <div class="s16b-support-item"><span class="s16b-support-num">134</span><span class="s16b-support-label">HCL files</span></div>
-          <div class="s16b-support-item"><span class="s16b-support-num">19,000+</span><span class="s16b-support-label">lines of code</span></div>
-        </div>
-      </div>
-      <div class="s16b-opt s16b-opt-d">
-        <p class="s16b-frame">Apr 2025 → May 2026, provider development to v1.0.0 and final handover</p>
-        <div class="s16b-units">
-          <div class="s16b-unit">
-            <p class="s16b-unit-head"><span class="s16b-unit-num">35-40</span><span class="s16b-unit-label">contributors</span></p>
-            <div class="s16b-dots s16b-dots-people" aria-hidden="true"><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u s16b-u-open"></span><span class="s16b-u s16b-u-open"></span><span class="s16b-u s16b-u-open"></span><span class="s16b-u s16b-u-open"></span><span class="s16b-u s16b-u-open"></span></div>
-            <p class="s16b-unit-note">One mark per person. The last five are open, because the count sits somewhere between 35 and 40.</p>
-          </div>
-          <div class="s16b-unit">
-            <p class="s16b-unit-head"><span class="s16b-unit-num">134</span><span class="s16b-unit-label">HCL files</span></p>
-            <div class="s16b-dots s16b-dots-files" aria-hidden="true"><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span><span class="s16b-u"></span></div>
-            <p class="s16b-unit-note">One mark per file. This is the whole estate, drawn at one mark each.</p>
-          </div>
-        </div>
-        <div class="s16b-totals">
-          <p class="s16b-totals-head">Too many to draw</p>
-          <div class="s16b-totals-row">
-            <p class="s16b-total"><span class="s16b-total-num">900</span><span class="s16b-total-label">PRs merged</span></p>
-            <p class="s16b-total"><span class="s16b-total-num">1,902</span><span class="s16b-total-label">commits</span></p>
-            <p class="s16b-total"><span class="s16b-total-num">19,000+</span><span class="s16b-total-label">lines of code</span></p>
-          </div>
-        </div>
+      <p class="s16b-hero-kicker">Jan 2026 → Sept 2026, provider development to v1.0.0 and final handover</p>
+      <p class="s16b-hero"><span class="s16b-hero-num">900</span><span class="s16b-hero-label">pull requests merged</span></p>
+      <div class="s16b-support">
+        <div class="s16b-support-item"><span class="s16b-support-num">35-40</span><span class="s16b-support-label">contributors</span></div>
+        <div class="s16b-support-item"><span class="s16b-support-num">1,902</span><span class="s16b-support-label">commits</span></div>
+        <div class="s16b-support-item"><span class="s16b-support-num">134</span><span class="s16b-support-label">HCL files</span></div>
+        <div class="s16b-support-item"><span class="s16b-support-num">19,000+</span><span class="s16b-support-label">lines of code</span></div>
       </div>
       <aside class="notes">
         <p>Split the timeline or the room hears thirteen months of migration. April 2025 is the provider-development start; nothing was imported before November 2025. May 2026 is both v1.0.0 and the final handover, with the Mac engineering team working proficiently on their own.</p>
