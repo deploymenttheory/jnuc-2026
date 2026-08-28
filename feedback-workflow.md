@@ -660,6 +660,14 @@ it up - either way it is on disk for a recovering session.
   `presentations/sandbox/migrating_an_instance/s-sentinel-visual.html`, index entry added,
   `AGENTS.md`'s slide-9 line and the Sandbox section's "Current pages" line updated.
   Awaiting a decision. PR #TBD.
+- **2026-08-28, slide 16 (`#s-staging`): option B accepted.** Joseph: "16 - option B
+  please." Folded option B's CSS (a numbered rail of the three steps down the left, verb
+  and sentence on one line each, lead and takeaway as a quiet right-hand column) into the
+  deck's `#s-staging` block in place of option A's rules, no markup change. The pixel-art
+  icons were grown from B's sandbox size of 96px to 168px - the largest width a rail row
+  allows before the third row's icon meets the timeline strip. Sandbox page deleted,
+  `AGENTS.md` slide list and Sandbox section updated. Presenter check OK, no dash hits. PR
+  #52.
 - **2026-08-28, feedback-workflow.md updated for the handover.** The stale
   2026-08-27 handover section (PRs 4 to 28, slide 4 as the last thing settled, PR #26 as
   the open collaborator PR) retitled "superseded" and kept below a new "State at handover
