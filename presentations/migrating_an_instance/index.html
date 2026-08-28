@@ -921,6 +921,266 @@ body.reader .reader-extra {
 .gate-ok { border-color: var(--c-success); }
 .gate .todo { white-space: normal; align-self: flex-start; }
 
+/* ============================ S-SENTINEL ============================ */
+/* Slide 9 ships as option A - the shared .lead plus three .gates-3 cards, unchanged.
+   Three visual alternatives ride along in the markup and are hidden here; the sandbox
+   page s-sentinel-visual.html hides the lead and the gates and shows one of them per
+   option. Nothing below touches .lead, .gates or .gate*, so #s01, #s14 and #s-staging
+   are unaffected. Accepting an option means deleting the other two wrappers and their
+   rules as one clean block. */
+#s-sentinel .s-sentinel-opt-b,
+#s-sentinel .s-sentinel-opt-c,
+#s-sentinel .s-sentinel-opt-d { display: none; }
+
+/* ---------------- option B: one wall, crossed three times ----------------
+   The policy check is drawn once, as a navy wall standing down the middle of the
+   slide, and the same run meets it three times. The first lane stops dead against it;
+   the second passes through a temporary opening with dashed edges; the third through
+   an opening that is simply there, edged in the accent. The picture carries the story
+   and the sentences sit beside their own lane. */
+#s-sentinel .sb-kicker {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--c-text-muted);
+  max-width: 1560px;
+  margin-bottom: var(--sp-4);
+}
+#s-sentinel .sb-wall-grid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+#s-sentinel .sb-wall {
+  position: absolute;
+  left: 460px;
+  width: 180px;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  padding: var(--sp-3) var(--sp-2);
+  /* hatched so the wall reads as a barrier rather than another navy card */
+  background: repeating-linear-gradient(
+    135deg,
+    var(--c-surface) 0 16px,
+    color-mix(in srgb, var(--c-surface) 82%, var(--c-text)) 16px 18px
+  );
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius);
+}
+/* the label sits in the top band, where no lane cuts through the wall */
+#s-sentinel .sb-wall span {
+  align-self: flex-start;
+  text-align: center;
+  font-family: var(--f-mono);
+  font-size: var(--fs-chip);
+  line-height: var(--lh-body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+#s-sentinel .sb-lane {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 460px 180px 1fr;
+  align-items: center;
+  min-height: 196px;
+}
+#s-sentinel .sb-run { display: flex; align-items: center; gap: var(--sp-2); }
+#s-sentinel .sb-run-label {
+  font-family: var(--f-mono);
+  font-size: var(--fs-chip);
+  color: var(--c-text-muted);
+  white-space: nowrap;
+}
+#s-sentinel .sb-track { flex: 1; height: var(--bw-3); background: var(--c-line); }
+#s-sentinel .sb-stop {
+  flex: none;
+  width: var(--sp-1);
+  height: 72px;
+  border-radius: var(--radius-sm);
+  background: var(--c-danger);
+}
+/* the opening punched through the wall - the stage colour showing through it */
+#s-sentinel .sb-gap {
+  position: relative;
+  display: block;
+  height: 68px;
+  background: var(--c-bg);
+}
+#s-sentinel .sb-gap::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--sp-4) * -1);
+  right: calc(var(--sp-4) * -1);
+  top: 50%;
+  height: var(--bw-3);
+  margin-top: calc(var(--bw-3) / -2);
+  background: currentColor;
+}
+#s-sentinel .sb-lane-blocked .sb-track { background: var(--c-danger); }
+#s-sentinel .sb-lane-excepted .sb-gap {
+  color: var(--c-text);
+  border-top: var(--bw-3) dashed var(--c-text);
+  border-bottom: var(--bw-3) dashed var(--c-text);
+}
+#s-sentinel .sb-lane-standing .sb-track { background: var(--c-accent); }
+#s-sentinel .sb-lane-standing .sb-gap {
+  height: 88px;
+  color: var(--c-accent);
+  border-top: var(--bw-3) solid var(--c-accent);
+  border-bottom: var(--bw-3) solid var(--c-accent);
+}
+#s-sentinel .sb-out { padding-left: var(--sp-5); }
+#s-sentinel .sb-verb {
+  font-family: var(--f-display);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  margin-bottom: var(--sp-1);
+}
+#s-sentinel .sb-lane-blocked .sb-verb { color: var(--c-danger); }
+#s-sentinel .sb-lane-standing .sb-verb { color: var(--c-accent); }
+#s-sentinel .sb-say { font-size: var(--fs-code); line-height: var(--lh-body); }
+
+/* ---------------- option C: a staircase from blocked to standing ----------------
+   The paragraph goes, replaced by one line of setup, and the three states become
+   three blocks that step up the slide. Each one is bottom-aligned with its
+   neighbours and taller than the one before, so the climb out of the block is the
+   shape of the slide. The verb carries at title size from the back of the room. */
+#s-sentinel .sc-kicker {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-body);
+  margin-bottom: var(--sp-4);
+}
+#s-sentinel .sc-steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+  align-items: end;
+}
+#s-sentinel .sc-step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-border);
+  border-top-width: var(--bw-3);
+  border-radius: var(--radius);
+}
+#s-sentinel .sc-step-blocked  { height: 400px; border-top-color: var(--c-danger); }
+#s-sentinel .sc-step-excepted { height: 530px; border-top-color: var(--c-accent-2); }
+#s-sentinel .sc-step-standing { height: 650px; border-top-color: var(--c-accent); }
+#s-sentinel .sc-num {
+  font-family: var(--f-mono);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+}
+#s-sentinel .sc-step-blocked .sc-num,
+#s-sentinel .sc-step-blocked .sc-verb { color: var(--c-danger); }
+#s-sentinel .sc-step-excepted .sc-num,
+#s-sentinel .sc-step-excepted .sc-verb { color: var(--c-accent-2); }
+#s-sentinel .sc-step-standing .sc-num,
+#s-sentinel .sc-step-standing .sc-verb { color: var(--c-accent); }
+#s-sentinel .sc-body { margin-top: auto; }
+#s-sentinel .sc-verb {
+  font-family: var(--f-display);
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  margin-bottom: var(--sp-2);
+}
+#s-sentinel .sc-say { font-size: var(--fs-body); line-height: var(--lh-body); }
+
+/* ---------------- option D: the three states on their own axis ----------------
+   The lead stays, quietened, and the gates become the slide's own data-when range
+   drawn across it: a blunt stop where nothing could run, a repeating band of
+   exception windows through the middle, and a single end marker where the standing
+   exception lands. The axis deliberately runs Nov 2025 to Jan 2026, the same range
+   the timeline strip highlights beneath it. */
+#s-sentinel .sd-lead {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--c-text-muted);
+  max-width: 1560px;
+  margin-bottom: var(--sp-5);
+}
+#s-sentinel .sd-stages {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: var(--sp-4);
+  align-items: end;
+}
+#s-sentinel .sd-verb {
+  font-family: var(--f-display);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  margin-bottom: var(--sp-2);
+}
+#s-sentinel .sd-say { font-size: var(--fs-body); line-height: var(--lh-body); }
+#s-sentinel .sd-say .inline { white-space: nowrap; }
+#s-sentinel .sd-stage .todo { white-space: normal; margin-top: var(--sp-2); }
+#s-sentinel .sd-stage-blocked .sd-verb { color: var(--c-danger); }
+#s-sentinel .sd-stage-standing .sd-verb { color: var(--c-accent); }
+#s-sentinel .sd-stage-excepted { text-align: center; }
+#s-sentinel .sd-stage-standing { text-align: right; }
+/* leader from each block of text down to its own marker on the axis */
+/* leader from each block of text down onto its own marker */
+#s-sentinel .sd-stage::after {
+  content: "";
+  display: block;
+  width: var(--bw-2);
+  height: var(--sp-6);
+  margin-top: var(--sp-3);
+  background: var(--c-border);
+}
+#s-sentinel .sd-stage-excepted::after { margin-left: auto; margin-right: auto; }
+#s-sentinel .sd-stage-standing::after { margin-left: auto; }
+#s-sentinel .sd-line {
+  position: relative;
+  height: var(--sp-6);
+  border-bottom: var(--bw-3) solid var(--c-line);
+}
+#s-sentinel .sd-mark-stop,
+#s-sentinel .sd-mark-end,
+#s-sentinel .sd-mark-windows { position: absolute; bottom: 0; }
+#s-sentinel .sd-mark-stop {
+  left: 0;
+  width: var(--sp-1);
+  height: var(--sp-6);
+  border-radius: var(--radius-sm);
+  background: var(--c-danger);
+}
+/* one tick per exception window - the count is unconfirmed, so the band repeats
+   rather than drawing a number the deck cannot stand behind */
+#s-sentinel .sd-mark-windows {
+  left: 30%;
+  right: 24%;
+  height: var(--sp-6);
+  background: repeating-linear-gradient(to right, var(--c-text) 0 var(--bw-2), transparent var(--bw-2) 60px);
+}
+#s-sentinel .sd-mark-end {
+  right: 0;
+  width: var(--sp-2);
+  height: var(--sp-6);
+  border-radius: var(--radius-sm);
+  background: var(--c-accent);
+}
+#s-sentinel .sd-months {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--sp-2);
+  font-family: var(--f-mono);
+  font-size: var(--fs-caption);
+  color: var(--c-text-muted);
+}
+
 /* ============================ S-STAGING ============================ */
 /* Steps first (Joseph, 2026-08-27): the three steps are the slide. The setup line above
    them and the takeaway below are deliberately quiet, and the three gate cards grow to
@@ -1524,6 +1784,92 @@ body.presenter #viewport { display: none; }
           <p><strong>Resolved.</strong> We made the case to the Sentinel team: sole actors on these workspaces, nobody else's resources to adopt. Standing exception granted.</p>
         </li>
       </ol>
+      <!-- Options B, C and D for the visual round of 2026-08-28. The lead and the gate
+           cards above are option A. B, C and D are hidden by default (see the S-SENTINEL
+           CSS block); the sandbox page s-sentinel-visual.html flips which one shows.
+           Accepting one means deleting the other wrappers and their CSS as one block. -->
+      <div class="s-sentinel-opt-b">
+        <p class="sb-kicker">At LBG, every Terraform run passes through Sentinel policy checks before it can apply.</p>
+        <div class="sb-wall-grid">
+          <div class="sb-wall" aria-hidden="true"><span>Sentinel policy check</span></div>
+          <div class="sb-lane sb-lane-blocked">
+            <div class="sb-run"><span class="sb-run-label">terraform apply</span><span class="sb-track"></span><span class="sb-stop"></span></div>
+            <div class="sb-cross"></div>
+            <div class="sb-out">
+              <p class="sb-verb">Ruled out.</p>
+              <p class="sb-say">Import blocks are banned outright, and with no CLI access to production workspaces there's no <code class="inline">terraform import</code> fallback either.</p>
+            </div>
+          </div>
+          <div class="sb-lane sb-lane-excepted">
+            <div class="sb-run"><span class="sb-run-label">terraform apply</span><span class="sb-track"></span></div>
+            <div class="sb-cross"><span class="sb-gap"></span></div>
+            <div class="sb-out">
+              <p class="sb-verb">Excepted.</p>
+              <p class="sb-say">A time-bound Sentinel exception, submitted - and chased - for every import window. Strings were pulled.</p>
+            </div>
+          </div>
+          <div class="sb-lane sb-lane-standing">
+            <div class="sb-run"><span class="sb-run-label">terraform apply</span><span class="sb-track"></span></div>
+            <div class="sb-cross"><span class="sb-gap"></span></div>
+            <div class="sb-out">
+              <p class="sb-verb">Resolved.</p>
+              <p class="sb-say">We made the case to the Sentinel team: sole actors on these workspaces, nobody else's resources to adopt. Standing exception granted.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-sentinel-opt-c">
+        <p class="sc-kicker">One of those policies bans <code class="inline">import</code> blocks outright.</p>
+        <ol class="sc-steps">
+          <li class="sc-step sc-step-blocked">
+            <span class="sc-num">1</span>
+            <div class="sc-body">
+              <p class="sc-verb">Ruled out.</p>
+              <p class="sc-say">Import blocks are banned outright, and with no CLI access to production workspaces there's no <code class="inline">terraform import</code> fallback either.</p>
+            </div>
+          </li>
+          <li class="sc-step sc-step-excepted">
+            <span class="sc-num">2</span>
+            <div class="sc-body">
+              <p class="sc-verb">Excepted.</p>
+              <p class="sc-say">A time-bound Sentinel exception, submitted - and chased - for every import window. Strings were pulled.</p>
+            </div>
+          </li>
+          <li class="sc-step sc-step-standing">
+            <span class="sc-num">3</span>
+            <div class="sc-body">
+              <p class="sc-verb">Resolved.</p>
+              <p class="sc-say">We made the case to the Sentinel team: sole actors on these workspaces, nobody else's resources to adopt. Standing exception granted.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="s-sentinel-opt-d">
+        <p class="sd-lead">At LBG, every Terraform run - across the bank's entire public cloud estate - passes through Sentinel policy checks before it can apply. One of those policies bans <code class="inline">import</code> blocks outright, because importing lets a workspace adopt resources someone else already manages.</p>
+        <div class="sd-stages">
+          <div class="sd-stage sd-stage-blocked">
+            <p class="sd-verb">Ruled out.</p>
+            <p class="sd-say">Import blocks are banned outright, and with no CLI access to production workspaces there's no <code class="inline">terraform import</code> fallback either.</p>
+          </div>
+          <div class="sd-stage sd-stage-excepted">
+            <p class="sd-verb">Excepted.</p>
+            <p class="sd-say">A time-bound Sentinel exception, submitted - and chased - for every import window. Strings were pulled.</p>
+            <span class="todo">TODO: number of import windows</span>
+          </div>
+          <div class="sd-stage sd-stage-standing">
+            <p class="sd-verb">Resolved.</p>
+            <p class="sd-say">We made the case to the Sentinel team: sole actors on these workspaces, nobody else's resources to adopt. Standing exception granted.</p>
+          </div>
+        </div>
+        <div class="sd-axis">
+          <div class="sd-line" aria-hidden="true">
+            <span class="sd-mark-stop"></span>
+            <span class="sd-mark-windows"></span>
+            <span class="sd-mark-end"></span>
+          </div>
+          <div class="sd-months"><span>Nov 2025</span><span>Dec 2025</span><span>Jan 2026</span></div>
+        </div>
+      </div>
       <details class="reader-extra">
         <summary>More detail</summary>
         <div class="detail-body">

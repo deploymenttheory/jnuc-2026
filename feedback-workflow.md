@@ -637,6 +637,29 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, slide 9 (`#s-sentinel`) three visual treatments offered.** Joseph: "Can you
+  generate some visual options for 9 please?" A visual round only - no wording or fact
+  changes anywhere, and nothing changes in the deck as it ships: option A is the live slide
+  (the lead over three shared gate cards) and injects nothing. B, C and D need markup, so
+  all three ride along as hidden wrappers inside the section - `.s-sentinel-opt-b`, `-opt-c`,
+  `-opt-d` - with one `#s-sentinel` rule hiding them and the sandbox page flipping which one
+  shows, the same pattern `#s-workspace` used. B draws the wall: a hatched policy barrier
+  down the middle of the slide with the same run meeting it three times, stopping dead
+  against it in the danger colour, passing through a dashed temporary opening, then through
+  an open one edged in the accent, each lane's sentence beside its own crossing. C drops the
+  paragraph for a staircase - three panels sharing a bottom edge and growing taller left to
+  right, number in mono, verb at title size, sentence at body size, colour ramping danger to
+  cornflower to accent. D keeps the lead, quietened, and lays the three states on an axis
+  running Nov 2025 to Jan 2026, the slide's own `data-when` range: a blunt stop at the start,
+  a repeating tick band for the exception windows and one accent end marker for the standing
+  exception, with a TODO chip because the number of windows is not recorded. All the new CSS
+  is one `#s-sentinel`-scoped block next to the other slide blocks; the shared `.lead`,
+  `.gates` and `.gate*` rules are untouched and `#s14` screenshots identical. The option A
+  render is byte-identical to the same screenshot taken from `main`. The presenter check
+  prints OK. Sandbox page
+  `presentations/sandbox/migrating_an_instance/s-sentinel-visual.html`, index entry added,
+  `AGENTS.md`'s slide-9 line and the Sandbox section's "Current pages" line updated.
+  Awaiting a decision. PR #TBD.
 - **2026-08-28, feedback-workflow.md updated for the handover.** The stale
   2026-08-27 handover section (PRs 4 to 28, slide 4 as the last thing settled, PR #26 as
   the open collaborator PR) retitled "superseded" and kept below a new "State at handover

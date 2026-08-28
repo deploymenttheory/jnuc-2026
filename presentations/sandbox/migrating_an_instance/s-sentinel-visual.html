@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<!-- Built from tools/sandbox-template.html, extended to a fourth option the way the
+     workspace and staging pages were. The mechanism is documented in AGENTS.md under
+     Sandbox and the loop in feedback-workflow.md. -->
+<title>Sandbox - slide 9 guardrails you don't own</title>
+<link rel="stylesheet" href="../sandbox.css">
+</head>
+<body>
+<div class="wrap">
+  <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / From Clicks to Code / slide 9</p>
+  <h1>Slide 9 - guardrails you don't own</h1>
+  <p class="lede">Joseph asked for visual options on this slide. Nothing about the wording or the facts changes in any of them and nothing changes in the deck this round: the sentences below are the ones already on the slide, moved around. What is open is whether a slide about hitting a policy wall should keep being a paragraph and three text cards, or should draw the wall.</p>
+  <p class="lede">B, C and D need markup as well as CSS, so all three ship as hidden wrappers inside <code>#s-sentinel</code> and each option below flips which one is visible. Every rule is scoped to <code>#s-sentinel</code> and uses only the deck's own tokens, so an accepted option is applied by deleting the two losing wrappers and their CSS as one block.</p>
+  <nav class="jump" aria-label="Options">
+    <a href="#a">A</a><a href="#b">B</a><a href="#c">C</a><a href="#d">D</a>
+  </nav>
+
+  <section class="option" id="a">
+    <h2>Option A - the lead and three gate cards <span class="tag">live now</span></h2>
+    <p>The slide exactly as it ships. A four-line paragraph at heading size takes the top third, and the three states sit under it as short cards on the shared gate-card grid, the first edged in the danger colour and the third in the accent. It is the same furniture slide 15 and slide 16 use, which is its strength - the deck is consistent and the audience already knows how to read it - and its weakness: nothing on it is drawn, the three states are three paragraphs, and the bottom quarter of the slide is empty. Pick this if consistency with the other gate-card slides matters more than this slide having a picture of its own.</p>
+    <div class="frame"><iframe data-variant="a" src="../../migrating_an_instance/index.html#s-sentinel" title="Option A"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-a"></pre></details>
+  </section>
+
+  <section class="option" id="b">
+    <h2>Option B - one wall, crossed three times</h2>
+    <p>The policy check stops being a sentence and becomes an object: a hatched wall standing down the middle of the slide with its name on it. The same run meets it three times, one lane per attempt, so the story is told by what happens at the wall rather than by three paragraphs. Lane one runs up to it in the danger colour and stops dead against a blunt cap. Lane two passes through an opening with dashed edges - drawn as temporary, because it was. Lane three passes through an opening edged in the accent that is simply there, no dashes, nothing to chase. Each lane's sentence sits beside its own crossing, so the reader never has to match a number to a card. The lead is cut to one line of setup. Pick this if the point of the slide is the wall - that the team did not own it, could not go round it, and had to be let through it.</p>
+    <div class="frame"><iframe data-variant="b" src="../../migrating_an_instance/index.html#s-sentinel" title="Option B"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-b"></pre></details>
+  </section>
+
+  <section class="option" id="c">
+    <h2>Option C - a staircase out of the block</h2>
+    <p>No diagram, no paragraph: three blocks that step up the slide. The paragraph is replaced by one line of setup, and the three states become full-height panels sharing a bottom edge and growing taller left to right, so the climb out of the block is the shape of the slide before a single word is read. Each panel carries its number in mono at the top, its verb at title size, and its sentence beneath at body size - large enough to read from the back of a session room, which the current caption-sized cards are not. The colour ramps with the height: the danger colour on the block, cornflower on the time-bound exception, the accent on the standing one. Pick this if the slide should read as progress, and if the three verbs are what the audience should take away.</p>
+    <div class="frame"><iframe data-variant="c" src="../../migrating_an_instance/index.html#s-sentinel" title="Option C"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-c"></pre></details>
+  </section>
+
+  <section class="option" id="d">
+    <h2>Option D - the three states on their own axis</h2>
+    <p>The lead stays, quietened to body size and muted, and the three gates become an axis running Nov 2025 to Jan 2026 - the slide's own <code>data-when</code> range, the same months the timeline strip highlights beneath it. A blunt marker in the danger colour sits at the start where nothing could run at all; a repeating band of ticks runs through the middle for the exception windows, one per window; a single accent marker closes the axis where the standing exception lands. Each block of text hangs above its own marker on a leader, left, centre and right. It is the only option that says these three things happened at different times rather than being three properties of one problem. The number of import windows is not recorded anywhere, so the band repeats rather than counting, and the count carries a TODO chip. Pick this if the chase - months of it - is the part worth showing.</p>
+    <div class="frame"><iframe data-variant="d" src="../../migrating_an_instance/index.html#s-sentinel" title="Option D"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-d"></pre></details>
+  </section>
+
+  <p class="foot">To choose: name the option in chat, or describe what to change and this page gets a new set. Renders need the site served over HTTP - opened from disk the iframes load but the option CSS cannot be injected.</p>
+</div>
+
+<script>
+  // Each option is CSS layered onto the real deck slide. Option A is the deck as it ships
+  // and injects nothing. B, C and D already exist in the slide markup as hidden wrappers,
+  // so all their CSS needs to do is hide option A's lead and gate cards and show the
+  // wrapper for the option being looked at.
+  const VARIANTS = {
+    a: ``,
+    b: `#s-sentinel > .lead, #s-sentinel > .gates { display: none; }
+#s-sentinel .s-sentinel-opt-b { display: block; }`,
+    c: `#s-sentinel > .lead, #s-sentinel > .gates { display: none; }
+#s-sentinel .s-sentinel-opt-c { display: block; }`,
+    d: `#s-sentinel > .lead, #s-sentinel > .gates { display: none; }
+#s-sentinel .s-sentinel-opt-d { display: block; }`,
+  };
+
+  for (const [key, css] of Object.entries(VARIANTS)) {
+    document.getElementById('css-' + key).textContent = css || '/* nothing - this is the deck as deployed */';
+  }
+
+  document.querySelectorAll('iframe[data-variant]').forEach((frame) => {
+    frame.addEventListener('load', () => {
+      const css = VARIANTS[frame.dataset.variant];
+      if (!css) return;
+      let doc;
+      try { doc = frame.contentDocument; } catch (e) { doc = null; }
+      if (!doc) return; // file:// - cross-origin iframe, nothing we can do
+      const style = doc.createElement('style');
+      style.textContent = css;
+      doc.head.appendChild(style);
+    });
+  });
+</script>
+</body>
+</html>
