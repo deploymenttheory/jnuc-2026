@@ -15,34 +15,35 @@
   <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / From Clicks to Code / slide 16</p>
   <h1>Slide 16 - rebuilding staging, steps first</h1>
   <p class="lede">The wording is already rewritten and is the same in all four renders below - it ships with this PR. The lead is one line ("Production was code. Staging was years of drift, so we didn't import it."), the three steps are a verb and one spoken sentence each, the takeaway is one line, and the paragraph about the module split is gone from the slide because the speaker notes already carry it. What is open is the layout: how hard the slide pushes the three steps forward and how quietly it treats everything else. No markup changed for any of these - each option is CSS on top of the same slide, so whichever wins pastes straight into the deck's <code>#s-staging</code> block.</p>
+  <p class="lede">Since this page was first put up, each step has gained a pixel-art icon (a broom sweeping debris off a plate, configuration blocks landing on it, a loop closing on a tick) drawn with Pixelforge and embedded in the slide markup. The icons are in all four renders; only their size and position change between the options, so each option's CSS below now carries a rule for <code>.s-staging-art</code> as well.</p>
   <nav class="jump" aria-label="Options">
     <a href="#a">A</a><a href="#b">B</a><a href="#c">C</a><a href="#d">D</a>
   </nav>
 
   <section class="option" id="a">
     <h2>Option A - three full-height panels <span class="tag">live now</span></h2>
-    <p>What ships from this PR. The three cards grow into full-height panels that take the whole middle of the slide, and inside each one the number sits at the top and the step sits at the bottom, so the eye lands on Wipe, Apply, Iterate at title size before it reads anything else. The verbs carry the same colours the cards already used on this slide - red on the wipe, lime on the apply and the clean run - so the shape of the story is readable without the words. Above them the lead drops to muted body text, one line, doing nothing but setting up the steps; below them the takeaway is a single line with the month chip beside it. Pick this if the three steps working as equal, deliberate stages is the point.</p>
+    <p>What ships from this PR. The three cards grow into full-height panels that take the whole middle of the slide, and inside each one the number sits at the top and the step sits at the bottom, so the eye lands on Wipe, Apply, Iterate at title size before it reads anything else. The verbs carry the same colours the cards already used on this slide - red on the wipe, lime on the apply and the clean run - so the shape of the story is readable without the words. Above them the lead drops to muted body text, one line, doing nothing but setting up the steps; below them the takeaway is a single line with the month chip beside it. Each step's icon sits in the open middle of its card, between the number and the verb, at 192px square - the layout was already leaving that space empty, so the art costs the slide nothing. Pick this if the three steps working as equal, deliberate stages is the point.</p>
     <div class="frame"><iframe data-variant="a" src="../../migrating_an_instance/index.html#s-staging" title="Option A"></iframe></div>
     <details><summary>CSS on top of the deck</summary><pre id="css-a"></pre></details>
   </section>
 
   <section class="option" id="b">
     <h2>Option B - a numbered run down the slide</h2>
-    <p>The steps become a sequence rather than three things side by side. They run down the left of the slide as three numbered rings threaded on a single vertical rail, each with its verb and its sentence on one line beside it, no cards and no borders at all. Reading top to bottom is reading the order the work happened in, which the three-across layouts leave implied. The lead and the takeaway move into a narrow right-hand column and stay out of the way: the setup line sits at the top of it, the takeaway at the bottom under an accent rule, and the middle of that column is deliberately empty. Pick this if the thing that matters is that these happened one after another, and if a speaker wants to walk down the slide with them.</p>
+    <p>The steps become a sequence rather than three things side by side. They run down the left of the slide as three numbered rings threaded on a single vertical rail, each with its verb and its sentence on one line beside it, no cards and no borders at all. Reading top to bottom is reading the order the work happened in, which the three-across layouts leave implied. The lead and the takeaway move into a narrow right-hand column and stay out of the way: the setup line sits at the top of it, the takeaway at the bottom under an accent rule, and the middle of that column is deliberately empty. A row has no vertical room, so each icon shrinks to 96px and rides between the ring and the words, reading as a bullet rather than a picture. Pick this if the thing that matters is that these happened one after another, and if a speaker wants to walk down the slide with them.</p>
     <div class="frame"><iframe data-variant="b" src="../../migrating_an_instance/index.html#s-staging" title="Option B"></iframe></div>
     <details><summary>CSS on top of the deck</summary><pre id="css-b"></pre></details>
   </section>
 
   <section class="option" id="c">
     <h2>Option C - one flow strip across the slide</h2>
-    <p>The steps become a drawing. Wipe, apply and iterate sit as three nodes in a row across the middle of the slide in the deck's own diagram style - navy fill, hairline edge, the label in mono - with the deck's chevron between them carrying the direction of travel, a small accent index above each node, and the sentence for each step underneath its own node in plain text. The lead is dropped from the slide entirely, so nothing sits between the title and the diagram, and the takeaway becomes the closing statement at heading size beneath the strip. Pick this if the rebuild should read as a process the audience can picture, and if the room will remember a picture better than three paragraphs.</p>
+    <p>The steps become a drawing. Wipe, apply and iterate sit as three nodes in a row across the middle of the slide in the deck's own diagram style - navy fill, hairline edge, the label in mono - with the deck's chevron between them carrying the direction of travel, a small accent index above each node, and the sentence for each step underneath its own node in plain text. The lead is dropped from the slide entirely, so nothing sits between the title and the diagram, and the takeaway becomes the closing statement at heading size beneath the strip. The icon for each step sits above its node at 144px, between the accent index and the labelled box, so the strip reads as three drawn stages rather than three labels. Pick this if the rebuild should read as a process the audience can picture, and if the room will remember a picture better than three paragraphs.</p>
     <div class="frame"><iframe data-variant="c" src="../../migrating_an_instance/index.html#s-staging" title="Option C"></iframe></div>
     <details><summary>CSS on top of the deck</summary><pre id="css-c"></pre></details>
   </section>
 
   <section class="option" id="d">
     <h2>Option D - the wipe takes the slide</h2>
-    <p>Not three equal steps: one big one and two that follow from it. Wiping a staging instance is the part of this story an audience does not expect, so it gets a full-height panel down the left at hero type, edged in the danger colour, with its sentence at heading size - and apply and iterate stack to its right at half height each, smaller but complete. The asymmetry does the arguing: the destructive decision is the moment, and the two steps after it are the mechanical part. The lead stays a quiet line above and the takeaway a quiet line below. Pick this if the wipe is what the talk is actually about and the slide should say so before Dafydd does.</p>
+    <p>Not three equal steps: one big one and two that follow from it. Wiping a staging instance is the part of this story an audience does not expect, so it gets a full-height panel down the left at hero type, edged in the danger colour, with its sentence at heading size - and apply and iterate stack to its right at half height each, smaller but complete. The asymmetry does the arguing: the destructive decision is the moment, and the two steps after it are the mechanical part. The lead stays a quiet line above and the takeaway a quiet line below. The art follows the same argument, and pays for it: the broom gets 120px in the hero panel, and the icons on apply and iterate are dropped altogether because the half-height cards have no vertical room left once the verb and its sentence are in, and anything small enough to fit them reads as a smudge from the back of the room. Pick this if the wipe is what the talk is actually about and the slide should say so before Dafydd does.</p>
     <div class="frame"><iframe data-variant="d" src="../../migrating_an_instance/index.html#s-staging" title="Option D"></iframe></div>
     <details><summary>CSS on top of the deck</summary><pre id="css-d"></pre></details>
   </section>
@@ -134,7 +135,13 @@
   color: var(--c-accent);
 }
 #s-staging .gate-final strong { color: var(--c-danger); }
-#s-staging .gate-ok strong { color: var(--c-success); }`,
+#s-staging .gate-ok strong { color: var(--c-success); }
+/* a row layout has no vertical room, so the icon rides beside the ring at chip size */
+#s-staging .s-staging-art {
+  width: var(--sp-6);
+  align-self: center;
+  margin-right: var(--sp-4);
+}`,
     c: `#s-staging { display: flex; flex-direction: column; }
 #s-staging .lead { display: none; }
 /* the title stays where every other slide puts it; the auto margins centre the strip in
@@ -202,6 +209,12 @@
   margin-top: var(--sp-6);
   max-width: 1560px;
   font-size: var(--fs-h2);
+}
+/* the icon sits above its node, between the accent index and the labelled box */
+#s-staging .s-staging-art {
+  width: calc(var(--sp-6) * 1.5);
+  align-self: center;
+  margin-bottom: var(--sp-2);
 }`,
     d: `#s-staging .gates-3 {
   flex: 1;
@@ -235,7 +248,18 @@
   color: var(--c-accent);
 }
 #s-staging .gate:first-child strong { font-size: var(--fs-hero); color: var(--c-danger); }
-#s-staging .gate-ok strong { color: var(--c-success); }`,
+#s-staging .gate-ok strong { color: var(--c-success); }
+/* only the broom gets an icon here. The two half-height cards have no vertical room left
+   once the verb and its sentence are in, and an icon small enough to fit them would read as
+   a smudge, so they are dropped rather than shrunk. */
+#s-staging .gate { gap: var(--sp-2); }
+#s-staging .gate:first-child { padding: var(--sp-4); }
+#s-staging .s-staging-art { display: none; }
+#s-staging .gate:first-child .s-staging-art {
+  display: block;
+  align-self: center;
+  width: calc(var(--sp-6) * 1.25);
+}`,
   };
 
   for (const [key, css] of Object.entries(VARIANTS)) {
