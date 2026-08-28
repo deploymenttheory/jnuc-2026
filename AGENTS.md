@@ -261,8 +261,11 @@ overlay - keep the two in step when slides move.
     - **Joseph**
 18. `s15b` Getting as close to DRY as we can (the second half of that arc: six techniques in
     a three by two grid, each carrying the syntax you actually write - input variables, local
-    values, data sources, child modules (marked as what the estate runs), Terraform Stacks,
-    Terragrunt - over a caution that CLI workspaces share a backend. The module tree moved
+    values, data sources, child modules (marked as what the estate runs), configuration as
+    data, Terragrunt - over a caution that CLI workspaces share a backend. Terraform Stacks
+    was on this slide and came off 2026-08-28: it is GA but needs HCP Terraform or Terraform
+    Enterprise 2.0 on a resource-under-management plan, so it is unavailable to anyone
+    running Terraform CLI and does not belong in a list of techniques the audience can use. The module tree moved
     into the reader-mode popover. Rules are `#s15b .tech-*`) - **Dafydd**
 19. `s16b` By the numbers (one hero number, 900 PRs merged, with the supporting figures -
     35-40 contributors, 1,902 commits, 134 HCL files, 19,000+ lines of code - in a quiet
@@ -360,8 +363,10 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   The techniques are a menu with no right answer and the estate uses more than one of them.
   Use vendor names throughout: Jamf's for Jamf objects (Volume Purchasing content token, not
   VPP token; push certificate for the Apple push artefact), HashiCorp's for Terraform (root
-  module, child module, input variables, local values, meta-arguments, data sources, Stacks
-  with components and deployments). "Thin root" is not a Terraform term and is not used.
+  module, child module, input variables, local values, meta-arguments, data sources).
+  "Thin root" is not a Terraform term and is not used. Before putting a product on this
+  slide, check it is reachable by someone running Terraform CLI: Terraform Stacks was cut
+  for failing that test.
 - **Rejected up front:** single workspace (blast radius / plan time, 500-1,500-5,000
   figures); per-team modules (internal approval complexity - expansion TODO); managing
   everything (static group membership unmanaged to protect support).

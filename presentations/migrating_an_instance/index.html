@@ -2052,11 +2052,11 @@ HCP Terraform variable sets</p>
         </div>
 
         <div class="tech">
-          <h2>Terraform Stacks</h2>
-          <p class="tech-syntax">component "iam" { ... }
-deployment "staging" { ... }</p>
-          <p class="tech-shared">Written once as components, deployed many times, each deployment with its own state file and input variables.</p>
-          <p class="tech-tag">We have not used it</p>
+          <h2>Configuration as data</h2>
+          <p class="tech-syntax">instances/lbgstaging.yaml
+cfg = yamldecode(file(...))</p>
+          <p class="tech-shared">The HCL is shared in full. Every difference sits in that instance's own data file, so adding an instance means adding a file rather than writing more configuration.</p>
+          <p class="tech-tag">One file per instance</p>
         </div>
 
         <div class="tech">
@@ -2078,7 +2078,7 @@ inputs = { ... }</p>
       <aside class="notes">
         <p>Six techniques, and the honest answer is that there is no right one. Read them as a menu, not a ranking.</p>
         <p>We landed on child modules with a root module per instance, which is also what HashiCorp recommends where instances need different credentials and access controls. Shared code is written once; each instance's root holds only its own.</p>
-        <p>Worth naming the two we did not use. Terraform Stacks is generally available now and would be a fair starting point today. Terragrunt was built for exactly this problem, and so were Terramate and Atmos.</p>
+        <p>Worth naming the two we did not use. Keeping every instance difference in a data file means the HCL stops changing when you add an instance. Terragrunt was built for this problem, and Terramate and Atmos are the same idea productised.</p>
         <p>Finish on the caution. CLI workspaces sound like the answer and are not, because they share a backend. Slide 4 already separated the two meanings of workspace.</p>
       </aside>
     </section>
