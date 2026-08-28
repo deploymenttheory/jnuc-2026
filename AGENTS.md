@@ -241,13 +241,12 @@ overlay - keep the two in step when slides move.
     `joseph@jnuc - zsh` title, and a blinking cursor on a fresh prompt line below the
     result; four gate cards unchanged) - **Joseph**
 16. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused;
-    steps first - the three gate cards are full-height panels with the verb at title size,
-    the lead is one muted line above and the takeaway one line below, and the module-split
-    paragraph is gone from the slide because the speaker notes carry it. Each card carries a
-    pixel-art icon at 192px in the space between its number and its verb - a broom sweeping
-    coral debris off a plate with two lime blocks left standing, configuration slabs landing
-    on the same plate under a downward arrow, and a loop closing on a lime tick with two
-    coral crosses outside it. Source and spec in `art/`) - **Dafydd**
+    a numbered run of the three steps down the left on a rail, verb and sentence on one
+    line each, with the lead and the takeaway as a quiet right-hand column. Each step
+    carries its pixel-art icon riding beside the ring at 168px - a broom sweeping coral
+    debris off a plate with two lime blocks left standing, configuration slabs landing on
+    the same plate under a downward arrow, and a loop closing on a lime tick with two coral
+    crosses outside it. Source and spec in `art/`) - **Dafydd**
 17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals; the lead and one
     HCL block, no closing statement - the "It got out of hand. The pivot: ..." line came off
     2026-08-27 for reading as machine-written, and its TODO chip moved onto the code block)
@@ -676,7 +675,8 @@ column, which this PR cut from seven bullets to four points (PRUNE, jamfpy, rege
 points as one dashed list, B four cards with the name as a large monospace tag and the
 rejected flag struck through, C a 2x2 grid of tiles each with an inline-SVG glyph in the
 `dg-*` style, D a used/rejected ledger with three ticks on a rail and the flag alone below
-a rule. The left-hand pipeline SVG is outside all four wrappers and unchanged);
+a rule. The left-hand pipeline SVG is outside all four wrappers and unchanged). Decided
+(all under `presentations/sandbox/migrating_an_instance/`):
 `s-staging-steps-first` (2026-08-27, slide 16 - four ways to put the three rebuild steps
 first, all four pure CSS on the same markup: A three full-height panels, B a numbered run
 down the left with a quiet right-hand column, C one flow strip in the deck's diagram style,
@@ -684,8 +684,9 @@ D the wipe as a hero panel; the rewritten wording ships in all four. Amended 202
 the three pixel-art step icons landed: the icons are in all four renders and each option's
 CSS now sizes and places `.s-staging-art` for its own layout - 192px in the card middle in
 A, 96px beside the ring in B, 144px above each node in C, and 120px in D's hero panel only,
-because D's half-height cards have no room for one). Decided (all under
-`presentations/sandbox/migrating_an_instance/`):
+because D's half-height cards have no room for one. Decided 2026-08-28: option B, applied
+to the deck's `#s-staging` rules; the icons were grown from B's 96px to 168px, the largest
+width a rail row allows before the third row's icon meets the timeline strip. Page retired);
 `s16b-numbers` (2026-08-27, slide 19 - the refreshed figures shipped in all four
 renders; A the six stat tiles the deck already had, B five gauge bars each measured against
 its own next round number with the ranges drawn as open ends, C one hero number - 900 PRs
