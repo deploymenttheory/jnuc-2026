@@ -569,7 +569,7 @@ it up - either way it is on disk for a recovering session.
   without pushing the takeaway into the timeline strip. The open sandbox page
   `s-staging-steps-first` was adjusted for the art: the icons are in all four renders, B
   sizes them at 96px beside the ring, C at 144px above each node, and D shows only the
-  broom, at 120px, because its half-height cards have no room. PR #46.
+  broom, at 120px, because its half-height cards have no room. PR #49.
 
 - **2026-08-28, slide 19 (`#s16b`) option C accepted, date range changed.** Joseph:
   "Option C for the numbers" then "For the date line on the numbers, amend to Jan 2026 to
