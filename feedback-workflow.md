@@ -554,6 +554,23 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, slide 16 (`#s-staging`) pixel-art icons for the three rebuild steps.**
+  Joseph: "Use the pixel art generator to make a good, high quality pixelart for each box on
+  16." Three 384px icons drawn with Pixelforge, project id `b4001dd6`, one per step, all
+  sharing the same plate at the foot of the canvas so they read as one story: Wipe is a yard
+  broom with a banded steel ferrule sweeping coral debris off the plate with two lime blocks
+  left standing (APNS and the identity provider); Apply is two lime configuration slabs
+  landed on the plate with a third still in the air under a wide off-white arrow; Iterate is
+  a shaded loop arrow closing on a lime tick with two coral crosses outside it. Spec and
+  exports live at `presentations/migrating_an_instance/art/s-staging-steps.md` plus
+  `s-staging-wipe.png`, `s-staging-apply.png` and `s-staging-iterate.png` (16.6KB for the
+  three), embedded in the slide markup as base64 data URIs so the deck still opens off disk.
+  The card gap drops to `--sp-2` so the 192px icon fits between the number and the verb
+  without pushing the takeaway into the timeline strip. The open sandbox page
+  `s-staging-steps-first` was adjusted for the art: the icons are in all four renders, B
+  sizes them at 96px beside the ring, C at 144px above each node, and D shows only the
+  broom, at 120px, because its half-height cards have no room. PR #46.
+
 - **2026-08-27, slide 19 (`#s16b`) refreshed figures, three visualisations offered.**
   Joseph: "Updated stats for the by the numbers side - 35-40 contributers / 19,000+ lines
   of code / 900 PRs merged / 134 HCL Files Give options, think graphs, or visualisations.
