@@ -664,7 +664,7 @@ it up - either way it is on disk for a recovering session.
   `#6`'s notes given one added sentence for the relocated fact. `AGENTS.md`'s `#5` bullet
   updated to match. Deterministic round, no sandbox page; `training_a_team` has no
   presenter.json so no presenter check. Two-slide touch (`#5` and `#6`) authorised by
-  dispatch for this one relocation. PR pending.
+  dispatch for this one relocation. PR #3.
 - **2026-08-28, training_a_team slide 4 (`#4`) execution reframed around training, not
   migration.** The user: the slide was talking about migration waves and handover when it
   is about training. Spokes 04 ("Migration waves, run by the same engineer") and 05 ("Full
