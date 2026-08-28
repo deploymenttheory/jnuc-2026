@@ -447,12 +447,22 @@ Notable content slides:
   two-way trade: domain context in, GitOps practice back. Classes `.fanout`, `.hub`,
   `.brace`, `.spokes`/`.spoke`, `.flow`/`.flowrow`.
 - **What didn't work** (`#5`): a hero SVG chart across the top - bands mark teaching
-  sessions, a gradient line rises through each then decays through the gap that follows,
-  trending down over six months. **That curve is illustrative, not measured**, and the slide
-  says so in a `SHAPE IS ILLUSTRATIVE` label - keep that label if the chart is edited. Below
-  it, eight chips: seven failures plus one accent chip for what replaced the programme, then
-  a quote strip. Classes `.chartwrap`/`.chd`, `.fchips`/`.fchip` (`.won` for the accent one)
-  and `.qstrip`.
+  sessions, a gradient line rises through each then dips through the gap that follows,
+  trending gently upwards overall across six months (people did genuinely build confidence
+  over the six months; what was lost was whatever confidence a gap between sessions let
+  leak away, not the whole programme). **That curve is illustrative, not measured**, and the
+  slide says so in a `SHAPE IS ILLUSTRATIVE` label - keep that label if the chart is edited.
+  Below it, five chips: mixed-ability cohorts (now states plainly that trainers were
+  pitching some sessions too fast and others too slow), theory before the hands-on,
+  documentation shaped like a reference manual (merges the old step-by-step-tutorials and
+  reference-manual chips, adding that the 214,645-word curriculum was AI-assisted and too
+  large to take in), too long a gap between sessions (primary driver is the difficulty of
+  getting a geographically dispersed Mac engineering team into one room, not the same
+  country; unclear infra availability is folded in as a minor secondary factor, downgraded
+  from its own chip), and online meetings (in-person let trainers walk around and help
+  people directly). The old "effort stayed invisible" chip is gone, and the `.won` accent
+  chip ("what replaced it") has moved to `#6`, folded into that slide's "Good documentation"
+  card. Then a quote strip. Classes `.chartwrap`/`.chd`, `.fchips`/`.fchip` and `.qstrip`.
 - **Conditions** (`#7`): a hero layout - a large left panel gives psychological safety the
   weight the copy claims for it ("the most evidenced condition of all") with three practical
   points under it; the other six conditions, including "Expect the dip", sit right as
