@@ -108,7 +108,7 @@
       "notes": [
         "jamfpy is Joseph's open-source SDK. Each candidate got a script emitting a structured map, duplicates and all.",
         "generate-config-out rejected: one block per resource; we wanted one block per type, driven by data.",
-        "AI use in one line: Copilot CLI validating configuration and dependency links."
+        "AI use in one line: an assistant validated the configuration and the dependency links, then move on."
       ]
     },
     {

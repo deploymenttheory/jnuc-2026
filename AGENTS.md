@@ -227,7 +227,12 @@ overlay - keep the two in step when slides move.
 11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; seven steps as full-width
     bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
     with a red left edge) - **Dafydd**
-12. `s11` Tools and helpers (JamfPy -> script -> map -> for_each) - **Gordon**
+12. `s11` Tools and helpers (the pipeline diagram unchanged on the left - jamfpy -> script
+    -> map -> for_each -> import; on the right four points, each a mono name over one line:
+    PRUNE and jamf-resource-deleter, jamfpy, the regex mop-up pass, and
+    `-generate-config-out` rejected. Cut back from seven bullets 2026-08-28; the three that
+    went are told by the diagram or by `s12`, and the "mostly Copilot CLI" mention left the
+    slide with them) - **Gordon**
 13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Joseph**
 14. `s13` for_each exceptions (single statement - policies stayed in plain HCL because
     they are too diverse for one map) - **Joseph**
@@ -277,10 +282,15 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   workspaces. Fix: time-bound exception per import window, later a standing exception once
   the team showed they were sole actors. Fine to name Sentinel publicly.
 - **The loop:** matrix (group-built spreadsheet of resource types and dependencies) picks the
-  next resource -> JamfPy script emits a structured map (duplicates and all) -> `for_each`
+  next resource -> jamfpy script emits a structured map (duplicates and all) -> `for_each`
   with conditionals/dynamic blocks -> apply with zero changes -> refinement passes (dedup,
   raw IDs -> named locals like `local.category_ids["Name"]`, shared locals), zero-diff plan
   gating every pass. Gordon: scripts + verbose imports. Joseph: refinement passes.
+- **The SDK is written `jamfpy`, lower case**, everywhere it is named: `s11`, its speaker
+  notes, `presenter.json` and the `s18` links chip all use it, and Joseph writes it that way
+  too. This file's two `JamfPy` spellings were normalised to match on 2026-08-28. The `s11`
+  pipeline diagram's top box says "jamfpro Python SDK" (the thing it talks to), which is a
+  separate label and was left alone.
 - **Bulk imports** Dec 2025 - Jan 2026; refinement through Feb - Mar 2026.
 - **Sequencing bands:** 1 singletons (client check-in, inventory collection, activation code);
   2 no dependencies (scripts, categories, departments); 3 dependent (smart groups, advanced
@@ -657,8 +667,16 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages: none. Decided (all under
-`presentations/sandbox/migrating_an_instance/`):
+Current pages (all under `presentations/sandbox/migrating_an_instance/`):
+`s11-right-hand-points` (2026-08-28, slide 12 - four visual treatments of the right-hand
+column, which this PR cut from seven bullets to four points (PRUNE, jamfpy, regex,
+`-generate-config-out` rejected). All four ship as markup wrappers `.s11-opt-a` to
+`.s11-opt-d` inside `#s11`, so the sandbox CSS only flips which one shows: A the four
+points as one dashed list, B four cards with the name as a large monospace tag and the
+rejected flag struck through, C a 2x2 grid of tiles each with an inline-SVG glyph in the
+`dg-*` style, D a used/rejected ledger with three ticks on a rail and the flag alone below
+a rule. The left-hand pipeline SVG is outside all four wrappers and unchanged). Decided
+(all under `presentations/sandbox/migrating_an_instance/`):
 `s-staging-steps-first` (2026-08-27, slide 16 - four ways to put the three rebuild steps
 first, all four pure CSS on the same markup: A three full-height panels, B a numbered run
 down the left with a quiet right-hand column, C one flow strip in the deck's diagram style,

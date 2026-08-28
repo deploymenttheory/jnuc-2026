@@ -637,6 +637,28 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, slide 12 (`#s11`) the right-hand points.** Joseph: "Can you give some visual
+  options for slide 12, only the right hand side with text. Focus on these 4 points: tidying
+  with prune, jamfpy SDK, regex, and the rejecting the generate-config-out." The right-hand
+  column goes from seven bullets to those four, in that order, each one a mono name over a
+  single line of plain text. The three that came off are already told elsewhere: the
+  per-candidate script and the structured map, and the map pasted into a `local` with a
+  `for_each` block, are both stages in the pipeline diagram on the left, and AI-assisted
+  validation is not a tools point. The "mostly Copilot CLI" mention leaves the slide with
+  that last bullet, which suits Joseph's earlier request not to name Copilot; the third
+  speaker note pointed straight at it, so it is reworded to say AI use in one line without
+  naming the tool and mirrored into `presenter.json`. The other two notes and the left-hand
+  SVG are untouched. Three visual treatments of the four points went to the sandbox as
+  `s11-right-hand-points.html`, all four shipping as markup wrappers `.s11-opt-a` to
+  `.s11-opt-d` inside `#s11` with their rules in the deck, so the sandbox CSS only flips
+  which one shows: A (live) the four points as one dashed list; B four cards, the name a
+  large monospace tag, the rejected flag struck through behind a danger-coloured edge; C a
+  2x2 grid of tiles each carrying an inline-SVG glyph in the `dg-*` style - a bin, an
+  angle-bracket mark, a literal `.*` over a rule, a struck-through code block; D a
+  used/rejected ledger, three ticks on a rail and the flag alone below a full-width rule.
+  Also normalised the SDK's spelling to `jamfpy` in `AGENTS.md` to match the deck, recorded
+  as a settled fact. The presenter check prints OK. Awaiting a decision. PR #53.
+
 - **2026-08-28, slide 16 (`#s-staging`): option B accepted.** Joseph: "16 - option B
   please." Folded option B's CSS (a numbered rail of the three steps down the left, verb
   and sentence on one line each, lead and takeaway as a quiet right-hand column) into the
