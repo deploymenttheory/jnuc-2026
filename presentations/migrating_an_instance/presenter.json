@@ -149,20 +149,23 @@
     },
     {
       "id": "s-pivot",
-      "title": "Growing pains",
+      "title": "One codebase for every instance",
       "timerSeconds": 60,
       "notes": [
-        "The trigger was the staging rebuild: we wanted staging-first deploys without mirroring to production, and the only lever the repo had was an FQDN conditional. They were everywhere before long - deployment behaviour inferred from a URL.",
-        "Where we ended up: the modules hold the configuration and each instance's root only holds what is actually different."
+        "Start with the objective, because it is the one everybody in the room has had: one Terraform codebase, applied to every Jamf Pro instance, so a change is written once and deployed everywhere.",
+        "Then the block on the left, which is real provider schema. A static computer group takes computer IDs. Computer 412 is a machine in production, and it is nothing at all in staging, so that argument cannot be written once.",
+        "The point is not static groups. They were the exception we expected and planned for. The point is that the same resource type has to carry configuration belonging to one instance, and we kept finding more of it as we built."
       ]
     },
     {
       "id": "s15b",
-      "title": "The module structure",
+      "title": "Getting as close to DRY as we can",
       "timerSeconds": 90,
       "notes": [
-        "Three workspaces per instance is the blast radius control - guidance says ~500 resources per workspace and the estate holds 1,500+.",
-        "Payloads live in the modules too. Staging-only profiles sit in a visible directory, so divergence is explicit."
+        "Six techniques, and the honest answer is that there is no right one. Read them as a menu, not a ranking.",
+        "We landed on child modules with a root module per instance, which is also what HashiCorp recommends where instances need different credentials and access controls. Shared code is written once; each instance's root holds only its own.",
+        "Worth naming the two we did not use. Terraform Stacks is generally available now and would be a fair starting point today. Terragrunt was built for exactly this problem, and so were Terramate and Atmos.",
+        "Finish on the caution. CLI workspaces sound like the answer and are not, because they share a backend. Slide 4 already separated the two meanings of workspace."
       ]
     },
     {

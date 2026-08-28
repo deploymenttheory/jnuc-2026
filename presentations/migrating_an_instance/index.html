@@ -1055,18 +1055,90 @@ body.reader .reader-extra {
 }
 
 /* ============================ S-PIVOT ============================ */
-/* The lead and the code share one column edge, the code a step up the type scale so the
-   block carries the slide on its own. */
-#s-pivot .lead { margin-bottom: var(--sp-4); }
-#s-pivot .s-pivot-code {
-  max-width: 1560px;
-  font-size: var(--fs-body);
-  padding: var(--sp-4);
+/* The objective sits in an accent band across the top, then the contradiction beneath it:
+   the resource as real provider HCL on the left, what can and cannot be shared on the
+   right. Two columns so the code keeps its own measure and the slide reads left to right.
+   The computer IDs are the only amber thing on the slide - they are the argument that
+   cannot be written once. */
+#s-pivot .dry-band {
+  margin-bottom: var(--sp-4);
+  padding: var(--sp-2) var(--sp-3);
+  border: var(--bw-2) solid var(--c-accent);
+  border-radius: var(--radius);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+  color: var(--c-accent);
 }
-#s-pivot .s-pivot-chip { margin-top: var(--sp-3); }
+#s-pivot .dry-label {
+  margin-bottom: var(--sp-2);
+  font-family: var(--f-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+#s-pivot .dry-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+  align-items: start;
+}
+#s-pivot .dry-split .code { margin: 0; font-size: var(--fs-body); }
+#s-pivot .dry-unique { color: var(--c-warn); }
+#s-pivot .dry-side { display: flex; flex-direction: column; gap: var(--sp-4); }
+#s-pivot .dry-row { display: flex; gap: var(--sp-3); font-size: var(--fs-code); line-height: var(--lh-body); }
+#s-pivot .dry-key {
+  flex: 0 0 260px;
+  font-family: var(--f-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+#s-pivot .dry-close {
+  margin-top: var(--sp-6);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+}
 
-/* ============================ S15b topology ============================ */
-.s15b-grid { display: grid; grid-template-columns: 780px 1fr; gap: var(--sp-5); align-items: start; }
+/* ============================ S15b techniques ============================ */
+/* Six techniques in a three by two grid. Each card carries the syntax you actually write,
+   so the comparison is between mechanisms rather than between labels. The one the estate
+   runs on is edged in accent; the CLI-workspace caution sits under the grid because it is
+   the one entry that is a warning rather than an option. */
+#s15b .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
+#s15b .tech {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  padding: var(--sp-3);
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius);
+}
+#s15b .tech-inuse { border-color: var(--c-accent); border-width: var(--bw-2); }
+#s15b .tech h2 { font-size: var(--fs-code); font-weight: 600; line-height: var(--lh-tight); }
+#s15b .tech-inuse h2 { color: var(--c-accent); }
+#s15b .tech-syntax {
+  font-family: var(--f-mono);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-body);
+  color: var(--c-code-str);
+  white-space: pre-wrap;
+}
+#s15b .tech-shared { font-size: var(--fs-caption); color: var(--c-text-muted); }
+#s15b .tech-tag {
+  margin-top: auto;
+  padding-top: var(--sp-2);
+  font-family: var(--f-mono);
+  font-size: var(--fs-chip);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+#s15b .tech-inuse .tech-tag { color: var(--c-accent); }
+/* the caution is the lowest thing on the slide and must clear the timeline strip */
+#s15b .tech-warn { margin-top: var(--sp-2); font-size: var(--fs-code); color: var(--c-warn); }
 
 /* ============================ S16b / S18 ============================ */
 .slide-centred {
@@ -1901,61 +1973,113 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ Growing pains ============================ -->
-    <section class="slide" id="s-pivot" aria-label="Growing pains" data-speaker="Joseph" data-when="2026-03">
-      <h1 class="slide-title">Growing pains</h1>
+    <section class="slide" id="s-pivot" aria-label="One codebase for every instance" data-speaker="Joseph" data-when="2026-03">
+      <h1 class="slide-title">One codebase for every instance</h1>
+      <p class="slide-sub">Write it once, apply it everywhere. That was the objective.</p>
 
-      <p class="lead">Deploying to staging first meant telling one directory - <code class="inline">terraform/jamfpro</code> - to treat two instances differently. Instance-specific behaviour hung off conditionals keyed on the FQDN.</p>
-      <pre class="code s-pivot-code"><span class="tk-kw">locals</span> {
-  is_staging = can(regex(<span class="tk-str">"staging"</span>, var.jamfpro_fqdn))
-}
+      <p class="dry-band">DRY: one definition of a resource, deployed to every instance.</p>
 
-<span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_policy"</span> <span class="tk-str">"maintenance"</span> {
-  count = local.is_staging ? <span class="tk-num">0</span> : <span class="tk-num">1</span>
-  <span class="tk-cm"># deployment behaviour inferred from a URL - everywhere</span>
+      <p class="dry-label">Jamf Pro does not allow it</p>
+      <div class="dry-split">
+        <pre class="code"><span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_static_computer_group"</span>
+         <span class="tk-str">"finance"</span> {
+  name    = <span class="tk-str">"Finance laptops"</span>
+  site_id = <span class="tk-num">1</span>
+
+  assigned_computer_ids = [<span class="dry-unique">412, 887, 1043</span>]
 }</pre>
-      <p class="s-pivot-chip"><span class="todo">TODO: real conditional example</span></p>
+        <div class="dry-side">
+          <div class="dry-row">
+            <span class="dry-key">Shared</span>
+            <span>The resource, its name, its site.</span>
+          </div>
+          <div class="dry-row">
+            <span class="dry-key">Unique to one instance</span>
+            <span>The computer IDs. Computer 412 exists in production and nowhere else.</span>
+          </div>
+          <div class="dry-row">
+            <span class="dry-key">And it is not alone</span>
+            <span>The push certificate and Volume Purchasing content tokens are issued to a single instance too. <span class="todo">TODO: the rest of the list</span></span>
+          </div>
+        </div>
+      </div>
+
+      <p class="dry-close">The resource is shared. Part of its configuration cannot be.</p>
 
       <aside class="notes">
-        <p>The trigger was the staging rebuild: we wanted staging-first deploys without mirroring to production, and the only lever the repo had was an FQDN conditional. They were everywhere before long - deployment behaviour inferred from a URL.</p>
-        <p>Where we ended up: the modules hold the configuration and each instance's root only holds what is actually different.</p>
+        <p>Start with the objective, because it is the one everybody in the room has had: one Terraform codebase, applied to every Jamf Pro instance, so a change is written once and deployed everywhere.</p>
+        <p>Then the block on the left, which is real provider schema. A static computer group takes computer IDs. Computer 412 is a machine in production, and it is nothing at all in staging, so that argument cannot be written once.</p>
+        <p>The point is not static groups. They were the exception we expected and planned for. The point is that the same resource type has to carry configuration belonging to one instance, and we kept finding more of it as we built.</p>
       </aside>
     </section>
 
-    <!-- ============================ The module structure ============================ -->
-    <section class="slide" id="s15b" aria-label="The module structure" data-speaker="Dafydd" data-when="2026-03">
-      <h1 class="slide-title">The module structure</h1>
-      <div class="s15b-grid">
-        <pre class="code">terraform/
-├─ modules/
-│  ├─ iam_main/
-│  ├─ profiles_policies_main/
-│  └─ root_main/
-└─ prod/
-   ├─ lbgstaging/
-   │  ├─ iam/                <span class="tk-kw">→ workspace</span>
-   │  ├─ profiles_policies/  <span class="tk-kw">→ workspace</span>
-   │  └─ root/               <span class="tk-kw">→ workspace</span>
-   └─ lbgbusiness/
-      ├─ iam/                <span class="tk-kw">→ workspace</span>
-      ├─ profiles_policies/  <span class="tk-kw">→ workspace</span>
-      └─ root/               <span class="tk-kw">→ workspace</span></pre>
-        <ul class="dash-bullets">
-          <li>Three shared modules hold the configuration - and its payloads: privilege-set JSON, <code class="inline">.mobileconfig</code> profiles, scripts, Self Service icons, descriptions.</li>
-          <li>Each instance calls the modules from thin roots, plus a small <code class="inline">specific_to_here.tf</code> for genuine differences.</li>
-          <li>Every root maps one-to-one to an HCP Terraform workspace - three per instance, bounding the blast radius of any single run and holding plan times at a consistent four to six minutes.</li>
-          <li>Divergence is visible, not hidden: staging-only profiles sit in the module as <code class="inline">profile_staging_only/</code>.</li>
-        </ul>
+    <!-- ============================ Techniques for getting close ============================ -->
+    <section class="slide" id="s15b" aria-label="Getting as close to DRY as we can" data-speaker="Dafydd" data-when="2026-03">
+      <h1 class="slide-title">Getting as close to DRY as we can</h1>
+      <p class="slide-sub">There is no technique that shares all of it. We use more than one of these.</p>
+      <div class="tech-grid">
+
+        <div class="tech">
+          <h2>Input variables</h2>
+          <p class="tech-syntax">terraform.tfvars
+HCP Terraform variable sets</p>
+          <p class="tech-shared">The resource stays shared. Only its values change per instance.</p>
+          <p class="tech-tag">Values only</p>
+        </div>
+
+        <div class="tech">
+          <h2>Local values</h2>
+          <p class="tech-syntax">count = local.is_staging ? 0 : 1</p>
+          <p class="tech-shared">One definition, switched on or off per instance with the <code class="inline">count</code> and <code class="inline">for_each</code> meta-arguments.</p>
+          <p class="tech-tag">A switch in every resource</p>
+        </div>
+
+        <div class="tech">
+          <h2>Data sources</h2>
+          <p class="tech-syntax">data "jamfpro_computer_inventory"
+  serial_number = each.value</p>
+          <p class="tech-shared">The definition stays shared and the instance's own IDs are read at plan time.</p>
+          <p class="tech-tag">One lookup per object</p>
+        </div>
+
+        <div class="tech tech-inuse">
+          <h2>Child modules</h2>
+          <p class="tech-syntax">module "iam" {
+  source = "../../modules/iam_main"
+}</p>
+          <p class="tech-shared">Shared configuration is written once in the modules. Each instance's root module holds only what is unique to it.</p>
+          <p class="tech-tag">What we run</p>
+        </div>
+
+        <div class="tech">
+          <h2>Terraform Stacks</h2>
+          <p class="tech-syntax">component "iam" { ... }
+deployment "staging" { ... }</p>
+          <p class="tech-shared">Written once as components, deployed many times, each deployment with its own state file and input variables.</p>
+          <p class="tech-tag">We have not used it</p>
+        </div>
+
+        <div class="tech">
+          <h2>Terragrunt</h2>
+          <p class="tech-syntax">include "root" { ... }
+inputs = { ... }</p>
+          <p class="tech-shared">A unit pulls shared configuration in and supplies its own inputs. Terramate and Atmos solve the same problem their own way.</p>
+          <p class="tech-tag">Outside Terraform</p>
+        </div>
+
       </div>
-      <p class="slide-note">Sandbox has no workspace at all - it is local dev only, driven from the CLI. Plans on these workspaces run consistently in four to six minutes.</p>
+      <p class="tech-warn">Not CLI workspaces. They share one backend, so they do not separate instances that need different credentials.</p>
       <details class="reader-extra">
         <summary>More detail</summary>
         <div class="detail-body">
-          <p>iam_main holds accounts, account groups and their privilege-set JSON. profiles_policies_main holds configuration profiles, policies and Self Service icons. root_main holds the rest - scripts, app installers and their descriptions. Payloads live next to the HCL that deploys them.</p>
+          <p>Our modules are iam_main, profiles_policies_main and root_main, called from a root module per instance under prod/lbgstaging and prod/lbgbusiness. Each root maps to one HCP Terraform workspace, and anything genuinely local to an instance sits in its own specific_to_here.tf. Payloads travel with the configuration that deploys them: privilege-set JSON, .mobileconfig profiles, scripts, Self Service icons and descriptions.</p>
         </div>
       </details>
       <aside class="notes">
-        <p>Three workspaces per instance is the blast radius control - guidance says ~500 resources per workspace and the estate holds 1,500+.</p>
-        <p>Payloads live in the modules too. Staging-only profiles sit in a visible directory, so divergence is explicit.</p>
+        <p>Six techniques, and the honest answer is that there is no right one. Read them as a menu, not a ranking.</p>
+        <p>We landed on child modules with a root module per instance, which is also what HashiCorp recommends where instances need different credentials and access controls. Shared code is written once; each instance's root holds only its own.</p>
+        <p>Worth naming the two we did not use. Terraform Stacks is generally available now and would be a fair starting point today. Terragrunt was built for exactly this problem, and so were Terramate and Atmos.</p>
+        <p>Finish on the caution. CLI workspaces sound like the answer and are not, because they share a backend. Slide 4 already separated the two meanings of workspace.</p>
       </aside>
     </section>
 

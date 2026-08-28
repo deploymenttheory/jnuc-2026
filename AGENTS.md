@@ -253,11 +253,17 @@ overlay - keep the two in step when slides move.
     a broom sweeping coral debris off a plate with two lime blocks left standing,
     configuration slabs landing on the same plate under a downward arrow, and a loop closing
     on a lime tick with two coral crosses outside it. Source and spec in `art/`) - **Dafydd**
-17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals; the lead and one
-    HCL block, no closing statement - the "It got out of hand. The pivot: ..." line came off
-    2026-08-27 for reading as machine-written, and its TODO chip moved onto the code block)
+17. `s-pivot` One codebase for every instance (rewritten 2026-08-28 with `s15b` as one arc:
+    context, problem, techniques. The DRY objective in an accent band, then a real
+    `jamfpro_static_computer_group` block whose `assigned_computer_ids` are the only amber
+    thing on the slide, against a shared / unique-to-one-instance breakdown. Closes on "The
+    resource is shared. Part of its configuration cannot be." Rules are `#s-pivot .dry-*`)
     - **Joseph**
-18. `s15b` The module structure (module tree -> workspaces) - **Dafydd**
+18. `s15b` Getting as close to DRY as we can (the second half of that arc: six techniques in
+    a three by two grid, each carrying the syntax you actually write - input variables, local
+    values, data sources, child modules (marked as what the estate runs), Terraform Stacks,
+    Terragrunt - over a caution that CLI workspaces share a backend. The module tree moved
+    into the reader-mode popover. Rules are `#s15b .tech-*`) - **Dafydd**
 19. `s16b` By the numbers (one hero number, 900 PRs merged, with the supporting figures -
     35-40 contributors, 1,902 commits, 134 HCL files, 19,000+ lines of code - in a quiet
     row below; date range Jan to Sept 2026; option C, accepted 2026-08-28) - **Gordon**
@@ -344,6 +350,18 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   to the next that a `for_each` map has to carry every field any policy might need, which
   makes it harder to read than plain HCL. Which policy fields vary is not recorded - do not
   invent examples.
+- **DRY across instances (slides 17 and 18, confirmed by Dafydd, Aug 2026):** the objective
+  was one Terraform codebase applied to every Jamf Pro instance. Jamf Pro does not allow it,
+  because the same resource type carries configuration unique to the instance it is deployed
+  in - a static computer group holds computer IDs, and the push certificate and Volume
+  Purchasing content tokens are issued to one instance. Static groups were the exception the
+  team expected and planned for; the point of the pair is that more kept appearing during
+  implementation, so techniques were needed to get as close to DRY as the product allows.
+  The techniques are a menu with no right answer and the estate uses more than one of them.
+  Use vendor names throughout: Jamf's for Jamf objects (Volume Purchasing content token, not
+  VPP token; push certificate for the Apple push artefact), HashiCorp's for Terraform (root
+  module, child module, input variables, local values, meta-arguments, data sources, Stacks
+  with components and deployments). "Thin root" is not a Terraform term and is not used.
 - **Rejected up front:** single workspace (blast radius / plan time, 500-1,500-5,000
   figures); per-team modules (internal approval complexity - expansion TODO); managing
   everything (static group membership unmanaged to protect support).
@@ -352,7 +370,7 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
 
 | Slide | TODO | Owner |
 |---|---|---|
-| `s-pivot` | Real FQDN-conditional example | Joseph |
+| `s-pivot` | The rest of the instance-unique list, beyond static computer group members, the push certificate and Volume Purchasing content tokens | Dafydd |
 | `s-staging` | Confirm the month - drives the timeline bar | Gordon Deacon |
 | `s18` | URLs, contact, socials (Q12) | Joseph |
 

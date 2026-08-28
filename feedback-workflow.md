@@ -637,6 +637,24 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, slides 17 (`#s-pivot`) and 18 (`#s15b`) rewritten as one arc.** Dafydd
+  reframed the pair around DRY: the objective was one Terraform codebase applied to every
+  Jamf Pro instance, Jamf Pro does not allow it because the same resource type carries
+  instance-unique configuration, so the second slide is the techniques for getting as close
+  to DRY as the product allows. Six proposals were put on an artifact and Dafydd took slide
+  17 from option 1 and slide 18 from option 4. Slide 17 is now the DRY statement in an accent
+  band over a real `jamfpro_static_computer_group` block, its `assigned_computer_ids` the only
+  amber thing on the slide, beside a shared / unique-to-one-instance breakdown. Slide 18 is
+  six techniques in a three by two grid, each carrying real syntax, child modules marked as
+  what the estate runs, over a caution that CLI workspaces share a backend. All wording on
+  both slides is new; "thin roots", "blast radius" and "divergence is visible, not hidden"
+  are gone, Jamf objects use current Jamf names (Volume Purchasing content token, push
+  certificate) and Terraform terms are HashiCorp's. The FQDN-conditional TODO chip is retired
+  and replaced by one for the rest of the instance-unique list. The module tree moved into
+  s15b's reader-mode popover. `presenter.json` mirrored, check prints OK. Collaborator PR,
+  raised by ShocOne, not to be merged until Joseph names it.
+
+
 - **2026-08-28, training_a_team slide 3 (`#3`) confirmed goals TODOs.** The user, on the
   three `.todo` chips on the Goals slide: the TRAINED bar definition and the non-goals
   strip were both confirmed correct as written, so their chips were removed with no content
@@ -648,6 +666,7 @@ it up - either way it is on disk for a recovering session.
   3, following the same pattern used for the `#5` engineer quote's resolution. Deterministic
   round, no sandbox page; `training_a_team` has no presenter.json so no presenter check.
   PR #1.
+
 - **2026-08-28, slide 16 (`#s-staging`) pixel art redrawn at 1024px.** Joseph: "Re-do 16's
   pixel art with the highest possible res please". The Pixelforge project `s-staging-steps`
   (`b4001dd6`) was kept and its spec amended in place with `update-spec` - `rules.max_canvas`
