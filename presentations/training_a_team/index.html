@@ -422,9 +422,6 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
   flex:none;line-height:1.2}
 .spoke h3{font-size:22px;font-weight:700;line-height:1.2}
 .spoke p{font-size:17px;line-height:1.4;color:var(--text-dimmer);margin-top:6px}
-.spoke.mig{border-color:var(--green-deep);background:linear-gradient(100deg,var(--accent-wash) 0%,var(--surface) 60%)}
-.spoke.hand{background:var(--alt-surface);border-color:var(--blue-border)}
-.spoke.hand .n{color:var(--blue-light)}
 .flow{margin-top:26px}
 .flowrow{display:flex;align-items:center;gap:16px;margin-bottom:12px}
 .flowrow .ln{flex:1;height:2px;background:var(--green)}
@@ -1021,7 +1018,7 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 4 · EXECUTION ============ -->
-<section class="slide" data-speaker="Joseph" data-notes="Everything here came out of one decision. We seconded a Mac engineer into the DevOps Centre of Excellence full time for three months on a train-the-trainer model. That is the whole slide: a posting, not a course, and long enough to hold macOS and Jamf Pro domain depth and GitOps practice in the same person. Five things came out of it. We wrote the training materials together, so the CoE brought the Terraform and Git content and the seconded engineer put it in Mac language and cut what did not apply. We designed the in-person and remote sessions separately rather than delivering one deck twice. We built hackathons as in-person labs on tasks the team already recognised, and set homework between sessions so nothing decayed in the gaps. Then the same engineer ran a large share of the Jamf Pro migration waves, which did two jobs at once: it kept the reasoning behind every migration decision inside the Mac team instead of leaving it in the CoE to be asked for later, and it took that engineer well past the fundamentals by making the real estate the advanced lesson. Full handover followed. The arrows at the bottom are the point: this was a two-way trade. Mac domain context went into the CoE, and Terraform, Git and GitOps practice came back.">
+<section class="slide" data-speaker="Joseph" data-notes="Everything here came out of one decision. We seconded a Mac engineer into the DevOps Centre of Excellence full time for three months on a train-the-trainer model. That is the whole slide: a posting, not a course, and it was run iteratively throughout rather than planned end to end. Five things came out of it. We wrote the training materials together, so the CoE brought the Terraform and Git content and the seconded engineer put it in Mac language and cut what did not apply. We went back and forth on delivery format: sessions started theory-led, we tried hands-on instead, and practical won out, so that is where we settled. The hackathons did not land - built as in-person labs on tasks the team already recognised, with homework set between sessions, but the format itself did not work as intended. None of this followed an existing playbook: migrating a Mac-centric team specifically onto Terraform had not been done before, so there was no right answer to copy, and the plan was worked out as we went. And we settled on different delivery plans by skill level - higher-skill engineers got something more laid-back and project-based, others followed a more structured plan matched to where they were starting from. The arrows at the bottom are the point: this was a two-way trade. Mac domain context went into the CoE, and Terraform, Git and GitOps practice came back - and it is also why the same engineer could step in and run migration work whenever it was needed.">
   <div class="eyebrow"><i class="dot"></i>04 &middot; Execution</div>
   <h1>How we ran it</h1>
   <div class="body" style="margin-top:36px">
@@ -1031,8 +1028,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
         <h2>One engineer, moved into the DevOps CoE</h2>
         <div class="big">3 months</div>
         <div class="biglb">full time, on a train-the-trainer model</div>
-        <p>Not a course and not a shadowing arrangement. A posting, long enough to pair macOS and Jamf Pro domain depth with GitOps practice in the same person.</p>
-        <div class="foot">Everything on the right came out of that one decision.</div>
+        <p>Not a course and not a shadowing arrangement. A posting, long enough to pair macOS and Jamf Pro domain depth with GitOps practice in the same person - run iteratively throughout, not planned end to end.</p>
+        <div class="foot">Everything on the right came out of that one decision - including a person who could step in and run migration work whenever it was needed.</div>
       </div>
       <div class="brace" aria-hidden="true">
         <svg viewBox="0 0 96 700" preserveAspectRatio="none">
@@ -1050,10 +1047,10 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
       </div>
       <div class="spokes">
         <div class="spoke"><div class="n">01</div><div><h3>Training materials, written together</h3><p>The CoE brought the Terraform and Git content; the seconded engineer put it in Mac language and cut what did not apply.</p></div></div>
-        <div class="spoke"><div class="n">02</div><div><h3>Sessions designed for their medium</h3><p>In-person and remote sessions planned separately rather than one deck delivered twice.</p></div></div>
-        <div class="spoke"><div class="n">03</div><div><h3>Hackathons and homework</h3><p>In-person labs built on tasks the team already recognised, with practice set between sessions so nothing decayed in the gaps.</p></div></div>
-        <div class="spoke mig"><div class="n">04</div><div><h3>Migration waves, run by the same engineer</h3><p>Training carried on past the fundamentals. Running the waves kept the reasoning behind each migration decision inside the Mac team and taught advanced Terraform on the real estate.</p></div></div>
-        <div class="spoke hand"><div class="n">05</div><div><h3>Full handover</h3><p>The Mac team owned the control plane, the materials and the reasoning.</p></div></div>
+        <div class="spoke"><div class="n">02</div><div><h3>Went back and forth on format</h3><p>Sessions moved between theory-led and hands-on delivery rather than being fixed upfront; practical landed better, so that is where the format settled.</p></div></div>
+        <div class="spoke"><div class="n">03</div><div><h3>Hackathons didn't land</h3><p>Built as in-person labs on tasks the team already recognised, with homework set between sessions - the hackathon format itself did not work as intended.</p></div></div>
+        <div class="spoke"><div class="n">04</div><div><h3>No existing playbook to follow</h3><p>Migrating a Mac-centric team onto Terraform specifically hadn't been done before, so there was no right answer to copy - the plan was worked out as we went.</p></div></div>
+        <div class="spoke"><div class="n">05</div><div><h3>Different plans for different skill levels</h3><p>Higher-skill engineers got a more laid-back, project-based plan; others followed a more structured one, matched to where they were starting from.</p></div></div>
       </div>
     </div>
     <div class="flow">

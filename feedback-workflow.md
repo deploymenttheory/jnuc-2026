@@ -637,6 +637,26 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, training_a_team slide 4 (`#4`) execution reframed around training, not
+  migration.** The user: the slide was talking about migration waves and handover when it
+  is about training. Spokes 04 ("Migration waves, run by the same engineer") and 05 ("Full
+  handover") were off-topic and replaced with points the user actually gave: no existing
+  playbook for migrating a Mac-centric team onto Terraform specifically, so the plan was
+  worked out as it went, and different delivery plans by skill level (more laid-back and
+  project-based for higher-skill engineers). Spoke 02 (session format) reworked to say
+  plainly that delivery iterated between theory-led and hands-on before settling on
+  practical because it landed better, rather than reading as a single upfront design
+  choice. Spoke 03 (hackathons) confirmed by the user as not having landed - stated plainly,
+  no TODO chip needed (an earlier draft of this round added one, dropped once the user
+  confirmed the fact). The hub's intro paragraph now names the whole approach as iterative,
+  run throughout rather than planned end to end; its foot line carries the migration link as
+  one subordinate sentence - the secondment also produced someone who could step in and run
+  migration work when needed - rather than as its own spokes, per the user's steer that
+  training is the primary frame and the migration capability is a benefit of it. The now
+  content-free `.spoke.mig`/`.spoke.hand` colour-variant CSS was removed; all five spokes
+  render identically. `data-notes` rewritten to match. `AGENTS.md`'s `#4` description
+  updated. Deterministic round, no sandbox page; `training_a_team` has no presenter.json so
+  no presenter check. PR #2.
 - **2026-08-28, training_a_team slide 3 (`#3`) confirmed goals TODOs.** The user, on the
   three `.todo` chips on the Goals slide: the TRAINED bar definition and the non-goals
   strip were both confirmed correct as written, so their chips were removed with no content
