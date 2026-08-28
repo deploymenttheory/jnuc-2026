@@ -818,16 +818,13 @@ body.reader .reader-extra {
 .s11-svg { width: 100%; height: auto; display: block; }
 
 /* The right-hand column carries four points - PRUNE, jamfpy, regex and the rejected
-   -generate-config-out flag - and four treatments of them ship in the markup. Only
-   s11-opt-a shows; the sandbox page s11-right-hand-points.html flips which one is visible
-   per option. Accepting one means deleting the other three wrappers and their rules as one
-   clean block. The left-hand pipeline SVG sits outside all four. */
-#s11 .s11-opt-b, #s11 .s11-opt-c, #s11 .s11-opt-d { display: none; }
+   -generate-config-out flag - as one list, each point a mono name over the line that
+   explains it. The four wrappers from the first sandbox round came off 2026-08-28 when
+   Joseph rejected all of them and asked for plain, easily separated bullets. */
 #s11 .s11-name { font-family: var(--f-mono); line-height: var(--lh-tight); color: var(--c-accent); }
 #s11 .s11-line { font-size: var(--fs-code); line-height: var(--lh-body); color: var(--c-text-muted); }
 #s11 .s11-no .s11-name { color: var(--c-danger); }
 
-/* A - one list, each point a mono name over the line that explains it */
 #s11 .s11-points { list-style: none; display: flex; flex-direction: column; gap: var(--sp-5); }
 #s11 .s11-points li { position: relative; padding-left: var(--sp-5); }
 #s11 .s11-points li::before {
@@ -842,98 +839,6 @@ body.reader .reader-extra {
 #s11 .s11-points .s11-no::before { background: var(--c-danger); }
 #s11 .s11-points .s11-name { display: block; font-size: var(--fs-h2); }
 #s11 .s11-points .s11-line { display: block; margin-top: var(--sp-1); font-size: var(--fs-body); }
-
-/* B - four stacked cards, the mono tag doing the work and the flag struck through */
-#s11 .s11-cards { list-style: none; display: flex; flex-direction: column; gap: var(--sp-2); }
-#s11 .s11-cards li {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: var(--sp-1);
-  padding: var(--sp-3) var(--sp-4);
-  background: var(--c-surface);
-  border: var(--bw-1) solid var(--c-border);
-  border-left: var(--sp-1) solid var(--c-accent);
-  border-radius: var(--radius);
-}
-#s11 .s11-cards .s11-no { border-left-color: var(--c-danger); }
-#s11 .s11-cards .s11-name { font-size: var(--fs-h2); }
-#s11 .s11-cards .s11-no .s11-name {
-  text-decoration: line-through;
-  text-decoration-thickness: var(--bw-3);
-}
-#s11 .s11-cards .tag { margin-top: calc(var(--sp-1) * -1); }
-
-/* C - a 2x2 grid of tiles, each with a glyph drawn in the deck's diagram style */
-#s11 .s11-tiles { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
-#s11 .s11-tiles li {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-2);
-  padding: var(--sp-4);
-  background: var(--c-surface);
-  border: var(--bw-1) solid var(--c-border);
-  border-radius: var(--radius);
-}
-#s11 .s11-tiles .s11-no { border-color: var(--c-danger); }
-#s11 .s11-tiles .s11-name { font-size: var(--fs-body); }
-#s11 .s11-glyph { width: var(--sp-6); height: var(--sp-6); display: block; }
-#s11 .s11-glyph .dg-edge { stroke-linecap: round; stroke-linejoin: round; }
-#s11 .s11-glyph-text { font-family: var(--f-mono); font-size: var(--fs-h1); fill: var(--c-accent); }
-#s11 .s11-glyph-strike {
-  stroke: var(--c-danger);
-  stroke-width: var(--bw-3);
-  stroke-linecap: round;
-  fill: none;
-}
-
-/* D - a ledger: three ticks on a rail, then the one thing that was rejected below a rule */
-#s11 .s11-ledger { display: flex; flex-direction: column; gap: var(--sp-3); }
-#s11 .s11-led-head {
-  font-family: var(--f-mono);
-  font-size: var(--fs-chip);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--c-accent);
-}
-#s11 .s11-led-head-no {
-  color: var(--c-danger);
-  margin-top: var(--sp-2);
-  padding-top: var(--sp-3);
-  border-top: var(--bw-1) solid var(--c-border);
-}
-#s11 .s11-led-list { list-style: none; position: relative; display: flex; flex-direction: column; gap: var(--sp-3); }
-#s11 .s11-led-list::before {
-  content: "";
-  position: absolute;
-  left: calc(var(--sp-4) / 2);
-  top: 0;
-  bottom: 0;
-  width: var(--bw-1);
-  background: var(--c-border);
-}
-#s11 .s11-led-list-no::before { display: none; }
-#s11 .s11-led-list li {
-  display: grid;
-  grid-template-columns: var(--sp-4) 1fr;
-  column-gap: var(--sp-4);
-  align-items: start;
-}
-#s11 .s11-mark {
-  width: var(--sp-4);
-  height: var(--sp-4);
-  fill: none;
-  stroke: var(--c-accent);
-  stroke-width: var(--bw-3);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  background: var(--c-bg);
-  grid-row: span 2;
-  margin-top: var(--sp-1);
-}
-#s11 .s11-no .s11-mark { stroke: var(--c-danger); }
-#s11 .s11-ledger .s11-name { font-size: var(--fs-h2); }
-#s11 .s11-ledger .s11-line { font-size: var(--fs-body); }
 
 /* ============================ S12 / compare panels ============================ */
 .compare { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); align-items: start; }
@@ -1818,123 +1723,24 @@ body.presenter #viewport { display: none; }
           <text class="dg-label" x="280" y="704" text-anchor="middle">Import</text>
         </svg>
         <div class="s11-right">
-          <!-- Four treatments of the same four points ship in the markup; only s11-opt-a
-               shows in the deck. The sandbox page s11-right-hand-points.html flips which
-               one is visible per option. -->
-          <div class="s11-opt s11-opt-a">
-            <ul class="s11-points">
-              <li>
-                <span class="s11-name">PRUNE</span>
-                <span class="s11-line">Exported the unused resources; jamf-resource-deleter deleted them, with a JSON backup and a restore path.</span>
-              </li>
-              <li>
-                <span class="s11-name">jamfpy</span>
-                <span class="s11-line">The open-source Python SDK that drove extraction, pulling live config out of Jamf Pro.</span>
-              </li>
-              <li>
-                <span class="s11-name">regex</span>
-                <span class="s11-line">A mop-up pass over the generated output, tidying what the scripts left behind.</span>
-              </li>
-              <li class="s11-no">
-                <span class="s11-name">-generate-config-out</span>
-                <span class="s11-line">Rejected. The plan flag emits one block per resource; we wanted one block per resource type, driven by data.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="s11-opt s11-opt-b">
-            <ul class="s11-cards">
-              <li>
-                <span class="s11-name">PRUNE</span>
-                <span class="s11-line">Exported the unused resources; jamf-resource-deleter deleted them, with a JSON backup and a restore path.</span>
-              </li>
-              <li>
-                <span class="s11-name">jamfpy</span>
-                <span class="s11-line">The open-source Python SDK that drove extraction, pulling live config out of Jamf Pro.</span>
-              </li>
-              <li>
-                <span class="s11-name">regex</span>
-                <span class="s11-line">A mop-up pass over the generated output, tidying what the scripts left behind.</span>
-              </li>
-              <li class="s11-no">
-                <span class="s11-name">-generate-config-out</span>
-                <span class="tag tag-rejected">rejected</span>
-                <span class="s11-line">The plan flag emits one block per resource; we wanted one block per resource type, driven by data.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="s11-opt s11-opt-c">
-            <ul class="s11-tiles">
-              <li>
-                <svg class="s11-glyph" viewBox="0 0 96 96" aria-hidden="true">
-                  <path class="dg-edge" d="M21 27 H75"/>
-                  <path class="dg-edge" d="M39 27 V18 H57 V27"/>
-                  <path class="dg-edge" d="M27 27 L32 81 H64 L69 27"/>
-                  <path class="dg-edge" d="M40 40 V68 M56 40 V68"/>
-                </svg>
-                <span class="s11-name">PRUNE</span>
-                <span class="s11-line">Exported the unused resources; jamf-resource-deleter deleted them, with a JSON backup and a restore path.</span>
-              </li>
-              <li>
-                <svg class="s11-glyph" viewBox="0 0 96 96" aria-hidden="true">
-                  <path class="dg-edge" d="M36 24 L15 48 L36 72"/>
-                  <path class="dg-edge" d="M60 24 L81 48 L60 72"/>
-                  <path class="dg-edge" d="M54 18 L42 78"/>
-                </svg>
-                <span class="s11-name">jamfpy</span>
-                <span class="s11-line">The open-source Python SDK that drove extraction, pulling live config out of Jamf Pro.</span>
-              </li>
-              <li>
-                <svg class="s11-glyph" viewBox="0 0 96 96" aria-hidden="true">
-                  <text class="s11-glyph-text" x="48" y="62" text-anchor="middle">.*</text>
-                  <path class="dg-edge" d="M10 82 H86"/>
-                </svg>
-                <span class="s11-name">regex</span>
-                <span class="s11-line">A mop-up pass over the generated output, tidying what the scripts left behind.</span>
-              </li>
-              <li class="s11-no">
-                <svg class="s11-glyph" viewBox="0 0 96 96" aria-hidden="true">
-                  <rect class="dg-box" x="8" y="20" width="80" height="56" rx="8"/>
-                  <path class="dg-edge" d="M24 42 H68 M24 58 H56"/>
-                  <path class="s11-glyph-strike" d="M6 86 L90 10"/>
-                </svg>
-                <span class="s11-name">-generate-config-out</span>
-                <span class="s11-line">Rejected. The plan flag emits one block per resource; we wanted one block per resource type, driven by data.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="s11-opt s11-opt-d">
-            <div class="s11-ledger">
-              <p class="s11-led-head">Used</p>
-              <ul class="s11-led-list">
-                <li>
-                  <svg class="s11-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 L9 18 L20 6"/></svg>
-                  <span class="s11-name">PRUNE</span>
-                  <span class="s11-line">Exported the unused resources; jamf-resource-deleter deleted them, with a JSON backup and a restore path.</span>
-                </li>
-                <li>
-                  <svg class="s11-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 L9 18 L20 6"/></svg>
-                  <span class="s11-name">jamfpy</span>
-                  <span class="s11-line">The open-source Python SDK that drove extraction, pulling live config out of Jamf Pro.</span>
-                </li>
-                <li>
-                  <svg class="s11-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 L9 18 L20 6"/></svg>
-                  <span class="s11-name">regex</span>
-                  <span class="s11-line">A mop-up pass over the generated output, tidying what the scripts left behind.</span>
-                </li>
-              </ul>
-              <p class="s11-led-head s11-led-head-no">Rejected</p>
-              <ul class="s11-led-list s11-led-list-no">
-                <li class="s11-no">
-                  <svg class="s11-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
-                  <span class="s11-name">-generate-config-out</span>
-                  <span class="s11-line">The plan flag emits one block per resource; we wanted one block per resource type, driven by data.</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <ul class="s11-points">
+            <li>
+              <span class="s11-name">PRUNE</span>
+              <span class="s11-line">Exported the unused resources; jamf-resource-deleter deleted them, with a JSON backup and a restore path.</span>
+            </li>
+            <li>
+              <span class="s11-name">jamfpy</span>
+              <span class="s11-line">The open-source Python SDK that drove extraction, pulling live config out of Jamf Pro.</span>
+            </li>
+            <li>
+              <span class="s11-name">regex</span>
+              <span class="s11-line">A mop-up pass over the generated output, tidying what the scripts left behind.</span>
+            </li>
+            <li class="s11-no">
+              <span class="s11-name">-generate-config-out</span>
+              <span class="s11-line">Rejected. The plan flag emits one block per resource; we wanted one block per resource type, driven by data.</span>
+            </li>
+          </ul>
         </div>
       </div>
       <aside class="notes">
