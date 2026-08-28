@@ -228,11 +228,13 @@ overlay - keep the two in step when slides move.
     bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
     with a red left edge) - **Dafydd**
 12. `s11` Tools and helpers (the pipeline diagram unchanged on the left - jamfpy -> script
-    -> map -> for_each -> import; on the right four points as one plain list, each a mono
-    name over one line: PRUNE and jamf-resource-deleter, jamfpy, the regex mop-up pass, and
-    `-generate-config-out` rejected, its name in the danger colour. Cut back from seven
-    bullets 2026-08-28; the three that went are told by the diagram or by `s12`, and the
-    "mostly Copilot CLI" mention left the slide with them) - **Gordon**
+    -> map -> for_each -> import; on the right the same four points as a numbered list, 1
+    to 4 in mono in an accent gutter, each name in the display face, bold: PRUNE and
+    jamf-resource-deleter, jamfpy, the regex mop-up pass, and `-generate-config-out`
+    rejected, its number and name both in the danger colour. Option D, accepted
+    2026-08-28. Cut back from seven bullets 2026-08-28; the three that went are told by
+    the diagram or by `s12`, and the "mostly Copilot CLI" mention left the slide with
+    them) - **Gordon**
 13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Joseph**
 14. `s13` for_each exceptions (single statement - policies stayed in plain HCL because
     they are too diverse for one map) - **Joseph**
@@ -668,13 +670,6 @@ automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages (all under `presentations/sandbox/migrating_an_instance/`):
-`s11-bullets-round2` (2026-08-28, slide 12 - four plain treatments of the right-hand
-points, wording unchanged, all four pure CSS on the same list: A the dashed list the deck
-now ships, B the points separated by a hairline rule at full column width, C each point on
-the navy card surface with the name in a fixed-width left column so the four lines align,
-D the points numbered 1 to 4 in mono in a gutter with the name in the display face. The
-rejected flag keeps the danger colour on its name in all four, never a strike-through, and
-the left-hand pipeline SVG is untouched);
 `s-sentinel-round2` (2026-08-28, slide 9 - three fresh treatments after round one was
 rejected, all leaning simpler and all pure CSS on the existing `.lead` / `ol.gates` /
 `li.card.gate` markup scoped to `#s-sentinel`, so nothing new ships in the deck: A the live
@@ -683,6 +678,15 @@ and the only colour on the slide, C the three states as one run of plain blocks 
 two arrows in the diagram line colour, D a two-column split with the lead holding the left
 half and the gates stacked down the right as a numbered list with hairlines between).
 Decided (all under `presentations/sandbox/migrating_an_instance/`):
+`s11-bullets-round2` (2026-08-28, slide 12 - four plain treatments of the right-hand
+points, wording unchanged, all four pure CSS on the same list: A the dashed list the deck
+now ships, B the points separated by a hairline rule at full column width, C each point on
+the navy card surface with the name in a fixed-width left column so the four lines align,
+D the points numbered 1 to 4 in mono in a gutter with the name in the display face. The
+rejected flag keeps the danger colour on its name in all four, never a strike-through, and
+the left-hand pipeline SVG is untouched. Decided 2026-08-28: option D, applied to the
+deck's `#s11` rules; the page is deleted, the index keeps the record as a non-linked
+`.done` entry);
 `s11-right-hand-points` (2026-08-28, slide 12 - four visual treatments of the right-hand
 column, which that PR cut from seven bullets to four points, shipped as the markup wrappers
 `.s11-opt-a` to `.s11-opt-d` inside `#s11`. Superseded 2026-08-28 with no option chosen:

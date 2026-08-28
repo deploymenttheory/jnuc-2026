@@ -637,6 +637,19 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, slide 12 (`#s11`) option D accepted.** Joseph: "D for 12 is good." Option D
+  from the sandbox page `s11-bullets-round2.html` is folded into the deck's `#s11` CSS
+  block as one clean set of rules, replacing option A's dashed-list rules rather than
+  stacking on them: the four points now read as a numbered list, 1 to 4, the number in mono
+  in an accent gutter driven by a CSS counter, the name in the display face, bold, and the
+  fourth number and name both in the danger colour for the rejected `-generate-config-out`
+  flag. No markup change was needed - option D was pure CSS on the existing list. The
+  sandbox page `presentations/sandbox/migrating_an_instance/s11-bullets-round2.html` is
+  deleted and its index entry is now a non-linked `.done` line recording the decision.
+  AGENTS.md's slide-12 line and the Sandbox section's Current pages/Decided lines are
+  updated. The presenter check prints OK, the dash lint is clean, and the diff against
+  `main` touches only the `#s11` CSS block, the sandbox index and AGENTS.md. PR #57.
+
 - **2026-08-28, slide 9 (`#s-sentinel`) round one rejected, three fresh treatments
   offered.** Joseph: "9 as well, can we have 3 fresh options?" - read alongside his note on
   slide 12 that he wants things simpler and "nice easily separated". Round one (PR #54) is
