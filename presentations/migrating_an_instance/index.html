@@ -818,25 +818,31 @@ body.reader .reader-extra {
 .s11-svg { width: 100%; height: auto; display: block; }
 
 /* The right-hand column carries four points - PRUNE, jamfpy, regex and the rejected
-   -generate-config-out flag - as one list, each point a mono name over the line that
-   explains it. The four wrappers from the first sandbox round came off 2026-08-28 when
-   Joseph rejected all of them and asked for plain, easily separated bullets. */
-#s11 .s11-name { font-family: var(--f-mono); line-height: var(--lh-tight); color: var(--c-accent); }
+   -generate-config-out flag - as a numbered list, 1 to 4, each number in mono in an
+   accent gutter and the name in the display face, bold. Option D, accepted 2026-08-28
+   from the sandbox page s11-bullets-round2 (now deleted). */
+#s11 .s11-name { font-family: var(--f-display); font-weight: 700; line-height: var(--lh-tight); color: var(--c-accent); }
 #s11 .s11-line { font-size: var(--fs-code); line-height: var(--lh-body); color: var(--c-text-muted); }
 #s11 .s11-no .s11-name { color: var(--c-danger); }
 
-#s11 .s11-points { list-style: none; display: flex; flex-direction: column; gap: var(--sp-5); }
-#s11 .s11-points li { position: relative; padding-left: var(--sp-5); }
-#s11 .s11-points li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.62em;
-  width: var(--sp-4);
-  height: var(--bw-3);
-  background: var(--c-accent);
+#s11 .s11-points { list-style: none; display: flex; flex-direction: column; gap: var(--sp-4); counter-reset: s11-num; }
+#s11 .s11-points li {
+  counter-increment: s11-num;
+  display: grid;
+  grid-template-columns: var(--sp-5) 1fr;
+  column-gap: var(--sp-4);
+  align-items: baseline;
 }
-#s11 .s11-points .s11-no::before { background: var(--c-danger); }
+#s11 .s11-points li::before {
+  content: counter(s11-num);
+  grid-row: span 2;
+  font-family: var(--f-mono);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+  color: var(--c-accent);
+  text-align: right;
+}
+#s11 .s11-points .s11-no::before { color: var(--c-danger); }
 #s11 .s11-points .s11-name { display: block; font-size: var(--fs-h2); }
 #s11 .s11-points .s11-line { display: block; margin-top: var(--sp-1); font-size: var(--fs-body); }
 
