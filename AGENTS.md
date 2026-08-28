@@ -446,10 +446,12 @@ Notable content slides:
   CSS comment.
 
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an amber
-token for exactly that. Current chips (6): photos for Joseph and Gordon (`#1`); confirm which
-behaviours were observed, confirm the trained bar the team actually used, confirm real
-non-goals (all `#3`); how long the dip lasts (`#7`); the 3-4 minute interview with Louise.
-The `#5` engineer quote was confirmed by Gordon Deacon, Aug 2026, and its chip is gone.
+token for exactly that. Current chips (3): photos for Joseph and Gordon (`#1`); how long the
+dip lasts (`#7`); the 3-4 minute interview with Louise. The `#5` engineer quote was confirmed
+by Gordon Deacon, Aug 2026, and its chip is gone. The `#3` "what success looked like" behaviours
+(the team became self-sufficient committing and reviewing PRs without assistance, was making
+architectural decisions and was managing resources in code exclusively), the trained bar and the
+non-goals were confirmed by the user, Aug 2026, and all three `#3` chips are gone.
 
 Speakers (`data-speaker`), after the `#9`/`#10` merge: `#5`, `#7`, `#9` and `#14` are Gordon;
 `#4`, `#6`, `#10`, `#11` and `#13` are Joseph; `#3`, `#8`, `#12`, `#15` and `#16` are Dafydd.
