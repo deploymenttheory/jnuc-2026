@@ -5,7 +5,7 @@ session Joseph is talking to) reads this file at the start of every round and fo
 Feedback itself arrives in chat, never in this file. `AGENTS.md` is the reference for the
 repo and the decks; this file only covers the loop. The file is committed (the deploy's
 `*.md` exclude keeps it off the site); edit it in the same commit as any change to the
-process. Last revised 2026-08-27.
+process. Last revised 2026-08-28.
 
 ## Standing rules
 
@@ -445,6 +445,15 @@ stylesheet `../sandbox.css`, and crumb
   the orchestrator, only once Joseph has said to.
 - `docs/superpowers/plans/2026-08-27-clicks-to-code-feedback.md` is a superseded plan from
   before the fan-out, kept for its triage table. Do not execute it.
+- When Joseph's machine sleeps, background agents die mid-task. On resume, check each
+  agent's worktree for commits and untracked files before deciding whether to resume it
+  (`SendMessage` to the agent) or re-dispatch it fresh - a worktree with nothing committed
+  is safe to re-dispatch, one with work in progress is worth resuming instead.
+- An in-flight agent can take an amended brief by message before it opens its PR, which
+  avoids a second round trip through the sandbox. Used for slide 16's pixel art (upgraded
+  to hi-res while the agent was still working) and for By the numbers' date line (corrected
+  before the PR went up) - both landed in the same PR as the original brief, not a
+  follow-up one.
 
 ## If the session is lost
 
@@ -483,7 +492,81 @@ purpose.
 
 ## Log
 
-### State at handover (2026-08-27)
+### State at handover (2026-08-28)
+
+A new session taking over should read this before anything else. Per-slide status for
+`presentations/migrating_an_instance`, everything touched since PR #28, cross-checked
+against the Done bullets below, `git log --oneline 65180db..origin/main`, AGENTS.md's
+"Current slide order" (22 slides) and Sandbox section, `ls presentations/sandbox/
+migrating_an_instance/` and `gh pr list --state open`:
+
+- Slide 6 (`#s05`) - a collaborator's PR #26 named the three migration paths and drew each
+  as a flow; the control note at the foot of the slide folded into path 03, with four
+  layout options offered on the sandbox (PR #33); option D, each path in its own bordered
+  panel with the diagram centred inside, applied (PR #36). Settled.
+- Slide 10 (`#s10`) - the resource-sequencing diagram's text bumped, three size options
+  offered on the sandbox (PR #29); option C, everything bigger and the diagram reflowed,
+  applied (PR #34). Settled.
+- Slide 11 (`#s08`) - three layouts offered for the empty half of the migration wave
+  workflow slide (PR #31); option C, seven full-width bands stepping down the slide,
+  applied (PR #35). Settled.
+- Slide 14 (`#s13`) - cut back to the policies exception, the dock-items card removed, four
+  layouts offered (PR #32); option D, the exception and its reason in large type with
+  wording made more human, applied (PR #37). Settled.
+- Slide 15 (`#s14`) - three terminal-excerpt treatments offered so the `terraform plan`
+  block reads as a real terminal (PR #38); option B, the block as a real window with
+  chrome, traffic lights and a blinking cursor, applied (PR #39); gate 2 reworded to say
+  state is stored in a remote backend and to drop the Copilot CLI namedrop in favour of
+  "AI" (PR #42). Settled on this slide - `#s11` (slide 12) still names Copilot CLI for the
+  same underlying fact and was left alone as another slide (see What is pending).
+- Slide 16 (`#s-staging`) - wording made plainer and steps-first, three layouts offered on
+  the sandbox (PR #40); three 384px pixel-art icons drawn with Pixelforge (project id
+  `b4001dd6`, one per rebuild step - wipe, apply, iterate) and embedded in the slide as
+  base64 data URIs, with the open sandbox page `s-staging-steps-first` adjusted so the
+  icons appear in all four renders (PR #49). Open - the sandbox page awaits a decision
+  between options B, C and D; option A, already live, carries the pixel art.
+- Slide 17 (`#s-pivot`) - the "It got out of hand" pivot line cut and its TODO chip moved
+  onto the code block, three display options offered (PR #41); sandbox closed with no
+  option chosen, live slide kept (PR #44). Settled.
+- Slide 19 (`#s-today`), deleted - "The estate today" removed, its 60 seconds moved to
+  Questions so the timers still sum to 1800, deck renumbered to 22 slides (PR #43).
+  Settled.
+- By the numbers (`#s16b`, now slide 19) - figures refreshed (35-40 contributors, 900 PRs
+  merged, 134 HCL files, 19,000+ lines of code) with three visualisations offered on the
+  sandbox (PR #46); option C, 900 PRs merged as a hero number with the other four figures
+  in a quiet row, applied, and the date line changed to "Jan 2026 -> Sept 2026" (PR #48).
+  Settled on the slide itself - see What is pending for the notes mismatch and the
+  1,902-commits figure.
+- Non-slide: a collaborator's changes to the training deck and this deck merged together
+  (PR #30); `docs/timeline-adherence.md` added, one row per slide with a blank "Month (fill
+  in)" column for Joseph (PR #45); the pixel-art source directory
+  `presentations/migrating_an_instance/art/` added alongside slide 16's icons, holding the
+  Pixelforge spec `s-staging-steps.md` and the three exported PNGs (PR #49, above).
+
+What is pending:
+
+- One sandbox page awaiting a decision: slide 16 `s-staging-steps-first` (options B to D;
+  option A is live with the pixel art).
+- Collaborator PR #47 (macdeacon99, "Revoke UI write access before the import, not after
+  validation", head `main` of their fork) is open - mention it, do not merge it unless
+  Joseph names it.
+- Two things flagged for Joseph and not actioned: slide 12 `#s11` still names Copilot CLI
+  (gate 2 on slide 15 was reworded to say "AI" and "remote backend", PR #42, but the agent
+  left `#s11` alone as another slide); and By the numbers' first speaker note still says
+  April 2025 to May 2026 while the slide's date line now reads Jan 2026 to Sept 2026 (PR
+  #48).
+- `docs/timeline-adherence.md` (PR #45) has its "Month (fill in)" column empty, waiting on
+  Joseph; its H1 uses a colon ("Timeline adherence: Migrating an instance"), which breaks
+  the no-colon-titles rule - noted, not fixed.
+- The `1,902` commits figure on By the numbers was not in Joseph's updated stats and is
+  probably stale.
+- Keynote rebuild not requested; slide 4's speaker still marked TBC (Dafydd).
+
+Commit range for the day: `65180db` (yesterday's handover doc, PR #28) to `1c7023d`
+(current `origin/main` tip, PR #49's merge). PR numbers #29 to #49, plus #26, #30 and #47
+as collaborator PRs (#27 and #28 were yesterday's). This docs update is its own PR, #51.
+
+### State at handover (2026-08-27, superseded)
 
 A new session taking over mid-day should read this before anything else. Per-slide status
 for `presentations/migrating_an_instance`, everything touched today, cross-checked against
@@ -565,6 +648,155 @@ it up - either way it is on disk for a recovering session.
   3, following the same pattern used for the `#5` engineer quote's resolution. Deterministic
   round, no sandbox page; `training_a_team` has no presenter.json so no presenter check.
   PR #1.
+- **2026-08-28, slide 16 (`#s-staging`) pixel art redrawn at 1024px.** Joseph: "Re-do 16's
+  pixel art with the highest possible res please". The Pixelforge project `s-staging-steps`
+  (`b4001dd6`) was kept and its spec amended in place with `update-spec` - `rules.max_canvas`
+  and all three deliverables raised to 1024x1024, `export: { scale: 1, expect: [1024, 1024] }`,
+  four ramp steps added (31 to 34, still inside the 40 cap), plus a `plate_top` guide and a
+  `plate_body` zone on each deliverable so an icon that loses the shared plate now fails lint.
+  A canvas cannot be resized, so the three 384px canvases (`3567a054`, `471a30e5`, `c60515d3`)
+  were deleted and three 1024px ones created in their place (`705f3e19` wipe, `002f379e` apply,
+  `4f41bbd9` iterate). All three were redrawn from scratch at the new size, not scaled up: the
+  broom head is eighteen separately toned bristle strands with a ragged drawn tip line, the
+  handle carries a specular streak and four grain lines, the ferrule three rivets; the slabs
+  and blocks have four-step bevels and engraved configuration rules; the loop is shaded by
+  angle in half-degree wedges across nine tones with a lit inner rim; the plate gained a
+  specular streak, five panel joins and end bevels. Lint is zero-error on all three (the wipe
+  keeps 22 orphan-pixel warnings where the diagonal strand edges meet the outline, and the
+  deliberate `banding: info` findings). PNGs: wipe 27,154 B, apply 9,486 B, iterate 27,576 B,
+  64,216 B for the set; the deck goes 146,502 -> 210,303 B, 63,432 of that the three data
+  URIs and the rest the CSS comment. `image-rendering` on
+  `.s-staging-art` changes from `pixelated` to `auto`: at 1024px shown at 168px,
+  nearest-neighbour keeps one source pixel in six and visibly fragments the loop's outline and
+  the crosses, and Chrome maps `crisp-edges` to the same nearest path (byte-identical
+  screenshots), so the smooth downscale is the only one that holds. The display width stays at
+  168px. AGENTS.md's `art/` row, Embedded artwork bullet and slide-16 line are updated. The
+  presenter check prints OK, the dash lint is clean, and the diff against `main` touches only
+  the `#s-staging` CSS block, its three `<img src>` attributes, `art/` and the two docs. PR #58.
+
+- **2026-08-28, slide 12 (`#s11`) option D accepted.** Joseph: "D for 12 is good." Option D
+  from the sandbox page `s11-bullets-round2.html` is folded into the deck's `#s11` CSS
+  block as one clean set of rules, replacing option A's dashed-list rules rather than
+  stacking on them: the four points now read as a numbered list, 1 to 4, the number in mono
+  in an accent gutter driven by a CSS counter, the name in the display face, bold, and the
+  fourth number and name both in the danger colour for the rejected `-generate-config-out`
+  flag. No markup change was needed - option D was pure CSS on the existing list. The
+  sandbox page `presentations/sandbox/migrating_an_instance/s11-bullets-round2.html` is
+  deleted and its index entry is now a non-linked `.done` line recording the decision.
+  AGENTS.md's slide-12 line and the Sandbox section's Current pages/Decided lines are
+  updated. The presenter check prints OK, the dash lint is clean, and the diff against
+  `main` touches only the `#s11` CSS block, the sandbox index and AGENTS.md. PR #57.
+
+- **2026-08-28, slide 9 (`#s-sentinel`) round one rejected, three fresh treatments
+  offered.** Joseph: "9 as well, can we have 3 fresh options?" - read alongside his note on
+  slide 12 that he wants things simpler and "nice easily separated". Round one (PR #54) is
+  out: the `.s-sentinel-opt-b`, `-opt-c` and `-opt-d` wrappers, their markup and the whole
+  S-SENTINEL CSS block are deleted, which leaves the section as the shared `.lead` plus the
+  three `.gates-3` cards and no slide-specific rules at all. The live slide screenshots
+  byte-identical before and after (`cmp` passes) and `#s14` is unchanged. The new set is
+  deliberately different in kind - no wall, no staircase, no timeline axis, no drawn device
+  of any sort - and all three are pure CSS on the existing markup, so nothing new ships in
+  the deck this round and an accepted option pastes straight in. B turns the cards into
+  three tall columns ruled top and bottom, the number large in mono and the only coloured
+  thing on the slide (danger, muted, accent), verb at 44px, sentence at body size. C reads
+  the three states as one run across the slide: three plain blocks on the card surface
+  joined by two arrows in the diagram line colour, verb inside each block. D splits the
+  slide down the middle - the lead holds the left half at body size as the setup, the three
+  gates stack down the right as a numbered list with a hairline between each. Every sentence
+  is verbatim, everything clears the timeline strip and the shared `.lead`, `.gates` and
+  `.gate*` rules are untouched. The presenter check prints OK. Sandbox page
+  `presentations/sandbox/migrating_an_instance/s-sentinel-round2.html`; the round-one page
+  is deleted and its index entry is now a non-linked `.done` line recording that it was
+  superseded on 2026-08-28 with no option chosen. AGENTS.md slide list, Current pages and
+  Decided lines updated. PR #56, awaiting a decision.
+
+- **2026-08-28, slide 12 (`#s11`) round one rejected, three plain bullet treatments
+  offered.** Joseph: "I don't really like the options for 12 - can you re-do them and jsut
+  make them nice easily separated bullet points?" Round one (PR #53) is out: the
+  `.s11-opt-a` to `.s11-opt-d` wrappers, their markup including the inline-SVG glyphs and
+  all their CSS are gone, the right-hand column is plain markup again, and the round one
+  sandbox page is deleted with its index entry turned into a non-linked superseded record.
+  The wording of the four points is untouched. The three new treatments are pure CSS on the
+  same list, nothing cleverer: B separates the points with a hairline rule at full column
+  width, C puts each on the deck's navy card surface with the name in a fixed-width left
+  column so the four lines align, D numbers them 1 to 4 in mono in a gutter with the name in
+  the display face. Option A is the dashed list the deck now ships and injects nothing. The
+  rejected fourth point keeps the danger colour on its name in all four, never a
+  strike-through. Sandbox: `presentations/sandbox/migrating_an_instance/s11-bullets-round2.html`.
+  PR #55, awaiting a decision.
+
+- **2026-08-28, slide 9 (`#s-sentinel`) three visual treatments offered.** Joseph: "Can you
+  generate some visual options for 9 please?" A visual round only - no wording or fact
+  changes anywhere, and nothing changes in the deck as it ships: option A is the live slide
+  (the lead over three shared gate cards) and injects nothing. B, C and D need markup, so
+  all three ride along as hidden wrappers inside the section - `.s-sentinel-opt-b`, `-opt-c`,
+  `-opt-d` - with one `#s-sentinel` rule hiding them and the sandbox page flipping which one
+  shows, the same pattern `#s-workspace` used. B draws the wall: a hatched policy barrier
+  down the middle of the slide with the same run meeting it three times, stopping dead
+  against it in the danger colour, passing through a dashed temporary opening, then through
+  an open one edged in the accent, each lane's sentence beside its own crossing. C drops the
+  paragraph for a staircase - three panels sharing a bottom edge and growing taller left to
+  right, number in mono, verb at title size, sentence at body size, colour ramping danger to
+  cornflower to accent. D keeps the lead, quietened, and lays the three states on an axis
+  running Nov 2025 to Jan 2026, the slide's own `data-when` range: a blunt stop at the start,
+  a repeating tick band for the exception windows and one accent end marker for the standing
+  exception, with a TODO chip because the number of windows is not recorded. All the new CSS
+  is one `#s-sentinel`-scoped block next to the other slide blocks; the shared `.lead`,
+  `.gates` and `.gate*` rules are untouched and `#s14` screenshots identical. The option A
+  render is byte-identical to the same screenshot taken from `main`. The presenter check
+  prints OK. Sandbox page
+  `presentations/sandbox/migrating_an_instance/s-sentinel-visual.html`, index entry added,
+  `AGENTS.md`'s slide-9 line and the Sandbox section's "Current pages" line updated.
+  Awaiting a decision. PR #54.
+- **2026-08-28, slide 12 (`#s11`) the right-hand points.** Joseph: "Can you give some visual
+  options for slide 12, only the right hand side with text. Focus on these 4 points: tidying
+  with prune, jamfpy SDK, regex, and the rejecting the generate-config-out." The right-hand
+  column goes from seven bullets to those four, in that order, each one a mono name over a
+  single line of plain text. The three that came off are already told elsewhere: the
+  per-candidate script and the structured map, and the map pasted into a `local` with a
+  `for_each` block, are both stages in the pipeline diagram on the left, and AI-assisted
+  validation is not a tools point. The "mostly Copilot CLI" mention leaves the slide with
+  that last bullet, which suits Joseph's earlier request not to name Copilot; the third
+  speaker note pointed straight at it, so it is reworded to say AI use in one line without
+  naming the tool and mirrored into `presenter.json`. The other two notes and the left-hand
+  SVG are untouched. Three visual treatments of the four points went to the sandbox as
+  `s11-right-hand-points.html`, all four shipping as markup wrappers `.s11-opt-a` to
+  `.s11-opt-d` inside `#s11` with their rules in the deck, so the sandbox CSS only flips
+  which one shows: A (live) the four points as one dashed list; B four cards, the name a
+  large monospace tag, the rejected flag struck through behind a danger-coloured edge; C a
+  2x2 grid of tiles each carrying an inline-SVG glyph in the `dg-*` style - a bin, an
+  angle-bracket mark, a literal `.*` over a rule, a struck-through code block; D a
+  used/rejected ledger, three ticks on a rail and the flag alone below a full-width rule.
+  Also normalised the SDK's spelling to `jamfpy` in `AGENTS.md` to match the deck, recorded
+  as a settled fact. The presenter check prints OK. Awaiting a decision. PR #53.
+
+- **2026-08-28, slide 16 (`#s-staging`): option B accepted.** Joseph: "16 - option B
+  please." Folded option B's CSS (a numbered rail of the three steps down the left, verb
+  and sentence on one line each, lead and takeaway as a quiet right-hand column) into the
+  deck's `#s-staging` block in place of option A's rules, no markup change. The pixel-art
+  icons were grown from B's sandbox size of 96px to 168px - the largest width a rail row
+  allows before the third row's icon meets the timeline strip. Sandbox page deleted,
+  `AGENTS.md` slide list and Sandbox section updated. Presenter check OK, no dash hits. PR
+  #52.
+- **2026-08-28, feedback-workflow.md updated for the handover.** The stale
+  2026-08-27 handover section (PRs 4 to 28, slide 4 as the last thing settled, PR #26 as
+  the open collaborator PR) retitled "superseded" and kept below a new "State at handover
+  (2026-08-28)" section covering PRs #29 to #49 plus collaborator PRs #26, #30 and #47: a
+  per-slide status for slides 6, 10, 11, 14, 15, 16, 17, deleted slide 19 (`#s-today`) and
+  By the numbers (`#s16b`), the training-deck collaborator merge (PR #30), the timeline
+  adherence doc (PR #45) and the pixel-art asset directory `art/` (PR #49), plus a "What is
+  pending" list. Two Gotchas added: background agents dying when the machine sleeps, and
+  amending an in-flight agent's brief before it opens its PR. "Last revised" bumped to
+  2026-08-28. `AGENTS.md` checked against the new state and needed no changes. PR #51.
+- **2026-08-28, sandbox index: split the merged entries.** Joseph: "The sandbox seems to be
+  having some visual issues - the entries are merging?" Two merge-conflict resolutions on
+  `presentations/sandbox/migrating_an_instance/index.html` had left the first `<li>` holding
+  three entries run together with no `</li><li>` between them - slide 19 (done), slide 17
+  (done) and slide 16 (link) - rendering as one merged list item. Split into three separate
+  `<li>` elements, one entry each, matching every other item in the list; no wording or
+  other entries changed. Verified: 14 `<li>` open and close, 14 `.meta` paragraphs,
+  `xmllint --html --noout` clean, and a headless-Chrome screenshot over HTTP shows each
+  entry as its own spaced item with the slide 16 link on its own line. PR #50.
 
 - **2026-08-28, slide 16 (`#s-staging`) pixel-art icons for the three rebuild steps.**
   Joseph: "Use the pixel art generator to make a good, high quality pixelart for each box on

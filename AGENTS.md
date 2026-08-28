@@ -128,7 +128,7 @@ one and the other does not follow.
 | `from-clicks-to-code-jnuc2026.pptx` | Gone. The download is now the committed `.key` below. |
 | `from-clicks-to-code-jnuc2026.key` | The committed Keynote download, written by `tools/build-key.mjs`. The landing page links to this exact filename, so it is set in the script, not chosen freely. Rebuild and commit it with any deck edit. |
 | `presenter.json` | Per-slide speaker notes and timer lengths plus the 30-minute talk limit. Notes are a copy of the deck's `<aside class="notes">` text and the slide order mirrors the deck - the deck wins when they differ, and `feedback-workflow.md` carries a check that must print `OK` before every push. Regenerated from the deck on 2026-08-27 (timers kept). Timer allocations are proposed, not rehearsed. Nothing reads this file yet. |
-| `art/` | Source art for the pixel-art icons on slide 16: `s-staging-steps.md` (the Pixelforge spec - palette, rules and prose for all three) and `s-staging-wipe.png` / `s-staging-apply.png` / `s-staging-iterate.png`, 384px square, exported at scale 1. The deck embeds its own base64 copy of each, so nothing links to these files; they are kept so the art can be regenerated. See Embedded artwork below. |
+| `art/` | Source art for the pixel-art icons on slide 16: `s-staging-steps.md` (the Pixelforge spec - palette, rules and prose for all three) and `s-staging-wipe.png` / `s-staging-apply.png` / `s-staging-iterate.png`, 1024px square (Pixelforge's ceiling; redrawn at that size 2026-08-28, up from 384px), exported at scale 1. The deck embeds its own base64 copy of each, so nothing links to these files; they are kept so the art can be regenerated. See Embedded artwork below. |
 | `spec.md` | Spec and change history: the original build runbook, Joseph's source narrative and full repo tree, all three Q&A rounds answered inline, and a decision index. **Historical** - sections marked SUPERSEDED (deck order, palette values, open-questions index) predate the story restructure, and everything it says about the light LBG-green palette predates the JNUC template adoption. |
 
 `spec.md` is provenance for every fact in the deck. Do not delete it; do not treat its
@@ -151,7 +151,11 @@ quotes is stale.
   knobs (those belong to `training_a_team`) - so embedded art gets no per-theme filter or
   backing plate here. The stage is always royal blue and the cards always navy, and the
   icons are drawn with a dark `#0A1030` outline that reads on both, so they need neither.
-  New art must be sized in tokens and carry `image-rendering: pixelated` if it is pixel art.
+  New art must be sized in tokens. Pixel art carries `image-rendering: pixelated` only when
+  the source is at or near its display size; slide 16's icons are 1024px shown at 168px, and
+  at that ratio nearest-neighbour throws away five source pixels in six and shreds the
+  outlines, so they use `image-rendering: auto` and let the browser downscale smoothly
+  (Chrome treats `crisp-edges` as nearest, so it is not a third option).
   Source files and the Pixelforge spec go in the deck's `art/` directory, never linked.
 - **Dates live on the persistent timeline, not in slide content.** Every `<section>` carries
   `data-when="YYYY-MM"` or `data-when="YYYY-MM:YYYY-MM"` (a month range). A fixed strip at
@@ -222,12 +226,19 @@ overlay - keep the two in step when slides move.
 7. `s07` Prerequisites (two portions, instance prep and migration prep, each a tidied
    checklist) - **Gordon**
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
-9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception) - **Gordon**
+9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception; the shared `.lead` plus three `.gates-3` cards, and nothing else in the section. The round-one alternative wrappers came back out on 2026-08-28 when Joseph rejected them; the open sandbox page `s-sentinel-round2` is pure CSS on this markup, so the section has no slide-specific rules of its own) - **Gordon**
 10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
 11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; seven steps as full-width
     bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
     with a red left edge) - **Dafydd**
-12. `s11` Tools and helpers (JamfPy -> script -> map -> for_each) - **Gordon**
+12. `s11` Tools and helpers (the pipeline diagram unchanged on the left - jamfpy -> script
+    -> map -> for_each -> import; on the right the same four points as a numbered list, 1
+    to 4 in mono in an accent gutter, each name in the display face, bold: PRUNE and
+    jamf-resource-deleter, jamfpy, the regex mop-up pass, and `-generate-config-out`
+    rejected, its number and name both in the danger colour. Option D, accepted
+    2026-08-28. Cut back from seven bullets 2026-08-28; the three that went are told by
+    the diagram or by `s12`, and the "mostly Copilot CLI" mention left the slide with
+    them) - **Gordon**
 13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Joseph**
 14. `s13` for_each exceptions (single statement - policies stayed in plain HCL because
     they are too diverse for one map) - **Joseph**
@@ -236,13 +247,12 @@ overlay - keep the two in step when slides move.
     `joseph@jnuc - zsh` title, and a blinking cursor on a fresh prompt line below the
     result; four gate cards unchanged) - **Joseph**
 16. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused;
-    steps first - the three gate cards are full-height panels with the verb at title size,
-    the lead is one muted line above and the takeaway one line below, and the module-split
-    paragraph is gone from the slide because the speaker notes carry it. Each card carries a
-    pixel-art icon at 192px in the space between its number and its verb - a broom sweeping
-    coral debris off a plate with two lime blocks left standing, configuration slabs landing
-    on the same plate under a downward arrow, and a loop closing on a lime tick with two
-    coral crosses outside it. Source and spec in `art/`) - **Dafydd**
+    a numbered run of the three steps down the left on a rail, verb and sentence on one
+    line each, with the lead and the takeaway as a quiet right-hand column. Each step
+    carries its pixel-art icon riding beside the ring at 168px, drawn on a 1024px canvas -
+    a broom sweeping coral debris off a plate with two lime blocks left standing,
+    configuration slabs landing on the same plate under a downward arrow, and a loop closing
+    on a lime tick with two coral crosses outside it. Source and spec in `art/`) - **Dafydd**
 17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals; the lead and one
     HCL block, no closing statement - the "It got out of hand. The pivot: ..." line came off
     2026-08-27 for reading as machine-written, and its TODO chip moved onto the code block)
@@ -278,7 +288,7 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   workspaces. Fix: time-bound exception per import window, later a standing exception once
   the team showed they were sole actors. Fine to name Sentinel publicly.
 - **The loop:** matrix (group-built spreadsheet of resource types and dependencies) picks the
-  next resource -> JamfPy script emits a structured map (duplicates and all) -> `for_each`
+  next resource -> jamfpy script emits a structured map (duplicates and all) -> `for_each`
   with conditionals/dynamic blocks -> apply with zero changes -> refinement passes (dedup,
   raw IDs -> named locals like `local.category_ids["Name"]`, shared locals), zero-diff plan
   gating every pass. Gordon: scripts + verbose imports. Joseph: refinement passes.
@@ -289,6 +299,11 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   order things happened to run in on some waves, but it is not the advice, and it contradicted
   the wave-workflow slide. Corrected by Gordon Deacon, Aug 2026. A zero diff is only meaningful
   because write access went first - say that, rather than treating the removal as a finish line.
+- **The SDK is written `jamfpy`, lower case**, everywhere it is named: `s11`, its speaker
+  notes, `presenter.json` and the `s18` links chip all use it, and Joseph writes it that way
+  too. This file's two `JamfPy` spellings were normalised to match on 2026-08-28. The `s11`
+  pipeline diagram's top box says "jamfpro Python SDK" (the thing it talks to), which is a
+  separate label and was left alone.
 - **Bulk imports** Dec 2025 - Jan 2026; refinement through Feb - Mar 2026.
 - **Sequencing bands:** 1 singletons (client check-in, inventory collection, activation code);
   2 no dependencies (scripts, categories, departments); 3 dependent (smart groups, advanced
@@ -668,6 +683,38 @@ automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages (all under `presentations/sandbox/migrating_an_instance/`):
+`s-sentinel-round2` (2026-08-28, slide 9 - three fresh treatments after round one was
+rejected, all leaning simpler and all pure CSS on the existing `.lead` / `ol.gates` /
+`li.card.gate` markup scoped to `#s-sentinel`, so nothing new ships in the deck: A the live
+slide, B the cards as three tall columns ruled top and bottom with the number large in mono
+and the only colour on the slide, C the three states as one run of plain blocks joined by
+two arrows in the diagram line colour, D a two-column split with the lead holding the left
+half and the gates stacked down the right as a numbered list with hairlines between).
+Decided (all under `presentations/sandbox/migrating_an_instance/`):
+`s11-bullets-round2` (2026-08-28, slide 12 - four plain treatments of the right-hand
+points, wording unchanged, all four pure CSS on the same list: A the dashed list the deck
+now ships, B the points separated by a hairline rule at full column width, C each point on
+the navy card surface with the name in a fixed-width left column so the four lines align,
+D the points numbered 1 to 4 in mono in a gutter with the name in the display face. The
+rejected flag keeps the danger colour on its name in all four, never a strike-through, and
+the left-hand pipeline SVG is untouched. Decided 2026-08-28: option D, applied to the
+deck's `#s11` rules; the page is deleted, the index keeps the record as a non-linked
+`.done` entry);
+`s11-right-hand-points` (2026-08-28, slide 12 - four visual treatments of the right-hand
+column, which that PR cut from seven bullets to four points, shipped as the markup wrappers
+`.s11-opt-a` to `.s11-opt-d` inside `#s11`. Superseded 2026-08-28 with no option chosen:
+Joseph rejected all four and asked for plain, easily separated bullet points, so the
+wrappers, their markup including the inline-SVG glyphs, and their CSS came out of the deck
+and `s11-bullets-round2` above replaced the page. The page is deleted, the index keeps the
+record as a non-linked `.done` entry);
+`s-sentinel-visual` (2026-08-28, slide 9 - four visual treatments, no wording or fact
+changes anywhere: A the live lead-plus-gate-cards slide, B a hatched Sentinel wall crossed
+three times, C a staircase of three panels growing taller left to right, D the three states
+on a Nov 2025 to Jan 2026 axis with the exception windows as a repeating tick band; B, C
+and D shipped as hidden wrappers in `#s-sentinel`. Superseded 2026-08-28: all three
+rejected, no option chosen, the wrappers and the whole S-SENTINEL CSS block removed from
+the deck and the round two page opened in its place. Page deleted, the index keeps the
+record as a non-linked `.done` entry);
 `s-staging-steps-first` (2026-08-27, slide 16 - four ways to put the three rebuild steps
 first, all four pure CSS on the same markup: A three full-height panels, B a numbered run
 down the left with a quiet right-hand column, C one flow strip in the deck's diagram style,
@@ -675,8 +722,9 @@ D the wipe as a hero panel; the rewritten wording ships in all four. Amended 202
 the three pixel-art step icons landed: the icons are in all four renders and each option's
 CSS now sizes and places `.s-staging-art` for its own layout - 192px in the card middle in
 A, 96px beside the ring in B, 144px above each node in C, and 120px in D's hero panel only,
-because D's half-height cards have no room for one). Decided (all under
-`presentations/sandbox/migrating_an_instance/`):
+because D's half-height cards have no room for one. Decided 2026-08-28: option B, applied
+to the deck's `#s-staging` rules; the icons were grown from B's 96px to 168px, the largest
+width a rail row allows before the third row's icon meets the timeline strip. Page retired);
 `s16b-numbers` (2026-08-27, slide 19 - the refreshed figures shipped in all four
 renders; A the six stat tiles the deck already had, B five gauge bars each measured against
 its own next round number with the ranges drawn as open ends, C one hero number - 900 PRs
