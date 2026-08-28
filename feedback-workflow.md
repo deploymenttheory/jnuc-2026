@@ -650,7 +650,7 @@ it up - either way it is on disk for a recovering session.
   the display face. Option A is the dashed list the deck now ships and injects nothing. The
   rejected fourth point keeps the danger colour on its name in all four, never a
   strike-through. Sandbox: `presentations/sandbox/migrating_an_instance/s11-bullets-round2.html`.
-  PR pending, awaiting a decision.
+  PR #55, awaiting a decision.
 
 - **2026-08-28, slide 9 (`#s-sentinel`) three visual treatments offered.** Joseph: "Can you
   generate some visual options for 9 please?" A visual round only - no wording or fact
