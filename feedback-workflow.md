@@ -5,7 +5,7 @@ session Joseph is talking to) reads this file at the start of every round and fo
 Feedback itself arrives in chat, never in this file. `AGENTS.md` is the reference for the
 repo and the decks; this file only covers the loop. The file is committed (the deploy's
 `*.md` exclude keeps it off the site); edit it in the same commit as any change to the
-process. Last revised 2026-08-27.
+process. Last revised 2026-08-28.
 
 ## Standing rules
 
@@ -445,6 +445,15 @@ stylesheet `../sandbox.css`, and crumb
   the orchestrator, only once Joseph has said to.
 - `docs/superpowers/plans/2026-08-27-clicks-to-code-feedback.md` is a superseded plan from
   before the fan-out, kept for its triage table. Do not execute it.
+- When Joseph's machine sleeps, background agents die mid-task. On resume, check each
+  agent's worktree for commits and untracked files before deciding whether to resume it
+  (`SendMessage` to the agent) or re-dispatch it fresh - a worktree with nothing committed
+  is safe to re-dispatch, one with work in progress is worth resuming instead.
+- An in-flight agent can take an amended brief by message before it opens its PR, which
+  avoids a second round trip through the sandbox. Used for slide 16's pixel art (upgraded
+  to hi-res while the agent was still working) and for By the numbers' date line (corrected
+  before the PR went up) - both landed in the same PR as the original brief, not a
+  follow-up one.
 
 ## If the session is lost
 
@@ -483,7 +492,81 @@ purpose.
 
 ## Log
 
-### State at handover (2026-08-27)
+### State at handover (2026-08-28)
+
+A new session taking over should read this before anything else. Per-slide status for
+`presentations/migrating_an_instance`, everything touched since PR #28, cross-checked
+against the Done bullets below, `git log --oneline 65180db..origin/main`, AGENTS.md's
+"Current slide order" (22 slides) and Sandbox section, `ls presentations/sandbox/
+migrating_an_instance/` and `gh pr list --state open`:
+
+- Slide 6 (`#s05`) - a collaborator's PR #26 named the three migration paths and drew each
+  as a flow; the control note at the foot of the slide folded into path 03, with four
+  layout options offered on the sandbox (PR #33); option D, each path in its own bordered
+  panel with the diagram centred inside, applied (PR #36). Settled.
+- Slide 10 (`#s10`) - the resource-sequencing diagram's text bumped, three size options
+  offered on the sandbox (PR #29); option C, everything bigger and the diagram reflowed,
+  applied (PR #34). Settled.
+- Slide 11 (`#s08`) - three layouts offered for the empty half of the migration wave
+  workflow slide (PR #31); option C, seven full-width bands stepping down the slide,
+  applied (PR #35). Settled.
+- Slide 14 (`#s13`) - cut back to the policies exception, the dock-items card removed, four
+  layouts offered (PR #32); option D, the exception and its reason in large type with
+  wording made more human, applied (PR #37). Settled.
+- Slide 15 (`#s14`) - three terminal-excerpt treatments offered so the `terraform plan`
+  block reads as a real terminal (PR #38); option B, the block as a real window with
+  chrome, traffic lights and a blinking cursor, applied (PR #39); gate 2 reworded to say
+  state is stored in a remote backend and to drop the Copilot CLI namedrop in favour of
+  "AI" (PR #42). Settled on this slide - `#s11` (slide 12) still names Copilot CLI for the
+  same underlying fact and was left alone as another slide (see What is pending).
+- Slide 16 (`#s-staging`) - wording made plainer and steps-first, three layouts offered on
+  the sandbox (PR #40); three 384px pixel-art icons drawn with Pixelforge (project id
+  `b4001dd6`, one per rebuild step - wipe, apply, iterate) and embedded in the slide as
+  base64 data URIs, with the open sandbox page `s-staging-steps-first` adjusted so the
+  icons appear in all four renders (PR #49). Open - the sandbox page awaits a decision
+  between options B, C and D; option A, already live, carries the pixel art.
+- Slide 17 (`#s-pivot`) - the "It got out of hand" pivot line cut and its TODO chip moved
+  onto the code block, three display options offered (PR #41); sandbox closed with no
+  option chosen, live slide kept (PR #44). Settled.
+- Slide 19 (`#s-today`), deleted - "The estate today" removed, its 60 seconds moved to
+  Questions so the timers still sum to 1800, deck renumbered to 22 slides (PR #43).
+  Settled.
+- By the numbers (`#s16b`, now slide 19) - figures refreshed (35-40 contributors, 900 PRs
+  merged, 134 HCL files, 19,000+ lines of code) with three visualisations offered on the
+  sandbox (PR #46); option C, 900 PRs merged as a hero number with the other four figures
+  in a quiet row, applied, and the date line changed to "Jan 2026 -> Sept 2026" (PR #48).
+  Settled on the slide itself - see What is pending for the notes mismatch and the
+  1,902-commits figure.
+- Non-slide: a collaborator's changes to the training deck and this deck merged together
+  (PR #30); `docs/timeline-adherence.md` added, one row per slide with a blank "Month (fill
+  in)" column for Joseph (PR #45); the pixel-art source directory
+  `presentations/migrating_an_instance/art/` added alongside slide 16's icons, holding the
+  Pixelforge spec `s-staging-steps.md` and the three exported PNGs (PR #49, above).
+
+What is pending:
+
+- One sandbox page awaiting a decision: slide 16 `s-staging-steps-first` (options B to D;
+  option A is live with the pixel art).
+- Collaborator PR #47 (macdeacon99, "Revoke UI write access before the import, not after
+  validation", head `main` of their fork) is open - mention it, do not merge it unless
+  Joseph names it.
+- Two things flagged for Joseph and not actioned: slide 12 `#s11` still names Copilot CLI
+  (gate 2 on slide 15 was reworded to say "AI" and "remote backend", PR #42, but the agent
+  left `#s11` alone as another slide); and By the numbers' first speaker note still says
+  April 2025 to May 2026 while the slide's date line now reads Jan 2026 to Sept 2026 (PR
+  #48).
+- `docs/timeline-adherence.md` (PR #45) has its "Month (fill in)" column empty, waiting on
+  Joseph; its H1 uses a colon ("Timeline adherence: Migrating an instance"), which breaks
+  the no-colon-titles rule - noted, not fixed.
+- The `1,902` commits figure on By the numbers was not in Joseph's updated stats and is
+  probably stale.
+- Keynote rebuild not requested; slide 4's speaker still marked TBC (Dafydd).
+
+Commit range for the day: `65180db` (yesterday's handover doc, PR #28) to `1c7023d`
+(current `origin/main` tip, PR #49's merge). PR numbers #29 to #49, plus #26, #30 and #47
+as collaborator PRs (#27 and #28 were yesterday's). This docs update is its own PR, #51.
+
+### State at handover (2026-08-27, superseded)
 
 A new session taking over mid-day should read this before anything else. Per-slide status
 for `presentations/migrating_an_instance`, everything touched today, cross-checked against
@@ -554,6 +637,16 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, feedback-workflow.md updated for the handover.** The stale
+  2026-08-27 handover section (PRs 4 to 28, slide 4 as the last thing settled, PR #26 as
+  the open collaborator PR) retitled "superseded" and kept below a new "State at handover
+  (2026-08-28)" section covering PRs #29 to #49 plus collaborator PRs #26, #30 and #47: a
+  per-slide status for slides 6, 10, 11, 14, 15, 16, 17, deleted slide 19 (`#s-today`) and
+  By the numbers (`#s16b`), the training-deck collaborator merge (PR #30), the timeline
+  adherence doc (PR #45) and the pixel-art asset directory `art/` (PR #49), plus a "What is
+  pending" list. Two Gotchas added: background agents dying when the machine sleeps, and
+  amending an in-flight agent's brief before it opens its PR. "Last revised" bumped to
+  2026-08-28. `AGENTS.md` checked against the new state and needed no changes. PR #51.
 - **2026-08-28, sandbox index: split the merged entries.** Joseph: "The sandbox seems to be
   having some visual issues - the entries are merging?" Two merge-conflict resolutions on
   `presentations/sandbox/migrating_an_instance/index.html` had left the first `<li>` holding
