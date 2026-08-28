@@ -435,10 +435,17 @@ Notable content slides:
 - **Goals** (`#3`): learning-outcome cards, a "what success looked like" behaviours block,
   a non-goals strip and a trained-bar definition.
 - **Execution** (`#4`): a fan-out - a hub panel (one engineer seconded into the DevOps CoE,
-  3 months, train-the-trainer) bracketed by an SVG to five outcome cards (materials, session
-  design, hackathons and homework, migration waves, handover), with two full-width arrows
-  underneath showing the two-way trade: domain context in, GitOps practice back. Classes
-  `.fanout`, `.hub`, `.brace`, `.spokes`/`.spoke`, `.flow`/`.flowrow`.
+  3 months, train-the-trainer, run iteratively rather than planned end to end) bracketed by
+  an SVG to five outcome cards, all plain (no per-card colour variants): materials written
+  together, delivery format iterated from theory-led to practical, hackathons that didn't
+  land, no existing playbook for migrating a Mac-centric team onto Terraform specifically,
+  and different delivery plans by skill level (laid-back and project-based for higher-skill
+  engineers). The hub's foot line carries the migration link as one subordinate sentence -
+  the secondment also produced someone who could run migration work when needed - rather
+  than as its own spokes; migration waves and handover as topics belong elsewhere in the
+  deck, not on this training-execution slide. Two full-width arrows underneath keep the
+  two-way trade: domain context in, GitOps practice back. Classes `.fanout`, `.hub`,
+  `.brace`, `.spokes`/`.spoke`, `.flow`/`.flowrow`.
 - **What didn't work** (`#5`): a hero SVG chart across the top - bands mark teaching
   sessions, a gradient line rises through each then decays through the gap that follows,
   trending down over six months. **That curve is illustrative, not measured**, and the slide
