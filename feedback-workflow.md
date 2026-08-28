@@ -637,6 +637,34 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, training_a_team slide 5 (`#5`) "What didn't work" chart and chips reworked,
+  one fact relocated to slide 6 (`#6`).** The user: the confidence curve should trend gently
+  upwards overall (not by much) instead of downwards, since people genuinely built confidence
+  over the six months - only the sawtooth dips through each gap stay the same, still showing
+  confidence lost between sessions. The six-month timeframe, month labels, 144-hours figure
+  and 214,645-vs-3,778 word counts are measured facts and were left untouched, per `AGENTS.md`.
+  Chart path recomputed so each peak sits a little higher than the last while each dip still
+  reads as a real drop relative to the peak before it; line smoothed into eased curves with a
+  subtle gradient area fill and peak dot markers for polish, replacing the straighter, more
+  "analog" original. Annotation callouts repositioned clear of the line; the first one renamed
+  from "platform not ready" to "scheduling gap" since the primary driver of long gaps between
+  sessions is now stated as difficulty assembling a geographically dispersed Mac engineering
+  team, with unclear infra availability folded in as a minor secondary factor. Eight chips
+  reduced to five: mixed-ability cohorts reworded to state plainly that trainers were pitching
+  some sessions too fast and others too slow; theory-before-hands-on left as-is; step-by-step
+  tutorials and reference-manual chips merged into one "Documentation shaped like a reference
+  manual" chip, adding that the curriculum was AI-assisted and too large to take in; "gaps we
+  could not close" deleted as its own chip, folded into the renamed "too long a gap between
+  sessions" chip as a minor factor; "effort stayed invisible" deleted outright; new "online
+  meetings" chip added (in-person let trainers walk around and help people directly). The
+  `.won` accent chip ("what replaced it") moved off `#5` entirely and folded into `#6`'s
+  existing "Good documentation" `.icard` rather than added as a new card, keeping that
+  slide's 7-card 2-column grid unchanged. `.fchips` grid changed from 4 to 5 columns; unused
+  `.fchip.won` CSS removed. `data-notes` rewritten on `#5` for the new chart and chip set;
+  `#6`'s notes given one added sentence for the relocated fact. `AGENTS.md`'s `#5` bullet
+  updated to match. Deterministic round, no sandbox page; `training_a_team` has no
+  presenter.json so no presenter check. Two-slide touch (`#5` and `#6`) authorised by
+  dispatch for this one relocation. PR pending.
 - **2026-08-28, training_a_team slide 4 (`#4`) execution reframed around training, not
   migration.** The user: the slide was talking about migration waves and handover when it
   is about training. Spokes 04 ("Migration waves, run by the same engineer") and 05 ("Full
