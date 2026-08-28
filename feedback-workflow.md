@@ -637,6 +637,22 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, training_a_team slide 5 (`#5`) "What didn't work" - hero chart, option B
+  accepted and the downturn steepened.** Acceptance round on the PR #4 sandbox
+  (`sandbox/training_a_team/s5-chart-styles.html`): the user chose option B, "the ratchet" -
+  straight lime risers through each teaching band, longer falls through each gap, dotted
+  floor lines showing the rising baseline - over A (gain-and-give-back columns) and C (blocks
+  per month). In the same breath they asked for the downturn through each gap to read as a
+  real drop rather than a gentle taper, so that was applied in this PR too rather than a
+  further sandbox round: each fall is now roughly 65-70% of that cycle's rise (up from
+  ~40-60%), drawn at stroke-width 4 instead of 3, with the floor, peak and trough coordinates,
+  the dotted baseline lines and both annotation labels recomputed to match. The six months,
+  six teaching-then-gap cycles, 144 hours and the gentle net upward trend by the end are
+  unchanged; only the individual fall shape got more dramatic. `.chart-opt-a` / `-b` / `-c`
+  and the `.chartwrap` display:none rule are gone - `.chartwrap` now holds option B's SVG
+  directly as the only chart. The sandbox page is deleted; its index entry is a non-linked
+  `.done` line. Speaker notes reviewed and left unchanged - nothing in them contradicts the
+  steeper fall. PR #5.
 - **2026-08-28, training_a_team slide 5 (`#5`) "What didn't work" - three completely
   different treatments of the hero chart, options round, awaiting a decision.** The user,
   on the gradient line chart that shipped in PR #3: "I still don't like the graph, can you

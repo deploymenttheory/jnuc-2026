@@ -436,9 +436,6 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .chartwrap .chd{display:flex;align-items:baseline;gap:16px;margin-bottom:6px}
 .chartwrap .chd h3{font-size:24px;font-weight:700}
 .chartwrap .chd .note{font-family:var(--mono);font-size:15px;color:var(--muted);margin-left:auto}
-/* Three chart treatments ship in the markup while the option is being chosen; A is the
-   only one the deck shows. The sandbox page flips which wrapper is visible. */
-.chartwrap .chart-opt-b,.chartwrap .chart-opt-c{display:none}
 .fchips{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px}
 .fchip{border:1px solid var(--border);border-left:4px solid var(--red);border-radius:5px;
   background:var(--surface);padding:13px 18px}
@@ -1069,67 +1066,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
     <div class="chartwrap">
       <div class="chd"><h3>144 hours of learning, spread across six months</h3>
         <div class="note">SHAPE IS ILLUSTRATIVE</div></div>
-      <!-- Three chart treatments of the same six-month story. Only A is visible in the deck;
-           B and C are hidden by the .chartwrap rule in the CSS and revealed by the sandbox
-           page at sandbox/training_a_team/s5-chart-styles.html. Once an option is chosen the
-           other two wrappers come out. -->
-      <div class="chart-opt-a">
       <svg viewBox="0 0 1580 300" style="width:100%;height:300px" role="img"
-           aria-label="A column per month: the solid part is the confidence held at the end of the month, the outlined part on top is what the gap that followed took back, and the columns climb across the six months">
-        <line x1="70" y1="248" x2="1560" y2="248" stroke-width="1.5" style="stroke:var(--border)" />
-        <line x1="70" y1="20" x2="70" y2="248" stroke-width="1.5" style="stroke:var(--border)" />
-        <text x="58" y="30" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="15" style="fill:var(--muted)">high</text>
-        <text x="58" y="243" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="15" style="fill:var(--muted)">low</text>
-        <text x="20" y="140" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="15" transform="rotate(-90 20 140)" style="fill:var(--muted)">CONFIDENCE</text>
-        <g stroke-width="1" opacity=".7" style="stroke:var(--grid-line)">
-          <line x1="318" y1="20" x2="318" y2="248"/><line x1="567" y1="20" x2="567" y2="248"/>
-          <line x1="815" y1="20" x2="815" y2="248"/><line x1="1063" y1="20" x2="1063" y2="248"/>
-          <line x1="1312" y1="20" x2="1312" y2="248"/>
-        </g>
-        <g style="fill:var(--warn)" opacity=".14">
-          <rect x="134" y="170.5" width="120" height="27.3"/><rect x="382" y="143.1" width="120" height="29.7"/>
-          <rect x="630" y="120.3" width="120" height="31.9"/><rect x="878" y="97.5" width="120" height="36.5"/>
-          <rect x="1126" y="79.3" width="120" height="36.5"/><rect x="1374" y="61" width="120" height="36.5"/>
-        </g>
-        <g fill="none" stroke-width="1.5" stroke-dasharray="5 4" style="stroke:var(--warn)">
-          <rect x="134" y="170.5" width="120" height="27.3"/><rect x="382" y="143.1" width="120" height="29.7"/>
-          <rect x="630" y="120.3" width="120" height="31.9"/><rect x="878" y="97.5" width="120" height="36.5"/>
-          <rect x="1126" y="79.3" width="120" height="36.5"/><rect x="1374" y="61" width="120" height="36.5"/>
-        </g>
-        <g style="fill:var(--accent)" opacity=".82">
-          <rect x="134" y="197.8" width="120" height="50.2"/><rect x="382" y="172.8" width="120" height="75.2"/>
-          <rect x="630" y="152.2" width="120" height="95.8"/><rect x="878" y="134" width="120" height="114"/>
-          <rect x="1126" y="115.8" width="120" height="132.2"/><rect x="1374" y="97.5" width="120" height="150.5"/>
-        </g>
-        <g style="fill:var(--accent-strong)">
-          <rect x="134" y="197.8" width="120" height="3"/><rect x="382" y="172.8" width="120" height="3"/>
-          <rect x="630" y="152.2" width="120" height="3"/><rect x="878" y="134" width="120" height="3"/>
-          <rect x="1126" y="115.8" width="120" height="3"/><rect x="1374" y="97.5" width="120" height="3"/>
-        </g>
-        <polyline points="194,197.8 442,172.8 690,152.2 938,134 1186,115.8 1434,97.5" fill="none"
-                  stroke-width="2" stroke-dasharray="7 5" style="stroke:var(--accent-strong)"/>
-        <g style="fill:var(--accent)">
-          <rect x="80" y="253" width="54" height="6" rx="3"/><rect x="328" y="253" width="54" height="6" rx="3"/>
-          <rect x="577" y="253" width="54" height="6" rx="3"/><rect x="825" y="253" width="54" height="6" rx="3"/>
-          <rect x="1073" y="253" width="54" height="6" rx="3"/><rect x="1322" y="253" width="54" height="6" rx="3"/>
-        </g>
-        <g stroke-width="2" stroke-dasharray="3 6" stroke-linecap="round" opacity=".5" style="stroke:var(--warn)">
-          <line x1="142" y1="256" x2="312" y2="256"/><line x1="390" y1="256" x2="561" y2="256"/>
-          <line x1="639" y1="256" x2="809" y2="256"/><line x1="887" y1="256" x2="1057" y2="256"/>
-          <line x1="1135" y1="256" x2="1306" y2="256"/><line x1="1384" y1="256" x2="1554" y2="256"/>
-        </g>
-        <text x="58" y="261" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="13" style="fill:var(--muted)">SESSIONS</text>
-        <g font-family="ui-monospace,Menlo,monospace" font-size="15" text-anchor="middle" style="fill:var(--muted)">
-          <text x="194" y="285">MONTH 1</text><text x="442" y="285">MONTH 2</text><text x="690" y="285">MONTH 3</text>
-          <text x="938" y="285">MONTH 4</text><text x="1186" y="285">MONTH 5</text><text x="1434" y="285">MONTH 6</text>
-        </g>
-        <text x="88" y="52" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="17" style="fill:var(--accent-strong)">Each month adds a little more than the gap takes back</text>
-        <text x="1560" y="36" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="15" style="fill:var(--muted)">solid = kept &middot; outline = lost in the gap</text>
-      </svg>
-      </div>
-      <div class="chart-opt-b">
-      <svg viewBox="0 0 1580 300" style="width:100%;height:300px" role="img"
-           aria-label="A ratchet: a steep rise through each of the six teaching sessions, a shallower fall through the gap that follows, and a floor line that sits higher after every cycle across the six months">
+           aria-label="A ratchet: a steep rise through each of the six teaching sessions, a steep fall through the gap that follows, and a floor line that sits higher after every cycle across the six months">
         <line x1="70" y1="248" x2="1560" y2="248" stroke-width="1.5" style="stroke:var(--border)" />
         <line x1="70" y1="20" x2="70" y2="248" stroke-width="1.5" style="stroke:var(--border)" />
         <text x="58" y="30" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="15" style="fill:var(--muted)">high</text>
@@ -1146,27 +1084,27 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
           <rect x="1073" y="20" width="54" height="228"/><rect x="1322" y="20" width="54" height="228"/>
         </g>
         <g stroke-width="1" stroke-dasharray="2 7" opacity=".45" style="stroke:var(--accent)">
-          <line x1="328" y1="188.7" x2="1560" y2="188.7"/><line x1="577" y1="156.8" x2="1560" y2="156.8"/>
-          <line x1="825" y1="134" x2="1560" y2="134"/><line x1="1073" y1="111.2" x2="1560" y2="111.2"/>
-          <line x1="1322" y1="93" x2="1560" y2="93"/>
+          <line x1="328" y1="209.4" x2="1560" y2="209.4"/><line x1="577" y1="192.1" x2="1560" y2="192.1"/>
+          <line x1="825" y1="177.9" x2="1560" y2="177.9"/><line x1="1073" y1="162.7" x2="1560" y2="162.7"/>
+          <line x1="1322" y1="149.1" x2="1560" y2="149.1"/>
         </g>
-        <g stroke-width="3" stroke-linecap="round" style="stroke:var(--warn)">
-          <line x1="134" y1="161.4" x2="328" y2="188.7"/><line x1="382" y1="129.4" x2="577" y2="156.8"/>
-          <line x1="631" y1="106.6" x2="825" y2="134"/><line x1="879" y1="83.8" x2="1073" y2="111.2"/>
-          <line x1="1127" y1="65.6" x2="1322" y2="93"/><line x1="1376" y1="47.4" x2="1550" y2="74.7"/>
+        <g stroke-width="4" stroke-linecap="round" style="stroke:var(--warn)">
+          <line x1="134" y1="161.4" x2="328" y2="209.4"/><line x1="382" y1="150.1" x2="577" y2="192.1"/>
+          <line x1="631" y1="141.9" x2="825" y2="177.9"/><line x1="879" y1="127.7" x2="1073" y2="162.7"/>
+          <line x1="1127" y1="117.1" x2="1322" y2="149.1"/><line x1="1376" y1="103.5" x2="1550" y2="138.1"/>
         </g>
         <g stroke-width="6" stroke-linecap="round" style="stroke:var(--accent)">
-          <line x1="80" y1="229.8" x2="134" y2="161.4"/><line x1="328" y1="188.7" x2="382" y2="129.4"/>
-          <line x1="577" y1="156.8" x2="631" y2="106.6"/><line x1="825" y1="134" x2="879" y2="83.8"/>
-          <line x1="1073" y1="111.2" x2="1127" y2="65.6"/><line x1="1322" y1="93" x2="1376" y2="47.4"/>
+          <line x1="80" y1="229.8" x2="134" y2="161.4"/><line x1="328" y1="209.4" x2="382" y2="150.1"/>
+          <line x1="577" y1="192.1" x2="631" y2="141.9"/><line x1="825" y1="177.9" x2="879" y2="127.7"/>
+          <line x1="1073" y1="162.7" x2="1127" y2="117.1"/><line x1="1322" y1="149.1" x2="1376" y2="103.5"/>
         </g>
         <g style="fill:var(--accent-strong)">
-          <circle cx="134" cy="161.4" r="5"/><circle cx="382" cy="129.4" r="5"/><circle cx="631" cy="106.6" r="5"/>
-          <circle cx="879" cy="83.8" r="5"/><circle cx="1127" cy="65.6" r="5"/><circle cx="1376" cy="47.4" r="5"/>
+          <circle cx="134" cy="161.4" r="5"/><circle cx="382" cy="150.1" r="5"/><circle cx="631" cy="141.9" r="5"/>
+          <circle cx="879" cy="127.7" r="5"/><circle cx="1127" cy="117.1" r="5"/><circle cx="1376" cy="103.5" r="5"/>
         </g>
         <g style="fill:var(--warn)">
-          <circle cx="328" cy="188.7" r="4"/><circle cx="577" cy="156.8" r="4"/><circle cx="825" cy="134" r="4"/>
-          <circle cx="1073" cy="111.2" r="4"/><circle cx="1322" cy="93" r="4"/><circle cx="1550" cy="74.7" r="4"/>
+          <circle cx="328" cy="209.4" r="4"/><circle cx="577" cy="192.1" r="4"/><circle cx="825" cy="177.9" r="4"/>
+          <circle cx="1073" cy="162.7" r="4"/><circle cx="1322" cy="149.1" r="4"/><circle cx="1550" cy="138.1" r="4"/>
         </g>
         <g font-family="ui-monospace,Menlo,monospace" font-size="15" text-anchor="middle" style="fill:var(--muted)">
           <text x="194" y="274">MONTH 1</text><text x="442" y="274">MONTH 2</text><text x="690" y="274">MONTH 3</text>
@@ -1174,52 +1112,9 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
         </g>
         <text x="90" y="46" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="17" style="fill:var(--accent-strong)">Every cycle leaves the floor a little higher than the last</text>
         <text x="150" y="138" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="16" style="fill:var(--accent-strong)">teaching lifts it</text>
-        <text x="170" y="216" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="16" style="fill:var(--warn)">the gap gives some of it back</text>
+        <text x="170" y="222" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="16" style="fill:var(--warn)">the gap gives much of it back</text>
         <text x="1550" y="235" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="15" style="fill:var(--muted)">shaded bands = teaching</text>
       </svg>
-      </div>
-      <div class="chart-opt-c">
-      <svg viewBox="0 0 1580 300" style="width:100%;height:300px" role="img"
-           aria-label="One row per month for six months, each row a run of blocks: the blocks carried in from the month before, the blocks gained in that month's teaching session, and the outlined blocks lost again in the gap that followed. The rows get longer down the stack.">
-        <g font-family="ui-monospace,Menlo,monospace" font-size="15" text-anchor="end" style="fill:var(--muted)">
-          <text x="112" y="42">MONTH 1</text><text x="112" y="82">MONTH 2</text><text x="112" y="122">MONTH 3</text>
-          <text x="112" y="162">MONTH 4</text><text x="112" y="202">MONTH 5</text><text x="112" y="242">MONTH 6</text>
-        </g>
-        <g style="fill:var(--accent)" opacity=".3">
-          <rect x="130" y="66" width="40" height="22" rx="2"/><rect x="178" y="66" width="40" height="22" rx="2"/><rect x="226" y="66" width="40" height="22" rx="2"/><rect x="274" y="66" width="40" height="22" rx="2"/><rect x="322" y="66" width="40" height="22" rx="2"/><rect x="370" y="66" width="40" height="22" rx="2"/><rect x="418" y="66" width="40" height="22" rx="2"/>
-          <rect x="130" y="106" width="40" height="22" rx="2"/><rect x="178" y="106" width="40" height="22" rx="2"/><rect x="226" y="106" width="40" height="22" rx="2"/><rect x="274" y="106" width="40" height="22" rx="2"/><rect x="322" y="106" width="40" height="22" rx="2"/><rect x="370" y="106" width="40" height="22" rx="2"/><rect x="418" y="106" width="40" height="22" rx="2"/><rect x="466" y="106" width="40" height="22" rx="2"/><rect x="514" y="106" width="40" height="22" rx="2"/><rect x="562" y="106" width="40" height="22" rx="2"/><rect x="610" y="106" width="40" height="22" rx="2"/><rect x="658" y="106" width="40" height="22" rx="2"/>
-          <rect x="130" y="146" width="40" height="22" rx="2"/><rect x="178" y="146" width="40" height="22" rx="2"/><rect x="226" y="146" width="40" height="22" rx="2"/><rect x="274" y="146" width="40" height="22" rx="2"/><rect x="322" y="146" width="40" height="22" rx="2"/><rect x="370" y="146" width="40" height="22" rx="2"/><rect x="418" y="146" width="40" height="22" rx="2"/><rect x="466" y="146" width="40" height="22" rx="2"/><rect x="514" y="146" width="40" height="22" rx="2"/><rect x="562" y="146" width="40" height="22" rx="2"/><rect x="610" y="146" width="40" height="22" rx="2"/><rect x="658" y="146" width="40" height="22" rx="2"/><rect x="706" y="146" width="40" height="22" rx="2"/><rect x="754" y="146" width="40" height="22" rx="2"/><rect x="802" y="146" width="40" height="22" rx="2"/><rect x="850" y="146" width="40" height="22" rx="2"/>
-          <rect x="130" y="186" width="40" height="22" rx="2"/><rect x="178" y="186" width="40" height="22" rx="2"/><rect x="226" y="186" width="40" height="22" rx="2"/><rect x="274" y="186" width="40" height="22" rx="2"/><rect x="322" y="186" width="40" height="22" rx="2"/><rect x="370" y="186" width="40" height="22" rx="2"/><rect x="418" y="186" width="40" height="22" rx="2"/><rect x="466" y="186" width="40" height="22" rx="2"/><rect x="514" y="186" width="40" height="22" rx="2"/><rect x="562" y="186" width="40" height="22" rx="2"/><rect x="610" y="186" width="40" height="22" rx="2"/><rect x="658" y="186" width="40" height="22" rx="2"/><rect x="706" y="186" width="40" height="22" rx="2"/><rect x="754" y="186" width="40" height="22" rx="2"/><rect x="802" y="186" width="40" height="22" rx="2"/><rect x="850" y="186" width="40" height="22" rx="2"/><rect x="898" y="186" width="40" height="22" rx="2"/><rect x="946" y="186" width="40" height="22" rx="2"/><rect x="994" y="186" width="40" height="22" rx="2"/><rect x="1042" y="186" width="40" height="22" rx="2"/>
-          <rect x="130" y="226" width="40" height="22" rx="2"/><rect x="178" y="226" width="40" height="22" rx="2"/><rect x="226" y="226" width="40" height="22" rx="2"/><rect x="274" y="226" width="40" height="22" rx="2"/><rect x="322" y="226" width="40" height="22" rx="2"/><rect x="370" y="226" width="40" height="22" rx="2"/><rect x="418" y="226" width="40" height="22" rx="2"/><rect x="466" y="226" width="40" height="22" rx="2"/><rect x="514" y="226" width="40" height="22" rx="2"/><rect x="562" y="226" width="40" height="22" rx="2"/><rect x="610" y="226" width="40" height="22" rx="2"/><rect x="658" y="226" width="40" height="22" rx="2"/><rect x="706" y="226" width="40" height="22" rx="2"/><rect x="754" y="226" width="40" height="22" rx="2"/><rect x="802" y="226" width="40" height="22" rx="2"/><rect x="850" y="226" width="40" height="22" rx="2"/><rect x="898" y="226" width="40" height="22" rx="2"/><rect x="946" y="226" width="40" height="22" rx="2"/><rect x="994" y="226" width="40" height="22" rx="2"/><rect x="1042" y="226" width="40" height="22" rx="2"/><rect x="1090" y="226" width="40" height="22" rx="2"/><rect x="1138" y="226" width="40" height="22" rx="2"/><rect x="1186" y="226" width="40" height="22" rx="2"/>
-        </g>
-        <g style="fill:var(--accent)">
-          <rect x="130" y="26" width="40" height="22" rx="2"/><rect x="178" y="26" width="40" height="22" rx="2"/><rect x="226" y="26" width="40" height="22" rx="2"/><rect x="274" y="26" width="40" height="22" rx="2"/><rect x="322" y="26" width="40" height="22" rx="2"/><rect x="370" y="26" width="40" height="22" rx="2"/><rect x="418" y="26" width="40" height="22" rx="2"/>
-          <rect x="466" y="66" width="40" height="22" rx="2"/><rect x="514" y="66" width="40" height="22" rx="2"/><rect x="562" y="66" width="40" height="22" rx="2"/><rect x="610" y="66" width="40" height="22" rx="2"/><rect x="658" y="66" width="40" height="22" rx="2"/>
-          <rect x="706" y="106" width="40" height="22" rx="2"/><rect x="754" y="106" width="40" height="22" rx="2"/><rect x="802" y="106" width="40" height="22" rx="2"/><rect x="850" y="106" width="40" height="22" rx="2"/>
-          <rect x="898" y="146" width="40" height="22" rx="2"/><rect x="946" y="146" width="40" height="22" rx="2"/><rect x="994" y="146" width="40" height="22" rx="2"/><rect x="1042" y="146" width="40" height="22" rx="2"/>
-          <rect x="1090" y="186" width="40" height="22" rx="2"/><rect x="1138" y="186" width="40" height="22" rx="2"/><rect x="1186" y="186" width="40" height="22" rx="2"/>
-          <rect x="1234" y="226" width="40" height="22" rx="2"/><rect x="1282" y="226" width="40" height="22" rx="2"/><rect x="1330" y="226" width="40" height="22" rx="2"/>
-        </g>
-        <g fill="none" stroke-width="1.5" stroke-dasharray="4 3" style="stroke:var(--warn)">
-          <rect x="466" y="26" width="40" height="22" rx="2"/><rect x="514" y="26" width="40" height="22" rx="2"/><rect x="562" y="26" width="40" height="22" rx="2"/>
-          <rect x="706" y="66" width="40" height="22" rx="2"/><rect x="754" y="66" width="40" height="22" rx="2"/><rect x="802" y="66" width="40" height="22" rx="2"/>
-          <rect x="898" y="106" width="40" height="22" rx="2"/><rect x="946" y="106" width="40" height="22" rx="2"/><rect x="994" y="106" width="40" height="22" rx="2"/>
-          <rect x="1090" y="146" width="40" height="22" rx="2"/><rect x="1138" y="146" width="40" height="22" rx="2"/><rect x="1186" y="146" width="40" height="22" rx="2"/>
-          <rect x="1234" y="186" width="40" height="22" rx="2"/><rect x="1282" y="186" width="40" height="22" rx="2"/><rect x="1330" y="186" width="40" height="22" rx="2"/>
-          <rect x="1378" y="226" width="40" height="22" rx="2"/><rect x="1426" y="226" width="40" height="22" rx="2"/><rect x="1474" y="226" width="40" height="22" rx="2"/>
-        </g>
-        <g>
-          <rect x="130" y="270" width="28" height="16" rx="2" style="fill:var(--accent)" opacity=".3"/>
-          <rect x="470" y="270" width="28" height="16" rx="2" style="fill:var(--accent)"/>
-          <rect x="800" y="270" width="28" height="16" rx="2" fill="none" stroke-width="1.5" stroke-dasharray="4 3" style="stroke:var(--warn)"/>
-        </g>
-        <g font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="16" style="fill:var(--text-dimmer)">
-          <text x="168" y="283">carried in from the month before</text>
-          <text x="508" y="283">gained in that month's teaching</text>
-          <text x="838" y="283">lost again in the gap that followed</text>
-        </g>
-      </svg>
-      </div>
     </div>
     <div class="fchips">
       <div class="fchip"><h4>Mixed-ability cohorts</h4><p>Too many skill levels in one room: trainers pitched some sessions too fast and others too slow. Prior coding experience predicted success, not Jamf Pro familiarity or age.</p></div>
