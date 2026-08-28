@@ -659,7 +659,7 @@ it up - either way it is on disk for a recovering session.
   prints OK. Sandbox page
   `presentations/sandbox/migrating_an_instance/s-sentinel-visual.html`, index entry added,
   `AGENTS.md`'s slide-9 line and the Sandbox section's "Current pages" line updated.
-  Awaiting a decision. PR #TBD.
+  Awaiting a decision. PR #54.
 - **2026-08-28, slide 16 (`#s-staging`): option B accepted.** Joseph: "16 - option B
   please." Folded option B's CSS (a numbered rail of the three steps down the left, verb
   and sentence on one line each, lead and takeaway as a quiet right-hand column) into the
