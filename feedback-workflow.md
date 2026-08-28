@@ -654,6 +654,19 @@ it up - either way it is on disk for a recovering session.
   s15b's reader-mode popover. `presenter.json` mirrored, check prints OK. Collaborator PR,
   raised by ShocOne, not to be merged until Joseph names it.
 
+
+- **2026-08-28, training_a_team slide 3 (`#3`) confirmed goals TODOs.** The user, on the
+  three `.todo` chips on the Goals slide: the TRAINED bar definition and the non-goals
+  strip were both confirmed correct as written, so their chips were removed with no content
+  change. The "what success looked like" behaviours chip was close but not identical -
+  reworded to the confirmed facts: the Mac engineering team became self-sufficient
+  committing and reviewing pull requests without assistance, was making architectural
+  decisions, and was managing resources in code exclusively. That section's `data-notes`
+  updated to match the new wording. `AGENTS.md`'s outstanding-chip count dropped from 6 to
+  3, following the same pattern used for the `#5` engineer quote's resolution. Deterministic
+  round, no sandbox page; `training_a_team` has no presenter.json so no presenter check.
+  PR #1.
+
 - **2026-08-28, slide 16 (`#s-staging`) pixel art redrawn at 1024px.** Joseph: "Re-do 16's
   pixel art with the highest possible res please". The Pixelforge project `s-staging-steps`
   (`b4001dd6`) was kept and its spec amended in place with `update-spec` - `rules.max_canvas`
