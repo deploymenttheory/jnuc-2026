@@ -637,6 +637,27 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, training_a_team slide 5 (`#5`) "What didn't work" - three completely
+  different treatments of the hero chart, options round, awaiting a decision.** The user,
+  on the gradient line chart that shipped in PR #3: "I still don't like the graph, can you
+  make me 3 different options... make the 3 graphs completely different styling." So option
+  A is not the live slide this time - all three are new drawings and the rejected line chart
+  is gone. A is gain-and-give-back columns, one per month, solid lime for the confidence
+  kept and a dashed outline on top for what the following gap took back, with a dashed trend
+  line across the tops and a teaching-then-gap strip under the axis. B is a ratchet: straight
+  lines only, a steep lime riser inside each shaded teaching band, a longer shallow coral
+  fall through each gap, and dotted floor lines showing the floor rise every cycle. C drops
+  the axes entirely for six rows of blocks, one row per month, reading carried-in, gained in
+  teaching, then dashed blocks lost again in the gap. Because they are structurally different
+  SVGs rather than restyles of one, all three ship as markup wrappers `.chart-opt-a` / `-b` /
+  `-c` inside `.chartwrap`, with `.chartwrap .chart-opt-b,.chartwrap .chart-opt-c{display:none}`
+  keeping the deck on A; the sandbox page injects nothing but a wrapper flip. The six months,
+  six sessions, six teaching bands, 144 hours and the gently-upward-with-real-dips shape are
+  identical in all three and were not touched, per `AGENTS.md`. The `SHAPE IS ILLUSTRATIVE`
+  label and the `.chd` heading are shared by all three. Speaker notes reworded off the old
+  drawing ("the shaded bands", "the line", "after every band") onto treatment-neutral wording
+  so they fit whichever option wins. Chips, quote strip and every other slide untouched.
+  Sandbox: `sandbox/training_a_team/s5-chart-styles.html` - awaiting a decision. PR #4.
 - **2026-08-28, training_a_team slide 5 (`#5`) "What didn't work" chart and chips reworked,
   one fact relocated to slide 6 (`#6`).** The user: the confidence curve should trend gently
   upwards overall (not by much) instead of downwards, since people genuinely built confidence

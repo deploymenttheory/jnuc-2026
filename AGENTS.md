@@ -446,12 +446,20 @@ Notable content slides:
   deck, not on this training-execution slide. Two full-width arrows underneath keep the
   two-way trade: domain context in, GitOps practice back. Classes `.fanout`, `.hub`,
   `.brace`, `.spokes`/`.spoke`, `.flow`/`.flowrow`.
-- **What didn't work** (`#5`): a hero SVG chart across the top - bands mark teaching
-  sessions, a gradient line rises through each then dips through the gap that follows,
-  trending gently upwards overall across six months (people did genuinely build confidence
-  over the six months; what was lost was whatever confidence a gap between sessions let
-  leak away, not the whole programme). **That curve is illustrative, not measured**, and the
-  slide says so in a `SHAPE IS ILLUSTRATIVE` label - keep that label if the chart is edited.
+- **What didn't work** (`#5`): a hero SVG chart across the top - six teaching sessions
+  across six months, each one lifting confidence and each following gap giving some of it
+  back, trending gently upwards overall (people did genuinely build confidence over the six
+  months; what was lost was whatever confidence a gap between sessions let leak away, not
+  the whole programme). **That shape is illustrative, not measured**, and the slide says so
+  in a `SHAPE IS ILLUSTRATIVE` label - keep that label if the chart is edited. The original
+  gradient line chart was rejected, so **three completely different chart treatments now
+  ship as markup wrappers** `.chart-opt-a` / `-b` / `-c` inside `.chartwrap` - A columns of
+  confidence kept with the give-back outlined on top, B a hard-edged ratchet of steep rises
+  and shallow falls with a rising floor, C six rows of blocks with the loss dashed off the
+  end of each row. `.chartwrap .chart-opt-b,.chartwrap .chart-opt-c{display:none}` keeps the
+  deck on A; the sandbox page `s5-chart-styles` flips the wrappers and **awaits a decision**.
+  When one is chosen, the other two wrappers come out. The six months, six sessions, 144
+  hours and the upward-with-dips shape are settled and identical in all three.
   Below it, five chips: mixed-ability cohorts (now states plainly that trainers were
   pitching some sessions too fast and others too slow), theory before the hands-on,
   documentation shaped like a reference manual (merges the old step-by-step-tutorials and
@@ -699,6 +707,14 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
+Current pages, under `presentations/sandbox/training_a_team/`:
+`s5-chart-styles` (2026-08-28, slide 5, Gordon - three chart treatments of the hero
+confidence chart, all three new because the shipped gradient line chart was rejected: A
+gain-and-give-back columns, B a hard-edged ratchet, C six rows of blocks. The three are
+structurally different SVGs, so each ships in the deck as a wrapper `.chart-opt-a` / `-b` /
+`-c` inside `.chartwrap` with the deck showing A; the page only flips which wrapper is
+visible, and injects no styling at all. Nothing else on slide 5 changes. Awaiting a
+decision).
 Current pages (all under `presentations/sandbox/migrating_an_instance/`):
 `s-sentinel-round2` (2026-08-28, slide 9 - three fresh treatments after round one was
 rejected, all leaning simpler and all pure CSS on the existing `.lead` / `ol.gates` /
