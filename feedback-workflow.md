@@ -652,7 +652,7 @@ it up - either way it is on disk for a recovering session.
   and the `.chartwrap` display:none rule are gone - `.chartwrap` now holds option B's SVG
   directly as the only chart. The sandbox page is deleted; its index entry is a non-linked
   `.done` line. Speaker notes reviewed and left unchanged - nothing in them contradicts the
-  steeper fall.
+  steeper fall. PR #5.
 - **2026-08-28, training_a_team slide 5 (`#5`) "What didn't work" - three completely
   different treatments of the hero chart, options round, awaiting a decision.** The user,
   on the gradient line chart that shipped in PR #3: "I still don't like the graph, can you
