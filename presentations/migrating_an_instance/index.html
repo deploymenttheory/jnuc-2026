@@ -1854,9 +1854,10 @@ body.presenter #viewport { display: none; }
         </li>
         <li class="card gate gate-final">
           <span class="gate-num">4</span>
-          <p>Only after all checks pass: remove UI write permissions for that resource type.</p>
+          <p>Only then: announce the resource type is Terraform-managed, and publish the BAU example.</p>
         </li>
       </ol>
+      <p class="takeaway">A zero diff only proves something because UI write access went <em>before</em> the import - nobody could have changed the instance behind us.</p>
       <aside class="notes">
         <p>Gate 4 is the point of no return - and the point of the whole exercise.</p>
         <p>State lives in a remote backend and is not locally inspectable, hence the AI checks in gate 2.</p>

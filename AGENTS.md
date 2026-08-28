@@ -292,6 +292,13 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   with conditionals/dynamic blocks -> apply with zero changes -> refinement passes (dedup,
   raw IDs -> named locals like `local.category_ids["Name"]`, shared locals), zero-diff plan
   gating every pass. Gordon: scripts + verbose imports. Joseph: refinement passes.
+- **Write-permission removal goes FIRST, not last.** GUI/UI write access for the in-scope
+  resource types is revoked at the *start* of a wave (step 3 of the wave workflow), before the
+  import - so nobody can make a change you do not know about, which would surface as a diff you
+  then have to chase. The validation slide used to present it as the final gate; that was the
+  order things happened to run in on some waves, but it is not the advice, and it contradicted
+  the wave-workflow slide. Corrected by Gordon Deacon, Aug 2026. A zero diff is only meaningful
+  because write access went first - say that, rather than treating the removal as a finish line.
 - **The SDK is written `jamfpy`, lower case**, everywhere it is named: `s11`, its speaker
   notes, `presenter.json` and the `s18` links chip all use it, and Joseph writes it that way
   too. This file's two `JamfPy` spellings were normalised to match on 2026-08-28. The `s11`
@@ -454,10 +461,12 @@ Notable content slides:
   CSS comment.
 
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an amber
-token for exactly that. Current chips (6): photos for Joseph and Gordon (`#1`); confirm which
-behaviours were observed, confirm the trained bar the team actually used, confirm real
-non-goals (all `#3`); how long the dip lasts (`#7`); the 3-4 minute interview with Louise.
-The `#5` engineer quote was confirmed by Gordon Deacon, Aug 2026, and its chip is gone.
+token for exactly that. Current chips (3): photos for Joseph and Gordon (`#1`); how long the
+dip lasts (`#7`); the 3-4 minute interview with Louise. The `#5` engineer quote was confirmed
+by Gordon Deacon, Aug 2026, and its chip is gone. The `#3` "what success looked like" behaviours
+(the team became self-sufficient committing and reviewing PRs without assistance, was making
+architectural decisions and was managing resources in code exclusively), the trained bar and the
+non-goals were confirmed by the user, Aug 2026, and all three `#3` chips are gone.
 
 Speakers (`data-speaker`), after the `#9`/`#10` merge: `#5`, `#7`, `#9` and `#14` are Gordon;
 `#4`, `#6`, `#10`, `#11` and `#13` are Joseph; `#3`, `#8`, `#12`, `#15` and `#16` are Dafydd.
