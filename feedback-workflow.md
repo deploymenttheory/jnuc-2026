@@ -554,6 +554,16 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, sandbox index: split the merged entries.** Joseph: "The sandbox seems to be
+  having some visual issues - the entries are merging?" Two merge-conflict resolutions on
+  `presentations/sandbox/migrating_an_instance/index.html` had left the first `<li>` holding
+  three entries run together with no `</li><li>` between them - slide 19 (done), slide 17
+  (done) and slide 16 (link) - rendering as one merged list item. Split into three separate
+  `<li>` elements, one entry each, matching every other item in the list; no wording or
+  other entries changed. Verified: 14 `<li>` open and close, 14 `.meta` paragraphs,
+  `xmllint --html --noout` clean, and a headless-Chrome screenshot over HTTP shows each
+  entry as its own spaced item with the slide 16 link on its own line. PR #TBD.
+
 - **2026-08-28, slide 16 (`#s-staging`) pixel-art icons for the three rebuild steps.**
   Joseph: "Use the pixel art generator to make a good, high quality pixelart for each box on
   16." Three 384px icons drawn with Pixelforge, project id `b4001dd6`, one per step, all
