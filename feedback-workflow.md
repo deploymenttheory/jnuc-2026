@@ -637,6 +637,32 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, slide 16 (`#s-staging`) pixel art redrawn at 1024px.** Joseph: "Re-do 16's
+  pixel art with the highest possible res please". The Pixelforge project `s-staging-steps`
+  (`b4001dd6`) was kept and its spec amended in place with `update-spec` - `rules.max_canvas`
+  and all three deliverables raised to 1024x1024, `export: { scale: 1, expect: [1024, 1024] }`,
+  four ramp steps added (31 to 34, still inside the 40 cap), plus a `plate_top` guide and a
+  `plate_body` zone on each deliverable so an icon that loses the shared plate now fails lint.
+  A canvas cannot be resized, so the three 384px canvases (`3567a054`, `471a30e5`, `c60515d3`)
+  were deleted and three 1024px ones created in their place (`705f3e19` wipe, `002f379e` apply,
+  `4f41bbd9` iterate). All three were redrawn from scratch at the new size, not scaled up: the
+  broom head is eighteen separately toned bristle strands with a ragged drawn tip line, the
+  handle carries a specular streak and four grain lines, the ferrule three rivets; the slabs
+  and blocks have four-step bevels and engraved configuration rules; the loop is shaded by
+  angle in half-degree wedges across nine tones with a lit inner rim; the plate gained a
+  specular streak, five panel joins and end bevels. Lint is zero-error on all three (the wipe
+  keeps 22 orphan-pixel warnings where the diagonal strand edges meet the outline, and the
+  deliberate `banding: info` findings). PNGs: wipe 27,154 B, apply 9,486 B, iterate 27,576 B,
+  64,216 B for the set; the deck goes 146,502 -> 210,303 B, 63,432 of that the three data
+  URIs and the rest the CSS comment. `image-rendering` on
+  `.s-staging-art` changes from `pixelated` to `auto`: at 1024px shown at 168px,
+  nearest-neighbour keeps one source pixel in six and visibly fragments the loop's outline and
+  the crosses, and Chrome maps `crisp-edges` to the same nearest path (byte-identical
+  screenshots), so the smooth downscale is the only one that holds. The display width stays at
+  168px. AGENTS.md's `art/` row, Embedded artwork bullet and slide-16 line are updated. The
+  presenter check prints OK, the dash lint is clean, and the diff against `main` touches only
+  the `#s-staging` CSS block, its three `<img src>` attributes, `art/` and the two docs. PR #58.
+
 - **2026-08-28, slide 12 (`#s11`) option D accepted.** Joseph: "D for 12 is good." Option D
   from the sandbox page `s11-bullets-round2.html` is folded into the deck's `#s11` CSS
   block as one clean set of rules, replacing option A's dashed-list rules rather than

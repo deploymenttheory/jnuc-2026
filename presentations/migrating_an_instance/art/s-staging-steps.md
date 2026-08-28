@@ -35,10 +35,14 @@ palette:
     - "#E0A63C"     # 28 derived amber mid-shade
     - "#A0742C"     # 29 derived deepest amber
     - "#1C2C5C"     # 30 derived mid navy - seams and inner shadow
+    - "#4A5580"     # 31 derived cornflower darkest - the far end of the loop's angular ramp
+    - "#7A5720"     # 32 derived amber darkest - the broom handle's grain lines
+    - "#6B8535"     # 33 derived lime darkest - slab under-bevels and rule shadows
+    - "#7E3B2C"     # 34 derived coral darkest - debris under-bevels and cross shadows
 rules:
   transparent_background: true
   symmetry: none
-  max_canvas: { width: 384, height: 384 }
+  max_canvas: { width: 1024, height: 1024 }
   outline:
     required: true
     color_index: 1
@@ -48,51 +52,67 @@ rules:
     # broom). The index-0 bridge idiom would join them, but a bridged cell then counts as
     # silhouette and fails outline_gaps, so the rule is turned off rather than worked around.
     background_contamination: off
-    # Long shading ramps across a 384px slab are exactly what banding reports. They are the
+    # Long shading ramps across a 1024px slab are exactly what banding reports. They are the
     # shading, not an accident, and dithering them would turn to mush at slide distance.
     banding: info
 deliverables:
   - id: s-staging-wipe
     kind: canvas
-    width: 384
-    height: 384
-    export: { scale: 1, expect: [384, 384] }
+    width: 1024
+    height: 1024
+    export: { scale: 1, expect: [1024, 1024] }
+    guides:
+      - { name: plate_top, y: 850 }
+    zones:
+      - { name: plate_body, rect: [[24, 862], [999, 962]], constraint: set }
   - id: s-staging-apply
     kind: canvas
-    width: 384
-    height: 384
-    export: { scale: 1, expect: [384, 384] }
+    width: 1024
+    height: 1024
+    export: { scale: 1, expect: [1024, 1024] }
+    guides:
+      - { name: plate_top, y: 850 }
+    zones:
+      - { name: plate_body, rect: [[24, 862], [999, 962]], constraint: set }
   - id: s-staging-iterate
     kind: canvas
-    width: 384
-    height: 384
-    export: { scale: 1, expect: [384, 384] }
+    width: 1024
+    height: 1024
+    export: { scale: 1, expect: [1024, 1024] }
+    guides:
+      - { name: plate_top, y: 850 }
+    zones:
+      - { name: plate_body, rect: [[24, 862], [999, 962]], constraint: set }
 ---
 
 # Rebuilding staging - three step icons
 
 Three icons for slide 16 of the `migrating_an_instance` deck ("Rebuilding staging"), one
-per rebuild step: Wipe, Apply, Iterate. They sit in the open middle of the three gate cards,
-between the step number at the top and the verb at title size at the bottom. They are read
-from about ten metres, so silhouette beats detail everywhere - but the canvas is large
-enough to carry real material detail underneath that silhouette.
+per rebuild step: Wipe, Apply, Iterate. They ride beside the numbered rings of the step run
+down the left of the slide, between the ring and the verb. They are read from about ten
+metres, so silhouette beats detail everywhere - but the canvas is large enough to carry real
+material detail underneath that silhouette.
 
 Regenerate with Pixelforge; the exported PNGs live beside this file and are embedded in the
 deck as base64 data URIs.
 
 ## The set
 
-All three are 384x384 on a transparent background, exported at scale 1 so each PNG is its
-native resolution. The slide sizes them with a token width and `image-rendering: pixelated`,
-so the on-slide size is independent of the canvas size.
+All three are 1024x1024 on a transparent background, exported at scale 1 so each PNG is its
+native resolution. The slide sizes them with a token width and shows them at 168px, so the
+on-slide size is independent of the canvas size and the source carries roughly six source
+pixels per displayed pixel. That headroom is the point of the size: it buys bristles, bevels,
+rules, grain and angular shading that survive being shrunk.
 
 They share one device: a **plate** across the foot of the canvas, the staging instance
-itself, drawn identically in all three - a slab with a lit top face, a dark seam, and a
-shaded front face, outlined 4px all round. Every step then happens on top of that same
-plate, so the three icons read as one story rather than three unrelated marks.
+itself, drawn identically in all three - a slab with a lit top face, a specular streak, a
+dark seam, and a shaded front face broken by five panel joins, outlined 10px all round and
+capped with a bevel at each end. Every step then happens on top of that same plate, so the
+three icons read as one story rather than three unrelated marks. The plate is declared as a
+`plate_body` zone on all three deliverables, so an icon that loses it fails lint.
 
 Light comes from the **top left** in all three: lit faces on top and left edges, shade on
-bottom and right edges, a hard 4px `#0A1030` outline all round. Nothing is a flat fill -
+bottom and right edges, a hard 10px `#0A1030` outline all round. Nothing is a flat fill -
 every mass carries a ramp of at least four tones, plus a bevel where two faces meet.
 
 Colour carries the meaning and matches each card's accent:
@@ -109,9 +129,11 @@ A stiff yard broom mid-sweep. The handle runs from the upper right down to the l
 with a lit left edge, a specular streak and four darker grain lines running its length; a
 banded steel ferrule with three rivets joins it to the head; the head is a wide off-white
 brush that flares outward towards the plate, split into eighteen individual bristle strands
-with a ragged tip line so it does not read as a solid wedge. Coral debris blocks tumble away
-to the left of the head, three of them, at three different sizes and heights so they read as
-motion rather than a row; each is bevelled and carries a chipped notch.
+with a ragged tip line so it does not read as a solid wedge. Each strand carries its own tone
+off the cornflower ramp and a darker separating line, so the head reads as bristles rather
+than a fan of stripes. Coral debris blocks tumble away to the left of the head, three of
+them, at three different sizes and heights so they read as motion rather than a row; each is
+bevelled, carries a chipped notch and a lit top-left corner.
 
 Two lime blocks stand untouched on the right of the plate: the APNS connection and the cloud
 identity provider, the two things the wipe deliberately kept. They carry the same
@@ -123,16 +145,17 @@ generic bricks, and they are the only lime in the icon.
 Production's configuration landing on an empty instance. Two lime slabs are already stacked
 on the plate; a third is still in the air above them with a clear gap, and a wide off-white
 arrow above that points straight down. Each slab is bevelled on all four edges and carries
-three dark configuration rules of different lengths across its face, so it reads as a
-document rather than a brick. The arrow is shaded across its width from a white left edge
-through to a deep cornflower right edge.
+three dark configuration rules of different lengths across its face, each rule sitting on its
+own lighter under-line, so it reads as a document rather than a brick. The arrow is shaded
+across its width in eight steps from a white left edge through to the darkest cornflower on
+the right, with a lit top edge and a shaded underside on the head.
 
 ## s-staging-iterate
 
 The pass-after-pass loop. A thick circular arrow runs clockwise round the canvas with a
-radial gap at the top and a solid arrowhead closing into it; the ring is shaded by angle,
-from white at the top left through five tones to the deepest cornflower at the bottom right,
-with a lighter inner rim. Inside the loop sits a heavy lime tick, bevelled, with a specular
-highlight on its upper-left face. Two coral crosses ride outside the loop on the left, the
-errors being carried round and resolved into the tick. The loop stands on the same plate as
-the other two.
+radial gap at the top and a solid arrowhead closing into it; the ring is shaded by angle in
+half-degree wedges, from white at the top left through nine tones to the darkest cornflower
+at the bottom right, with a lighter inner rim and a shaded outer rim. Inside the loop sits a
+heavy lime tick, bevelled, with a specular highlight on its upper-left face and a shadow
+under its lower-right. Two coral crosses ride outside the loop on the left, the errors being
+carried round and resolved into the tick. The loop stands on the same plate as the other two.
