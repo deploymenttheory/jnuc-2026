@@ -637,6 +637,29 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, slide 9 (`#s-sentinel`) round one rejected, three fresh treatments
+  offered.** Joseph: "9 as well, can we have 3 fresh options?" - read alongside his note on
+  slide 12 that he wants things simpler and "nice easily separated". Round one (PR #54) is
+  out: the `.s-sentinel-opt-b`, `-opt-c` and `-opt-d` wrappers, their markup and the whole
+  S-SENTINEL CSS block are deleted, which leaves the section as the shared `.lead` plus the
+  three `.gates-3` cards and no slide-specific rules at all. The live slide screenshots
+  byte-identical before and after (`cmp` passes) and `#s14` is unchanged. The new set is
+  deliberately different in kind - no wall, no staircase, no timeline axis, no drawn device
+  of any sort - and all three are pure CSS on the existing markup, so nothing new ships in
+  the deck this round and an accepted option pastes straight in. B turns the cards into
+  three tall columns ruled top and bottom, the number large in mono and the only coloured
+  thing on the slide (danger, muted, accent), verb at 44px, sentence at body size. C reads
+  the three states as one run across the slide: three plain blocks on the card surface
+  joined by two arrows in the diagram line colour, verb inside each block. D splits the
+  slide down the middle - the lead holds the left half at body size as the setup, the three
+  gates stack down the right as a numbered list with a hairline between each. Every sentence
+  is verbatim, everything clears the timeline strip and the shared `.lead`, `.gates` and
+  `.gate*` rules are untouched. The presenter check prints OK. Sandbox page
+  `presentations/sandbox/migrating_an_instance/s-sentinel-round2.html`; the round-one page
+  is deleted and its index entry is now a non-linked `.done` line recording that it was
+  superseded on 2026-08-28 with no option chosen. AGENTS.md slide list, Current pages and
+  Decided lines updated. PR TBC, awaiting a decision.
+
 - **2026-08-28, slide 9 (`#s-sentinel`) three visual treatments offered.** Joseph: "Can you
   generate some visual options for 9 please?" A visual round only - no wording or fact
   changes anywhere, and nothing changes in the deck as it ships: option A is the live slide
