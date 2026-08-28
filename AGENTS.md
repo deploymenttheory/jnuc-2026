@@ -222,7 +222,7 @@ overlay - keep the two in step when slides move.
 7. `s07` Prerequisites (two portions, instance prep and migration prep, each a tidied
    checklist) - **Gordon**
 8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
-9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception) - **Gordon**
+9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception; the lead plus three shared gate cards is option A and is what shows. Three hidden alternative wrappers - `.s-sentinel-opt-b`, `-opt-c`, `-opt-d` - also ship in the section for the open sandbox page `s-sentinel-visual`, with the same sentences rearranged: a hatched policy wall crossed three times, a staircase of three growing panels, and the three states on a Nov 2025 to Jan 2026 axis. Option D carries a TODO chip for the number of import windows; it renders only when that wrapper is shown) - **Gordon**
 10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
 11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; seven steps as full-width
     bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
@@ -675,8 +675,15 @@ column, which this PR cut from seven bullets to four points (PRUNE, jamfpy, rege
 points as one dashed list, B four cards with the name as a large monospace tag and the
 rejected flag struck through, C a 2x2 grid of tiles each with an inline-SVG glyph in the
 `dg-*` style, D a used/rejected ledger with three ticks on a rail and the flag alone below
-a rule. The left-hand pipeline SVG is outside all four wrappers and unchanged). Decided
-(all under `presentations/sandbox/migrating_an_instance/`):
+a rule. The left-hand pipeline SVG is outside all four wrappers and unchanged);
+`s-sentinel-visual` (2026-08-28, slide 9 - four visual treatments, no wording or fact
+changes anywhere: A the live lead-plus-gate-cards slide, B a hatched Sentinel wall crossed
+three times (blocked, a dashed temporary opening, an open one), C a staircase of three
+panels sharing a bottom edge and growing taller left to right with the verb at title size,
+D the lead kept and the three states laid on a Nov 2025 to Jan 2026 axis with the exception
+windows as a repeating tick band. B, C and D ship as hidden wrappers in `#s-sentinel` and
+the page only flips which one shows). Decided (all under
+`presentations/sandbox/migrating_an_instance/`):
 `s-staging-steps-first` (2026-08-27, slide 16 - four ways to put the three rebuild steps
 first, all four pure CSS on the same markup: A three full-height panels, B a numbered run
 down the left with a quiet right-hand column, C one flow strip in the deck's diagram style,
