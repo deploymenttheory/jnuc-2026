@@ -452,15 +452,17 @@ Notable content slides:
   months; what was lost was whatever confidence a gap between sessions let leak away, not
   the whole programme). **That shape is illustrative, not measured**, and the slide says so
   in a `SHAPE IS ILLUSTRATIVE` label - keep that label if the chart is edited. The original
-  gradient line chart was rejected, so **three completely different chart treatments now
-  ship as markup wrappers** `.chart-opt-a` / `-b` / `-c` inside `.chartwrap` - A columns of
-  confidence kept with the give-back outlined on top, B a hard-edged ratchet of steep rises
-  and shallow falls with a rising floor, C six rows of blocks with the loss dashed off the
-  end of each row. `.chartwrap .chart-opt-b,.chartwrap .chart-opt-c{display:none}` keeps the
-  deck on A; the sandbox page `s5-chart-styles` flips the wrappers and **awaits a decision**.
-  When one is chosen, the other two wrappers come out. The six months, six sessions, 144
-  hours and the upward-with-dips shape are settled and identical in all three.
-  Below it, five chips: mixed-ability cohorts (now states plainly that trainers were
+  gradient line chart was rejected and replaced with three sandbox treatments; **option B,
+  the ratchet, was chosen and is now the only chart the deck ships**, as plain markup inside
+  `.chartwrap` (no wrapper classes, nothing hidden by CSS): hard straight lines, a short
+  steep lime riser through each teaching band, then a longer coral fall through the gap that
+  follows, with faint dotted floor lines showing the rising baseline after each cycle. The
+  fall through each gap was then steepened at Joseph's request (a fall of roughly 65-70% of
+  that cycle's rise, stroke-width 4, up from the original ~40% and width 3) so the downturn
+  reads as a real drop rather than a shallow taper; the six months, six teaching-then-gap
+  cycles, 144 hours and the gentle net upward trend by the end are unchanged. The rejected
+  column and blocks-per-month treatments are gone; the sandbox page is deleted and the
+  index entry is `.done`. Below it, five chips: mixed-ability cohorts (now states plainly that trainers were
   pitching some sessions too fast and others too slow), theory before the hands-on,
   documentation shaped like a reference manual (merges the old step-by-step-tutorials and
   reference-manual chips, adding that the 214,645-word curriculum was AI-assisted and too
@@ -707,14 +709,18 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages, under `presentations/sandbox/training_a_team/`:
+No pages currently awaiting a decision under `presentations/sandbox/training_a_team/`.
+Decided (under `presentations/sandbox/training_a_team/`):
 `s5-chart-styles` (2026-08-28, slide 5, Gordon - three chart treatments of the hero
 confidence chart, all three new because the shipped gradient line chart was rejected: A
-gain-and-give-back columns, B a hard-edged ratchet, C six rows of blocks. The three are
-structurally different SVGs, so each ships in the deck as a wrapper `.chart-opt-a` / `-b` /
-`-c` inside `.chartwrap` with the deck showing A; the page only flips which wrapper is
-visible, and injects no styling at all. Nothing else on slide 5 changes. Awaiting a
-decision).
+gain-and-give-back columns, B a hard-edged ratchet, C six rows of blocks. The three shipped
+as structurally different SVGs in wrappers `.chart-opt-a` / `-b` / `-c` inside `.chartwrap`,
+with the deck showing A and the page flipping which wrapper was visible. Decided 2026-08-28:
+option B, the ratchet, applied to the deck as plain markup (the wrapper classes and the
+other two SVGs removed); the fall through each gap was steepened in the same PR at Joseph's
+request so the downturn reads as a real drop, not a shallow taper - six months, six cycles
+and the gentle net upward trend by the end are unchanged; the page is deleted, the index
+keeps the record as a non-linked `.done` entry).
 Current pages (all under `presentations/sandbox/migrating_an_instance/`):
 `s-sentinel-round2` (2026-08-28, slide 9 - three fresh treatments after round one was
 rejected, all leaning simpler and all pure CSS on the existing `.lead` / `ol.gates` /
