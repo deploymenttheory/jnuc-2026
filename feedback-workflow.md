@@ -656,7 +656,7 @@ it up - either way it is on disk for a recovering session.
   stayed at 7 in, 7 out, so the 2-column grid needed no layout rework. Speaker notes rewritten
   to match the new card set (the old note was tied to the removed hack-labs/Git card).
   `AGENTS.md`'s cross-reference to the card by its old name ("Good documentation") was
-  updated to match. PR #n.
+  updated to match. PR #6.
 - **2026-08-28, training_a_team slide 5 (`#5`) "What didn't work" - hero chart, option B
   accepted and the downturn steepened.** Acceptance round on the PR #4 sandbox
   (`sandbox/training_a_team/s5-chart-styles.html`): the user chose option B, "the ratchet" -
