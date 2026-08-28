@@ -637,6 +637,21 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, slide 12 (`#s11`) round one rejected, three plain bullet treatments
+  offered.** Joseph: "I don't really like the options for 12 - can you re-do them and jsut
+  make them nice easily separated bullet points?" Round one (PR #53) is out: the
+  `.s11-opt-a` to `.s11-opt-d` wrappers, their markup including the inline-SVG glyphs and
+  all their CSS are gone, the right-hand column is plain markup again, and the round one
+  sandbox page is deleted with its index entry turned into a non-linked superseded record.
+  The wording of the four points is untouched. The three new treatments are pure CSS on the
+  same list, nothing cleverer: B separates the points with a hairline rule at full column
+  width, C puts each on the deck's navy card surface with the name in a fixed-width left
+  column so the four lines align, D numbers them 1 to 4 in mono in a gutter with the name in
+  the display face. Option A is the dashed list the deck now ships and injects nothing. The
+  rejected fourth point keeps the danger colour on its name in all four, never a
+  strike-through. Sandbox: `presentations/sandbox/migrating_an_instance/s11-bullets-round2.html`.
+  PR #55, awaiting a decision.
+
 - **2026-08-28, slide 9 (`#s-sentinel`) three visual treatments offered.** Joseph: "Can you
   generate some visual options for 9 please?" A visual round only - no wording or fact
   changes anywhere, and nothing changes in the deck as it ships: option A is the live slide

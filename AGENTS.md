@@ -228,11 +228,11 @@ overlay - keep the two in step when slides move.
     bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
     with a red left edge) - **Dafydd**
 12. `s11` Tools and helpers (the pipeline diagram unchanged on the left - jamfpy -> script
-    -> map -> for_each -> import; on the right four points, each a mono name over one line:
-    PRUNE and jamf-resource-deleter, jamfpy, the regex mop-up pass, and
-    `-generate-config-out` rejected. Cut back from seven bullets 2026-08-28; the three that
-    went are told by the diagram or by `s12`, and the "mostly Copilot CLI" mention left the
-    slide with them) - **Gordon**
+    -> map -> for_each -> import; on the right four points as one plain list, each a mono
+    name over one line: PRUNE and jamf-resource-deleter, jamfpy, the regex mop-up pass, and
+    `-generate-config-out` rejected, its name in the danger colour. Cut back from seven
+    bullets 2026-08-28; the three that went are told by the diagram or by `s12`, and the
+    "mostly Copilot CLI" mention left the slide with them) - **Gordon**
 13. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Joseph**
 14. `s13` for_each exceptions (single statement - policies stayed in plain HCL because
     they are too diverse for one map) - **Joseph**
@@ -668,14 +668,13 @@ automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages (all under `presentations/sandbox/migrating_an_instance/`):
-`s11-right-hand-points` (2026-08-28, slide 12 - four visual treatments of the right-hand
-column, which this PR cut from seven bullets to four points (PRUNE, jamfpy, regex,
-`-generate-config-out` rejected). All four ship as markup wrappers `.s11-opt-a` to
-`.s11-opt-d` inside `#s11`, so the sandbox CSS only flips which one shows: A the four
-points as one dashed list, B four cards with the name as a large monospace tag and the
-rejected flag struck through, C a 2x2 grid of tiles each with an inline-SVG glyph in the
-`dg-*` style, D a used/rejected ledger with three ticks on a rail and the flag alone below
-a rule. The left-hand pipeline SVG is outside all four wrappers and unchanged);
+`s11-bullets-round2` (2026-08-28, slide 12 - four plain treatments of the right-hand
+points, wording unchanged, all four pure CSS on the same list: A the dashed list the deck
+now ships, B the points separated by a hairline rule at full column width, C each point on
+the navy card surface with the name in a fixed-width left column so the four lines align,
+D the points numbered 1 to 4 in mono in a gutter with the name in the display face. The
+rejected flag keeps the danger colour on its name in all four, never a strike-through, and
+the left-hand pipeline SVG is untouched);
 `s-sentinel-visual` (2026-08-28, slide 9 - four visual treatments, no wording or fact
 changes anywhere: A the live lead-plus-gate-cards slide, B a hatched Sentinel wall crossed
 three times (blocked, a dashed temporary opening, an open one), C a staircase of three
@@ -684,6 +683,13 @@ D the lead kept and the three states laid on a Nov 2025 to Jan 2026 axis with th
 windows as a repeating tick band. B, C and D ship as hidden wrappers in `#s-sentinel` and
 the page only flips which one shows). Decided (all under
 `presentations/sandbox/migrating_an_instance/`):
+`s11-right-hand-points` (2026-08-28, slide 12 - four visual treatments of the right-hand
+column, which that PR cut from seven bullets to four points, shipped as the markup wrappers
+`.s11-opt-a` to `.s11-opt-d` inside `#s11`. Superseded 2026-08-28 with no option chosen:
+Joseph rejected all four and asked for plain, easily separated bullet points, so the
+wrappers, their markup including the inline-SVG glyphs, and their CSS came out of the deck
+and `s11-bullets-round2` above replaced the page. The page is deleted, the index keeps the
+record as a non-linked `.done` entry);
 `s-staging-steps-first` (2026-08-27, slide 16 - four ways to put the three rebuild steps
 first, all four pure CSS on the same markup: A three full-height panels, B a numbered run
 down the left with a quiet right-hand column, C one flow strip in the deck's diagram style,
