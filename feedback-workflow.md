@@ -658,7 +658,7 @@ it up - either way it is on disk for a recovering session.
   `presentations/sandbox/migrating_an_instance/s-sentinel-round2.html`; the round-one page
   is deleted and its index entry is now a non-linked `.done` line recording that it was
   superseded on 2026-08-28 with no option chosen. AGENTS.md slide list, Current pages and
-  Decided lines updated. PR TBC, awaiting a decision.
+  Decided lines updated. PR #56, awaiting a decision.
 
 - **2026-08-28, slide 12 (`#s11`) round one rejected, three plain bullet treatments
   offered.** Joseph: "I don't really like the options for 12 - can you re-do them and jsut
