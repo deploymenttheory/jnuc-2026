@@ -248,8 +248,9 @@ overlay - keep the two in step when slides move.
     2026-08-27 for reading as machine-written, and its TODO chip moved onto the code block)
     - **Joseph**
 18. `s15b` The module structure (module tree -> workspaces) - **Dafydd**
-19. `s16b` By the numbers (six stat tiles carrying the refreshed 2026-08-27 figures; option B,
-    C and D wrappers for the sandbox page ship hidden inside the section) - **Gordon**
+19. `s16b` By the numbers (one hero number, 900 PRs merged, with the supporting figures -
+    35-40 contributors, 1,902 commits, 134 HCL files, 19,000+ lines of code - in a quiet
+    row below; date range Jan to Sept 2026; option C, accepted 2026-08-28) - **Gordon**
 20. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
 21. `s18` Links - **Anyone**
 22. `s-thanks` Thank You (template close, royal blue) - **nobody assigned**
@@ -312,7 +313,10 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   Joseph, 2026-08-27 (was 14+ contributors, 526+ PRs, 127 Terraform files); he gave "lines of code"
   rather than "lines of HCL" and that wording is now what `s16b` shows. The commit count is the one
   figure he did not restate, so 1,902 is carried over from the first build and is probably stale -
-  worth confirming before the talk.
+  worth confirming before the talk. The date-range figure on the slide itself was then changed to
+  "Jan 2026 -> Sept 2026" on 2026-08-28 at Joseph's request; this story fact and the speaker notes
+  still build to Apr 2025 -> May 2026, so the slide now disagrees with both - flagged for Joseph to
+  reconcile, not resolved here.
 - **for_each exceptions:** policies only. Dock items were never an exception (corrected by
   Joseph, 2026-08-27). The reason is how diverse policies are: they vary so widely from one
   to the next that a `for_each` map has to carry every field any policy might need, which
@@ -662,14 +666,17 @@ D the wipe as a hero panel; the rewritten wording ships in all four. Amended 202
 the three pixel-art step icons landed: the icons are in all four renders and each option's
 CSS now sizes and places `.s-staging-art` for its own layout - 192px in the card middle in
 A, 96px beside the ring in B, 144px above each node in C, and 120px in D's hero panel only,
-because D's half-height cards have no room for one);
-`s16b-numbers` (2026-08-27, slide 19 - the refreshed figures ship in all four
-renders; A the six stat tiles the deck already has, B five gauge bars each measured against
+because D's half-height cards have no room for one). Decided (all under
+`presentations/sandbox/migrating_an_instance/`):
+`s16b-numbers` (2026-08-27, slide 19 - the refreshed figures shipped in all four
+renders; A the six stat tiles the deck already had, B five gauge bars each measured against
 its own next round number with the ranges drawn as open ends, C one hero number - 900 PRs
 merged - with the other four as a quiet supporting row, D unit grids of one mark per
-contributor and one mark per HCL file with the three uncountable totals stated below; B, C
-and D ship as hidden `.s16b-opt-*` wrappers). Decided (all under
-`presentations/sandbox/migrating_an_instance/`):
+contributor and one mark per HCL file with the three uncountable totals stated below.
+Decided 2026-08-28: option C, applied to the deck's `#s16b` rules as its plain markup; the
+slide's date-range figure also changed to Jan 2026 - Sept 2026 at Joseph's request, now at
+odds with the speaker notes and the settled Numbers fact above - flagged, not reconciled.
+Page retired);
 `s14-terminal-excerpt` (2026-08-27, option B - the `terraform plan` block as a real window:
 a light chrome bar, red/amber/lime traffic-light dots, a centred `joseph@jnuc - zsh` title,
 white bold command text against the lime result, and a blinking cursor on a fresh prompt

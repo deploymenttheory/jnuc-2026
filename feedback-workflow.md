@@ -571,6 +571,21 @@ it up - either way it is on disk for a recovering session.
   sizes them at 96px beside the ring, C at 144px above each node, and D shows only the
   broom, at 120px, because its half-height cards have no room. PR #46.
 
+- **2026-08-28, slide 19 (`#s16b`) option C accepted, date range changed.** Joseph:
+  "Option C for the numbers" then "For the date line on the numbers, amend to Jan 2026 to
+  Sept 2026 and leave it as that." Option C (900 PRs merged as a hero number, the other four
+  figures - 35-40 contributors, 1,902 commits, 134 HCL files, 19,000+ lines of code - in a
+  quiet supporting row) applied as the net result: the `.stats` tile grid (option A) and the
+  `.s16b-opt-b`/`-opt-d` wrappers removed along with their CSS, the `.s16b-opt-c` wrapper
+  unwrapped so it is the slide's plain markup, and one clean block of `#s16b` rules left
+  behind; the shared `.slide-centred` rule used by `#s18` was untouched (screenshots of both
+  slides confirm it). The date-range figure changed from "Apr 2025 -> May 2026" to "Jan 2026
+  -> Sept 2026", label unchanged. Per instruction the speaker notes and `presenter.json` were
+  left as they are, so they still build to April 2025 (provider-development start) and May
+  2026 (v1.0.0 and handover) - the slide now disagrees with its own notes, flagged in the PR
+  for Joseph to resolve rather than fixed here. The presenter check prints OK. The sandbox
+  page deleted, its index entry retired to a `.done` line; `AGENTS.md`'s slide list, Sandbox
+  section and settled Numbers fact updated to match. PR #48.
 - **2026-08-27, slide 19 (`#s16b`) refreshed figures, three visualisations offered.**
   Joseph: "Updated stats for the by the numbers side - 35-40 contributers / 19,000+ lines
   of code / 900 PRs merged / 134 HCL Files Give options, think graphs, or visualisations.
