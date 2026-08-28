@@ -656,7 +656,7 @@ it up - either way it is on disk for a recovering session.
   content-free `.spoke.mig`/`.spoke.hand` colour-variant CSS was removed; all five spokes
   render identically. `data-notes` rewritten to match. `AGENTS.md`'s `#4` description
   updated. Deterministic round, no sandbox page; `training_a_team` has no presenter.json so
-  no presenter check. PR pending.
+  no presenter check. PR #2.
 - **2026-08-28, training_a_team slide 3 (`#3`) confirmed goals TODOs.** The user, on the
   three `.todo` chips on the Goals slide: the TRAINED bar definition and the non-goals
   strip were both confirmed correct as written, so their chips were removed with no content
