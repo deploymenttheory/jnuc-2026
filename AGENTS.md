@@ -35,6 +35,7 @@ landing page keeps its own near-black look - it is not a deck.
 |---|---|
 | `presentations/<slug>/` | One talk. Snake-case slug. Each deck owns its own HTML, tokens and script; decks do not import from each other beyond `_shared/`. |
 | `presentations/_shared/` | Data used by more than one deck: `speakers.js` and `qr-code.png` (the training deck's take-it-with-you code). Content, not styling - see below. |
+| `presentations/<slug>/art/` | Source art for anything a deck embeds as a data URI: one Markdown Pixelforge spec plus the PNGs exported from it. Deploy excludes `*.md`, so the spec is kept for regeneration only; the PNGs ride along but nothing links to them, because the deck carries its own base64 copy. Currently only `migrating_an_instance/art/`. |
 | `presentations/sandbox/` | Feedback review pages, one sandbox per deck: a shared `sandbox.css`, a minimal chooser `index.html`, and one subdirectory per deck (`migrating_an_instance/`, `training_a_team/`) each with its own hand-maintained `index.html` listing that deck's pages, one page per change showing three implementation options as live renders of the real slide. Deploys with the site at `/sandbox/`, linked from a Sandbox button on each deck card on the landing page (added 2026-08-27 at Joseph's request; split into one sandbox per deck the same day). See Sandbox. |
 | `template.key` | The Jamf-supplied JNUC 2026 Keynote template. Canonical reference for palette, typography and mandatory slides. |
 | `.github/workflows/` | `deploy.yml` only - the S3 sync and CloudFront invalidation. See Deployment. |
@@ -127,6 +128,7 @@ one and the other does not follow.
 | `from-clicks-to-code-jnuc2026.pptx` | Gone. The download is now the committed `.key` below. |
 | `from-clicks-to-code-jnuc2026.key` | The committed Keynote download, written by `tools/build-key.mjs`. The landing page links to this exact filename, so it is set in the script, not chosen freely. Rebuild and commit it with any deck edit. |
 | `presenter.json` | Per-slide speaker notes and timer lengths plus the 30-minute talk limit. Notes are a copy of the deck's `<aside class="notes">` text and the slide order mirrors the deck - the deck wins when they differ, and `feedback-workflow.md` carries a check that must print `OK` before every push. Regenerated from the deck on 2026-08-27 (timers kept). Timer allocations are proposed, not rehearsed. Nothing reads this file yet. |
+| `art/` | Source art for the pixel-art icons on slide 16: `s-staging-steps.md` (the Pixelforge spec - palette, rules and prose for all three) and `s-staging-wipe.png` / `s-staging-apply.png` / `s-staging-iterate.png`, 384px square, exported at scale 1. The deck embeds its own base64 copy of each, so nothing links to these files; they are kept so the art can be regenerated. See Embedded artwork below. |
 | `spec.md` | Spec and change history: the original build runbook, Joseph's source narrative and full repo tree, all three Q&A rounds answered inline, and a decision index. **Historical** - sections marked SUPERSEDED (deck order, palette values, open-questions index) predate the story restructure, and everything it says about the light LBG-green palette predates the JNUC template adoption. |
 
 `spec.md` is provenance for every fact in the deck. Do not delete it; do not treat its
@@ -141,6 +143,16 @@ quotes is stale.
   for navy surfaces, HelveticaNeue stack. Code blocks map hand-tokenised HCL to lime
   keywords, light-cornflower strings and amber numbers; TODO chips are solid amber with navy
   ink. Logos (jamf white, JNUC 2026) live in tokens as data URIs.
+- **Embedded artwork.** Everything the deck draws with an image is a data URI in the HTML,
+  because the deck has to work opened straight off disk. The logos are white-on-transparent
+  and live in tokens; slide 16's three pixel-art step icons are multicolour PNGs on
+  transparent and live inline in the markup as `<img class="s-staging-art">`. This deck has
+  **no theme system** - no `[data-theme]` blocks, no `--art-mono-filter` or `--art-plate`
+  knobs (those belong to `training_a_team`) - so embedded art gets no per-theme filter or
+  backing plate here. The stage is always royal blue and the cards always navy, and the
+  icons are drawn with a dark `#0A1030` outline that reads on both, so they need neither.
+  New art must be sized in tokens and carry `image-rendering: pixelated` if it is pixel art.
+  Source files and the Pixelforge spec go in the deck's `art/` directory, never linked.
 - **Dates live on the persistent timeline, not in slide content.** Every `<section>` carries
   `data-when="YYYY-MM"` or `data-when="YYYY-MM:YYYY-MM"` (a month range). A fixed strip at
   the bottom of the stage runs Nov 2025 -> Jul 2026 (present day); the active slide's range
@@ -226,14 +238,19 @@ overlay - keep the two in step when slides move.
 16. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused;
     steps first - the three gate cards are full-height panels with the verb at title size,
     the lead is one muted line above and the takeaway one line below, and the module-split
-    paragraph is gone from the slide because the speaker notes carry it) - **Dafydd**
+    paragraph is gone from the slide because the speaker notes carry it. Each card carries a
+    pixel-art icon at 192px in the space between its number and its verb - a broom sweeping
+    coral debris off a plate with two lime blocks left standing, configuration slabs landing
+    on the same plate under a downward arrow, and a loop closing on a lime tick with two
+    coral crosses outside it. Source and spec in `art/`) - **Dafydd**
 17. `s-pivot` Growing pains (staging-first deploys -> FQDN conditionals; the lead and one
     HCL block, no closing statement - the "It got out of hand. The pivot: ..." line came off
     2026-08-27 for reading as machine-written, and its TODO chip moved onto the code block)
     - **Joseph**
 18. `s15b` The module structure (module tree -> workspaces) - **Dafydd**
-19. `s16b` By the numbers (six stat tiles carrying the refreshed 2026-08-27 figures; option B,
-    C and D wrappers for the sandbox page ship hidden inside the section) - **Gordon**
+19. `s16b` By the numbers (one hero number, 900 PRs merged, with the supporting figures -
+    35-40 contributors, 1,902 commits, 134 HCL files, 19,000+ lines of code - in a quiet
+    row below; date range Jan to Sept 2026; option C, accepted 2026-08-28) - **Gordon**
 20. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
 21. `s18` Links - **Anyone**
 22. `s-thanks` Thank You (template close, royal blue) - **nobody assigned**
@@ -303,7 +320,10 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   Joseph, 2026-08-27 (was 14+ contributors, 526+ PRs, 127 Terraform files); he gave "lines of code"
   rather than "lines of HCL" and that wording is now what `s16b` shows. The commit count is the one
   figure he did not restate, so 1,902 is carried over from the first build and is probably stale -
-  worth confirming before the talk.
+  worth confirming before the talk. The date-range figure on the slide itself was then changed to
+  "Jan 2026 -> Sept 2026" on 2026-08-28 at Joseph's request; this story fact and the speaker notes
+  still build to Apr 2025 -> May 2026, so the slide now disagrees with both - flagged for Joseph to
+  reconcile, not resolved here.
 - **for_each exceptions:** policies only. Dock items were never an exception (corrected by
   Joseph, 2026-08-27). The reason is how diverse policies are: they vary so widely from one
   to the next that a `for_each` map has to carry every field any policy might need, which
@@ -649,14 +669,21 @@ Current pages (all under `presentations/sandbox/migrating_an_instance/`):
 `s-staging-steps-first` (2026-08-27, slide 16 - four ways to put the three rebuild steps
 first, all four pure CSS on the same markup: A three full-height panels, B a numbered run
 down the left with a quiet right-hand column, C one flow strip in the deck's diagram style,
-D the wipe as a hero panel; the rewritten wording ships in all four);
-`s16b-numbers` (2026-08-27, slide 19 - the refreshed figures ship in all four
-renders; A the six stat tiles the deck already has, B five gauge bars each measured against
+D the wipe as a hero panel; the rewritten wording ships in all four. Amended 2026-08-28 when
+the three pixel-art step icons landed: the icons are in all four renders and each option's
+CSS now sizes and places `.s-staging-art` for its own layout - 192px in the card middle in
+A, 96px beside the ring in B, 144px above each node in C, and 120px in D's hero panel only,
+because D's half-height cards have no room for one). Decided (all under
+`presentations/sandbox/migrating_an_instance/`):
+`s16b-numbers` (2026-08-27, slide 19 - the refreshed figures shipped in all four
+renders; A the six stat tiles the deck already had, B five gauge bars each measured against
 its own next round number with the ranges drawn as open ends, C one hero number - 900 PRs
 merged - with the other four as a quiet supporting row, D unit grids of one mark per
-contributor and one mark per HCL file with the three uncountable totals stated below; B, C
-and D ship as hidden `.s16b-opt-*` wrappers). Decided (all under
-`presentations/sandbox/migrating_an_instance/`):
+contributor and one mark per HCL file with the three uncountable totals stated below.
+Decided 2026-08-28: option C, applied to the deck's `#s16b` rules as its plain markup; the
+slide's date-range figure also changed to Jan 2026 - Sept 2026 at Joseph's request, now at
+odds with the speaker notes and the settled Numbers fact above - flagged, not reconciled.
+Page retired);
 `s14-terminal-excerpt` (2026-08-27, option B - the `terraform plan` block as a real window:
 a light chrome bar, red/amber/lime traffic-light dots, a centred `joseph@jnuc - zsh` title,
 white bold command text against the lime result, and a blinking cursor on a fresh prompt
