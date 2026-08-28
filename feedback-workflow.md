@@ -564,8 +564,7 @@ What is pending:
 
 Commit range for the day: `65180db` (yesterday's handover doc, PR #28) to `1c7023d`
 (current `origin/main` tip, PR #49's merge). PR numbers #29 to #49, plus #26, #30 and #47
-as collaborator PRs (#27 and #28 were yesterday's). This docs update is its own PR, number
-to be filled in.
+as collaborator PRs (#27 and #28 were yesterday's). This docs update is its own PR, #51.
 
 ### State at handover (2026-08-27, superseded)
 
@@ -647,7 +646,7 @@ it up - either way it is on disk for a recovering session.
   adherence doc (PR #45) and the pixel-art asset directory `art/` (PR #49), plus a "What is
   pending" list. Two Gotchas added: background agents dying when the machine sleeps, and
   amending an in-flight agent's brief before it opens its PR. "Last revised" bumped to
-  2026-08-28. `AGENTS.md` checked against the new state and needed no changes. PR #50.
+  2026-08-28. `AGENTS.md` checked against the new state and needed no changes. PR #51.
 - **2026-08-28, slide 16 (`#s-staging`) pixel-art icons for the three rebuild steps.**
   Joseph: "Use the pixel art generator to make a good, high quality pixelart for each box on
   16." Three 384px icons drawn with Pixelforge, project id `b4001dd6`, one per step, all
