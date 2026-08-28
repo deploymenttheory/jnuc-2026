@@ -164,7 +164,7 @@
       "notes": [
         "Six techniques, and the honest answer is that there is no right one. Read them as a menu, not a ranking.",
         "We landed on child modules with a root module per instance, which is also what HashiCorp recommends where instances need different credentials and access controls. Shared code is written once; each instance's root holds only its own.",
-        "Worth naming the two we did not use. Terraform Stacks is generally available now and would be a fair starting point today. Terragrunt was built for exactly this problem, and so were Terramate and Atmos.",
+        "Worth naming the two we did not use. Keeping every instance difference in a data file means the HCL stops changing when you add an instance. Terragrunt was built for this problem, and Terramate and Atmos are the same idea productised.",
         "Finish on the caution. CLI workspaces sound like the answer and are not, because they share a backend. Slide 4 already separated the two meanings of workspace."
       ]
     },
