@@ -471,8 +471,9 @@ Notable content slides:
   country; unclear infra availability is folded in as a minor secondary factor, downgraded
   from its own chip), and online meetings (in-person let trainers walk around and help
   people directly). The old "effort stayed invisible" chip is gone, and the `.won` accent
-  chip ("what replaced it") has moved to `#6`, folded into that slide's "Good documentation"
-  card. Then a quote strip. Classes `.chartwrap`/`.chd`, `.fchips`/`.fchip` and `.qstrip`.
+  chip ("what replaced it") has moved to `#6`, folded into that slide's "Good third-party
+  documentation" card. Then a quote strip. Classes `.chartwrap`/`.chd`, `.fchips`/`.fchip` and
+  `.qstrip`.
 - **Conditions** (`#7`): a hero layout - a large left panel gives psychological safety the
   weight the copy claims for it ("the most evidenced condition of all") with three practical
   points under it; the other six conditions, including "Expect the dip", sit right as

@@ -637,6 +637,26 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, training_a_team slide 6 (`#6`) "What worked" - content correction, no
+  options.** Deterministic round, no sandbox page. The "Scenario-based hack labs" card was
+  removed: it praised hack labs as a way to teach Git, which directly contradicted slide 4's
+  already-confirmed "Hackathons didn't land" fact. A new card, "Principles before the full
+  picture" (with a new stacked-blocks icon), replaced it in the same grid slot: training was
+  scaled back to the foundational principles the team did not already know, like Git, taught
+  one discipline at a time and built up incrementally rather than presenting the whole system
+  at once. The "Secondments to DevOps teams" card gained a caveat - the approach only works if
+  a platform engineering team has time to dedicate to training the seconded engineer, and
+  helps if that engineer already has some GitHub/scripting experience; otherwise lean on an
+  enthusiastic self-taught volunteer instead. "Good documentation" was renamed "Good
+  third-party documentation" and reworded so the "worked" claim is unmistakably about the
+  Terraform registry and other teams' open-sourced reference implementations, not the team's
+  own docs (which slide 5 already covers as an overwhelming, AI-assisted attempt that did not
+  work); the 3,778-words/57x-smaller fact about their own cut-down replacement curriculum was
+  kept as a parenthetical caveat, clearly separated from the third-party point. Card count
+  stayed at 7 in, 7 out, so the 2-column grid needed no layout rework. Speaker notes rewritten
+  to match the new card set (the old note was tied to the removed hack-labs/Git card).
+  `AGENTS.md`'s cross-reference to the card by its old name ("Good documentation") was
+  updated to match. PR #6.
 - **2026-08-28, training_a_team slide 5 (`#5`) "What didn't work" - hero chart, option B
   accepted and the downturn steepened.** Acceptance round on the PR #4 sandbox
   (`sandbox/training_a_team/s5-chart-styles.html`): the user chose option B, "the ratchet" -

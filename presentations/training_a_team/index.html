@@ -1132,7 +1132,7 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 6 · WHAT WORKED ============ -->
-<section class="slide" data-speaker="Joseph" data-notes="Git has a bad mental model for beginners - it's difficult to teach and learn because it conceals its work in a hidden directory and is typically used through a command line interface. On good documentation, point to our own replacement curriculum as the example: 3,778 words across two modules and four labs, one of them deliberately broken, 57 times smaller than the 214,645-word manual it replaced, and both public in the training repo for people to compare.">
+<section class="slide" data-speaker="Joseph" data-notes="Principles first: teach each discipline individually before building up to the full picture, starting with what the team didn't already know, like Git. On third-party documentation, point to our own replacement curriculum as the example: 3,778 words across two modules and four labs, one of them deliberately broken, 57 times smaller than the 214,645-word manual it replaced, and both public in the training repo for people to compare.">
   <div class="eyebrow"><i class="dot"></i>06 &middot; Retrospective</div>
   <h1>What worked</h1>
   <div class="body grid g2" style="gap:20px">
@@ -1142,8 +1142,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
       <div><h3>Paired programming</h3><p>Real-time knowledge transfer. Engineers learn faster from a peer than from documentation alone. Effective pairs that transfer knowledge well share a disciplined (one topic at a time, staged clarification, deliberately pushing context rather than only answering questions asked) approach.</p></div>
     </div>
     <div class="icard">
-      <svg viewBox="0 0 24 24"><path d="M10 3v6.5L4.5 19a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 9.5V3"/><path d="M8.5 3h7"/></svg>
-      <div><h3>Scenario-based hack labs</h3><p>Interactive, visual, hands-on learning beats abstract exercises, always. This is especially true when learning git for the first time. Engineers learn the 'why' immediately and hands on helps build a mental model quicker. Learning scenarios should be tied to real life team operations. Provide sequenced learning before open-ended practice.</p></div>
+      <svg viewBox="0 0 24 24"><rect x="3" y="15" width="18" height="6" rx="1"/><rect x="6" y="9" width="12" height="6" rx="1"/><rect x="9" y="3" width="6" height="6" rx="1"/></svg>
+      <div><h3>Principles before the full picture</h3><p>Training was scaled back to the foundational principles the team did not already know, like Git, taught one discipline at a time and built up incrementally rather than trying to present the whole system too quickly. That foundation is what self-directed learning built on afterwards.</p></div>
     </div>
     <div class="icard">
       <svg viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="M3 12.5 12 17l9-4.5"/><path d="M3 17.5 12 22l9-4.5"/></svg>
@@ -1155,11 +1155,11 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
     </div>
     <div class="icard">
       <svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="12.5" rx="1.5"/><path d="M9 20.5h6M12 16.5v4"/><path d="m9.5 8.5 3 2-3 2"/></svg>
-      <div><h3>Secondments to DevOps teams</h3><p>Team shadowing (even on other tf providers) gives real grounding and broad exposure.</p></div>
+      <div><h3>Secondments to DevOps teams</h3><p>Team shadowing (even on other tf providers) gives real grounding and broad exposure. This is a specific approach: it only works if a platform engineering team has time to dedicate to training the seconded engineer. Where that is not available, lean on an enthusiastic employee willing to learn it themselves instead. It also helps if whoever goes on secondment already has some prior experience with GitHub and scripting or software development.</p></div>
     </div>
     <div class="icard">
       <svg viewBox="0 0 24 24"><path d="M5 3.5h9l5 5v12a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 4 20.5v-16A1 1 0 0 1 5 3.5Z"/><path d="M14 3.5v5h5"/><path d="M8 13h8M8 17h5"/></svg>
-      <div><h3>Good documentation</h3><p>Make use of the terraform registry for known good working examples for each resource. Read our and others open-sourced training and reference implementations for your own learning or to build your own syllabus. Our own replacement curriculum is one example: 3,778 words, 57x smaller than the manual it replaced.</p></div>
+      <div><h3>Good third-party documentation</h3><p>The Terraform registry and other teams' open-sourced reference implementations worked as learning material - use them for known good working examples of each resource, or as inspiration for your own syllabus. (Our own docs only worked once cut right back to the essentials: 3,778 words, 57x smaller than the manual it replaced.)</p></div>
     </div>
     <div class="icard">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.4l3.4 2"/></svg>
