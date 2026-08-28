@@ -922,52 +922,104 @@ body.reader .reader-extra {
 .gate .todo { white-space: normal; align-self: flex-start; }
 
 /* ============================ S-STAGING ============================ */
-/* Steps first (Joseph, 2026-08-27): the three steps are the slide. The setup line above
-   them and the takeaway below are deliberately quiet, and the three gate cards grow to
-   full-height panels with the verb at title size. Everything is scoped to #s-staging so
+/* A numbered run down the slide (Joseph, 2026-08-28, option B): the three steps read top
+   to bottom as a sequence, threaded on a vertical rail down the left with the verb and its
+   sentence on one line each - no cards, no borders. The lead and the takeaway sit in a
+   quiet right-hand column, out of the rail's way. Everything is scoped to #s-staging so
    the shared .lead and .gate* rules stay exactly as #s01, #s-sentinel, #s-pivot and #s14
    need them. */
-#s-staging { display: flex; flex-direction: column; }
+#s-staging {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  grid-template-rows: auto 1fr;
+  column-gap: var(--sp-5);
+}
+#s-staging .slide-title { grid-column: 1 / -1; grid-row: 1; }
 #s-staging .lead {
+  grid-column: 2; grid-row: 2;
+  align-self: start;
+  margin: 0;
   font-size: var(--fs-body);
   color: var(--c-text-muted);
-  margin-bottom: var(--sp-4);
 }
-#s-staging .gates-3 { flex: 1; gap: var(--sp-4); }
-#s-staging .gate {
+#s-staging .takeaway {
+  grid-column: 2; grid-row: 2;
+  align-self: end;
+  margin: 0 0 var(--sp-4);
+  padding-top: var(--sp-3);
+  border-top: var(--bw-2) solid var(--c-accent);
   font-size: var(--fs-body);
-  padding: var(--sp-4);
-  /* the gap is only a floor here - space-between spreads the slack - and it has to stay
-     small enough that the icon between the number and the verb still fits the card */
-  gap: var(--sp-2);
-  border-width: var(--bw-2);
-  justify-content: space-between;
 }
-#s-staging .gate-num { font-size: var(--fs-h2); }
-/* One pixel-art icon per step, centred in the open middle of the card between the number
-   and the verb. Source art and the Pixelforge spec live in art/s-staging-steps.md; the PNGs
-   are 384px square and embedded as data URIs so the deck still works off disk. They are
-   multicolour marks on transparent, drawn with a dark outline that reads on both the navy
-   card and the royal-blue stage, so they need no per-theme plate or filter. */
-#s-staging .s-staging-art {
+/* the chip cannot sit inline in a column this narrow */
+#s-staging .takeaway .todo { display: block; margin-top: var(--sp-2); white-space: normal; }
+#s-staging .gates-3 {
+  grid-column: 1; grid-row: 2;
   align-self: center;
-  width: calc(var(--sp-6) * 2);
-  height: auto;
-  image-rendering: pixelated;
-  -webkit-user-drag: none;
-  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  position: relative;
 }
-#s-staging .gate p { display: flex; flex-direction: column; gap: var(--sp-3); }
+/* the rail runs between the first and last ring centres - the rings punch through it */
+#s-staging .gates-3::before {
+  content: "";
+  position: absolute;
+  left: 34px;
+  top: 59px;
+  bottom: 59px;
+  width: var(--bw-2);
+  background: var(--c-border);
+}
+#s-staging .gate {
+  position: relative;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0;
+  padding: var(--sp-3) 0 var(--sp-3) 120px;
+  background: none;
+  border: none;
+  border-radius: 0;
+  font-size: var(--fs-body);
+}
+#s-staging .gate-num {
+  position: absolute;
+  left: 0;
+  top: var(--sp-3);
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-body);
+  border: var(--bw-2) solid currentColor;
+  border-radius: 50%;
+  background: var(--c-bg);
+}
+#s-staging .gate p { display: block; flex: 1; font-size: var(--fs-body); }
 #s-staging .gate strong {
   font-family: var(--f-display);
-  font-size: var(--fs-h1);
+  font-size: var(--fs-h2);
   font-weight: 700;
   line-height: var(--lh-tight);
   color: var(--c-accent);
 }
 #s-staging .gate-final strong { color: var(--c-danger); }
 #s-staging .gate-ok strong { color: var(--c-success); }
-#s-staging .takeaway { margin-top: var(--sp-4); font-size: var(--fs-body); }
+/* One pixel-art icon per step, riding beside the ring at the largest size a single text
+   row allows. Source art and the Pixelforge spec live in art/s-staging-steps.md; the PNGs
+   are 384px square and embedded as data URIs so the deck still works off disk. They are
+   multicolour marks on transparent, drawn with a dark outline that reads on both the navy
+   card and the royal-blue stage, so they need no per-theme plate or filter. */
+#s-staging .s-staging-art {
+  width: calc(var(--sp-6) * 1.75);
+  align-self: center;
+  margin-right: var(--sp-4);
+  height: auto;
+  image-rendering: pixelated;
+  -webkit-user-drag: none;
+  user-select: none;
+}
 
 /* ============================ S-PIVOT ============================ */
 /* The lead and the code share one column edge, the code a step up the type scale so the
