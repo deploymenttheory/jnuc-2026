@@ -657,7 +657,7 @@ it up - either way it is on disk for a recovering session.
   angle-bracket mark, a literal `.*` over a rule, a struck-through code block; D a
   used/rejected ledger, three ticks on a rail and the flag alone below a full-width rule.
   Also normalised the SDK's spelling to `jamfpy` in `AGENTS.md` to match the deck, recorded
-  as a settled fact. The presenter check prints OK. Awaiting a decision. PR #TBC.
+  as a settled fact. The presenter check prints OK. Awaiting a decision. PR #53.
 
 - **2026-08-28, slide 16 (`#s-staging`): option B accepted.** Joseph: "16 - option B
   please." Folded option B's CSS (a numbered rail of the three steps down the left, verb
