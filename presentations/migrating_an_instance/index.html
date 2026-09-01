@@ -888,7 +888,7 @@ body.reader .reader-extra {
 #s12 .slide-note { margin-top: var(--sp-3); }
 
 /* ============================ S13 ============================ */
-/* .lead is shared with s01, s-sentinel, s-staging and s-pivot - do not restyle it here. */
+/* .lead is shared with s-staging - do not restyle it here. */
 .lead { font-size: var(--fs-h2); line-height: var(--lh-body); margin-bottom: var(--sp-5); max-width: 1560px; }
 
 /* The exception and its reason, nothing else. Accepted 2026-08-27 - option D from the
@@ -981,8 +981,8 @@ body.reader .reader-extra {
    to bottom as a sequence, threaded on a vertical rail down the left with the verb and its
    sentence on one line each - no cards, no borders. The lead and the takeaway sit in a
    quiet right-hand column, out of the rail's way. Everything is scoped to #s-staging so
-   the shared .lead and .gate* rules stay exactly as #s01, #s-sentinel, #s-pivot and #s14
-   need them. */
+   the shared .lead rule stays exactly as #s-staging needs it, and the shared .gate* rules
+   stay exactly as #s-sentinel and #s14 need them. */
 #s-staging {
   display: grid;
   grid-template-columns: 1fr 380px;
@@ -1735,7 +1735,7 @@ body.presenter #viewport { display: none; }
     <!-- ============================ Getting past Sentinel ============================ -->
     <section class="slide" id="s-sentinel" aria-label="Guardrails you don't own" data-speaker="Gordon" data-when="2025-11:2026-01">
       <h1 class="slide-title">Guardrails you don't own</h1>
-      <p class="lead">At LBG, every Terraform run - across the bank's entire public cloud estate - passes through Sentinel policy checks before it can apply. One of those policies bans <code class="inline">import</code> blocks outright, because importing lets a workspace adopt resources someone else already manages.</p>
+      <p class="slide-sub">At LBG, every Terraform run - across the bank's entire public cloud estate - passes through Sentinel policy checks before it can apply. One of those policies bans <code class="inline">import</code> blocks outright, because importing lets a workspace adopt resources someone else already manages.</p>
       <ol class="gates gates-3">
         <li class="card gate gate-final">
           <span class="gate-num">1</span>
