@@ -728,6 +728,11 @@ it up - either way it is on disk for a recovering session.
   constraints" after ShocOne's PR retitled the slide "Landscape prior to the migration") that
   PR #64 flagged as unrelated and left outstanding, so the mandatory presenter sync check now
   prints OK. PR #TBD.
+- **2026-09-01, slide 13 (`#s12`) bottom spacing fixed.** Joseph: "the text is too close to
+  the bottom." Scoped `#s12` overrides trim the code panels' vertical padding and the
+  row gaps above the takeaway and slide-note (existing `--sp-*` tokens only, no font-size
+  or content changes) so the last line clears the timeline strip. No options round -
+  a layout fix. PR #65.
 - **2026-09-01, slide 12 (`#s11`) flag spelling fixed.** Joseph: "Slide 12 its
   --generate-config-out". Point 4 of the numbered list and its CSS comment named the
   rejected Terraform plan flag with a single leading hyphen; both now read
