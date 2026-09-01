@@ -727,6 +727,23 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, migrating_an_instance's timeline correspondence implemented from the notes
+  doc.** Joseph filled in `docs/timeline-notes.md`'s Time notes column for the whole deck
+  (verbatim table in the brief); titles and speakers already matched, so only the notes
+  landed there. Wired the notes into the deck's `data-when` strip: Title and the three
+  Context slides (`s01`, `s02`, `s-workspace`) carry no `data-when` at all, so the strip
+  stays blank until the story reaches its first dated slide; Nov 25 / Dec 25 / Jan 2026 /
+  Feb 2026 / March 2026 slides each carry the matching single month; None slides repeat the
+  immediately preceding slide's exact `data-when` rather than omitting the attribute, since
+  the script computes each slide's highlight solely from its own attribute and an omitted
+  one blanks the whole strip rather than carrying the previous state forward - repetition is
+  the mechanism the deck already uses (`#timeline.tl-static`) to mean "the story didn't
+  move". This moved `s-singletons` from Nov 25 to Dec 25 and pulled the closing four slides
+  back from the strip's present-day stop to March 2026, both per Joseph's table. AGENTS.md's
+  timeline description updated to match. One title mismatch found and left alone: `s02`'s
+  on-slide title reads "Who uses Jamf Pro in our Org ?" while the notes doc's row 3 (and
+  Joseph's table) says "Who touches Jamf Pro" - flagged for Joseph, not corrected. Presenter
+  sync check prints OK, dash lint clean. PR #79.
 - **2026-09-01, slide 16 (`#s-staging`) rescaled to fill the layout.** Joseph: "the graphics
   are gone but now only half the page is filled. Size it properly." With the three pixel-art
   step icons off (PR #69), the rail only ran to about half the canvas. Scaled it up within
