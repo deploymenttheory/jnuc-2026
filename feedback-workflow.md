@@ -718,6 +718,17 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, presenter and AGENTS.md aligned with slide 2's retitle.** A collaborator's
+  direct push to main (`0d9b2fa`) retitled slide 2's (`#s01`) `<h1>` from "Context,
+  requirements, constraints" to "Landscape prior to the migration" (also moving the
+  "Context" heading into the pipeline-band card and collapsing the constraints grid from
+  three columns to two, Requirements / Constraints) without mirroring `presenter.json` or
+  the `aria-label`. `presenter.json`'s `s01` title now matches the deck; the `#s01`
+  `aria-label` updated to match the new visible title, per the house rule that the two stay
+  in step. Notes were unchanged by `0d9b2fa` and still match word for word, so left as is.
+  AGENTS.md's slide 2 entry in "Current slide order" updated: new title, and the content
+  summary now describes two constraints panels instead of three and the relocated "Context"
+  heading. Presenter sync check prints OK. PR pending.
 - **2026-09-01, timeline doc simplified and renamed.** `docs/timeline-adherence.md`
   (migrating_an_instance only, empty "Month (fill in)" column, a colon in its H1, stale
   slide 17/18 titles) replaced by `docs/timeline-notes.md`: one three-column table per deck
