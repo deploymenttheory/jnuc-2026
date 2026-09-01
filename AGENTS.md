@@ -288,8 +288,8 @@ overlay - keep the two in step when slides move.
     - **Joseph**
 18. `s15b` Getting as close to DRY as we can (the second half of that arc: six techniques in
     a three by two grid, each carrying the syntax you actually write - input variables, local
-    values, data sources, child modules (marked as what the estate runs), configuration as
-    data, Terragrunt - over a caution that CLI workspaces share a backend. Terraform Stacks
+    values, data sources, child modules, configuration as data (those four marked as what the
+    estate runs), Terragrunt - over a caution that CLI workspaces share a backend. Terraform Stacks
     was on this slide and came off 2026-08-28: it is GA but needs HCP Terraform or Terraform
     Enterprise 2.0 on a resource-under-management plan, so it is unavailable to anyone
     running Terraform CLI and does not belong in a list of techniques the audience can use. The module tree moved
