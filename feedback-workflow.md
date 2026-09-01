@@ -723,7 +723,7 @@ it up - either way it is on disk for a recovering session.
   slide 17/18 titles) replaced by `docs/timeline-notes.md`: one three-column table per deck
   (slide number, title, time notes), covering both `migrating_an_instance` and
   `training_a_team`, built from AGENTS.md's current slide orders and, for the training deck,
-  its `index.html`. `AGENTS.md`'s doc-table entry updated to match. PR pending.
+  its `index.html`. `AGENTS.md`'s doc-table entry updated to match. PR #63.
 - **2026-09-01, feedback-workflow.md updated for the handover.** A new "State at handover
   (2026-09-01)" section added covering PRs #38 to #60 (collaborator PRs #47, #59 and #60
   included) since the 2026-08-28 handover: the Thursday/Friday orchestrated rounds on
