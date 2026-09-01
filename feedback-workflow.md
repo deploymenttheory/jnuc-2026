@@ -733,7 +733,7 @@ it up - either way it is on disk for a recovering session.
   or direct push to `main` conflicts with the orchestrator's or its agents' in-flight work,
   the incoming collaborator change takes precedence and our side reworks on top of it, never
   the reverse. Does not change who merges what - a collaborator's PR still only gets merged
-  when Joseph names it.
+  when Joseph names it. PR #66.
 - **2026-09-01, timeline doc simplified and renamed.** `docs/timeline-adherence.md`
   (migrating_an_instance only, empty "Month (fill in)" column, a colon in its H1, stale
   slide 17/18 titles) replaced by `docs/timeline-notes.md`: one three-column table per deck
