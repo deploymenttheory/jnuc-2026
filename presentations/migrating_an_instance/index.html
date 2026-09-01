@@ -1227,7 +1227,7 @@ body.presenter #viewport { display: none; }
 
     <!-- ============================ S00 - Title ============================ -->
     <!-- Template session-title layout (template.key, three-speaker variant). -->
-    <section class="slide" id="s00" aria-label="Title" data-speaker="All" data-speaker-note="intro" data-when="2025-11">
+    <section class="slide" id="s00" aria-label="Title" data-speaker="All" data-speaker-note="intro">
       <div class="s00-head">
         <h1 class="hero">From Clicks to Code</h1>
         <p class="hero-sub">Migrating Jamf Pro to Terraform at Lloyds Banking Group</p>
@@ -1275,7 +1275,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S01 - Context ============================ -->
-    <section class="slide" id="s01" aria-label="Landscape prior to the migration" data-speaker="Dafydd" data-when="2025-11">
+    <section class="slide" id="s01" aria-label="Landscape prior to the migration" data-speaker="Dafydd">
       <h1 class="slide-title">Landscape prior to the migration</h1>
       <p class="pipeline-label caption muted">We had no precedent to follow: nobody had migrated a live, in-use Jamf Pro instance to Terraform before, (let alone inside a bank).</p>
       <div class="pipeline-band card">
@@ -1318,7 +1318,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S02 - Who uses Jamf Pro ============================ -->
-    <section class="slide" id="s02" aria-label="Who uses Jamf Pro in our org" data-speaker="Dafydd" data-when="2025-11">
+    <section class="slide" id="s02" aria-label="Who uses Jamf Pro in our org" data-speaker="Dafydd">
       <h1 class="slide-title">Who uses Jamf Pro in our Org ?</h1>
       <p class="slide-sub">Our Jamf Pro instances are accessed by multiple teams due to our org size.</p>
       <div class="teams">
@@ -1381,7 +1381,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ What a Terraform workspace is ============================ -->
-    <section class="slide" id="s-workspace" aria-label="What a Terraform workspace is" data-speaker="Dafydd" data-when="2025-11">
+    <section class="slide" id="s-workspace" aria-label="What a Terraform workspace is" data-speaker="Dafydd">
       <h1 class="slide-title">What a Terraform workspace is</h1>
 
       <p class="slide-sub">One set of Terraform code linked to one state file. How you carve a Jamf Pro instance into workspaces is a decision worth taking slowly, and there are more lenses on it than you would expect.</p>
@@ -1651,7 +1651,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S10 - Resource sequencing ============================ -->
-    <section class="slide" id="s10" aria-label="Resource sequencing" data-speaker="Dafydd" data-when="2025-12:2026-01">
+    <section class="slide" id="s10" aria-label="Resource sequencing" data-speaker="Dafydd" data-when="2025-11">
       <h1 class="slide-title">Resource sequencing</h1>
       <p class="s10-intro">One resource type at a time, end to end in production - not one instance at a time. The order came from the matrix: a group-built spreadsheet of every resource type and its dependencies.</p>
       <svg class="s10-svg" viewBox="0 0 1728 784" aria-label="Four migration tiers with dependency arrows flowing downward into the profiles and policies band">
@@ -1691,7 +1691,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ Singletons first ============================ -->
-    <section class="slide" id="s-singletons" aria-label="Singletons first" data-speaker="Gordon" data-when="2025-11">
+    <section class="slide" id="s-singletons" aria-label="Singletons first" data-speaker="Gordon" data-when="2025-12">
       <h1 class="slide-title">Singletons first</h1>
       <p class="slide-sub">Settings panes went into state first, imported by default and applied only as a fallback.</p>
       <div class="s-single-grid">
@@ -1733,7 +1733,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ Getting past Sentinel ============================ -->
-    <section class="slide" id="s-sentinel" aria-label="Guardrails you don't own" data-speaker="Gordon" data-when="2025-11:2026-01">
+    <section class="slide" id="s-sentinel" aria-label="Guardrails you don't own" data-speaker="Gordon" data-when="2025-12">
       <h1 class="slide-title">Guardrails you don't own</h1>
       <p class="lead">At LBG, every Terraform run - across the bank's entire public cloud estate - passes through Sentinel policy checks before it can apply. One of those policies bans <code class="inline">import</code> blocks outright, because importing lets a workspace adopt resources someone else already manages.</p>
       <ol class="gates gates-3">
@@ -1763,7 +1763,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S08 - Migration wave workflow ============================ -->
-    <section class="slide" id="s08" aria-label="Migration wave workflow" data-speaker="Dafydd" data-when="2025-12:2026-01">
+    <section class="slide" id="s08" aria-label="Migration wave workflow" data-speaker="Dafydd" data-when="2025-12">
       <h1 class="slide-title">Migration wave workflow</h1>
       <p class="slide-sub">The same seven steps ran for every wave between December 2025 and January 2026, with GUI write access revoked before each import to make the freeze real.</p>
       <ol class="stepper">
@@ -1807,7 +1807,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S11 - Tools and helpers ============================ -->
-    <section class="slide" id="s11" aria-label="Tools and helpers" data-speaker="Gordon" data-when="2025-12:2026-01">
+    <section class="slide" id="s11" aria-label="Tools and helpers" data-speaker="Gordon" data-when="2025-12">
       <h1 class="slide-title">Tools and helpers</h1>
       <div class="s11-grid">
         <svg class="s11-svg" viewBox="0 0 560 740" aria-label="Import pipeline from Python SDK to Terraform import">
@@ -1863,7 +1863,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S12 - for_each ============================ -->
-    <section class="slide" id="s12" aria-label="Dynamic creation with for_each" data-speaker="Joseph" data-when="2026-02:2026-03">
+    <section class="slide" id="s12" aria-label="Dynamic creation with for_each" data-speaker="Joseph" data-when="2026-01">
       <h1 class="slide-title">Dynamic creation with <span class="mono">for_each</span></h1>
       <div class="compare">
         <div class="panel">
@@ -1915,7 +1915,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S13 - for_each exceptions ============================ -->
-    <section class="slide" id="s13" aria-label="for_each exceptions" data-speaker="Joseph" data-when="2026-02:2026-03">
+    <section class="slide" id="s13" aria-label="for_each exceptions" data-speaker="Joseph" data-when="2026-01">
       <h1 class="slide-title"><span class="mono">for_each</span> exceptions</h1>
 
       <p class="s13-kicker">Just one exception</p>
@@ -1929,7 +1929,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S14 - Validating a migration ============================ -->
-    <section class="slide" id="s14" aria-label="Validating a migration" data-speaker="Joseph" data-when="2026-02:2026-03">
+    <section class="slide" id="s14" aria-label="Validating a migration" data-speaker="Joseph" data-when="2026-01">
       <h1 class="slide-title">Validating a migration</h1>
       <div class="card terminal">
         <div class="term-head" aria-hidden="true">
@@ -1967,7 +1967,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ Rebuilding staging ============================ -->
-    <section class="slide" id="s-staging" aria-label="Rebuilding staging" data-speaker="Dafydd" data-when="2026-04:2026-05">
+    <section class="slide" id="s-staging" aria-label="Rebuilding staging" data-speaker="Dafydd" data-when="2026-02">
       <h1 class="slide-title">Rebuilding staging</h1>
       <p class="lead">Production was code. Staging was years of drift, so we didn't import it.</p>
       <ol class="gates gates-3">
@@ -2000,7 +2000,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ Growing pains ============================ -->
-    <section class="slide" id="s-pivot" aria-label="One codebase for every instance" data-speaker="Joseph" data-when="2026-03">
+    <section class="slide" id="s-pivot" aria-label="One codebase for every instance" data-speaker="Joseph" data-when="2026-02">
       <h1 class="slide-title">One codebase for every instance</h1>
       <p class="slide-sub">Write it once, apply it everywhere. That was the objective.</p>
 
@@ -2110,7 +2110,7 @@ inputs = { ... }</p>
     </section>
 
     <!-- ============================ S16b - By the numbers ============================ -->
-    <section class="slide" id="s16b" aria-label="By the numbers" data-speaker="Gordon" data-when="2026-07">
+    <section class="slide" id="s16b" aria-label="By the numbers" data-speaker="Gordon" data-when="2026-03">
       <h1 class="slide-title">By the numbers</h1>
       <p class="s16b-hero-kicker">Jan 2026 → Sept 2026, provider development to v1.0.0 and final handover</p>
       <p class="s16b-hero"><span class="s16b-hero-num">900</span><span class="s16b-hero-label">pull requests merged</span></p>
@@ -2128,7 +2128,7 @@ inputs = { ... }</p>
 
     <!-- ============================ S17 - Questions ============================ -->
     <!-- Template close slide: navy stage, outline + solid lime words, corner arrow. -->
-    <section class="slide slide-navy" id="s17" aria-label="Questions" data-speaker="Anyone" data-speaker-note="questions" data-when="2026-07">
+    <section class="slide slide-navy" id="s17" aria-label="Questions" data-speaker="Anyone" data-speaker-note="questions" data-when="2026-03">
       <svg class="corner-arrow" viewBox="0 0 420 360" aria-hidden="true">
         <line class="arrow-shaft" x1="-40" y1="-80" x2="290" y2="238"/>
         <path class="arrow-fill" d="M305 30 h55 v292 h-295 v-55 h240 z"/>
@@ -2146,7 +2146,7 @@ inputs = { ... }</p>
     </section>
 
     <!-- ============================ S18 - Links ============================ -->
-    <section class="slide slide-centred" id="s18" aria-label="Links" data-speaker="Anyone" data-when="2026-07">
+    <section class="slide slide-centred" id="s18" aria-label="Links" data-speaker="Anyone" data-when="2026-03">
       <h1 class="slide-title">Links</h1>
       <div class="closing-links">
         <span>Provider: deploymenttheory/jamfpro</span>
@@ -2160,7 +2160,7 @@ inputs = { ... }</p>
 
     <!-- ============================ Thank you ============================ -->
     <!-- Template close slide, royal blue variant. -->
-    <section class="slide" id="s-thanks" aria-label="Thank you" data-when="2026-07">
+    <section class="slide" id="s-thanks" aria-label="Thank you" data-when="2026-03">
       <svg class="corner-arrow" viewBox="0 0 420 360" aria-hidden="true">
         <line class="arrow-shaft" x1="-40" y1="-80" x2="290" y2="238"/>
         <path class="arrow-fill" d="M305 30 h55 v292 h-295 v-55 h240 z"/>
