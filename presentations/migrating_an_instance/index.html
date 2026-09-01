@@ -466,6 +466,7 @@ body.reader .reader-extra {
 
 /* ============================ S01 + pipelines ============================ */
 .pipeline-band { padding: var(--sp-3) var(--sp-4); }
+#s01 .pipeline-band .constraints-title { margin-bottom: var(--sp-1); }
 .pipeline-label { margin-bottom: var(--sp-2); }
 .pipeline { display: flex; align-items: center; gap: var(--sp-3); }
 .pipe-node {
@@ -494,7 +495,7 @@ body.reader .reader-extra {
 }
 .constraints {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: var(--sp-2);
   margin-top: var(--sp-3);
 }
@@ -503,7 +504,7 @@ body.reader .reader-extra {
 #s01 .constraints-col {
   display: grid;
   grid-template-rows: subgrid;
-  grid-row: span 3;
+  grid-row: span 4;
   gap: var(--sp-2);
   background: var(--c-surface);
   border: var(--bw-1) solid var(--c-border);
@@ -1276,10 +1277,11 @@ body.presenter #viewport { display: none; }
 
     <!-- ============================ S01 - Context ============================ -->
     <section class="slide" id="s01" aria-label="Context, requirements, constraints" data-speaker="Dafydd" data-when="2025-11">
-      <h1 class="slide-title">Context, requirements, constraints</h1>
-      <p class="pipeline-label caption muted">No precedent to follow - nobody had migrated a live, in-use Jamf Pro estate to Terraform at this scale before, let alone inside a bank.</p>
+      <h1 class="slide-title">Landscape prior to the migration</h1>
+      <p class="pipeline-label caption muted">We had no precedent to follow: nobody had migrated a live, in-use Jamf Pro instance to Terraform before, (let alone inside a bank).</p>
       <div class="pipeline-band card">
-        <p class="pipeline-label caption muted">Our environment before the migration</p>
+        <h2 class="constraints-title">Context</h2>
+        <p class="pipeline-label caption muted">Our environment setup prior to the migration</p>
         <div class="pipeline">
           <span class="pipe-node">Sandbox</span>
           <span class="pipe-node">Staging</span>
@@ -1288,24 +1290,19 @@ body.presenter #viewport { display: none; }
       </div>
       <div class="constraints">
         <div class="constraints-col">
-          <h2 class="constraints-title">Context</h2>
-          <ul>
-            <li>No hardcoded secrets, anywhere, and all HCL must satisfy org linters.</li>
-            <li>Terraform CLI available only in development environments.</li>
-          </ul>
-        </div>
-        <div class="constraints-col">
           <h2 class="constraints-title">Requirements</h2>
           <ul>
-            <li>Every production change gated by peer review, from one shared source of truth for every team - resources are not split by org structure.</li>
+            <li>No hardcoded secrets, anywhere, and all HCL must satisfy org policy linters.</li>
             <li>Versioned releases, with change history findable when it is needed.</li>
+            <li>Post-migration, all create/update/delete operations happen through Terraform only.</li>
           </ul>
         </div>
         <div class="constraints-col">
           <h2 class="constraints-title">Constraints</h2>
           <ul>
+            <li>Terraform CLI available only in development environments.</li>
+            <li>Every production change gated by peer review, from one shared source of truth for every team - resources are not split by org structure.</li>
             <li>Align with the bank's strategic tooling: GitHub, VCS-triggered Terraform runs, internally hosted HashiCorp Vault, HCP Terraform for remote state and run execution on HCP private runners.</li>
-            <li>Post-migration, all create/update/delete operations happen through Terraform only.</li>
           </ul>
         </div>
       </div>
