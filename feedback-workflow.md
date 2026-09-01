@@ -749,7 +749,7 @@ it up - either way it is on disk for a recovering session.
   three bordered panels, diagram centred in each, the chosen path's panel edged in the
   accent colour, the read-only API client control riding inside path 03. Screenshots at
   1920x1080 and 1280x720 confirmed clean before and after; presenter sync check prints OK;
-  dash lint clean. PR #TODO.
+  dash lint clean. PR #83.
 - **2026-09-01, slide 18 (`#s15b`) marks four techniques as what we run.** Dafydd: local
   values, data sources and configuration as data all carry the "What we run" tag and the
   accent highlight, joining child modules. Their old tags ("A switch in every resource",
