@@ -42,7 +42,7 @@ landing page keeps its own near-black look - it is not a deck.
 | `tools/` | `build-key.mjs`, which builds the Keynote downloads from the decks on a Mac (the only thing `package.json` exists for), and `sandbox-template.html`, the starting point for every sandbox review page. |
 | `feedback-workflow.md` | The deck feedback loop: standing rules, orchestrator and slide-agent roles, brief templates, commands, recovery steps and a log. Read it before touching a deck in response to feedback. Not shipped (`*.md` is excluded from the deploy). |
 | `docs/superpowers/plans/` | The first-round implementation plan, superseded by `feedback-workflow.md` and kept for its triage table. Not shipped. |
-| `docs/timeline-adherence.md` | Per-slide table of `migrating_an_instance`'s current `data-when` values, timers and speakers, with a blank column for Joseph to fill in the intended month, for a later round of `data-when` corrections. Not shipped. |
+| `docs/timeline-notes.md` | Source of truth for slide order in both decks: one three-column table per deck (slide number, title, time notes), the notes column left for Joseph to say whether and where a slide should highlight the timeline strip. Not shipped. |
 | `README.md`, `LICENSE` | Repo boilerplate. |
 
 The decks have no build step. Node is in this repo purely for `tools/build-key.mjs`, which is
@@ -234,7 +234,7 @@ overlay - keep the two in step when slides move.
 12. `s11` Tools and helpers (the pipeline diagram unchanged on the left - jamfpy -> script
     -> map -> for_each -> import; on the right the same four points as a numbered list, 1
     to 4 in mono in an accent gutter, each name in the display face, bold: PRUNE and
-    jamf-resource-deleter, jamfpy, the regex mop-up pass, and `-generate-config-out`
+    jamf-resource-deleter, jamfpy, the regex mop-up pass, and `--generate-config-out`
     rejected, its number and name both in the danger colour. Option D, accepted
     2026-08-28. Cut back from seven bullets 2026-08-28; the three that went are told by
     the diagram or by `s12`, and the "mostly Copilot CLI" mention left the slide with

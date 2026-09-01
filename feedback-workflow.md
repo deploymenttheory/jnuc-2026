@@ -725,9 +725,28 @@ it up - either way it is on disk for a recovering session.
   added. Speaker notes and presenter.json untouched - the subtitle changes nothing they
   say. AGENTS.md's slide 8 summary checked and still accurate, left unchanged. Screenshot
   confirms no overflow and clearance above the timeline strip. Presenter check fails only
-  on a pre-existing `s01` title mismatch (deck says "Landscape prior to the migration",
-  presenter.json still says "Context, requirements, constraints") introduced by an earlier
-  merge unrelated to this slide - left for the orchestrator. PR TBC.
+  on the pre-existing `s01` title mismatch (deck says "Landscape prior to the migration",
+  presenter.json still says "Context, requirements, constraints"), unrelated to this slide
+  and already being handled separately. PR TBC.
+- **2026-09-01, slide 12 (`#s11`) flag spelling fixed.** Joseph: "Slide 12 its
+  --generate-config-out". Point 4 of the numbered list and its CSS comment named the
+  rejected Terraform plan flag with a single leading hyphen; both now read
+  `--generate-config-out`. Speaker notes and `presenter.json` already name the flag in
+  prose with no hyphen prefix, so neither needed a change. `AGENTS.md`'s slide-12 line
+  updated to match. Deterministic wording fix, no sandbox round. The presenter check
+  prints the pre-existing `title differs: s01` failure only (unrelated, being handled
+  separately) and the dash lint is clean. PR #64.
+- **2026-09-01, timeline doc simplified and renamed.** `docs/timeline-adherence.md`
+  (migrating_an_instance only, empty "Month (fill in)" column, a colon in its H1, stale
+  slide 17/18 titles) replaced by `docs/timeline-notes.md`: one three-column table per deck
+  (slide number, title, time notes), covering both `migrating_an_instance` and
+  `training_a_team`, built from AGENTS.md's current slide orders and, for the training deck,
+  its `index.html`. `AGENTS.md`'s doc-table entry updated to match. PR #63.
+- **2026-09-01, slide 4 (`#s-workspace`) "one" dropped from the configuration sub-line.**
+  Joseph: "remove 'one' from 'one configuration, from the repository'." Deterministic
+  wording fix, no options round. The `.wsx-io-sub` span now reads "configuration, from the
+  repository". Speaker notes did not quote the phrase, so `presenter.json` needed no change.
+  `AGENTS.md`'s slide 4 entry did not quote it either. PR #62.
 - **2026-09-01, feedback-workflow.md updated for the handover.** A new "State at handover
   (2026-09-01)" section added covering PRs #38 to #60 (collaborator PRs #47, #59 and #60
   included) since the 2026-08-28 handover: the Thursday/Friday orchestrated rounds on
