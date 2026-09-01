@@ -725,7 +725,7 @@ it up - either way it is on disk for a recovering session.
   the freeze real." Drawn from the slide's own step text and speaker notes; notes already
   said the same thing, so notes and `presenter.json` were left alone for `s08`. Presenter
   sync check prints OK (the pre-existing `s01` title mismatch this branch also fixed locally
-  was independently fixed upstream by PR #68 first). PR #TBD.
+  was independently fixed upstream by PR #68 first). PR #71.
 - **2026-09-01, presenter and AGENTS.md aligned with slide 2's retitle.** A collaborator's
   direct push to main (`0d9b2fa`) retitled slide 2's (`#s01`) `<h1>` from "Context,
   requirements, constraints" to "Landscape prior to the migration" (also moving the
