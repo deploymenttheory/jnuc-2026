@@ -982,10 +982,14 @@ body.reader .reader-extra {
    sentence on one line each - no cards, no borders. The lead and the takeaway sit in a
    quiet right-hand column, out of the rail's way. Everything is scoped to #s-staging so
    the shared .lead and .gate* rules stay exactly as #s01, #s-sentinel, #s-pivot and #s14
-   need them. */
+   need them.
+   Rescaled 2026-09-01 after the pixel-art step icons came off the rings: the rail was only
+   filling about half the canvas, so the ring, verb and row spacing grew to fill it with type
+   and whitespace instead - the sentence stays at --fs-body so all three rows hold to one
+   line each, per the option B rule above. */
 #s-staging {
   display: grid;
-  grid-template-columns: 1fr 380px;
+  grid-template-columns: 1fr 340px;
   grid-template-rows: auto 1fr;
   column-gap: var(--sp-5);
 }
@@ -1012,16 +1016,16 @@ body.reader .reader-extra {
   align-self: center;
   display: flex;
   flex-direction: column;
-  gap: var(--sp-6);
+  gap: calc(var(--sp-6) + var(--sp-4));
   position: relative;
 }
 /* the rail runs between the first and last ring centres - the rings punch through it */
 #s-staging .gates-3::before {
   content: "";
   position: absolute;
-  left: 34px;
-  top: 59px;
-  bottom: 59px;
+  left: 60px;
+  top: 100px;
+  bottom: 100px;
   width: var(--bw-2);
   background: var(--c-border);
 }
@@ -1031,7 +1035,7 @@ body.reader .reader-extra {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0;
-  padding: var(--sp-3) 0 var(--sp-3) 120px;
+  padding: var(--sp-4) 0 var(--sp-4) 184px;
   background: none;
   border: none;
   border-radius: 0;
@@ -1040,21 +1044,21 @@ body.reader .reader-extra {
 #s-staging .gate-num {
   position: absolute;
   left: 0;
-  top: var(--sp-3);
-  width: 70px;
-  height: 70px;
+  top: var(--sp-4);
+  width: 120px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--fs-body);
-  border: var(--bw-2) solid currentColor;
+  font-size: var(--fs-h2);
+  border: var(--bw-3) solid currentColor;
   border-radius: 50%;
   background: var(--c-bg);
 }
 #s-staging .gate p { display: block; flex: 1; font-size: var(--fs-body); }
 #s-staging .gate strong {
   font-family: var(--f-display);
-  font-size: var(--fs-h2);
+  font-size: var(--fs-h1);
   font-weight: 700;
   line-height: var(--lh-tight);
   color: var(--c-accent);
