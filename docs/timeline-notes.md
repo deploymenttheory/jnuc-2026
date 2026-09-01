@@ -30,7 +30,7 @@ month or range.
 | 16 | Rebuilding staging | Dafydd | Feb 2026 |
 | 17 | One codebase for every instance | Joseph | None |
 | 18 | Getting as close to DRY as we can | Dafydd | March 2026 |
-| 19 | By the numbers | Gordon | None |
+| 19 | By the numbers | Gordon | Now |
 | 20 | Questions | Anyone | None |
 | 21 | Links | Anyone | None |
 | 22 | Thank You | nobody assigned | None |

@@ -733,8 +733,21 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
-
-
+- **2026-09-01, migrating_an_instance's timeline strip ends at March then Now.** Joseph:
+  "Remove the timeline after march, it's no longer used. it can just go to "now" after
+  then. Fit it to the slides obviously." Dropped the strip's Apr/May/Jun/Jul 2026 stops
+  (unused since PR #79 capped the highest `data-when` at March) and replaced them with a
+  single Now stop after Mar - six stops total (Nov 25, Dec, Jan 26, Feb, Mar, Now). `now` is
+  a sentinel appended as the script's `MONTHS` array's last entry, matched by the existing
+  `indexOf` lookup with no other change to the parsing. `#s16b` (By the numbers) now
+  advances to `data-when="now"` (bright accent, was carrying March); `#s17`, `#s18` and
+  `#s-thanks` repeat `now` muted, the deck's existing carry-forward idiom. Cells are
+  `flex: 1` inside the strip's fixed-width container, so removing three and adding one
+  refits the remaining six evenly with no CSS change - confirmed with screenshots of
+  `#s01`, `#s10`, `#s15b`, `#s16b` and `#s-thanks`. `docs/timeline-notes.md` row 19 changed
+  from None to Now (advancing); rows 20-22 stay None (carrying), matching the doc's own
+  idiom of an advancing slide's own text vs None for a carried state. AGENTS.md's timeline
+  bullets updated to match. Presenter sync check prints OK, dash lint clean. PR #84.
 - **2026-09-01, slide 5 (`#s04`) reject reasons reworded.** Dafydd's own edits, committed
   from the working tree. Reject 1 now says "tf plan execution time" and "our estate", and
   carries a "Note:" on what happens past ~5,000 resources. Reject 2 splits its trailing
@@ -747,8 +760,6 @@ it up - either way it is on disk for a recovering session.
   tenant-unique argument and keeps the troubleshooting line as the follow-up;
   `presenter.json` mirrored to match. AGENTS.md's slide 5 entry counts 3 rejects and
   needed no edit. Presenter sync check prints OK, dash lint is clean. PR #80.
-
-
 - **2026-09-01, slide 6 (`#s05`) header row rebuilt for robustness - no wording or layout
   change.** Joseph: "the box has text which is cut off and everything looks a little fucky.
   Words overlapping and all sorts... overhaul the architecture so it's more robust." Root

@@ -2133,7 +2133,7 @@ inputs = { ... }</p>
     </section>
 
     <!-- ============================ S16b - By the numbers ============================ -->
-    <section class="slide" id="s16b" aria-label="By the numbers" data-speaker="Gordon" data-when="2026-03">
+    <section class="slide" id="s16b" aria-label="By the numbers" data-speaker="Gordon" data-when="now">
       <h1 class="slide-title">By the numbers</h1>
       <p class="s16b-hero-kicker">Jan 2026 → Sept 2026, provider development to v1.0.0 and final handover</p>
       <p class="s16b-hero"><span class="s16b-hero-num">900</span><span class="s16b-hero-label">pull requests merged</span></p>
@@ -2151,7 +2151,7 @@ inputs = { ... }</p>
 
     <!-- ============================ S17 - Questions ============================ -->
     <!-- Template close slide: navy stage, outline + solid lime words, corner arrow. -->
-    <section class="slide slide-navy" id="s17" aria-label="Questions" data-speaker="Anyone" data-speaker-note="questions" data-when="2026-03">
+    <section class="slide slide-navy" id="s17" aria-label="Questions" data-speaker="Anyone" data-speaker-note="questions" data-when="now">
       <svg class="corner-arrow" viewBox="0 0 420 360" aria-hidden="true">
         <line class="arrow-shaft" x1="-40" y1="-80" x2="290" y2="238"/>
         <path class="arrow-fill" d="M305 30 h55 v292 h-295 v-55 h240 z"/>
@@ -2169,7 +2169,7 @@ inputs = { ... }</p>
     </section>
 
     <!-- ============================ S18 - Links ============================ -->
-    <section class="slide slide-centred" id="s18" aria-label="Links" data-speaker="Anyone" data-when="2026-03">
+    <section class="slide slide-centred" id="s18" aria-label="Links" data-speaker="Anyone" data-when="now">
       <h1 class="slide-title">Links</h1>
       <div class="closing-links">
         <span>Provider: deploymenttheory/jamfpro</span>
@@ -2183,7 +2183,7 @@ inputs = { ... }</p>
 
     <!-- ============================ Thank you ============================ -->
     <!-- Template close slide, royal blue variant. -->
-    <section class="slide" id="s-thanks" aria-label="Thank you" data-when="2026-03">
+    <section class="slide" id="s-thanks" aria-label="Thank you" data-when="now">
       <svg class="corner-arrow" viewBox="0 0 420 360" aria-hidden="true">
         <line class="arrow-shaft" x1="-40" y1="-80" x2="290" y2="238"/>
         <path class="arrow-fill" d="M305 30 h55 v292 h-295 v-55 h240 z"/>
@@ -2208,10 +2208,7 @@ inputs = { ... }</p>
       <span class="tl-cell"><span class="tl-label">Jan 26</span></span>
       <span class="tl-cell"><span class="tl-label">Feb</span></span>
       <span class="tl-cell"><span class="tl-label">Mar</span></span>
-      <span class="tl-cell"><span class="tl-label">Apr</span></span>
-      <span class="tl-cell"><span class="tl-label">May</span></span>
-      <span class="tl-cell"><span class="tl-label">Jun</span></span>
-      <span class="tl-cell"><span class="tl-label">Jul 26</span></span>
+      <span class="tl-cell"><span class="tl-label">Now</span></span>
     </div>
   </div>
 </div>
@@ -2256,7 +2253,9 @@ inputs = { ... }</p>
   // Persistent story timeline - month cells matched to each slide's data-when.
   // A slide repeating the previous slide's range greys out: accent means the story
   // just moved, grey means we're still in the same months.
-  var MONTHS = ['2025-11', '2025-12', '2026-01', '2026-02', '2026-03', '2026-04', '2026-05', '2026-06', '2026-07'];
+  // 'now' is a sentinel, not a real month - it just has to be the array's last entry so
+  // indexOf finds it like any other data-when value; no other parsing change needed.
+  var MONTHS = ['2025-11', '2025-12', '2026-01', '2026-02', '2026-03', 'now'];
   var timeline = document.getElementById('timeline');
   var tlCells = Array.prototype.slice.call(document.querySelectorAll('#timeline .tl-cell'));
   var tlRanges = slides.map(function (s) {
