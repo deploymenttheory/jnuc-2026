@@ -718,6 +718,11 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, slide 13 (`#s12`) bottom spacing fixed.** Joseph: "the text is too close to
+  the bottom." Scoped `#s12` overrides trim the code panels' vertical padding and the
+  row gaps above the takeaway and slide-note (existing `--sp-*` tokens only, no font-size
+  or content changes) so the last line clears the timeline strip. No options round -
+  a layout fix. PR pending.
 - **2026-09-01, timeline doc simplified and renamed.** `docs/timeline-adherence.md`
   (migrating_an_instance only, empty "Month (fill in)" column, a colon in its H1, stale
   slide 17/18 titles) replaced by `docs/timeline-notes.md`: one three-column table per deck
