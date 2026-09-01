@@ -2076,19 +2076,19 @@ HCP Terraform variable sets</p>
           <p class="tech-tag">Values only</p>
         </div>
 
-        <div class="tech">
+        <div class="tech tech-inuse">
           <h2>Local values</h2>
           <p class="tech-syntax">count = local.is_staging ? 0 : 1</p>
           <p class="tech-shared">One definition, switched on or off per instance with the <code class="inline">count</code> and <code class="inline">for_each</code> meta-arguments.</p>
-          <p class="tech-tag">A switch in every resource</p>
+          <p class="tech-tag">What we run</p>
         </div>
 
-        <div class="tech">
+        <div class="tech tech-inuse">
           <h2>Data sources</h2>
           <p class="tech-syntax">data "jamfpro_computer_inventory"
   serial_number = each.value</p>
           <p class="tech-shared">The definition stays shared and the instance's own IDs are read at plan time.</p>
-          <p class="tech-tag">One lookup per object</p>
+          <p class="tech-tag">What we run</p>
         </div>
 
         <div class="tech tech-inuse">
@@ -2100,12 +2100,12 @@ HCP Terraform variable sets</p>
           <p class="tech-tag">What we run</p>
         </div>
 
-        <div class="tech">
+        <div class="tech tech-inuse">
           <h2>Configuration as data</h2>
           <p class="tech-syntax">instances/lbgstaging.yaml
 cfg = yamldecode(file(...))</p>
           <p class="tech-shared">The HCL is shared in full. Every difference sits in that instance's own data file, so adding an instance means adding a file rather than writing more configuration.</p>
-          <p class="tech-tag">One file per instance</p>
+          <p class="tech-tag">What we run</p>
         </div>
 
         <div class="tech">
@@ -2126,8 +2126,8 @@ inputs = { ... }</p>
       </details>
       <aside class="notes">
         <p>Six techniques, and the honest answer is that there is no right one. Read them as a menu, not a ranking.</p>
-        <p>We landed on child modules with a root module per instance, which is also what HashiCorp recommends where instances need different credentials and access controls. Shared code is written once; each instance's root holds only its own.</p>
-        <p>Worth naming the two we did not use. Keeping every instance difference in a data file means the HCL stops changing when you add an instance. Terragrunt was built for this problem, and Terramate and Atmos are the same idea productised.</p>
+        <p>We landed on child modules with a root module per instance, which is also what HashiCorp recommends where instances need different credentials and access controls. Shared code is written once; each instance's root holds only its own. Local values, data sources and configuration as data run alongside it, which is why four of the six are marked: switches on the resources, instance IDs read at plan time, and every remaining difference kept in that instance's data file so the HCL stops changing when you add one.</p>
+        <p>Worth naming the one we did not reach for. Terragrunt was built for this problem, and Terramate and Atmos are the same idea productised.</p>
         <p>Finish on the caution. CLI workspaces sound like the answer and are not, because they share a backend. Slide 4 already separated the two meanings of workspace.</p>
       </aside>
     </section>
