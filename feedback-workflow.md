@@ -739,7 +739,7 @@ it up - either way it is on disk for a recovering session.
   sentence case like its three neighbours. The speaker notes name no individual lens and
   still read correctly, so they and `presenter.json` are unchanged; AGENTS.md's slide 4
   entry still says "four lenses" and needed no edit. Presenter sync check prints OK, dash
-  lint is clean. PR pending.
+  lint is clean. PR #77.
 - **2026-09-01, slide 10 (`#s10`) moved to slide 8.** Joseph: "Move 10 to after 7 (so 8),
   update docs accordingly." The whole `#s10` (Resource sequencing) section moved verbatim
   in `index.html` to sit directly after `#s07` (Prerequisites), so the order at 7-10 is now
