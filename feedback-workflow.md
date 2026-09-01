@@ -723,7 +723,7 @@ it up - either way it is on disk for a recovering session.
   standalone `.dry-label` paragraph came off, plus the `#s-pivot .dry-label` CSS rule that
   existed only for it; the accent band, code block and shared/unique breakdown are
   unchanged. Speaker notes didn't quote the phrase, so `presenter.json` needed no change,
-  and AGENTS.md's slide 17 entry didn't quote it either. PR #TODO.
+  and AGENTS.md's slide 17 entry didn't quote it either. PR #67.
 - **2026-09-01, timeline doc simplified and renamed.** `docs/timeline-adherence.md`
   (migrating_an_instance only, empty "Month (fill in)" column, a colon in its H1, stale
   slide 17/18 titles) replaced by `docs/timeline-notes.md`: one three-column table per deck
