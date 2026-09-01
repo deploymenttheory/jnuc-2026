@@ -13,7 +13,7 @@ month or range.
 | Slide | Title | Speaker | Time notes |
 |---|---|---|---|
 | 1 | Title | All (intros) | |
-| 2 | Context, requirements, constraints | Dafydd | |
+| 2 | Landscape prior to the migration | Dafydd | |
 | 3 | Who touches Jamf Pro | Dafydd | |
 | 4 | What a Terraform workspace is | Dafydd (TBC) | |
 | 5 | Migration outcomes we considered and rejected | Joseph | |

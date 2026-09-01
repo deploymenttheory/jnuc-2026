@@ -730,14 +730,46 @@ it up - either way it is on disk for a recovering session.
   deck's slide-order list, the training deck's slide map and its separate speaker paragraph)
   now say the doc is authoritative and their own lists are descriptions corrected to match
   it.
+- **2026-09-01, slide 8 (`#s-singletons`) subtitle added.** A `<p class="slide-sub">` under
+  the title, matching the deck's existing subtitle pattern (already used on s-workspace,
+  s04, s05 and s-pivot): "Settings panes went into state first, imported by default and
+  applied only as a fallback." Drawn from the slide's own body copy and notes, no new facts
+  added. Speaker notes and presenter.json untouched - the subtitle changes nothing they
+  say. AGENTS.md's slide 8 summary checked and still accurate, left unchanged. Screenshot
+  confirms no overflow and clearance above the timeline strip. Presenter check fails only
+  on the pre-existing `s01` title mismatch (deck says "Landscape prior to the migration",
+  presenter.json still says "Context, requirements, constraints"), unrelated to this slide
+  and already being handled separately. PR #70.
+- **2026-09-01, presenter and AGENTS.md aligned with slide 2's retitle.** A collaborator's
+  direct push to main (`0d9b2fa`) retitled slide 2's (`#s01`) `<h1>` from "Context,
+  requirements, constraints" to "Landscape prior to the migration" (also moving the
+  "Context" heading into the pipeline-band card and collapsing the constraints grid from
+  three columns to two, Requirements / Constraints) without mirroring `presenter.json` or
+  the `aria-label`. `presenter.json`'s `s01` title now matches the deck; the `#s01`
+  `aria-label` updated to match the new visible title, per the house rule that the two stay
+  in step. Notes were unchanged by `0d9b2fa` and still match word for word, so left as is.
+  AGENTS.md's slide 2 entry in "Current slide order" updated: new title, and the content
+  summary now describes two constraints panels instead of three and the relocated "Context"
+  heading. Presenter sync check prints OK. PR #68.
+- **2026-09-01, slide 17 (`#s-pivot`) "Jamf Pro does not allow it" removed.** Joseph:
+  "Slide 17 remove JAMF PRO DOES NOT ALLOW IT." Deterministic removal, no options round. The
+  standalone `.dry-label` paragraph came off, plus the `#s-pivot .dry-label` CSS rule that
+  existed only for it; the accent band, code block and shared/unique breakdown are
+  unchanged. Speaker notes didn't quote the phrase, so `presenter.json` needed no change,
+  and AGENTS.md's slide 17 entry didn't quote it either. PR #67.
+- **2026-09-01, slide 13 (`#s12`) bottom spacing fixed.** Joseph: "the text is too close to
+  the bottom." Scoped `#s12` overrides trim the code panels' vertical padding and the
+  row gaps above the takeaway and slide-note (existing `--sp-*` tokens only, no font-size
+  or content changes) so the last line clears the timeline strip. No options round -
+  a layout fix. PR #65.
 - **2026-09-01, slide 12 (`#s11`) flag spelling fixed.** Joseph: "Slide 12 its
   --generate-config-out". Point 4 of the numbered list and its CSS comment named the
   rejected Terraform plan flag with a single leading hyphen; both now read
   `--generate-config-out`. Speaker notes and `presenter.json` already name the flag in
   prose with no hyphen prefix, so neither needed a change. `AGENTS.md`'s slide-12 line
   updated to match. Deterministic wording fix, no sandbox round. The presenter check
-  prints the pre-existing `title differs: s01` failure only (unrelated, being handled
-  separately) and the dash lint is clean. PR #64.
+  prints the pre-existing `title differs: s01` failure only (unrelated, fixed above) and
+  the dash lint is clean. PR #64.
 - **2026-09-01, timeline doc simplified and renamed.** `docs/timeline-adherence.md`
   (migrating_an_instance only, empty "Month (fill in)" column, a colon in its H1, stale
   slide 17/18 titles) replaced by `docs/timeline-notes.md`: one three-column table per deck

@@ -862,6 +862,14 @@ body.reader .reader-extra {
 .panel-ours .code { border: var(--bw-3) solid var(--c-accent); }
 .takeaway { margin-top: var(--sp-4); font-weight: 600; }
 
+/* Bottom spacing fix, 2026-09-01: the taller "Ours" code panel plus the takeaway
+   and slide-note left the last line sitting too close to the timeline strip.
+   Tighten the row gaps below the panels and the code panels' own vertical
+   padding rather than shrink type or drop content. */
+#s12 .code { padding: var(--sp-2) var(--sp-3); }
+#s12 .takeaway { margin-top: var(--sp-3); }
+#s12 .slide-note { margin-top: var(--sp-3); }
+
 /* ============================ S13 ============================ */
 /* .lead is shared with s01, s-sentinel, s-staging and s-pivot - do not restyle it here. */
 .lead { font-size: var(--fs-h2); line-height: var(--lh-body); margin-bottom: var(--sp-5); max-width: 1560px; }
@@ -1070,14 +1078,6 @@ body.reader .reader-extra {
   line-height: var(--lh-tight);
   color: var(--c-accent);
 }
-#s-pivot .dry-label {
-  margin-bottom: var(--sp-2);
-  font-family: var(--f-mono);
-  font-size: var(--fs-caption);
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--c-text-muted);
-}
 #s-pivot .dry-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1276,7 +1276,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S01 - Context ============================ -->
-    <section class="slide" id="s01" aria-label="Context, requirements, constraints" data-speaker="Dafydd" data-when="2025-11">
+    <section class="slide" id="s01" aria-label="Landscape prior to the migration" data-speaker="Dafydd" data-when="2025-11">
       <h1 class="slide-title">Landscape prior to the migration</h1>
       <p class="pipeline-label caption muted">We had no precedent to follow: nobody had migrated a live, in-use Jamf Pro instance to Terraform before, (let alone inside a bank).</p>
       <div class="pipeline-band card">
@@ -1622,6 +1622,7 @@ body.presenter #viewport { display: none; }
     <!-- ============================ Singletons first ============================ -->
     <section class="slide" id="s-singletons" aria-label="Singletons first" data-speaker="Gordon" data-when="2025-11">
       <h1 class="slide-title">Singletons first</h1>
+      <p class="slide-sub">Settings panes went into state first, imported by default and applied only as a fallback.</p>
       <div class="s-single-grid">
         <div>
           <p>Settings panes are single-instance resources - there's only ever one. Import stayed the default; apply was the fallback.</p>
@@ -1976,7 +1977,6 @@ body.presenter #viewport { display: none; }
 
       <p class="dry-band">DRY: one definition of a resource, deployed to every instance.</p>
 
-      <p class="dry-label">Jamf Pro does not allow it</p>
       <div class="dry-split">
         <pre class="code"><span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_static_computer_group"</span>
          <span class="tk-str">"finance"</span> {
