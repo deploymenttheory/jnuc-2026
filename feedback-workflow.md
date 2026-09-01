@@ -733,6 +733,23 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, slide 21 (`#s18`) links copied and standardised from the training deck.**
+  Joseph: "Copy and standardise the links over from the other presentation." The migrating
+  deck's Links slide carried only two unlinked labels (`Provider: deploymenttheory/jamfpro`,
+  `SDK: jamfpy`) and a TODO chip for URLs, contact and socials; `training_a_team`'s "16 -
+  Resources" slide carries seven links with URLs, grouped Deployment Theory / Community and
+  official, plus a QR code back to itself. Brought the union across into `#s18`, byte-for-byte
+  URLs: the Terraform Registry entry absorbed the deck's own provider line (training's
+  clearer label kept), jamfpy's SDK line stayed URL-less since no URL exists in either deck,
+  and the Demo Repo, Training Repo, Jamf developer docs, Jamf blog, MacAdmins Slack and Neil
+  Martin's starter repo were added. Grouped into `Provider and tooling` / `Docs and community`
+  with new CSS scoped to `#s18` (`.s18-links`, `.s18-col`, `.s18-list`), styled on the deck's
+  existing bordered-column, hairline-divided-row pattern rather than a new one. Left the
+  training deck's QR code off - it encodes a link to that deck, not this one. TODO chip
+  reworded from `TODO Q12: URLs, contact and socials` to `TODO: jamfpy repository URL,
+  contact and socials`, since the URLs are now mostly resolved; speaker notes and
+  `presenter.json` updated to match, and AGENTS.md's slide 21 entry, TODO table and Q12
+  paragraph updated. Presenter sync check prints OK, dash lint clean. No PR yet.
 - **2026-09-01, ShocOne-precedence rule formalised, slide 3's title corrected in the docs.**
   Joseph, in reply to the title mismatch PR #79 flagged (ShocOne's PR #73 retitled slide 3
   "Who uses Jamf Pro in our Org ?"; `docs/timeline-notes.md` row 3 still read "Who touches
