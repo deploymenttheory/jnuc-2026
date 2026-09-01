@@ -718,6 +718,16 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, slide 11 (`#s08`) subtitle added.** Joseph: "Add a subtitle to 11." A
+  `<p class="slide-sub">` now sits under the title, the deck's shared subtitle pattern
+  already used on four other slides: "The same seven steps ran for every wave between
+  December 2025 and January 2026, with GUI write access revoked before each import to make
+  the freeze real." Drawn from the slide's own step text and speaker notes; notes already
+  said the same thing, so notes and `presenter.json` were left alone for `s08`. Also fixed a
+  pre-existing `s01` title mismatch in `presenter.json` (still "Context, requirements,
+  constraints" after ShocOne's PR retitled the slide "Landscape prior to the migration") so
+  the mandatory presenter sync check, which was already failing on main before this change,
+  prints OK. PR #TBD.
 - **2026-09-01, timeline doc simplified and renamed.** `docs/timeline-adherence.md`
   (migrating_an_instance only, empty "Month (fill in)" column, a colon in its H1, stale
   slide 17/18 titles) replaced by `docs/timeline-notes.md`: one three-column table per deck

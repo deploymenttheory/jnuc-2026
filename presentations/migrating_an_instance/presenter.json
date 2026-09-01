@@ -12,7 +12,7 @@
     },
     {
       "id": "s01",
-      "title": "Context, requirements, constraints",
+      "title": "Landscape prior to the migration",
       "timerSeconds": 90,
       "notes": [
         "This is a bank - the constraints are the story. No CLI outside dev means no local applies and no local state: everything flows through VCS-triggered runs.",
