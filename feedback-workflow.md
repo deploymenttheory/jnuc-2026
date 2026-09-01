@@ -5,7 +5,7 @@ session Joseph is talking to) reads this file at the start of every round and fo
 Feedback itself arrives in chat, never in this file. `AGENTS.md` is the reference for the
 repo and the decks; this file only covers the loop. The file is committed (the deploy's
 `*.md` exclude keeps it off the site); edit it in the same commit as any change to the
-process. Last revised 2026-08-28.
+process. Last revised 2026-09-01.
 
 ## Standing rules
 
@@ -492,7 +492,88 @@ purpose.
 
 ## Log
 
-### State at handover (2026-08-28)
+### State at handover (2026-09-01)
+
+A new session taking over should read this before anything else. Per-slide status for
+`presentations/migrating_an_instance`, everything touched since the 2026-08-28 handover
+(PR #51), cross-checked against the `### Done` bullets below, `git log --oneline
+65180db..origin/main`, AGENTS.md's "Current slide order" (still 22 slides) and Sandbox
+section, `ls presentations/sandbox/migrating_an_instance/` and `gh pr list --state open`.
+
+Thursday and Friday's orchestrated rounds:
+
+- Slide 16 (`#s-staging`) - wording made plainer and steps-first, three layouts offered on
+  the sandbox (PR #40); pixel-art icons drawn for the three rebuild steps (PR #49); option
+  B, a numbered run down the left on a rail, accepted (PR #52); the icons redrawn at
+  1024px, Pixelforge project `b4001dd6` kept and its spec amended in place, and
+  `image-rendering` on `.s-staging-art` changed from `pixelated` to `auto` because the
+  smooth downscale is the only one that holds at the 168px display width (PR #58). Settled.
+- Slide 9 (`#s-sentinel`) - round one of visual treatments offered (PR #54), rejected
+  outright with none of the wrappers kept; round two, three fresh treatments deliberately
+  unlike a wall, a staircase or a timeline axis, offered on the sandbox (PR #56). Open -
+  see What is pending.
+- Slide 12 (`#s11`) - four points on the right with three visual treatments offered
+  (PR #53); round one rejected, plain separated-bullet treatments offered instead
+  (PR #55); option D, the four points numbered 1 to 4 in mono in an accent gutter,
+  accepted (PR #57) - Copilot CLI is no longer named on this slide as a result of the
+  point cut in PR #53.
+- Slide 15 (`#s14`) - three terminal treatments offered so the `terraform plan` block reads
+  as a real terminal (PR #38); option B, the block as a real window with chrome, traffic
+  lights and a blinking cursor, accepted (PR #39); gate 2 reworded to say state is stored
+  in a remote backend and to say "AI" rather than naming Copilot CLI (PR #42). Settled.
+- Slide 17 (`#s-pivot`) - the "It got out of hand" pivot statement removed, three display
+  options offered (PR #41); the round closed with no option chosen, live slide kept
+  (PR #44). Settled at the time - see the weekend's work below for what replaced it.
+- Slide 19 (`#s-today`) - deleted, its 60 seconds moved to Questions, deck renumbered to
+  22 slides (PR #43). Settled.
+- By the numbers (`#s16b`) - figures refreshed and three visualisations offered on the
+  sandbox (PR #46); option C, 900 PRs merged as a hero number with the other four figures
+  in a quiet row, accepted, and the date line changed to "Jan 2026 -> Sept 2026" (PR #48).
+  Settled on the slide itself - see What is pending for the notes mismatch and the
+  1,902-commits figure.
+- Non-slide: `docs/timeline-adherence.md` added, one row per slide with a blank "Month
+  (fill in)" column for Joseph (PR #45); the sandbox index entries fix, splitting three
+  merged `<li>`s back into one each (PR #50); the 2026-08-28 handover doc itself (PR #51).
+
+The weekend's collaborator work, merged by ShocOne (collaborators may push or self-merge
+their own PRs under the standing rules; only the orchestrator must not merge a
+collaborator's PR unnamed):
+
+- PR #47 (macdeacon99) - gate 4 on the validation slide reworded so UI write access is
+  revoked before the import rather than after validation, matching the wave-workflow
+  slide's own sequence; Gordon's speaker photo re-cropped to his face.
+- PR #59 (ShocOne) - slides 17 and 18 rewritten as one arc around DRY. `#s-pivot` retitled
+  "One codebase for every instance": the DRY objective in an accent band over a real
+  `jamfpro_static_computer_group` block, its `assigned_computer_ids` the only amber thing
+  on the slide. `#s15b` retitled "Getting as close to DRY as we can": six techniques in a
+  three by two grid, each with real syntax, under a caution that CLI workspaces share a
+  backend; the module tree moved into the reader-mode popover.
+- PR #60 (ShocOne) - follow-up to #59: slide 18's Terraform Stacks card replaced with
+  configuration as data (per-instance YAML read with `yamldecode`), because Stacks needs
+  HCP Terraform or Terraform Enterprise 2.0 on a resource-under-management plan and is
+  unreachable by anyone running Terraform CLI.
+
+What is pending, verified today:
+
+- One sandbox page awaiting a decision: `s-sentinel-round2` (slide 9, options B to D;
+  PR #56).
+- By the numbers' first speaker note still says April 2025 to May 2026 while the slide's
+  date line reads Jan 2026 to Sept 2026 (PR #48) - Joseph to reconcile.
+- The `1,902` commits figure was not in Joseph's updated stats and is probably stale.
+- `docs/timeline-adherence.md`'s "Month (fill in)" column is still empty and its H1 still
+  carries a colon ("Timeline adherence: Migrating an instance").
+- The timeline doc's table no longer matches the deck after the weekend's slide 17/18
+  retitles: row 17 still reads "Growing pains" (now "One codebase for every instance") and
+  row 18 still reads "The module structure" (now "Getting as close to DRY as we can").
+  Flagged here, not edited in the doc - the doc's `data-when` review is Joseph's to do.
+- No open PRs (`gh pr list --state open` returns none). Keynote rebuild not requested.
+  Slide 4's speaker still marked TBC (Dafydd).
+
+Commit range: `65180db` (the 2026-08-27 handover doc, PR #28) to `e2cdebb` (current
+`origin/main` tip, PR #60's merge). PR numbers #38 to #60, of which #47, #59 and #60 are
+collaborator PRs. This docs update is its own PR, #61.
+
+### State at handover (2026-08-28, superseded)
 
 A new session taking over should read this before anything else. Per-slide status for
 `presentations/migrating_an_instance`, everything touched since PR #28, cross-checked
@@ -637,6 +718,17 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, feedback-workflow.md updated for the handover.** A new "State at handover
+  (2026-09-01)" section added covering PRs #38 to #60 (collaborator PRs #47, #59 and #60
+  included) since the 2026-08-28 handover: the Thursday/Friday orchestrated rounds on
+  slides 16, 9, 12, 15, 17, 19 and By the numbers, the weekend's collaborator work on gate
+  4 and the slide 17/18 DRY rewrite plus its Terraform Stacks correction, and what remains
+  pending (the `s-sentinel-round2` sandbox decision, the By the numbers notes mismatch, the
+  stale `1,902` commits figure, and the timeline-adherence doc's now-stale rows for slides
+  17 and 18). The 2026-08-28 section retitled "superseded" and kept unchanged below it.
+  `AGENTS.md` checked against the weekend's changes and needed no changes - ShocOne's PRs
+  had already brought the slide list and TODO table current. "Last revised" bumped to
+  2026-09-01. PR #61.
 - **2026-08-28, slides 17 (`#s-pivot`) and 18 (`#s15b`) rewritten as one arc.** Dafydd
   reframed the pair around DRY: the objective was one Terraform codebase applied to every
   Jamf Pro instance, Jamf Pro does not allow it because the same resource type carries
