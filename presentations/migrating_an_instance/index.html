@@ -866,6 +866,14 @@ body.reader .reader-extra {
 .panel-ours .code { border: var(--bw-3) solid var(--c-accent); }
 .takeaway { margin-top: var(--sp-4); font-weight: 600; }
 
+/* Bottom spacing fix, 2026-09-01: the taller "Ours" code panel plus the takeaway
+   and slide-note left the last line sitting too close to the timeline strip.
+   Tighten the row gaps below the panels and the code panels' own vertical
+   padding rather than shrink type or drop content. */
+#s12 .code { padding: var(--sp-2) var(--sp-3); }
+#s12 .takeaway { margin-top: var(--sp-3); }
+#s12 .slide-note { margin-top: var(--sp-3); }
+
 /* ============================ S13 ============================ */
 /* .lead is shared with s01, s-sentinel, s-staging and s-pivot - do not restyle it here. */
 .lead { font-size: var(--fs-h2); line-height: var(--lh-body); margin-bottom: var(--sp-5); max-width: 1560px; }
