@@ -718,6 +718,14 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, slide 11 (`#s08`) subtitle added.** Joseph: "Add a subtitle to 11." A
+  `<p class="slide-sub">` now sits under the title, the deck's shared subtitle pattern
+  already used on four other slides: "The same seven steps ran for every wave between
+  December 2025 and January 2026, with GUI write access revoked before each import to make
+  the freeze real." Drawn from the slide's own step text and speaker notes; notes already
+  said the same thing, so notes and `presenter.json` were left alone for `s08`. Presenter
+  sync check prints OK (the pre-existing `s01` title mismatch this branch also fixed locally
+  was independently fixed upstream by PR #68 first). PR #71.
 - **2026-09-01, slide 8 (`#s-singletons`) subtitle added.** A `<p class="slide-sub">` under
   the title, matching the deck's existing subtitle pattern (already used on s-workspace,
   s04, s05 and s-pivot): "Settings panes went into state first, imported by default and
