@@ -718,6 +718,14 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, slide 16 (`#s-staging`) pixel-art icons removed for now.** Joseph: "Slide 16
+  remove the graphics for now." The three `s-staging-art` `<img>` data URIs and the
+  now-unused `.s-staging-art` CSS rule are gone; the rail's rings and text close up cleanly
+  with no leftover gaps. `art/` (spec plus PNGs) stays, unused. Speaker notes and
+  `presenter.json` did not mention the icons, so neither needed a change. `AGENTS.md`'s
+  slide 16 entry, `art/` table row and Embedded artwork bullet updated to match. Deterministic
+  removal, no sandbox round. The presenter check prints the pre-existing `title differs: s01`
+  failure only (unrelated, being handled separately) and the dash lint is clean. PR #69.
 - **2026-09-01, slide 12 (`#s11`) flag spelling fixed.** Joseph: "Slide 12 its
   --generate-config-out". Point 4 of the numbered list and its CSS comment named the
   rejected Terraform plan flag with a single leading hyphen; both now read
