@@ -738,7 +738,7 @@ it up - either way it is on disk for a recovering session.
   title-adjacent lines - `s01`'s caption, `s10`'s intro, `s13`'s kicker, `s16b`'s hero
   kicker - are smaller than `.slide-sub` by design (captions/kickers, not subtitles), so
   left unchanged. Updated two stale `.lead`-sharing comments and AGENTS.md's `#s-sentinel`
-  entry to match. Presenter sync check prints OK. PR #TBD.
+  entry to match. Presenter sync check prints OK. PR #76.
 - **2026-09-01, slide 10 (`#s10`) moved to slide 8.** Joseph: "Move 10 to after 7 (so 8),
   update docs accordingly." The whole `#s10` (Resource sequencing) section moved verbatim
   in `index.html` to sit directly after `#s07` (Prerequisites), so the order at 7-10 is now
