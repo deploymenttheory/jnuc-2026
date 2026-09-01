@@ -718,6 +718,12 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, timeline doc simplified and renamed.** `docs/timeline-adherence.md`
+  (migrating_an_instance only, empty "Month (fill in)" column, a colon in its H1, stale
+  slide 17/18 titles) replaced by `docs/timeline-notes.md`: one three-column table per deck
+  (slide number, title, time notes), covering both `migrating_an_instance` and
+  `training_a_team`, built from AGENTS.md's current slide orders and, for the training deck,
+  its `index.html`. `AGENTS.md`'s doc-table entry updated to match. PR #63.
 - **2026-09-01, slide 4 (`#s-workspace`) "one" dropped from the configuration sub-line.**
   Joseph: "remove 'one' from 'one configuration, from the repository'." Deterministic
   wording fix, no options round. The `.wsx-io-sub` span now reads "configuration, from the
