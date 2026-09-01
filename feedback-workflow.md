@@ -739,6 +739,32 @@ it up - either way it is on disk for a recovering session.
   deck's slide-order list, the training deck's slide map and its separate speaker paragraph)
   now say the doc is authoritative and their own lists are descriptions corrected to match
   it. PR #74.
+- **2026-09-01, slide 7 (`#s07`) aligned and given a subtitle.** Joseph: "Slide 7 align
+  everything nicer, the two sides seem disjointed - do not put options in the sandbox,
+  just makes the points on each side align. Add a sub title too." No sandbox round, per
+  Joseph. Added a `.slide-sub` line above `.prep-portions` naming the two-portion split.
+  `.prep-portions`/`.prep-portion` now share a row subgrid (`grid-template-rows: subgrid`,
+  `ul.checklist { display: contents }`) - the same technique as `#s01`'s constraints
+  panels - so the heading and each of the three checklist rows line up across both
+  columns, instead of the left column's longer "Tidy-up" text pushing its own rows down
+  independently of the right. Notes and `presenter.json` unchanged, no facts moved.
+  `AGENTS.md`'s slide-7 entry updated to match. Presenter sync check prints OK (merged in
+  after the slide-2/`s01` title fix below). Dash lint is clean. PR #72.
+- **2026-09-01, collaborator changes now win conflicts with in-flight work.** Joseph:
+  "Remember to always accept PRs over what we're doin." Added to the Standing rules'
+  collaborators bullet and the Gotchas hot-spot resolution bullet: when a collaborator's PR
+  or direct push to `main` conflicts with the orchestrator's or its agents' in-flight work,
+  the incoming collaborator change takes precedence and our side reworks on top of it, never
+  the reverse. Does not change who merges what - a collaborator's PR still only gets merged
+  when Joseph names it. PR #66.
+- **2026-09-01, slide 16 (`#s-staging`) pixel-art icons removed for now.** Joseph: "Slide 16
+  remove the graphics for now." The three `s-staging-art` `<img>` data URIs and the
+  now-unused `.s-staging-art` CSS rule are gone; the rail's rings and text close up cleanly
+  with no leftover gaps. `art/` (spec plus PNGs) stays, unused. Speaker notes and
+  `presenter.json` did not mention the icons, so neither needed a change. `AGENTS.md`'s
+  slide 16 entry, `art/` table row and Embedded artwork bullet updated to match. Deterministic
+  removal, no sandbox round. The presenter check prints the pre-existing `title differs: s01`
+  failure only (unrelated, fixed separately by PR #68) and the dash lint is clean. PR #69.
 - **2026-09-01, slide 11 (`#s08`) subtitle added.** Joseph: "Add a subtitle to 11." A
   `<p class="slide-sub">` now sits under the title, the deck's shared subtitle pattern
   already used on four other slides: "The same seven steps ran for every wave between
