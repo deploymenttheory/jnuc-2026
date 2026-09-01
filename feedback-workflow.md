@@ -718,6 +718,11 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, slide 4 (`#s-workspace`) "one" dropped from the configuration sub-line.**
+  Joseph: "remove 'one' from 'one configuration, from the repository'." Deterministic
+  wording fix, no options round. The `.wsx-io-sub` span now reads "configuration, from the
+  repository". Speaker notes did not quote the phrase, so `presenter.json` needed no change.
+  `AGENTS.md`'s slide 4 entry did not quote it either. No PR yet.
 - **2026-09-01, feedback-workflow.md updated for the handover.** A new "State at handover
   (2026-09-01)" section added covering PRs #38 to #60 (collaborator PRs #47, #59 and #60
   included) since the 2026-08-28 handover: the Thursday/Friday orchestrated rounds on
