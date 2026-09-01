@@ -718,6 +718,16 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, slide 3 team cards given a role line and a "Performs:" label.** Each of the
+  five `#s02` cards now reads team name, a one-line description of what that team does, then
+  a "Performs:" label above its existing access tag, via new `.team-head`, `.team-role`,
+  `.team-performs` and `.team-performs-label` rules; the card's `space-between` pins the
+  performs block to the foot so the tags stay aligned across all five. The slide was
+  retitled to "Who uses Jamf Pro in our Org ?" with a sub-line added, and the closing note
+  rewritten to make the depth-and-breadth point instead of recounting the cards. The
+  `#s02` `aria-label`, the section comment, `presenter.json`'s `s02` title and AGENTS.md's
+  slide 3 entry were all brought in step. Speaker notes were left as they were and still
+  match. Presenter sync check prints OK. PR pending.
 - **2026-09-01, presenter and AGENTS.md aligned with slide 2's retitle.** A collaborator's
   direct push to main (`0d9b2fa`) retitled slide 2's (`#s01`) `<h1>` from "Context,
   requirements, constraints" to "Landscape prior to the migration" (also moving the

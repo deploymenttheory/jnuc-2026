@@ -541,8 +541,21 @@ body.reader .reader-extra {
   padding: var(--sp-4) var(--sp-3);
 }
 .team-name { font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); }
+/* Each card reads top to bottom: who they are, what they do, then what they perform.
+   The head block sits at the top and the performs block is pinned to the foot by the
+   card's space-between, so the tags line up across all five cards. */
+.team-head { display: flex; flex-direction: column; gap: var(--sp-2); }
+.team-role { font-size: var(--fs-caption); color: var(--c-text-muted); line-height: var(--lh-body); }
+.team-performs { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-2); }
+.team-performs-label {
+  font-family: var(--f-mono);
+  font-size: var(--fs-chip);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
 .team .tag { align-self: flex-start; }
-.teams-note { margin-top: var(--sp-4); color: var(--c-text-muted); font-size: var(--fs-caption); }
+.teams-note { margin-top: var(--sp-4); color: var(--c-text-muted); font-size: calc(var(--fs-caption) + 1pt); }
 
 /* ============================ s-workspace ============================ */
 /* The collaborator's rebuild (PR #21, merged 2026-08-27): the definition up front, the
@@ -1318,32 +1331,63 @@ body.presenter #viewport { display: none; }
       </aside>
     </section>
 
-    <!-- ============================ S02 - Who touches Jamf Pro ============================ -->
-    <section class="slide" id="s02" aria-label="Who touches Jamf Pro" data-speaker="Dafydd" data-when="2025-11">
-      <h1 class="slide-title">Who touches Jamf Pro</h1>
+    <!-- ============================ S02 - Who uses Jamf Pro ============================ -->
+    <section class="slide" id="s02" aria-label="Who uses Jamf Pro in our org" data-speaker="Dafydd" data-when="2025-11">
+      <h1 class="slide-title">Who uses Jamf Pro in our Org ?</h1>
+      <p class="slide-sub">Our Jamf Pro instances are accessed by multiple teams due to our org size.</p>
       <div class="teams">
         <div class="card team">
-          <h2 class="team-name">Support</h2>
-          <span class="tag tag-actions">Actions only</span>
+          <div class="team-head">
+            <h2 class="team-name">Support</h2>
+            <p class="team-role">Support functions including the desk and deskside.</p>
+          </div>
+          <div class="team-performs">
+            <span class="team-performs-label">Performs:</span>
+            <span class="tag tag-actions">Actions only</span>
+          </div>
         </div>
         <div class="card team">
-          <h2 class="team-name">Mac@LBG</h2>
-          <span class="tag tag-manage">Resource management</span>
+          <div class="team-head">
+            <h2 class="team-name">Mac@LBG</h2>
+            <p class="team-role">Own the macOS platform and associated infrastructure including Jamf and the macOS build.</p>
+          </div>
+          <div class="team-performs">
+            <span class="team-performs-label">Performs:</span>
+            <span class="tag tag-manage">Resource management</span>
+          </div>
         </div>
         <div class="card team">
-          <h2 class="team-name">Security</h2>
-          <span class="tag tag-manage">Resource management</span>
+          <div class="team-head">
+            <h2 class="team-name">Security</h2>
+            <p class="team-role">Sets the endpoint security posture and proves it is applied across the estate.</p>
+          </div>
+          <div class="team-performs">
+            <span class="team-performs-label">Performs:</span>
+            <span class="tag tag-manage">Resource management</span>
+          </div>
         </div>
         <div class="card team">
-          <h2 class="team-name">App Packaging &amp; Deployment</h2>
-          <span class="tag tag-manage">Resource management</span>
+          <div class="team-head">
+            <h2 class="team-name">App Packaging &amp; Deployment</h2>
+            <p class="team-role">Packages, tests and ships the application catalogue to the fleet.</p>
+          </div>
+          <div class="team-performs">
+            <span class="team-performs-label">Performs:</span>
+            <span class="tag tag-manage">Resource management</span>
+          </div>
         </div>
         <div class="card team">
-          <h2 class="team-name">Auditors</h2>
-          <span class="tag tag-actions">Read-only, on demand</span>
+          <div class="team-head">
+            <h2 class="team-name">Auditors</h2>
+            <p class="team-role">Check that what is configured matches what was approved, when they ask.</p>
+          </div>
+          <div class="team-performs">
+            <span class="team-performs-label">Performs:</span>
+            <span class="tag tag-actions">Read-only, on demand</span>
+          </div>
         </div>
       </div>
-      <p class="teams-note">Five teams touch Jamf Pro - three manage resources, Support takes actions only, auditors verify it. Because the HCL is self-documenting, the repo itself doubles as the audit trail and can be handed straight to auditors.</p>
+      <p class="teams-note">Every one of these teams uses Jamf Pro, but not to the same depth or breadth. Some own whole areas of the configuration, some act on a narrow slice of it day to day, and some only need to read it.</p>
       <aside class="notes">
         <p>Three teams manage resources, one config surface. Support acts on Jamf Pro day to day but doesn't hold resource-management access. Splitting the repo by team would fragment ownership of shared dependencies like categories and scripts.</p>
         <p>Auditors don't manage resources, but they do touch Jamf Pro - and because Terraform HCL is self-documenting, the repo can be given straight to them instead of building a separate audit trail.</p>
