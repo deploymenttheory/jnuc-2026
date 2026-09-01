@@ -571,7 +571,7 @@ What is pending, verified today:
 
 Commit range: `65180db` (the 2026-08-27 handover doc, PR #28) to `e2cdebb` (current
 `origin/main` tip, PR #60's merge). PR numbers #38 to #60, of which #47, #59 and #60 are
-collaborator PRs. This docs update is its own PR, number to be filled in.
+collaborator PRs. This docs update is its own PR, #61.
 
 ### State at handover (2026-08-28, superseded)
 
@@ -728,7 +728,7 @@ it up - either way it is on disk for a recovering session.
   17 and 18). The 2026-08-28 section retitled "superseded" and kept unchanged below it.
   `AGENTS.md` checked against the weekend's changes and needed no changes - ShocOne's PRs
   had already brought the slide list and TODO table current. "Last revised" bumped to
-  2026-09-01. PR number to be filled in.
+  2026-09-01. PR #61.
 - **2026-08-28, slides 17 (`#s-pivot`) and 18 (`#s15b`) rewritten as one arc.** Dafydd
   reframed the pair around DRY: the objective was one Terraform codebase applied to every
   Jamf Pro instance, Jamf Pro does not allow it because the same resource type carries
