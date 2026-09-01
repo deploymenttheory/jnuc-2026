@@ -237,9 +237,9 @@ overlay - keep the two in step when slides move.
    and migration prep, each a tidied checklist, sharing a row subgrid - same technique as
    `#s01`'s constraints panels - so the heading and each checklist row line up across both
    columns) - **Gordon**
-8. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
-9. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception; the shared `.lead` plus three `.gates-3` cards, and nothing else in the section. The round-one alternative wrappers came back out on 2026-08-28 when Joseph rejected them; the open sandbox page `s-sentinel-round2` is pure CSS on this markup, so the section has no slide-specific rules of its own) - **Gordon**
-10. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
+8. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
+9. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
+10. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception; a `.slide-sub` line plus three `.gates-3` cards, and nothing else in the section. Moved off the shared `.lead` onto `.slide-sub` 2026-09-01 - it was the only oversized subtitle in the deck and nothing else on the slide needed `.lead`'s size. The round-one alternative wrappers came back out on 2026-08-28 when Joseph rejected them; the open sandbox page `s-sentinel-round2` is pure CSS on this markup, so the section has no slide-specific rules of its own) - **Gordon**
 11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; seven steps as full-width
     bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
     with a red left edge) - **Dafydd**
@@ -914,9 +914,12 @@ Also check after any structural change:
 - Reader mode: `?reader=1#<slide-id>` - confirms the "More detail" chip placement.
 - Timeline: any slide with low-sitting content - the month labels must not clip at the
   canvas edge and content must not collide with the strip.
-- Timeline grey state: `#s10` and `#s08` share a range, so shoot both - `s10` highlights in
-  accent, `s08` in the muted static state, with the "Dec 25" label accent in both. `#s00`
-  accent, `#s01` grey covers the first-slide case.
+- Timeline grey state: `#s08` and `#s11` share a range, so shoot both - `s08` highlights in
+  accent, `s11` in the muted static state, with the "Dec 25" label accent in both. `#s00`
+  accent, `#s01` grey covers the first-slide case. `#s10` moved to sit directly after `#s07`
+  (see Current slide order): it no longer precedes `#s08` so their old accent/grey pairing is
+  gone, and `#s10`, `#s-singletons` and `#s-sentinel` each now render accent, since none
+  repeats the `data-when` of the slide immediately before it in the new order.
 - Both decks: ArrowRight must advance exactly one slide per press end to end (the `.key`
   build depends on it), and a deck edit means `npm run build:key` + committing the fresh
   `.key`.

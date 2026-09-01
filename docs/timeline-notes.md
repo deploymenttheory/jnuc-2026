@@ -19,9 +19,9 @@ month or range.
 | 5 | Migration outcomes we considered and rejected | Joseph | |
 | 6 | Migration path options | Joseph | |
 | 7 | Prerequisites | Gordon | |
-| 8 | Singletons first | Gordon | |
-| 9 | Guardrails you don't own | Gordon | |
-| 10 | Resource sequencing | Dafydd | |
+| 8 | Resource sequencing | Dafydd | |
+| 9 | Singletons first | Gordon | |
+| 10 | Guardrails you don't own | Gordon | |
 | 11 | Migration wave workflow | Dafydd | |
 | 12 | Tools and helpers | Gordon | |
 | 13 | Dynamic creation with for_each | Joseph | |
