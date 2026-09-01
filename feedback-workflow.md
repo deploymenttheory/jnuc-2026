@@ -723,11 +723,19 @@ it up - either way it is on disk for a recovering session.
   already used on four other slides: "The same seven steps ran for every wave between
   December 2025 and January 2026, with GUI write access revoked before each import to make
   the freeze real." Drawn from the slide's own step text and speaker notes; notes already
-  said the same thing, so notes and `presenter.json` were left alone for `s08`. Also fixed a
+  said the same thing, so notes and `presenter.json` were left alone for `s08`. Also fixed the
   pre-existing `s01` title mismatch in `presenter.json` (still "Context, requirements,
-  constraints" after ShocOne's PR retitled the slide "Landscape prior to the migration") so
-  the mandatory presenter sync check, which was already failing on main before this change,
+  constraints" after ShocOne's PR retitled the slide "Landscape prior to the migration") that
+  PR #64 flagged as unrelated and left outstanding, so the mandatory presenter sync check now
   prints OK. PR #TBD.
+- **2026-09-01, slide 12 (`#s11`) flag spelling fixed.** Joseph: "Slide 12 its
+  --generate-config-out". Point 4 of the numbered list and its CSS comment named the
+  rejected Terraform plan flag with a single leading hyphen; both now read
+  `--generate-config-out`. Speaker notes and `presenter.json` already name the flag in
+  prose with no hyphen prefix, so neither needed a change. `AGENTS.md`'s slide-12 line
+  updated to match. Deterministic wording fix, no sandbox round. The presenter check
+  prints the pre-existing `title differs: s01` failure only (unrelated, being handled
+  separately) and the dash lint is clean. PR #64.
 - **2026-09-01, timeline doc simplified and renamed.** `docs/timeline-adherence.md`
   (migrating_an_instance only, empty "Month (fill in)" column, a colon in its H1, stale
   slide 17/18 titles) replaced by `docs/timeline-notes.md`: one three-column table per deck
