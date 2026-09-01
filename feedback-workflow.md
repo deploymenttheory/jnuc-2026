@@ -729,7 +729,7 @@ it up - either way it is on disk for a recovering session.
   it, not the reverse. `AGENTS.md`'s doc-table entry and both deck sections (the migrating
   deck's slide-order list, the training deck's slide map and its separate speaker paragraph)
   now say the doc is authoritative and their own lists are descriptions corrected to match
-  it.
+  it. PR #74.
 - **2026-09-01, slide 11 (`#s08`) subtitle added.** Joseph: "Add a subtitle to 11." A
   `<p class="slide-sub">` now sits under the title, the deck's shared subtitle pattern
   already used on four other slides: "The same seven steps ran for every wave between
