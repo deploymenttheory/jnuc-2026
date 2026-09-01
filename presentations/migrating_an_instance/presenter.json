@@ -21,7 +21,7 @@
     },
     {
       "id": "s02",
-      "title": "Who touches Jamf Pro",
+      "title": "Who uses Jamf Pro in our Org ?",
       "timerSeconds": 45,
       "notes": [
         "Three teams manage resources, one config surface. Support acts on Jamf Pro day to day but doesn't hold resource-management access. Splitting the repo by team would fragment ownership of shared dependencies like categories and scripts.",

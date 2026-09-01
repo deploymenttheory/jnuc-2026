@@ -53,6 +53,11 @@ process. Last revised 2026-09-01.
   stays open until Joseph names it and says merge it. Joseph, verbatim: "Do not merge any
   PRs you're not told to. Only merge ones your agents make." Mention an open collaborator PR
   in chat in one line when noticed; never merge one on inference, however far along it is.
+  If a collaborator's push or PR conflicts with in-flight work of the orchestrator's own
+  agents, the collaborator's change wins outright - the orchestrator's side reworks on top
+  of it, never the reverse. This is about precedence in a conflict, not about who merges
+  what: a collaborator's PR still only gets merged when Joseph names it. Joseph, verbatim:
+  "Remember to always accept PRs over what we're doin."
 - Do not rebuild the Keynote `.key` until Joseph says so.
 - Commits are authored by Joseph Little (the global git identity) with no `Co-Authored-By`
   trailer, plain human subjects, British English. No emojis, no em or en dashes anywhere.
@@ -418,7 +423,11 @@ stylesheet `../sandbox.css`, and crumb
   slides sit in different regions, so `--no-ff` merges are clean there in practice. Agents
   also edit `presentations/sandbox/<deck>/index.html`, `AGENTS.md`, this file's Log section
   and `presenter.json` directly, so conflicts on those are expected whenever two agents' PRs
-  land close together. Resolution rules per file, never dropping either side:
+  land close together. Resolution rules per file, never dropping either side, apply between
+  two of the orchestrator's own agents. When one side of the conflict is instead a
+  collaborator's direct push or PR, that changes who wins: the collaborator's version takes
+  precedence outright and the orchestrator's or its agent's side reworks on top of it, never
+  the reverse. Joseph, verbatim: "Remember to always accept PRs over what we're doin."
   - This file's Log: keep both sides' bullets under `### Done`, newest first. Under
     `### In flight`, keep whichever line reflects the later state of that slide (a line
     saying a PR is still pending loses to one showing it merged) and drop the other.
@@ -718,6 +727,56 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+
+- **2026-09-01, slide 3 team cards given a role line and a "Performs:" label.** Each of the
+  five `#s02` cards now reads team name, a one-line description of what that team does, then
+  a "Performs:" label above its existing access tag, via new `.team-head`, `.team-role`,
+  `.team-performs` and `.team-performs-label` rules; the card's `space-between` pins the
+  performs block to the foot so the tags stay aligned across all five. The slide was
+  retitled to "Who uses Jamf Pro in our Org ?" with a sub-line added, and the closing note
+  rewritten to make the depth-and-breadth point instead of recounting the cards. The
+  `#s02` `aria-label`, the section comment, `presenter.json`'s `s02` title and AGENTS.md's
+  slide 3 entry were all brought in step. Speaker notes were left as they were and still
+  match. Presenter sync check prints OK. PR #73.
+=======
+- **2026-09-01, speaker column added to timeline notes.** Joseph: "Amend timeline notes to
+  also include the speaker and make sure you enshrine the fact that THIS IS the truth into
+  the docs." `docs/timeline-notes.md` gained a Speaker column in both tables (filled from
+  AGENTS.md's "Current slide order" list for `migrating_an_instance`, TBC kept on slide 4;
+  from `training_a_team/index.html`'s `data-speaker` attributes for the training deck, cross-
+  checked against AGENTS.md's own speaker paragraph, with slides carrying no attribute marked
+  Unassigned), notes column left blank. Doc's intro now states plainly it is the source of
+  truth for order, speaker and timeline correspondence and that the decks get corrected to
+  it, not the reverse. `AGENTS.md`'s doc-table entry and both deck sections (the migrating
+  deck's slide-order list, the training deck's slide map and its separate speaker paragraph)
+  now say the doc is authoritative and their own lists are descriptions corrected to match
+  it. PR #74.
+- **2026-09-01, slide 7 (`#s07`) aligned and given a subtitle.** Joseph: "Slide 7 align
+  everything nicer, the two sides seem disjointed - do not put options in the sandbox,
+  just makes the points on each side align. Add a sub title too." No sandbox round, per
+  Joseph. Added a `.slide-sub` line above `.prep-portions` naming the two-portion split.
+  `.prep-portions`/`.prep-portion` now share a row subgrid (`grid-template-rows: subgrid`,
+  `ul.checklist { display: contents }`) - the same technique as `#s01`'s constraints
+  panels - so the heading and each of the three checklist rows line up across both
+  columns, instead of the left column's longer "Tidy-up" text pushing its own rows down
+  independently of the right. Notes and `presenter.json` unchanged, no facts moved.
+  `AGENTS.md`'s slide-7 entry updated to match. Presenter sync check prints OK (merged in
+  after the slide-2/`s01` title fix below). Dash lint is clean. PR #72.
+- **2026-09-01, collaborator changes now win conflicts with in-flight work.** Joseph:
+  "Remember to always accept PRs over what we're doin." Added to the Standing rules'
+  collaborators bullet and the Gotchas hot-spot resolution bullet: when a collaborator's PR
+  or direct push to `main` conflicts with the orchestrator's or its agents' in-flight work,
+  the incoming collaborator change takes precedence and our side reworks on top of it, never
+  the reverse. Does not change who merges what - a collaborator's PR still only gets merged
+  when Joseph names it. PR #66.
+- **2026-09-01, slide 16 (`#s-staging`) pixel-art icons removed for now.** Joseph: "Slide 16
+  remove the graphics for now." The three `s-staging-art` `<img>` data URIs and the
+  now-unused `.s-staging-art` CSS rule are gone; the rail's rings and text close up cleanly
+  with no leftover gaps. `art/` (spec plus PNGs) stays, unused. Speaker notes and
+  `presenter.json` did not mention the icons, so neither needed a change. `AGENTS.md`'s
+  slide 16 entry, `art/` table row and Embedded artwork bullet updated to match. Deterministic
+  removal, no sandbox round. The presenter check prints the pre-existing `title differs: s01`
+  failure only (unrelated, fixed separately by PR #68) and the dash lint is clean. PR #69.
 - **2026-09-01, slide 11 (`#s08`) subtitle added.** Joseph: "Add a subtitle to 11." A
   `<p class="slide-sub">` now sits under the title, the deck's shared subtitle pattern
   already used on four other slides: "The same seven steps ran for every wave between
@@ -736,6 +795,7 @@ it up - either way it is on disk for a recovering session.
   on the pre-existing `s01` title mismatch (deck says "Landscape prior to the migration",
   presenter.json still says "Context, requirements, constraints"), unrelated to this slide
   and already being handled separately. PR #70.
+
 - **2026-09-01, presenter and AGENTS.md aligned with slide 2's retitle.** A collaborator's
   direct push to main (`0d9b2fa`) retitled slide 2's (`#s01`) `<h1>` from "Context,
   requirements, constraints" to "Landscape prior to the migration" (also moving the
