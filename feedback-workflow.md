@@ -743,7 +743,7 @@ it up - either way it is on disk for a recovering session.
   absorbs the data-file point, and note 3 drops "the two we did not use" for the one,
   Terragrunt. `presenter.json` mirrored to match; AGENTS.md's slide 18 entry updated from
   child modules alone being marked to those four. Presenter sync check prints OK, dash lint
-  is clean. PR pending.
+  is clean. PR #82.
 - **2026-09-01, ShocOne-precedence rule formalised, slide 3's title corrected in the docs.**
   Joseph, in reply to the title mismatch PR #79 flagged (ShocOne's PR #73 retitled slide 3
   "Who uses Jamf Pro in our Org ?"; `docs/timeline-notes.md` row 3 still read "Who touches
