@@ -748,6 +748,18 @@ it up - either way it is on disk for a recovering session.
   from None to Now (advancing); rows 20-22 stay None (carrying), matching the doc's own
   idiom of an advancing slide's own text vs None for a carried state. AGENTS.md's timeline
   bullets updated to match. Presenter sync check prints OK, dash lint clean. PR #84.
+- **2026-09-01, slide 5 (`#s04`) reject reasons reworded.** Dafydd's own edits, committed
+  from the working tree. Reject 1 now says "tf plan execution time" and "our estate", and
+  carries a "Note:" on what happens past ~5,000 resources. Reject 2 splits its trailing
+  clause into its own sentence, no dash. Reject 3 is rewritten off the support-experience
+  argument and onto tenant-unique resources: static groups, tenant seed and breakglass
+  accounts, plus training gaps. Three spelling slips in the new copy were corrected
+  ("break start todown", "truely", "accounts.You") and a stray trailing space dropped.
+  The slide's only speaker note defended the old reason ("troubleshooting must not require
+  a pull request") which is no longer what the slide says, so the note now leads with the
+  tenant-unique argument and keeps the troubleshooting line as the follow-up;
+  `presenter.json` mirrored to match. AGENTS.md's slide 5 entry counts 3 rejects and
+  needed no edit. Presenter sync check prints OK, dash lint is clean. PR #80.
 - **2026-09-01, slide 6 (`#s05`) header row rebuilt for robustness - no wording or layout
   change.** Joseph: "the box has text which is cut off and everything looks a little fucky.
   Words overlapping and all sorts... overhaul the architecture so it's more robust." Root
@@ -776,6 +788,7 @@ it up - either way it is on disk for a recovering session.
   Terragrunt. `presenter.json` mirrored to match; AGENTS.md's slide 18 entry updated from
   child modules alone being marked to those four. Presenter sync check prints OK, dash lint
   is clean. PR #82.
+
 - **2026-09-01, ShocOne-precedence rule formalised, slide 3's title corrected in the docs.**
   Joseph, in reply to the title mismatch PR #79 flagged (ShocOne's PR #73 retitled slide 3
   "Who uses Jamf Pro in our Org ?"; `docs/timeline-notes.md` row 3 still read "Who touches
@@ -786,6 +799,7 @@ it up - either way it is on disk for a recovering session.
   Applied to the pending case: `docs/timeline-notes.md` row 3 corrected to the deck's `#s02`
   `<h1>` text verbatim, "Who uses Jamf Pro in our Org ?". AGENTS.md's slide 3 entry in
   "Current slide order" already carried that title from PR #73 and needed no change. PR #81.
+
 - **2026-09-01, migrating_an_instance's timeline correspondence implemented from the notes
   doc.** Joseph filled in `docs/timeline-notes.md`'s Time notes column for the whole deck
   (verbatim table in the brief); titles and speakers already matched, so only the notes

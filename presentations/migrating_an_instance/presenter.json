@@ -43,7 +43,7 @@
       "title": "Migration outcomes we considered and rejected",
       "timerSeconds": 75,
       "notes": [
-        "Expect pushback on \"not everything in Terraform\" - defend it: troubleshooting must not require a pull request."
+        "Expect pushback on \"not everything in Terraform\" - defend it: some things are genuinely tenant unique, like static group membership and seed or breakglass accounts, and troubleshooting must not require a pull request."
       ]
     },
     {

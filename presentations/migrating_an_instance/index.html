@@ -1477,25 +1477,25 @@ body.presenter #viewport { display: none; }
             <span class="tag tag-rejected">Rejected</span>
             <span>A single workspace for all resources</span>
           </div>
-          <p class="reject-why">Because: Blast radius and plan execution time. Guidance suggests roughly 500 resources per workspace; the estate holds 1,500+. At ~5,000, things break down.</p>
+          <p class="reject-why">Because: Blast radius and tf plan execution time. Guidance suggests roughly 500 resources per workspace; our estate holds 1,500+. Note: At ~5,000+, things start to break down.</p>
         </div>
         <div class="reject">
           <div class="card reject-idea">
             <span class="tag tag-rejected">Rejected</span>
             <span>Per-team Terraform modules scoped to each team's resources</span>
           </div>
-          <p class="reject-why">Because: Every change needs Mac team approval regardless of which repo it lives in. Splitting by team would just mean chasing that same approval across several repos instead of one - one repo keeps every approval flowing through a single place.</p>
+          <p class="reject-why">Because: Every change needs Mac team approval regardless of which repo it lives in. Splitting by team would just mean chasing that same approval across several repos instead of one. One repo keeps every approval flowing through a single place.</p>
         </div>
         <div class="reject">
           <div class="card reject-idea">
             <span class="tag tag-rejected">Rejected</span>
             <span>Managing everything with Terraform</span>
           </div>
-          <p class="reject-why">Because: Static group membership stays unmanaged to protect the support experience - troubleshooting should not require a pull request.</p>
+          <p class="reject-why">Because: There are things that are truly tenant unique, e.g. static groups, tenant seed or breakglass accounts. You may have training gaps.</p>
         </div>
       </div>
       <aside class="notes">
-        <p>Expect pushback on "not everything in Terraform" - defend it: troubleshooting must not require a pull request.</p>
+        <p>Expect pushback on "not everything in Terraform" - defend it: some things are genuinely tenant unique, like static group membership and seed or breakglass accounts, and troubleshooting must not require a pull request.</p>
       </aside>
     </section>
 
