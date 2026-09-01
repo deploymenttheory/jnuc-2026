@@ -298,7 +298,10 @@ overlay - keep the two in step when slides move.
     35-40 contributors, 1,902 commits, 134 HCL files, 19,000+ lines of code - in a quiet
     row below; date range Jan to Sept 2026; option C, accepted 2026-08-28) - **Gordon**
 20. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
-21. `s18` Links - **Anyone**
+21. `s18` Links (copied and standardised from the training deck's "16 - Resources" slide
+    2026-09-01: two groups, Provider and tooling / Docs and community, each a row per
+    link with the URL beneath the label; jamfpy's own repository URL and contact/socials
+    are still outstanding, flagged with a TODO chip) - **Anyone**
 22. `s-thanks` Thank You (template close, royal blue) - **nobody assigned**
 
 The old `s00b` "Who we are" slide was folded into the title slide when the template's
@@ -404,10 +407,13 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
 |---|---|---|
 | `s-pivot` | The rest of the instance-unique list, beyond static computer group members, the push certificate and Volume Purchasing content tokens | Dafydd |
 | `s-staging` | Confirm the month - drives the timeline bar | Gordon Deacon |
-| `s18` | URLs, contact, socials (Q12) | Joseph |
+| `s18` | jamfpy repository URL, contact, socials (Q12) | Joseph |
 
-One chip still carries a question number from the first build (`TODO Q12`). It resolves in
-`spec.md` §4. The old logo/brand-assets chip died when the template
+`s18`'s links were copied and standardised from the training deck's resources slide
+2026-09-01, resolving the URLs half of Q12 (`spec.md` §4); the chip was reworded from
+`TODO Q12: ...` to the standard `TODO: ...` form and now names only what is still
+missing - jamfpy's own repo URL, contact and socials. The old logo/brand-assets chip
+died when the template
 arrived. Three earlier table rows (s02 support-team access model, s04 per-team-modules
 approval complexity, s07 more prep points) remain outstanding as content work but carry no
 chip in the deck; their context is in `spec.md` and the git history of this file.
