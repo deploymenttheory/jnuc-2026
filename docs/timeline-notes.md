@@ -17,9 +17,9 @@ it blank to mean no highlight, or note a month or range.
 | 5 | Migration outcomes we considered and rejected | |
 | 6 | Migration path options | |
 | 7 | Prerequisites | |
-| 8 | Singletons first | |
-| 9 | Guardrails you don't own | |
-| 10 | Resource sequencing | |
+| 8 | Resource sequencing | |
+| 9 | Singletons first | |
+| 10 | Guardrails you don't own | |
 | 11 | Migration wave workflow | |
 | 12 | Tools and helpers | |
 | 13 | Dynamic creation with for_each | |

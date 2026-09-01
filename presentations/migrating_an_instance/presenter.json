@@ -66,6 +66,15 @@
       ]
     },
     {
+      "id": "s10",
+      "title": "Resource sequencing",
+      "timerSeconds": 75,
+      "notes": [
+        "The matrix is a spreadsheet the team built together. Risk scales with dependency fan-in: singletons carry none, scripts and categories and departments stand alone, smart groups and advanced searches and extension attributes sit on top of those, and profiles and policies sit on top of everything - so they close the migration.",
+        "Also considered migrating instance-by-instance - rejected in favour of one resource type at a time, end to end."
+      ]
+    },
+    {
       "id": "s-singletons",
       "title": "Singletons first",
       "timerSeconds": 75,
@@ -81,15 +90,6 @@
       "notes": [
         "Why the ban exists: Terraform runs the bank's whole public cloud - import blocks would let one workspace adopt someone else's resources. The policy is right; it just did not fit a sole-actor migration.",
         "Each import window needed a fresh time-bound exception until the standing exception was granted."
-      ]
-    },
-    {
-      "id": "s10",
-      "title": "Resource sequencing",
-      "timerSeconds": 75,
-      "notes": [
-        "The matrix is a spreadsheet the team built together. Risk scales with dependency fan-in: singletons carry none, scripts and categories and departments stand alone, smart groups and advanced searches and extension attributes sit on top of those, and profiles and policies sit on top of everything - so they close the migration.",
-        "Also considered migrating instance-by-instance - rejected in favour of one resource type at a time, end to end."
       ]
     },
     {

@@ -1619,6 +1619,46 @@ body.presenter #viewport { display: none; }
       </aside>
     </section>
 
+    <!-- ============================ S10 - Resource sequencing ============================ -->
+    <section class="slide" id="s10" aria-label="Resource sequencing" data-speaker="Dafydd" data-when="2025-12:2026-01">
+      <h1 class="slide-title">Resource sequencing</h1>
+      <p class="s10-intro">One resource type at a time, end to end in production - not one instance at a time. The order came from the matrix: a group-built spreadsheet of every resource type and its dependencies.</p>
+      <svg class="s10-svg" viewBox="0 0 1728 784" aria-label="Four migration tiers with dependency arrows flowing downward into the profiles and policies band">
+        <defs>
+          <marker id="s10-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--c-line)"/>
+          </marker>
+        </defs>
+        <rect class="dg-box band-1" x="1" y="1" width="1726" height="156" rx="12"/>
+        <text class="dg-label" x="40" y="88"><tspan class="dg-ix">1</tspan><tspan dx="18">Singletons</tspan></text>
+        <text class="dg-eg" x="1688" y="88" text-anchor="end">client check-in · inventory collection · activation code</text>
+        <rect class="dg-box band-2" x="1" y="207" width="1726" height="156" rx="12"/>
+        <text class="dg-label" x="40" y="294"><tspan class="dg-ix">2</tspan><tspan dx="18">Resources without dependencies</tspan></text>
+        <text class="dg-eg" x="1688" y="294" text-anchor="end">scripts · categories · departments</text>
+        <rect class="dg-box band-3" x="1" y="413" width="1726" height="156" rx="12"/>
+        <text class="dg-label" x="40" y="500"><tspan class="dg-ix">3</tspan><tspan dx="18">Resources that depended on those</tspan></text>
+        <text class="dg-eg" x="1688" y="500" text-anchor="end">smart groups · advanced searches · extension attributes</text>
+        <rect class="dg-box band-5" x="1" y="619" width="1726" height="156" rx="12"/>
+        <text class="dg-label" x="40" y="706"><tspan class="dg-ix">4</tspan><tspan dx="18">Larger dependency resources - profiles and policies</tspan></text>
+        <text class="dg-eg" x="1688" y="706" text-anchor="end">configuration profiles · policies</text>
+        <g marker-end="url(#s10-ah)">
+          <line class="dg-edge" x1="480" y1="164" x2="480" y2="198"/>
+          <line class="dg-edge" x1="864" y1="164" x2="864" y2="198"/>
+          <line class="dg-edge" x1="1248" y1="164" x2="1248" y2="198"/>
+          <line class="dg-edge" x1="480" y1="370" x2="480" y2="404"/>
+          <line class="dg-edge" x1="864" y1="370" x2="864" y2="404"/>
+          <line class="dg-edge" x1="1248" y1="370" x2="1248" y2="404"/>
+          <line class="dg-edge" x1="480" y1="576" x2="480" y2="610"/>
+          <line class="dg-edge" x1="864" y1="576" x2="864" y2="610"/>
+          <line class="dg-edge" x1="1248" y1="576" x2="1248" y2="610"/>
+        </g>
+      </svg>
+      <aside class="notes">
+        <p>The matrix is a spreadsheet the team built together. Risk scales with dependency fan-in: singletons carry none, scripts and categories and departments stand alone, smart groups and advanced searches and extension attributes sit on top of those, and profiles and policies sit on top of everything - so they close the migration.</p>
+        <p>Also considered migrating instance-by-instance - rejected in favour of one resource type at a time, end to end.</p>
+      </aside>
+    </section>
+
     <!-- ============================ Singletons first ============================ -->
     <section class="slide" id="s-singletons" aria-label="Singletons first" data-speaker="Gordon" data-when="2025-11">
       <h1 class="slide-title">Singletons first</h1>
@@ -1688,46 +1728,6 @@ body.presenter #viewport { display: none; }
       <aside class="notes">
         <p>Why the ban exists: Terraform runs the bank's whole public cloud - import blocks would let one workspace adopt someone else's resources. The policy is right; it just did not fit a sole-actor migration.</p>
         <p>Each import window needed a fresh time-bound exception until the standing exception was granted.</p>
-      </aside>
-    </section>
-
-    <!-- ============================ S10 - Resource sequencing ============================ -->
-    <section class="slide" id="s10" aria-label="Resource sequencing" data-speaker="Dafydd" data-when="2025-12:2026-01">
-      <h1 class="slide-title">Resource sequencing</h1>
-      <p class="s10-intro">One resource type at a time, end to end in production - not one instance at a time. The order came from the matrix: a group-built spreadsheet of every resource type and its dependencies.</p>
-      <svg class="s10-svg" viewBox="0 0 1728 784" aria-label="Four migration tiers with dependency arrows flowing downward into the profiles and policies band">
-        <defs>
-          <marker id="s10-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M0 0 L10 5 L0 10 z" fill="var(--c-line)"/>
-          </marker>
-        </defs>
-        <rect class="dg-box band-1" x="1" y="1" width="1726" height="156" rx="12"/>
-        <text class="dg-label" x="40" y="88"><tspan class="dg-ix">1</tspan><tspan dx="18">Singletons</tspan></text>
-        <text class="dg-eg" x="1688" y="88" text-anchor="end">client check-in · inventory collection · activation code</text>
-        <rect class="dg-box band-2" x="1" y="207" width="1726" height="156" rx="12"/>
-        <text class="dg-label" x="40" y="294"><tspan class="dg-ix">2</tspan><tspan dx="18">Resources without dependencies</tspan></text>
-        <text class="dg-eg" x="1688" y="294" text-anchor="end">scripts · categories · departments</text>
-        <rect class="dg-box band-3" x="1" y="413" width="1726" height="156" rx="12"/>
-        <text class="dg-label" x="40" y="500"><tspan class="dg-ix">3</tspan><tspan dx="18">Resources that depended on those</tspan></text>
-        <text class="dg-eg" x="1688" y="500" text-anchor="end">smart groups · advanced searches · extension attributes</text>
-        <rect class="dg-box band-5" x="1" y="619" width="1726" height="156" rx="12"/>
-        <text class="dg-label" x="40" y="706"><tspan class="dg-ix">4</tspan><tspan dx="18">Larger dependency resources - profiles and policies</tspan></text>
-        <text class="dg-eg" x="1688" y="706" text-anchor="end">configuration profiles · policies</text>
-        <g marker-end="url(#s10-ah)">
-          <line class="dg-edge" x1="480" y1="164" x2="480" y2="198"/>
-          <line class="dg-edge" x1="864" y1="164" x2="864" y2="198"/>
-          <line class="dg-edge" x1="1248" y1="164" x2="1248" y2="198"/>
-          <line class="dg-edge" x1="480" y1="370" x2="480" y2="404"/>
-          <line class="dg-edge" x1="864" y1="370" x2="864" y2="404"/>
-          <line class="dg-edge" x1="1248" y1="370" x2="1248" y2="404"/>
-          <line class="dg-edge" x1="480" y1="576" x2="480" y2="610"/>
-          <line class="dg-edge" x1="864" y1="576" x2="864" y2="610"/>
-          <line class="dg-edge" x1="1248" y1="576" x2="1248" y2="610"/>
-        </g>
-      </svg>
-      <aside class="notes">
-        <p>The matrix is a spreadsheet the team built together. Risk scales with dependency fan-in: singletons carry none, scripts and categories and departments stand alone, smart groups and advanced searches and extension attributes sit on top of those, and profiles and policies sit on top of everything - so they close the migration.</p>
-        <p>Also considered migrating instance-by-instance - rejected in favour of one resource type at a time, end to end.</p>
       </aside>
     </section>
 
