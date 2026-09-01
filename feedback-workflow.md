@@ -747,7 +747,7 @@ it up - either way it is on disk for a recovering session.
   `#s01`, `#s10`, `#s15b`, `#s16b` and `#s-thanks`. `docs/timeline-notes.md` row 19 changed
   from None to Now (advancing); rows 20-22 stay None (carrying), matching the doc's own
   idiom of an advancing slide's own text vs None for a carried state. AGENTS.md's timeline
-  bullets updated to match. Presenter sync check prints OK, dash lint clean. PR pending.
+  bullets updated to match. Presenter sync check prints OK, dash lint clean. PR #84.
 - **2026-09-01, slide 6 (`#s05`) header row rebuilt for robustness - no wording or layout
   change.** Joseph: "the box has text which is cut off and everything looks a little fucky.
   Words overlapping and all sorts... overhaul the architecture so it's more robust." Root
