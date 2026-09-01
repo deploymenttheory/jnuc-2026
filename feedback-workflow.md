@@ -742,7 +742,7 @@ it up - either way it is on disk for a recovering session.
   including in Joseph's own docs, which get corrected to match rather than the reverse.
   Applied to the pending case: `docs/timeline-notes.md` row 3 corrected to the deck's `#s02`
   `<h1>` text verbatim, "Who uses Jamf Pro in our Org ?". AGENTS.md's slide 3 entry in
-  "Current slide order" already carried that title from PR #73 and needed no change. PR #80.
+  "Current slide order" already carried that title from PR #73 and needed no change. PR #81.
 - **2026-09-01, migrating_an_instance's timeline correspondence implemented from the notes
   doc.** Joseph filled in `docs/timeline-notes.md`'s Time notes column for the whole deck
   (verbatim table in the brief); titles and speakers already matched, so only the notes
