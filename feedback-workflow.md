@@ -733,6 +733,21 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, migrating_an_instance's timeline strip ends at March then Now.** Joseph:
+  "Remove the timeline after march, it's no longer used. it can just go to "now" after
+  then. Fit it to the slides obviously." Dropped the strip's Apr/May/Jun/Jul 2026 stops
+  (unused since PR #79 capped the highest `data-when` at March) and replaced them with a
+  single Now stop after Mar - six stops total (Nov 25, Dec, Jan 26, Feb, Mar, Now). `now` is
+  a sentinel appended as the script's `MONTHS` array's last entry, matched by the existing
+  `indexOf` lookup with no other change to the parsing. `#s16b` (By the numbers) now
+  advances to `data-when="now"` (bright accent, was carrying March); `#s17`, `#s18` and
+  `#s-thanks` repeat `now` muted, the deck's existing carry-forward idiom. Cells are
+  `flex: 1` inside the strip's fixed-width container, so removing three and adding one
+  refits the remaining six evenly with no CSS change - confirmed with screenshots of
+  `#s01`, `#s10`, `#s15b`, `#s16b` and `#s-thanks`. `docs/timeline-notes.md` row 19 changed
+  from None to Now (advancing); rows 20-22 stay None (carrying), matching the doc's own
+  idiom of an advancing slide's own text vs None for a carried state. AGENTS.md's timeline
+  bullets updated to match. Presenter sync check prints OK, dash lint clean. PR pending.
 - **2026-09-01, ShocOne-precedence rule formalised, slide 3's title corrected in the docs.**
   Joseph, in reply to the title mismatch PR #79 flagged (ShocOne's PR #73 retitled slide 3
   "Who uses Jamf Pro in our Org ?"; `docs/timeline-notes.md` row 3 still read "Who touches
