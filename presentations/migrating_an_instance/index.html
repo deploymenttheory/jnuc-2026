@@ -888,7 +888,7 @@ body.reader .reader-extra {
 #s12 .slide-note { margin-top: var(--sp-3); }
 
 /* ============================ S13 ============================ */
-/* .lead is shared with s01, s-sentinel, s-staging and s-pivot - do not restyle it here. */
+/* .lead is shared with s-staging - do not restyle it here. */
 .lead { font-size: var(--fs-h2); line-height: var(--lh-body); margin-bottom: var(--sp-5); max-width: 1560px; }
 
 /* The exception and its reason, nothing else. Accepted 2026-08-27 - option D from the
@@ -981,11 +981,15 @@ body.reader .reader-extra {
    to bottom as a sequence, threaded on a vertical rail down the left with the verb and its
    sentence on one line each - no cards, no borders. The lead and the takeaway sit in a
    quiet right-hand column, out of the rail's way. Everything is scoped to #s-staging so
-   the shared .lead and .gate* rules stay exactly as #s01, #s-sentinel, #s-pivot and #s14
-   need them. */
+   the shared .lead rule stays exactly as #s-staging needs it, and the shared .gate* rules
+   stay exactly as #s-sentinel and #s14 need them.
+   Rescaled 2026-09-01 after the pixel-art step icons came off the rings: the rail was only
+   filling about half the canvas, so the ring, verb and row spacing grew to fill it with type
+   and whitespace instead - the sentence stays at --fs-body so all three rows hold to one
+   line each, per the option B rule above. */
 #s-staging {
   display: grid;
-  grid-template-columns: 1fr 380px;
+  grid-template-columns: 1fr 340px;
   grid-template-rows: auto 1fr;
   column-gap: var(--sp-5);
 }
@@ -1012,16 +1016,16 @@ body.reader .reader-extra {
   align-self: center;
   display: flex;
   flex-direction: column;
-  gap: var(--sp-6);
+  gap: calc(var(--sp-6) + var(--sp-4));
   position: relative;
 }
 /* the rail runs between the first and last ring centres - the rings punch through it */
 #s-staging .gates-3::before {
   content: "";
   position: absolute;
-  left: 34px;
-  top: 59px;
-  bottom: 59px;
+  left: 60px;
+  top: 100px;
+  bottom: 100px;
   width: var(--bw-2);
   background: var(--c-border);
 }
@@ -1031,7 +1035,7 @@ body.reader .reader-extra {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0;
-  padding: var(--sp-3) 0 var(--sp-3) 120px;
+  padding: var(--sp-4) 0 var(--sp-4) 184px;
   background: none;
   border: none;
   border-radius: 0;
@@ -1040,21 +1044,21 @@ body.reader .reader-extra {
 #s-staging .gate-num {
   position: absolute;
   left: 0;
-  top: var(--sp-3);
-  width: 70px;
-  height: 70px;
+  top: var(--sp-4);
+  width: 120px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--fs-body);
-  border: var(--bw-2) solid currentColor;
+  font-size: var(--fs-h2);
+  border: var(--bw-3) solid currentColor;
   border-radius: 50%;
   background: var(--c-bg);
 }
 #s-staging .gate p { display: block; flex: 1; font-size: var(--fs-body); }
 #s-staging .gate strong {
   font-family: var(--f-display);
-  font-size: var(--fs-h2);
+  font-size: var(--fs-h1);
   font-weight: 700;
   line-height: var(--lh-tight);
   color: var(--c-accent);
@@ -1384,7 +1388,7 @@ body.presenter #viewport { display: none; }
     <section class="slide" id="s-workspace" aria-label="What a Terraform workspace is" data-speaker="Dafydd">
       <h1 class="slide-title">What a Terraform workspace is</h1>
 
-      <p class="slide-sub">One set of Terraform code linked to one state file. How you carve a Jamf Pro instance into workspaces is a decision worth taking slowly, and there are more lenses on it than you would expect.</p>
+      <p class="slide-sub">How you carve a Jamf Pro instance into tf workspaces is a decision worth making carefully, and there are more lenses on it than you would expect.</p>
 
       <div class="wsx">
         <div class="card wsx-io">
@@ -1422,26 +1426,26 @@ body.presenter #viewport { display: none; }
       </div>
 
       <div class="wsx-lenses">
-        <p class="wsx-lenses-lead">Deciding how to carve an instance into workspaces is the part to slow down on. It is far cheaper to think it through than to re-cut it later. Four lenses come first:</p>
+        <p class="wsx-lenses-lead">It is far cheaper to think the state carve-up through up front than to re-cut it later:</p>
         <div class="wsx-lens-grid">
           <div class="wsx-lens">
             <span class="wsx-lens-name">Team structure</span>
-            <span class="wsx-lens-desc">Who owns what, and who needs to ship without waiting on somebody else's apply.</span>
+            <span class="wsx-lens-desc">Who owns what, and who needs to ship what without waiting on somebody else's tf apply.</span>
           </div>
           <div class="wsx-lens">
-            <span class="wsx-lens-name">Deployment frequency</span>
-            <span class="wsx-lens-desc">How often each part actually changes, and whether those rates are anywhere near each other.</span>
+            <span class="wsx-lens-name">Blast radius</span>
+            <span class="wsx-lens-desc">If someone makes a mistake, how far do you want that impact to reach?</span>
           </div>
           <div class="wsx-lens">
             <span class="wsx-lens-name">Scale</span>
-            <span class="wsx-lens-desc">Resource count, state size and plan time. Guidance puts the ceiling at roughly 500 resources per workspace.</span>
+            <span class="wsx-lens-desc">Total workspace resource count, state size and plan time. Guidance puts the ceiling at roughly 500 resources per workspace.</span>
           </div>
           <div class="wsx-lens">
             <span class="wsx-lens-name">What changes together</span>
-            <span class="wsx-lens-desc">Things that move at the same time belong together. Things that never move should not be dragged along.</span>
+            <span class="wsx-lens-desc">Things that move at the same time typically belong together. Things that never move should not be dragged along.</span>
           </div>
         </div>
-        <p class="caption muted wsx-lenses-note">Then refine against the rest: blast radius and risk appetite, dependencies between workspaces, environment strategy, approval and audit requirements, and how much orchestration you can realistically operate.</p>
+        <p class="caption muted wsx-lenses-note">Then refine against further factors: dependencies between workspaces, environment strategy, approval and audit requirements, and how much orchestration you can realistically operate as an engineering team.</p>
       </div>
       <aside class="notes">
         <p>Define it plainly first - one set of Terraform code linked to one state file. Walk the diagram left to right: code goes in, the workspace is the boundary that holds the state, the variables and secrets, the permissions and the workflow, and a run comes out as a plan, then a policy check, then an apply against one Jamf Pro instance.</p>
@@ -1460,21 +1464,21 @@ body.presenter #viewport { display: none; }
             <span class="tag tag-rejected">Rejected</span>
             <span>A single workspace for all resources</span>
           </div>
-          <p class="reject-why">Blast radius and plan execution time. Guidance suggests roughly 500 resources per workspace; the estate holds 1,500+. At ~5,000, things break down.</p>
+          <p class="reject-why">Because: Blast radius and plan execution time. Guidance suggests roughly 500 resources per workspace; the estate holds 1,500+. At ~5,000, things break down.</p>
         </div>
         <div class="reject">
           <div class="card reject-idea">
             <span class="tag tag-rejected">Rejected</span>
             <span>Per-team Terraform modules scoped to each team's resources</span>
           </div>
-          <p class="reject-why">Every change needs Mac team approval regardless of which repo it lives in. Splitting by team would just mean chasing that same approval across several repos instead of one - one repo keeps every approval flowing through a single place.</p>
+          <p class="reject-why">Because: Every change needs Mac team approval regardless of which repo it lives in. Splitting by team would just mean chasing that same approval across several repos instead of one - one repo keeps every approval flowing through a single place.</p>
         </div>
         <div class="reject">
           <div class="card reject-idea">
             <span class="tag tag-rejected">Rejected</span>
             <span>Managing everything with Terraform</span>
           </div>
-          <p class="reject-why">Static group membership stays unmanaged to protect the support experience - troubleshooting should not require a pull request.</p>
+          <p class="reject-why">Because: Static group membership stays unmanaged to protect the support experience - troubleshooting should not require a pull request.</p>
         </div>
       </div>
       <aside class="notes">
@@ -1735,7 +1739,7 @@ body.presenter #viewport { display: none; }
     <!-- ============================ Getting past Sentinel ============================ -->
     <section class="slide" id="s-sentinel" aria-label="Guardrails you don't own" data-speaker="Gordon" data-when="2025-12">
       <h1 class="slide-title">Guardrails you don't own</h1>
-      <p class="lead">At LBG, every Terraform run - across the bank's entire public cloud estate - passes through Sentinel policy checks before it can apply. One of those policies bans <code class="inline">import</code> blocks outright, because importing lets a workspace adopt resources someone else already manages.</p>
+      <p class="slide-sub">At LBG, every Terraform run - across the bank's entire public cloud estate - passes through Sentinel policy checks before it can apply. One of those policies bans <code class="inline">import</code> blocks outright, because importing lets a workspace adopt resources someone else already manages.</p>
       <ol class="gates gates-3">
         <li class="card gate gate-final">
           <span class="gate-num">1</span>

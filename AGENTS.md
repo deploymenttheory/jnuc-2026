@@ -247,7 +247,7 @@ overlay - keep the two in step when slides move.
    columns) - **Gordon**
 8. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
 9. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
-10. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception; the shared `.lead` plus three `.gates-3` cards, and nothing else in the section. The round-one alternative wrappers came back out on 2026-08-28 when Joseph rejected them; the open sandbox page `s-sentinel-round2` is pure CSS on this markup, so the section has no slide-specific rules of its own) - **Gordon**
+10. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception; a `.slide-sub` line plus three `.gates-3` cards, and nothing else in the section. Moved off the shared `.lead` onto `.slide-sub` 2026-09-01 - it was the only oversized subtitle in the deck and nothing else on the slide needed `.lead`'s size. The round-one alternative wrappers came back out on 2026-08-28 when Joseph rejected them; the open sandbox page `s-sentinel-round2` is pure CSS on this markup, so the section has no slide-specific rules of its own) - **Gordon**
 11. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; seven steps as full-width
     bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
     with a red left edge) - **Dafydd**
