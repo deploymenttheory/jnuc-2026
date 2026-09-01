@@ -749,7 +749,7 @@ it up - either way it is on disk for a recovering session.
   reworded from `TODO Q12: URLs, contact and socials` to `TODO: jamfpy repository URL,
   contact and socials`, since the URLs are now mostly resolved; speaker notes and
   `presenter.json` updated to match, and AGENTS.md's slide 21 entry, TODO table and Q12
-  paragraph updated. Presenter sync check prints OK, dash lint clean. No PR yet.
+  paragraph updated. Presenter sync check prints OK, dash lint clean. PR #85.
 - **2026-09-01, migrating_an_instance's timeline strip ends at March then Now.** Joseph:
   "Remove the timeline after march, it's no longer used. it can just go to "now" after
   then. Fit it to the slides obviously." Dropped the strip's Apr/May/Jun/Jul 2026 stops
