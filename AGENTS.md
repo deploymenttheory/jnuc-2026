@@ -225,7 +225,10 @@ overlay - keep the two in step when slides move.
 
 1. `s00` Title (template session-title layout with the three speaker cards) - **All (intros)**
 2. `s01` Landscape prior to the migration (our environment before the migration: Sandbox / Staging / Production as one three-segment chevron arrow, `clip-path` rules scoped to `#s01`, no annotations, under a "Context" heading inside the pipeline-band card; six constraints as plain rows in two bordered column panels, Requirements / Constraints, with a subgrid keeping each panel's title and row heights aligned, via `.constraints-col` and `.constraints-title` scoped to `#s01`) - **Dafydd**
-3. `s02` Who touches Jamf Pro - **Dafydd**
+3. `s02` Who uses Jamf Pro in our Org ? (five team cards, each reading team name, a one-line
+   description of what that team does, then a "Performs:" label above the existing access tag,
+   via `.team-head`, `.team-role`, `.team-performs` and `.team-performs-label`; the closing note
+   makes the depth-and-breadth point rather than recounting the cards) - **Dafydd**
 4. `s-workspace` What a Terraform workspace is (definition, HashiCorp workspace-anatomy
    diagram, four lenses that decide how an instance gets carved up) - **Dafydd (TBC)**
 5. `s04` Migration outcomes we considered and rejected (3 architectural rejects; the other 2 moved into the story) - **Joseph**
