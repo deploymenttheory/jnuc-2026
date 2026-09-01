@@ -718,6 +718,18 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, slide 7 (`#s07`) aligned and given a subtitle.** Joseph: "Slide 7 align
+  everything nicer, the two sides seem disjointed - do not put options in the sandbox,
+  just makes the points on each side align. Add a sub title too." No sandbox round, per
+  Joseph. Added a `.slide-sub` line above `.prep-portions` naming the two-portion split.
+  `.prep-portions`/`.prep-portion` now share a row subgrid (`grid-template-rows: subgrid`,
+  `ul.checklist { display: contents }`) - the same technique as `#s01`'s constraints
+  panels - so the heading and each of the three checklist rows line up across both
+  columns, instead of the left column's longer "Tidy-up" text pushing its own rows down
+  independently of the right. Notes and `presenter.json` unchanged, no facts moved.
+  `AGENTS.md`'s slide-7 entry updated to match. The presenter check prints the
+  pre-existing `title differs: s01` failure only (unrelated, confirmed present on `main`
+  before this change) and the dash lint is clean. PR #65.
 - **2026-09-01, slide 12 (`#s11`) flag spelling fixed.** Joseph: "Slide 12 its
   --generate-config-out". Point 4 of the numbered list and its CSS comment named the
   rejected Terraform plan flag with a single leading hyphen; both now read

@@ -749,11 +749,15 @@ body.reader .reader-extra {
 .check-lead { font-size: var(--fs-body); font-weight: 600; line-height: var(--lh-tight); color: var(--c-accent); }
 .check-detail { font-size: var(--fs-caption); line-height: var(--lh-body); color: var(--c-text-muted); }
 /* Two-portion split, sandbox option D, accepted 2026-08-27: instance prep and migration
-   prep side by side. */
-.prep-portions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); align-items: start; }
-.prep-heading { font-family: var(--f-display); font-size: var(--fs-h2); font-weight: 700; line-height: var(--lh-tight); color: var(--c-accent); margin-bottom: var(--sp-3); }
+   prep side by side. Row grid added 2026-09-01 (same subgrid technique as #s01's
+   constraints panels) so the heading and each of the three checklist rows share a
+   height across both columns, rather than each side wrapping independently and
+   drifting out of line. */
+#s07 .prep-portions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+#s07 .prep-portion { display: grid; grid-template-rows: subgrid; grid-row: span 4; gap: var(--sp-4); align-items: start; }
+#s07 .prep-portion .checklist { display: contents; }
+.prep-heading { font-family: var(--f-display); font-size: var(--fs-h2); font-weight: 700; line-height: var(--lh-tight); color: var(--c-accent); }
 .prep-portion-migration { padding-left: var(--sp-4); border-left: var(--bw-1) solid var(--c-hairline); }
-.prep-portion .checklist { max-width: none; gap: var(--sp-4); }
 
 /* ============================ S08 ============================ */
 /* Seven bands stepping down the slide (option C, accepted 2026-08-27): one step per
@@ -1560,6 +1564,7 @@ body.presenter #viewport { display: none; }
     <!-- ============================ S07 - Prerequisites ============================ -->
     <section class="slide" id="s07" aria-label="Prerequisites" data-speaker="Gordon" data-when="2025-11">
       <h1 class="slide-title">Prerequisites</h1>
+      <p class="slide-sub">The checks split into two groups - what the instance itself needs ready, and what the migration needs ready.</p>
       <div class="prep-portions">
         <div class="prep-portion">
           <h2 class="prep-heading">Instance prep</h2>
