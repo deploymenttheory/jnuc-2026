@@ -718,6 +718,16 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, slide 8 (`#s-singletons`) subtitle added.** A `<p class="slide-sub">` under
+  the title, matching the deck's existing subtitle pattern (already used on s-workspace,
+  s04, s05 and s-pivot): "Settings panes went into state first, imported by default and
+  applied only as a fallback." Drawn from the slide's own body copy and notes, no new facts
+  added. Speaker notes and presenter.json untouched - the subtitle changes nothing they
+  say. AGENTS.md's slide 8 summary checked and still accurate, left unchanged. Screenshot
+  confirms no overflow and clearance above the timeline strip. Presenter check fails only
+  on a pre-existing `s01` title mismatch (deck says "Landscape prior to the migration",
+  presenter.json still says "Context, requirements, constraints") introduced by an earlier
+  merge unrelated to this slide - left for the orchestrator. PR TBC.
 - **2026-09-01, feedback-workflow.md updated for the handover.** A new "State at handover
   (2026-09-01)" section added covering PRs #38 to #60 (collaborator PRs #47, #59 and #60
   included) since the 2026-08-28 handover: the Thursday/Friday orchestrated rounds on
