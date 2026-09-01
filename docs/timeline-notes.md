@@ -12,28 +12,28 @@ month or range.
 
 | Slide | Title | Speaker | Time notes |
 |---|---|---|---|
-| 1 | Title | All (intros) | |
-| 2 | Landscape prior to the migration | Dafydd | |
-| 3 | Who touches Jamf Pro | Dafydd | |
-| 4 | What a Terraform workspace is | Dafydd (TBC) | |
-| 5 | Migration outcomes we considered and rejected | Joseph | |
-| 6 | Migration path options | Joseph | |
-| 7 | Prerequisites | Gordon | |
-| 8 | Resource sequencing | Dafydd | |
-| 9 | Singletons first | Gordon | |
-| 10 | Guardrails you don't own | Gordon | |
-| 11 | Migration wave workflow | Dafydd | |
-| 12 | Tools and helpers | Gordon | |
-| 13 | Dynamic creation with for_each | Joseph | |
-| 14 | for_each exceptions | Joseph | |
-| 15 | Validating a migration | Joseph | |
-| 16 | Rebuilding staging | Dafydd | |
-| 17 | One codebase for every instance | Joseph | |
-| 18 | Getting as close to DRY as we can | Dafydd | |
-| 19 | By the numbers | Gordon | |
-| 20 | Questions | Anyone | |
-| 21 | Links | Anyone | |
-| 22 | Thank You | nobody assigned | |
+| 1 | Title | All (intros) | None |
+| 2 | Landscape prior to the migration | Dafydd | Context |
+| 3 | Who uses Jamf Pro in our Org ? | Dafydd | Context |
+| 4 | What a Terraform workspace is | Dafydd (TBC) | Context |
+| 5 | Migration outcomes we considered and rejected | Joseph | Nov 25 |
+| 6 | Migration path options | Joseph | Nov 25 |
+| 7 | Prerequisites | Gordon | Nov 25 |
+| 8 | Resource sequencing | Dafydd | Nov 25 |
+| 9 | Singletons first | Gordon | December 25 |
+| 10 | Guardrails you don't own | Gordon | None |
+| 11 | Migration wave workflow | Dafydd | None |
+| 12 | Tools and helpers | Gordon | None |
+| 13 | Dynamic creation with for_each | Joseph | Jan 2026 |
+| 14 | for_each exceptions | Joseph | None |
+| 15 | Validating a migration | Joseph | None |
+| 16 | Rebuilding staging | Dafydd | Feb 2026 |
+| 17 | One codebase for every instance | Joseph | None |
+| 18 | Getting as close to DRY as we can | Dafydd | March 2026 |
+| 19 | By the numbers | Gordon | None |
+| 20 | Questions | Anyone | None |
+| 21 | Links | Anyone | None |
+| 22 | Thank You | nobody assigned | None |
 
 ## ClickOps to GitOps (presentations/training_a_team)
 

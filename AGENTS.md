@@ -159,21 +159,29 @@ quotes is stale.
   auto` and let the browser downscale smoothly (Chrome treats `crisp-edges` as nearest, so
   it is not a third option). Source files and the Pixelforge spec go in the deck's `art/`
   directory, never linked.
-- **Dates live on the persistent timeline, not in slide content.** Every `<section>` carries
-  `data-when="YYYY-MM"` or `data-when="YYYY-MM:YYYY-MM"` (a month range). A fixed strip at
-  the bottom of the stage runs Nov 2025 -> Jul 2026 (present day); the active slide's range
-  is highlighted, earlier months tinted. Pre-migration scene-setting slides sit at Nov 2025;
-  keep positions monotonically non-decreasing through the deck. Don't add per-slide date
-  chips. Elements that sit near a slide's bottom-left must clear the strip - use the
-  `--tl-clear` token for their bottom offset. The template's brand footer (jamf + JNUC
-  logos) appears on the title, Questions and Thank You slides only, sitting above the strip;
-  content slides keep the timeline strip and counter as their bottom chrome - the two would
-  collide otherwise, and the strip is deck content.
+- **Dates live on the persistent timeline, not in slide content.** A `<section>` carries
+  `data-when="YYYY-MM"` or `data-when="YYYY-MM:YYYY-MM"` (a month range), or carries no
+  `data-when` at all. A fixed strip at the bottom of the stage runs Nov 2025 -> Jul 2026
+  (present day); the active slide's range is highlighted, earlier months tinted. The title
+  slide and the three pre-migration context slides (landscape, who touches Jamf Pro, what a
+  workspace is) carry no `data-when`, so the strip stays blank through them - there is
+  nothing to highlight until the story reaches its first dated slide. From there, keep
+  positions monotonically non-decreasing through the deck. Don't add per-slide date chips.
+  Elements that sit near a slide's bottom-left must clear the strip - use the `--tl-clear`
+  token for their bottom offset. The template's brand footer (jamf + JNUC logos) appears on
+  the title, Questions and Thank You slides only, sitting above the strip; content slides
+  keep the timeline strip and counter as their bottom chrome - the two would collide
+  otherwise, and the strip is deck content.
 - **The highlight only goes accent when the story moves.** A slide whose `data-when` range
   repeats the previous slide's renders those cells in the muted static state (via
-  `#timeline.tl-static`); the month label stays accent either way. Comparison is deck order,
-  so a slide's state is fixed regardless of how you navigated to it, and the first slide
-  always counts as advancing. Reordering slides or editing a `data-when` therefore changes
+  `#timeline.tl-static`); the month label stays accent either way. This is also how a slide
+  that should not move the story forward carries the previous slide's state: it repeats that
+  slide's exact `data-when` value. Omitting `data-when` does not do this - the script
+  computes each slide's highlight solely from its own attribute, so an omitted attribute
+  blanks the whole strip rather than carrying anything forward; omission is reserved for the
+  pre-timeline slides above. Comparison is deck order, so a slide's state is fixed regardless
+  of how you navigated to it, and the first slide always counts as advancing (moot when it
+  has no `data-when` to render). Reordering slides or editing a `data-when` therefore changes
   which slides grey out - check the neighbours either side.
 - Code blocks are hand-tokenised HCL (`tk-kw`, `tk-str`, `tk-num`, `tk-cm` spans). Diagrams
   are inline SVG using the `dg-*` primitives so they inherit tokens.
