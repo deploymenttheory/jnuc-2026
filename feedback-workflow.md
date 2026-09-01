@@ -727,7 +727,7 @@ it up - either way it is on disk for a recovering session.
   confirms no overflow and clearance above the timeline strip. Presenter check fails only
   on the pre-existing `s01` title mismatch (deck says "Landscape prior to the migration",
   presenter.json still says "Context, requirements, constraints"), unrelated to this slide
-  and already being handled separately. PR TBC.
+  and already being handled separately. PR #70.
 - **2026-09-01, slide 13 (`#s12`) bottom spacing fixed.** Joseph: "the text is too close to
   the bottom." Scoped `#s12` overrides trim the code panels' vertical padding and the
   row gaps above the takeaway and slide-note (existing `--sp-*` tokens only, no font-size
