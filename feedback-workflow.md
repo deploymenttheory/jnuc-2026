@@ -718,6 +718,14 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, slide 16 (`#s-staging`) pixel-art icons removed for now.** Joseph: "Slide 16
+  remove the graphics for now." The three `s-staging-art` `<img>` data URIs and the
+  now-unused `.s-staging-art` CSS rule are gone; the rail's rings and text close up cleanly
+  with no leftover gaps. `art/` (spec plus PNGs) stays, unused. Speaker notes and
+  `presenter.json` did not mention the icons, so neither needed a change. `AGENTS.md`'s
+  slide 16 entry, `art/` table row and Embedded artwork bullet updated to match. Deterministic
+  removal, no sandbox round. The presenter check prints the pre-existing `title differs: s01`
+  failure only (unrelated, fixed separately by PR #68) and the dash lint is clean. PR #69.
 - **2026-09-01, slide 11 (`#s08`) subtitle added.** Joseph: "Add a subtitle to 11." A
   `<p class="slide-sub">` now sits under the title, the deck's shared subtitle pattern
   already used on four other slides: "The same seven steps ran for every wave between
