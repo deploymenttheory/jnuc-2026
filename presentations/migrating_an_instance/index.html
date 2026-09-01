@@ -1060,14 +1060,6 @@ body.reader .reader-extra {
   line-height: var(--lh-tight);
   color: var(--c-accent);
 }
-#s-pivot .dry-label {
-  margin-bottom: var(--sp-2);
-  font-family: var(--f-mono);
-  font-size: var(--fs-caption);
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--c-text-muted);
-}
 #s-pivot .dry-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1266,7 +1258,7 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S01 - Context ============================ -->
-    <section class="slide" id="s01" aria-label="Context, requirements, constraints" data-speaker="Dafydd" data-when="2025-11">
+    <section class="slide" id="s01" aria-label="Landscape prior to the migration" data-speaker="Dafydd" data-when="2025-11">
       <h1 class="slide-title">Landscape prior to the migration</h1>
       <p class="pipeline-label caption muted">We had no precedent to follow: nobody had migrated a live, in-use Jamf Pro instance to Terraform before, (let alone inside a bank).</p>
       <div class="pipeline-band card">
@@ -1963,7 +1955,6 @@ body.presenter #viewport { display: none; }
 
       <p class="dry-band">DRY: one definition of a resource, deployed to every instance.</p>
 
-      <p class="dry-label">Jamf Pro does not allow it</p>
       <div class="dry-split">
         <pre class="code"><span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_static_computer_group"</span>
          <span class="tk-str">"finance"</span> {
