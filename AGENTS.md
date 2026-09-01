@@ -42,7 +42,7 @@ landing page keeps its own near-black look - it is not a deck.
 | `tools/` | `build-key.mjs`, which builds the Keynote downloads from the decks on a Mac (the only thing `package.json` exists for), and `sandbox-template.html`, the starting point for every sandbox review page. |
 | `feedback-workflow.md` | The deck feedback loop: standing rules, orchestrator and slide-agent roles, brief templates, commands, recovery steps and a log. Read it before touching a deck in response to feedback. Not shipped (`*.md` is excluded from the deploy). |
 | `docs/superpowers/plans/` | The first-round implementation plan, superseded by `feedback-workflow.md` and kept for its triage table. Not shipped. |
-| `docs/timeline-notes.md` | Source of truth for slide order in both decks: one three-column table per deck (slide number, title, time notes), the notes column left for Joseph to say whether and where a slide should highlight the timeline strip. Not shipped. |
+| `docs/timeline-notes.md` | Authoritative for slide order, speaker and timeline correspondence in both decks: one four-column table per deck (slide number, title, speaker, time notes), the notes column left for Joseph to say whether and where a slide should highlight the timeline strip. Where this file's slide-order or speaker lists disagree with it, this doc wins and those lists get corrected to match. Not shipped. |
 | `README.md`, `LICENSE` | Repo boilerplate. |
 
 The decks have no build step. Node is in this repo purely for `tools/build-key.mjs`, which is
@@ -128,7 +128,7 @@ one and the other does not follow.
 | `from-clicks-to-code-jnuc2026.pptx` | Gone. The download is now the committed `.key` below. |
 | `from-clicks-to-code-jnuc2026.key` | The committed Keynote download, written by `tools/build-key.mjs`. The landing page links to this exact filename, so it is set in the script, not chosen freely. Rebuild and commit it with any deck edit. |
 | `presenter.json` | Per-slide speaker notes and timer lengths plus the 30-minute talk limit. Notes are a copy of the deck's `<aside class="notes">` text and the slide order mirrors the deck - the deck wins when they differ, and `feedback-workflow.md` carries a check that must print `OK` before every push. Regenerated from the deck on 2026-08-27 (timers kept). Timer allocations are proposed, not rehearsed. Nothing reads this file yet. |
-| `art/` | Source art for the pixel-art icons on slide 16: `s-staging-steps.md` (the Pixelforge spec - palette, rules and prose for all three) and `s-staging-wipe.png` / `s-staging-apply.png` / `s-staging-iterate.png`, 1024px square (Pixelforge's ceiling; redrawn at that size 2026-08-28, up from 384px), exported at scale 1. The deck embeds its own base64 copy of each, so nothing links to these files; they are kept so the art can be regenerated. See Embedded artwork below. |
+| `art/` | Source art for the pixel-art icons that used to sit on slide 16: `s-staging-steps.md` (the Pixelforge spec - palette, rules and prose for all three) and `s-staging-wipe.png` / `s-staging-apply.png` / `s-staging-iterate.png`, 1024px square (Pixelforge's ceiling; redrawn at that size 2026-08-28, up from 384px), exported at scale 1. The icons came off the slide 2026-09-01 ("for now"); these files are unused but kept so the art can come back. See Embedded artwork below. |
 | `spec.md` | Spec and change history: the original build runbook, Joseph's source narrative and full repo tree, all three Q&A rounds answered inline, and a decision index. **Historical** - sections marked SUPERSEDED (deck order, palette values, open-questions index) predate the story restructure, and everything it says about the light LBG-green palette predates the JNUC template adoption. |
 
 `spec.md` is provenance for every fact in the deck. Do not delete it; do not treat its
@@ -144,19 +144,21 @@ quotes is stale.
   keywords, light-cornflower strings and amber numbers; TODO chips are solid amber with navy
   ink. Logos (jamf white, JNUC 2026) live in tokens as data URIs.
 - **Embedded artwork.** Everything the deck draws with an image is a data URI in the HTML,
-  because the deck has to work opened straight off disk. The logos are white-on-transparent
-  and live in tokens; slide 16's three pixel-art step icons are multicolour PNGs on
-  transparent and live inline in the markup as `<img class="s-staging-art">`. This deck has
-  **no theme system** - no `[data-theme]` blocks, no `--art-mono-filter` or `--art-plate`
-  knobs (those belong to `training_a_team`) - so embedded art gets no per-theme filter or
-  backing plate here. The stage is always royal blue and the cards always navy, and the
-  icons are drawn with a dark `#0A1030` outline that reads on both, so they need neither.
-  New art must be sized in tokens. Pixel art carries `image-rendering: pixelated` only when
-  the source is at or near its display size; slide 16's icons are 1024px shown at 168px, and
-  at that ratio nearest-neighbour throws away five source pixels in six and shreds the
-  outlines, so they use `image-rendering: auto` and let the browser downscale smoothly
-  (Chrome treats `crisp-edges` as nearest, so it is not a third option).
-  Source files and the Pixelforge spec go in the deck's `art/` directory, never linked.
+  because the deck has to work opened straight off disk. Currently that is only the logos -
+  white-on-transparent SVGs living in tokens. Slide 16 used to carry three multicolour
+  pixel-art step icons inline as `<img class="s-staging-art">`; they came off the slide
+  2026-09-01 ("for now") and the deck currently embeds no raster art. If they (or any other
+  pixel art) return: this deck has **no theme system** - no `[data-theme]` blocks, no
+  `--art-mono-filter` or `--art-plate` knobs (those belong to `training_a_team`) - so
+  embedded art gets no per-theme filter or backing plate here; the stage is always royal
+  blue and the cards always navy, so new pixel art should carry a dark outline (the removed
+  icons used `#0A1030`) that reads on both. New art must be sized in tokens. Pixel art
+  carries `image-rendering: pixelated` only when the source is at or near its display size;
+  the removed icons were 1024px shown at 168px, and at that ratio nearest-neighbour throws
+  away five source pixels in six and shreds the outlines, so they used `image-rendering:
+  auto` and let the browser downscale smoothly (Chrome treats `crisp-edges` as nearest, so
+  it is not a third option). Source files and the Pixelforge spec go in the deck's `art/`
+  directory, never linked.
 - **Dates live on the persistent timeline, not in slide content.** Every `<section>` carries
   `data-when="YYYY-MM"` or `data-when="YYYY-MM:YYYY-MM"` (a month range). A fixed strip at
   the bottom of the stage runs Nov 2025 -> Jul 2026 (present day); the active slide's range
@@ -210,6 +212,11 @@ quotes is stale.
 
 ### Current slide order (story arc)
 
+`docs/timeline-notes.md` is authoritative for slide order, speaker and timeline
+correspondence. The list below is a description of the current state, kept in step by hand -
+where it disagrees with the doc, this list is corrected to match the doc, not the other way
+round.
+
 Context -> decisions -> first wins -> the wall -> the loop -> growing pains -> payoff.
 22 slides. Legacy section ids kept stable across reorders (so `s10` no longer sits at
 position 10); new story slides use semantic ids. The bold name on each line is who
@@ -251,11 +258,10 @@ overlay - keep the two in step when slides move.
     result; four gate cards unchanged) - **Joseph**
 16. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused;
     a numbered run of the three steps down the left on a rail, verb and sentence on one
-    line each, with the lead and the takeaway as a quiet right-hand column. Each step
-    carries its pixel-art icon riding beside the ring at 168px, drawn on a 1024px canvas -
-    a broom sweeping coral debris off a plate with two lime blocks left standing,
-    configuration slabs landing on the same plate under a downward arrow, and a loop closing
-    on a lime tick with two coral crosses outside it. Source and spec in `art/`) - **Dafydd**
+    line each, with the lead and the takeaway as a quiet right-hand column. The pixel-art
+    icons that used to ride beside each ring came off 2026-09-01 at Joseph's request ("for
+    now"); the rings and rail carry the sequence on their own. Sources stay in `art/`,
+    unused for now) - **Dafydd**
 17. `s-pivot` One codebase for every instance (rewritten 2026-08-28 with `s15b` as one arc:
     context, problem, techniques. The DRY objective in an accent band, then a real
     `jamfpro_static_computer_group` block whose `assigned_computer_ids` are the only amber
@@ -397,6 +403,11 @@ full path. **21 slides.** `ClickOps_to_GitOps.key` alongside it is the committed
 download from `tools/build-key.mjs`. No spec, notes file or slot length has been recorded
 here yet. Content work is ongoing, slide by slide (Aug 2026).
 
+`docs/timeline-notes.md` is authoritative for slide order, speaker and timeline
+correspondence. The slide map and speaker list below are descriptions of the current state -
+where either disagrees with the doc, it is corrected to match the doc, not the other way
+round.
+
 Slide map (after the template adoption and the merge with Dafydd's Aug 2026 edits): `#1`
 title (template three-speaker layout, LBG logo in the template's customer-logo slot, stats
 row kept), `#2` "Where we are today" (the old half-speakers slide kept its real content -
@@ -494,10 +505,12 @@ by Gordon Deacon, Aug 2026, and its chip is gone. The `#3` "what success looked 
 architectural decisions and was managing resources in code exclusively), the trained bar and the
 non-goals were confirmed by the user, Aug 2026, and all three `#3` chips are gone.
 
-Speakers (`data-speaker`), after the `#9`/`#10` merge: `#5`, `#7`, `#9` and `#14` are Gordon;
-`#4`, `#6`, `#10`, `#11` and `#13` are Joseph; `#3`, `#8`, `#12`, `#15` and `#16` are Dafydd.
-Scope moved from Dafydd to Joseph and onboarding from Dafydd to Gordon, Aug 2026. `#2` is still
-marked **All** but Gordon's notes assign it to Dafydd - unresolved.
+Speakers (`data-speaker`), after the `#9`/`#10` merge - `docs/timeline-notes.md` is
+authoritative here too; this list is corrected to match it when they disagree: `#5`, `#7`,
+`#9` and `#14` are Gordon; `#4`, `#6`, `#10`, `#11` and `#13` are Joseph; `#3`, `#8`, `#12`,
+`#15` and `#16` are Dafydd. Scope moved from Dafydd to Joseph and onboarding from Dafydd to
+Gordon, Aug 2026. `#2` is still marked **All** but Gordon's notes assign it to Dafydd -
+unresolved.
 
 `#7` carries a seventh condition, "Decide who approves the pull requests" (`.suppcard.wide`,
 full-width across the 2-column grid), and its hero panel is now **Two kinds of safety** -
