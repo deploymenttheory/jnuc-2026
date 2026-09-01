@@ -728,7 +728,7 @@ it up - either way it is on disk for a recovering session.
   columns, instead of the left column's longer "Tidy-up" text pushing its own rows down
   independently of the right. Notes and `presenter.json` unchanged, no facts moved.
   `AGENTS.md`'s slide-7 entry updated to match. Presenter sync check prints OK (merged in
-  after the slide-2/`s01` title fix below). Dash lint is clean. PR #71.
+  after the slide-2/`s01` title fix below). Dash lint is clean. PR #72.
 - **2026-09-01, slide 8 (`#s-singletons`) subtitle added.** A `<p class="slide-sub">` under
   the title, matching the deck's existing subtitle pattern (already used on s-workspace,
   s04, s05 and s-pivot): "Settings panes went into state first, imported by default and
