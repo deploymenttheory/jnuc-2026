@@ -746,7 +746,7 @@ it up - either way it is on disk for a recovering session.
   outstanding jamfpy/contact/socials chip joined into one footer bar; C - narrower link
   columns and a bold QR hero card on the deck's navy card surface. AGENTS.md's slide 21
   entry and the Sandbox "Current pages" line updated. Presenter sync check prints OK, dash
-  lint clean. No PR yet, awaiting a decision.
+  lint clean. PR #86, awaiting a decision.
 - **2026-09-01, slide 21 (`#s18`) links copied and standardised from the training deck.**
   Joseph: "Copy and standardise the links over from the other presentation." The migrating
   deck's Links slide carried only two unlinked labels (`Provider: deploymenttheory/jamfpro`,
