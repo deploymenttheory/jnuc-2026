@@ -727,6 +727,14 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, slide 16 (`#s-staging`) rescaled to fill the layout.** Joseph: "the graphics
+  are gone but now only half the page is filled. Size it properly." With the three pixel-art
+  step icons off (PR #69), the rail only ran to about half the canvas. Scaled it up within
+  `#s-staging`'s scoped CSS: ring diameter 70px to 120px (border `--bw-2` to `--bw-3` to
+  match), each step's verb `--fs-h2` to `--fs-h1`, row gap to `--sp-6` + `--sp-4`, the ring's
+  top offset and the text's left padding grown to match, and the right-hand column narrowed
+  380px to 340px to give the rail more room. The sentence stays at `--fs-body` so all three
+  rows still hold to one line each. No wording changed; presenter sync check prints OK.
 - **2026-09-01, subtitle sizes standardised.** Joseph: "the subtitle is way to been
   [sic, too big]. Standardise the size of subtitles where possible." Surveyed every
   `.slide-sub`/`.lead` usage in `index.html`: only `#s-sentinel`'s intro line was
