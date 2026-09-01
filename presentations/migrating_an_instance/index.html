@@ -676,28 +676,41 @@ body.reader .reader-extra {
    the content column), so a diagram at 70% of the panel width reads at a similar
    scale to the panel's own text rather than dominating it. 1360 rather than the
    drawn 1280 because a full crop makes the rows taller than the space above the
-   timeline strip. */
+   timeline strip.
+   Header row rebuilt 2026-09-01 (Joseph: text was clipping and overlapping) - it was
+   a flex row baseline-aligned across siblings of very different line counts (a
+   1-2-line name against a 1-2-line why-text, plus a tag on path 03 that only rode
+   along because it happened to be the next sibling after why's `margin-left: auto`).
+   Baseline alignment across wrapped multi-line flex siblings is exactly the kind of
+   thing that renders differently between engines. Now: .mp-name gets `min-width: 0`
+   so it reliably shrinks and wraps within its own column instead of relying on
+   flex's implicit minimum; why-text and the chosen tag are grouped in one `.mp-meta`
+   flex item (wraps together, right-aligned) instead of coincidentally adjacent
+   siblings; the row aligns on `flex-start`, not `baseline`, so panels grow with
+   their content deterministically regardless of how many lines each part wraps to. */
 #s05 .mp-paths { display: flex; flex-direction: column; gap: var(--sp-2); }
 #s05 .mp-path {
   border: var(--bw-1) solid var(--c-border);
   border-radius: var(--radius);
   padding: var(--sp-2) var(--sp-3);
 }
-#s05 .mp-head { display: flex; align-items: baseline; gap: var(--sp-2); margin-bottom: var(--sp-1); }
+#s05 .mp-head { display: flex; align-items: flex-start; gap: var(--sp-2); margin-bottom: var(--sp-1); }
 #s05 .mp-num {
   font-family: var(--f-mono);
   font-size: var(--fs-body);
   color: var(--c-text-muted);
   letter-spacing: .12em;
 }
-#s05 .mp-name { font-family: var(--f-display); font-size: var(--fs-body); font-weight: 600; line-height: var(--lh-tight); }
-#s05 .mp-why { margin-left: auto; font-size: var(--fs-caption); color: var(--c-text-muted); text-align: right; }
+#s05 .mp-name { min-width: 0; font-family: var(--f-display); font-size: var(--fs-body); font-weight: 600; line-height: var(--lh-tight); }
+#s05 .mp-meta { display: flex; align-items: baseline; justify-content: flex-end; gap: var(--sp-1) var(--sp-2); margin-left: auto; }
+#s05 .mp-meta .tag { flex: none; }
+#s05 .mp-why { min-width: 0; font-size: var(--fs-caption); color: var(--c-text-muted); text-align: right; }
 #s05 .mp-flow { display: block; width: 70%; height: auto; margin: 0 auto; }
 #s05 .mp-chosen .mp-name { color: var(--c-accent); }
 #s05 .mp-chosen .mp-box { stroke: var(--c-accent); stroke-width: var(--bw-2); }
 #s05 .mp-path.mp-chosen { border: var(--bw-2) solid var(--c-accent); }
 #s05 .mp-dim .dg-label, #s05 .mp-dim .dg-eg { fill: var(--c-text-muted); }
-#s05 .mp-env { font-family: var(--f-display); font-size: 30px; font-weight: 600; fill: var(--c-text); }
+#s05 .mp-env { font-family: var(--f-display); font-size: var(--fs-body); font-weight: 600; fill: var(--c-text); }
 #s05 .mp-dim .mp-env { fill: var(--c-text-muted); }
 #s05 .mp-stripe { fill: var(--c-accent); }
 /* One colour per resource type, so the same kind is recognisable in both environments. */
@@ -1497,7 +1510,9 @@ body.presenter #viewport { display: none; }
           <div class="mp-head">
             <span class="mp-num">01</span>
             <span class="mp-name">Migrate Resource by resource in Staging first, then production</span>
-            <span class="mp-why">Discounted because staging was not representative of production.</span>
+            <div class="mp-meta">
+              <span class="mp-why">Discounted because staging was not representative of production.</span>
+            </div>
           </div>
           <svg class="mp-flow" viewBox="0 0 1360 172" role="img" aria-label="Each resource type crosses on its own arrow: scripts in staging to scripts in production, then dock items, then categories, one resource type fully across both instances before the next begins.">
             <rect class="dg-box mp-box" x="2" y="2" width="560" height="140" rx="12"/>
@@ -1527,7 +1542,9 @@ body.presenter #viewport { display: none; }
           <div class="mp-head">
             <span class="mp-num">02</span>
             <span class="mp-name">Production first, backported to staging a layer at a time</span>
-            <span class="mp-why">Discounted because staging was not representative of production.</span>
+            <div class="mp-meta">
+              <span class="mp-why">Discounted because staging was not representative of production.</span>
+            </div>
           </div>
           <svg class="mp-flow" viewBox="0 0 1360 120" role="img" aria-label="Every iteration of a resource type through production, one wave at a time, with each wave backported into staging as it lands.">
             <rect class="dg-box mp-box" x="2" y="2" width="560" height="108" rx="12"/>
@@ -1555,8 +1572,10 @@ body.presenter #viewport { display: none; }
           <div class="mp-head">
             <span class="mp-num">03</span>
             <span class="mp-name">Migrate all of production resource by resource, then backport all of prod into staging in one big push</span>
-            <span class="mp-why">Staging only started once production was complete.</span>
-            <span class="tag tag-chosen">Chosen</span>
+            <div class="mp-meta">
+              <span class="mp-why">Staging only started once production was complete.</span>
+              <span class="tag tag-chosen">Chosen</span>
+            </div>
           </div>
           <p class="mp-control">The Terraform API client held <strong>read-only scopes</strong>, so importing built state with no surface to change the server. Write access came only when it was time to manage.</p>
           <svg class="mp-flow" viewBox="0 0 1360 104" role="img" aria-label="Every resource kind through production one at a time, end to end, then staging rebuilt in a single push once production was complete.">
@@ -2057,19 +2076,19 @@ HCP Terraform variable sets</p>
           <p class="tech-tag">Values only</p>
         </div>
 
-        <div class="tech">
+        <div class="tech tech-inuse">
           <h2>Local values</h2>
           <p class="tech-syntax">count = local.is_staging ? 0 : 1</p>
           <p class="tech-shared">One definition, switched on or off per instance with the <code class="inline">count</code> and <code class="inline">for_each</code> meta-arguments.</p>
-          <p class="tech-tag">A switch in every resource</p>
+          <p class="tech-tag">What we run</p>
         </div>
 
-        <div class="tech">
+        <div class="tech tech-inuse">
           <h2>Data sources</h2>
           <p class="tech-syntax">data "jamfpro_computer_inventory"
   serial_number = each.value</p>
           <p class="tech-shared">The definition stays shared and the instance's own IDs are read at plan time.</p>
-          <p class="tech-tag">One lookup per object</p>
+          <p class="tech-tag">What we run</p>
         </div>
 
         <div class="tech tech-inuse">
@@ -2081,12 +2100,12 @@ HCP Terraform variable sets</p>
           <p class="tech-tag">What we run</p>
         </div>
 
-        <div class="tech">
+        <div class="tech tech-inuse">
           <h2>Configuration as data</h2>
           <p class="tech-syntax">instances/lbgstaging.yaml
 cfg = yamldecode(file(...))</p>
           <p class="tech-shared">The HCL is shared in full. Every difference sits in that instance's own data file, so adding an instance means adding a file rather than writing more configuration.</p>
-          <p class="tech-tag">One file per instance</p>
+          <p class="tech-tag">What we run</p>
         </div>
 
         <div class="tech">
@@ -2107,8 +2126,8 @@ inputs = { ... }</p>
       </details>
       <aside class="notes">
         <p>Six techniques, and the honest answer is that there is no right one. Read them as a menu, not a ranking.</p>
-        <p>We landed on child modules with a root module per instance, which is also what HashiCorp recommends where instances need different credentials and access controls. Shared code is written once; each instance's root holds only its own.</p>
-        <p>Worth naming the two we did not use. Keeping every instance difference in a data file means the HCL stops changing when you add an instance. Terragrunt was built for this problem, and Terramate and Atmos are the same idea productised.</p>
+        <p>We landed on child modules with a root module per instance, which is also what HashiCorp recommends where instances need different credentials and access controls. Shared code is written once; each instance's root holds only its own. Local values, data sources and configuration as data run alongside it, which is why four of the six are marked: switches on the resources, instance IDs read at plan time, and every remaining difference kept in that instance's data file so the HCL stops changing when you add one.</p>
+        <p>Worth naming the one we did not reach for. Terragrunt was built for this problem, and Terramate and Atmos are the same idea productised.</p>
         <p>Finish on the caution. CLI workspaces sound like the answer and are not, because they share a backend. Slide 4 already separated the two meanings of workspace.</p>
       </aside>
     </section>

@@ -734,6 +734,7 @@ it up - either way it is on disk for a recovering session.
 ### Done
 
 
+
 - **2026-09-01, slide 5 (`#s04`) reject reasons reworded.** Dafydd's own edits, committed
   from the working tree. Reject 1 now says "tf plan execution time" and "our estate", and
   carries a "Note:" on what happens past ~5,000 resources. Reject 2 splits its trailing
@@ -746,6 +747,36 @@ it up - either way it is on disk for a recovering session.
   tenant-unique argument and keeps the troubleshooting line as the follow-up;
   `presenter.json` mirrored to match. AGENTS.md's slide 5 entry counts 3 rejects and
   needed no edit. Presenter sync check prints OK, dash lint is clean. PR #80.
+
+
+- **2026-09-01, slide 6 (`#s05`) header row rebuilt for robustness - no wording or layout
+  change.** Joseph: "the box has text which is cut off and everything looks a little fucky.
+  Words overlapping and all sorts... overhaul the architecture so it's more robust." Root
+  cause was `.mp-head`'s flex row aligning on `baseline` across siblings with very different
+  line counts - the path name (1-2 lines), the why-text (1-2 lines) and, on path 03, a
+  "Chosen" tag that only sat beside the why-text because it happened to be the next flex
+  sibling after `margin-left: auto` on `.mp-why`. Baseline alignment across wrapped
+  multi-line flex siblings is exactly the kind of thing that renders inconsistently between
+  engines. Rebuilt: `.mp-name` gets `min-width: 0` so it reliably shrinks and wraps within
+  its own column; the why-text and the chosen tag are now grouped in one `.mp-meta` flex
+  item, so the tag's position is deliberate rather than a side effect of sibling order; the
+  row aligns on `flex-start`, not `baseline`. Also tokenised `.mp-env`'s hardcoded `30px`
+  font-size to `var(--fs-body)` (an exact match, no visual change). Layout is unchanged:
+  three bordered panels, diagram centred in each, the chosen path's panel edged in the
+  accent colour, the read-only API client control riding inside path 03. Screenshots at
+  1920x1080 and 1280x720 confirmed clean before and after; presenter sync check prints OK;
+  dash lint clean. PR #83.
+- **2026-09-01, slide 18 (`#s15b`) marks four techniques as what we run.** Dafydd: local
+  values, data sources and configuration as data all carry the "What we run" tag and the
+  accent highlight, joining child modules. Their old tags ("A switch in every resource",
+  "One lookup per object", "One file per instance") are gone, so four of the six cards now
+  read the same and only input variables and Terragrunt are unmarked. No CSS needed: the
+  existing `.tech-inuse` rules carry the accent border, heading and tag colour. Two speaker
+  notes contradicted the slide and were rewritten: note 2 now names all four techniques and
+  absorbs the data-file point, and note 3 drops "the two we did not use" for the one,
+  Terragrunt. `presenter.json` mirrored to match; AGENTS.md's slide 18 entry updated from
+  child modules alone being marked to those four. Presenter sync check prints OK, dash lint
+  is clean. PR #82.
 
 - **2026-09-01, ShocOne-precedence rule formalised, slide 3's title corrected in the docs.**
   Joseph, in reply to the title mismatch PR #79 flagged (ShocOne's PR #73 retitled slide 3
