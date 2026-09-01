@@ -43,7 +43,7 @@
       "title": "Migration outcomes we considered and rejected",
       "timerSeconds": 75,
       "notes": [
-        "Expect pushback on \"not everything in Terraform\" - defend it: troubleshooting must not require a pull request."
+        "Expect pushback on \"not everything in Terraform\" - defend it: some things are genuinely tenant unique, like static group membership and seed or breakglass accounts, and troubleshooting must not require a pull request."
       ]
     },
     {
@@ -163,8 +163,8 @@
       "timerSeconds": 90,
       "notes": [
         "Six techniques, and the honest answer is that there is no right one. Read them as a menu, not a ranking.",
-        "We landed on child modules with a root module per instance, which is also what HashiCorp recommends where instances need different credentials and access controls. Shared code is written once; each instance's root holds only its own.",
-        "Worth naming the two we did not use. Keeping every instance difference in a data file means the HCL stops changing when you add an instance. Terragrunt was built for this problem, and Terramate and Atmos are the same idea productised.",
+        "We landed on child modules with a root module per instance, which is also what HashiCorp recommends where instances need different credentials and access controls. Shared code is written once; each instance's root holds only its own. Local values, data sources and configuration as data run alongside it, which is why four of the six are marked: switches on the resources, instance IDs read at plan time, and every remaining difference kept in that instance's data file so the HCL stops changing when you add one.",
+        "Worth naming the one we did not reach for. Terragrunt was built for this problem, and Terramate and Atmos are the same idea productised.",
         "Finish on the caution. CLI workspaces sound like the answer and are not, because they share a backend. Slide 4 already separated the two meanings of workspace."
       ]
     },

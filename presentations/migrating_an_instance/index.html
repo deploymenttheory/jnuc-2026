@@ -667,28 +667,41 @@ body.reader .reader-extra {
    the content column), so a diagram at 70% of the panel width reads at a similar
    scale to the panel's own text rather than dominating it. 1360 rather than the
    drawn 1280 because a full crop makes the rows taller than the space above the
-   timeline strip. */
+   timeline strip.
+   Header row rebuilt 2026-09-01 (Joseph: text was clipping and overlapping) - it was
+   a flex row baseline-aligned across siblings of very different line counts (a
+   1-2-line name against a 1-2-line why-text, plus a tag on path 03 that only rode
+   along because it happened to be the next sibling after why's `margin-left: auto`).
+   Baseline alignment across wrapped multi-line flex siblings is exactly the kind of
+   thing that renders differently between engines. Now: .mp-name gets `min-width: 0`
+   so it reliably shrinks and wraps within its own column instead of relying on
+   flex's implicit minimum; why-text and the chosen tag are grouped in one `.mp-meta`
+   flex item (wraps together, right-aligned) instead of coincidentally adjacent
+   siblings; the row aligns on `flex-start`, not `baseline`, so panels grow with
+   their content deterministically regardless of how many lines each part wraps to. */
 #s05 .mp-paths { display: flex; flex-direction: column; gap: var(--sp-2); }
 #s05 .mp-path {
   border: var(--bw-1) solid var(--c-border);
   border-radius: var(--radius);
   padding: var(--sp-2) var(--sp-3);
 }
-#s05 .mp-head { display: flex; align-items: baseline; gap: var(--sp-2); margin-bottom: var(--sp-1); }
+#s05 .mp-head { display: flex; align-items: flex-start; gap: var(--sp-2); margin-bottom: var(--sp-1); }
 #s05 .mp-num {
   font-family: var(--f-mono);
   font-size: var(--fs-body);
   color: var(--c-text-muted);
   letter-spacing: .12em;
 }
-#s05 .mp-name { font-family: var(--f-display); font-size: var(--fs-body); font-weight: 600; line-height: var(--lh-tight); }
-#s05 .mp-why { margin-left: auto; font-size: var(--fs-caption); color: var(--c-text-muted); text-align: right; }
+#s05 .mp-name { min-width: 0; font-family: var(--f-display); font-size: var(--fs-body); font-weight: 600; line-height: var(--lh-tight); }
+#s05 .mp-meta { display: flex; align-items: baseline; justify-content: flex-end; gap: var(--sp-1) var(--sp-2); margin-left: auto; }
+#s05 .mp-meta .tag { flex: none; }
+#s05 .mp-why { min-width: 0; font-size: var(--fs-caption); color: var(--c-text-muted); text-align: right; }
 #s05 .mp-flow { display: block; width: 70%; height: auto; margin: 0 auto; }
 #s05 .mp-chosen .mp-name { color: var(--c-accent); }
 #s05 .mp-chosen .mp-box { stroke: var(--c-accent); stroke-width: var(--bw-2); }
 #s05 .mp-path.mp-chosen { border: var(--bw-2) solid var(--c-accent); }
 #s05 .mp-dim .dg-label, #s05 .mp-dim .dg-eg { fill: var(--c-text-muted); }
-#s05 .mp-env { font-family: var(--f-display); font-size: 30px; font-weight: 600; fill: var(--c-text); }
+#s05 .mp-env { font-family: var(--f-display); font-size: var(--fs-body); font-weight: 600; fill: var(--c-text); }
 #s05 .mp-dim .mp-env { fill: var(--c-text-muted); }
 #s05 .mp-stripe { fill: var(--c-accent); }
 /* One colour per resource type, so the same kind is recognisable in both environments. */
@@ -1486,25 +1499,25 @@ body.presenter #viewport { display: none; }
             <span class="tag tag-rejected">Rejected</span>
             <span>A single workspace for all resources</span>
           </div>
-          <p class="reject-why">Because: Blast radius and plan execution time. Guidance suggests roughly 500 resources per workspace; the estate holds 1,500+. At ~5,000, things break down.</p>
+          <p class="reject-why">Because: Blast radius and tf plan execution time. Guidance suggests roughly 500 resources per workspace; our estate holds 1,500+. Note: At ~5,000+, things start to break down.</p>
         </div>
         <div class="reject">
           <div class="card reject-idea">
             <span class="tag tag-rejected">Rejected</span>
             <span>Per-team Terraform modules scoped to each team's resources</span>
           </div>
-          <p class="reject-why">Because: Every change needs Mac team approval regardless of which repo it lives in. Splitting by team would just mean chasing that same approval across several repos instead of one - one repo keeps every approval flowing through a single place.</p>
+          <p class="reject-why">Because: Every change needs Mac team approval regardless of which repo it lives in. Splitting by team would just mean chasing that same approval across several repos instead of one. One repo keeps every approval flowing through a single place.</p>
         </div>
         <div class="reject">
           <div class="card reject-idea">
             <span class="tag tag-rejected">Rejected</span>
             <span>Managing everything with Terraform</span>
           </div>
-          <p class="reject-why">Because: Static group membership stays unmanaged to protect the support experience - troubleshooting should not require a pull request.</p>
+          <p class="reject-why">Because: There are things that are truly tenant unique, e.g. static groups, tenant seed or breakglass accounts. You may have training gaps.</p>
         </div>
       </div>
       <aside class="notes">
-        <p>Expect pushback on "not everything in Terraform" - defend it: troubleshooting must not require a pull request.</p>
+        <p>Expect pushback on "not everything in Terraform" - defend it: some things are genuinely tenant unique, like static group membership and seed or breakglass accounts, and troubleshooting must not require a pull request.</p>
       </aside>
     </section>
 
@@ -1519,7 +1532,9 @@ body.presenter #viewport { display: none; }
           <div class="mp-head">
             <span class="mp-num">01</span>
             <span class="mp-name">Migrate Resource by resource in Staging first, then production</span>
-            <span class="mp-why">Discounted because staging was not representative of production.</span>
+            <div class="mp-meta">
+              <span class="mp-why">Discounted because staging was not representative of production.</span>
+            </div>
           </div>
           <svg class="mp-flow" viewBox="0 0 1360 172" role="img" aria-label="Each resource type crosses on its own arrow: scripts in staging to scripts in production, then dock items, then categories, one resource type fully across both instances before the next begins.">
             <rect class="dg-box mp-box" x="2" y="2" width="560" height="140" rx="12"/>
@@ -1549,7 +1564,9 @@ body.presenter #viewport { display: none; }
           <div class="mp-head">
             <span class="mp-num">02</span>
             <span class="mp-name">Production first, backported to staging a layer at a time</span>
-            <span class="mp-why">Discounted because staging was not representative of production.</span>
+            <div class="mp-meta">
+              <span class="mp-why">Discounted because staging was not representative of production.</span>
+            </div>
           </div>
           <svg class="mp-flow" viewBox="0 0 1360 120" role="img" aria-label="Every iteration of a resource type through production, one wave at a time, with each wave backported into staging as it lands.">
             <rect class="dg-box mp-box" x="2" y="2" width="560" height="108" rx="12"/>
@@ -1577,8 +1594,10 @@ body.presenter #viewport { display: none; }
           <div class="mp-head">
             <span class="mp-num">03</span>
             <span class="mp-name">Migrate all of production resource by resource, then backport all of prod into staging in one big push</span>
-            <span class="mp-why">Staging only started once production was complete.</span>
-            <span class="tag tag-chosen">Chosen</span>
+            <div class="mp-meta">
+              <span class="mp-why">Staging only started once production was complete.</span>
+              <span class="tag tag-chosen">Chosen</span>
+            </div>
           </div>
           <p class="mp-control">The Terraform API client held <strong>read-only scopes</strong>, so importing built state with no surface to change the server. Write access came only when it was time to manage.</p>
           <svg class="mp-flow" viewBox="0 0 1360 104" role="img" aria-label="Every resource kind through production one at a time, end to end, then staging rebuilt in a single push once production was complete.">
@@ -2079,19 +2098,19 @@ HCP Terraform variable sets</p>
           <p class="tech-tag">Values only</p>
         </div>
 
-        <div class="tech">
+        <div class="tech tech-inuse">
           <h2>Local values</h2>
           <p class="tech-syntax">count = local.is_staging ? 0 : 1</p>
           <p class="tech-shared">One definition, switched on or off per instance with the <code class="inline">count</code> and <code class="inline">for_each</code> meta-arguments.</p>
-          <p class="tech-tag">A switch in every resource</p>
+          <p class="tech-tag">What we run</p>
         </div>
 
-        <div class="tech">
+        <div class="tech tech-inuse">
           <h2>Data sources</h2>
           <p class="tech-syntax">data "jamfpro_computer_inventory"
   serial_number = each.value</p>
           <p class="tech-shared">The definition stays shared and the instance's own IDs are read at plan time.</p>
-          <p class="tech-tag">One lookup per object</p>
+          <p class="tech-tag">What we run</p>
         </div>
 
         <div class="tech tech-inuse">
@@ -2103,12 +2122,12 @@ HCP Terraform variable sets</p>
           <p class="tech-tag">What we run</p>
         </div>
 
-        <div class="tech">
+        <div class="tech tech-inuse">
           <h2>Configuration as data</h2>
           <p class="tech-syntax">instances/lbgstaging.yaml
 cfg = yamldecode(file(...))</p>
           <p class="tech-shared">The HCL is shared in full. Every difference sits in that instance's own data file, so adding an instance means adding a file rather than writing more configuration.</p>
-          <p class="tech-tag">One file per instance</p>
+          <p class="tech-tag">What we run</p>
         </div>
 
         <div class="tech">
@@ -2129,14 +2148,14 @@ inputs = { ... }</p>
       </details>
       <aside class="notes">
         <p>Six techniques, and the honest answer is that there is no right one. Read them as a menu, not a ranking.</p>
-        <p>We landed on child modules with a root module per instance, which is also what HashiCorp recommends where instances need different credentials and access controls. Shared code is written once; each instance's root holds only its own.</p>
-        <p>Worth naming the two we did not use. Keeping every instance difference in a data file means the HCL stops changing when you add an instance. Terragrunt was built for this problem, and Terramate and Atmos are the same idea productised.</p>
+        <p>We landed on child modules with a root module per instance, which is also what HashiCorp recommends where instances need different credentials and access controls. Shared code is written once; each instance's root holds only its own. Local values, data sources and configuration as data run alongside it, which is why four of the six are marked: switches on the resources, instance IDs read at plan time, and every remaining difference kept in that instance's data file so the HCL stops changing when you add one.</p>
+        <p>Worth naming the one we did not reach for. Terragrunt was built for this problem, and Terramate and Atmos are the same idea productised.</p>
         <p>Finish on the caution. CLI workspaces sound like the answer and are not, because they share a backend. Slide 4 already separated the two meanings of workspace.</p>
       </aside>
     </section>
 
     <!-- ============================ S16b - By the numbers ============================ -->
-    <section class="slide" id="s16b" aria-label="By the numbers" data-speaker="Gordon" data-when="2026-03">
+    <section class="slide" id="s16b" aria-label="By the numbers" data-speaker="Gordon" data-when="now">
       <h1 class="slide-title">By the numbers</h1>
       <p class="s16b-hero-kicker">Jan 2026 → Sept 2026, provider development to v1.0.0 and final handover</p>
       <p class="s16b-hero"><span class="s16b-hero-num">900</span><span class="s16b-hero-label">pull requests merged</span></p>
@@ -2154,7 +2173,7 @@ inputs = { ... }</p>
 
     <!-- ============================ S17 - Questions ============================ -->
     <!-- Template close slide: navy stage, outline + solid lime words, corner arrow. -->
-    <section class="slide slide-navy" id="s17" aria-label="Questions" data-speaker="Anyone" data-speaker-note="questions" data-when="2026-03">
+    <section class="slide slide-navy" id="s17" aria-label="Questions" data-speaker="Anyone" data-speaker-note="questions" data-when="now">
       <svg class="corner-arrow" viewBox="0 0 420 360" aria-hidden="true">
         <line class="arrow-shaft" x1="-40" y1="-80" x2="290" y2="238"/>
         <path class="arrow-fill" d="M305 30 h55 v292 h-295 v-55 h240 z"/>
@@ -2172,7 +2191,7 @@ inputs = { ... }</p>
     </section>
 
     <!-- ============================ S18 - Links ============================ -->
-    <section class="slide slide-centred" id="s18" aria-label="Links" data-speaker="Anyone" data-when="2026-03">
+    <section class="slide slide-centred" id="s18" aria-label="Links" data-speaker="Anyone" data-when="now">
       <h1 class="slide-title">Links</h1>
       <div class="s18-links">
         <div class="s18-col">
@@ -2225,7 +2244,7 @@ inputs = { ... }</p>
 
     <!-- ============================ Thank you ============================ -->
     <!-- Template close slide, royal blue variant. -->
-    <section class="slide" id="s-thanks" aria-label="Thank you" data-when="2026-03">
+    <section class="slide" id="s-thanks" aria-label="Thank you" data-when="now">
       <svg class="corner-arrow" viewBox="0 0 420 360" aria-hidden="true">
         <line class="arrow-shaft" x1="-40" y1="-80" x2="290" y2="238"/>
         <path class="arrow-fill" d="M305 30 h55 v292 h-295 v-55 h240 z"/>
@@ -2250,10 +2269,7 @@ inputs = { ... }</p>
       <span class="tl-cell"><span class="tl-label">Jan 26</span></span>
       <span class="tl-cell"><span class="tl-label">Feb</span></span>
       <span class="tl-cell"><span class="tl-label">Mar</span></span>
-      <span class="tl-cell"><span class="tl-label">Apr</span></span>
-      <span class="tl-cell"><span class="tl-label">May</span></span>
-      <span class="tl-cell"><span class="tl-label">Jun</span></span>
-      <span class="tl-cell"><span class="tl-label">Jul 26</span></span>
+      <span class="tl-cell"><span class="tl-label">Now</span></span>
     </div>
   </div>
 </div>
@@ -2298,7 +2314,9 @@ inputs = { ... }</p>
   // Persistent story timeline - month cells matched to each slide's data-when.
   // A slide repeating the previous slide's range greys out: accent means the story
   // just moved, grey means we're still in the same months.
-  var MONTHS = ['2025-11', '2025-12', '2026-01', '2026-02', '2026-03', '2026-04', '2026-05', '2026-06', '2026-07'];
+  // 'now' is a sentinel, not a real month - it just has to be the array's last entry so
+  // indexOf finds it like any other data-when value; no other parsing change needed.
+  var MONTHS = ['2025-11', '2025-12', '2026-01', '2026-02', '2026-03', 'now'];
   var timeline = document.getElementById('timeline');
   var tlCells = Array.prototype.slice.call(document.querySelectorAll('#timeline .tl-cell'));
   var tlRanges = slides.map(function (s) {

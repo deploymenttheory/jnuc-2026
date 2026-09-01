@@ -160,18 +160,26 @@ quotes is stale.
   it is not a third option). Source files and the Pixelforge spec go in the deck's `art/`
   directory, never linked.
 - **Dates live on the persistent timeline, not in slide content.** A `<section>` carries
-  `data-when="YYYY-MM"` or `data-when="YYYY-MM:YYYY-MM"` (a month range), or carries no
-  `data-when` at all. A fixed strip at the bottom of the stage runs Nov 2025 -> Jul 2026
-  (present day); the active slide's range is highlighted, earlier months tinted. The title
-  slide and the three pre-migration context slides (landscape, who touches Jamf Pro, what a
-  workspace is) carry no `data-when`, so the strip stays blank through them - there is
-  nothing to highlight until the story reaches its first dated slide. From there, keep
-  positions monotonically non-decreasing through the deck. Don't add per-slide date chips.
-  Elements that sit near a slide's bottom-left must clear the strip - use the `--tl-clear`
-  token for their bottom offset. The template's brand footer (jamf + JNUC logos) appears on
-  the title, Questions and Thank You slides only, sitting above the strip; content slides
-  keep the timeline strip and counter as their bottom chrome - the two would collide
-  otherwise, and the strip is deck content.
+  `data-when="YYYY-MM"` or `data-when="YYYY-MM:YYYY-MM"` (a month range), `data-when="now"`
+  (see below), or carries no `data-when` at all. A fixed strip at the bottom of the stage
+  runs Nov 2025 -> Mar 2026 -> Now (six stops: Nov 25, Dec, Jan 26, Feb, Mar, Now); the
+  active slide's range is highlighted, earlier months tinted. The title slide and the three
+  pre-migration context slides (landscape, who touches Jamf Pro, what a workspace is) carry
+  no `data-when`, so the strip stays blank through them - there is nothing to highlight
+  until the story reaches its first dated slide. From there, keep positions monotonically
+  non-decreasing through the deck. Don't add per-slide date chips. Elements that sit near a
+  slide's bottom-left must clear the strip - use the `--tl-clear` token for their bottom
+  offset. The template's brand footer (jamf + JNUC logos) appears on the title, Questions
+  and Thank You slides only, sitting above the strip; content slides keep the timeline strip
+  and counter as their bottom chrome - the two would collide otherwise, and the strip is
+  deck content. `now` is a sentinel, not a real month: the script's `MONTHS` array carries
+  it as its last entry, so the existing `indexOf` lookup matches it exactly like any
+  `YYYY-MM` value with no other parsing change. It is only ever used bare (`data-when="now"`),
+  never in a range. Currently `#s16b` (By the numbers) is the only slide that advances to
+  it (bright accent, since the story moves from March to now); `#s17`, `#s18` and
+  `#s-thanks` repeat `data-when="now"` and render muted, carrying that state to the end of
+  the deck. `#s15b` (Getting as close to DRY as we can) is the last slide before that,
+  advancing to `2026-03` (bright).
 - **The highlight only goes accent when the story moves.** A slide whose `data-when` range
   repeats the previous slide's renders those cells in the muted static state (via
   `#timeline.tl-static`); the month label stays accent either way. This is also how a slide
@@ -280,8 +288,8 @@ overlay - keep the two in step when slides move.
     - **Joseph**
 18. `s15b` Getting as close to DRY as we can (the second half of that arc: six techniques in
     a three by two grid, each carrying the syntax you actually write - input variables, local
-    values, data sources, child modules (marked as what the estate runs), configuration as
-    data, Terragrunt - over a caution that CLI workspaces share a backend. Terraform Stacks
+    values, data sources, child modules, configuration as data (those four marked as what the
+    estate runs), Terragrunt - over a caution that CLI workspaces share a backend. Terraform Stacks
     was on this slide and came off 2026-08-28: it is GA but needs HCP Terraform or Terraform
     Enterprise 2.0 on a resource-under-management plan, so it is unavailable to anyone
     running Terraform CLI and does not belong in a list of techniques the audience can use. The module tree moved
