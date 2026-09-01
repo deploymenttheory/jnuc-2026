@@ -718,6 +718,18 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, speaker column added to timeline notes.** Joseph: "Amend timeline notes to
+  also include the speaker and make sure you enshrine the fact that THIS IS the truth into
+  the docs." `docs/timeline-notes.md` gained a Speaker column in both tables (filled from
+  AGENTS.md's "Current slide order" list for `migrating_an_instance`, TBC kept on slide 4;
+  from `training_a_team/index.html`'s `data-speaker` attributes for the training deck, cross-
+  checked against AGENTS.md's own speaker paragraph, with slides carrying no attribute marked
+  Unassigned), notes column left blank. Doc's intro now states plainly it is the source of
+  truth for order, speaker and timeline correspondence and that the decks get corrected to
+  it, not the reverse. `AGENTS.md`'s doc-table entry and both deck sections (the migrating
+  deck's slide-order list, the training deck's slide map and its separate speaker paragraph)
+  now say the doc is authoritative and their own lists are descriptions corrected to match
+  it.
 - **2026-09-01, slide 12 (`#s11`) flag spelling fixed.** Joseph: "Slide 12 its
   --generate-config-out". Point 4 of the numbered list and its CSS comment named the
   rejected Terraform plan flag with a single leading hyphen; both now read
