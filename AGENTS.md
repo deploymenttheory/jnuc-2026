@@ -234,7 +234,7 @@ overlay - keep the two in step when slides move.
 12. `s11` Tools and helpers (the pipeline diagram unchanged on the left - jamfpy -> script
     -> map -> for_each -> import; on the right the same four points as a numbered list, 1
     to 4 in mono in an accent gutter, each name in the display face, bold: PRUNE and
-    jamf-resource-deleter, jamfpy, the regex mop-up pass, and `-generate-config-out`
+    jamf-resource-deleter, jamfpy, the regex mop-up pass, and `--generate-config-out`
     rejected, its number and name both in the danger colour. Option D, accepted
     2026-08-28. Cut back from seven bullets 2026-08-28; the three that went are told by
     the diagram or by `s12`, and the "mostly Copilot CLI" mention left the slide with

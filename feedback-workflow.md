@@ -734,6 +734,14 @@ it up - either way it is on disk for a recovering session.
   the incoming collaborator change takes precedence and our side reworks on top of it, never
   the reverse. Does not change who merges what - a collaborator's PR still only gets merged
   when Joseph names it. PR #66.
+- **2026-09-01, slide 12 (`#s11`) flag spelling fixed.** Joseph: "Slide 12 its
+  --generate-config-out". Point 4 of the numbered list and its CSS comment named the
+  rejected Terraform plan flag with a single leading hyphen; both now read
+  `--generate-config-out`. Speaker notes and `presenter.json` already name the flag in
+  prose with no hyphen prefix, so neither needed a change. `AGENTS.md`'s slide-12 line
+  updated to match. Deterministic wording fix, no sandbox round. The presenter check
+  prints the pre-existing `title differs: s01` failure only (unrelated, being handled
+  separately) and the dash lint is clean. PR #64.
 - **2026-09-01, timeline doc simplified and renamed.** `docs/timeline-adherence.md`
   (migrating_an_instance only, empty "Month (fill in)" column, a colon in its H1, stale
   slide 17/18 titles) replaced by `docs/timeline-notes.md`: one three-column table per deck
