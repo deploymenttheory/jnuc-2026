@@ -735,6 +735,20 @@ it up - either way it is on disk for a recovering session.
   top offset and the text's left padding grown to match, and the right-hand column narrowed
   380px to 340px to give the rail more room. The sentence stays at `--fs-body` so all three
   rows still hold to one line each. No wording changed; presenter sync check prints OK.
+- **2026-09-01, slide 4 (`#s-workspace`) sub-line and lenses reworded.** Dafydd's own
+  edits, committed from the working tree. The sub-line drops the definition sentence and
+  now leads with the carve-up decision; the lenses lead says it is cheaper to think the
+  state carve-up through up front and asks the audience to pick all that apply. The
+  "Deployment frequency" lens is replaced by "Blast radius" ("If someone makes a mistake,
+  how far do you want that impact to reach?"), and blast radius is dropped from the
+  closing refine-against list to match. Team structure, Scale and What changes together
+  keep their names with tightened wording. Four spelling slips in the new copy were
+  corrected (carfully, inititally, "up up", "a mistakes") and the new lens name set in
+  sentence case like its three neighbours. The speaker notes name no individual lens and
+  still read correctly, so they and `presenter.json` are unchanged; AGENTS.md's slide 4
+  entry still says "four lenses" and needed no edit. Presenter sync check prints OK, dash
+  lint is clean. PR #77.
+
 - **2026-09-01, subtitle sizes standardised.** Joseph: "the subtitle is way to been
   [sic, too big]. Standardise the size of subtitles where possible." Surveyed every
   `.slide-sub`/`.lead` usage in `index.html`: only `#s-sentinel`'s intro line was
@@ -747,6 +761,7 @@ it up - either way it is on disk for a recovering session.
   kicker - are smaller than `.slide-sub` by design (captions/kickers, not subtitles), so
   left unchanged. Updated two stale `.lead`-sharing comments and AGENTS.md's `#s-sentinel`
   entry to match. Presenter sync check prints OK. PR #76.
+
 - **2026-09-01, slide 10 (`#s10`) moved to slide 8.** Joseph: "Move 10 to after 7 (so 8),
   update docs accordingly." The whole `#s10` (Resource sequencing) section moved verbatim
   in `index.html` to sit directly after `#s07` (Prerequisites), so the order at 7-10 is now

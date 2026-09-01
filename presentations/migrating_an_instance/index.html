@@ -1388,7 +1388,7 @@ body.presenter #viewport { display: none; }
     <section class="slide" id="s-workspace" aria-label="What a Terraform workspace is" data-speaker="Dafydd" data-when="2025-11">
       <h1 class="slide-title">What a Terraform workspace is</h1>
 
-      <p class="slide-sub">One set of Terraform code linked to one state file. How you carve a Jamf Pro instance into workspaces is a decision worth taking slowly, and there are more lenses on it than you would expect.</p>
+      <p class="slide-sub">How you carve a Jamf Pro instance into tf workspaces is a decision worth making carefully, and there are more lenses on it than you would expect.</p>
 
       <div class="wsx">
         <div class="card wsx-io">
@@ -1426,26 +1426,26 @@ body.presenter #viewport { display: none; }
       </div>
 
       <div class="wsx-lenses">
-        <p class="wsx-lenses-lead">Deciding how to carve an instance into workspaces is the part to slow down on. It is far cheaper to think it through than to re-cut it later. Four lenses come first:</p>
+        <p class="wsx-lenses-lead">It is far cheaper to think the state carve-up through up front than to re-cut it later. Four lenses to consider initially. Pick all that apply to your setup:</p>
         <div class="wsx-lens-grid">
           <div class="wsx-lens">
             <span class="wsx-lens-name">Team structure</span>
-            <span class="wsx-lens-desc">Who owns what, and who needs to ship without waiting on somebody else's apply.</span>
+            <span class="wsx-lens-desc">Who owns what, and who needs to ship what without waiting on somebody else's tf apply.</span>
           </div>
           <div class="wsx-lens">
-            <span class="wsx-lens-name">Deployment frequency</span>
-            <span class="wsx-lens-desc">How often each part actually changes, and whether those rates are anywhere near each other.</span>
+            <span class="wsx-lens-name">Blast radius</span>
+            <span class="wsx-lens-desc">If someone makes a mistake, how far do you want that impact to reach?</span>
           </div>
           <div class="wsx-lens">
             <span class="wsx-lens-name">Scale</span>
-            <span class="wsx-lens-desc">Resource count, state size and plan time. Guidance puts the ceiling at roughly 500 resources per workspace.</span>
+            <span class="wsx-lens-desc">Total workspace resource count, state size and plan time. Guidance puts the ceiling at roughly 500 resources per workspace.</span>
           </div>
           <div class="wsx-lens">
             <span class="wsx-lens-name">What changes together</span>
-            <span class="wsx-lens-desc">Things that move at the same time belong together. Things that never move should not be dragged along.</span>
+            <span class="wsx-lens-desc">Things that move at the same time typically belong together. Things that never move should not be dragged along.</span>
           </div>
         </div>
-        <p class="caption muted wsx-lenses-note">Then refine against the rest: blast radius and risk appetite, dependencies between workspaces, environment strategy, approval and audit requirements, and how much orchestration you can realistically operate.</p>
+        <p class="caption muted wsx-lenses-note">Then refine against further factors: dependencies between workspaces, environment strategy, approval and audit requirements, and how much orchestration you can realistically operate as an engineering team.</p>
       </div>
       <aside class="notes">
         <p>Define it plainly first - one set of Terraform code linked to one state file. Walk the diagram left to right: code goes in, the workspace is the boundary that holds the state, the variables and secrets, the permissions and the workflow, and a run comes out as a plan, then a policy check, then an apply against one Jamf Pro instance.</p>
