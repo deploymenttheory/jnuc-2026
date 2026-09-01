@@ -734,6 +734,11 @@ it up - either way it is on disk for a recovering session.
   the incoming collaborator change takes precedence and our side reworks on top of it, never
   the reverse. Does not change who merges what - a collaborator's PR still only gets merged
   when Joseph names it. PR #66.
+- **2026-09-01, slide 13 (`#s12`) bottom spacing fixed.** Joseph: "the text is too close to
+  the bottom." Scoped `#s12` overrides trim the code panels' vertical padding and the
+  row gaps above the takeaway and slide-note (existing `--sp-*` tokens only, no font-size
+  or content changes) so the last line clears the timeline strip. No options round -
+  a layout fix. PR #65.
 - **2026-09-01, slide 12 (`#s11`) flag spelling fixed.** Joseph: "Slide 12 its
   --generate-config-out". Point 4 of the numbered list and its CSS comment named the
   rejected Terraform plan flag with a single leading hyphen; both now read
