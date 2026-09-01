@@ -727,21 +727,18 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
-- **2026-09-01, collaborator changes now win conflicts with in-flight work.** Joseph:
-  "Remember to always accept PRs over what we're doin." Added to the Standing rules'
-  collaborators bullet and the Gotchas hot-spot resolution bullet: when a collaborator's PR
-  or direct push to `main` conflicts with the orchestrator's or its agents' in-flight work,
-  the incoming collaborator change takes precedence and our side reworks on top of it, never
-  the reverse. Does not change who merges what - a collaborator's PR still only gets merged
-  when Joseph names it. PR #66.
-- **2026-09-01, slide 16 (`#s-staging`) pixel-art icons removed for now.** Joseph: "Slide 16
-  remove the graphics for now." The three `s-staging-art` `<img>` data URIs and the
-  now-unused `.s-staging-art` CSS rule are gone; the rail's rings and text close up cleanly
-  with no leftover gaps. `art/` (spec plus PNGs) stays, unused. Speaker notes and
-  `presenter.json` did not mention the icons, so neither needed a change. `AGENTS.md`'s
-  slide 16 entry, `art/` table row and Embedded artwork bullet updated to match. Deterministic
-  removal, no sandbox round. The presenter check prints the pre-existing `title differs: s01`
-  failure only (unrelated, fixed separately by PR #68) and the dash lint is clean. PR #69.
+- **2026-09-01, speaker column added to timeline notes.** Joseph: "Amend timeline notes to
+  also include the speaker and make sure you enshrine the fact that THIS IS the truth into
+  the docs." `docs/timeline-notes.md` gained a Speaker column in both tables (filled from
+  AGENTS.md's "Current slide order" list for `migrating_an_instance`, TBC kept on slide 4;
+  from `training_a_team/index.html`'s `data-speaker` attributes for the training deck, cross-
+  checked against AGENTS.md's own speaker paragraph, with slides carrying no attribute marked
+  Unassigned), notes column left blank. Doc's intro now states plainly it is the source of
+  truth for order, speaker and timeline correspondence and that the decks get corrected to
+  it, not the reverse. `AGENTS.md`'s doc-table entry and both deck sections (the migrating
+  deck's slide-order list, the training deck's slide map and its separate speaker paragraph)
+  now say the doc is authoritative and their own lists are descriptions corrected to match
+  it. PR #74.
 - **2026-09-01, slide 11 (`#s08`) subtitle added.** Joseph: "Add a subtitle to 11." A
   `<p class="slide-sub">` now sits under the title, the deck's shared subtitle pattern
   already used on four other slides: "The same seven steps ran for every wave between

@@ -42,7 +42,7 @@ landing page keeps its own near-black look - it is not a deck.
 | `tools/` | `build-key.mjs`, which builds the Keynote downloads from the decks on a Mac (the only thing `package.json` exists for), and `sandbox-template.html`, the starting point for every sandbox review page. |
 | `feedback-workflow.md` | The deck feedback loop: standing rules, orchestrator and slide-agent roles, brief templates, commands, recovery steps and a log. Read it before touching a deck in response to feedback. Not shipped (`*.md` is excluded from the deploy). |
 | `docs/superpowers/plans/` | The first-round implementation plan, superseded by `feedback-workflow.md` and kept for its triage table. Not shipped. |
-| `docs/timeline-notes.md` | Source of truth for slide order in both decks: one three-column table per deck (slide number, title, time notes), the notes column left for Joseph to say whether and where a slide should highlight the timeline strip. Not shipped. |
+| `docs/timeline-notes.md` | Authoritative for slide order, speaker and timeline correspondence in both decks: one four-column table per deck (slide number, title, speaker, time notes), the notes column left for Joseph to say whether and where a slide should highlight the timeline strip. Where this file's slide-order or speaker lists disagree with it, this doc wins and those lists get corrected to match. Not shipped. |
 | `README.md`, `LICENSE` | Repo boilerplate. |
 
 The decks have no build step. Node is in this repo purely for `tools/build-key.mjs`, which is
@@ -211,6 +211,11 @@ quotes is stale.
   no-invented-facts rule.
 
 ### Current slide order (story arc)
+
+`docs/timeline-notes.md` is authoritative for slide order, speaker and timeline
+correspondence. The list below is a description of the current state, kept in step by hand -
+where it disagrees with the doc, this list is corrected to match the doc, not the other way
+round.
 
 Context -> decisions -> first wins -> the wall -> the loop -> growing pains -> payoff.
 22 slides. Legacy section ids kept stable across reorders (so `s10` no longer sits at
@@ -395,6 +400,11 @@ full path. **21 slides.** `ClickOps_to_GitOps.key` alongside it is the committed
 download from `tools/build-key.mjs`. No spec, notes file or slot length has been recorded
 here yet. Content work is ongoing, slide by slide (Aug 2026).
 
+`docs/timeline-notes.md` is authoritative for slide order, speaker and timeline
+correspondence. The slide map and speaker list below are descriptions of the current state -
+where either disagrees with the doc, it is corrected to match the doc, not the other way
+round.
+
 Slide map (after the template adoption and the merge with Dafydd's Aug 2026 edits): `#1`
 title (template three-speaker layout, LBG logo in the template's customer-logo slot, stats
 row kept), `#2` "Where we are today" (the old half-speakers slide kept its real content -
@@ -492,10 +502,12 @@ by Gordon Deacon, Aug 2026, and its chip is gone. The `#3` "what success looked 
 architectural decisions and was managing resources in code exclusively), the trained bar and the
 non-goals were confirmed by the user, Aug 2026, and all three `#3` chips are gone.
 
-Speakers (`data-speaker`), after the `#9`/`#10` merge: `#5`, `#7`, `#9` and `#14` are Gordon;
-`#4`, `#6`, `#10`, `#11` and `#13` are Joseph; `#3`, `#8`, `#12`, `#15` and `#16` are Dafydd.
-Scope moved from Dafydd to Joseph and onboarding from Dafydd to Gordon, Aug 2026. `#2` is still
-marked **All** but Gordon's notes assign it to Dafydd - unresolved.
+Speakers (`data-speaker`), after the `#9`/`#10` merge - `docs/timeline-notes.md` is
+authoritative here too; this list is corrected to match it when they disagree: `#5`, `#7`,
+`#9` and `#14` are Gordon; `#4`, `#6`, `#10`, `#11` and `#13` are Joseph; `#3`, `#8`, `#12`,
+`#15` and `#16` are Dafydd. Scope moved from Dafydd to Joseph and onboarding from Dafydd to
+Gordon, Aug 2026. `#2` is still marked **All** but Gordon's notes assign it to Dafydd -
+unresolved.
 
 `#7` carries a seventh condition, "Decide who approves the pull requests" (`.suppcard.wide`,
 full-width across the 2-column grid), and its hero panel is now **Two kinds of safety** -
