@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<!-- Built from tools/sandbox-template.html. The reformat needed a QR placeholder to sit
+     alongside the links, so all three layouts ship as markup wrappers inside #s18 (the
+     same technique as s11-right-hand-points.html) and each option below is one rule
+     flipping which wrapper shows. The mechanism is documented in AGENTS.md under Sandbox
+     and the loop in feedback-workflow.md. -->
+<title>Sandbox - slide 21 links reformat and QR placeholder</title>
+<link rel="stylesheet" href="../sandbox.css">
+</head>
+<body>
+<div class="wrap">
+  <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / From Clicks to Code / slide 21</p>
+  <h1>Slide 21 - links reformat and QR placeholder</h1>
+  <p class="lede">Joseph asked to reformat the links slide to look better and to add a placeholder for the QR code the training deck carries on its own resources slide - the QR should have come across with the links in PR #85 and did not. The QR's final target URL is not settled, so every option below reserves the space in the training deck's QR visual style (a white tile, the deck's own <code>--c-photo</code> token, matching <code>.qr-tile</code> in <code>training_a_team/index.html</code>) with a <code>TODO: QR target URL</code> chip standing in for the code itself, never a fake scannable pattern. All eight links, both group headings, the outstanding jamfpy/contact/socials chip and the QR wording ("Take it with you" / "Scan for a link to this presentation") are identical across all three - only the layout changes.</p>
+  <p class="lede">Each option is a real markup wrapper inside <code>#s18</code> with its own CSS already in the deck, so the injected rule below only flips which wrapper is visible - and accepting one means deleting the other two wrappers and their rules as a single block.</p>
+  <nav class="jump" aria-label="Options">
+    <a href="#a">A</a><a href="#b">B</a><a href="#c">C</a>
+  </nav>
+
+  <section class="option" id="a">
+    <h2>Option A - two columns plus a QR rail <span class="tag">live now</span></h2>
+    <p>What ships from this PR. The two link columns stay side by side, narrowed a little to make room for a third column: a quiet QR rail carrying the "Take it with you" label, the reserved tile and the caption, echoing the training deck's own three-column resources slide. The outstanding jamfpy/contact/socials chip sits below the full row, where it already was. This is the most direct read of the brief - it slots the QR in as one more column rather than changing how the links themselves are grouped - so pick this if the slide should look like a tidied-up version of what it already is.</p>
+    <div class="frame"><iframe data-variant="a" src="../../migrating_an_instance/index.html#s18" title="Option A"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-a"></pre></details>
+  </section>
+
+  <section class="option" id="b">
+    <h2>Option B - one footer bar for what's still to come</h2>
+    <p>The two link columns are untouched - same grid, same width, same order. Everything unresolved about the slide moves into one horizontal bar below a hairline rule: a small QR tile on the left, the "Take it with you" wording beside it, and the outstanding chip pinned to the right of the same row. Where option A treats the QR as a third column of equal standing, this option treats the QR and the outstanding chip as one unit - a "what's still to come" strip - and keeps the links themselves exactly as they render today. Pick this if the links should look unchanged and the QR should read as a footnote rather than a feature.</p>
+    <div class="frame"><iframe data-variant="b" src="../../migrating_an_instance/index.html#s18" title="Option B"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-b"></pre></details>
+  </section>
+
+  <section class="option" id="c">
+    <h2>Option C - narrower columns, a QR hero card</h2>
+    <p>The two link columns shrink to make room for a much bigger QR panel on the right: a bordered navy card, the same surface the deck already uses for its other panels, holding the label, a tile roughly the size of the training deck's own QR code, the caption and the outstanding chip all together. Where A and B treat the QR as an aside, this option gives it real visual weight - the card reads as a destination on its own, not a footnote to the links. Pick this if the QR should be the thing people notice first, on the assumption the code will matter once the target URL is settled.</p>
+    <div class="frame"><iframe data-variant="c" src="../../migrating_an_instance/index.html#s18" title="Option C"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-c"></pre></details>
+  </section>
+
+  <p class="foot">To choose: name the option in chat, or describe what to change and this page gets a new set. Renders need the site served over HTTP - opened from disk the iframes load but the option CSS cannot be injected.</p>
+</div>
+
+<script>
+  // Each option is CSS layered onto the real deck slide. All three layouts already exist
+  // as markup wrappers inside #s18 with their own rules in the deck, so an option here is
+  // one display flip - which is also why an accepted option pastes into the deck by
+  // deleting the other two wrappers rather than by adding anything.
+  const VARIANTS = {
+    a: ``,
+    b: `#s18 .s18-opt-a { display: none; }
+#s18 .s18-opt-b { display: flex; }`,
+    c: `#s18 .s18-opt-a { display: none; }
+#s18 .s18-opt-c { display: flex; }`,
+  };
+
+  for (const [key, css] of Object.entries(VARIANTS)) {
+    document.getElementById('css-' + key).textContent = css || '/* nothing - this is the deck as deployed */';
+  }
+
+  document.querySelectorAll('iframe[data-variant]').forEach((frame) => {
+    frame.addEventListener('load', () => {
+      const css = VARIANTS[frame.dataset.variant];
+      if (!css) return;
+      let doc;
+      try { doc = frame.contentDocument; } catch (e) { doc = null; }
+      if (!doc) return; // file:// - cross-origin iframe, nothing we can do
+      const style = doc.createElement('style');
+      style.textContent = css;
+      doc.head.appendChild(style);
+    });
+  });
+</script>
+</body>
+</html>

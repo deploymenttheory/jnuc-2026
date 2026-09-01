@@ -301,7 +301,11 @@ overlay - keep the two in step when slides move.
 21. `s18` Links (copied and standardised from the training deck's "16 - Resources" slide
     2026-09-01: two groups, Provider and tooling / Docs and community, each a row per
     link with the URL beneath the label; jamfpy's own repository URL and contact/socials
-    are still outstanding, flagged with a TODO chip) - **Anyone**
+    are still outstanding, flagged with a TODO chip. Reformatted the same day to reserve
+    space for the QR the training deck carries alongside its own resources - a white
+    tile matching that deck's `.qr-tile` treatment holding a `TODO: QR target URL` chip,
+    since the target is not settled. Three layouts ship as markup wrappers `.s18-opt-a`
+    to `.s18-opt-c`; option A - two link columns plus a QR rail - is live) - **Anyone**
 22. `s-thanks` Thank You (template close, royal blue) - **nobody assigned**
 
 The old `s00b` "Who we are" slide was folded into the title slide when the template's
@@ -746,6 +750,15 @@ automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages (all under `presentations/sandbox/migrating_an_instance/`):
+`s18-reformat-qr` (2026-09-01, slide 21 - reformats the links and reserves QR space, the
+training deck's own QR having been left off when the links were copied over in PR #85;
+all three options ship as markup wrappers `.s18-opt-a` to `.s18-opt-c` inside `#s18` since
+the QR placeholder is markup, not pure CSS: A the two link columns narrowed to make room
+for a QR rail, live now; B the link columns untouched with the QR and the outstanding
+jamfpy/contact/socials chip joined into one footer bar; C narrower link columns and a
+bold QR hero card on the deck's navy card surface. The QR tile is a reserved white
+square, matching the training deck's `.qr-tile` treatment, holding a `TODO: QR target
+URL` chip rather than a fake scannable pattern);
 `s-sentinel-round2` (2026-08-28, slide 9 - three fresh treatments after round one was
 rejected, all leaning simpler and all pure CSS on the existing `.lead` / `ol.gates` /
 `li.card.gate` markup scoped to `#s-sentinel`, so nothing new ships in the deck: A the live

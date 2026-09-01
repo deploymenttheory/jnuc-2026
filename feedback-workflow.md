@@ -733,6 +733,20 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, slide 21 (`#s18`) links reformatted and QR space reserved.** Joseph: "Can
+  we reformat it to make it look better, add a placeholder for the QR." (The training
+  deck's QR should have come across with the links in PR #85 and did not.) Deterministic
+  edit: a reserved QR tile - a white square matching the training deck's `.qr-tile`
+  treatment, using the deck's existing `--c-photo` token - holding a `TODO: QR target URL`
+  chip, since the target is not settled; no fake scannable pattern. Three layout options
+  ship as markup wrappers `.s18-opt-a` to `.s18-opt-c` inside `#s18` (the QR placeholder
+  needed markup, not just CSS), only `s18-opt-a` visible. Sandbox page
+  `presentations/sandbox/migrating_an_instance/s18-reformat-qr.html`: A - two link columns
+  narrowed to make room for a QR rail (live now); B - link columns untouched, QR and the
+  outstanding jamfpy/contact/socials chip joined into one footer bar; C - narrower link
+  columns and a bold QR hero card on the deck's navy card surface. AGENTS.md's slide 21
+  entry and the Sandbox "Current pages" line updated. Presenter sync check prints OK, dash
+  lint clean. No PR yet, awaiting a decision.
 - **2026-09-01, slide 21 (`#s18`) links copied and standardised from the training deck.**
   Joseph: "Copy and standardise the links over from the other presentation." The migrating
   deck's Links slide carried only two unlinked labels (`Provider: deploymenttheory/jamfpro`,
