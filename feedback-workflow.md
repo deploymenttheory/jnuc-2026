@@ -727,7 +727,7 @@ it up - either way it is on disk for a recovering session.
   rewritten to make the depth-and-breadth point instead of recounting the cards. The
   `#s02` `aria-label`, the section comment, `presenter.json`'s `s02` title and AGENTS.md's
   slide 3 entry were all brought in step. Speaker notes were left as they were and still
-  match. Presenter sync check prints OK. PR pending.
+  match. Presenter sync check prints OK. PR #73.
 - **2026-09-01, presenter and AGENTS.md aligned with slide 2's retitle.** A collaborator's
   direct push to main (`0d9b2fa`) retitled slide 2's (`#s01`) `<h1>` from "Context,
   requirements, constraints" to "Landscape prior to the migration" (also moving the
