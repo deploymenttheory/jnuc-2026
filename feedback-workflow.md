@@ -738,7 +738,7 @@ it up - either way it is on disk for a recovering session.
   a pull request") which is no longer what the slide says, so the note now leads with the
   tenant-unique argument and keeps the troubleshooting line as the follow-up;
   `presenter.json` mirrored to match. AGENTS.md's slide 5 entry counts 3 rejects and
-  needed no edit. Presenter sync check prints OK, dash lint is clean. PR pending.
+  needed no edit. Presenter sync check prints OK, dash lint is clean. PR #80.
 - **2026-09-01, migrating_an_instance's timeline correspondence implemented from the notes
   doc.** Joseph filled in `docs/timeline-notes.md`'s Time notes column for the whole deck
   (verbatim table in the brief); titles and speakers already matched, so only the notes
