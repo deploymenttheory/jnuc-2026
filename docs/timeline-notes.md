@@ -14,7 +14,7 @@ month or range.
 |---|---|---|---|
 | 1 | Title | All (intros) | None |
 | 2 | Landscape prior to the migration | Dafydd | Context |
-| 3 | Who touches Jamf Pro | Dafydd | Context |
+| 3 | Who uses Jamf Pro in our Org ? | Dafydd | Context |
 | 4 | What a Terraform workspace is | Dafydd (TBC) | Context |
 | 5 | Migration outcomes we considered and rejected | Joseph | Nov 25 |
 | 6 | Migration path options | Joseph | Nov 25 |
