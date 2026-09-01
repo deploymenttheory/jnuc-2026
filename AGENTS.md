@@ -128,7 +128,7 @@ one and the other does not follow.
 | `from-clicks-to-code-jnuc2026.pptx` | Gone. The download is now the committed `.key` below. |
 | `from-clicks-to-code-jnuc2026.key` | The committed Keynote download, written by `tools/build-key.mjs`. The landing page links to this exact filename, so it is set in the script, not chosen freely. Rebuild and commit it with any deck edit. |
 | `presenter.json` | Per-slide speaker notes and timer lengths plus the 30-minute talk limit. Notes are a copy of the deck's `<aside class="notes">` text and the slide order mirrors the deck - the deck wins when they differ, and `feedback-workflow.md` carries a check that must print `OK` before every push. Regenerated from the deck on 2026-08-27 (timers kept). Timer allocations are proposed, not rehearsed. Nothing reads this file yet. |
-| `art/` | Source art for the pixel-art icons on slide 16: `s-staging-steps.md` (the Pixelforge spec - palette, rules and prose for all three) and `s-staging-wipe.png` / `s-staging-apply.png` / `s-staging-iterate.png`, 1024px square (Pixelforge's ceiling; redrawn at that size 2026-08-28, up from 384px), exported at scale 1. The deck embeds its own base64 copy of each, so nothing links to these files; they are kept so the art can be regenerated. See Embedded artwork below. |
+| `art/` | Source art for the pixel-art icons that used to sit on slide 16: `s-staging-steps.md` (the Pixelforge spec - palette, rules and prose for all three) and `s-staging-wipe.png` / `s-staging-apply.png` / `s-staging-iterate.png`, 1024px square (Pixelforge's ceiling; redrawn at that size 2026-08-28, up from 384px), exported at scale 1. The icons came off the slide 2026-09-01 ("for now"); these files are unused but kept so the art can come back. See Embedded artwork below. |
 | `spec.md` | Spec and change history: the original build runbook, Joseph's source narrative and full repo tree, all three Q&A rounds answered inline, and a decision index. **Historical** - sections marked SUPERSEDED (deck order, palette values, open-questions index) predate the story restructure, and everything it says about the light LBG-green palette predates the JNUC template adoption. |
 
 `spec.md` is provenance for every fact in the deck. Do not delete it; do not treat its
@@ -144,19 +144,21 @@ quotes is stale.
   keywords, light-cornflower strings and amber numbers; TODO chips are solid amber with navy
   ink. Logos (jamf white, JNUC 2026) live in tokens as data URIs.
 - **Embedded artwork.** Everything the deck draws with an image is a data URI in the HTML,
-  because the deck has to work opened straight off disk. The logos are white-on-transparent
-  and live in tokens; slide 16's three pixel-art step icons are multicolour PNGs on
-  transparent and live inline in the markup as `<img class="s-staging-art">`. This deck has
-  **no theme system** - no `[data-theme]` blocks, no `--art-mono-filter` or `--art-plate`
-  knobs (those belong to `training_a_team`) - so embedded art gets no per-theme filter or
-  backing plate here. The stage is always royal blue and the cards always navy, and the
-  icons are drawn with a dark `#0A1030` outline that reads on both, so they need neither.
-  New art must be sized in tokens. Pixel art carries `image-rendering: pixelated` only when
-  the source is at or near its display size; slide 16's icons are 1024px shown at 168px, and
-  at that ratio nearest-neighbour throws away five source pixels in six and shreds the
-  outlines, so they use `image-rendering: auto` and let the browser downscale smoothly
-  (Chrome treats `crisp-edges` as nearest, so it is not a third option).
-  Source files and the Pixelforge spec go in the deck's `art/` directory, never linked.
+  because the deck has to work opened straight off disk. Currently that is only the logos -
+  white-on-transparent SVGs living in tokens. Slide 16 used to carry three multicolour
+  pixel-art step icons inline as `<img class="s-staging-art">`; they came off the slide
+  2026-09-01 ("for now") and the deck currently embeds no raster art. If they (or any other
+  pixel art) return: this deck has **no theme system** - no `[data-theme]` blocks, no
+  `--art-mono-filter` or `--art-plate` knobs (those belong to `training_a_team`) - so
+  embedded art gets no per-theme filter or backing plate here; the stage is always royal
+  blue and the cards always navy, so new pixel art should carry a dark outline (the removed
+  icons used `#0A1030`) that reads on both. New art must be sized in tokens. Pixel art
+  carries `image-rendering: pixelated` only when the source is at or near its display size;
+  the removed icons were 1024px shown at 168px, and at that ratio nearest-neighbour throws
+  away five source pixels in six and shreds the outlines, so they used `image-rendering:
+  auto` and let the browser downscale smoothly (Chrome treats `crisp-edges` as nearest, so
+  it is not a third option). Source files and the Pixelforge spec go in the deck's `art/`
+  directory, never linked.
 - **Dates live on the persistent timeline, not in slide content.** Every `<section>` carries
   `data-when="YYYY-MM"` or `data-when="YYYY-MM:YYYY-MM"` (a month range). A fixed strip at
   the bottom of the stage runs Nov 2025 -> Jul 2026 (present day); the active slide's range
@@ -250,11 +252,10 @@ overlay - keep the two in step when slides move.
     result; four gate cards unchanged) - **Joseph**
 16. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused;
     a numbered run of the three steps down the left on a rail, verb and sentence on one
-    line each, with the lead and the takeaway as a quiet right-hand column. Each step
-    carries its pixel-art icon riding beside the ring at 168px, drawn on a 1024px canvas -
-    a broom sweeping coral debris off a plate with two lime blocks left standing,
-    configuration slabs landing on the same plate under a downward arrow, and a loop closing
-    on a lime tick with two coral crosses outside it. Source and spec in `art/`) - **Dafydd**
+    line each, with the lead and the takeaway as a quiet right-hand column. The pixel-art
+    icons that used to ride beside each ring came off 2026-09-01 at Joseph's request ("for
+    now"); the rings and rail carry the sequence on their own. Sources stay in `art/`,
+    unused for now) - **Dafydd**
 17. `s-pivot` One codebase for every instance (rewritten 2026-08-28 with `s15b` as one arc:
     context, problem, techniques. The DRY objective in an accent band, then a real
     `jamfpro_static_computer_group` block whose `assigned_computer_ids` are the only amber
