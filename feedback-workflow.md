@@ -53,6 +53,11 @@ process. Last revised 2026-09-01.
   stays open until Joseph names it and says merge it. Joseph, verbatim: "Do not merge any
   PRs you're not told to. Only merge ones your agents make." Mention an open collaborator PR
   in chat in one line when noticed; never merge one on inference, however far along it is.
+  If a collaborator's push or PR conflicts with in-flight work of the orchestrator's own
+  agents, the collaborator's change wins outright - the orchestrator's side reworks on top
+  of it, never the reverse. This is about precedence in a conflict, not about who merges
+  what: a collaborator's PR still only gets merged when Joseph names it. Joseph, verbatim:
+  "Remember to always accept PRs over what we're doin."
 - Do not rebuild the Keynote `.key` until Joseph says so.
 - Commits are authored by Joseph Little (the global git identity) with no `Co-Authored-By`
   trailer, plain human subjects, British English. No emojis, no em or en dashes anywhere.
@@ -418,7 +423,11 @@ stylesheet `../sandbox.css`, and crumb
   slides sit in different regions, so `--no-ff` merges are clean there in practice. Agents
   also edit `presentations/sandbox/<deck>/index.html`, `AGENTS.md`, this file's Log section
   and `presenter.json` directly, so conflicts on those are expected whenever two agents' PRs
-  land close together. Resolution rules per file, never dropping either side:
+  land close together. Resolution rules per file, never dropping either side, apply between
+  two of the orchestrator's own agents. When one side of the conflict is instead a
+  collaborator's direct push or PR, that changes who wins: the collaborator's version takes
+  precedence outright and the orchestrator's or its agent's side reworks on top of it, never
+  the reverse. Joseph, verbatim: "Remember to always accept PRs over what we're doin."
   - This file's Log: keep both sides' bullets under `### Done`, newest first. Under
     `### In flight`, keep whichever line reflects the later state of that slide (a line
     saying a PR is still pending loses to one showing it merged) and drop the other.
@@ -718,6 +727,13 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, collaborator changes now win conflicts with in-flight work.** Joseph:
+  "Remember to always accept PRs over what we're doin." Added to the Standing rules'
+  collaborators bullet and the Gotchas hot-spot resolution bullet: when a collaborator's PR
+  or direct push to `main` conflicts with the orchestrator's or its agents' in-flight work,
+  the incoming collaborator change takes precedence and our side reworks on top of it, never
+  the reverse. Does not change who merges what - a collaborator's PR still only gets merged
+  when Joseph names it.
 - **2026-09-01, timeline doc simplified and renamed.** `docs/timeline-adherence.md`
   (migrating_an_instance only, empty "Month (fill in)" column, a colon in its H1, stale
   slide 17/18 titles) replaced by `docs/timeline-notes.md`: one three-column table per deck
