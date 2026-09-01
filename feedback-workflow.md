@@ -718,6 +718,16 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, slide 8 (`#s-singletons`) subtitle added.** A `<p class="slide-sub">` under
+  the title, matching the deck's existing subtitle pattern (already used on s-workspace,
+  s04, s05 and s-pivot): "Settings panes went into state first, imported by default and
+  applied only as a fallback." Drawn from the slide's own body copy and notes, no new facts
+  added. Speaker notes and presenter.json untouched - the subtitle changes nothing they
+  say. AGENTS.md's slide 8 summary checked and still accurate, left unchanged. Screenshot
+  confirms no overflow and clearance above the timeline strip. Presenter check fails only
+  on the pre-existing `s01` title mismatch (deck says "Landscape prior to the migration",
+  presenter.json still says "Context, requirements, constraints"), unrelated to this slide
+  and already being handled separately. PR #70.
 - **2026-09-01, presenter and AGENTS.md aligned with slide 2's retitle.** A collaborator's
   direct push to main (`0d9b2fa`) retitled slide 2's (`#s01`) `<h1>` from "Context,
   requirements, constraints" to "Landscape prior to the migration" (also moving the
