@@ -733,6 +733,23 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-01, slide 6 (`#s05`) header row rebuilt for robustness - no wording or layout
+  change.** Joseph: "the box has text which is cut off and everything looks a little fucky.
+  Words overlapping and all sorts... overhaul the architecture so it's more robust." Root
+  cause was `.mp-head`'s flex row aligning on `baseline` across siblings with very different
+  line counts - the path name (1-2 lines), the why-text (1-2 lines) and, on path 03, a
+  "Chosen" tag that only sat beside the why-text because it happened to be the next flex
+  sibling after `margin-left: auto` on `.mp-why`. Baseline alignment across wrapped
+  multi-line flex siblings is exactly the kind of thing that renders inconsistently between
+  engines. Rebuilt: `.mp-name` gets `min-width: 0` so it reliably shrinks and wraps within
+  its own column; the why-text and the chosen tag are now grouped in one `.mp-meta` flex
+  item, so the tag's position is deliberate rather than a side effect of sibling order; the
+  row aligns on `flex-start`, not `baseline`. Also tokenised `.mp-env`'s hardcoded `30px`
+  font-size to `var(--fs-body)` (an exact match, no visual change). Layout is unchanged:
+  three bordered panels, diagram centred in each, the chosen path's panel edged in the
+  accent colour, the read-only API client control riding inside path 03. Screenshots at
+  1920x1080 and 1280x720 confirmed clean before and after; presenter sync check prints OK;
+  dash lint clean. PR #TODO.
 - **2026-09-01, ShocOne-precedence rule formalised, slide 3's title corrected in the docs.**
   Joseph, in reply to the title mismatch PR #79 flagged (ShocOne's PR #73 retitled slide 3
   "Who uses Jamf Pro in our Org ?"; `docs/timeline-notes.md` row 3 still read "Who touches
