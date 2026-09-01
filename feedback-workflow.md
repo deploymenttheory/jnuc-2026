@@ -727,7 +727,18 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
-
+- **2026-09-01, slide 10 (`#s10`) moved to slide 8.** Joseph: "Move 10 to after 7 (so 8),
+  update docs accordingly." The whole `#s10` (Resource sequencing) section moved verbatim
+  in `index.html` to sit directly after `#s07` (Prerequisites), so the order at 7-10 is now
+  `s07`, `s10`, `s-singletons`, `s-sentinel`; `presenter.json`'s `s10` entry moved to match,
+  notes and timer unchanged. `AGENTS.md`'s slide-order list and `docs/timeline-notes.md`
+  were renumbered, and the sandbox's open `s-sentinel-round2` entry now says slide 10. The
+  timeline strip's grey/accent state is computed automatically from `data-when` and document
+  order, so no script change was needed, but the move does change which slides highlight:
+  `#s10` and `#s-singletons` now render accent instead of the old grey/accent split with
+  `#s08` - confirmed by screenshot, and `AGENTS.md`'s verification note updated to match
+  (`#s08`/`#s11` is now the demonstrative grey-state pair). No wording or fact changes.
+  Presenter sync check prints OK. PR #75.
 - **2026-09-01, slide 3 team cards given a role line and a "Performs:" label.** Each of the
   five `#s02` cards now reads team name, a one-line description of what that team does, then
   a "Performs:" label above its existing access tag, via new `.team-head`, `.team-role`,
