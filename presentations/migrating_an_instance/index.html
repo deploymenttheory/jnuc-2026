@@ -634,12 +634,47 @@ body.reader .reader-extra {
 
 /* the lenses: the four the guidance puts first, then everything that refines the choice */
 #s-workspace .wsx-lenses { margin-top: var(--sp-3); }
-#s-workspace .wsx-lenses-lead { font-size: var(--fs-body); line-height: var(--lh-body); margin-bottom: var(--sp-2); }
 #s-workspace .wsx-lens-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); }
 #s-workspace .wsx-lens { display: flex; flex-direction: column; gap: 6px; }
 #s-workspace .wsx-lens-name { font-family: var(--f-display); font-size: var(--fs-code); font-weight: 600; color: var(--c-accent); line-height: var(--lh-tight); }
 #s-workspace .wsx-lens-desc { font-size: var(--fs-caption); color: var(--c-text-muted); line-height: var(--lh-body); }
 #s-workspace .wsx-lenses-note { margin-top: var(--sp-2); }
+
+/* ============================ S-takeaway - key takeaway ============================ */
+/* The first of three key takeaways: one sentence, set as a pull quote, and nothing else.
+   The lead line that used to sit above the four lenses on the slide before this one
+   (sandbox option C, accepted 2026-09-02). Stays on the royal blue stage, so the timeline
+   strip and the counter need no special handling. The remaining two takeaways should reuse
+   these rules rather than grow their own. */
+#s-takeaway { display: flex; align-items: center; }
+#s-takeaway .tk-quote { position: relative; padding-left: 180px; max-width: 1560px; }
+#s-takeaway .tk-mark {
+  position: absolute;
+  left: 0;
+  top: -96px;
+  font-family: var(--f-display);
+  font-size: 320px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--c-accent);
+}
+#s-takeaway .tk-line {
+  font-family: var(--f-display);
+  font-size: 80px;
+  font-weight: 500;
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+}
+/* the phrase the sentence turns on - emphasis, not a separate voice, so the italic goes */
+#s-takeaway .tk-line em { font-style: normal; font-weight: 700; color: var(--c-accent); }
+#s-takeaway .tk-attr {
+  margin-top: var(--sp-4);
+  font-family: var(--f-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
 
 /* ============================ S04 ============================ */
 .rejects { display: flex; flex-direction: column; gap: var(--sp-2); }
@@ -1555,7 +1590,6 @@ body.presenter #viewport { display: none; }
       </div>
 
       <div class="wsx-lenses">
-        <p class="wsx-lenses-lead">It is far cheaper to think the state carve-up through up front than to re-cut it later:</p>
         <div class="wsx-lens-grid">
           <div class="wsx-lens">
             <span class="wsx-lens-name">Team structure</span>
@@ -1578,8 +1612,20 @@ body.presenter #viewport { display: none; }
       </div>
       <aside class="notes">
         <p>Define it plainly first - one set of Terraform code linked to one state file. Walk the diagram left to right: code goes in, the workspace is the boundary that holds the state, the variables and secrets, the permissions and the workflow, and a run comes out as a plan, then a policy check, then an apply against one Jamf Pro instance.</p>
-        <p>Then make the real point. How you carve an instance into workspaces is worth spending serious time on. Do not rush it. Re-cutting it later means moving state, which is a much harder day than getting the boundaries roughly right at the start.</p>
         <p>Take the four lenses in order and give an example of each from our own split rather than reading them out. The last line is the honest caveat - there are more considerations than fit on a slide, and they refine the choice rather than drive it.</p>
+      </aside>
+    </section>
+
+    <!-- ============================ S-takeaway - key takeaway, workspace and state design ============================ -->
+    <section class="slide" id="s-takeaway" aria-label="Key Takeaway: Plan your tf workspace and state design up front" data-speaker="Dafydd">
+      <div class="tk-quote">
+        <span class="tk-mark" aria-hidden="true">&ldquo;</span>
+        <p class="tk-line">It is far easier to plan and implement your state carve up of your instance <em>before you migrate</em>, than trying to retro fit something later.</p>
+        <p class="tk-attr">Key takeaway &middot; workspace and state design</p>
+      </div>
+      <aside class="notes">
+        <p>Slow down here. This is one of three things we want the room to leave with.</p>
+        <p>Say it once, then stop talking. The state carve up is the decision that is cheap now and expensive later, because re-cutting it means moving state.</p>
       </aside>
     </section>
 

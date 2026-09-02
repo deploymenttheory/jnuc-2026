@@ -135,15 +135,43 @@
     transform: translateX(3px);
   }
 
-  /* Secondary to "Open deck" - the deck is the point, the file is a takeaway. */
+  /* Secondary to "Open deck" - the deck is the point, the file is a takeaway.
+     Both formats sit behind one icon and one "Download" label so the second
+     format reads as a choice of file, not as another thing to do. */
+  .downloads {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .downloads > svg {
+    flex: none;
+  }
+
+  .downloads-label {
+    font-weight: 600;
+  }
+
+  .downloads .sep {
+    color: var(--border);
+  }
+
+  /* Underlined, because next to the plain "Download" label these two need to
+     look clickable without competing with the green actions. */
   .download {
     color: var(--muted);
-    transition: color 160ms ease;
+    text-decoration: underline;
+    text-decoration-color: rgba(244, 246, 245, 0.28);
+    text-underline-offset: 3px;
+    transition: color 160ms ease, text-decoration-color 160ms ease;
   }
 
   .download:hover,
   .download:focus-visible {
     color: var(--text);
+    text-decoration-color: currentColor;
   }
 
   footer {
@@ -186,14 +214,18 @@
                     stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <a class="download" href="migrating_an_instance/from-clicks-to-code-jnuc2026.key"
-             download>
+          <span class="downloads">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M8 3v7m0 0L5 7m3 3 3-3M3.5 12.5h9" stroke="currentColor" stroke-width="1.6"
                     stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            Download Keynote
-          </a>
+            <span class="downloads-label">Download</span>
+            <a class="download" href="migrating_an_instance/from-clicks-to-code-jnuc2026.key"
+               download aria-label="Download From Clicks to Code as a Keynote file">Keynote</a>
+            <span class="sep" aria-hidden="true">/</span>
+            <a class="download" href="migrating_an_instance/from-clicks-to-code-jnuc2026.pptx"
+               download aria-label="Download From Clicks to Code as a PowerPoint file">PowerPoint</a>
+          </span>
         </div>
       </article>
 
@@ -215,13 +247,18 @@
                     stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <a class="download" href="training_a_team/ClickOps_to_GitOps.key" download>
+          <span class="downloads">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M8 3v7m0 0L5 7m3 3 3-3M3.5 12.5h9" stroke="currentColor" stroke-width="1.6"
                     stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            Download Keynote
-          </a>
+            <span class="downloads-label">Download</span>
+            <a class="download" href="training_a_team/ClickOps_to_GitOps.key"
+               download aria-label="Download ClickOps to GitOps as a Keynote file">Keynote</a>
+            <span class="sep" aria-hidden="true">/</span>
+            <a class="download" href="training_a_team/ClickOps_to_GitOps.pptx"
+               download aria-label="Download ClickOps to GitOps as a PowerPoint file">PowerPoint</a>
+          </span>
         </div>
       </article>
     </main>

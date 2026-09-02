@@ -31,11 +31,19 @@
     {
       "id": "s-workspace",
       "title": "What a Terraform workspace is",
-      "timerSeconds": 60,
+      "timerSeconds": 40,
       "notes": [
         "Define it plainly first - one set of Terraform code linked to one state file. Walk the diagram left to right: code goes in, the workspace is the boundary that holds the state, the variables and secrets, the permissions and the workflow, and a run comes out as a plan, then a policy check, then an apply against one Jamf Pro instance.",
-        "Then make the real point. How you carve an instance into workspaces is worth spending serious time on. Do not rush it. Re-cutting it later means moving state, which is a much harder day than getting the boundaries roughly right at the start.",
         "Take the four lenses in order and give an example of each from our own split rather than reading them out. The last line is the honest caveat - there are more considerations than fit on a slide, and they refine the choice rather than drive it."
+      ]
+    },
+    {
+      "id": "s-takeaway",
+      "title": "Key Takeaway: Plan your tf workspace and state design up front",
+      "timerSeconds": 20,
+      "notes": [
+        "Slow down here. This is one of three things we want the room to leave with.",
+        "Say it once, then stop talking. The state carve up is the decision that is cheap now and expensive later, because re-cutting it means moving state."
       ]
     },
     {

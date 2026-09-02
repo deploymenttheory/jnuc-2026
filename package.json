@@ -2,13 +2,16 @@
   "name": "jnuc-2026",
   "version": "1.0.0",
   "private": true,
-  "description": "Public JNUC 2026 materials. Node is here only to build the Keynote downloads from the HTML decks on a Mac; the decks themselves have no build step.",
+  "description": "Public JNUC 2026 materials. Node is here only to build the Keynote and PowerPoint downloads from the HTML decks on a Mac; the decks themselves have no build step.",
   "type": "module",
   "license": "Apache-2.0",
   "scripts": {
-    "build:key": "node tools/build-key.mjs"
+    "build": "node tools/build-downloads.mjs",
+    "build:key": "node tools/build-downloads.mjs key",
+    "build:pptx": "node tools/build-downloads.mjs pptx"
   },
   "devDependencies": {
-    "playwright": "^1.56.0"
+    "playwright": "^1.56.0",
+    "pptxgenjs": "^4.0.1"
   }
 }
