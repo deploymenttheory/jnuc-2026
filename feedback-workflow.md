@@ -734,6 +734,27 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-02, Jamf icons across 18 slides.** Dafydd: "look at the icons extracted from jamf
+  here... think about options for placement... show me 25 places as examples of where icons
+  could be added and i'll approve the ones i want". Two answers set the treatment before any
+  were drawn - quiet labelling at `1em` beside the label, and one colour inherited from the row
+  it sits in - which is what keeps this from repeating the multicolour pixel art that came off
+  slide 17 on 2026-09-01. All 25 were accepted in one go. 97 marks now sit across 18 of the 23
+  slides, shipping as one `<svg id="ico-sprite">` block of 41 `<symbol>`s at the top of the body
+  (about 20 KB gzipped on what was a 147 KB file), drawn from the pack's `inline/` tier rather
+  than the `font/` tier or the woff. Nine placements use the icon Jamf Pro's own UI uses for
+  that concept, read from `manifest.json`; the rest are picks, and slide 15 stands `queue-list`
+  in because no policy glyph exists anywhere in the pack. Three things were fixed between review
+  and deck: candidate 17 had silently rendered nothing on the review page, because slide 13's
+  pipeline is an inline SVG rather than `.pipe-node` spans, so its six marks became `<use>`
+  elements positioned from measured text lengths, the same technique the slide 9 diagram uses;
+  slide 8's three migration-prep items had shared one filler icon; and slide 3's last two teams
+  took `box` and `document-magnifying-glass`. Two things left for Joseph rather than settled
+  here: the pack carries no licence and was scraped from `tfproviderdev.jamfcloud.com`, which is
+  worth a sentence to a Jamf contact given the deck is public, and the deploy currently ships
+  all 934 files of the pack - the woff, the scraper and `__pycache__/` included - because the
+  sync only excludes `*.md`. Sandbox page `icons-placement.html` retired. Presenter sync check
+  prints OK, dash lint clean.
 - **2026-09-02, slide 10 (`#s-singletons`) options round, awaiting a decision.** Dafydd: "i
   think the words are garbage on this slide and i have no idea what point it's trying to leave
   the audience... the point is that certain resource's are singletons and don't have an id' in
