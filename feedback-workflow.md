@@ -747,7 +747,7 @@ it up - either way it is on disk for a recovering session.
   other resource needs against what a singleton needs, C defines the word then takes three
   consequences in order, D lets the HCL carry the slide with three callouts pinned to it.
   Sandbox page `presentations/sandbox/migrating_an_instance/s-singletons-no-id.html`, also
-  published as an artifact. Open question to settle with the option: today's "don't skip import
+  published as an artifact (PR #88). Open question to settle with the option: today's "don't skip import
   if you can" caveat contradicts the new framing and `spec.md`'s own narrative (SQ5), which
   says these do not even need importing - only option C keeps it. Nothing in the deck changes
   until an option is chosen.
@@ -775,7 +775,7 @@ it up - either way it is on disk for a recovering session.
   `presenter.json`, `docs/timeline-notes.md` and AGENTS.md matching, and `#s-sentinel`'s
   rename was never mirrored into `presenter.json`. Presenter sync check prints OK, dash lint
   clean. The `.pptx` downloads were rebuilt; the `.key` files could not be, since this Mac has
-  no Keynote.
+  no Keynote. PR #88.
 - **2026-09-02, new slide 5 (`#s-takeaway`), the first key takeaway.** Dafydd: "move [the
   wsx-lenses-lead paragraph] to it's own slide. i want this to be the only thing on the
   page. this is going to be one of 3 slides that are the key highlights i want people to go
