@@ -1951,7 +1951,7 @@ body.presenter #viewport { display: none; }
     <!-- ============================ Getting past Sentinel ============================ -->
     <section class="slide" id="s-sentinel" aria-label="You will not own the whole stack" data-speaker="Gordon" data-when="2025-12">
       <h1 class="slide-title">You will not own the whole stack</h1>
-      <p class="statement sn-statement">Your migration runs inside controls that other teams own, and they were there first. That is the normal case, not bad luck.</p>
+      <p class="statement sn-statement">Your migration will run inside a technology landscape that other teams own, and they were there first.</p>
       <div class="sn-do">
         <div class="sn-do-item">
           <span class="sn-do-n">1</span>
@@ -1959,16 +1959,16 @@ body.presenter #viewport { display: none; }
         </div>
         <div class="sn-do-item">
           <span class="sn-do-n">2</span>
-          <p><strong>Know who owns them.</strong> Build that relationship before you need something from it.</p>
+          <p><strong>Know who owns what tooling.</strong> Build that relationship before you need something from it.</p>
         </div>
         <div class="sn-do-item">
           <span class="sn-do-n">3</span>
-          <p><strong>Ask for an exception, not a rewrite.</strong> Nobody changes org policy for one product. A narrow, evidenced exception is winnable.</p>
+          <p><strong>Ask for pragmatic exceptions, not a rewrite.</strong> Nobody changes org policy for one product. A narrower, evidenced based exception is more winnable.</p>
         </div>
       </div>
       <div class="sn-eg">
         <p class="sn-eg-tab">For example</p>
-        <p class="sn-eg-body">At LBG, Sentinel checks every Terraform run across the bank's public cloud, and one policy bans <code class="inline">import</code> blocks outright. Production had no CLI either. We took a time-bound exception for each import window while we made our case - sole actors on these workspaces, nobody else's resources to adopt - and that earned us a standing one.</p>
+        <p class="sn-eg-body">At LBG, Sentinel checks every Terraform run across the bank's public cloud, and one policy bans <code class="inline">import</code> blocks outright in production. Production had no CLI accesseither. We requested a time-bound exception for each import window while we made our case - sole actors on these workspaces, nobody else's resources to adopt, etc.</p>
       </div>
       <details class="reader-extra">
         <summary>More detail</summary>
