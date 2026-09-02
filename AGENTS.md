@@ -35,7 +35,7 @@ landing page keeps its own near-black look - it is not a deck.
 | Path | Role |
 |---|---|
 | `presentations/<slug>/` | One talk. Snake-case slug. Each deck owns its own HTML, tokens and script; decks do not import from each other beyond `_shared/`. |
-| `presentations/_shared/` | Data used by more than one deck: `speakers.js` and `qr-code.png` (the training deck's take-it-with-you code). Content, not styling - see below. |
+| `presentations/_shared/` | Data used by more than one deck: `speakers.js`, `qr-code.png` (the training deck's take-it-with-you code) and `jamf_pro_icons/` (a 934-file dump of Jamf Pro's own icon set, scraped from a dev instance in `a886f28`; `migrating_an_instance` inlines 41 of them, see Icons). Content, not styling - see below. |
 | `presentations/<slug>/art/` | Source art for anything a deck embeds as a data URI: one Markdown Pixelforge spec plus the PNGs exported from it. Deploy excludes `*.md`, so the spec is kept for regeneration only; the PNGs ride along but nothing links to them, because the deck carries its own base64 copy. Currently only `migrating_an_instance/art/`. |
 | `presentations/sandbox/` | Feedback review pages, one sandbox per deck: a shared `sandbox.css`, a minimal chooser `index.html`, and one subdirectory per deck (`migrating_an_instance/`, `training_a_team/`) each with its own hand-maintained `index.html` listing that deck's pages, one page per change showing three implementation options as live renders of the real slide. Deploys with the site at `/sandbox/`, linked from a Sandbox button on each deck card on the landing page (added 2026-08-27 at Joseph's request; split into one sandbox per deck the same day). See Sandbox. |
 | `template.key` | The Jamf-supplied JNUC 2026 Keynote template. Canonical reference for palette, typography and mandatory slides. |
@@ -145,9 +145,25 @@ quotes is stale.
   for navy surfaces, HelveticaNeue stack. Code blocks map hand-tokenised HCL to lime
   keywords, light-cornflower strings and amber numbers; TODO chips are solid amber with navy
   ink. Logos (jamf white, JNUC 2026) live in tokens as data URIs.
+- **Icons.** 97 marks from `_shared/jamf_pro_icons` sit across 18 of the 23 slides, all 25
+  candidates from the 2026-09-02 round accepted at once. They ship as one `<svg id="ico-sprite">`
+  block of 41 `<symbol>`s at the top of the body, referenced as
+  `<svg class="ico" aria-hidden="true"><use href="#i-name"/></svg>`, so an icon used on ten
+  slides costs its path data once. Sources are the pack's `inline/` tier - one path,
+  `fill="currentColor"`, no strokes - never the `font/` tier (font-traced, larger, cruder) and
+  never the woff. Five rules hold the system together: an icon never carries meaning on its own
+  and every slide still reads with all of them deleted (hence `aria-hidden` on every one); one
+  icon per row; size is `1em`, inherited, never set per slide; colour is `currentColor`, with
+  `.ico-accent` and `.ico-danger` only for rows whose own colour the mark has to match; and the
+  same concept takes the same icon deck-wide, which is why scripts are `code-bracket` on slide 9
+  and slide 13. Inside the slide 9 and slide 13 diagrams the marks are `<use class="ico-svg">`
+  elements positioned in SVG user units - those coordinates were measured once from each label's
+  own text length, so editing a diagram label means re-measuring them. Nine of the 25 use the
+  icon Jamf Pro's own UI uses for that concept, read from the pack's `manifest.json`; there is no
+  policy glyph anywhere in the pack, so slide 15 stands `queue-list` in.
 - **Embedded artwork.** Everything the deck draws with an image is a data URI in the HTML,
-  because the deck has to work opened straight off disk. Currently that is only the logos -
-  white-on-transparent SVGs living in tokens. Slide 16 used to carry three multicolour
+  because the deck has to work opened straight off disk. That is the logos -
+  white-on-transparent SVGs living in tokens - and the icon sprite above. Slide 16 used to carry three multicolour
   pixel-art step icons inline as `<img class="s-staging-art">`; they came off the slide
   2026-09-01 ("for now") and the deck currently embeds no raster art. If they (or any other
   pixel art) return: this deck has **no theme system** - no `[data-theme]` blocks, no
