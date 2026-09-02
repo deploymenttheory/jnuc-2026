@@ -256,9 +256,18 @@ overlay - keep the two in step when slides move.
    and migration prep, each a tidied checklist, sharing a row subgrid - same technique as
    `#s01`'s constraints panels - so the heading and each checklist row line up across both
    columns) - **Gordon**
-9. `s10` Resource sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
+9. `s10` Resource migration sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
 10. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
-11. `s-sentinel` Guardrails you don't own (blocked -> per-window exceptions -> standing exception; a `.slide-sub` line plus three `.gates-3` cards, and nothing else in the section. Moved off the shared `.lead` onto `.slide-sub` 2026-09-01 - it was the only oversized subtitle in the deck and nothing else on the slide needed `.lead`'s size. The round-one alternative wrappers came back out on 2026-08-28 when Joseph rejected them; the open sandbox page `s-sentinel-round2` is pure CSS on this markup, so the section has no slide-specific rules of its own) - **Gordon**
+11. `s-sentinel` You will not own the whole stack (refocused 2026-09-02, sandbox option A:
+    the slide is the general point - your migration runs inside controls other teams own, so
+    map the touch points, learn who owns them and ask for a narrow evidenced exception rather
+    than a policy rewrite - with the Sentinel run demoted to the illustration underneath. The
+    point and the example are held apart on purpose: the point is second person and present
+    tense and carries the type size and the accent, the example is first person, past tense,
+    muted, tabbed `For example` and smaller. The three ruled-out/excepted/resolved `.gates-3`
+    cards are gone, because three equal bordered cards read as a framework and made the
+    anecdote look like the argument; the shared `.gate*` rules stay for `#s14`. Rules are
+    `#s-sentinel .sn-*`) - **Gordon**
 12. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; seven steps as full-width
     bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
     with a red left edge) - **Dafydd**
@@ -777,6 +786,7 @@ automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages (all under `presentations/sandbox/migrating_an_instance/`):
+`s-singletons-no-id` (2026-09-02, slide 10 - four rewrites, not restyles, after Dafydd said the words were garbage and the point unclear: a settings pane exists once per instance, so there is nothing to identify it by and the id in an `import` block is a constant the provider defines. A leads on that constant blown up and annotated, B sets what any other resource needs against what a singleton needs, C defines the word then takes three consequences in order and is the only option keeping today's "don't skip import if you can" caveat, D lets the HCL carry the slide with three callouts. Open question with it: that caveat contradicts the new framing and spec.md's own narrative);
 `s18-reformat-qr` (2026-09-01, slide 21 - reformats the links and reserves QR space, the
 training deck's own QR having been left off when the links were copied over in PR #85;
 all three options ship as markup wrappers `.s18-opt-a` to `.s18-opt-c` inside `#s18` since
@@ -785,15 +795,17 @@ for a QR rail, live now; B the link columns untouched with the QR and the outsta
 jamfpy/contact/socials chip joined into one footer bar; C narrower link columns and a
 bold QR hero card on the deck's navy card surface. The QR tile is a reserved white
 square, matching the training deck's `.qr-tile` treatment, holding a `TODO: QR target
-URL` chip rather than a fake scannable pattern);
+URL` chip rather than a fake scannable pattern).
+
+Decided (all under `presentations/sandbox/migrating_an_instance/`):
+`s-sentinel-touchpoints` (2026-09-02, slide 11 - four ways to shift the slide off the Sentinel story and onto the point it illustrates: you will not own the whole stack, so map the touch points, learn who owns them and win a narrow exception rather than a policy rewrite. A second pass the same day pulled the point and the example apart on grammar, weight and labelling after Dafydd said the two were mixed; the three ruled-out/excepted/resolved cards came out of every option because three equal bordered cards read as a framework. A the point at statement size with the example as one tabbed muted paragraph, B the same split with the weights swapped, C the instinct against what moves with one line of ours, D the two halves labelled in as many words. Decided the same day: option A, applied to the deck. Page retired);
 `s-sentinel-round2` (2026-08-28, slide 9 - three fresh treatments after round one was
 rejected, all leaning simpler and all pure CSS on the existing `.lead` / `ol.gates` /
 `li.card.gate` markup scoped to `#s-sentinel`, so nothing new ships in the deck: A the live
 slide, B the cards as three tall columns ruled top and bottom with the number large in mono
 and the only colour on the slide, C the three states as one run of plain blocks joined by
 two arrows in the diagram line colour, D a two-column split with the lead holding the left
-half and the gates stacked down the right as a numbered list with hairlines between).
-Decided (all under `presentations/sandbox/migrating_an_instance/`):
+half and the gates stacked down the right as a numbered list with hairlines between). Superseded 2026-09-02 by `s-sentinel-touchpoints` - its three options were pure CSS on markup that option A replaces, and no option was ever chosen. Page retired);
 `s-takeaway-plan-state` (2026-09-02, a new slide 5 - five treatments of the key-takeaway
 slide carved out of slide 4's lead line, the first of three takeaways: A the stage turned
 lime with the sentence in navy ink and the timeline hidden, B the deck's navy card with a
