@@ -754,7 +754,7 @@ it up - either way it is on disk for a recovering session.
   worth a sentence to a Jamf contact given the deck is public, and the deploy currently ships
   all 934 files of the pack - the woff, the scraper and `__pycache__/` included - because the
   sync only excludes `*.md`. Sandbox page `icons-placement.html` retired. Presenter sync check
-  prints OK, dash lint clean.
+  prints OK, dash lint clean. PR #89.
 - **2026-09-02, slide 10 (`#s-singletons`) options round, awaiting a decision.** Dafydd: "i
   think the words are garbage on this slide and i have no idea what point it's trying to leave
   the audience... the point is that certain resource's are singletons and don't have an id' in
