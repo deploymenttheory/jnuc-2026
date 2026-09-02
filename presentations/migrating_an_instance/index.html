@@ -1015,6 +1015,37 @@ body.reader .reader-extra {
 .gate-ok { border-color: var(--c-success); }
 .gate .todo { white-space: normal; align-self: flex-start; }
 
+/* ============================ S-SENTINEL ============================ */
+/* Refocused 2026-09-02 (sandbox option A): the slide is the general point - you do not own
+   the whole stack - and the Sentinel run is the illustration under it, not the subject.
+   The two are held apart deliberately: the point is second person and present tense and
+   carries the type size and the accent, the example is first person and past tense, muted,
+   tabbed and smaller. The three ruled-out/excepted/resolved cards are gone; three equal
+   bordered cards read as a framework, which is what made the anecdote look like the
+   argument. Shared .gates rules stay for #s14, which still uses them. */
+#s-sentinel .sn-statement { margin-top: var(--sp-2); }
+#s-sentinel .sn-do { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin-top: var(--sp-4); }
+#s-sentinel .sn-do-item { display: grid; grid-template-columns: 52px 1fr; gap: var(--sp-2); align-items: start; }
+#s-sentinel .sn-do-n { font-family: var(--f-mono); font-size: var(--fs-h2); line-height: 1; color: var(--c-accent); }
+#s-sentinel .sn-do-item strong { color: var(--c-accent); font-weight: 600; }
+#s-sentinel .sn-do-item p { font-size: var(--fs-code); }
+/* The example is a citation, not a section: tabbed, muted, and small enough that it
+   never competes with the point above it. */
+#s-sentinel .sn-eg { margin-top: var(--sp-5); border-top: var(--bw-1) solid var(--c-border); padding-top: var(--sp-3); }
+#s-sentinel .sn-eg-tab {
+  display: inline-block;
+  background: var(--c-accent);
+  color: var(--c-ink);
+  font-family: var(--f-mono);
+  font-size: var(--fs-chip);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 2px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--sp-2);
+}
+#s-sentinel .sn-eg-body { font-size: var(--fs-caption); color: var(--c-text-muted); max-width: 1560px; }
+
 /* ============================ S-STAGING ============================ */
 /* A numbered run down the slide (Joseph, 2026-08-28, option B): the three steps read top
    to bottom as a sequence, threaded on a vertical rail down the left with the verb and its
@@ -1836,8 +1867,8 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ S10 - Resource migration sequencing ============================ -->
-    <section class="slide" id="s10" aria-label="Resource sequencing" data-speaker="Dafydd" data-when="2025-11">
-      <h1 class="slide-title">Resource migrationsequencing</h1>
+    <section class="slide" id="s10" aria-label="Resource migration sequencing" data-speaker="Dafydd" data-when="2025-11">
+      <h1 class="slide-title">Resource migration sequencing</h1>
       <p class="s10-intro">We migrated resource types in order of dependency, starting with types with no deps, then 1, 2 etc.</p>
       <svg class="s10-svg" viewBox="0 0 1728 784" aria-label="Four migration tiers with dependency arrows flowing downward into the profiles and policies band">
         <defs>
@@ -1918,32 +1949,37 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ Getting past Sentinel ============================ -->
-    <section class="slide" id="s-sentinel" aria-label="Environment guardrails you don't own" data-speaker="Gordon" data-when="2025-12">
-      <h1 class="slide-title">Environment guardrails you don't own</h1>
-      <p class="slide-sub">At LBG, every Terraform run - across the bank's entire public cloud estate - passes through Sentinel policy checks before it can apply. One of those policies bans <code class="inline">import</code> blocks outright, because importing lets a workspace adopt resources someone else already manages.</p>
-      <ol class="gates gates-3">
-        <li class="card gate gate-final">
-          <span class="gate-num">1</span>
-          <p><strong>Ruled out.</strong> Import blocks are banned outright, and with no CLI access to production workspaces there's no <code class="inline">terraform import</code> fallback either.</p>
-        </li>
-        <li class="card gate">
-          <span class="gate-num">2</span>
-          <p><strong>Excepted.</strong> A time-bound Sentinel exception, submitted - and chased - for every import window. Strings were pulled.</p>
-        </li>
-        <li class="card gate gate-ok">
-          <span class="gate-num">3</span>
-          <p><strong>Resolved.</strong> We made the case to the Sentinel team: sole actors on these workspaces, nobody else's resources to adopt. Standing exception granted.</p>
-        </li>
-      </ol>
+    <section class="slide" id="s-sentinel" aria-label="You will not own the whole stack" data-speaker="Gordon" data-when="2025-12">
+      <h1 class="slide-title">You will not own the whole stack</h1>
+      <p class="statement sn-statement">Your migration runs inside controls that other teams own, and they were there first. That is the normal case, not bad luck.</p>
+      <div class="sn-do">
+        <div class="sn-do-item">
+          <span class="sn-do-n">1</span>
+          <p><strong>Map the touch points.</strong> Know every control a run passes through before you promise anyone a date.</p>
+        </div>
+        <div class="sn-do-item">
+          <span class="sn-do-n">2</span>
+          <p><strong>Know who owns them.</strong> Build that relationship before you need something from it.</p>
+        </div>
+        <div class="sn-do-item">
+          <span class="sn-do-n">3</span>
+          <p><strong>Ask for an exception, not a rewrite.</strong> Nobody changes org policy for one product. A narrow, evidenced exception is winnable.</p>
+        </div>
+      </div>
+      <div class="sn-eg">
+        <p class="sn-eg-tab">For example</p>
+        <p class="sn-eg-body">At LBG, Sentinel checks every Terraform run across the bank's public cloud, and one policy bans <code class="inline">import</code> blocks outright. Production had no CLI either. We took a time-bound exception for each import window while we made our case - sole actors on these workspaces, nobody else's resources to adopt - and that earned us a standing one.</p>
+      </div>
       <details class="reader-extra">
         <summary>More detail</summary>
         <div class="detail-body">
-          <p>Sentinel is HashiCorp's policy-as-code engine: policies evaluate every HCP Terraform run before it can apply. At LBG the same rails govern the bank's Azure and GCP estates, which is why the import ban is organisation-wide rather than per team.</p>
+          <p>Sentinel is HashiCorp's policy-as-code engine: policies evaluate every HCP Terraform run before it can apply. At LBG the same rails govern the bank's Azure and GCP estates, which is why the import ban is organisation-wide rather than per team - importing lets a workspace adopt resources someone else already manages. The policy was right. It just did not fit a sole-actor migration.</p>
         </div>
       </details>
       <aside class="notes">
-        <p>Why the ban exists: Terraform runs the bank's whole public cloud - import blocks would let one workspace adopt someone else's resources. The policy is right; it just did not fit a sole-actor migration.</p>
-        <p>Each import window needed a fresh time-bound exception until the standing exception was granted.</p>
+        <p>The top of this slide is the part that transfers. Whatever they are migrating, it will run inside controls somebody else owns, and that is the normal case rather than bad luck.</p>
+        <p>Take the three in order and keep them general - touch points, owners, exceptions. Do not reach for our story until they have landed.</p>
+        <p>Then the example, briefly, as evidence that this is not theory: Sentinel bans import blocks across the bank's public cloud, production had no CLI, and what got us through was a narrow case on our own facts rather than an argument about the policy. Per-window exceptions first, standing exception once we had made it.</p>
       </aside>
     </section>
 

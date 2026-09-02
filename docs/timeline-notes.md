@@ -20,9 +20,9 @@ month or range.
 | 6 | Migration outcomes we considered and rejected | Joseph | Nov 25 |
 | 7 | Migration path options | Joseph | Nov 25 |
 | 8 | Prerequisites | Gordon | Nov 25 |
-| 9 | Resource sequencing | Dafydd | Nov 25 |
+| 9 | Resource migration sequencing | Dafydd | Nov 25 |
 | 10 | Singletons first | Gordon | December 25 |
-| 11 | Guardrails you don't own | Gordon | None |
+| 11 | You will not own the whole stack | Gordon | None |
 | 12 | Migration wave workflow | Dafydd | None |
 | 13 | Tools and helpers | Gordon | None |
 | 14 | Dynamic creation with for_each | Joseph | Jan 2026 |

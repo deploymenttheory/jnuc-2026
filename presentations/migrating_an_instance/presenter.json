@@ -75,7 +75,7 @@
     },
     {
       "id": "s10",
-      "title": "Resource sequencing",
+      "title": "Resource migration sequencing",
       "timerSeconds": 75,
       "notes": [
         "The matrix is a spreadsheet the team built together. Risk scales with dependency fan-in: singletons carry none, scripts and categories and departments stand alone, smart groups and advanced searches and extension attributes sit on top of those, and profiles and policies sit on top of everything - so they close the migration.",
@@ -93,11 +93,12 @@
     },
     {
       "id": "s-sentinel",
-      "title": "Guardrails you don't own",
+      "title": "You will not own the whole stack",
       "timerSeconds": 90,
       "notes": [
-        "Why the ban exists: Terraform runs the bank's whole public cloud - import blocks would let one workspace adopt someone else's resources. The policy is right; it just did not fit a sole-actor migration.",
-        "Each import window needed a fresh time-bound exception until the standing exception was granted."
+        "The top of this slide is the part that transfers. Whatever they are migrating, it will run inside controls somebody else owns, and that is the normal case rather than bad luck.",
+        "Take the three in order and keep them general - touch points, owners, exceptions. Do not reach for our story until they have landed.",
+        "Then the example, briefly, as evidence that this is not theory: Sentinel bans import blocks across the bank's public cloud, production had no CLI, and what got us through was a narrow case on our own facts rather than an argument about the policy. Per-window exceptions first, standing exception once we had made it."
       ]
     },
     {

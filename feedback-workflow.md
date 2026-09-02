@@ -734,6 +734,48 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-02, slide 10 (`#s-singletons`) options round, awaiting a decision.** Dafydd: "i
+  think the words are garbage on this slide and i have no idea what point it's trying to leave
+  the audience... the point is that certain resource's are singletons and don't have an id' in
+  a true sense." Four options, all rewrites rather than restyles - new copy, new speaker notes,
+  a rewritten reader-mode popover and a different title each - sharing one spine: a singleton
+  is a settings pane held once per instance, so there is nothing to identify it by; where the
+  provider does take an `import` block the id is a constant it defines
+  (`jamfpro_client_checkin_singleton`) rather than an object id; so the import can be skipped
+  and an apply matching the pane lands the resource in state; and that is why they went first,
+  all of them in about a day. A leads on that constant blown up and annotated, B sets what any
+  other resource needs against what a singleton needs, C defines the word then takes three
+  consequences in order, D lets the HCL carry the slide with three callouts pinned to it.
+  Sandbox page `presentations/sandbox/migrating_an_instance/s-singletons-no-id.html`, also
+  published as an artifact. Open question to settle with the option: today's "don't skip import
+  if you can" caveat contradicts the new framing and `spec.md`'s own narrative (SQ5), which
+  says these do not even need importing - only option C keeps it. Nothing in the deck changes
+  until an option is chosen.
+- **2026-09-02, slide 11 (`#s-sentinel`) refocused off the Sentinel story and onto the point
+  it illustrates.** Dafydd: "the slide must stay but we need to shift the focus... what we
+  want listening to understand is, you will almost assurdedly not own the full tech stack. so
+  don't expect to railroad your migration through. or expect org policy to be changed for just
+  jamf pro. instead understand what's in palce and seek to work inside it with pragmatic
+  exceptions." Four options; his feedback on the first set was that the point and our own
+  example were mixed, so the second pass pulled them apart on three axes at once - grammar
+  (the point second person and present, the example first person and past), weight (the point
+  takes the type size and the accent, the example is muted and smaller) and labelling (the
+  example always badged, never restating the lesson). The three
+  ruled-out/excepted/resolved `.gates-3` cards came out of every option in that pass: three
+  equal bordered cards read as a framework, which is what made the anecdote look like the
+  argument. Decided the same day: option A - the point at statement size, three instructions
+  under it, and the Sentinel run as one muted paragraph behind a `For example` tab. Applied as
+  `#s-sentinel .sn-*`; the shared `.gate*` rules stay because `#s14` still uses them. The
+  slide title becomes "You will not own the whole stack" and the `aria-label` follows it.
+  `s-sentinel-round2` was superseded by the same decision, no option chosen, since its three
+  options were pure CSS on the markup option A replaces; both pages are retired. Also fixed
+  two titles that 09c1990 ("chore: wording") left out of step with `presenter.json`, which was
+  failing the sync check before this change: `#s10`'s heading lost a space ("Resource
+  migrationsequencing") and is now "Resource migration sequencing" with the `aria-label`,
+  `presenter.json`, `docs/timeline-notes.md` and AGENTS.md matching, and `#s-sentinel`'s
+  rename was never mirrored into `presenter.json`. Presenter sync check prints OK, dash lint
+  clean. The `.pptx` downloads were rebuilt; the `.key` files could not be, since this Mac has
+  no Keynote.
 - **2026-09-02, new slide 5 (`#s-takeaway`), the first key takeaway.** Dafydd: "move [the
   wsx-lenses-lead paragraph] to it's own slide. i want this to be the only thing on the
   page. this is going to be one of 3 slides that are the key highlights i want people to go
