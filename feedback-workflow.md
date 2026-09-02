@@ -754,7 +754,7 @@ it up - either way it is on disk for a recovering session.
   from 5 down, and AGENTS.md's pixel-art note now points at slide 17. Dated round records
   elsewhere keep the numbers they were written with. Presenter sync check prints OK, dash
   lint clean. The `.pptx` downloads were rebuilt; the `.key` files could not be, since this
-  Mac has no Keynote.
+  Mac has no Keynote. PR #87.
 - **2026-09-01, slide 21 (`#s18`) links reformatted and QR space reserved.** Joseph: "Can
   we reformat it to make it look better, add a placeholder for the QR." (The training
   deck's QR should have come across with the links in PR #85 and did not.) Deterministic
