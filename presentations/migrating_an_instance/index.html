@@ -1838,7 +1838,7 @@ body.presenter #viewport { display: none; }
     <!-- ============================ S10 - Resource sequencing ============================ -->
     <section class="slide" id="s10" aria-label="Resource sequencing" data-speaker="Dafydd" data-when="2025-11">
       <h1 class="slide-title">Resource sequencing</h1>
-      <p class="s10-intro">One resource type at a time, end to end in production - not one instance at a time. The order came from the matrix: a group-built spreadsheet of every resource type and its dependencies.</p>
+      <p class="s10-intro">We migrated resource types in order of dependency, starting with types with no deps, then 1, 2 etc.</p>
       <svg class="s10-svg" viewBox="0 0 1728 784" aria-label="Four migration tiers with dependency arrows flowing downward into the profiles and policies band">
         <defs>
           <marker id="s10-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
