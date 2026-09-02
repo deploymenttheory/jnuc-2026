@@ -1,21 +1,29 @@
-// Builds one Keynote file per deck from the deck's own HTML. Unlike the old
-// PowerPoint pipeline this cannot run in CI - GitHub's runners do not ship
-// Keynote - so it runs on a Mac by hand (`npm run build:key`) and the .key
-// files it writes ARE committed. Rebuild and commit them in the same change as
-// any deck edit, or the download on the landing page goes stale.
+// Builds the deck downloads - one Keynote and one PowerPoint per deck - from
+// the deck's own HTML. Both formats come out of a SINGLE capture pass, so the
+// two downloads are the same pixels; nobody gets a second-class version.
+//
+// This cannot run in CI. GitHub's runners have no Keynote, and a Linux capture
+// would render the decks in substitute fonts, so both files are built on a Mac
+// by hand and both ARE committed. Rebuild and commit them in the same change as
+// any deck edit, or the downloads on the landing page go stale.
+//
+//   npm run build            both formats (one capture pass)
+//   npm run build:key        Keynote only  (needs Keynote installed)
+//   npm run build:pptx       PowerPoint only (no Keynote needed)
 //
 // Every slide becomes a full-bleed image. That is the whole trick and it is
 // deliberate: these decks are hand-built HTML with SVG, gradients and absolute
-// positioning, none of which survives a translation into Keynote shapes.
-// Speaker notes are the exception - they are real text in the presenter notes.
+// positioning, none of which survives a translation into Keynote or PowerPoint
+// shapes. Speaker notes are the exception - they are real text in the notes.
 
 import { execFile } from 'node:child_process';
-import { mkdir, mkdtemp, rm, stat, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { promisify } from 'node:util';
 import { chromium } from 'playwright';
+import PptxGenJS from 'pptxgenjs';
 
 const execFileP = promisify(execFile);
 
@@ -30,14 +38,23 @@ const VIEWPORT = { width: 1920, height: 1080 };
 // This is the settle time before the shutter; neither deck animates longer.
 const SETTLE_MS = 400;
 
+// Filenames are fixed here because presentations/index.html hardcodes them;
+// changing one means changing both. The two names per deck share a stem so the
+// pair reads as one download in two formats.
 const DECKS = [
   {
     dir: 'migrating_an_instance',
-    file: 'from-clicks-to-code-jnuc2026.key',
+    key: 'from-clicks-to-code-jnuc2026.key',
+    pptx: 'from-clicks-to-code-jnuc2026.pptx',
+    title: 'From Clicks to Code',
+    subject: 'Migrating Jamf Pro to Terraform at Lloyds Banking Group',
   },
   {
     dir: 'training_a_team',
-    file: 'ClickOps_to_GitOps.key',
+    key: 'ClickOps_to_GitOps.key',
+    pptx: 'ClickOps_to_GitOps.pptx',
+    title: 'ClickOps to GitOps',
+    subject: 'Learning journey',
   },
 ];
 
@@ -60,6 +77,9 @@ const activeIndex = () =>
     slide.classList.contains('active'),
   );
 
+// Screenshots go to disk rather than staying in memory: AppleScript can only
+// place an image it can open by path, and the PowerPoint writer reads the same
+// files back, so one pass feeds both.
 async function capture(page, deck, shotsDir) {
   // file:// rather than a local server: the decks load ../_shared/speakers.js
   // with a classic script tag precisely so they work off disk.
@@ -96,7 +116,7 @@ const asString = (text) => `"${text.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}
 // Keynote's default theme names its empty master "Blank"; the first slide of a
 // new document is reused, every other slide is appended. Images are placed at
 // the origin and stretched to the full 1920x1080 canvas.
-function keynoteScript(deck, { notes, shots }, outPath) {
+function keynoteScript({ notes, shots }, outPath) {
   const lines = [
     // Saving a 20-odd-slide document outlasts the default AppleEvent reply
     // timeout, so give the whole build a generous one.
@@ -131,14 +151,14 @@ function keynoteScript(deck, { notes, shots }, outPath) {
   return lines.join('\n');
 }
 
-async function write(deck, captured, workDir) {
-  const out = path.join(DECKS_DIR, deck.dir, deck.file);
+async function writeKeynote(deck, captured, workDir) {
+  const out = path.join(DECKS_DIR, deck.dir, deck.key);
   // Save over an existing .key by removing it first: Keynote's `save in` will
   // not silently replace a package it did not open.
   await rm(out, { force: true, recursive: true });
 
   const scriptPath = path.join(workDir, `${deck.dir}.applescript`);
-  await writeFile(scriptPath, keynoteScript(deck, captured, out));
+  await writeFile(scriptPath, keynoteScript(captured, out));
   try {
     await execFileP('osascript', [scriptPath]);
   } catch (err) {
@@ -152,9 +172,40 @@ async function write(deck, captured, workDir) {
     await execFileP('osascript', [scriptPath]);
   }
 
-  const { size } = await stat(out);
-  if (size < 100_000) throw new Error(`${deck.dir}: ${deck.file} is implausibly small (${size} bytes)`);
+  await assertPlausible(out, deck.key, deck.dir);
   return out;
+}
+
+async function writePptx(deck, { notes, shots }) {
+  const pptx = new PptxGenJS();
+  pptx.layout = 'LAYOUT_16x9';
+  pptx.title = deck.title;
+  pptx.subject = deck.subject;
+
+  for (const [i, shot] of shots.entries()) {
+    const slide = pptx.addSlide();
+    const png = await readFile(shot);
+    slide.addImage({
+      data: `image/png;base64,${png.toString('base64')}`,
+      x: 0,
+      y: 0,
+      w: '100%',
+      h: '100%',
+    });
+    if (notes[i]) slide.addNotes(notes[i]);
+  }
+
+  const out = path.join(DECKS_DIR, deck.dir, deck.pptx);
+  await pptx.writeFile({ fileName: out });
+  await assertPlausible(out, deck.pptx, deck.dir);
+  return out;
+}
+
+// A download made of 20-odd full-bleed screenshots is megabytes. Anything much
+// smaller means the capture or the assembly quietly produced an empty deck.
+async function assertPlausible(out, name, dir) {
+  const { size } = await stat(out);
+  if (size < 100_000) throw new Error(`${dir}: ${name} is implausibly small (${size} bytes)`);
 }
 
 // An AppleScript `launch` inside the tell block errors with -600 when Keynote
@@ -173,8 +224,18 @@ async function startKeynote() {
   }
 }
 
-const workDir = await mkdtemp(path.join(os.tmpdir(), 'jnuc-key-'));
-await startKeynote();
+// No arguments means both, so a bare `node tools/build-downloads.mjs` gives you
+// everything the landing page links to.
+const requested = new Set(process.argv.slice(2).length ? process.argv.slice(2) : ['key', 'pptx']);
+for (const format of requested) {
+  if (format !== 'key' && format !== 'pptx') {
+    throw new Error(`unknown format "${format}" - expected key, pptx, or nothing for both`);
+  }
+}
+
+const workDir = await mkdtemp(path.join(os.tmpdir(), 'jnuc-decks-'));
+// Only when Keynote is actually needed: the PowerPoint build runs on any Mac.
+if (requested.has('key')) await startKeynote();
 const browser = await chromium.launch();
 try {
   const page = await browser.newPage({ viewport: VIEWPORT });
@@ -182,10 +243,16 @@ try {
     const shotsDir = path.join(workDir, deck.dir);
     await mkdir(shotsDir, { recursive: true });
     const captured = await capture(page, deck, shotsDir);
-    const out = await write(deck, captured, workDir);
+
+    const written = [];
+    if (requested.has('key')) written.push(await writeKeynote(deck, captured, workDir));
+    if (requested.has('pptx')) written.push(await writePptx(deck, captured));
+
     const withNotes = captured.notes.filter(Boolean).length;
     console.log(
-      `${deck.dir}: ${captured.shots.length} slides, ${withNotes} with notes -> ${path.relative(ROOT, out)}`,
+      `${deck.dir}: ${captured.shots.length} slides, ${withNotes} with notes -> ${written
+        .map((out) => path.relative(ROOT, out))
+        .join(', ')}`,
     );
   }
 } finally {

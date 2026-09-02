@@ -497,13 +497,14 @@ branch name and whatever is already committed on it); tell Joseph in one line wh
 recovered and what is still waiting on him. Unmerged worktrees from a dead session can be
 removed with `git worktree remove --force <path>` once their branch is pushed or abandoned.
 
-## Keynote
+## Downloads (Keynote and PowerPoint)
 
-Not until Joseph says so. When he does: `npm ci` once, `npm run build:key` on this Mac
-(needs Keynote), commit the regenerated
-`presentations/migrating_an_instance/from-clicks-to-code-jnuc2026.key`, push. Details in
-`AGENTS.md` under "Building the downloads". The `.key` is currently behind the HTML on
-purpose.
+Not until Joseph says so. When he does: `make downloads` on this Mac (needs Keynote; the
+Makefile installs the dependencies itself), commit the regenerated `.key` and `.pptx` for both
+decks, push. `make pptx` refreshes the PowerPoint half alone and needs no Keynote. Details in `AGENTS.md` under
+"Building the downloads". The `.key` files are currently behind the HTML on purpose; the
+`.pptx` files were built from the current HTML on 2026-09-02, when the second format was
+added, so the two formats are not in step until the next full `npm run build`.
 
 ## Log
 
@@ -733,6 +734,27 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-02, new slide 5 (`#s-takeaway`), the first key takeaway.** Dafydd: "move [the
+  wsx-lenses-lead paragraph] to it's own slide. i want this to be the only thing on the
+  page. this is going to be one of 3 slides that are the key highlights i want people to go
+  away with", named "Key Takeaway: Plan your tf workspace and state design up front", with
+  five styling options to choose from. The sentence came off slide 4 (`#s-workspace`), where
+  it led the four lenses, and became a slide of its own directly after it; slide 4's second
+  speaker note went with it, since it argued the same point, and its `#s-workspace
+  .wsx-lenses-lead` rule was deleted. Five options were rendered by injecting a whole new
+  section into the deck in each sandbox iframe rather than layering CSS on an existing slide,
+  which is a first for a sandbox page, and published as an artifact as well so they could be
+  reviewed away from the site. Decided the same day: option C, the sentence as a pull quote
+  behind an oversized lime quote mark with "before you migrate" the only emphasised phrase
+  and a mono byline underneath, on the unchanged royal blue stage so the timeline strip and
+  counter need no special handling. Rules are `#s-takeaway .tk-*`, scoped so the remaining
+  two takeaways can reuse them. The deck is 23 slides: `presenter.json` gained the slide with
+  20 seconds taken from slide 4 (60 to 40, a proposal - the timers have never been
+  rehearsed), `docs/timeline-notes.md` and AGENTS.md's Current slide order were renumbered
+  from 5 down, and AGENTS.md's pixel-art note now points at slide 17. Dated round records
+  elsewhere keep the numbers they were written with. Presenter sync check prints OK, dash
+  lint clean. The `.pptx` downloads were rebuilt; the `.key` files could not be, since this
+  Mac has no Keynote. PR #87.
 - **2026-09-01, slide 21 (`#s18`) links reformatted and QR space reserved.** Joseph: "Can
   we reformat it to make it look better, add a placeholder for the QR." (The training
   deck's QR should have come across with the links in PR #85 and did not.) Deterministic

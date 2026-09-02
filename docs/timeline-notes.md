@@ -8,7 +8,7 @@ month or range.
 
 ## From Clicks to Code (presentations/migrating_an_instance)
 
-22 slides, in the order they run in the deck today.
+23 slides, in the order they run in the deck today.
 
 | Slide | Title | Speaker | Time notes |
 |---|---|---|---|
@@ -16,24 +16,25 @@ month or range.
 | 2 | Landscape prior to the migration | Dafydd | Context |
 | 3 | Who uses Jamf Pro in our Org ? | Dafydd | Context |
 | 4 | What a Terraform workspace is | Dafydd (TBC) | Context |
-| 5 | Migration outcomes we considered and rejected | Joseph | Nov 25 |
-| 6 | Migration path options | Joseph | Nov 25 |
-| 7 | Prerequisites | Gordon | Nov 25 |
-| 8 | Resource sequencing | Dafydd | Nov 25 |
-| 9 | Singletons first | Gordon | December 25 |
-| 10 | Guardrails you don't own | Gordon | None |
-| 11 | Migration wave workflow | Dafydd | None |
-| 12 | Tools and helpers | Gordon | None |
-| 13 | Dynamic creation with for_each | Joseph | Jan 2026 |
-| 14 | for_each exceptions | Joseph | None |
-| 15 | Validating a migration | Joseph | None |
-| 16 | Rebuilding staging | Dafydd | Feb 2026 |
-| 17 | One codebase for every instance | Joseph | None |
-| 18 | Getting as close to DRY as we can | Dafydd | March 2026 |
-| 19 | By the numbers | Gordon | Now |
-| 20 | Questions | Anyone | None |
-| 21 | Links | Anyone | None |
-| 22 | Thank You | nobody assigned | None |
+| 5 | Key Takeaway: Plan your tf workspace and state design up front | Dafydd | None |
+| 6 | Migration outcomes we considered and rejected | Joseph | Nov 25 |
+| 7 | Migration path options | Joseph | Nov 25 |
+| 8 | Prerequisites | Gordon | Nov 25 |
+| 9 | Resource sequencing | Dafydd | Nov 25 |
+| 10 | Singletons first | Gordon | December 25 |
+| 11 | Guardrails you don't own | Gordon | None |
+| 12 | Migration wave workflow | Dafydd | None |
+| 13 | Tools and helpers | Gordon | None |
+| 14 | Dynamic creation with for_each | Joseph | Jan 2026 |
+| 15 | for_each exceptions | Joseph | None |
+| 16 | Validating a migration | Joseph | None |
+| 17 | Rebuilding staging | Dafydd | Feb 2026 |
+| 18 | One codebase for every instance | Joseph | None |
+| 19 | Getting as close to DRY as we can | Dafydd | March 2026 |
+| 20 | By the numbers | Gordon | Now |
+| 21 | Questions | Anyone | None |
+| 22 | Links | Anyone | None |
+| 23 | Thank You | nobody assigned | None |
 
 ## ClickOps to GitOps (presentations/training_a_team)
 
