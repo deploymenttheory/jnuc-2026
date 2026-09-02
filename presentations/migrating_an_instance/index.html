@@ -1835,9 +1835,9 @@ body.presenter #viewport { display: none; }
       </aside>
     </section>
 
-    <!-- ============================ S10 - Resource sequencing ============================ -->
+    <!-- ============================ S10 - Resource migration sequencing ============================ -->
     <section class="slide" id="s10" aria-label="Resource sequencing" data-speaker="Dafydd" data-when="2025-11">
-      <h1 class="slide-title">Resource sequencing</h1>
+      <h1 class="slide-title">Resource migrationsequencing</h1>
       <p class="s10-intro">We migrated resource types in order of dependency, starting with types with no deps, then 1, 2 etc.</p>
       <svg class="s10-svg" viewBox="0 0 1728 784" aria-label="Four migration tiers with dependency arrows flowing downward into the profiles and policies band">
         <defs>
@@ -1918,8 +1918,8 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ Getting past Sentinel ============================ -->
-    <section class="slide" id="s-sentinel" aria-label="Guardrails you don't own" data-speaker="Gordon" data-when="2025-12">
-      <h1 class="slide-title">Guardrails you don't own</h1>
+    <section class="slide" id="s-sentinel" aria-label="Environment guardrails you don't own" data-speaker="Gordon" data-when="2025-12">
+      <h1 class="slide-title">Environment guardrails you don't own</h1>
       <p class="slide-sub">At LBG, every Terraform run - across the bank's entire public cloud estate - passes through Sentinel policy checks before it can apply. One of those policies bans <code class="inline">import</code> blocks outright, because importing lets a workspace adopt resources someone else already manages.</p>
       <ol class="gates gates-3">
         <li class="card gate gate-final">
