@@ -326,14 +326,13 @@ overlay - keep the two in step when slides move.
     35-40 contributors, 1,902 commits, 134 HCL files, 19,000+ lines of code - in a quiet
     row below; date range Jan to Sept 2026; option C, accepted 2026-08-28) - **Gordon**
 21. `s17` Questions (template "Questions? Your turn!", navy) - **Anyone**
-22. `s18` Links (copied and standardised from the training deck's "16 - Resources" slide
-    2026-09-01: two groups, Provider and tooling / Docs and community, each a row per
-    link with the URL beneath the label; jamfpy's own repository URL and contact/socials
-    are still outstanding, flagged with a TODO chip. Reformatted the same day to reserve
-    space for the QR the training deck carries alongside its own resources - a white
-    tile matching that deck's `.qr-tile` treatment holding a `TODO: QR target URL` chip,
-    since the target is not settled. Three layouts ship as markup wrappers `.s18-opt-a`
-    to `.s18-opt-c`; option A - two link columns plus a QR rail - is live) - **Anyone**
+22. `s18` Learning materials (a verbatim copy of the training deck's "16 - Resources"
+    slide, rebuilt 2026-09-03 at Dafydd's request after the 2026-09-01 version had
+    standardised it into a plain link list: same title, the same two card stacks - Start
+    here: Deployment Theory over Community & official - with the same descriptions and
+    the same QR rail carrying `../_shared/qr-code.png`. Styling is restated in this
+    deck's tokens, since decks share content but never CSS. The jamfpy row and both TODO
+    chips went with the rewrite, as did layout options B and C) - **Anyone**
 23. `s-thanks` Thank You (template close, royal blue) - **nobody assigned**
 
 The old `s00b` "Who we are" slide was folded into the title slide when the template's
@@ -439,12 +438,12 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
 |---|---|---|
 | `s-pivot` | The rest of the instance-unique list, beyond static computer group members, the push certificate and Volume Purchasing content tokens | Dafydd |
 | `s-staging` | Confirm the month - drives the timeline bar | Gordon Deacon |
-| `s18` | jamfpy repository URL, contact, socials (Q12) | Joseph |
 
-`s18`'s links were copied and standardised from the training deck's resources slide
-2026-09-01, resolving the URLs half of Q12 (`spec.md` §4); the chip was reworded from
-`TODO Q12: ...` to the standard `TODO: ...` form and now names only what is still
-missing - jamfpy's own repo URL, contact and socials. The old logo/brand-assets chip
+`s18` carried the last of Q12 (`spec.md` §4) until 2026-09-03, when the slide was rebuilt
+as a verbatim copy of the training deck's resources slide and lost both its chips with it:
+the jamfpy row went, and the QR is now the real `../_shared/qr-code.png` rather than a
+reserved tile. jamfpy's own repo URL, contact and socials stay open as content for Joseph,
+with no chip in the deck to show for them. The old logo/brand-assets chip
 died when the template
 arrived. Three earlier table rows (s02 support-team access model, s04 per-team-modules
 approval complexity, s07 more prep points) remain outstanding as content work but carry no
@@ -802,18 +801,15 @@ automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages (all under `presentations/sandbox/migrating_an_instance/`):
-`s-singletons-no-id` (2026-09-02, slide 10 - four rewrites, not restyles, after Dafydd said the words were garbage and the point unclear: a settings pane exists once per instance, so there is nothing to identify it by and the id in an `import` block is a constant the provider defines. A leads on that constant blown up and annotated, B sets what any other resource needs against what a singleton needs, C defines the word then takes three consequences in order and is the only option keeping today's "don't skip import if you can" caveat, D lets the HCL carry the slide with three callouts. Open question with it: that caveat contradicts the new framing and spec.md's own narrative);
-`s18-reformat-qr` (2026-09-01, slide 21 - reformats the links and reserves QR space, the
-training deck's own QR having been left off when the links were copied over in PR #85;
-all three options ship as markup wrappers `.s18-opt-a` to `.s18-opt-c` inside `#s18` since
-the QR placeholder is markup, not pure CSS: A the two link columns narrowed to make room
-for a QR rail, live now; B the link columns untouched with the QR and the outstanding
-jamfpy/contact/socials chip joined into one footer bar; C narrower link columns and a
-bold QR hero card on the deck's navy card surface. The QR tile is a reserved white
-square, matching the training deck's `.qr-tile` treatment, holding a `TODO: QR target
-URL` chip rather than a fake scannable pattern).
+`s-singletons-no-id` (2026-09-02, slide 10 - four rewrites, not restyles, after Dafydd said the words were garbage and the point unclear: a settings pane exists once per instance, so there is nothing to identify it by and the id in an `import` block is a constant the provider defines. A leads on that constant blown up and annotated, B sets what any other resource needs against what a singleton needs, C defines the word then takes three consequences in order and is the only option keeping today's "don't skip import if you can" caveat, D lets the HCL carry the slide with three callouts. Open question with it: that caveat contradicts the new framing and spec.md's own narrative.
 
 Decided (all under `presentations/sandbox/migrating_an_instance/`):
+`s18-reformat-qr` (2026-09-01, slide 22 - three ways to reformat the links and reserve
+space for the QR the training deck carries: A two link columns plus a QR rail, live from
+2026-09-01; B the QR and the outstanding jamfpy chip in a footer bar; C a bold QR hero
+card. Superseded 2026-09-03, when Dafydd asked for the slide to be a verbatim copy of the
+training deck's resources slide instead - that rewrite replaces the markup all three
+options styled and drops the reserved tile for the real QR image. Page retired);
 `s-sentinel-touchpoints` (2026-09-02, slide 11 - four ways to shift the slide off the Sentinel story and onto the point it illustrates: you will not own the whole stack, so map the touch points, learn who owns them and win a narrow exception rather than a policy rewrite. A second pass the same day pulled the point and the example apart on grammar, weight and labelling after Dafydd said the two were mixed; the three ruled-out/excepted/resolved cards came out of every option because three equal bordered cards read as a framework. A the point at statement size with the example as one tabbed muted paragraph, B the same split with the weights swapped, C the instinct against what moves with one line of ours, D the two halves labelled in as many words. Decided the same day: option A, applied to the deck. Page retired);
 `s-sentinel-round2` (2026-08-28, slide 9 - three fresh treatments after round one was
 rejected, all leaning simpler and all pure CSS on the existing `.lead` / `ol.gates` /

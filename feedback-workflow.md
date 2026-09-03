@@ -734,6 +734,18 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-03, slide 22 (`#s18`) rebuilt as a verbatim copy of the training deck's
+  resources slide.** Dafydd: the key links page "should be a verbatim copy of the links slide
+  from `presentations/training_a_team/index.html` - it's not. make it so." Confirmed with him
+  that verbatim goes all the way: the title becomes "Learning materials", the two card stacks
+  (Start here: Deployment Theory, then Community & official) arrive with their descriptions,
+  and the QR rail carries the real `../_shared/qr-code.png` rather than a reserved tile. The
+  jamfpy row and both TODO chips came off with the old link list, as did layout options B and
+  C. Styling is restated in this deck's tokens - decks share content but never CSS - which
+  added `--c-surface-2` and `--c-border-soft` to `:root` and retired the now-unused
+  `.slide-centred` rules. `presenter.json`, `docs/timeline-notes.md` and AGENTS.md follow the
+  new title; the `s18-reformat-qr` sandbox page is superseded and retired. Applied straight
+  to the deck at Dafydd's instruction, no sandbox round.
 - **2026-09-02, Jamf icons across 18 slides.** Dafydd: "look at the icons extracted from jamf
   here... think about options for placement... show me 25 places as examples of where icons
   could be added and i'll approve the ones i want". Two answers set the treatment before any

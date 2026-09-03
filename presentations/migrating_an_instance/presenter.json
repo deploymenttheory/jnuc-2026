@@ -196,10 +196,10 @@
     },
     {
       "id": "s18",
-      "title": "Links",
+      "title": "Learning materials",
       "timerSeconds": 30,
       "notes": [
-        "Point at the provider registry, the jamfpy repo once it has a URL, and the other resources on screen; contact details still to confirm."
+        "Where to send people. Start with the Deployment Theory Terraform registry and demo repo, and the training repo built for workplace engineers. Then the community and official set: Jamf developer docs, the Jamf blog IaC walkthrough, the MacAdmins Slack channel, and Neil Martin's starter repo. Point at the QR code on the right and leave this slide up while questions run - it opens a link to this presentation, so nobody needs to photograph the URLs."
       ]
     },
     {

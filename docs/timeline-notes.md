@@ -33,7 +33,7 @@ month or range.
 | 19 | Getting as close to DRY as we can | Dafydd | March 2026 |
 | 20 | By the numbers | Gordon | Now |
 | 21 | Questions | Anyone | None |
-| 22 | Links | Anyone | None |
+| 22 | Learning materials | Anyone | None |
 | 23 | Thank You | nobody assigned | None |
 
 ## ClickOps to GitOps (presentations/training_a_team)

@@ -25,6 +25,7 @@
   --c-surface-2: #182A5C;   /* derived: dark navy lifted toward royal blue - the lifted card on s18 */
   --c-border: rgba(244, 244, 244, 0.28);
   --c-hairline: rgba(244, 244, 244, 0.6);
+  --c-border-soft: rgba(244, 244, 244, 0.16);  /* quieter than --c-border, for the lifted card on s18 */
   --c-text: #F4F4F4;
   --c-text-muted: #C9D2F0;  /* derived light tint of the template cornflower */
   --c-accent: #D1F682;      /* lime - the template's single accent */
@@ -1273,7 +1274,8 @@ body.reader .reader-extra {
   margin-bottom: var(--sp-3);
 }
 /* the registry is where people should start, so it is lifted off the other cards */
-#s18 .s18-res-hi { background: var(--c-surface-2); border-color: var(--c-hairline); }
+#s18 .s18-res-hi { background: var(--c-surface-2); border-color: var(--c-border-soft); }
+#s18 .s18-res:last-child { margin-bottom: 0; }
 #s18 .s18-res-title { font-size: var(--fs-code); font-weight: 700; line-height: var(--lh-tight); }
 #s18 .s18-res-desc {
   font-size: var(--fs-caption);
