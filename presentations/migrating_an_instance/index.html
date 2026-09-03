@@ -650,7 +650,7 @@ body.reader .reader-extra {
 }
 
 /* the lenses: the four the guidance puts first, then everything that refines the choice */
-#s-workspace .wsx-lenses { margin-top: var(--sp-3); }
+#s-workspace .wsx-lenses { margin-top: var(--sp-5); }
 #s-workspace .wsx-lens-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); }
 #s-workspace .wsx-lens { display: flex; flex-direction: column; gap: 6px; }
 #s-workspace .wsx-lens-name { font-family: var(--f-display); font-size: var(--fs-code); font-weight: 600; color: var(--c-accent); line-height: var(--lh-tight); }
@@ -1574,7 +1574,7 @@ body.presenter #viewport { display: none; }
         </div>
         <div class="card team">
           <div class="team-head">
-            <h2 class="team-name"><svg class="ico" aria-hidden="true"><use href="#i-box"/></svg>App Packaging &amp; Deployment</h2>
+            <h2 class="team-name"><svg class="ico" aria-hidden="true"><use href="#i-box"/></svg>App Packaging&nbsp;&amp; Deployment</h2>
             <p class="team-role">Packages, tests and ships the application catalogue to the fleet.</p>
           </div>
           <div class="team-performs">
@@ -1716,7 +1716,7 @@ body.presenter #viewport { display: none; }
     <!-- ============================ S05 - Instance migration order ============================ -->
     <section class="slide" id="s05" aria-label="Migration path options" data-speaker="Joseph" data-when="2025-11">
       <h1 class="slide-title">Migration path options</h1>
-      <p class="slide-sub">Staging and production had already drifted apart by November 2025, so the order we worked in mattered.</p>
+      <p class="slide-sub">Our Staging and production environments had significant drift before migration, so the order we worked in mattered.</p>
 
       <div class="mp-paths">
 
@@ -1785,13 +1785,13 @@ body.presenter #viewport { display: none; }
         <div class="mp-path mp-chosen">
           <div class="mp-head">
             <span class="mp-num">03</span>
-            <span class="mp-name">Migrate all of production resource by resource, then backport all of prod into staging in one big push</span>
+            <span class="mp-name">Migrate all of production resource by resource, then backport everything in one big push to staging</span>
             <div class="mp-meta">
               <span class="mp-why">Staging only started once production was complete.</span>
               <span class="tag tag-chosen"><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>Chosen</span>
             </div>
           </div>
-          <p class="mp-control">The Terraform API client held <strong>read-only scopes</strong>, so importing built state with no surface to change the server. Write access came only when it was time to manage.</p>
+          <p class="mp-control">The utilised API client held <strong>read-only scopes</strong> during migration only. Write access was added after.</p>
           <svg class="mp-flow" viewBox="0 0 1360 104" role="img" aria-label="Every resource kind through production one at a time, end to end, then staging rebuilt in a single push once production was complete.">
             <rect class="dg-box mp-box" x="2" y="2" width="560" height="92" rx="12"/>
             <text class="mp-env" x="28" y="40">Production</text>
@@ -1984,11 +1984,11 @@ body.presenter #viewport { display: none; }
       <div class="sn-do">
         <div class="sn-do-item">
           <span class="sn-do-n">1</span>
-          <p><strong><svg class="ico ico-accent" aria-hidden="true"><use href="#i-map"/></svg>Understand the governance controls.</strong> Know every governance control a tf run passes through before you promise anyone a date.</p>
+          <p><strong><svg class="ico ico-accent" aria-hidden="true"><use href="#i-map"/></svg>Understand the governance controls.</strong> Know every governance control a tf run passes through before you promise anyone a deliverydate.</p>
         </div>
         <div class="sn-do-item">
           <span class="sn-do-n">2</span>
-          <p><strong><svg class="ico ico-accent" aria-hidden="true"><use href="#i-users"/></svg>Know who owns what tooling.</strong> Build that relationship before you need something from it.</p>
+          <p><strong><svg class="ico ico-accent" aria-hidden="true"><use href="#i-users"/></svg>Know who owns what tooling.</strong> Build relationships with those teams, before you need something from them.</p>
         </div>
         <div class="sn-do-item">
           <span class="sn-do-n">3</span>
@@ -2015,7 +2015,7 @@ body.presenter #viewport { display: none; }
     <!-- ============================ S08 - Migration wave workflow ============================ -->
     <section class="slide" id="s08" aria-label="Migration wave workflow" data-speaker="Dafydd" data-when="2025-12">
       <h1 class="slide-title">Migration wave workflow</h1>
-      <p class="slide-sub">The same seven steps ran for every wave between December 2025 and January 2026, with GUI write access revoked before each import to make the freeze real.</p>
+      <p class="slide-sub">The same seven steps ran for every wave, with GUI write access was revoked before each import.</p>
       <ol class="stepper">
         <li class="card step">
           <span class="step-num">1</span>
