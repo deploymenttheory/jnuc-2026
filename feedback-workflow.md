@@ -734,6 +734,111 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-08-28, training_a_team slide 6 (`#6`) "What worked" - content correction, no
+  options.** Deterministic round, no sandbox page. The "Scenario-based hack labs" card was
+  removed: it praised hack labs as a way to teach Git, which directly contradicted slide 4's
+  already-confirmed "Hackathons didn't land" fact. A new card, "Principles before the full
+  picture" (with a new stacked-blocks icon), replaced it in the same grid slot: training was
+  scaled back to the foundational principles the team did not already know, like Git, taught
+  one discipline at a time and built up incrementally rather than presenting the whole system
+  at once. The "Secondments to DevOps teams" card gained a caveat - the approach only works if
+  a platform engineering team has time to dedicate to training the seconded engineer, and
+  helps if that engineer already has some GitHub/scripting experience; otherwise lean on an
+  enthusiastic self-taught volunteer instead. "Good documentation" was renamed "Good
+  third-party documentation" and reworded so the "worked" claim is unmistakably about the
+  Terraform registry and other teams' open-sourced reference implementations, not the team's
+  own docs (which slide 5 already covers as an overwhelming, AI-assisted attempt that did not
+  work); the 3,778-words/57x-smaller fact about their own cut-down replacement curriculum was
+  kept as a parenthetical caveat, clearly separated from the third-party point. Card count
+  stayed at 7 in, 7 out, so the 2-column grid needed no layout rework. Speaker notes rewritten
+  to match the new card set (the old note was tied to the removed hack-labs/Git card).
+  `AGENTS.md`'s cross-reference to the card by its old name ("Good documentation") was
+  updated to match. PR #6.
+- **2026-08-28, training_a_team slide 5 (`#5`) "What didn't work" - hero chart, option B
+  accepted and the downturn steepened.** Acceptance round on the PR #4 sandbox
+  (`sandbox/training_a_team/s5-chart-styles.html`): the user chose option B, "the ratchet" -
+  straight lime risers through each teaching band, longer falls through each gap, dotted
+  floor lines showing the rising baseline - over A (gain-and-give-back columns) and C (blocks
+  per month). In the same breath they asked for the downturn through each gap to read as a
+  real drop rather than a gentle taper, so that was applied in this PR too rather than a
+  further sandbox round: each fall is now roughly 65-70% of that cycle's rise (up from
+  ~40-60%), drawn at stroke-width 4 instead of 3, with the floor, peak and trough coordinates,
+  the dotted baseline lines and both annotation labels recomputed to match. The six months,
+  six teaching-then-gap cycles, 144 hours and the gentle net upward trend by the end are
+  unchanged; only the individual fall shape got more dramatic. `.chart-opt-a` / `-b` / `-c`
+  and the `.chartwrap` display:none rule are gone - `.chartwrap` now holds option B's SVG
+  directly as the only chart. The sandbox page is deleted; its index entry is a non-linked
+  `.done` line. Speaker notes reviewed and left unchanged - nothing in them contradicts the
+  steeper fall. PR #5.
+- **2026-08-28, training_a_team slide 5 (`#5`) "What didn't work" - three completely
+  different treatments of the hero chart, options round, awaiting a decision.** The user,
+  on the gradient line chart that shipped in PR #3: "I still don't like the graph, can you
+  make me 3 different options... make the 3 graphs completely different styling." So option
+  A is not the live slide this time - all three are new drawings and the rejected line chart
+  is gone. A is gain-and-give-back columns, one per month, solid lime for the confidence
+  kept and a dashed outline on top for what the following gap took back, with a dashed trend
+  line across the tops and a teaching-then-gap strip under the axis. B is a ratchet: straight
+  lines only, a steep lime riser inside each shaded teaching band, a longer shallow coral
+  fall through each gap, and dotted floor lines showing the floor rise every cycle. C drops
+  the axes entirely for six rows of blocks, one row per month, reading carried-in, gained in
+  teaching, then dashed blocks lost again in the gap. Because they are structurally different
+  SVGs rather than restyles of one, all three ship as markup wrappers `.chart-opt-a` / `-b` /
+  `-c` inside `.chartwrap`, with `.chartwrap .chart-opt-b,.chartwrap .chart-opt-c{display:none}`
+  keeping the deck on A; the sandbox page injects nothing but a wrapper flip. The six months,
+  six sessions, six teaching bands, 144 hours and the gently-upward-with-real-dips shape are
+  identical in all three and were not touched, per `AGENTS.md`. The `SHAPE IS ILLUSTRATIVE`
+  label and the `.chd` heading are shared by all three. Speaker notes reworded off the old
+  drawing ("the shaded bands", "the line", "after every band") onto treatment-neutral wording
+  so they fit whichever option wins. Chips, quote strip and every other slide untouched.
+  Sandbox: `sandbox/training_a_team/s5-chart-styles.html` - awaiting a decision. PR #4.
+- **2026-08-28, training_a_team slide 5 (`#5`) "What didn't work" chart and chips reworked,
+  one fact relocated to slide 6 (`#6`).** The user: the confidence curve should trend gently
+  upwards overall (not by much) instead of downwards, since people genuinely built confidence
+  over the six months - only the sawtooth dips through each gap stay the same, still showing
+  confidence lost between sessions. The six-month timeframe, month labels, 144-hours figure
+  and 214,645-vs-3,778 word counts are measured facts and were left untouched, per `AGENTS.md`.
+  Chart path recomputed so each peak sits a little higher than the last while each dip still
+  reads as a real drop relative to the peak before it; line smoothed into eased curves with a
+  subtle gradient area fill and peak dot markers for polish, replacing the straighter, more
+  "analog" original. Annotation callouts repositioned clear of the line; the first one renamed
+  from "platform not ready" to "scheduling gap" since the primary driver of long gaps between
+  sessions is now stated as difficulty assembling a geographically dispersed Mac engineering
+  team, with unclear infra availability folded in as a minor secondary factor. Eight chips
+  reduced to five: mixed-ability cohorts reworded to state plainly that trainers were pitching
+  some sessions too fast and others too slow; theory-before-hands-on left as-is; step-by-step
+  tutorials and reference-manual chips merged into one "Documentation shaped like a reference
+  manual" chip, adding that the curriculum was AI-assisted and too large to take in; "gaps we
+  could not close" deleted as its own chip, folded into the renamed "too long a gap between
+  sessions" chip as a minor factor; "effort stayed invisible" deleted outright; new "online
+  meetings" chip added (in-person let trainers walk around and help people directly). The
+  `.won` accent chip ("what replaced it") moved off `#5` entirely and folded into `#6`'s
+  existing "Good documentation" `.icard` rather than added as a new card, keeping that
+  slide's 7-card 2-column grid unchanged. `.fchips` grid changed from 4 to 5 columns; unused
+  `.fchip.won` CSS removed. `data-notes` rewritten on `#5` for the new chart and chip set;
+  `#6`'s notes given one added sentence for the relocated fact. `AGENTS.md`'s `#5` bullet
+  updated to match. Deterministic round, no sandbox page; `training_a_team` has no
+  presenter.json so no presenter check. Two-slide touch (`#5` and `#6`) authorised by
+  dispatch for this one relocation. PR #3.
+- **2026-08-28, training_a_team slide 4 (`#4`) execution reframed around training, not
+  migration.** The user: the slide was talking about migration waves and handover when it
+  is about training. Spokes 04 ("Migration waves, run by the same engineer") and 05 ("Full
+  handover") were off-topic and replaced with points the user actually gave: no existing
+  playbook for migrating a Mac-centric team onto Terraform specifically, so the plan was
+  worked out as it went, and different delivery plans by skill level (more laid-back and
+  project-based for higher-skill engineers). Spoke 02 (session format) reworked to say
+  plainly that delivery iterated between theory-led and hands-on before settling on
+  practical because it landed better, rather than reading as a single upfront design
+  choice. Spoke 03 (hackathons) confirmed by the user as not having landed - stated plainly,
+  no TODO chip needed (an earlier draft of this round added one, dropped once the user
+  confirmed the fact). The hub's intro paragraph now names the whole approach as iterative,
+  run throughout rather than planned end to end; its foot line carries the migration link as
+  one subordinate sentence - the secondment also produced someone who could step in and run
+  migration work when needed - rather than as its own spokes, per the user's steer that
+  training is the primary frame and the migration capability is a benefit of it. The now
+  content-free `.spoke.mig`/`.spoke.hand` colour-variant CSS was removed; all five spokes
+  render identically. `data-notes` rewritten to match. `AGENTS.md`'s `#4` description
+  updated. Deterministic round, no sandbox page; `training_a_team` has no presenter.json so
+  no presenter check. PR #2.
 - **2026-09-03, slide 22 (`#s18`) rebuilt as a verbatim copy of the training deck's
   resources slide.** Dafydd: the key links page "should be a verbatim copy of the links slide
   from `presentations/training_a_team/index.html` - it's not. make it so." Confirmed with him

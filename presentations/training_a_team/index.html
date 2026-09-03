@@ -422,9 +422,6 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
   flex:none;line-height:1.2}
 .spoke h3{font-size:22px;font-weight:700;line-height:1.2}
 .spoke p{font-size:17px;line-height:1.4;color:var(--text-dimmer);margin-top:6px}
-.spoke.mig{border-color:var(--green-deep);background:linear-gradient(100deg,var(--accent-wash) 0%,var(--surface) 60%)}
-.spoke.hand{background:var(--alt-surface);border-color:var(--blue-border)}
-.spoke.hand .n{color:var(--blue-light)}
 .flow{margin-top:26px}
 .flowrow{display:flex;align-items:center;gap:16px;margin-bottom:12px}
 .flowrow .ln{flex:1;height:2px;background:var(--green)}
@@ -439,13 +436,11 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .chartwrap .chd{display:flex;align-items:baseline;gap:16px;margin-bottom:6px}
 .chartwrap .chd h3{font-size:24px;font-weight:700}
 .chartwrap .chd .note{font-family:var(--mono);font-size:15px;color:var(--muted);margin-left:auto}
-.fchips{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.fchips{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px}
 .fchip{border:1px solid var(--border);border-left:4px solid var(--red);border-radius:5px;
   background:var(--surface);padding:13px 18px}
 .fchip h4{font-size:19px;font-weight:700;line-height:1.15}
 .fchip p{font-size:15px;line-height:1.35;color:var(--text-dimmer);margin-top:5px}
-.fchip.won{border-left-color:var(--green)}
-.fchip.won p{color:var(--text-dim)}
 .qstrip{display:flex;align-items:center;gap:22px;margin-top:14px;background:var(--surface-2);
   border:1px solid var(--border-soft);border-radius:8px;padding:16px 26px}
 .qstrip .qm{font-size:44px;color:var(--green-bright);line-height:0;flex:none;padding-top:14px}
@@ -1021,7 +1016,7 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 4 · EXECUTION ============ -->
-<section class="slide" data-speaker="Joseph" data-notes="Everything here came out of one decision. We seconded a Mac engineer into the DevOps Centre of Excellence full time for three months on a train-the-trainer model. That is the whole slide: a posting, not a course, and long enough to hold macOS and Jamf Pro domain depth and GitOps practice in the same person. Five things came out of it. We wrote the training materials together, so the CoE brought the Terraform and Git content and the seconded engineer put it in Mac language and cut what did not apply. We designed the in-person and remote sessions separately rather than delivering one deck twice. We built hackathons as in-person labs on tasks the team already recognised, and set homework between sessions so nothing decayed in the gaps. Then the same engineer ran a large share of the Jamf Pro migration waves, which did two jobs at once: it kept the reasoning behind every migration decision inside the Mac team instead of leaving it in the CoE to be asked for later, and it took that engineer well past the fundamentals by making the real estate the advanced lesson. Full handover followed. The arrows at the bottom are the point: this was a two-way trade. Mac domain context went into the CoE, and Terraform, Git and GitOps practice came back.">
+<section class="slide" data-speaker="Joseph" data-notes="Everything here came out of one decision. We seconded a Mac engineer into the DevOps Centre of Excellence full time for three months on a train-the-trainer model. That is the whole slide: a posting, not a course, and it was run iteratively throughout rather than planned end to end. Five things came out of it. We wrote the training materials together, so the CoE brought the Terraform and Git content and the seconded engineer put it in Mac language and cut what did not apply. We went back and forth on delivery format: sessions started theory-led, we tried hands-on instead, and practical won out, so that is where we settled. The hackathons did not land - built as in-person labs on tasks the team already recognised, with homework set between sessions, but the format itself did not work as intended. None of this followed an existing playbook: migrating a Mac-centric team specifically onto Terraform had not been done before, so there was no right answer to copy, and the plan was worked out as we went. And we settled on different delivery plans by skill level - higher-skill engineers got something more laid-back and project-based, others followed a more structured plan matched to where they were starting from. The arrows at the bottom are the point: this was a two-way trade. Mac domain context went into the CoE, and Terraform, Git and GitOps practice came back - and it is also why the same engineer could step in and run migration work whenever it was needed.">
   <div class="eyebrow"><i class="dot"></i>04 &middot; Execution</div>
   <h1>How we ran it</h1>
   <div class="body" style="margin-top:36px">
@@ -1031,8 +1026,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
         <h2>One engineer, moved into the DevOps CoE</h2>
         <div class="big">3 months</div>
         <div class="biglb">full time, on a train-the-trainer model</div>
-        <p>Not a course and not a shadowing arrangement. A posting, long enough to pair macOS and Jamf Pro domain depth with GitOps practice in the same person.</p>
-        <div class="foot">Everything on the right came out of that one decision.</div>
+        <p>Not a course and not a shadowing arrangement. A posting, long enough to pair macOS and Jamf Pro domain depth with GitOps practice in the same person - run iteratively throughout, not planned end to end.</p>
+        <div class="foot">Everything on the right came out of that one decision - including a person who could step in and run migration work whenever it was needed.</div>
       </div>
       <div class="brace" aria-hidden="true">
         <svg viewBox="0 0 96 700" preserveAspectRatio="none">
@@ -1050,10 +1045,10 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
       </div>
       <div class="spokes">
         <div class="spoke"><div class="n">01</div><div><h3>Training materials, written together</h3><p>The CoE brought the Terraform and Git content; the seconded engineer put it in Mac language and cut what did not apply.</p></div></div>
-        <div class="spoke"><div class="n">02</div><div><h3>Sessions designed for their medium</h3><p>In-person and remote sessions planned separately rather than one deck delivered twice.</p></div></div>
-        <div class="spoke"><div class="n">03</div><div><h3>Hackathons and homework</h3><p>In-person labs built on tasks the team already recognised, with practice set between sessions so nothing decayed in the gaps.</p></div></div>
-        <div class="spoke mig"><div class="n">04</div><div><h3>Migration waves, run by the same engineer</h3><p>Training carried on past the fundamentals. Running the waves kept the reasoning behind each migration decision inside the Mac team and taught advanced Terraform on the real estate.</p></div></div>
-        <div class="spoke hand"><div class="n">05</div><div><h3>Full handover</h3><p>The Mac team owned the control plane, the materials and the reasoning.</p></div></div>
+        <div class="spoke"><div class="n">02</div><div><h3>Went back and forth on format</h3><p>Sessions moved between theory-led and hands-on delivery rather than being fixed upfront; practical landed better, so that is where the format settled.</p></div></div>
+        <div class="spoke"><div class="n">03</div><div><h3>Hackathons didn't land</h3><p>Built as in-person labs on tasks the team already recognised, with homework set between sessions - the hackathon format itself did not work as intended.</p></div></div>
+        <div class="spoke"><div class="n">04</div><div><h3>No existing playbook to follow</h3><p>Migrating a Mac-centric team onto Terraform specifically hadn't been done before, so there was no right answer to copy - the plan was worked out as we went.</p></div></div>
+        <div class="spoke"><div class="n">05</div><div><h3>Different plans for different skill levels</h3><p>Higher-skill engineers got a more laid-back, project-based plan; others followed a more structured one, matched to where they were starting from.</p></div></div>
       </div>
     </div>
     <div class="flow">
@@ -1064,7 +1059,7 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 5 · WHAT DIDN'T WORK ============ -->
-<section class="slide" data-speaker="Gordon" data-notes="This is the most useful slide in the deck for anyone planning their own programme, so do not rush it. Walk the chart first. The shaded bands are the teaching sessions. Every one of them lifts confidence, and every gap that follows gives most of it back, which is why the line trends down across six months even though the teaching itself was good. Be clear that the shape is illustrative rather than measured. The important thing is the total: 144 hours is roughly four weeks of learning, which for this many topics is about right. It was not the volume that hurt us, it was the calendar. Spread four weeks of content across six months and people learn a bit, stop, let it settle, come back, and somewhere in there interest wanders off. Two of the gaps were genuinely outside our control: our internal developer platform was not ready and online when engineers needed it, so practice slipped weeks behind the teaching. That was not a delivery failure, but it cost us just the same. Then take the chips underneath. Mixed-ability cohorts: everyone in the room together and the pace was wrong at both ends. What actually predicted who would do well was prior coding experience, not Jamf Pro familiarity and not age, which surprised us. Theory before the hands-on: no mental model formed and the words went in one ear and out the other. Step-by-step tutorials: engineers completed them and retained almost nothing, because following instructions is not the same as solving a problem. A curriculum shaped like a reference manual: 214,645 words of genuinely good content, written to be complete rather than to be learned from. And effort stayed invisible until handover, because nothing in the programme showed who had genuinely put the hours in. The highlighted chip is the answer to all of it: 3,778 words, two modules and four labs, one of which hands you someone else's broken configuration with faults planted in it and asks you to find them. That is 57 times smaller, and we wrote it after direct feedback that the first was too heavy going and too theoretical. Both are public in the training repo, so people can judge for themselves.">
+<section class="slide" data-speaker="Gordon" data-notes="This is the most useful slide in the deck for anyone planning their own programme, so do not rush it. Walk the chart first. Six months, six teaching sessions. Every session lifts confidence, and every gap that follows gives some of it back, but not all of it - people did genuinely build confidence over the six months, so the whole thing trends gently upwards overall even though there is a real dip after every gap. Be clear that the shape is illustrative rather than measured; the six months and the 144 hours are real. The important thing is the total: 144 hours is roughly four weeks of learning, which for this many topics is about right. It was not the volume that hurt us, it was the calendar. Spread four weeks of content across six months and people learn a bit, stop, let it settle, come back, and somewhere in there interest wanders off - and whatever was gained since the last session leaks away in the gap that follows, which is the dip you see after every session. Then take the chips underneath. Mixed-ability cohorts: everyone in the room together, so trainers were pitching some sessions too fast and others too slow for parts of the room. What actually predicted who would do well was prior coding experience, not Jamf Pro familiarity and not age, which surprised us. Theory before the hands-on: no mental model formed and the words went in one ear and out the other. Documentation shaped like a reference manual: 214,645 words of AI-assisted content, written to be complete rather than to be learned from, so large that people did not take it in - step-by-step tutorials inside it devolved into copy-paste, completed but not retained. Too long a gap between sessions: getting every Mac engineer into one room was genuinely hard, since they do not all work in the same country, and that is what stretched the gaps out. Unclear infrastructure availability made it a little worse in a few cases, but it was a minor factor, not the main one. And in-person mattered more than online: being physically in the room let trainers walk around and help someone the moment they got stuck, rather than everyone muting themselves and struggling alone on a call. What replaced all of this now lives on the next slide - 3,778 words, 57 times smaller, and we wrote it after direct feedback that the first was too heavy going and too theoretical.">
   <div class="eyebrow red"><i class="dot"></i>05 &middot; Retrospective</div>
   <h1>What didn't work</h1>
   <div class="body" style="margin-top:30px">
@@ -1072,55 +1067,61 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
       <div class="chd"><h3>144 hours of learning, spread across six months</h3>
         <div class="note">SHAPE IS ILLUSTRATIVE</div></div>
       <svg viewBox="0 0 1580 300" style="width:100%;height:300px" role="img"
-           aria-label="Confidence rises during each teaching block and decays through the gap that follows, trending downwards across six months">
-        <defs>
-          <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"style="stop-color:var(--accent)" /><stop offset="100%"style="stop-color:var(--warn)" />
-          </linearGradient>
-        </defs>
-        <line x1="70" y1="248" x2="1560" y2="248" stroke-width="1.5"style="stroke:var(--border)" />
-        <line x1="70" y1="20" x2="70" y2="248" stroke-width="1.5"style="stroke:var(--border)" />
+           aria-label="A ratchet: a steep rise through each of the six teaching sessions, a steep fall through the gap that follows, and a floor line that sits higher after every cycle across the six months">
+        <line x1="70" y1="248" x2="1560" y2="248" stroke-width="1.5" style="stroke:var(--border)" />
+        <line x1="70" y1="20" x2="70" y2="248" stroke-width="1.5" style="stroke:var(--border)" />
         <text x="58" y="30" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="15" style="fill:var(--muted)">high</text>
         <text x="58" y="245" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="15" style="fill:var(--muted)">low</text>
-        <text x="20" y="145" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="15" transform="rotate(-90 20 145)" style="fill:var(--muted)">CONFIDENCE</text>
-        <g stroke-width="1" style="stroke:var(--grid-line)">
-          <line x1="318" y1="20" x2="318" y2="248"/><line x1="566" y1="20" x2="566" y2="248"/>
-          <line x1="814" y1="20" x2="814" y2="248"/><line x1="1062" y1="20" x2="1062" y2="248"/>
-          <line x1="1310" y1="20" x2="1310" y2="248"/>
+        <text x="20" y="140" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="15" transform="rotate(-90 20 140)" style="fill:var(--muted)">CONFIDENCE</text>
+        <g stroke-width="1" opacity=".7" style="stroke:var(--grid-line)">
+          <line x1="318" y1="20" x2="318" y2="248"/><line x1="567" y1="20" x2="567" y2="248"/>
+          <line x1="815" y1="20" x2="815" y2="248"/><line x1="1063" y1="20" x2="1063" y2="248"/>
+          <line x1="1312" y1="20" x2="1312" y2="248"/>
+        </g>
+        <g opacity=".16" style="fill:var(--accent)">
+          <rect x="80" y="20" width="54" height="228"/><rect x="328" y="20" width="54" height="228"/>
+          <rect x="577" y="20" width="54" height="228"/><rect x="825" y="20" width="54" height="228"/>
+          <rect x="1073" y="20" width="54" height="228"/><rect x="1322" y="20" width="54" height="228"/>
+        </g>
+        <g stroke-width="1" stroke-dasharray="2 7" opacity=".45" style="stroke:var(--accent)">
+          <line x1="328" y1="209.4" x2="1560" y2="209.4"/><line x1="577" y1="192.1" x2="1560" y2="192.1"/>
+          <line x1="825" y1="177.9" x2="1560" y2="177.9"/><line x1="1073" y1="162.7" x2="1560" y2="162.7"/>
+          <line x1="1322" y1="149.1" x2="1560" y2="149.1"/>
+        </g>
+        <g stroke-width="4" stroke-linecap="round" style="stroke:var(--warn)">
+          <line x1="134" y1="161.4" x2="328" y2="209.4"/><line x1="382" y1="150.1" x2="577" y2="192.1"/>
+          <line x1="631" y1="141.9" x2="825" y2="177.9"/><line x1="879" y1="127.7" x2="1073" y2="162.7"/>
+          <line x1="1127" y1="117.1" x2="1322" y2="149.1"/><line x1="1376" y1="103.5" x2="1550" y2="138.1"/>
+        </g>
+        <g stroke-width="6" stroke-linecap="round" style="stroke:var(--accent)">
+          <line x1="80" y1="229.8" x2="134" y2="161.4"/><line x1="328" y1="209.4" x2="382" y2="150.1"/>
+          <line x1="577" y1="192.1" x2="631" y2="141.9"/><line x1="825" y1="177.9" x2="879" y2="127.7"/>
+          <line x1="1073" y1="162.7" x2="1127" y2="117.1"/><line x1="1322" y1="149.1" x2="1376" y2="103.5"/>
+        </g>
+        <g style="fill:var(--accent-strong)">
+          <circle cx="134" cy="161.4" r="5"/><circle cx="382" cy="150.1" r="5"/><circle cx="631" cy="141.9" r="5"/>
+          <circle cx="879" cy="127.7" r="5"/><circle cx="1127" cy="117.1" r="5"/><circle cx="1376" cy="103.5" r="5"/>
+        </g>
+        <g style="fill:var(--warn)">
+          <circle cx="328" cy="209.4" r="4"/><circle cx="577" cy="192.1" r="4"/><circle cx="825" cy="177.9" r="4"/>
+          <circle cx="1073" cy="162.7" r="4"/><circle cx="1322" cy="149.1" r="4"/><circle cx="1550" cy="138.1" r="4"/>
         </g>
         <g font-family="ui-monospace,Menlo,monospace" font-size="15" text-anchor="middle" style="fill:var(--muted)">
           <text x="194" y="274">MONTH 1</text><text x="442" y="274">MONTH 2</text><text x="690" y="274">MONTH 3</text>
           <text x="938" y="274">MONTH 4</text><text x="1186" y="274">MONTH 5</text><text x="1434" y="274">MONTH 6</text>
         </g>
-        <g opacity=".18" style="fill:var(--accent)">
-          <rect x="90" y="20" width="54" height="228"/><rect x="210" y="20" width="40" height="228"/>
-          <rect x="400" y="20" width="46" height="228"/><rect x="700" y="20" width="38" height="228"/>
-          <rect x="1000" y="20" width="34" height="228"/><rect x="1330" y="20" width="30" height="228"/>
-        </g>
-        <path d="M90 240 L144 96 L210 170 L250 78 L400 196 L446 92 L700 214 L738 120 L1000 226 L1034 150 L1330 236 L1360 178 L1560 244"
-              fill="none" stroke="url(#fade)" stroke-width="3.5" stroke-linejoin="round"/>
-        <g font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="16" style="fill:var(--warn)">
-          <text x="325" y="150">platform not ready</text>
-          <text x="573" y="176">gap</text>
-          <text x="745" y="196">interest wanders</text>
-          <text x="1041" y="212">relearning the basics again</text>
-        </g>
-        <g stroke-width="1" stroke-dasharray="3 4" opacity=".7" style="stroke:var(--warn)">
-          <line x1="250" y1="78" x2="400" y2="196"/><line x1="446" y1="92" x2="700" y2="214"/>
-          <line x1="738" y1="120" x2="1000" y2="226"/><line x1="1034" y1="150" x2="1330" y2="236"/>
-        </g>
-        <text x="1450" y="60" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="16" style="fill:var(--accent-strong)">shaded bands = teaching</text>
+        <text x="90" y="46" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="17" style="fill:var(--accent-strong)">Every cycle leaves the floor a little higher than the last</text>
+        <text x="150" y="138" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="16" style="fill:var(--accent-strong)">teaching lifts it</text>
+        <text x="170" y="222" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="16" style="fill:var(--warn)">the gap gives much of it back</text>
+        <text x="1550" y="235" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="15" style="fill:var(--muted)">shaded bands = teaching</text>
       </svg>
     </div>
     <div class="fchips">
-      <div class="fchip"><h4>Mixed-ability cohorts</h4><p>Pace wrong at both ends. Prior coding experience predicted success, not Jamf Pro familiarity or age.</p></div>
+      <div class="fchip"><h4>Mixed-ability cohorts</h4><p>Too many skill levels in one room: trainers pitched some sessions too fast and others too slow. Prior coding experience predicted success, not Jamf Pro familiarity or age.</p></div>
       <div class="fchip"><h4>Theory before the hands-on</h4><p>No mental model formed. In one ear and out the other.</p></div>
-      <div class="fchip"><h4>Step-by-step tutorials</h4><p>Workbooks devolved into copy-paste. Completed, not retained.</p></div>
-      <div class="fchip"><h4>Shaped like a reference manual</h4><p>214,645 words of good content, written to be complete rather than to be learned from.</p></div>
-      <div class="fchip"><h4>Gaps we could not close</h4><p>Our internal developer platform was not ready and online when engineers needed it.</p></div>
-      <div class="fchip"><h4>Interest wandered</h4><p>Four weeks of content over six months. The hours were about right; the calendar was not.</p></div>
-      <div class="fchip"><h4>Effort stayed invisible</h4><p>Nothing showed who had genuinely put the hours in until after handover.</p></div>
-      <div class="fchip won"><h4 class="g">What replaced it</h4><p>3,778 words: two modules and four labs, one of them deliberately broken. 57x smaller.</p></div>
+      <div class="fchip"><h4>Documentation shaped like a reference manual</h4><p>214,645 words of AI-assisted content, written to be complete rather than to be learned from. Step-by-step tutorials devolved into copy-paste, and people were not retaining what they completed.</p></div>
+      <div class="fchip"><h4>Too long a gap between sessions</h4><p>Getting every Mac engineer into one room was hard, since they do not all work in the same country, so gaps between sessions ran long - unclear infrastructure availability added to it, but only mildly. Four weeks of content spread across six months, and interest wandered off in between.</p></div>
+      <div class="fchip"><h4>Online meetings</h4><p>In-person sessions worked better than online ones. Being physically in the room let trainers walk around and help people directly, rather than everyone muting themselves and struggling alone.</p></div>
     </div>
     <div class="qstrip">
       <div class="qm">&ldquo;</div>
@@ -1131,7 +1132,7 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 6 · WHAT WORKED ============ -->
-<section class="slide" data-speaker="Joseph" data-notes="Git has a bad mental model for beginners - it's difficult to teach and learn because it conceals its work in a hidden directory and is typically used through a command line interface.">
+<section class="slide" data-speaker="Joseph" data-notes="Principles first: teach each discipline individually before building up to the full picture, starting with what the team didn't already know, like Git. On third-party documentation, point to our own replacement curriculum as the example: 3,778 words across two modules and four labs, one of them deliberately broken, 57 times smaller than the 214,645-word manual it replaced, and both public in the training repo for people to compare.">
   <div class="eyebrow"><i class="dot"></i>06 &middot; Retrospective</div>
   <h1>What worked</h1>
   <div class="body grid g2" style="gap:20px">
@@ -1141,8 +1142,8 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
       <div><h3>Paired programming</h3><p>Real-time knowledge transfer. Engineers learn faster from a peer than from documentation alone. Effective pairs that transfer knowledge well share a disciplined (one topic at a time, staged clarification, deliberately pushing context rather than only answering questions asked) approach.</p></div>
     </div>
     <div class="icard">
-      <svg viewBox="0 0 24 24"><path d="M10 3v6.5L4.5 19a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 9.5V3"/><path d="M8.5 3h7"/></svg>
-      <div><h3>Scenario-based hack labs</h3><p>Interactive, visual, hands-on learning beats abstract exercises, always. This is especially true when learning git for the first time. Engineers learn the 'why' immediately and hands on helps build a mental model quicker. Learning scenarios should be tied to real life team operations. Provide sequenced learning before open-ended practice.</p></div>
+      <svg viewBox="0 0 24 24"><rect x="3" y="15" width="18" height="6" rx="1"/><rect x="6" y="9" width="12" height="6" rx="1"/><rect x="9" y="3" width="6" height="6" rx="1"/></svg>
+      <div><h3>Principles before the full picture</h3><p>Training was scaled back to the foundational principles the team did not already know, like Git, taught one discipline at a time and built up incrementally rather than trying to present the whole system too quickly. That foundation is what self-directed learning built on afterwards.</p></div>
     </div>
     <div class="icard">
       <svg viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="M3 12.5 12 17l9-4.5"/><path d="M3 17.5 12 22l9-4.5"/></svg>
@@ -1154,11 +1155,11 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
     </div>
     <div class="icard">
       <svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="12.5" rx="1.5"/><path d="M9 20.5h6M12 16.5v4"/><path d="m9.5 8.5 3 2-3 2"/></svg>
-      <div><h3>Secondments to DevOps teams</h3><p>Team shadowing (even on other tf providers) gives real grounding and broad exposure.</p></div>
+      <div><h3>Secondments to DevOps teams</h3><p>Team shadowing (even on other tf providers) gives real grounding and broad exposure. This is a specific approach: it only works if a platform engineering team has time to dedicate to training the seconded engineer. Where that is not available, lean on an enthusiastic employee willing to learn it themselves instead. It also helps if whoever goes on secondment already has some prior experience with GitHub and scripting or software development.</p></div>
     </div>
     <div class="icard">
       <svg viewBox="0 0 24 24"><path d="M5 3.5h9l5 5v12a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 4 20.5v-16A1 1 0 0 1 5 3.5Z"/><path d="M14 3.5v5h5"/><path d="M8 13h8M8 17h5"/></svg>
-      <div><h3>Good documentation</h3><p>Make use of the terraform registry for known good working examples for each resource. Read our and others open-sourced training and reference implementations for your own learning or to build your own syllabus</p></div>
+      <div><h3>Good third-party documentation</h3><p>The Terraform registry and other teams' open-sourced reference implementations worked as learning material - use them for known good working examples of each resource, or as inspiration for your own syllabus. (Our own docs only worked once cut right back to the essentials: 3,778 words, 57x smaller than the manual it replaced.)</p></div>
     </div>
     <div class="icard">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.4l3.4 2"/></svg>

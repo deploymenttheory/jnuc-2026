@@ -527,17 +527,45 @@ Notable content slides:
 - **Goals** (`#3`): learning-outcome cards, a "what success looked like" behaviours block,
   a non-goals strip and a trained-bar definition.
 - **Execution** (`#4`): a fan-out - a hub panel (one engineer seconded into the DevOps CoE,
-  3 months, train-the-trainer) bracketed by an SVG to five outcome cards (materials, session
-  design, hackathons and homework, migration waves, handover), with two full-width arrows
-  underneath showing the two-way trade: domain context in, GitOps practice back. Classes
-  `.fanout`, `.hub`, `.brace`, `.spokes`/`.spoke`, `.flow`/`.flowrow`.
-- **What didn't work** (`#5`): a hero SVG chart across the top - bands mark teaching
-  sessions, a gradient line rises through each then decays through the gap that follows,
-  trending down over six months. **That curve is illustrative, not measured**, and the slide
-  says so in a `SHAPE IS ILLUSTRATIVE` label - keep that label if the chart is edited. Below
-  it, eight chips: seven failures plus one accent chip for what replaced the programme, then
-  a quote strip. Classes `.chartwrap`/`.chd`, `.fchips`/`.fchip` (`.won` for the accent one)
-  and `.qstrip`.
+  3 months, train-the-trainer, run iteratively rather than planned end to end) bracketed by
+  an SVG to five outcome cards, all plain (no per-card colour variants): materials written
+  together, delivery format iterated from theory-led to practical, hackathons that didn't
+  land, no existing playbook for migrating a Mac-centric team onto Terraform specifically,
+  and different delivery plans by skill level (laid-back and project-based for higher-skill
+  engineers). The hub's foot line carries the migration link as one subordinate sentence -
+  the secondment also produced someone who could run migration work when needed - rather
+  than as its own spokes; migration waves and handover as topics belong elsewhere in the
+  deck, not on this training-execution slide. Two full-width arrows underneath keep the
+  two-way trade: domain context in, GitOps practice back. Classes `.fanout`, `.hub`,
+  `.brace`, `.spokes`/`.spoke`, `.flow`/`.flowrow`.
+- **What didn't work** (`#5`): a hero SVG chart across the top - six teaching sessions
+  across six months, each one lifting confidence and each following gap giving some of it
+  back, trending gently upwards overall (people did genuinely build confidence over the six
+  months; what was lost was whatever confidence a gap between sessions let leak away, not
+  the whole programme). **That shape is illustrative, not measured**, and the slide says so
+  in a `SHAPE IS ILLUSTRATIVE` label - keep that label if the chart is edited. The original
+  gradient line chart was rejected and replaced with three sandbox treatments; **option B,
+  the ratchet, was chosen and is now the only chart the deck ships**, as plain markup inside
+  `.chartwrap` (no wrapper classes, nothing hidden by CSS): hard straight lines, a short
+  steep lime riser through each teaching band, then a longer coral fall through the gap that
+  follows, with faint dotted floor lines showing the rising baseline after each cycle. The
+  fall through each gap was then steepened at Joseph's request (a fall of roughly 65-70% of
+  that cycle's rise, stroke-width 4, up from the original ~40% and width 3) so the downturn
+  reads as a real drop rather than a shallow taper; the six months, six teaching-then-gap
+  cycles, 144 hours and the gentle net upward trend by the end are unchanged. The rejected
+  column and blocks-per-month treatments are gone; the sandbox page is deleted and the
+  index entry is `.done`. Below it, five chips: mixed-ability cohorts (now states plainly that trainers were
+  pitching some sessions too fast and others too slow), theory before the hands-on,
+  documentation shaped like a reference manual (merges the old step-by-step-tutorials and
+  reference-manual chips, adding that the 214,645-word curriculum was AI-assisted and too
+  large to take in), too long a gap between sessions (primary driver is the difficulty of
+  getting a geographically dispersed Mac engineering team into one room, not the same
+  country; unclear infra availability is folded in as a minor secondary factor, downgraded
+  from its own chip), and online meetings (in-person let trainers walk around and help
+  people directly). The old "effort stayed invisible" chip is gone, and the `.won` accent
+  chip ("what replaced it") has moved to `#6`, folded into that slide's "Good third-party
+  documentation" card. Then a quote strip. Classes `.chartwrap`/`.chd`, `.fchips`/`.fchip` and
+  `.qstrip`.
 - **Conditions** (`#7`): a hero layout - a large left panel gives psychological safety the
   weight the copy claims for it ("the most evidenced condition of all") with three practical
   points under it; the other six conditions, including "Expect the dip", sit right as
@@ -800,6 +828,18 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
+No pages currently awaiting a decision under `presentations/sandbox/training_a_team/`.
+Decided (under `presentations/sandbox/training_a_team/`):
+`s5-chart-styles` (2026-08-28, slide 5, Gordon - three chart treatments of the hero
+confidence chart, all three new because the shipped gradient line chart was rejected: A
+gain-and-give-back columns, B a hard-edged ratchet, C six rows of blocks. The three shipped
+as structurally different SVGs in wrappers `.chart-opt-a` / `-b` / `-c` inside `.chartwrap`,
+with the deck showing A and the page flipping which wrapper was visible. Decided 2026-08-28:
+option B, the ratchet, applied to the deck as plain markup (the wrapper classes and the
+other two SVGs removed); the fall through each gap was steepened in the same PR at Joseph's
+request so the downturn reads as a real drop, not a shallow taper - six months, six cycles
+and the gentle net upward trend by the end are unchanged; the page is deleted, the index
+keeps the record as a non-linked `.done` entry).
 Current pages (all under `presentations/sandbox/migrating_an_instance/`):
 `s-singletons-no-id` (2026-09-02, slide 10 - four rewrites, not restyles, after Dafydd said the words were garbage and the point unclear: a settings pane exists once per instance, so there is nothing to identify it by and the id in an `import` block is a constant the provider defines. A leads on that constant blown up and annotated, B sets what any other resource needs against what a singleton needs, C defines the word then takes three consequences in order and is the only option keeping today's "don't skip import if you can" caveat, D lets the HCL carry the slide with three callouts. Open question with it: that caveat contradicts the new framing and spec.md's own narrative.
 
