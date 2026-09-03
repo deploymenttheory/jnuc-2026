@@ -545,7 +545,10 @@ body.reader .reader-extra {
   min-height: 420px;
   padding: var(--sp-4) var(--sp-3);
 }
-.team-name { font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); }
+.team-name { display: flex; align-items: baseline; gap: 0.42em; font-size: var(--fs-h2); font-weight: 600; line-height: var(--lh-tight); }
+/* The icon is a flex item rather than an inline run, so a long single-word name
+   like Mac@LBG stays on the icon's line instead of wrapping under it. */
+.team-name .ico { margin-right: 0; position: relative; top: 0.125em; }
 /* Each card reads top to bottom: who they are, what they do, then what they perform.
    The head block sits at the top and the performs block is pinned to the foot by the
    card's space-between, so the tags line up across all five cards. */
