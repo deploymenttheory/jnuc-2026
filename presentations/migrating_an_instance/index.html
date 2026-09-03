@@ -22,6 +22,7 @@
   /* Palette - JNUC 2026 template */
   --c-bg: #273FAB;          /* royal blue stage */
   --c-surface: #152143;     /* dark navy - cards, code blocks, alternate slide bg */
+  --c-surface-2: #182A5C;   /* derived: dark navy lifted toward royal blue - the lifted card on s18 */
   --c-border: rgba(244, 244, 244, 0.28);
   --c-hairline: rgba(244, 244, 244, 0.6);
   --c-text: #F4F4F4;
@@ -1232,140 +1233,83 @@ body.reader .reader-extra {
 #s15b .tech-warn { margin-top: var(--sp-2); font-size: var(--fs-code); color: var(--c-warn); }
 
 /* ============================ S16b / S18 ============================ */
-.slide-centred {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: var(--sp-3);
-}
-.slide-centred .slide-title { margin-bottom: var(--sp-2); }
-
-/* s18: the union of this deck's own links and the training deck's resources slide
-   (presentations/training_a_team/index.html, "16 - Resources"), grouped by type the
-   way that slide is - first-party provider/SDK tooling, then docs and community.
-   Reformatted 2026-09-01 to reserve QR space alongside the links (the training
-   deck's QR should have shipped with the links in PR #85 and did not). The QR's
-   final target URL is not settled, so every layout reserves the space with a TODO
-   chip rather than a fake scannable pattern. Three layouts ship as markup wrappers
-   .s18-opt-a to .s18-opt-c; only s18-opt-a is visible, and the sandbox page
-   s18-reformat-qr.html flips which one shows - accepting one means deleting the
-   other two wrappers and their rules as a single block. Wording is identical in all
-   three; only the layout differs. Scoped to #s18 so none of it reaches s16b, which
-   shares this comment block. */
-#s18 .s18-opt {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sp-3);
-}
-/* comes after the rule above so it wins the specificity tie */
-#s18 .s18-opt-b, #s18 .s18-opt-c { display: none; }
-
-/* link-list styling, shared unchanged by every option */
-#s18 .s18-links {
+/* s18: a verbatim copy of the training deck's "16 - Resources" slide
+   (presentations/training_a_team/index.html), rebuilt 2026-09-03 - same two card
+   stacks, same wording and descriptions, same QR rail alongside them, same title.
+   Decks do not import styling from each other, so that deck's .res / .collabel /
+   .qr-rail rules are restated here in this deck's tokens; the proportions (three
+   columns, the 400px rail, the highlighted first card, lime URLs on the left and
+   cornflower on the right) are what carry the likeness. The earlier standardised
+   link list, its jamfpy row and the two TODO chips went with the rewrite, as did
+   layout options B and C and the sandbox page that switched between them. */
+#s18 .s18-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 400px;
   gap: var(--sp-5);
   width: 100%;
-  max-width: 1560px;
-  text-align: left;
+  max-width: 1728px;
+  align-items: start;
 }
-#s18 .s18-col-title {
+#s18 .s18-collabel {
   font-family: var(--f-display);
-  font-size: var(--fs-body);
-  font-weight: 600;
-  color: var(--c-accent);
-  margin-bottom: var(--sp-2);
-}
-#s18 .s18-list { list-style: none; }
-#s18 .s18-link {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-1);
-  padding: var(--sp-2) 0;
-  border-bottom: var(--bw-1) solid var(--c-hairline);
-}
-#s18 .s18-list li:last-child { border-bottom: none; padding-bottom: 0; }
-#s18 .s18-label { font-size: var(--fs-caption); font-weight: 600; }
-#s18 .s18-url { font-size: var(--fs-chip); color: var(--c-text-muted); }
-
-/* reserved QR placeholder - a white tile matching the training deck's .qr-tile (a
-   QR code stays black-on-white; --c-photo is this deck's existing white token,
-   already used for speaker-photo placeholders) with a TODO chip standing in for the
-   code itself. Sized per option below. */
-#s18 .s18-qr-label {
-  font-family: var(--f-mono);
   font-size: var(--fs-chip);
-  letter-spacing: 0.14em;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--c-text-muted);
+  color: var(--c-accent);
+  margin-bottom: var(--sp-3);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
 }
-#s18 .s18-qr-cap { font-size: var(--fs-chip); color: var(--c-text-muted); }
+/* the second column is the community and official set - the deck's secondary hue */
+#s18 .s18-collabel-alt { color: var(--c-accent-2); }
+#s18 .s18-collabel .ico { width: 1.4em; height: 1.4em; margin-right: 0; }
+#s18 .s18-res {
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius);
+  background: var(--c-surface);
+  padding: var(--sp-3) var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+/* the registry is where people should start, so it is lifted off the other cards */
+#s18 .s18-res-hi { background: var(--c-surface-2); border-color: var(--c-hairline); }
+#s18 .s18-res-title { font-size: var(--fs-code); font-weight: 700; line-height: var(--lh-tight); }
+#s18 .s18-res-desc {
+  font-size: var(--fs-caption);
+  color: var(--c-text-muted);
+  line-height: var(--lh-body);
+  margin-top: var(--sp-1);
+}
+#s18 .s18-res-url {
+  font-size: var(--fs-caption);
+  color: var(--c-accent);
+  margin-top: var(--sp-2);
+  word-break: break-all;
+}
+#s18 .s18-res-url-alt { color: var(--c-accent-2); }
+
+/* the QR rail. The tile is a deliberate literal white, as in the training deck -
+   a QR code stays black-on-white - with a hairline so it does not dissolve into
+   the stage. --c-photo is this deck's existing white token. */
 #s18 .s18-qr-tile {
   background: var(--c-photo);
   border: var(--bw-1) solid var(--c-border);
   border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: var(--sp-3);
+  width: 400px;
+  height: 400px;
 }
-
-/* A - two link columns plus a QR rail alongside them, live now */
-#s18 .s18-grid-a {
-  display: grid;
-  grid-template-columns: 1fr 1fr 300px;
-  gap: var(--sp-5);
-  width: 100%;
-  max-width: 1728px;
-  text-align: left;
-  align-items: start;
+#s18 .s18-qr-tile img { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+#s18 .s18-qr-cap {
+  font-family: var(--f-mono);
+  font-size: var(--fs-chip);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  margin-top: var(--sp-3);
+  line-height: var(--lh-body);
 }
-#s18 .s18-qr-rail { display: flex; flex-direction: column; align-items: center; gap: var(--sp-2); }
-#s18 .s18-qr-tile-a { width: 220px; height: 220px; }
-
-/* B - the two link columns unchanged, QR and the outstanding note joined into one
-   footer bar below the grid */
-#s18 .s18-foot-b {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-4);
-  width: 100%;
-  max-width: 1560px;
-  padding-top: var(--sp-3);
-  border-top: var(--bw-1) solid var(--c-hairline);
-  text-align: left;
-}
-#s18 .s18-qr-tile-b { width: 140px; height: 140px; flex: none; }
-#s18 .s18-foot-b-text { display: flex; flex-direction: column; gap: var(--sp-1); flex: 1; }
-#s18 .s18-note-b { flex: none; margin-left: auto; }
-
-/* C - narrower link columns, a bold QR hero card carrying the rest of the width */
-#s18 .s18-grid-c {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: var(--sp-5);
-  width: 100%;
-  max-width: 1728px;
-  text-align: left;
-  align-items: start;
-}
-#s18 .s18-links-c { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
-#s18 .s18-hero-c {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sp-2);
-  padding: var(--sp-4);
-  background: var(--c-surface);
-  border: var(--bw-1) solid var(--c-border);
-  border-radius: var(--radius);
-  text-align: center;
-}
-#s18 .s18-qr-tile-c { width: 300px; height: 300px; }
 
 /* s16b: one hero number carries the slide, the rest support it in a quiet row below.
    Scoped to #s16b so none of it reaches s18, which shares this block. */
@@ -2174,7 +2118,7 @@ body.presenter #viewport { display: none; }
     <section class="slide" id="s13" aria-label="for_each exceptions" data-speaker="Joseph" data-when="2026-01">
       <h1 class="slide-title"><span class="mono">for_each</span> exceptions</h1>
 
-      <p class="s13-kicker"><svg class="ico" aria-hidden="true"><use href="#i-queue-list"/></svg>Just one exception</p>
+      <p class="s13-kicker"><svg class="ico" aria-hidden="true"><use href="#i-queue-list"/></svg>Key Takeaway</p>
       <p class="s13-statement">We kept policies in <span class="s13-hl">plain HCL</span>.</p>
       <p class="s13-reason">They're too different from each other. One <span class="mono">for_each</span> map would have to carry every field any policy might need, and nobody could read it.</p>
       <p class="s13-close">Once the map gets harder to read than plain HCL, the pattern isn't earning its keep any more.</p>
@@ -2402,189 +2346,60 @@ inputs = { ... }</p>
     </section>
 
     <!-- ============================ S18 - Links ============================ -->
-    <section class="slide slide-centred" id="s18" aria-label="Links" data-speaker="Anyone" data-when="now">
-      <h1 class="slide-title">Links</h1>
+    <section class="slide" id="s18" aria-label="Learning materials" data-speaker="Anyone" data-when="now">
+      <h1 class="slide-title">Learning materials</h1>
 
-      <!-- Three layouts ship as markup wrappers .s18-opt-a to .s18-opt-c; only
-           s18-opt-a is visible (rules just above). The sandbox page
-           presentations/sandbox/migrating_an_instance/s18-reformat-qr.html flips
-           which one shows - accepting one means deleting the other two wrappers and
-           their rules as a single block. Wording is identical in all three; only
-           the layout differs. -->
-
-      <!-- A - two link columns plus a QR rail alongside them, live now -->
-      <div class="s18-opt s18-opt-a">
-        <div class="s18-grid-a">
-          <div class="s18-col">
-            <h2 class="s18-col-title">Provider and tooling</h2>
-            <ul class="s18-list">
-              <li class="s18-link">
-                <span class="s18-label">Terraform Registry - deploymenttheory/jamfpro</span>
-                <span class="s18-url mono">registry.terraform.io/providers/deploymenttheory/jamfpro</span>
-              </li>
-              <li class="s18-link">
-                <span class="s18-label">jamfpy - Joseph's open-source SDK</span>
-              </li>
-              <li class="s18-link">
-                <span class="s18-label">Terraform Demo Repo</span>
-                <span class="s18-url mono">github.com/deploymenttheory/terraform-demo-jamfpro-v2</span>
-              </li>
-              <li class="s18-link">
-                <span class="s18-label">Terraform Training Repo</span>
-                <span class="s18-url mono">github.com/deploymenttheory/terraform-training-jamfpro</span>
-              </li>
-            </ul>
+      <!-- A verbatim copy of the training deck's "16 - Resources" slide: the same
+           two card stacks in the same order, the same wording, and the same QR rail
+           carrying ../_shared/qr-code.png. Styling is this deck's own, since decks
+           share content but never CSS. -->
+      <div class="s18-grid">
+        <div class="s18-col">
+          <p class="s18-collabel">Start here: Deployment Theory</p>
+          <div class="s18-res s18-res-hi">
+            <h2 class="s18-res-title">Terraform Registry - deploymenttheory/jamfpro</h2>
+            <p class="s18-res-desc">Every resource, argument and example for the provider.</p>
+            <p class="s18-res-url mono">registry.terraform.io/providers/deploymenttheory/jamfpro</p>
           </div>
-          <div class="s18-col">
-            <h2 class="s18-col-title">Docs and community</h2>
-            <ul class="s18-list">
-              <li class="s18-link">
-                <span class="s18-label">Jamf Developer Docs - Terraform Providers</span>
-                <span class="s18-url mono">developer.jamf.com</span>
-              </li>
-              <li class="s18-link">
-                <span class="s18-label">Jamf Blog - Getting Started with IaC Workflows</span>
-                <span class="s18-url mono">jamf.com/blog/managing-jamf-terraform-gitops-workflows</span>
-              </li>
-              <li class="s18-link">
-                <span class="s18-label">MacAdmins Slack - #terraform-provider-jamfpro</span>
-                <span class="s18-url mono">macadmins.org/slack</span>
-              </li>
-              <li class="s18-link">
-                <span class="s18-label">Neil Martin - terraform-jamfpro-starter</span>
-                <span class="s18-url mono">github.com/neilmartin83/terraform-jamfpro-starter</span>
-              </li>
-            </ul>
+          <div class="s18-res">
+            <h2 class="s18-res-title">Terraform Demo Repo</h2>
+            <p class="s18-res-desc">Multi-environment setup with GitLab-flow and Terraform Cloud. Best-practice structure out of the box.</p>
+            <p class="s18-res-url mono">github.com/deploymenttheory/terraform-demo-jamfpro-v2</p>
           </div>
-          <div class="s18-qr-rail">
-            <p class="s18-qr-label">Take it with you</p>
-            <div class="s18-qr-tile s18-qr-tile-a">
-              <span class="todo">TODO: QR target URL</span>
-            </div>
-            <p class="s18-qr-cap">Scan for a link to this presentation</p>
+          <div class="s18-res">
+            <h2 class="s18-res-title">Terraform Training Repo</h2>
+            <p class="s18-res-desc">Built for workplace engineers with zero prior knowledge of git, gitOps and terraform.</p>
+            <p class="s18-res-url mono">github.com/deploymenttheory/terraform-training-jamfpro</p>
           </div>
         </div>
-        <span class="todo">TODO: jamfpy repository URL, contact and socials</span>
-      </div>
-
-      <!-- B - the two link columns unchanged, QR and the outstanding note joined
-           into one footer bar below the grid -->
-      <div class="s18-opt s18-opt-b">
-        <div class="s18-links">
-          <div class="s18-col">
-            <h2 class="s18-col-title">Provider and tooling</h2>
-            <ul class="s18-list">
-              <li class="s18-link">
-                <span class="s18-label">Terraform Registry - deploymenttheory/jamfpro</span>
-                <span class="s18-url mono">registry.terraform.io/providers/deploymenttheory/jamfpro</span>
-              </li>
-              <li class="s18-link">
-                <span class="s18-label">jamfpy - Joseph's open-source SDK</span>
-              </li>
-              <li class="s18-link">
-                <span class="s18-label">Terraform Demo Repo</span>
-                <span class="s18-url mono">github.com/deploymenttheory/terraform-demo-jamfpro-v2</span>
-              </li>
-              <li class="s18-link">
-                <span class="s18-label">Terraform Training Repo</span>
-                <span class="s18-url mono">github.com/deploymenttheory/terraform-training-jamfpro</span>
-              </li>
-            </ul>
+        <div class="s18-col">
+          <p class="s18-collabel s18-collabel-alt"><svg class="ico" aria-hidden="true"><use href="#i-jamf"/></svg>Community &amp; official</p>
+          <div class="s18-res">
+            <h2 class="s18-res-title">Jamf Developer Docs - Terraform Providers</h2>
+            <p class="s18-res-url s18-res-url-alt mono">developer.jamf.com</p>
           </div>
-          <div class="s18-col">
-            <h2 class="s18-col-title">Docs and community</h2>
-            <ul class="s18-list">
-              <li class="s18-link">
-                <span class="s18-label">Jamf Developer Docs - Terraform Providers</span>
-                <span class="s18-url mono">developer.jamf.com</span>
-              </li>
-              <li class="s18-link">
-                <span class="s18-label">Jamf Blog - Getting Started with IaC Workflows</span>
-                <span class="s18-url mono">jamf.com/blog/managing-jamf-terraform-gitops-workflows</span>
-              </li>
-              <li class="s18-link">
-                <span class="s18-label">MacAdmins Slack - #terraform-provider-jamfpro</span>
-                <span class="s18-url mono">macadmins.org/slack</span>
-              </li>
-              <li class="s18-link">
-                <span class="s18-label">Neil Martin - terraform-jamfpro-starter</span>
-                <span class="s18-url mono">github.com/neilmartin83/terraform-jamfpro-starter</span>
-              </li>
-            </ul>
+          <div class="s18-res">
+            <h2 class="s18-res-title">Jamf Blog - Getting Started with IaC Workflows</h2>
+            <p class="s18-res-url s18-res-url-alt mono">jamf.com/blog/managing-jamf-terraform-gitops-workflows</p>
+          </div>
+          <div class="s18-res">
+            <h2 class="s18-res-title">MacAdmins Slack - #terraform-provider-jamfpro</h2>
+            <p class="s18-res-url s18-res-url-alt mono">macadmins.org/slack</p>
+          </div>
+          <div class="s18-res">
+            <h2 class="s18-res-title">Neil Martin - terraform-jamfpro-starter</h2>
+            <p class="s18-res-url s18-res-url-alt mono">github.com/neilmartin83/terraform-jamfpro-starter</p>
           </div>
         </div>
-        <div class="s18-foot-b">
-          <div class="s18-qr-tile s18-qr-tile-b">
-            <span class="todo">TODO: QR target URL</span>
-          </div>
-          <div class="s18-foot-b-text">
-            <p class="s18-qr-label">Take it with you</p>
-            <p class="s18-qr-cap">Scan for a link to this presentation</p>
-          </div>
-          <span class="todo s18-note-b">TODO: jamfpy repository URL, contact and socials</span>
-        </div>
-      </div>
-
-      <!-- C - narrower link columns, a bold QR hero card carrying the rest of the
-           width -->
-      <div class="s18-opt s18-opt-c">
-        <div class="s18-grid-c">
-          <div class="s18-links-c">
-            <div class="s18-col">
-              <h2 class="s18-col-title">Provider and tooling</h2>
-              <ul class="s18-list">
-                <li class="s18-link">
-                  <span class="s18-label">Terraform Registry - deploymenttheory/jamfpro</span>
-                  <span class="s18-url mono">registry.terraform.io/providers/deploymenttheory/jamfpro</span>
-                </li>
-                <li class="s18-link">
-                  <span class="s18-label">jamfpy - Joseph's open-source SDK</span>
-                </li>
-                <li class="s18-link">
-                  <span class="s18-label">Terraform Demo Repo</span>
-                  <span class="s18-url mono">github.com/deploymenttheory/terraform-demo-jamfpro-v2</span>
-                </li>
-                <li class="s18-link">
-                  <span class="s18-label">Terraform Training Repo</span>
-                  <span class="s18-url mono">github.com/deploymenttheory/terraform-training-jamfpro</span>
-                </li>
-              </ul>
-            </div>
-            <div class="s18-col">
-              <h2 class="s18-col-title">Docs and community</h2>
-              <ul class="s18-list">
-                <li class="s18-link">
-                  <span class="s18-label">Jamf Developer Docs - Terraform Providers</span>
-                  <span class="s18-url mono">developer.jamf.com</span>
-                </li>
-                <li class="s18-link">
-                  <span class="s18-label">Jamf Blog - Getting Started with IaC Workflows</span>
-                  <span class="s18-url mono">jamf.com/blog/managing-jamf-terraform-gitops-workflows</span>
-                </li>
-                <li class="s18-link">
-                  <span class="s18-label">MacAdmins Slack - #terraform-provider-jamfpro</span>
-                  <span class="s18-url mono">macadmins.org/slack</span>
-                </li>
-                <li class="s18-link">
-                  <span class="s18-label">Neil Martin - terraform-jamfpro-starter</span>
-                  <span class="s18-url mono">github.com/neilmartin83/terraform-jamfpro-starter</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="s18-hero-c">
-            <p class="s18-qr-label">Take it with you</p>
-            <div class="s18-qr-tile s18-qr-tile-c">
-              <span class="todo">TODO: QR target URL</span>
-            </div>
-            <p class="s18-qr-cap">Scan for a link to this presentation</p>
-            <span class="todo">TODO: jamfpy repository URL, contact and socials</span>
-          </div>
+        <div class="s18-qr-rail">
+          <p class="s18-collabel">Take it with you</p>
+          <div class="s18-qr-tile"><img src="../_shared/qr-code.png" alt="QR code linking to this presentation"></div>
+          <p class="s18-qr-cap">Scan for a link to<br>this presentation</p>
         </div>
       </div>
 
       <aside class="notes">
-        <p>Point at the provider registry, the jamfpy repo once it has a URL, and the other resources on screen; contact details still to confirm.</p>
+        <p>Where to send people. Start with the Deployment Theory Terraform registry and demo repo, and the training repo built for workplace engineers. Then the community and official set: Jamf developer docs, the Jamf blog IaC walkthrough, the MacAdmins Slack channel, and Neil Martin's starter repo. Point at the QR code on the right and leave this slide up while questions run - it opens a link to this presentation, so nobody needs to photograph the URLs.</p>
       </aside>
     </section>
 
