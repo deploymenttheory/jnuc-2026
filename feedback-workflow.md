@@ -5,7 +5,7 @@ session Joseph is talking to) reads this file at the start of every round and fo
 Feedback itself arrives in chat, never in this file. `AGENTS.md` is the reference for the
 repo and the decks; this file only covers the loop. The file is committed (the deploy's
 `*.md` exclude keeps it off the site); edit it in the same commit as any change to the
-process. Last revised 2026-08-28.
+process. Last revised 2026-09-01.
 
 ## Standing rules
 
@@ -53,6 +53,17 @@ process. Last revised 2026-08-28.
   stays open until Joseph names it and says merge it. Joseph, verbatim: "Do not merge any
   PRs you're not told to. Only merge ones your agents make." Mention an open collaborator PR
   in chat in one line when noticed; never merge one on inference, however far along it is.
+  If a collaborator's push or PR conflicts with in-flight work of the orchestrator's own
+  agents, the collaborator's change wins outright - the orchestrator's side reworks on top
+  of it, never the reverse. This is about precedence in a conflict, not about who merges
+  what: a collaborator's PR still only gets merged when Joseph names it. Joseph, verbatim:
+  "Remember to always accept PRs over what we're doin." This goes beyond merge conflicts.
+  When ShocOne's PR #73 retitled slide 3 and an older title lived on in `docs/
+  timeline-notes.md`, Joseph settled it with a stronger rule, verbatim: "Always prio
+  shocone." ShocOne's changes take priority always - in merge conflicts and in content
+  disagreements alike. A title or wording ShocOne shipped wins over an older value found
+  anywhere else, including in Joseph's own docs, which get corrected to ShocOne's version
+  rather than the reverse.
 - Do not rebuild the Keynote `.key` until Joseph says so.
 - Commits are authored by Joseph Little (the global git identity) with no `Co-Authored-By`
   trailer, plain human subjects, British English. No emojis, no em or en dashes anywhere.
@@ -418,7 +429,11 @@ stylesheet `../sandbox.css`, and crumb
   slides sit in different regions, so `--no-ff` merges are clean there in practice. Agents
   also edit `presentations/sandbox/<deck>/index.html`, `AGENTS.md`, this file's Log section
   and `presenter.json` directly, so conflicts on those are expected whenever two agents' PRs
-  land close together. Resolution rules per file, never dropping either side:
+  land close together. Resolution rules per file, never dropping either side, apply between
+  two of the orchestrator's own agents. When one side of the conflict is instead a
+  collaborator's direct push or PR, that changes who wins: the collaborator's version takes
+  precedence outright and the orchestrator's or its agent's side reworks on top of it, never
+  the reverse. Joseph, verbatim: "Remember to always accept PRs over what we're doin."
   - This file's Log: keep both sides' bullets under `### Done`, newest first. Under
     `### In flight`, keep whichever line reflects the later state of that slide (a line
     saying a PR is still pending loses to one showing it merged) and drop the other.
@@ -482,17 +497,99 @@ branch name and whatever is already committed on it); tell Joseph in one line wh
 recovered and what is still waiting on him. Unmerged worktrees from a dead session can be
 removed with `git worktree remove --force <path>` once their branch is pushed or abandoned.
 
-## Keynote
+## Downloads (Keynote and PowerPoint)
 
-Not until Joseph says so. When he does: `npm ci` once, `npm run build:key` on this Mac
-(needs Keynote), commit the regenerated
-`presentations/migrating_an_instance/from-clicks-to-code-jnuc2026.key`, push. Details in
-`AGENTS.md` under "Building the downloads". The `.key` is currently behind the HTML on
-purpose.
+Not until Joseph says so. When he does: `make downloads` on this Mac (needs Keynote; the
+Makefile installs the dependencies itself), commit the regenerated `.key` and `.pptx` for both
+decks, push. `make pptx` refreshes the PowerPoint half alone and needs no Keynote. Details in `AGENTS.md` under
+"Building the downloads". The `.key` files are currently behind the HTML on purpose; the
+`.pptx` files were built from the current HTML on 2026-09-02, when the second format was
+added, so the two formats are not in step until the next full `npm run build`.
 
 ## Log
 
-### State at handover (2026-08-28)
+### State at handover (2026-09-01)
+
+A new session taking over should read this before anything else. Per-slide status for
+`presentations/migrating_an_instance`, everything touched since the 2026-08-28 handover
+(PR #51), cross-checked against the `### Done` bullets below, `git log --oneline
+65180db..origin/main`, AGENTS.md's "Current slide order" (still 22 slides) and Sandbox
+section, `ls presentations/sandbox/migrating_an_instance/` and `gh pr list --state open`.
+
+Thursday and Friday's orchestrated rounds:
+
+- Slide 16 (`#s-staging`) - wording made plainer and steps-first, three layouts offered on
+  the sandbox (PR #40); pixel-art icons drawn for the three rebuild steps (PR #49); option
+  B, a numbered run down the left on a rail, accepted (PR #52); the icons redrawn at
+  1024px, Pixelforge project `b4001dd6` kept and its spec amended in place, and
+  `image-rendering` on `.s-staging-art` changed from `pixelated` to `auto` because the
+  smooth downscale is the only one that holds at the 168px display width (PR #58). Settled.
+- Slide 9 (`#s-sentinel`) - round one of visual treatments offered (PR #54), rejected
+  outright with none of the wrappers kept; round two, three fresh treatments deliberately
+  unlike a wall, a staircase or a timeline axis, offered on the sandbox (PR #56). Open -
+  see What is pending.
+- Slide 12 (`#s11`) - four points on the right with three visual treatments offered
+  (PR #53); round one rejected, plain separated-bullet treatments offered instead
+  (PR #55); option D, the four points numbered 1 to 4 in mono in an accent gutter,
+  accepted (PR #57) - Copilot CLI is no longer named on this slide as a result of the
+  point cut in PR #53.
+- Slide 15 (`#s14`) - three terminal treatments offered so the `terraform plan` block reads
+  as a real terminal (PR #38); option B, the block as a real window with chrome, traffic
+  lights and a blinking cursor, accepted (PR #39); gate 2 reworded to say state is stored
+  in a remote backend and to say "AI" rather than naming Copilot CLI (PR #42). Settled.
+- Slide 17 (`#s-pivot`) - the "It got out of hand" pivot statement removed, three display
+  options offered (PR #41); the round closed with no option chosen, live slide kept
+  (PR #44). Settled at the time - see the weekend's work below for what replaced it.
+- Slide 19 (`#s-today`) - deleted, its 60 seconds moved to Questions, deck renumbered to
+  22 slides (PR #43). Settled.
+- By the numbers (`#s16b`) - figures refreshed and three visualisations offered on the
+  sandbox (PR #46); option C, 900 PRs merged as a hero number with the other four figures
+  in a quiet row, accepted, and the date line changed to "Jan 2026 -> Sept 2026" (PR #48).
+  Settled on the slide itself - see What is pending for the notes mismatch and the
+  1,902-commits figure.
+- Non-slide: `docs/timeline-adherence.md` added, one row per slide with a blank "Month
+  (fill in)" column for Joseph (PR #45); the sandbox index entries fix, splitting three
+  merged `<li>`s back into one each (PR #50); the 2026-08-28 handover doc itself (PR #51).
+
+The weekend's collaborator work, merged by ShocOne (collaborators may push or self-merge
+their own PRs under the standing rules; only the orchestrator must not merge a
+collaborator's PR unnamed):
+
+- PR #47 (macdeacon99) - gate 4 on the validation slide reworded so UI write access is
+  revoked before the import rather than after validation, matching the wave-workflow
+  slide's own sequence; Gordon's speaker photo re-cropped to his face.
+- PR #59 (ShocOne) - slides 17 and 18 rewritten as one arc around DRY. `#s-pivot` retitled
+  "One codebase for every instance": the DRY objective in an accent band over a real
+  `jamfpro_static_computer_group` block, its `assigned_computer_ids` the only amber thing
+  on the slide. `#s15b` retitled "Getting as close to DRY as we can": six techniques in a
+  three by two grid, each with real syntax, under a caution that CLI workspaces share a
+  backend; the module tree moved into the reader-mode popover.
+- PR #60 (ShocOne) - follow-up to #59: slide 18's Terraform Stacks card replaced with
+  configuration as data (per-instance YAML read with `yamldecode`), because Stacks needs
+  HCP Terraform or Terraform Enterprise 2.0 on a resource-under-management plan and is
+  unreachable by anyone running Terraform CLI.
+
+What is pending, verified today:
+
+- One sandbox page awaiting a decision: `s-sentinel-round2` (slide 9, options B to D;
+  PR #56).
+- By the numbers' first speaker note still says April 2025 to May 2026 while the slide's
+  date line reads Jan 2026 to Sept 2026 (PR #48) - Joseph to reconcile.
+- The `1,902` commits figure was not in Joseph's updated stats and is probably stale.
+- `docs/timeline-adherence.md`'s "Month (fill in)" column is still empty and its H1 still
+  carries a colon ("Timeline adherence: Migrating an instance").
+- The timeline doc's table no longer matches the deck after the weekend's slide 17/18
+  retitles: row 17 still reads "Growing pains" (now "One codebase for every instance") and
+  row 18 still reads "The module structure" (now "Getting as close to DRY as we can").
+  Flagged here, not edited in the doc - the doc's `data-when` review is Joseph's to do.
+- No open PRs (`gh pr list --state open` returns none). Keynote rebuild not requested.
+  Slide 4's speaker still marked TBC (Dafydd).
+
+Commit range: `65180db` (the 2026-08-27 handover doc, PR #28) to `e2cdebb` (current
+`origin/main` tip, PR #60's merge). PR numbers #38 to #60, of which #47, #59 and #60 are
+collaborator PRs. This docs update is its own PR, #61.
+
+### State at handover (2026-08-28, superseded)
 
 A new session taking over should read this before anything else. Per-slide status for
 `presentations/migrating_an_instance`, everything touched since PR #28, cross-checked
@@ -742,6 +839,401 @@ it up - either way it is on disk for a recovering session.
   render identically. `data-notes` rewritten to match. `AGENTS.md`'s `#4` description
   updated. Deterministic round, no sandbox page; `training_a_team` has no presenter.json so
   no presenter check. PR #2.
+- **2026-09-03, slide 22 (`#s18`) rebuilt as a verbatim copy of the training deck's
+  resources slide.** Dafydd: the key links page "should be a verbatim copy of the links slide
+  from `presentations/training_a_team/index.html` - it's not. make it so." Confirmed with him
+  that verbatim goes all the way: the title becomes "Learning materials", the two card stacks
+  (Start here: Deployment Theory, then Community & official) arrive with their descriptions,
+  and the QR rail carries the real `../_shared/qr-code.png` rather than a reserved tile. The
+  jamfpy row and both TODO chips came off with the old link list, as did layout options B and
+  C. Styling is restated in this deck's tokens - decks share content but never CSS - which
+  added `--c-surface-2` and `--c-border-soft` to `:root` and retired the now-unused
+  `.slide-centred` rules. `presenter.json`, `docs/timeline-notes.md` and AGENTS.md follow the
+  new title; the `s18-reformat-qr` sandbox page is superseded and retired. Applied straight
+  to the deck at Dafydd's instruction, no sandbox round.
+- **2026-09-02, Jamf icons across 18 slides.** Dafydd: "look at the icons extracted from jamf
+  here... think about options for placement... show me 25 places as examples of where icons
+  could be added and i'll approve the ones i want". Two answers set the treatment before any
+  were drawn - quiet labelling at `1em` beside the label, and one colour inherited from the row
+  it sits in - which is what keeps this from repeating the multicolour pixel art that came off
+  slide 17 on 2026-09-01. All 25 were accepted in one go. 97 marks now sit across 18 of the 23
+  slides, shipping as one `<svg id="ico-sprite">` block of 41 `<symbol>`s at the top of the body
+  (about 20 KB gzipped on what was a 147 KB file), drawn from the pack's `inline/` tier rather
+  than the `font/` tier or the woff. Nine placements use the icon Jamf Pro's own UI uses for
+  that concept, read from `manifest.json`; the rest are picks, and slide 15 stands `queue-list`
+  in because no policy glyph exists anywhere in the pack. Three things were fixed between review
+  and deck: candidate 17 had silently rendered nothing on the review page, because slide 13's
+  pipeline is an inline SVG rather than `.pipe-node` spans, so its six marks became `<use>`
+  elements positioned from measured text lengths, the same technique the slide 9 diagram uses;
+  slide 8's three migration-prep items had shared one filler icon; and slide 3's last two teams
+  took `box` and `document-magnifying-glass`. Two things left for Joseph rather than settled
+  here: the pack carries no licence and was scraped from `tfproviderdev.jamfcloud.com`, which is
+  worth a sentence to a Jamf contact given the deck is public, and the deploy currently ships
+  all 934 files of the pack - the woff, the scraper and `__pycache__/` included - because the
+  sync only excludes `*.md`. Sandbox page `icons-placement.html` retired. Presenter sync check
+  prints OK, dash lint clean. PR #89.
+- **2026-09-02, slide 10 (`#s-singletons`) options round, awaiting a decision.** Dafydd: "i
+  think the words are garbage on this slide and i have no idea what point it's trying to leave
+  the audience... the point is that certain resource's are singletons and don't have an id' in
+  a true sense." Four options, all rewrites rather than restyles - new copy, new speaker notes,
+  a rewritten reader-mode popover and a different title each - sharing one spine: a singleton
+  is a settings pane held once per instance, so there is nothing to identify it by; where the
+  provider does take an `import` block the id is a constant it defines
+  (`jamfpro_client_checkin_singleton`) rather than an object id; so the import can be skipped
+  and an apply matching the pane lands the resource in state; and that is why they went first,
+  all of them in about a day. A leads on that constant blown up and annotated, B sets what any
+  other resource needs against what a singleton needs, C defines the word then takes three
+  consequences in order, D lets the HCL carry the slide with three callouts pinned to it.
+  Sandbox page `presentations/sandbox/migrating_an_instance/s-singletons-no-id.html`, also
+  published as an artifact (PR #88). Open question to settle with the option: today's "don't skip import
+  if you can" caveat contradicts the new framing and `spec.md`'s own narrative (SQ5), which
+  says these do not even need importing - only option C keeps it. Nothing in the deck changes
+  until an option is chosen.
+- **2026-09-02, slide 11 (`#s-sentinel`) refocused off the Sentinel story and onto the point
+  it illustrates.** Dafydd: "the slide must stay but we need to shift the focus... what we
+  want listening to understand is, you will almost assurdedly not own the full tech stack. so
+  don't expect to railroad your migration through. or expect org policy to be changed for just
+  jamf pro. instead understand what's in palce and seek to work inside it with pragmatic
+  exceptions." Four options; his feedback on the first set was that the point and our own
+  example were mixed, so the second pass pulled them apart on three axes at once - grammar
+  (the point second person and present, the example first person and past), weight (the point
+  takes the type size and the accent, the example is muted and smaller) and labelling (the
+  example always badged, never restating the lesson). The three
+  ruled-out/excepted/resolved `.gates-3` cards came out of every option in that pass: three
+  equal bordered cards read as a framework, which is what made the anecdote look like the
+  argument. Decided the same day: option A - the point at statement size, three instructions
+  under it, and the Sentinel run as one muted paragraph behind a `For example` tab. Applied as
+  `#s-sentinel .sn-*`; the shared `.gate*` rules stay because `#s14` still uses them. The
+  slide title becomes "You will not own the whole stack" and the `aria-label` follows it.
+  `s-sentinel-round2` was superseded by the same decision, no option chosen, since its three
+  options were pure CSS on the markup option A replaces; both pages are retired. Also fixed
+  two titles that 09c1990 ("chore: wording") left out of step with `presenter.json`, which was
+  failing the sync check before this change: `#s10`'s heading lost a space ("Resource
+  migrationsequencing") and is now "Resource migration sequencing" with the `aria-label`,
+  `presenter.json`, `docs/timeline-notes.md` and AGENTS.md matching, and `#s-sentinel`'s
+  rename was never mirrored into `presenter.json`. Presenter sync check prints OK, dash lint
+  clean. The `.pptx` downloads were rebuilt; the `.key` files could not be, since this Mac has
+  no Keynote. PR #88.
+- **2026-09-02, new slide 5 (`#s-takeaway`), the first key takeaway.** Dafydd: "move [the
+  wsx-lenses-lead paragraph] to it's own slide. i want this to be the only thing on the
+  page. this is going to be one of 3 slides that are the key highlights i want people to go
+  away with", named "Key Takeaway: Plan your tf workspace and state design up front", with
+  five styling options to choose from. The sentence came off slide 4 (`#s-workspace`), where
+  it led the four lenses, and became a slide of its own directly after it; slide 4's second
+  speaker note went with it, since it argued the same point, and its `#s-workspace
+  .wsx-lenses-lead` rule was deleted. Five options were rendered by injecting a whole new
+  section into the deck in each sandbox iframe rather than layering CSS on an existing slide,
+  which is a first for a sandbox page, and published as an artifact as well so they could be
+  reviewed away from the site. Decided the same day: option C, the sentence as a pull quote
+  behind an oversized lime quote mark with "before you migrate" the only emphasised phrase
+  and a mono byline underneath, on the unchanged royal blue stage so the timeline strip and
+  counter need no special handling. Rules are `#s-takeaway .tk-*`, scoped so the remaining
+  two takeaways can reuse them. The deck is 23 slides: `presenter.json` gained the slide with
+  20 seconds taken from slide 4 (60 to 40, a proposal - the timers have never been
+  rehearsed), `docs/timeline-notes.md` and AGENTS.md's Current slide order were renumbered
+  from 5 down, and AGENTS.md's pixel-art note now points at slide 17. Dated round records
+  elsewhere keep the numbers they were written with. Presenter sync check prints OK, dash
+  lint clean. The `.pptx` downloads were rebuilt; the `.key` files could not be, since this
+  Mac has no Keynote. PR #87.
+- **2026-09-01, slide 21 (`#s18`) links reformatted and QR space reserved.** Joseph: "Can
+  we reformat it to make it look better, add a placeholder for the QR." (The training
+  deck's QR should have come across with the links in PR #85 and did not.) Deterministic
+  edit: a reserved QR tile - a white square matching the training deck's `.qr-tile`
+  treatment, using the deck's existing `--c-photo` token - holding a `TODO: QR target URL`
+  chip, since the target is not settled; no fake scannable pattern. Three layout options
+  ship as markup wrappers `.s18-opt-a` to `.s18-opt-c` inside `#s18` (the QR placeholder
+  needed markup, not just CSS), only `s18-opt-a` visible. Sandbox page
+  `presentations/sandbox/migrating_an_instance/s18-reformat-qr.html`: A - two link columns
+  narrowed to make room for a QR rail (live now); B - link columns untouched, QR and the
+  outstanding jamfpy/contact/socials chip joined into one footer bar; C - narrower link
+  columns and a bold QR hero card on the deck's navy card surface. AGENTS.md's slide 21
+  entry and the Sandbox "Current pages" line updated. Presenter sync check prints OK, dash
+  lint clean. PR #86, awaiting a decision.
+- **2026-09-01, slide 21 (`#s18`) links copied and standardised from the training deck.**
+  Joseph: "Copy and standardise the links over from the other presentation." The migrating
+  deck's Links slide carried only two unlinked labels (`Provider: deploymenttheory/jamfpro`,
+  `SDK: jamfpy`) and a TODO chip for URLs, contact and socials; `training_a_team`'s "16 -
+  Resources" slide carries seven links with URLs, grouped Deployment Theory / Community and
+  official, plus a QR code back to itself. Brought the union across into `#s18`, byte-for-byte
+  URLs: the Terraform Registry entry absorbed the deck's own provider line (training's
+  clearer label kept), jamfpy's SDK line stayed URL-less since no URL exists in either deck,
+  and the Demo Repo, Training Repo, Jamf developer docs, Jamf blog, MacAdmins Slack and Neil
+  Martin's starter repo were added. Grouped into `Provider and tooling` / `Docs and community`
+  with new CSS scoped to `#s18` (`.s18-links`, `.s18-col`, `.s18-list`), styled on the deck's
+  existing bordered-column, hairline-divided-row pattern rather than a new one. Left the
+  training deck's QR code off - it encodes a link to that deck, not this one. TODO chip
+  reworded from `TODO Q12: URLs, contact and socials` to `TODO: jamfpy repository URL,
+  contact and socials`, since the URLs are now mostly resolved; speaker notes and
+  `presenter.json` updated to match, and AGENTS.md's slide 21 entry, TODO table and Q12
+  paragraph updated. Presenter sync check prints OK, dash lint clean. PR #85.
+- **2026-09-01, migrating_an_instance's timeline strip ends at March then Now.** Joseph:
+  "Remove the timeline after march, it's no longer used. it can just go to "now" after
+  then. Fit it to the slides obviously." Dropped the strip's Apr/May/Jun/Jul 2026 stops
+  (unused since PR #79 capped the highest `data-when` at March) and replaced them with a
+  single Now stop after Mar - six stops total (Nov 25, Dec, Jan 26, Feb, Mar, Now). `now` is
+  a sentinel appended as the script's `MONTHS` array's last entry, matched by the existing
+  `indexOf` lookup with no other change to the parsing. `#s16b` (By the numbers) now
+  advances to `data-when="now"` (bright accent, was carrying March); `#s17`, `#s18` and
+  `#s-thanks` repeat `now` muted, the deck's existing carry-forward idiom. Cells are
+  `flex: 1` inside the strip's fixed-width container, so removing three and adding one
+  refits the remaining six evenly with no CSS change - confirmed with screenshots of
+  `#s01`, `#s10`, `#s15b`, `#s16b` and `#s-thanks`. `docs/timeline-notes.md` row 19 changed
+  from None to Now (advancing); rows 20-22 stay None (carrying), matching the doc's own
+  idiom of an advancing slide's own text vs None for a carried state. AGENTS.md's timeline
+  bullets updated to match. Presenter sync check prints OK, dash lint clean. PR #84.
+- **2026-09-01, slide 5 (`#s04`) reject reasons reworded.** Dafydd's own edits, committed
+  from the working tree. Reject 1 now says "tf plan execution time" and "our estate", and
+  carries a "Note:" on what happens past ~5,000 resources. Reject 2 splits its trailing
+  clause into its own sentence, no dash. Reject 3 is rewritten off the support-experience
+  argument and onto tenant-unique resources: static groups, tenant seed and breakglass
+  accounts, plus training gaps. Three spelling slips in the new copy were corrected
+  ("break start todown", "truely", "accounts.You") and a stray trailing space dropped.
+  The slide's only speaker note defended the old reason ("troubleshooting must not require
+  a pull request") which is no longer what the slide says, so the note now leads with the
+  tenant-unique argument and keeps the troubleshooting line as the follow-up;
+  `presenter.json` mirrored to match. AGENTS.md's slide 5 entry counts 3 rejects and
+  needed no edit. Presenter sync check prints OK, dash lint is clean. PR #80.
+- **2026-09-01, slide 6 (`#s05`) header row rebuilt for robustness - no wording or layout
+  change.** Joseph: "the box has text which is cut off and everything looks a little fucky.
+  Words overlapping and all sorts... overhaul the architecture so it's more robust." Root
+  cause was `.mp-head`'s flex row aligning on `baseline` across siblings with very different
+  line counts - the path name (1-2 lines), the why-text (1-2 lines) and, on path 03, a
+  "Chosen" tag that only sat beside the why-text because it happened to be the next flex
+  sibling after `margin-left: auto` on `.mp-why`. Baseline alignment across wrapped
+  multi-line flex siblings is exactly the kind of thing that renders inconsistently between
+  engines. Rebuilt: `.mp-name` gets `min-width: 0` so it reliably shrinks and wraps within
+  its own column; the why-text and the chosen tag are now grouped in one `.mp-meta` flex
+  item, so the tag's position is deliberate rather than a side effect of sibling order; the
+  row aligns on `flex-start`, not `baseline`. Also tokenised `.mp-env`'s hardcoded `30px`
+  font-size to `var(--fs-body)` (an exact match, no visual change). Layout is unchanged:
+  three bordered panels, diagram centred in each, the chosen path's panel edged in the
+  accent colour, the read-only API client control riding inside path 03. Screenshots at
+  1920x1080 and 1280x720 confirmed clean before and after; presenter sync check prints OK;
+  dash lint clean. PR #83.
+- **2026-09-01, slide 18 (`#s15b`) marks four techniques as what we run.** Dafydd: local
+  values, data sources and configuration as data all carry the "What we run" tag and the
+  accent highlight, joining child modules. Their old tags ("A switch in every resource",
+  "One lookup per object", "One file per instance") are gone, so four of the six cards now
+  read the same and only input variables and Terragrunt are unmarked. No CSS needed: the
+  existing `.tech-inuse` rules carry the accent border, heading and tag colour. Two speaker
+  notes contradicted the slide and were rewritten: note 2 now names all four techniques and
+  absorbs the data-file point, and note 3 drops "the two we did not use" for the one,
+  Terragrunt. `presenter.json` mirrored to match; AGENTS.md's slide 18 entry updated from
+  child modules alone being marked to those four. Presenter sync check prints OK, dash lint
+  is clean. PR #82.
+- **2026-09-01, ShocOne-precedence rule formalised, slide 3's title corrected in the docs.**
+  Joseph, in reply to the title mismatch PR #79 flagged (ShocOne's PR #73 retitled slide 3
+  "Who uses Jamf Pro in our Org ?"; `docs/timeline-notes.md` row 3 still read "Who touches
+  Jamf Pro"), verbatim: "Always prio shocone." Standing rules' collaborator-precedence bullet
+  extended: ShocOne's changes take priority always, in content disagreements as well as merge
+  conflicts - a title or wording ShocOne shipped wins over an older value found elsewhere,
+  including in Joseph's own docs, which get corrected to match rather than the reverse.
+  Applied to the pending case: `docs/timeline-notes.md` row 3 corrected to the deck's `#s02`
+  `<h1>` text verbatim, "Who uses Jamf Pro in our Org ?". AGENTS.md's slide 3 entry in
+  "Current slide order" already carried that title from PR #73 and needed no change. PR #81.
+
+- **2026-09-01, migrating_an_instance's timeline correspondence implemented from the notes
+  doc.** Joseph filled in `docs/timeline-notes.md`'s Time notes column for the whole deck
+  (verbatim table in the brief); titles and speakers already matched, so only the notes
+  landed there. Wired the notes into the deck's `data-when` strip: Title and the three
+  Context slides (`s01`, `s02`, `s-workspace`) carry no `data-when` at all, so the strip
+  stays blank until the story reaches its first dated slide; Nov 25 / Dec 25 / Jan 2026 /
+  Feb 2026 / March 2026 slides each carry the matching single month; None slides repeat the
+  immediately preceding slide's exact `data-when` rather than omitting the attribute, since
+  the script computes each slide's highlight solely from its own attribute and an omitted
+  one blanks the whole strip rather than carrying the previous state forward - repetition is
+  the mechanism the deck already uses (`#timeline.tl-static`) to mean "the story didn't
+  move". This moved `s-singletons` from Nov 25 to Dec 25 and pulled the closing four slides
+  back from the strip's present-day stop to March 2026, both per Joseph's table. AGENTS.md's
+  timeline description updated to match. One title mismatch found and left alone: `s02`'s
+  on-slide title reads "Who uses Jamf Pro in our Org ?" while the notes doc's row 3 (and
+  Joseph's table) says "Who touches Jamf Pro" - flagged for Joseph, not corrected. Presenter
+  sync check prints OK, dash lint clean. PR #79.
+- **2026-09-01, slide 16 (`#s-staging`) rescaled to fill the layout.** Joseph: "the graphics
+  are gone but now only half the page is filled. Size it properly." With the three pixel-art
+  step icons off (PR #69), the rail only ran to about half the canvas. Scaled it up within
+  `#s-staging`'s scoped CSS: ring diameter 70px to 120px (border `--bw-2` to `--bw-3` to
+  match), each step's verb `--fs-h2` to `--fs-h1`, row gap to `--sp-6` + `--sp-4`, the ring's
+  top offset and the text's left padding grown to match, and the right-hand column narrowed
+  380px to 340px to give the rail more room. The sentence stays at `--fs-body` so all three
+  rows still hold to one line each. No wording changed; presenter sync check prints OK. PR
+  #78.
+- **2026-09-01, slide 4 (`#s-workspace`) sub-line and lenses reworded.** Dafydd's own
+  edits, committed from the working tree. The sub-line drops the definition sentence and
+  now leads with the carve-up decision; the lenses lead says it is cheaper to think the
+  state carve-up through up front and asks the audience to pick all that apply. The
+  "Deployment frequency" lens is replaced by "Blast radius" ("If someone makes a mistake,
+  how far do you want that impact to reach?"), and blast radius is dropped from the
+  closing refine-against list to match. Team structure, Scale and What changes together
+  keep their names with tightened wording. Four spelling slips in the new copy were
+  corrected (carfully, inititally, "up up", "a mistakes") and the new lens name set in
+  sentence case like its three neighbours. The speaker notes name no individual lens and
+  still read correctly, so they and `presenter.json` are unchanged; AGENTS.md's slide 4
+  entry still says "four lenses" and needed no edit. Presenter sync check prints OK, dash
+  lint is clean. PR #77.
+
+- **2026-09-01, subtitle sizes standardised.** Joseph: "the subtitle is way to been
+  [sic, too big]. Standardise the size of subtitles where possible." Surveyed every
+  `.slide-sub`/`.lead` usage in `index.html`: only `#s-sentinel`'s intro line was
+  oversized, rendering at the shared `.lead` size (`--fs-h2`, full-brightness text)
+  instead of the standard `.slide-sub` (`--fs-body`, muted) used by the deck's other nine
+  subtitle slides. Swapped its class from `.lead` to `.slide-sub`; nothing else in the
+  section depended on `.lead`. `#s-staging`'s `.lead` already carries a scoped override
+  matching `.slide-sub`'s size and colour, so it was left as is. The deck's other
+  title-adjacent lines - `s01`'s caption, `s10`'s intro, `s13`'s kicker, `s16b`'s hero
+  kicker - are smaller than `.slide-sub` by design (captions/kickers, not subtitles), so
+  left unchanged. Updated two stale `.lead`-sharing comments and AGENTS.md's `#s-sentinel`
+  entry to match. Presenter sync check prints OK. PR #76.
+
+- **2026-09-01, slide 10 (`#s10`) moved to slide 8.** Joseph: "Move 10 to after 7 (so 8),
+  update docs accordingly." The whole `#s10` (Resource sequencing) section moved verbatim
+  in `index.html` to sit directly after `#s07` (Prerequisites), so the order at 7-10 is now
+  `s07`, `s10`, `s-singletons`, `s-sentinel`; `presenter.json`'s `s10` entry moved to match,
+  notes and timer unchanged. `AGENTS.md`'s slide-order list and `docs/timeline-notes.md`
+  were renumbered, and the sandbox's open `s-sentinel-round2` entry now says slide 10. The
+  timeline strip's grey/accent state is computed automatically from `data-when` and document
+  order, so no script change was needed, but the move does change which slides highlight:
+  `#s10` and `#s-singletons` now render accent instead of the old grey/accent split with
+  `#s08` - confirmed by screenshot, and `AGENTS.md`'s verification note updated to match
+  (`#s08`/`#s11` is now the demonstrative grey-state pair). No wording or fact changes.
+  Presenter sync check prints OK. PR #75.
+- **2026-09-01, slide 3 team cards given a role line and a "Performs:" label.** Each of the
+  five `#s02` cards now reads team name, a one-line description of what that team does, then
+  a "Performs:" label above its existing access tag, via new `.team-head`, `.team-role`,
+  `.team-performs` and `.team-performs-label` rules; the card's `space-between` pins the
+  performs block to the foot so the tags stay aligned across all five. The slide was
+  retitled to "Who uses Jamf Pro in our Org ?" with a sub-line added, and the closing note
+  rewritten to make the depth-and-breadth point instead of recounting the cards. The
+  `#s02` `aria-label`, the section comment, `presenter.json`'s `s02` title and AGENTS.md's
+  slide 3 entry were all brought in step. Speaker notes were left as they were and still
+  match. Presenter sync check prints OK. PR #73.
+- **2026-09-01, speaker column added to timeline notes.** Joseph: "Amend timeline notes to
+  also include the speaker and make sure you enshrine the fact that THIS IS the truth into
+  the docs." `docs/timeline-notes.md` gained a Speaker column in both tables (filled from
+  AGENTS.md's "Current slide order" list for `migrating_an_instance`, TBC kept on slide 4;
+  from `training_a_team/index.html`'s `data-speaker` attributes for the training deck, cross-
+  checked against AGENTS.md's own speaker paragraph, with slides carrying no attribute marked
+  Unassigned), notes column left blank. Doc's intro now states plainly it is the source of
+  truth for order, speaker and timeline correspondence and that the decks get corrected to
+  it, not the reverse. `AGENTS.md`'s doc-table entry and both deck sections (the migrating
+  deck's slide-order list, the training deck's slide map and its separate speaker paragraph)
+  now say the doc is authoritative and their own lists are descriptions corrected to match
+  it. PR #74.
+- **2026-09-01, slide 7 (`#s07`) aligned and given a subtitle.** Joseph: "Slide 7 align
+  everything nicer, the two sides seem disjointed - do not put options in the sandbox,
+  just makes the points on each side align. Add a sub title too." No sandbox round, per
+  Joseph. Added a `.slide-sub` line above `.prep-portions` naming the two-portion split.
+  `.prep-portions`/`.prep-portion` now share a row subgrid (`grid-template-rows: subgrid`,
+  `ul.checklist { display: contents }`) - the same technique as `#s01`'s constraints
+  panels - so the heading and each of the three checklist rows line up across both
+  columns, instead of the left column's longer "Tidy-up" text pushing its own rows down
+  independently of the right. Notes and `presenter.json` unchanged, no facts moved.
+  `AGENTS.md`'s slide-7 entry updated to match. Presenter sync check prints OK (merged in
+  after the slide-2/`s01` title fix below). Dash lint is clean. PR #72.
+- **2026-09-01, collaborator changes now win conflicts with in-flight work.** Joseph:
+  "Remember to always accept PRs over what we're doin." Added to the Standing rules'
+  collaborators bullet and the Gotchas hot-spot resolution bullet: when a collaborator's PR
+  or direct push to `main` conflicts with the orchestrator's or its agents' in-flight work,
+  the incoming collaborator change takes precedence and our side reworks on top of it, never
+  the reverse. Does not change who merges what - a collaborator's PR still only gets merged
+  when Joseph names it. PR #66.
+- **2026-09-01, slide 16 (`#s-staging`) pixel-art icons removed for now.** Joseph: "Slide 16
+  remove the graphics for now." The three `s-staging-art` `<img>` data URIs and the
+  now-unused `.s-staging-art` CSS rule are gone; the rail's rings and text close up cleanly
+  with no leftover gaps. `art/` (spec plus PNGs) stays, unused. Speaker notes and
+  `presenter.json` did not mention the icons, so neither needed a change. `AGENTS.md`'s
+  slide 16 entry, `art/` table row and Embedded artwork bullet updated to match. Deterministic
+  removal, no sandbox round. The presenter check prints the pre-existing `title differs: s01`
+  failure only (unrelated, fixed separately by PR #68) and the dash lint is clean. PR #69.
+- **2026-09-01, slide 11 (`#s08`) subtitle added.** Joseph: "Add a subtitle to 11." A
+  `<p class="slide-sub">` now sits under the title, the deck's shared subtitle pattern
+  already used on four other slides: "The same seven steps ran for every wave between
+  December 2025 and January 2026, with GUI write access revoked before each import to make
+  the freeze real." Drawn from the slide's own step text and speaker notes; notes already
+  said the same thing, so notes and `presenter.json` were left alone for `s08`. Presenter
+  sync check prints OK (the pre-existing `s01` title mismatch this branch also fixed locally
+  was independently fixed upstream by PR #68 first). PR #71.
+- **2026-09-01, slide 8 (`#s-singletons`) subtitle added.** A `<p class="slide-sub">` under
+  the title, matching the deck's existing subtitle pattern (already used on s-workspace,
+  s04, s05 and s-pivot): "Settings panes went into state first, imported by default and
+  applied only as a fallback." Drawn from the slide's own body copy and notes, no new facts
+  added. Speaker notes and presenter.json untouched - the subtitle changes nothing they
+  say. AGENTS.md's slide 8 summary checked and still accurate, left unchanged. Screenshot
+  confirms no overflow and clearance above the timeline strip. Presenter check fails only
+  on the pre-existing `s01` title mismatch (deck says "Landscape prior to the migration",
+  presenter.json still says "Context, requirements, constraints"), unrelated to this slide
+  and already being handled separately. PR #70.
+
+- **2026-09-01, presenter and AGENTS.md aligned with slide 2's retitle.** A collaborator's
+  direct push to main (`0d9b2fa`) retitled slide 2's (`#s01`) `<h1>` from "Context,
+  requirements, constraints" to "Landscape prior to the migration" (also moving the
+  "Context" heading into the pipeline-band card and collapsing the constraints grid from
+  three columns to two, Requirements / Constraints) without mirroring `presenter.json` or
+  the `aria-label`. `presenter.json`'s `s01` title now matches the deck; the `#s01`
+  `aria-label` updated to match the new visible title, per the house rule that the two stay
+  in step. Notes were unchanged by `0d9b2fa` and still match word for word, so left as is.
+  AGENTS.md's slide 2 entry in "Current slide order" updated: new title, and the content
+  summary now describes two constraints panels instead of three and the relocated "Context"
+  heading. Presenter sync check prints OK. PR #68.
+- **2026-09-01, slide 17 (`#s-pivot`) "Jamf Pro does not allow it" removed.** Joseph:
+  "Slide 17 remove JAMF PRO DOES NOT ALLOW IT." Deterministic removal, no options round. The
+  standalone `.dry-label` paragraph came off, plus the `#s-pivot .dry-label` CSS rule that
+  existed only for it; the accent band, code block and shared/unique breakdown are
+  unchanged. Speaker notes didn't quote the phrase, so `presenter.json` needed no change,
+  and AGENTS.md's slide 17 entry didn't quote it either. PR #67.
+- **2026-09-01, slide 13 (`#s12`) bottom spacing fixed.** Joseph: "the text is too close to
+  the bottom." Scoped `#s12` overrides trim the code panels' vertical padding and the
+  row gaps above the takeaway and slide-note (existing `--sp-*` tokens only, no font-size
+  or content changes) so the last line clears the timeline strip. No options round -
+  a layout fix. PR #65.
+- **2026-09-01, slide 12 (`#s11`) flag spelling fixed.** Joseph: "Slide 12 its
+  --generate-config-out". Point 4 of the numbered list and its CSS comment named the
+  rejected Terraform plan flag with a single leading hyphen; both now read
+  `--generate-config-out`. Speaker notes and `presenter.json` already name the flag in
+  prose with no hyphen prefix, so neither needed a change. `AGENTS.md`'s slide-12 line
+  updated to match. Deterministic wording fix, no sandbox round. The presenter check
+  prints the pre-existing `title differs: s01` failure only (unrelated, fixed above) and
+  the dash lint is clean. PR #64.
+- **2026-09-01, timeline doc simplified and renamed.** `docs/timeline-adherence.md`
+  (migrating_an_instance only, empty "Month (fill in)" column, a colon in its H1, stale
+  slide 17/18 titles) replaced by `docs/timeline-notes.md`: one three-column table per deck
+  (slide number, title, time notes), covering both `migrating_an_instance` and
+  `training_a_team`, built from AGENTS.md's current slide orders and, for the training deck,
+  its `index.html`. `AGENTS.md`'s doc-table entry updated to match. PR #63.
+- **2026-09-01, slide 4 (`#s-workspace`) "one" dropped from the configuration sub-line.**
+  Joseph: "remove 'one' from 'one configuration, from the repository'." Deterministic
+  wording fix, no options round. The `.wsx-io-sub` span now reads "configuration, from the
+  repository". Speaker notes did not quote the phrase, so `presenter.json` needed no change.
+  `AGENTS.md`'s slide 4 entry did not quote it either. PR #62.
+- **2026-09-01, feedback-workflow.md updated for the handover.** A new "State at handover
+  (2026-09-01)" section added covering PRs #38 to #60 (collaborator PRs #47, #59 and #60
+  included) since the 2026-08-28 handover: the Thursday/Friday orchestrated rounds on
+  slides 16, 9, 12, 15, 17, 19 and By the numbers, the weekend's collaborator work on gate
+  4 and the slide 17/18 DRY rewrite plus its Terraform Stacks correction, and what remains
+  pending (the `s-sentinel-round2` sandbox decision, the By the numbers notes mismatch, the
+  stale `1,902` commits figure, and the timeline-adherence doc's now-stale rows for slides
+  17 and 18). The 2026-08-28 section retitled "superseded" and kept unchanged below it.
+  `AGENTS.md` checked against the weekend's changes and needed no changes - ShocOne's PRs
+  had already brought the slide list and TODO table current. "Last revised" bumped to
+  2026-09-01. PR #61.
+- **2026-08-28, slides 17 (`#s-pivot`) and 18 (`#s15b`) rewritten as one arc.** Dafydd
+  reframed the pair around DRY: the objective was one Terraform codebase applied to every
+  Jamf Pro instance, Jamf Pro does not allow it because the same resource type carries
+  instance-unique configuration, so the second slide is the techniques for getting as close
+  to DRY as the product allows. Six proposals were put on an artifact and Dafydd took slide
+  17 from option 1 and slide 18 from option 4. Slide 17 is now the DRY statement in an accent
+  band over a real `jamfpro_static_computer_group` block, its `assigned_computer_ids` the only
+  amber thing on the slide, beside a shared / unique-to-one-instance breakdown. Slide 18 is
+  six techniques in a three by two grid, each carrying real syntax, child modules marked as
+  what the estate runs, over a caution that CLI workspaces share a backend. All wording on
+  both slides is new; "thin roots", "blast radius" and "divergence is visible, not hidden"
+  are gone, Jamf objects use current Jamf names (Volume Purchasing content token, push
+  certificate) and Terraform terms are HashiCorp's. The FQDN-conditional TODO chip is retired
+  and replaced by one for the rest of the instance-unique list. The module tree moved into
+  s15b's reader-mode popover. `presenter.json` mirrored, check prints OK. Collaborator PR,
+  raised by ShocOne, not to be merged until Joseph names it.
+
+
 - **2026-08-28, training_a_team slide 3 (`#3`) confirmed goals TODOs.** The user, on the
   three `.todo` chips on the Goals slide: the TRAINED bar definition and the non-goals
   strip were both confirmed correct as written, so their chips were removed with no content
@@ -753,6 +1245,7 @@ it up - either way it is on disk for a recovering session.
   3, following the same pattern used for the `#5` engineer quote's resolution. Deterministic
   round, no sandbox page; `training_a_team` has no presenter.json so no presenter check.
   PR #1.
+
 - **2026-08-28, slide 16 (`#s-staging`) pixel art redrawn at 1024px.** Joseph: "Re-do 16's
   pixel art with the highest possible res please". The Pixelforge project `s-staging-steps`
   (`b4001dd6`) was kept and its spec amended in place with `update-spec` - `rules.max_canvas`

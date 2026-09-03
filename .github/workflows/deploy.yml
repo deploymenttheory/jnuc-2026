@@ -1,8 +1,10 @@
 name: Deploy presentations
 
-# tools/ and package*.json no longer trigger a deploy: the Keynote downloads
-# are built on a Mac by hand (GitHub runners have no Keynote) and committed
-# under presentations/, so a build-tool change on its own alters nothing live.
+# tools/ and package*.json no longer trigger a deploy: the Keynote and
+# PowerPoint downloads are built on a Mac by hand (GitHub runners have no
+# Keynote, and a Linux capture would render the decks in substitute fonts) and
+# committed under presentations/, so a build-tool change on its own alters
+# nothing live.
 on:
   push:
     branches: [main]
@@ -61,13 +63,18 @@ jobs:
             --exclude ".DS_Store"
 
       # The sync guesses MIME types from the extension and .key maps to
-      # application/pgp-keys, so re-upload the Keynote downloads with the type
-      # Keynote files actually carry.
-      - name: Correct the Keynote content type
+      # application/pgp-keys, so re-upload the deck downloads with the types
+      # Keynote and PowerPoint files actually carry. .pptx is only correct on a
+      # runner whose mime.types knows it, so it is set here rather than trusted.
+      - name: Correct the download content types
         run: |
           aws s3 cp presentations/ "s3://${BUCKET}/" --recursive \
             --exclude "*" --include "*.key" \
             --content-type application/vnd.apple.keynote
+
+          aws s3 cp presentations/ "s3://${BUCKET}/" --recursive \
+            --exclude "*" --include "*.pptx" \
+            --content-type application/vnd.openxmlformats-officedocument.presentationml.presentation
 
       # CachingOptimized holds objects at the edge for a day, so a sync alone
       # will not show up.

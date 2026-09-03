@@ -41,11 +41,13 @@ build/
 export/
 exports/
 
-# The deck .key downloads are the exception: GitHub runners have no Keynote, so
-# tools/build-key.mjs builds them on a Mac by hand and they ARE committed - the
-# deploy only syncs them. Rebuild and commit them alongside any deck edit.
-# template.key (the Jamf-supplied JNUC template) is committed as the canonical
-# style reference.
+# The deck downloads are the exception: GitHub runners have no Keynote and a
+# Linux capture would render the decks in substitute fonts, so
+# tools/build-downloads.mjs builds both formats on a Mac by hand and both ARE
+# committed - the deploy only syncs them. Rebuild and commit them alongside any
+# deck edit. template.key (the Jamf-supplied JNUC template) is committed as the
+# canonical style reference.
+!presentations/*/*.pptx
 
 # Speaker/scratch material that should not ship
 *.local.html

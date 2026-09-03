@@ -12,7 +12,7 @@
     },
     {
       "id": "s01",
-      "title": "Context, requirements, constraints",
+      "title": "Landscape prior to the migration",
       "timerSeconds": 90,
       "notes": [
         "This is a bank - the constraints are the story. No CLI outside dev means no local applies and no local state: everything flows through VCS-triggered runs.",
@@ -21,7 +21,7 @@
     },
     {
       "id": "s02",
-      "title": "Who touches Jamf Pro",
+      "title": "Who uses Jamf Pro in our Org ?",
       "timerSeconds": 45,
       "notes": [
         "Three teams manage resources, one config surface. Support acts on Jamf Pro day to day but doesn't hold resource-management access. Splitting the repo by team would fragment ownership of shared dependencies like categories and scripts.",
@@ -31,11 +31,19 @@
     {
       "id": "s-workspace",
       "title": "What a Terraform workspace is",
-      "timerSeconds": 60,
+      "timerSeconds": 40,
       "notes": [
         "Define it plainly first - one set of Terraform code linked to one state file. Walk the diagram left to right: code goes in, the workspace is the boundary that holds the state, the variables and secrets, the permissions and the workflow, and a run comes out as a plan, then a policy check, then an apply against one Jamf Pro instance.",
-        "Then make the real point. How you carve an instance into workspaces is worth spending serious time on. Do not rush it. Re-cutting it later means moving state, which is a much harder day than getting the boundaries roughly right at the start.",
         "Take the four lenses in order and give an example of each from our own split rather than reading them out. The last line is the honest caveat - there are more considerations than fit on a slide, and they refine the choice rather than drive it."
+      ]
+    },
+    {
+      "id": "s-takeaway",
+      "title": "Key Takeaway: Plan your tf workspace and state design up front",
+      "timerSeconds": 20,
+      "notes": [
+        "Slow down here. This is one of three things we want the room to leave with.",
+        "Say it once, then stop talking. The state carve up is the decision that is cheap now and expensive later, because re-cutting it means moving state."
       ]
     },
     {
@@ -43,7 +51,7 @@
       "title": "Migration outcomes we considered and rejected",
       "timerSeconds": 75,
       "notes": [
-        "Expect pushback on \"not everything in Terraform\" - defend it: troubleshooting must not require a pull request."
+        "Expect pushback on \"not everything in Terraform\" - defend it: some things are genuinely tenant unique, like static group membership and seed or breakglass accounts, and troubleshooting must not require a pull request."
       ]
     },
     {
@@ -66,6 +74,15 @@
       ]
     },
     {
+      "id": "s10",
+      "title": "Resource migration sequencing",
+      "timerSeconds": 75,
+      "notes": [
+        "The matrix is a spreadsheet the team built together. Risk scales with dependency fan-in: singletons carry none, scripts and categories and departments stand alone, smart groups and advanced searches and extension attributes sit on top of those, and profiles and policies sit on top of everything - so they close the migration.",
+        "Also considered migrating instance-by-instance - rejected in favour of one resource type at a time, end to end."
+      ]
+    },
+    {
       "id": "s-singletons",
       "title": "Singletons first",
       "timerSeconds": 75,
@@ -76,20 +93,12 @@
     },
     {
       "id": "s-sentinel",
-      "title": "Guardrails you don't own",
+      "title": "You will not own the whole stack",
       "timerSeconds": 90,
       "notes": [
-        "Why the ban exists: Terraform runs the bank's whole public cloud - import blocks would let one workspace adopt someone else's resources. The policy is right; it just did not fit a sole-actor migration.",
-        "Each import window needed a fresh time-bound exception until the standing exception was granted."
-      ]
-    },
-    {
-      "id": "s10",
-      "title": "Resource sequencing",
-      "timerSeconds": 75,
-      "notes": [
-        "The matrix is a spreadsheet the team built together. Risk scales with dependency fan-in: singletons carry none, scripts and categories and departments stand alone, smart groups and advanced searches and extension attributes sit on top of those, and profiles and policies sit on top of everything - so they close the migration.",
-        "Also considered migrating instance-by-instance - rejected in favour of one resource type at a time, end to end."
+        "The top of this slide is the part that transfers. Whatever they are migrating, it will run inside controls somebody else owns, and that is the normal case rather than bad luck.",
+        "Take the three in order and keep them general - touch points, owners, exceptions. Do not reach for our story until they have landed.",
+        "Then the example, briefly, as evidence that this is not theory: Sentinel bans import blocks across the bank's public cloud, production had no CLI, and what got us through was a narrow case on our own facts rather than an argument about the policy. Per-window exceptions first, standing exception once we had made it."
       ]
     },
     {
@@ -149,20 +158,23 @@
     },
     {
       "id": "s-pivot",
-      "title": "Growing pains",
+      "title": "One codebase for every instance",
       "timerSeconds": 60,
       "notes": [
-        "The trigger was the staging rebuild: we wanted staging-first deploys without mirroring to production, and the only lever the repo had was an FQDN conditional. They were everywhere before long - deployment behaviour inferred from a URL.",
-        "Where we ended up: the modules hold the configuration and each instance's root only holds what is actually different."
+        "Start with the objective, because it is the one everybody in the room has had: one Terraform codebase, applied to every Jamf Pro instance, so a change is written once and deployed everywhere.",
+        "Then the block on the left, which is real provider schema. A static computer group takes computer IDs. Computer 412 is a machine in production, and it is nothing at all in staging, so that argument cannot be written once.",
+        "The point is not static groups. They were the exception we expected and planned for. The point is that the same resource type has to carry configuration belonging to one instance, and we kept finding more of it as we built."
       ]
     },
     {
       "id": "s15b",
-      "title": "The module structure",
+      "title": "Getting as close to DRY as we can",
       "timerSeconds": 90,
       "notes": [
-        "Three workspaces per instance is the blast radius control - guidance says ~500 resources per workspace and the estate holds 1,500+.",
-        "Payloads live in the modules too. Staging-only profiles sit in a visible directory, so divergence is explicit."
+        "Six techniques, and the honest answer is that there is no right one. Read them as a menu, not a ranking.",
+        "We landed on child modules with a root module per instance, which is also what HashiCorp recommends where instances need different credentials and access controls. Shared code is written once; each instance's root holds only its own. Local values, data sources and configuration as data run alongside it, which is why four of the six are marked: switches on the resources, instance IDs read at plan time, and every remaining difference kept in that instance's data file so the HCL stops changing when you add one.",
+        "Worth naming the one we did not reach for. Terragrunt was built for this problem, and Terramate and Atmos are the same idea productised.",
+        "Finish on the caution. CLI workspaces sound like the answer and are not, because they share a backend. Slide 4 already separated the two meanings of workspace."
       ]
     },
     {
@@ -184,10 +196,10 @@
     },
     {
       "id": "s18",
-      "title": "Links",
+      "title": "Learning materials",
       "timerSeconds": 30,
       "notes": [
-        "Point at the provider and jamfpy repos; contact details."
+        "Where to send people. Start with the Deployment Theory Terraform registry and demo repo, and the training repo built for workplace engineers. Then the community and official set: Jamf developer docs, the Jamf blog IaC walkthrough, the MacAdmins Slack channel, and Neil Martin's starter repo. Point at the QR code on the right and leave this slide up while questions run - it opens a link to this presentation, so nobody needs to photograph the URLs."
       ]
     },
     {
