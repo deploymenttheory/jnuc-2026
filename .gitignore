@@ -61,5 +61,11 @@ scratch/
 *.ai
 *.sketch
 
+# A finished, encoded cut is the exception, in the same way the deck downloads
+# are: the rule above keeps camera originals and working files out, while a
+# delivery-ready video under presentations/_shared/ is a shipped asset that the
+# S3 sync serves straight from there.
+!presentations/_shared/*.mp4
+
 # LLM Created Folders
 .claude/
