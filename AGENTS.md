@@ -471,7 +471,7 @@ chip in the deck; their context is in `spec.md` and the git history of this file
 **"ClickOps to GitOps - Learning Journey"**, in `index.html`. Renamed from
 `clickops-to-gitops.html` when the site moved to path-per-deck: the CloudFront Function
 resolves `/training_a_team/` to `index.html`, so any other filename is only reachable by its
-full path. **21 slides.** `ClickOps_to_GitOps.key` and `ClickOps_to_GitOps.pptx` alongside it
+full path. **23 slides.** `ClickOps_to_GitOps.key` and `ClickOps_to_GitOps.pptx` alongside it
 are the committed downloads from `tools/build-downloads.mjs`. No spec, notes file or slot
 length has been recorded here yet. Content work is ongoing, slide by slide (Aug 2026).
 
@@ -496,6 +496,16 @@ Gordon Deacon, Aug 2026. The four phases are his: 1 front-load the theory (flagg
 the concepts, 3 Git/GitHub/GitOps, 4 advanced - aimed at the seniors who would own the repo
 after handover, and closing on PR review, which is condition 07 from `#7` arriving again.
 
+**`#8` Mindset shift** (sandbox option C, accepted 2026-09-04) is the only slide in this deck
+built as a ground layer plus a single grid. Three bands run full height - the navy panel at
+0-640, a lime rail at 640-980, the canvas beyond - painted by absolutely positioned divs that
+escape `.slide`'s 122px padding, with the foreground a **single** `.ms-grid` emitted row-major
+across all three columns. That is load-bearing: a row is the argument (old mindset, the question
+the engineer asked, the new mindset), and three columns each in their own flow drift apart the
+moment one question wraps to a second line. Column widths (518/340/1fr) and band widths are set
+together - change one and change the other. Every question is anchored in a line elsewhere in
+the deck rather than invented; the anchors are in the feedback log. Speaker still unassigned.
+
 `#9` deliberately does **not** use the bordered-card grid the rest of the deck runs on (`#7`,
 `#8`, `#11`, `#14` all do). It is drawn as a **route**: one rising SVG track with four stop
 dots, and the text for each phase hanging beneath its own stop. **The track and the dots share
@@ -515,15 +525,18 @@ A dashed `--alt-light` **gate** sits in the column gap after stop 3 (75.7%): an 
 competent to change a live production instance from the end of phase 3, once Git and the GitOps
 flow were in. Everything left of the gate is the whole team; phase 4 is the maintainers only.
 Confirmed by Gordon Deacon, Aug 2026. Move the gate and you must move the `.gate-label` width
-with it - the label is right-aligned inside a box the same width as the gate offset. Then `#10` delivery, `#11` content types, `#12` case study, `#13` scope, `#14`
-onboarding, `#15` hiring, `#16` resources (with the QR rail - see below), `#17` Questions
-("Questions? Your turn!", navy), `#18` Thank You, `#19` the skills map (moved to post-matter by
+with it - the label is right-aligned inside a box the same width as the gate offset. Then `#11` delivery, `#12` content types, `#13` case study, `#14` scope, `#15`
+onboarding, `#16` hiring, `#17` resources (with the QR rail - see below), `#18` Questions
+("Questions? Your turn!", navy), `#19` Thank You, `#20` the skills map (moved to post-matter by
 Dafydd, kept there), `#20` and `#21` the two slides the merge replaced - the old pathway matrix
 and the old week-by-week timeline, kept as appendix reference at Gordon's request (Aug 2026),
-with `data-speaker` stripped so they stay out of the speaking rotation - and `#22` the colour
-appendix. The deck is **22 slides**; eyebrow numbers and section banners were renumbered to
-match. `#17`-`#22` are post-matter: Thank You closes the talk.
-Thank You closes the talk; `#20`-`#21` are reference material for readers. Eyebrow numbers
+with `data-speaker` stripped so they stay out of the speaking rotation - `#21` and `#22` are those two - and `#23` the colour
+appendix. A new **`#8` Mindset shift** was inserted after `#7` on 2026-09-04 (sandbox option C:
+the questions engineers asked themselves on a full-height lime rail between the old mindset on
+the navy panel and the new one on the canvas), which pushed everything from the old `#8` on by
+one - the numbers in this paragraph are the current ones. The deck is **23 slides**; eyebrow
+numbers and section banners were renumbered to match. `#18`-`#23` are post-matter: Thank You closes the talk.
+Thank You closes the talk; `#21`-`#22` are reference material for readers. Eyebrow numbers
 match slide numbers (Dafydd's convention) - renumber them when slides move.
 
 Merged in from Dafydd's edits, on top of the restyle:
@@ -718,7 +731,7 @@ ones, so existing rules keep working, but new work should use `--accent`, `--alt
 - **Slide copy must stay theme-neutral.** Do not write "the green bands" or "the lime chip"
   when a theme can turn them another colour.
 
-When changing anything colour-related, screenshot all 21 slides on `default` before and after
+When changing anything colour-related, screenshot all 23 slides on `default` before and after
 and `cmp` them. A pure tokenising change must not alter the rendering of any theme you did
 not intend to change; that check is what catches a wrong substitution.
 
@@ -858,39 +871,21 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages (under `presentations/sandbox/training_a_team/`):
-`s08-mindset-three` (2026-09-04, round three on a proposed new slide 8 - the mindset shift the engineers had
-to make to get from ClickOps to GitOps, which Dafydd calls probably the most crucial part of
-the journey. Proposed position is straight after `#7` conditions and before `#8` priorities by
-role, with before `#5` and after `#3` named as alternatives; inserting anywhere renumbers the
-eyebrows after it, the slide map here and `docs/timeline-notes.md`. Content is six from-and-to
-pairs, each anchored in a line the deck already carries, with the shape of the list taken from
-published accounts of what is hardest about picking up Terraform and GitOps. A is all six in a
-two by three grid, B sets a muted ClickOps column against a lime GitOps one, C leads on the
-console shift at 88px with the rest as a foot strip, D cuts to the three that decided it.
-Nothing is in the deck, so the page injects a whole new section into each iframe - the same
-technique `s-takeaway-plan-state` used. Round one (`s08-mindset-shift`, retired) settled the
-content: Dafydd approved the six pairs and the old-to-new device and asked for a fresh visual
-set, because all four round-one layouts were built from the deck's existing grids, hairlines and
-bordered cards and so none of them stood out. Round two keeps the words and breaks that
-vocabulary four ways - A inverts the stage to lime with navy ink (the only slide not on the
-royal blue ground; it also needs the footer hairline and the plated JNUC mark that the themed
-presets already use), B splits the slide with a full-bleed navy panel that has to escape the
-122px padding, C turns each pair into a card with a lime half cut in on the diagonal, D strips
-everything but type at 56px with the old belief faded back. Round two decided the same day:
-option B, the two grounds. Round three keeps that visual and changes the content model - the
-shift becomes three states, adding between the old mindset and the new one the question the
-engineer asks themselves on the way across - questions rather than statements, so the middle
-shows the resistance instead of describing it, and every one has its answer in the column to its
-right. Each is anchored in an existing line. Five presentations of it, all on the
-accepted split: A three columns, B the concern folded under each new mindset, C the concern as a
-full-height lime rail, D that rail reduced to one vertical CHANGE IS HARD band, E three shifts
-at 40px. All five are built as a ground layer painting the bands full bleed plus a single
-foreground grid, so rows align across columns however the text wraps - three separate columns
-each in their own flow drift apart as soon as one wraps, which is what round three's first cut
-did. Open with it: the position, and who presents it, since nothing on record assigns a
-speaker.
+No pages currently awaiting a decision under
+`presentations/sandbox/training_a_team/`.
 Decided (under `presentations/sandbox/training_a_team/`):
+`s08-mindset-three` (2026-09-04, three rounds on a proposed new slide 8 - the mindset shift the
+engineers had to make to get from ClickOps to GitOps, which Dafydd calls probably the most
+crucial part of the journey. Round one settled the content, six from-and-to pairs each anchored
+in a line the deck already carries, and was told the layouts did not stand out because all four
+were built from the deck's own grids and hairlines. Round two broke that vocabulary four ways
+and picked option B, two grounds with a hard edge. Round three kept that visual and made the
+shift three states rather than two, adding the question the engineer asks themselves in the
+middle - questions, not statements, so the middle shows the resistance instead of describing it,
+and every one has its answer in the column to its right. Decided the same day: option C, the
+questions on a full-height lime rail between the two grounds. Applied to the deck as a new slide
+8. Pages retired).
+
 `s12-louise-video` (2026-09-04, slide 12 - four layouts for embedding
 `_shared/louise_story_final.mp4` into Louise's journey, after Dafydd asked for the video in
 and said the slide has to be reorganised around its frame first. The file is 1280x720 and the

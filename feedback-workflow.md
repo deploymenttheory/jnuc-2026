@@ -734,6 +734,33 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-04, training_a_team: the Mindset shift slide is in the deck, sandbox option C
+  accepted.** Dafydd: "implement option C". The new slide 8 sits straight after "Creating the
+  conditions for success", the position recommended in round one and never contested: `#7`
+  closes on psychological safety and on expecting the dip, so the handover is about people
+  either side, and the mindset slide is why the curriculum and delivery slides after it are
+  shaped the way they are. Three bands: the old mindset on the navy panel under BEFORE, the
+  questions engineers asked themselves on a full-height lime rail under WHAT THEY WERE ASKING,
+  the new mindset on the canvas under AFTER. Every question is anchored - the 3am one against
+  `#3`'s breakglass and `#11`'s break-glass reference doc, the VS Code one from `#5`'s engineer
+  quote turned back into the question it was really asking, "process for its own sake" from
+  `#14`, the Jamf Pro one from `#5`'s finding on prior coding experience, the break one from
+  `#7` on psychological safety, and the dip from condition 06.
+  The deck goes 22 slides to 23. Eyebrow numbers from the old `#8` onward are renumbered,
+  `docs/timeline-notes.md` gains a row and renumbers, and AGENTS.md's slide map, slide count and
+  colour-check instruction all follow. The counter and progress bar need no change - both read
+  `slides.length`.
+  **Two traps in the renumbering, both hit and fixed:** the eyebrow rewrite ran after the insert,
+  so `s.replace(old, new, 1)` caught the new slide's own `08` first and left the real slide 8 on
+  `08` while the new one became `09`. Renumber before inserting, or renumber only after the
+  insertion point. And note the `/* ---------- slide N ---------- */` comments in this deck's
+  CSS were already stale before this change - the Louise block is labelled slide 14 and Louise
+  is slide 13 - so the new block is named rather than numbered and the existing ones are left
+  alone; renumbering them is a separate tidy-up.
+  Sandbox page retired and its index entry marked decided. Downloads rebuilt. **Still
+  outstanding: nobody is assigned to present this slide.** It has no `data-speaker` and the
+  timeline table carries `TODO: unassigned` against it.
+
 - **2026-09-04, "Mindset shift" round three: three states on the accepted two-tone split,
   awaiting a decision.** Dafydd: "i like option b with the two tone, left and right side
   approach. create 5 options using that as the visual and lets play with wording and layout...

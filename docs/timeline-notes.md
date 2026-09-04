@@ -38,7 +38,7 @@ month or range.
 
 ## ClickOps to GitOps (presentations/training_a_team)
 
-22 slides, in the order they run in the deck today.
+23 slides, in the order they run in the deck today.
 
 | Slide | Title | Speaker | Time notes |
 |---|---|---|---|
@@ -49,18 +49,19 @@ month or range.
 | 5 | What didn't work | Gordon | |
 | 6 | What worked | Joseph | |
 | 7 | Creating the conditions for success | Gordon | |
-| 8 | Learning priorities by role | Dafydd | |
-| 9 | The learning pathway we followed | Gordon | |
-| 10 | What lands well in the room together, what lands well remotely | Joseph | |
-| 11 | Match the content to the moment | Joseph | |
-| 12 | Louise's journey | Dafydd | |
-| 13 | Don't forget to train your sister engineering teams as well | Joseph | |
-| 14 | Onboarding new starters without Terraform experience | Gordon | |
-| 15 | Hiring for the new world | Dafydd | |
-| 16 | Learning materials | Dafydd | |
-| 17 | Questions | Unassigned | |
-| 18 | Thank You | Unassigned | |
-| 19 | What engineers need to learn | Unassigned | |
-| 20 | The learning pathway that worked for us | Unassigned | |
-| 21 | The learning timeline for a typical engineer | Unassigned | |
-| 22 | Colour system | Unassigned | |
+| 8 | Mindset shift | TODO: unassigned | |
+| 9 | Learning priorities by role | Dafydd | |
+| 10 | The learning pathway we followed | Gordon | |
+| 11 | What lands well in the room together, what lands well remotely | Joseph | |
+| 12 | Match the content to the moment | Joseph | |
+| 13 | Louise's journey | Dafydd | |
+| 14 | Don't forget to train your sister engineering teams as well | Joseph | |
+| 15 | Onboarding new starters without Terraform experience | Gordon | |
+| 16 | Hiring for the new world | Dafydd | |
+| 17 | Learning materials | Dafydd | |
+| 18 | Questions | Unassigned | |
+| 19 | Thank You | Unassigned | |
+| 20 | What engineers need to learn | Unassigned | |
+| 21 | The learning pathway that worked for us | Unassigned | |
+| 22 | The learning timeline for a typical engineer | Unassigned | |
+| 23 | Colour system | Unassigned | |
