@@ -879,8 +879,10 @@ presets already use), B splits the slide with a full-bleed navy panel that has t
 122px padding, C turns each pair into a card with a lime half cut in on the diagonal, D strips
 everything but type at 56px with the old belief faded back. Round two decided the same day:
 option B, the two grounds. Round three keeps that visual and changes the content model - the
-shift becomes three states, adding the concern about the change between the old mindset and the
-new one, every concern anchored in an existing line. Five presentations of it, all on the
+shift becomes three states, adding between the old mindset and the new one the question the
+engineer asks themselves on the way across - questions rather than statements, so the middle
+shows the resistance instead of describing it, and every one has its answer in the column to its
+right. Each is anchored in an existing line. Five presentations of it, all on the
 accepted split: A three columns, B the concern folded under each new mindset, C the concern as a
 full-height lime rail, D that rail reduced to one vertical CHANGE IS HARD band, E three shifts
 at 40px. All five are built as a ground layer painting the bands full bleed plus a single

@@ -761,8 +761,19 @@ it up - either way it is on disk for a recovering session.
   paints the bands full bleed (escaping the 122px slide padding) plus a single foreground grid
   emitted row-major, so rows align across columns whatever the text does. Column widths and band
   widths are set together and the CSS says so; change one and you must change the other.
-  Sandbox page `presentations/sandbox/training_a_team/s08-mindset-three.html`; rounds one and
-  two are retired. Position and speaker still open.
+  **Middle column reframed as questions, same day, same page.** Dafydd: "the change is hard
+  column should be framed as questions engineers ask themselves". All six rewritten from
+  statements into first-person questions, which is the better framing for the reason he is
+  getting at - a statement describes the resistance, a question puts the room inside the
+  engineer's head, and every one of these has its answer sitting in the column to its right.
+  The anchors are unchanged and one of them improves: slide 5's engineer quote turns back into
+  the question it was really asking ("I understood the slides. What do I do when I open VS
+  Code?"), and slide 7's psychological safety line is already phrased as the thing being asked
+  ("what happens the day I break something that matters?"). Option C's column label follows the
+  content from "The hard bit" to "What they were asking"; the speaker notes now tell the
+  presenter to answer each question as they go.
+  Sandbox page `presentations/sandbox/training_a_team/s08-mindset-three.html` updated in place,
+  same URL; rounds one and two are retired. Position and speaker still open.
 
 - **2026-09-04, training_a_team "Mindset shift" round two, the visual set, awaiting a
   decision.** Dafydd on round one: "content wise. keep that and itterate on preserve the old
