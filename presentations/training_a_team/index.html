@@ -2199,7 +2199,7 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   }
   document.addEventListener('keydown',function(e){
     if(e.target.closest&&e.target.closest('#knobs'))return;
-    // Slide 12 carries a real <video controls>. Without this, pressing space to play
+    // Slide 13 carries a real <video controls>. Without this, pressing space to play
     // would start the clip AND advance the deck. Only the space bar is handed over:
     // the arrows stay with the deck, so the presenter can advance without clicking away.
     if(e.key===' '&&e.target.closest&&e.target.closest('video'))return;

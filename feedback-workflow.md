@@ -734,6 +734,43 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-04, the downloads now carry the Louise interview as a playable movie.** Dafydd:
+  "the video is not embeded in either generated presentation. that's a failure state". He was
+  right, and it had been true since the video landed: `build-downloads.mjs` flattens every
+  slide to one full-bleed image, so slide 13 shipped as the poster frame and nothing else. The
+  mechanism was noted in an earlier commit message but never stated as a consequence, which is
+  the actual mistake - a download that silently drops the thing the slide is for.
+  Two changes. A `MEDIA` table now lists slides that carry a `<video>` with the rect it
+  occupies on the 1920x1080 slide (training deck, slide 13, 960x540 at 122,251, measured off
+  the rendered slide); the real movie is laid back over the still at that rect with the poster
+  as its cover. And **the Keynote download is now built by importing the PowerPoint one**
+  rather than by assembling slides through AppleScript.
+  That second change was forced. Keynote's `make new movie` silently creates nothing: no
+  object, no error, and `count of movies` comes back 0 - the first attempt looked like it
+  worked and produced a `.key` with no movie in it. Importing the `.pptx` brings the embedded
+  movie across intact, and it is a better arrangement anyway, since one artefact now feeds both
+  formats instead of two writers sharing a capture pass. The `.pptx` is therefore always built
+  first; `make key` writes a throwaway into the work directory so the committed one is
+  untouched. PptxGenJS's `cover` also wants a base64 data URI rather than a path, which throws
+  "cover value lacks a base64 header" if you pass a filename.
+  Verified by unzipping both: `ppt/media/media-13-2.mp4` in the `.pptx` and
+  `Data/media-13-2-36.mp4` in the `.key`, both 41,751,708 bytes, and Keynote reports 23 slides,
+  one movie on slide 13 and the presenter notes intact after the import. The training downloads
+  go from about 6 MB to about 48 MB, which is the video.
+  **Automated, and guarded, so it cannot regress.** Dafydd: "this video step needs to be
+  including in the makefile workflow... must be automated". It is inside `make downloads`
+  rather than a manual step, and two assertions now fail the build loudly instead of shipping
+  a still. `assertMediaRegistered` compares the count of real `<video>` elements in each deck
+  against the MEDIA entries for it, so adding a video to a slide without registering it stops
+  the build with the file to edit named in the error. `assertMediaEmbedded` then unzips each
+  finished `.key` and `.pptx` and checks the media is actually inside at its true byte size,
+  which is the check that would have caught Keynote's silent `make new movie` failure.
+  Both were tested by breaking them on purpose. One detail worth keeping: the registration
+  count matches `<video ... src=` rather than `<video`, because these decks discuss `<video>`
+  in HTML, CSS and JS comments and a naive count made the build fail on a stale note. A stale
+  "Slide 12 carries a real `<video controls>`" comment in the training deck was corrected to
+  slide 13 in the same change.
+
 - **2026-09-04, both decks: session-title pages rebuilt on the JNUC template, and the full
   session titles set.** Dafydd: "we need a title page for each presentation... we need to take
   this as the template `JNUC 2026 Standard_...key` - page 2 and copy the existing content into

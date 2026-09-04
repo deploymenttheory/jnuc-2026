@@ -41,6 +41,30 @@ const SETTLE_MS = 400;
 // Filenames are fixed here because presentations/index.html hardcodes them;
 // changing one means changing both. The two names per deck share a stem so the
 // pair reads as one download in two formats.
+// Slides that hold a <video> export as a still, because every slide is captured as
+// one flat image. Anything listed here gets the real movie laid back over that still
+// in BOTH formats, at the rect the video occupies on the 1920x1080 slide, so the
+// downloads can actually be played. Rects are measured from the rendered slide - if
+// the layout moves, re-measure. slide is 1-based.
+const MEDIA = [
+  {
+    dir: 'training_a_team',
+    slide: 13,
+    file: '_shared/louise_story_final.mp4',
+    poster: '_shared/louise_story_poster.jpg',
+    x: 122,
+    y: 251,
+    w: 960,
+    h: 540,
+  },
+];
+
+const mediaFor = (deck, slideNumber) =>
+  MEDIA.filter((m) => m.dir === deck.dir && m.slide === slideNumber);
+
+// 1920x1080 slide units to PowerPoint inches on a 13.333 x 7.5in 16:9 layout.
+const PX_TO_IN = 13.333 / 1920;
+
 const DECKS = [
   {
     dir: 'migrating_an_instance',
@@ -120,52 +144,35 @@ async function capture(page, deck, shotsDir) {
 // AppleScript string literals only need backslashes and double quotes escaped.
 const asString = (text) => `"${text.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`;
 
-// Keynote's default theme names its empty master "Blank"; the first slide of a
-// new document is reused, every other slide is appended. Images are placed at
-// the origin and stretched to the full 1920x1080 canvas.
-function keynoteScript({ notes, shots }, outPath) {
-  const lines = [
-    // Saving a 20-odd-slide document outlasts the default AppleEvent reply
-    // timeout, so give the whole build a generous one.
+// The Keynote download is built by opening the PowerPoint we just wrote and saving
+// it as a .key, rather than by assembling slides through AppleScript as it used to be.
+//
+// Two reasons. First, `make new movie` silently does nothing - it creates no object
+// and reports no error, so the slide with the interview on it came out as a still and
+// the download could not be played. Importing the .pptx brings the embedded movie
+// across intact. Second, one artefact now feeds both formats, which is a stronger
+// guarantee than the two writers sharing a capture pass.
+function keynoteScript(pptxPath, outPath) {
+  return [
+    // Importing a 23-slide deck carrying a 40MB movie outlasts the default reply timeout.
     'with timeout of 900 seconds',
     'tell application "Keynote"',
-    '  set theDoc to make new document with properties {width:1920, height:1080}',
-    '  tell theDoc',
-  ];
-
-  shots.forEach((shot, i) => {
-    if (i === 0) {
-      lines.push('    set targetSlide to slide 1 of theDoc');
-      lines.push('    set base slide of targetSlide to master slide "Blank" of theDoc');
-    } else {
-      lines.push(
-        '    set targetSlide to make new slide at end of slides with properties {base slide:master slide "Blank" of theDoc}',
-      );
-    }
-    lines.push('    tell targetSlide');
-    lines.push(`      set theImage to make new image with properties {file:POSIX file ${asString(shot)}}`);
-    lines.push('      set width of theImage to 1920');
-    lines.push('      set position of theImage to {0, 0}');
-    if (notes[i]) lines.push(`      set presenter notes to ${asString(notes[i])}`);
-    lines.push('    end tell');
-  });
-
-  lines.push('  end tell');
-  lines.push(`  save theDoc in POSIX file ${asString(outPath)}`);
-  lines.push('  close theDoc saving no');
-  lines.push('end tell');
-  lines.push('end timeout');
-  return lines.join('\n');
+    `  set theDoc to open (POSIX file ${asString(pptxPath)})`,
+    `  save theDoc in POSIX file ${asString(outPath)}`,
+    '  close theDoc saving no',
+    'end tell',
+    'end timeout',
+  ].join('\n');
 }
 
-async function writeKeynote(deck, captured, workDir) {
+async function writeKeynote(deck, pptxPath, workDir) {
   const out = path.join(DECKS_DIR, deck.dir, deck.key);
   // Save over an existing .key by removing it first: Keynote's `save in` will
   // not silently replace a package it did not open.
   await rm(out, { force: true, recursive: true });
 
   const scriptPath = path.join(workDir, `${deck.dir}.applescript`);
-  await writeFile(scriptPath, keynoteScript(captured, out));
+  await writeFile(scriptPath, keynoteScript(pptxPath, out));
   try {
     await execFileP('osascript', [scriptPath]);
   } catch (err) {
@@ -180,10 +187,11 @@ async function writeKeynote(deck, captured, workDir) {
   }
 
   await assertPlausible(out, deck.key, deck.dir);
+  await assertMediaEmbedded(out, deck.key, deck);
   return out;
 }
 
-async function writePptx(deck, { notes, shots }) {
+async function writePptx(deck, { notes, shots }, out) {
   const pptx = new PptxGenJS();
   pptx.layout = 'LAYOUT_16x9';
   pptx.title = deck.title;
@@ -199,12 +207,26 @@ async function writePptx(deck, { notes, shots }) {
       w: '100%',
       h: '100%',
     });
+    for (const m of mediaFor(deck, i + 1)) {
+      // `cover` is the still shown before playback and must be a base64 data URI,
+      // not a path - a path throws "cover value lacks a base64 header".
+      const cover = await readFile(path.join(DECKS_DIR, m.poster));
+      slide.addMedia({
+        type: 'video',
+        path: path.join(DECKS_DIR, m.file),
+        cover: `data:image/jpeg;base64,${cover.toString('base64')}`,
+        x: m.x * PX_TO_IN,
+        y: m.y * PX_TO_IN,
+        w: m.w * PX_TO_IN,
+        h: m.h * PX_TO_IN,
+      });
+    }
     if (notes[i]) slide.addNotes(notes[i]);
   }
 
-  const out = path.join(DECKS_DIR, deck.dir, deck.pptx);
   await pptx.writeFile({ fileName: out });
   await assertPlausible(out, deck.pptx, deck.dir);
+  await assertMediaEmbedded(out, deck.pptx, deck);
   return out;
 }
 
@@ -213,6 +235,47 @@ async function writePptx(deck, { notes, shots }) {
 async function assertPlausible(out, name, dir) {
   const { size } = await stat(out);
   if (size < 100_000) throw new Error(`${dir}: ${name} is implausibly small (${size} bytes)`);
+}
+
+// Every slide is flattened to an image, so a <video> only survives into the downloads
+// because MEDIA says it exists. Forget to list one and the slide ships as a still with
+// no warning - which is exactly how the Louise interview went missing. Fail the build
+// instead: if the deck markup has more videos than MEDIA accounts for, stop.
+async function assertMediaRegistered(deck) {
+  const html = await readFile(path.join(DECKS_DIR, deck.dir, 'index.html'), 'utf8');
+  // Comments in these decks discuss <video> at length, in HTML, CSS and JS comments
+  // alike, so match only what a real element has: a src attribute in the same tag.
+  const videos = (html.match(/<video\b[^>]*\bsrc=/g) || []).length;
+  const listed = MEDIA.filter((m) => m.dir === deck.dir).length;
+  if (videos > listed) {
+    throw new Error(
+      `${deck.dir}: ${videos} <video> element(s) in the deck but ${listed} listed in MEDIA. ` +
+        'Add the slide, file and rect to MEDIA in tools/build-downloads.mjs, or the download ' +
+        'ships a still frame instead of the video.',
+    );
+  }
+}
+
+// ...and having listed it, prove it actually landed. Keynote's `make new movie` used to
+// fail silently - no object, no error, a .key with no movie in it - so trusting the
+// writers is not good enough. Both formats are zip containers; look inside.
+async function assertMediaEmbedded(out, name, deck) {
+  const media = MEDIA.filter((m) => m.dir === deck.dir);
+  if (!media.length) return;
+  const { stdout } = await execFileP('unzip', ['-l', out]);
+  for (const m of media) {
+    const ext = path.extname(m.file);
+    const { size } = await stat(path.join(DECKS_DIR, m.file));
+    const row = stdout
+      .split('\n')
+      .find((line) => line.trim().endsWith(ext) && Number(line.trim().split(/\s+/)[0]) === size);
+    if (!row) {
+      throw new Error(
+        `${deck.dir}: ${name} does not contain ${path.basename(m.file)} (${size} bytes). ` +
+          'The slide shipped as a still - the download cannot be played.',
+      );
+    }
+  }
 }
 
 // An AppleScript `launch` inside the tell block errors with -600 when Keynote
@@ -249,11 +312,21 @@ try {
   for (const deck of DECKS) {
     const shotsDir = path.join(workDir, deck.dir);
     await mkdir(shotsDir, { recursive: true });
+    await assertMediaRegistered(deck);
     const captured = await capture(page, deck, shotsDir);
 
+    // The .pptx is always built first: the Keynote download is made by importing it.
+    // For a key-only run it goes to the work directory so the committed .pptx is
+    // left exactly as it was.
+    const keepPptx = requested.has('pptx');
+    const pptxOut = keepPptx
+      ? path.join(DECKS_DIR, deck.dir, deck.pptx)
+      : path.join(shotsDir, deck.pptx);
+    await writePptx(deck, captured, pptxOut);
+
     const written = [];
-    if (requested.has('key')) written.push(await writeKeynote(deck, captured, workDir));
-    if (requested.has('pptx')) written.push(await writePptx(deck, captured));
+    if (requested.has('key')) written.push(await writeKeynote(deck, pptxOut, workDir));
+    if (keepPptx) written.push(pptxOut);
 
     const withNotes = captured.notes.filter(Boolean).length;
     console.log(

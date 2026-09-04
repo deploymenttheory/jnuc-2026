@@ -803,6 +803,23 @@ have the dependencies already. Prefer the both-formats target: one capture feeds
 so the two formats are guaranteed to be the same pixels. `make clean-downloads` deletes the
 built files; it is deliberately not called `clean`, because these files are committed.
 
+**The Keynote download is built by importing the PowerPoint one**, not assembled slide by
+slide through AppleScript. Keynote's `make new movie` silently creates nothing - no object, no
+error - so a slide carrying a `<video>` came out as a still and the download could not be
+played. Importing the `.pptx` brings the embedded movie across intact, and it means one
+artefact feeds both formats rather than two writers sharing a capture pass. So the `.pptx` is
+always built first; `make key` writes a throwaway copy into the work directory and leaves the
+committed one alone.
+
+**Slides that carry a `<video>` are listed in `MEDIA` in `tools/build-downloads.mjs`** with the
+rect the video occupies on the 1920x1080 slide. Two assertions keep that list honest, so this
+cannot silently regress: the build fails if a deck has more real `<video>` elements than MEDIA
+accounts for, and it fails again if the finished `.key` or `.pptx` does not actually contain
+the media at its true size. Neither is optional and both run inside `make downloads`. The capture flattens every slide to an image,
+so without that list the interview on the training deck's slide 13 ships as a poster frame and
+nothing else. The real movie is laid back over the still at that rect, with the poster as its
+cover image. **If the layout moves, re-measure the rect.**
+
 Playwright opens each deck over `file://`, presses ArrowRight through it and screenshots the
 viewport at 1920x1080 into a temp directory. `HIDE_WHILE_CAPTURING` in the script blanks the
 on-screen affordances a downloaded file cannot offer: the help bar, and video controls (a
