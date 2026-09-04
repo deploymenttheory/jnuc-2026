@@ -734,6 +734,28 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-04, training_a_team slide 12 (Louise's journey) options round, awaiting a
+  decision.** Dafydd: "i want to embed into the webpage this video
+  `presentations/_shared/louise_story_final.mp4`... the video frame size is such that, we
+  need to reorganise the slide first. come up with 4 options for a layout and put them in the
+  sandbox for review". The file is 1280x720, 16:9, 2 minutes 52 seconds, H.264 and AAC, about
+  40 MB, and it is already committed under `_shared/`. The placeholder it replaces is a 798 by
+  760 dashed box, so the picture dropped straight in would be 798 by 449 with 311px of dead
+  space under it: that mismatch is what all four options solve. A puts the video in a 1000px
+  column at its true shape with the quote as a caption beneath and the journey lines alongside;
+  B makes it the hero at 960 by 540 with the quote beside it and the four lines as a
+  full-width strip; C leads on the quote at 62px with the video supporting at 800 by 450; D
+  plays it natively at 1280 by 720 with the words in a 356px rail. Every option keeps the
+  eyebrow, title, quote and all four journey lines exactly as written. Unlike a CSS-only round
+  these replace the slide's contents, so the page carries each option's markup as well as its
+  CSS and the loader rewrites the section, the way the `s-singletons-no-id` page did; each
+  render loads the real video, so the options can be played on the review page. Sandbox page
+  `presentations/sandbox/training_a_team/s12-louise-video.html`. Two questions to settle with
+  the option: the deck's key handler advances on space wherever focus is, so a real
+  `<video controls>` would both play and skip to slide 13 unless the handler starts ignoring
+  it, and the video shows a black rectangle until played unless a poster still is added.
+  Nothing in the deck changes until an option is chosen.
+
 - **2026-09-04, slide 9 (`#s10`) diagram marks moved onto their own examples.** Dafydd: "where
   there are groups of icon next to each other eg before 1 Singletons client check-in ·
   inventory collection · activation code. i want each icon to come after each piece of text. so

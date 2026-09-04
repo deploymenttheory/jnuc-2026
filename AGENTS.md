@@ -853,7 +853,19 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-No pages currently awaiting a decision under `presentations/sandbox/training_a_team/`.
+Current pages (under `presentations/sandbox/training_a_team/`):
+`s12-louise-video` (2026-09-04, slide 12 - four layouts for embedding
+`_shared/louise_story_final.mp4` into Louise's journey, after Dafydd asked for the video in
+and said the slide has to be reorganised around its frame first. The file is 1280x720 and
+the placeholder it replaces is a 798 by 760 box, so every option is solving that mismatch.
+A is closest to today, the video in a 1000px column at its true 16:9 shape with the quote as
+a caption under it; B makes the video the hero with the journey lines as a full-width strip
+beneath; C leads on the quote with the video supporting at 800 by 450; D plays the file at
+its native 1280 by 720 with the words in a 356px rail. Unlike a CSS-only round these replace
+the slide's contents, so the page carries each option's markup as well as its CSS, and every
+render loads the real video. Two open questions ride with it: the space bar advances the deck
+wherever focus is, so the key handler has to start ignoring the video, and a poster still is
+needed if the slide is not to show a black rectangle before it is played.
 Decided (under `presentations/sandbox/training_a_team/`):
 `s5-chart-styles` (2026-08-28, slide 5, Gordon - three chart treatments of the hero
 confidence chart, all three new because the shipped gradient line chart was rejected: A
