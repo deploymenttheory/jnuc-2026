@@ -734,6 +734,36 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-04, "Mindset shift" round three: three states on the accepted two-tone split,
+  awaiting a decision.** Dafydd: "i like option b with the two tone, left and right side
+  approach. create 5 options using that as the visual and lets play with wording and layout...
+  i think we need the old mindset / the concern about change (change is hard) / gitOps as the
+  new mindset." So the visual is settled and every option is built on it; what changed is the
+  content model. The shift is no longer two states but three, with the concern about the change
+  sitting between the old mindset and the new one - and that middle is what makes the other two
+  mean anything, because nobody crossed from one column to the other without going through it.
+  Each concern is anchored rather than invented, and the anchors are listed on the page: the
+  3am question against slide 3's breakglass and slide 11's break-glass reference doc, which uses
+  "3am" in those words; "I understood the slides. Then I opened VS Code." near enough verbatim
+  from slide 5's engineer quote; "process for its own sake" verbatim from slide 14; "years of
+  Jamf Pro did not transfer" from slide 5's finding about prior coding experience; "room to
+  learn has to survive a real break" from slide 7 on psychological safety; and the dip from
+  condition 06. The closing line from the earlier rounds is dropped - with a concern column
+  doing the work of saying why this was hard, it restated the slide.
+  Five presentations, all on the split: A three columns with the concern in the warning colour,
+  B the concern folded under each new mindset as a sub-line and the smallest change from the
+  accepted visual, C the concern as a full-height lime rail you cannot look past, D that rail
+  reduced to one vertical CHANGE IS HARD band with the six concerns moved to the notes, E three
+  shifts only with each row reading old, concern, new at 40px.
+  **Architecture worth reusing:** the first cut laid the three columns out as three separate
+  flows and they drifted apart as soon as one concern wrapped to a second line, which broke the
+  whole point - a row has to read across as one passage. All five are now a ground layer that
+  paints the bands full bleed (escaping the 122px slide padding) plus a single foreground grid
+  emitted row-major, so rows align across columns whatever the text does. Column widths and band
+  widths are set together and the CSS says so; change one and you must change the other.
+  Sandbox page `presentations/sandbox/training_a_team/s08-mindset-three.html`; rounds one and
+  two are retired. Position and speaker still open.
+
 - **2026-09-04, training_a_team "Mindset shift" round two, the visual set, awaiting a
   decision.** Dafydd on round one: "content wise. keep that and itterate on preserve the old
   mindset -> new mindset. it's a good first attempt. i think we need to consider different

@@ -859,7 +859,7 @@ automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages (under `presentations/sandbox/training_a_team/`):
-`s08-mindset-visual` (2026-09-04, round two on a proposed new slide 8 - the mindset shift the engineers had
+`s08-mindset-three` (2026-09-04, round three on a proposed new slide 8 - the mindset shift the engineers had
 to make to get from ClickOps to GitOps, which Dafydd calls probably the most crucial part of
 the journey. Proposed position is straight after `#7` conditions and before `#8` priorities by
 role, with before `#5` and after `#3` named as alternatives; inserting anywhere renumbers the
@@ -877,8 +877,17 @@ vocabulary four ways - A inverts the stage to lime with navy ink (the only slide
 royal blue ground; it also needs the footer hairline and the plated JNUC mark that the themed
 presets already use), B splits the slide with a full-bleed navy panel that has to escape the
 122px padding, C turns each pair into a card with a lime half cut in on the diagonal, D strips
-everything but type at 56px with the old belief faded back. Open with it: the position, and who
-presents it, since nothing on record assigns a speaker.
+everything but type at 56px with the old belief faded back. Round two decided the same day:
+option B, the two grounds. Round three keeps that visual and changes the content model - the
+shift becomes three states, adding the concern about the change between the old mindset and the
+new one, every concern anchored in an existing line. Five presentations of it, all on the
+accepted split: A three columns, B the concern folded under each new mindset, C the concern as a
+full-height lime rail, D that rail reduced to one vertical CHANGE IS HARD band, E three shifts
+at 40px. All five are built as a ground layer painting the bands full bleed plus a single
+foreground grid, so rows align across columns however the text wraps - three separate columns
+each in their own flow drift apart as soon as one wraps, which is what round three's first cut
+did. Open with it: the position, and who presents it, since nothing on record assigns a
+speaker.
 Decided (under `presentations/sandbox/training_a_team/`):
 `s12-louise-video` (2026-09-04, slide 12 - four layouts for embedding
 `_shared/louise_story_final.mp4` into Louise's journey, after Dafydd asked for the video in
