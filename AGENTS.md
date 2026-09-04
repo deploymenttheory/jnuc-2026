@@ -858,8 +858,19 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-No pages currently awaiting a decision under
-`presentations/sandbox/training_a_team/`.
+Current pages (under `presentations/sandbox/training_a_team/`):
+`s08-mindset-shift` (2026-09-04, a proposed new slide 8 - the mindset shift the engineers had
+to make to get from ClickOps to GitOps, which Dafydd calls probably the most crucial part of
+the journey. Proposed position is straight after `#7` conditions and before `#8` priorities by
+role, with before `#5` and after `#3` named as alternatives; inserting anywhere renumbers the
+eyebrows after it, the slide map here and `docs/timeline-notes.md`. Content is six from-and-to
+pairs, each anchored in a line the deck already carries, with the shape of the list taken from
+published accounts of what is hardest about picking up Terraform and GitOps. A is all six in a
+two by three grid, B sets a muted ClickOps column against a lime GitOps one, C leads on the
+console shift at 88px with the rest as a foot strip, D cuts to the three that decided it.
+Nothing is in the deck, so the page injects a whole new section into each iframe - the same
+technique `s-takeaway-plan-state` used. Open with it: the position, and who presents it, since
+nothing on record assigns a speaker.
 Decided (under `presentations/sandbox/training_a_team/`):
 `s12-louise-video` (2026-09-04, slide 12 - four layouts for embedding
 `_shared/louise_story_final.mp4` into Louise's journey, after Dafydd asked for the video in

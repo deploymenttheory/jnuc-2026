@@ -734,6 +734,35 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-04, training_a_team: a new "Mindset shift" slide, options round, awaiting a
+  decision.** Dafydd: "we need to talk to and address the mindset shift that needed to occur in
+  our engineers minds to help them transiton from click ops to gitops with terraform. it was
+  probably the most crucial part of the joueney... review the existing content and propose a
+  position... go and research online the hardest elements of picking up gitops and terraform and
+  pair that we what we have already content wise". Position proposed as new slide 8, straight
+  after `#7` conditions and before `#8` priorities by role: `#7` already closes on psychological
+  safety and on expecting the dip, so the handover is about people either side, and the mindset
+  slide is the reason the four curriculum and delivery slides that follow are shaped the way
+  they are. Before `#5` and after `#3` are named on the page as the alternatives and why each is
+  weaker. Content is six from-and-to pairs. The **shape** of the list comes from published
+  accounts of what is hardest about picking these up - imperative to declarative is the most
+  reported stumbling block for people arriving from scripts and consoles, state and drift next,
+  and culture is reported ahead of tooling as what stalls GitOps adoption. The **words** are all
+  the deck's own: every pair is anchored in an existing line, listed on the page so the sourcing
+  can be checked (`#3` on zero console changes, on reading a plan, on review, and on mistakes
+  being recoverable; `#5` on prior coding experience predicting success rather than Jamf Pro
+  familiarity; `#7` condition 06 on the dip). The one piece of new writing is the closing line,
+  flagged on the page as an editorial claim rather than a fact. Four options: A all six in a two
+  by three grid with a consequence line each, B a muted ClickOps column against a lime GitOps
+  one with an arrow between, C the console shift at 88px with the other five as a strip anchored
+  to the foot, D the three that decided it at 52px (D uses `grid-template-rows: subgrid` so the
+  three hairlines align even when a heading wraps). Nothing is in the deck: the page injects a
+  whole new section after `#7` into each iframe, the technique `s-takeaway-plan-state` used, so
+  the counter in the renders reads 07 / 22 - the injected section is not in the deck's slides
+  array. Sandbox page `presentations/sandbox/training_a_team/s08-mindset-shift.html`. Three
+  things to settle with the option: the layout, the position, and who presents it, since nothing
+  on record assigns a speaker to it. Nothing in the deck changes until an option is chosen.
+
 - **2026-09-04, training_a_team slide 12 (Louise's journey), sandbox option B accepted and the
   video embedded.** Dafydd: "proceed with option B". The interview now leads the slide at 960
   by 540 with the quote at 58px beside it and the four journey lines as a full-width strip
