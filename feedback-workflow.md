@@ -734,6 +734,33 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-04, training_a_team "Mindset shift" round two, the visual set, awaiting a
+  decision.** Dafydd on round one: "content wise. keep that and itterate on preserve the old
+  mindset -> new mindset. it's a good first attempt. i think we need to consider different
+  visual options so that the slide visually stands out". The content is settled and unchanged -
+  the same six pairs, the same device, the same closing line, still anchored in lines the deck
+  already carries. The diagnosis of why round one did not stand out is that all four of its
+  layouts were assembled from the deck's own vocabulary - two-column grids, hairlines, bordered
+  cards - so a slide meant to be the hinge of the talk looked like every slide around it. Each
+  round-two option breaks that vocabulary somewhere different: A inverts the stage to lime with
+  navy ink, the only slide in the deck not on the royal blue ground, which drags the footer
+  chrome with it (the hairline moves to the deepened lime and the white JNUC mark takes the navy
+  plate the themed presets already give it); B splits the slide with a full-bleed navy panel so
+  the two mindsets sit on different grounds, and its wrapper has to be absolute and full bleed to
+  escape the 122px slide padding, taking the eyebrow and title onto the panel with it; C makes
+  each pair a card turned over, navy above a lime half cut in on the diagonal with `clip-path`;
+  D removes everything but the type, the belief being put down set at the same 56px as its
+  replacement and faded to a quarter strength. Sandbox page
+  `presentations/sandbox/training_a_team/s08-mindset-visual.html`; round one's page is retired
+  and the index entry records what it settled. Position and speaker are both still open.
+
+  **Worth knowing for anyone screenshotting these decks from now on:** the training deck now
+  carries a `<video>` on slide 12, and `--virtual-time-budget` never expires in headless Chrome
+  while a media element is pending, so the flag every screenshot recipe in AGENTS.md uses hangs
+  indefinitely on any page that loads this deck - including, via its iframes, every sandbox page
+  for it. Drop the flag and the shot is taken on load as normal. `tools/build-downloads.mjs` is
+  unaffected: Playwright waits on its own settle rather than on virtual time.
+
 - **2026-09-04, training_a_team: a new "Mindset shift" slide, options round, awaiting a
   decision.** Dafydd: "we need to talk to and address the mindset shift that needed to occur in
   our engineers minds to help them transiton from click ops to gitops with terraform. it was

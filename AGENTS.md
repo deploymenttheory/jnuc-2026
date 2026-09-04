@@ -859,7 +859,7 @@ automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages (under `presentations/sandbox/training_a_team/`):
-`s08-mindset-shift` (2026-09-04, a proposed new slide 8 - the mindset shift the engineers had
+`s08-mindset-visual` (2026-09-04, round two on a proposed new slide 8 - the mindset shift the engineers had
 to make to get from ClickOps to GitOps, which Dafydd calls probably the most crucial part of
 the journey. Proposed position is straight after `#7` conditions and before `#8` priorities by
 role, with before `#5` and after `#3` named as alternatives; inserting anywhere renumbers the
@@ -869,8 +869,16 @@ published accounts of what is hardest about picking up Terraform and GitOps. A i
 two by three grid, B sets a muted ClickOps column against a lime GitOps one, C leads on the
 console shift at 88px with the rest as a foot strip, D cuts to the three that decided it.
 Nothing is in the deck, so the page injects a whole new section into each iframe - the same
-technique `s-takeaway-plan-state` used. Open with it: the position, and who presents it, since
-nothing on record assigns a speaker.
+technique `s-takeaway-plan-state` used. Round one (`s08-mindset-shift`, retired) settled the
+content: Dafydd approved the six pairs and the old-to-new device and asked for a fresh visual
+set, because all four round-one layouts were built from the deck's existing grids, hairlines and
+bordered cards and so none of them stood out. Round two keeps the words and breaks that
+vocabulary four ways - A inverts the stage to lime with navy ink (the only slide not on the
+royal blue ground; it also needs the footer hairline and the plated JNUC mark that the themed
+presets already use), B splits the slide with a full-bleed navy panel that has to escape the
+122px padding, C turns each pair into a card with a lime half cut in on the diagonal, D strips
+everything but type at 56px with the old belief faded back. Open with it: the position, and who
+presents it, since nothing on record assigns a speaker.
 Decided (under `presentations/sandbox/training_a_team/`):
 `s12-louise-video` (2026-09-04, slide 12 - four layouts for embedding
 `_shared/louise_story_final.mp4` into Louise's journey, after Dafydd asked for the video in
@@ -1089,7 +1097,11 @@ DECK="http://localhost:8741/presentations/migrating_an_instance/index.html"
 ```
 
 For `training_a_team`, swap in `training_a_team/index.html` and use a numeric hash (`#2`),
-not a slide id.
+not a slide id. **Drop `--virtual-time-budget` for that deck and for any sandbox page that
+iframes it.** Slide 12 carries a `<video>`, and virtual time never expires in headless Chrome
+while a media element is pending, so the flag hangs the process instead of taking the shot.
+Without it the screenshot is taken on load, which is what you want anyway.
+`tools/build-downloads.mjs` is unaffected - Playwright waits on its own settle.
 
 When a change is meant to leave the rendering alone - anything sourced from `_shared/`, for
 instance - prove it rather than eyeballing it. Screenshot before, screenshot after, and
