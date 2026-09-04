@@ -40,7 +40,7 @@ landing page keeps its own near-black look - it is not a deck.
 | `presentations/sandbox/` | Feedback review pages, one sandbox per deck: a shared `sandbox.css`, a minimal chooser `index.html`, and one subdirectory per deck (`migrating_an_instance/`, `training_a_team/`) each with its own hand-maintained `index.html` listing that deck's pages, one page per change showing three implementation options as live renders of the real slide. Deploys with the site at `/sandbox/`, linked from a Sandbox button on each deck card on the landing page (added 2026-08-27 at Joseph's request; split into one sandbox per deck the same day). See Sandbox. |
 | `template.key` | The Jamf-supplied JNUC 2026 Keynote template. Canonical reference for palette, typography and mandatory slides. |
 | `.github/workflows/` | `deploy.yml` only - the S3 sync and CloudFront invalidation. See Deployment. |
-| `Makefile` | The local Mac build for the deck downloads: `make pptx`, `make key`, `make downloads`, plus the dependency install they need. Wraps the npm scripts and guards the Mac/Keynote requirements. See Building the downloads. |
+| `Makefile` | The local Mac build for the deck downloads: `make pptx`, `make key`, `make downloads`, plus the dependency install they need. Wraps the npm scripts and guards the Mac/Keynote requirements - the Keynote guard resolves the app by name so it works on both the old `/Applications/Keynote.app` and the Apple Creator Studio build. See Building the downloads. |
 | `tools/` | `build-downloads.mjs`, which builds the Keynote and PowerPoint downloads from the decks on a Mac (the only thing `package.json` exists for), and `sandbox-template.html`, the starting point for every sandbox review page. |
 | `feedback-workflow.md` | The deck feedback loop: standing rules, orchestrator and slide-agent roles, brief templates, commands, recovery steps and a log. Read it before touching a deck in response to feedback. Not shipped (`*.md` is excluded from the deploy). |
 | `docs/superpowers/plans/` | The first-round implementation plan, superseded by `feedback-workflow.md` and kept for its triage table. Not shipped. |
@@ -752,14 +752,23 @@ nothing in CI checks this.
 
 | Command | Builds | Needs |
 |---|---|---|
-| `make downloads` | both formats, one capture pass | Keynote installed |
-| `make key` | the `.key` files only | Keynote installed |
+| `make downloads` | both formats, one capture pass | Keynote installed (any version - resolved by name, not path) |
+| `make key` | the `.key` files only | Keynote installed (any version - resolved by name, not path) |
 | `make pptx` | the `.pptx` files only | any Mac - Keynote is never launched |
 
 The `Makefile` at the repo root is the front door: each target installs what it needs first
 (`npm ci`, then `npx playwright install chromium`, both stamped inside `node_modules` so they
-run once), refuses to run off a Mac, and checks for `/Applications/Keynote.app` before a
-target that drives it. `make` on its own prints the targets. Underneath they are just the npm
+run once), refuses to run off a Mac, and checks that Keynote is present before a target that
+drives it. **That check asks LaunchServices for the app by name** - `osascript -e 'POSIX path
+of (path to application "Keynote")'` - rather than testing `/Applications/Keynote.app`,
+because Keynote is not always there: Keynote 15 ships as part of Apple Creator Studio and
+installs as `Keynote Creator Studio.app` with the bundle id `com.apple.Keynote` (older
+versions are `/Applications/Keynote.app`, `com.apple.iWork.Keynote`). Resolving by name
+covers both, and is what the build itself does - `open -ga Keynote`, then `tell application
+"Keynote"` - so a passing check means the AppleScript export finds the same app. The
+`keynote` target prints the path it resolved, so the build log records which one built the
+files. If a future rename breaks even that, `npm run build:key` and `npm run build` bypass
+the Makefile entirely and still work. `make` on its own prints the targets. Underneath they are just the npm
 scripts - `npm run build`, `npm run build:key`, `npm run build:pptx` - which still work if you
 have the dependencies already. Prefer the both-formats target: one capture feeds both writers,
 so the two formats are guaranteed to be the same pixels. `make clean-downloads` deletes the

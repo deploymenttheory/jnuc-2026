@@ -37,14 +37,10 @@ help: ## Show this help
 pptx: mac $(CHROMIUM_STAMP) ## Build the PowerPoint downloads (no Keynote required)
 	npm run build:pptx
 
-key: mac $(CHROMIUM_STAMP) ## Build the Keynote downloads (needs Keynote)
-	@test -d /Applications/Keynote.app \
-		|| { echo "Keynote is not installed - 'make pptx' builds the PowerPoint half without it."; exit 1; }
+key: mac keynote $(CHROMIUM_STAMP) ## Build the Keynote downloads (needs Keynote)
 	npm run build:key
 
-downloads: mac $(CHROMIUM_STAMP) ## Build both formats from one capture pass (needs Keynote)
-	@test -d /Applications/Keynote.app \
-		|| { echo "Keynote is not installed - 'make pptx' builds the PowerPoint half without it."; exit 1; }
+downloads: mac keynote $(CHROMIUM_STAMP) ## Build both formats from one capture pass (needs Keynote)
 	npm run build
 
 ## --- setup ------------------------------------------------------------------
@@ -71,3 +67,18 @@ clean-downloads: ## Delete the built .key and .pptx downloads (they are committe
 mac:
 	@test "$$(uname -s)" = "Darwin" \
 		|| { echo "The deck downloads can only be built on a Mac."; exit 1; }
+
+# Keynote is not always at /Applications/Keynote.app. Keynote 15 ships as part of
+# Apple Creator Studio and installs as "Keynote Creator Studio.app" with the bundle
+# id com.apple.Keynote, so a path test finds nothing on an up-to-date Mac while the
+# app is right there. Ask LaunchServices by name instead, which is exactly what the
+# build does (`open -ga Keynote`, then `tell application "Keynote"`): if this
+# resolves, the AppleScript export resolves to the same app, on either version.
+.PHONY: keynote
+keynote:
+	@kn=$$(osascript -e 'POSIX path of (path to application "Keynote")' 2>/dev/null); \
+	if [ -z "$$kn" ]; then \
+		echo "Keynote is not installed - 'make pptx' builds the PowerPoint half without it."; \
+		exit 1; \
+	fi; \
+	echo "Keynote: $$kn"
