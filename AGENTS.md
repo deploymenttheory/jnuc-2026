@@ -89,6 +89,19 @@ These apply to any deck in this repo, current or future.
   colour/font/size in slide markup - add a token if a new value is needed.
 - **Never invent facts, numbers, resource names, or rationale.** Anything unconfirmed gets an
   amber TODO chip: `<span class="todo">TODO: ...</span>`.
+- **The two session titles are fixed and colon-glued, and that is deliberate.** "From ClickOps
+  to GitOps: Migrating Jamf Pro at Enterprise Scale to Terraform" and "From Zero to GitOps:
+  Training a Mac Team to Work Like DevOps Engineers" are the submitted conference titles, given
+  by Dafydd on 2026-09-04. They are the one exception to the rule below - do not "fix" them.
+- **The session-title page follows page 2 of the JNUC 2026 Standard template** (the three-up
+  variant on its page 4, since both talks have three speakers): session title top left, a row
+  of speaker cards each with a photo square, a short rule, NAME AND SURNAME in caps, the job
+  title and org in lime and a short bio, the lime up-left arrow to their right, the cube
+  wireframe on the right edge, and the jamf mark, rule and JNUC logo along the foot.
+  **It carries no progress indicator** - the timeline strip and counter in
+  `migrating_an_instance`, the progress bar and counter in `training_a_team`, are all
+  suppressed on slide one and start with the talk on slide two. Note the build tool keeps the
+  counter in the exported decks by design, so this is the one slide where it does not appear.
 - **Titles are plain and human.** No colon-glued two-part titles ("The Wall: How We Hit It")
   and no clever fragment titles ("The shape that stuck"). Write titles the way a person
   would: "Getting past Sentinel", "The module structure", "Rebuilding staging".
@@ -468,7 +481,8 @@ chip in the deck; their context is in `spec.md` and the git history of this file
 
 ## Deck: presentations/training_a_team
 
-**"ClickOps to GitOps - Learning Journey"**, in `index.html`. Renamed from
+**"From Zero to GitOps: Training a Mac Team to Work Like DevOps Engineers"**, in `index.html`
+(the full session title, set 2026-09-04; it was "ClickOps to GitOps - Learning Journey"). Renamed from
 `clickops-to-gitops.html` when the site moved to path-per-deck: the CloudFront Function
 resolves `/training_a_team/` to `index.html`, so any other filename is only reachable by its
 full path. **23 slides.** `ClickOps_to_GitOps.key` and `ClickOps_to_GitOps.pptx` alongside it
@@ -482,7 +496,8 @@ round.
 
 Slide map (after the template adoption and the merge with Dafydd's Aug 2026 edits): `#1`
 title (template three-speaker layout, LBG logo in the template's customer-logo slot, stats
-row kept), `#2` "Where we are today" (the old half-speakers slide kept its real content -
+row kept; the full session title replaced the ClickOps -> GitOps lockup and its tagline on
+2026-09-04, and the progress bar and counter are hidden on this slide), `#2` "Where we are today" (the old half-speakers slide kept its real content -
 the estate statecards, centred and enlarged - when the speakers moved to `#1`), `#3` goals,
 `#4` execution, `#5` what didn't work, `#6` what worked, `#7` conditions, `#8` learning
 priorities by role, `#9` the learning pathway (four phases - **merges the old `#9` matrix and

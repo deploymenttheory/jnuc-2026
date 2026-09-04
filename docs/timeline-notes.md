@@ -6,7 +6,7 @@ disagrees with this doc, the deck or AGENTS.md is corrected to match it, not the
 round. The "time notes" column is Joseph's - leave it blank to mean no highlight, or note a
 month or range.
 
-## From Clicks to Code (presentations/migrating_an_instance)
+## From ClickOps to GitOps (presentations/migrating_an_instance)
 
 23 slides, in the order they run in the deck today.
 
@@ -36,7 +36,7 @@ month or range.
 | 22 | Learning materials | Anyone | None |
 | 23 | Thank You | nobody assigned | None |
 
-## ClickOps to GitOps (presentations/training_a_team)
+## From Zero to GitOps (presentations/training_a_team)
 
 23 slides, in the order they run in the deck today.
 

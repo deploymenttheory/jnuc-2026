@@ -167,6 +167,7 @@ body {
 #speaker[data-who="Anyone"] { --sp: var(--c-text); }
 
 /* persistent story timeline - Nov 2025 to present day, driven by data-when */
+#timeline[hidden] { display: none; }
 #timeline {
   position: absolute;
   left: var(--slide-pad);
@@ -364,20 +365,15 @@ body.reader .reader-extra {
 /* ============================ S00 title / S17 questions / s-thanks ============================ */
 /* Template session-title layout: hero top-left, three speaker cards, lime
    up-left arrow, jamf + JNUC brand footer. See template.key exports 04/19/20. */
-.s00-head { margin-top: var(--sp-2); max-width: 1500px; }
+.s00-head { margin-top: var(--sp-2); max-width: 1560px; }
+/* The full session title runs to 74 characters, so it sets below --fs-hero and
+   wraps to two lines rather than three. The subtitle it replaced said the same
+   thing in fewer words and came off with it. */
 .hero {
   font-family: var(--f-display);
-  font-size: var(--fs-hero);
+  font-size: 66px;
   font-weight: 700;
   line-height: var(--lh-tight);
-}
-.hero-sub {
-  font-family: var(--f-display);
-  font-size: var(--fs-h2);
-  font-weight: 400;
-  line-height: var(--lh-tight);
-  margin-top: var(--sp-2);
-  color: var(--c-text-muted);
 }
 
 .tspeakers {
@@ -1417,8 +1413,7 @@ body.presenter #viewport { display: none; }
     <!-- Template session-title layout (template.key, three-speaker variant). -->
     <section class="slide" id="s00" aria-label="Title" data-speaker="All" data-speaker-note="intro">
       <div class="s00-head">
-        <h1 class="hero">From Clicks to Code</h1>
-        <p class="hero-sub">Migrating Jamf Pro to Terraform at Lloyds Banking Group</p>
+        <h1 class="hero">From ClickOps to GitOps: Migrating Jamf Pro at Enterprise Scale to Terraform</h1>
       </div>
       <!-- Cards are filled from ../_shared/speakers.js at load. Names and org are
            hardcoded as a fallback so the title slide is never blank if _shared/
@@ -2506,6 +2501,9 @@ inputs = { ... }</p>
       cell.classList.toggle('past', r.a >= 0 && j < r.a);
     });
     timeline.classList.toggle('tl-static', !tlAdvanced[i]);
+    // The template's session-title page carries no progress indicator, so the
+    // strip stays off slide one and starts with the story on slide two.
+    timeline.hidden = slides[i].id === 's00';
   }
 
   // Cross-window presenter sync. Needs http(s) - file:// windows get opaque origins.
@@ -2533,6 +2531,9 @@ inputs = { ... }</p>
   function renderCounter() {
     counter.textContent = String(idx + 1).padStart(2, '0') + ' / ' + slides.length +
       (document.body.classList.contains('reader') ? ' · reader' : '');
+    // The template's session-title page carries no progress indicator, so the counter
+    // goes off slide one with the timeline strip and starts on slide two.
+    counter.style.display = slides[idx].id === 's00' ? 'none' : '';
   }
 
   function show(i, updateHash, fromRemote) {

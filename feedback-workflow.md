@@ -734,6 +734,35 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-04, both decks: session-title pages rebuilt on the JNUC template, and the full
+  session titles set.** Dafydd: "we need a title page for each presentation... we need to take
+  this as the template `JNUC 2026 Standard_...key` - page 2 and copy the existing content into
+  it. minus the progress bars. keeping our names, titles and job roles etc." The template is
+  30 slides; page 2 is the one-speaker session-title layout and **page 4 is the same layout at
+  three speakers**, which is what both talks need, so that is what these are built to. It was
+  read by exporting the file through Keynote to slide images - the package only carries a
+  preview of its first slide, so there is nothing to read off the zip.
+  Both decks already followed this layout closely, so the work was the titles and the chrome.
+  `migrating_an_instance` takes "From ClickOps to GitOps: Migrating Jamf Pro at Enterprise
+  Scale to Terraform" and `training_a_team` takes "From Zero to GitOps: Training a Mac Team to
+  Work Like DevOps Engineers". Both are 72 to 74 characters against hero type sized for four
+  words, so each sets at 66px and wraps to two lines; three lines crowds the speaker cards.
+  Each deck's subtitle came off with its old title, because the new titles say what the
+  subtitles said - `migrating_an_instance` loses "Migrating Jamf Pro to Terraform at Lloyds
+  Banking Group" and `training_a_team` loses both the ClickOps -> GitOps lockup and its
+  tagline. Everything else stayed: the three speaker cards with their names, job titles, orgs
+  and bios (still rendered from `_shared/speakers.js`), the lime arrow, the cube wireframe, the
+  Lloyds mark in the customer-logo slot, and the jamf/rule/JNUC footer. The training deck's
+  stats row is kept too - it is content, not a progress indicator, and AGENTS.md records it as
+  a deliberate decision.
+  **The progress indicators are off slide one in both decks**, which is what the template shows:
+  `migrating_an_instance` hides the timeline strip and the counter, `training_a_team` hides the
+  progress bar and the counter. Both start again on slide two. One trap: `#timeline` is `display:flex`, which
+  beats the user-agent rule for `[hidden]`, so setting `.hidden` alone did nothing until an
+  explicit `#timeline[hidden]{display:none}` went in.
+  The landing page cards follow the new titles, as do AGENTS.md and `docs/timeline-notes.md`.
+  Presenter sync check prints OK, dash lint clean, downloads rebuilt.
+
 - **2026-09-04, training_a_team: the Mindset shift slide is in the deck, sandbox option C
   accepted.** Dafydd: "implement option C". The new slide 8 sits straight after "Creating the
   conditions for success", the position recommended in round one and never contested: `#7`
