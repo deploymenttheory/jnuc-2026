@@ -734,6 +734,23 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-04, slide 9 (`#s10`) diagram marks moved onto their own examples.** Dafydd: "where
+  there are groups of icon next to each other eg before 1 Singletons client check-in ·
+  inventory collection · activation code. i want each icon to come after each piece of text. so
+  client check-in <icon> ·. i want this applied to the whole slide". Every band's three (band 4:
+  two) marks had been clustered ahead of the right-aligned example run, and on bands 3 and 4
+  they ran straight into the band label's own mark, which is what read as a group. Each mark now
+  follows the term it belongs to, inside the run, with the run still ending at 1688. All four
+  bands. The marks are `<use>` elements in SVG user units, so the positions were measured rather
+  than guessed: a throwaway copy of the deck set the `dx` gaps, then read `getComputedTextLength`
+  and `getEndPositionOfChar` off the live text to place the run and each mark. Note
+  `getComputedTextLength` does not count `dx` shifts in Chrome, so the run width comes from the
+  end position of the last character. One knock-on: a run carrying three marks is about 200 units
+  longer than the plain text was, and at `--fs-code` band 3 overlapped its own label mark by 28
+  units, so `#s10 .dg-eg` steps down to `--fs-caption` and the run marks to 26 units, 1em of that
+  text. Measured clearance from each label is now 519, 450, 136 and 125 units. No wording changed
+  and the label marks are untouched. Deterministic round, no sandbox page.
+
 - **2026-09-04, slide 10 (`#s-singletons`) rewritten around the missing id, sandbox option A
   accepted.** Dafydd: "apply option a to the project". Option A from
   `presentations/sandbox/migrating_an_instance/s-singletons-no-id.html` is now the slide: the

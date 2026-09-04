@@ -906,7 +906,10 @@ body.reader .reader-extra {
    with the four bands grown to match so the bigger text keeps the same breathing room.
    Joseph accepted option C from the s10-diagram-text sandbox review. */
 #s10 .dg-label { font-size: var(--fs-body); }
-#s10 .dg-eg { font-size: var(--fs-code); }
+/* The examples carry one 1em mark per term now, so the run is longer than the plain
+   text was: at --fs-code band 3 overlapped its own label icon. --fs-caption keeps every
+   band clear of its label and the marks at 1em of the text they follow. */
+#s10 .dg-eg { font-size: var(--fs-caption); }
 
 /* ============================ S11 ============================ */
 .s11-grid { display: grid; grid-template-columns: 560px 1fr; gap: var(--sp-5); align-items: start; }
@@ -1865,23 +1868,23 @@ body.presenter #viewport { display: none; }
         <rect class="dg-box band-1" x="1" y="1" width="1726" height="156" rx="12"/>
         <use class="ico-svg" href="#i-check-circle" x="266" y="54" width="44" height="44"/>
         <text class="dg-label" x="40" y="88"><tspan class="dg-ix">1</tspan><tspan dx="18">Singletons</tspan></text>
-        <use class="ico-svg" href="#i-arrow-path" x="653" y="62" width="34" height="34"/><use class="ico-svg" href="#i-clipboard-document-check" x="699" y="62" width="34" height="34"/><use class="ico-svg" href="#i-key" x="745" y="62" width="34" height="34"/>
-        <text class="dg-eg" x="1688" y="88" text-anchor="end">client check-in · inventory collection · activation code</text>
+        <text class="dg-eg" x="829" y="88">client check-in<tspan dx="52.5">·</tspan><tspan dx="13.2">inventory collection</tspan><tspan dx="52.5">·</tspan><tspan dx="13.2">activation code</tspan></text>
+        <use class="ico-svg" href="#i-arrow-path" x="1041" y="66" width="26" height="26"/><use class="ico-svg" href="#i-clipboard-document-check" x="1385" y="66" width="26" height="26"/><use class="ico-svg" href="#i-key" x="1662" y="66" width="26" height="26"/>
         <rect class="dg-box band-2" x="1" y="207" width="1726" height="156" rx="12"/>
         <use class="ico-svg" href="#i-document-duplicate" x="626" y="260" width="44" height="44"/>
         <text class="dg-label" x="40" y="294"><tspan class="dg-ix">2</tspan><tspan dx="18">Resources without dependencies</tspan></text>
-        <use class="ico-svg" href="#i-code-bracket" x="996" y="268" width="34" height="34"/><use class="ico-svg" href="#i-folder" x="1042" y="268" width="34" height="34"/><use class="ico-svg" href="#i-building-office" x="1088" y="268" width="34" height="34"/>
-        <text class="dg-eg" x="1688" y="294" text-anchor="end">scripts · categories · departments</text>
+        <text class="dg-eg" x="1120" y="294">scripts<tspan dx="52.5">·</tspan><tspan dx="13.2">categories</tspan><tspan dx="52.5">·</tspan><tspan dx="13.2">departments</tspan></text>
+        <use class="ico-svg" href="#i-code-bracket" x="1226" y="272" width="26" height="26"/><use class="ico-svg" href="#i-folder" x="1437" y="272" width="26" height="26"/><use class="ico-svg" href="#i-building-office" x="1662" y="272" width="26" height="26"/>
         <rect class="dg-box band-3" x="1" y="413" width="1726" height="156" rx="12"/>
         <use class="ico-svg" href="#i-hierarchy-4" x="662" y="466" width="44" height="44"/>
         <text class="dg-label" x="40" y="500"><tspan class="dg-ix">3</tspan><tspan dx="18">Resources that depended on those</tspan></text>
-        <use class="ico-svg" href="#i-squares-2x2" x="668" y="474" width="34" height="34"/><use class="ico-svg" href="#i-magnifying-glass" x="714" y="474" width="34" height="34"/><use class="ico-svg" href="#i-clipboard-document-list" x="760" y="474" width="34" height="34"/>
-        <text class="dg-eg" x="1688" y="500" text-anchor="end">smart groups · advanced searches · extension attributes</text>
+        <text class="dg-eg" x="842" y="500">smart groups<tspan dx="52.5">·</tspan><tspan dx="13.2">advanced searches</tspan><tspan dx="52.5">·</tspan><tspan dx="13.2">extension attributes</tspan></text>
+        <use class="ico-svg" href="#i-squares-2x2" x="1014" y="478" width="26" height="26"/><use class="ico-svg" href="#i-magnifying-glass" x="1318" y="478" width="26" height="26"/><use class="ico-svg" href="#i-clipboard-document-list" x="1662" y="478" width="26" height="26"/>
         <rect class="dg-box band-5" x="1" y="619" width="1726" height="156" rx="12"/>
         <use class="ico-svg" href="#i-exclamation-triangle" x="1004" y="672" width="44" height="44"/>
         <text class="dg-label" x="40" y="706"><tspan class="dg-ix">4</tspan><tspan dx="18">Larger dependency resources - profiles and policies</tspan></text>
-        <use class="ico-svg" href="#i-cogs" x="1057" y="680" width="34" height="34"/><use class="ico-svg" href="#i-queue-list" x="1103" y="680" width="34" height="34"/>
-        <text class="dg-eg" x="1688" y="706" text-anchor="end">configuration profiles · policies</text>
+        <text class="dg-eg" x="1173" y="706">configuration profiles<tspan dx="52.5">·</tspan><tspan dx="13.2">policies</tspan></text>
+        <use class="ico-svg" href="#i-cogs" x="1478" y="684" width="26" height="26"/><use class="ico-svg" href="#i-queue-list" x="1662" y="684" width="26" height="26"/>
         <g marker-end="url(#s10-ah)">
           <line class="dg-edge" x1="480" y1="164" x2="480" y2="198"/>
           <line class="dg-edge" x1="864" y1="164" x2="864" y2="198"/>

@@ -157,8 +157,10 @@ quotes is stale.
   `.ico-accent` and `.ico-danger` only for rows whose own colour the mark has to match; and the
   same concept takes the same icon deck-wide, which is why scripts are `code-bracket` on slide 9
   and slide 13. Inside the slide 9 and slide 13 diagrams the marks are `<use class="ico-svg">`
-  elements positioned in SVG user units - those coordinates were measured once from each label's
-  own text length, so editing a diagram label means re-measuring them. Nine of the 25 use the
+  elements positioned in SVG user units rather than laid out by the browser, so the coordinates
+  are measured once and editing any label or example means re-measuring them. On slide 9 the
+  marks sit inside the example run - one after each term, the run right-aligned to 1688 - so
+  their x values come from `getEndPositionOfChar` on that run rather than the label's length. Nine of the 25 use the
   icon Jamf Pro's own UI uses for that concept, read from the pack's `manifest.json`; there is no
   policy glyph anywhere in the pack, so slide 15 stands `queue-list` in.
 - **Embedded artwork.** Everything the deck draws with an image is a data URI in the HTML,
@@ -275,7 +277,12 @@ overlay - keep the two in step when slides move.
    and migration prep, each a tidied checklist, sharing a row subgrid - same technique as
    `#s01`'s constraints panels - so the heading and each checklist row line up across both
    columns) - **Gordon**
-9. `s10` Resource migration sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
+9. `s10` Resource migration sequencing (per-resource-type choice + matrix intro + the tier
+   diagram. Each band reads label, then its own mark, then the examples right-aligned to
+   1688 with one mark after each example rather than the three marks clustered ahead of the
+   run, changed 2026-09-04. The example run is `--fs-caption` and its marks are 26 user
+   units, 1em of that text: at the old `--fs-code` the longer run overlapped band 3's own
+   label mark) - **Dafydd**
 10. `s-singletons` Singletons have no id (rewritten 2026-09-04, sandbox option A: the point
     is that a settings pane exists once per instance, so there is nothing to identify it by -
     the `import` block sits alone at 34px with its constant id marked in the accent and
