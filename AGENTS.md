@@ -35,7 +35,7 @@ landing page keeps its own near-black look - it is not a deck.
 | Path | Role |
 |---|---|
 | `presentations/<slug>/` | One talk. Snake-case slug. Each deck owns its own HTML, tokens and script; decks do not import from each other beyond `_shared/`. |
-| `presentations/_shared/` | Data used by more than one deck: `speakers.js`, `qr-code.png` (the training deck's take-it-with-you code) and `jamf_pro_icons/` (a 934-file dump of Jamf Pro's own icon set, scraped from a dev instance in `a886f28`; `migrating_an_instance` inlines 41 of them, see Icons). Content, not styling - see below. |
+| `presentations/_shared/` | Data used by more than one deck: `speakers.js`, `qr-code.png` (the training deck's take-it-with-you code), `louise_story_final.mp4` with its `louise_story_poster.jpg` (the training deck's slide 12 interview, 1280x720, 2m52s, about 40 MB - the only file here big enough to matter to the deploy, and the only one that is not text or an icon) and `jamf_pro_icons/` (a 934-file dump of Jamf Pro's own icon set, scraped from a dev instance in `a886f28`; `migrating_an_instance` inlines 41 of them, see Icons). Content, not styling - see below. |
 | `presentations/<slug>/art/` | Source art for anything a deck embeds as a data URI: one Markdown Pixelforge spec plus the PNGs exported from it. Deploy excludes `*.md`, so the spec is kept for regeneration only; the PNGs ride along but nothing links to them, because the deck carries its own base64 copy. Currently only `migrating_an_instance/art/`. |
 | `presentations/sandbox/` | Feedback review pages, one sandbox per deck: a shared `sandbox.css`, a minimal chooser `index.html`, and one subdirectory per deck (`migrating_an_instance/`, `training_a_team/`) each with its own hand-maintained `index.html` listing that deck's pages, one page per change showing three implementation options as live renders of the real slide. Deploys with the site at `/sandbox/`, linked from a Sandbox button on each deck card on the landing page (added 2026-08-27 at Joseph's request; split into one sandbox per deck the same day). See Sandbox. |
 | `template.key` | The Jamf-supplied JNUC 2026 Keynote template. Canonical reference for palette, typography and mandatory slides. |
@@ -82,8 +82,9 @@ These apply to any deck in this repo, current or future.
   formatting - palette, HelveticaNeue stack, title/kicker treatment, footer chrome.
 - One HTML file per deck, holding its own CSS, JS and images. Zero requests off the machine:
   no CDNs, webfonts, remote JS or remote images. The only local files a deck may reference
-  are in `../_shared/` (`speakers.js`, and `qr-code.png` where used). A deck must work opened
-  straight off disk.
+  are in `../_shared/` (`speakers.js`, and `qr-code.png`, `louise_story_final.mp4` and
+  `louise_story_poster.jpg` where used). A deck must work opened straight off disk - the video
+  is a plain `<video src>` for that reason, never fetched or embedded.
 - All styling derives from the token block in that deck's `:root`. Never hardcode a
   colour/font/size in slide markup - add a token if a new value is needed.
 - **Never invent facts, numbers, resource names, or rationale.** Anything unconfirmed gets an
@@ -775,7 +776,11 @@ so the two formats are guaranteed to be the same pixels. `make clean-downloads` 
 built files; it is deliberately not called `clean`, because these files are committed.
 
 Playwright opens each deck over `file://`, presses ArrowRight through it and screenshots the
-viewport at 1920x1080 into a temp directory. AppleScript then drives Keynote to assemble
+viewport at 1920x1080 into a temp directory. `HIDE_WHILE_CAPTURING` in the script blanks the
+on-screen affordances a downloaded file cannot offer: the help bar, and video controls (a
+`<video>` exports as its poster frame, and Chrome's controls and loading spinner would
+otherwise be photographed on top of it). The slide counter and the timeline strip are
+deliberately not in that list. AppleScript then drives Keynote to assemble
 those PNGs into a 1920x1080 deck and save it, and PptxGenJS reads the same PNGs back into a
 `LAYOUT_16x9` PowerPoint (title and subject set from the `DECKS` table). Screenshots go to
 disk rather than staying in memory precisely because AppleScript can only place an image it
@@ -853,20 +858,17 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages (under `presentations/sandbox/training_a_team/`):
+No pages currently awaiting a decision under
+`presentations/sandbox/training_a_team/`.
+Decided (under `presentations/sandbox/training_a_team/`):
 `s12-louise-video` (2026-09-04, slide 12 - four layouts for embedding
 `_shared/louise_story_final.mp4` into Louise's journey, after Dafydd asked for the video in
-and said the slide has to be reorganised around its frame first. The file is 1280x720 and
-the placeholder it replaces is a 798 by 760 box, so every option is solving that mismatch.
-A is closest to today, the video in a 1000px column at its true 16:9 shape with the quote as
-a caption under it; B makes the video the hero with the journey lines as a full-width strip
-beneath; C leads on the quote with the video supporting at 800 by 450; D plays the file at
-its native 1280 by 720 with the words in a 356px rail. Unlike a CSS-only round these replace
-the slide's contents, so the page carries each option's markup as well as its CSS, and every
-render loads the real video. Two open questions ride with it: the space bar advances the deck
-wherever focus is, so the key handler has to start ignoring the video, and a poster still is
-needed if the slide is not to show a black rectangle before it is played.
-Decided (under `presentations/sandbox/training_a_team/`):
+and said the slide has to be reorganised around its frame first. The file is 1280x720 and the
+placeholder it replaced was a 798 by 760 box, so every option was solving that mismatch. A
+kept the video in a 1000px column with the quote as a caption; B made it the hero with the
+journey lines as a strip beneath; C led on the quote with the video supporting; D played it at
+its native size with the words in a rail. Decided the same day: option B, applied to the deck.
+Page retired);
 `s5-chart-styles` (2026-08-28, slide 5, Gordon - three chart treatments of the hero
 confidence chart, all three new because the shipped gradient line chart was rejected: A
 gain-and-give-back columns, B a hard-edged ratchet, C six rows of blocks. The three shipped

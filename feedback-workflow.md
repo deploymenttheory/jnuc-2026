@@ -734,6 +734,34 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-04, training_a_team slide 12 (Louise's journey), sandbox option B accepted and the
+  video embedded.** Dafydd: "proceed with option B". The interview now leads the slide at 960
+  by 540 with the quote at 58px beside it and the four journey lines as a full-width strip
+  underneath, ruled off with a hairline. The section takes a `louise` class and the option's
+  rules replace the old `.videoph` and `.jrow` blocks, which nothing else in the deck used; the
+  quote also loses the inline `font-size:52px` it carried and becomes `.lj-quote`, so the slide
+  stops hardcoding a size in markup. Both questions the options round raised are settled in the
+  same change. The key handler now returns early on the space bar when the event target is
+  inside a `<video>`, so pressing space to play no longer starts the clip and skips to slide 13
+  at the same time; the arrows are deliberately NOT handed over, so the presenter can still
+  advance without clicking away from the video. And the slide no longer shows a black rectangle
+  before playback: `_shared/louise_story_poster.jpg` (88 KB, 1280x720) is a still pulled from 45
+  seconds into the file and set as the `poster`. There is no ffmpeg on the build Mac, so the
+  frame came out of headless Chrome - a bare page holding the video at 1280x720, seeked to the
+  target time, screenshotted at that window size, then saved as JPEG. Four candidate times were
+  compared; 2s is black (the file opens on black) and 20s and 90s are both mid-word, so 45s won.
+  Speaker notes updated: the TODO to replace the placeholder is gone, and the note now carries
+  the real running time of 2 minutes 52 seconds and how the space bar behaves. Sandbox page
+  retired, its index entry turned into a `.done` line, AGENTS.md's `_shared/` row, the local
+  files house rule and the Sandbox section all follow. One knock-on in `tools/`: a `<video>`
+  exports as its poster frame, since nobody can press play in a `.key` or a `.pptx`, but Chrome
+  draws the controls and a loading spinner over that poster and the build's 400ms settle
+  photographed them, so the first two rebuilds shipped a smudge across Louise's shoulder.
+  `HIDE_WHILE_CAPTURING` in `build-downloads.mjs` now hides `::-webkit-media-controls` alongside
+  `#help`, which is the same category of thing: an on-screen affordance the downloaded file
+  cannot offer. Worth knowing before the next deck embeds media. Downloads rebuilt after that
+  fix, both formats from one capture pass.
+
 - **2026-09-04, training_a_team slide 12 (Louise's journey) options round, awaiting a
   decision.** Dafydd: "i want to embed into the webpage this video
   `presentations/_shared/louise_story_final.mp4`... the video frame size is such that, we

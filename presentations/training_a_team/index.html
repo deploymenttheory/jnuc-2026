@@ -702,16 +702,26 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .modline .mv{font-size:19px;line-height:1.4;color:var(--text-dim)}
 
 /* ---------- slide 14 ---------- */
-.videoph{border:1px dashed var(--border-dash);border-radius:14px;height:760px;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:22px}
-.videoph .btn{width:100px;height:100px;border-radius:50%;background:var(--green);display:flex;
-  align-items:center;justify-content:center}
-.videoph .btn i{width:30px;height:30px;background:var(--on-accent);border-radius:4px;display:block}
-.videoph .t1{font-family:var(--mono);font-size:26px;color:var(--text-dim)}
-.videoph .t2{font-family:var(--mono);font-size:19px;color:var(--muted)}
-.jrow{display:grid;grid-template-columns:190px 1fr;gap:28px;margin-bottom:26px;align-items:start}
-.jrow .lb{font-family:var(--mono);font-size:22px;color:var(--green-bright);line-height:1.3}
-.jrow .vl{font-size:24px;line-height:1.4;color:var(--text-2)}
+/* Louise's journey. Sandbox option B, accepted 2026-09-04: the interview is the
+   slide, so it leads at 960x540 with the quote beside it and the four journey
+   lines read as a strip underneath. The video is 1280x720, and the dashed 798x760
+   placeholder these rules replaced could not hold a 16:9 picture without leaving
+   311px of dead space, which is what the round was called to fix. The old
+   .videoph and .jrow rules went with it - nothing else used either.
+   The <video> carries a poster so the slide reads as finished before anyone
+   presses play, and preload="metadata" so the controls show the running time.
+   Chrome draws a loading spinner over the poster while that metadata arrives,
+   which the download build used to photograph; build-downloads.mjs now hides
+   ::-webkit-media-controls during the capture, so the exported decks show the
+   poster clean. */
+.louise .lj-top{display:grid;grid-template-columns:960px 1fr;gap:64px;align-items:center}
+.louise .lv{display:block;width:100%;max-width:100%;aspect-ratio:16/9;border-radius:14px;
+  border:1px solid var(--border);background:#000}
+.louise .lj-quote{font-weight:700;color:var(--green-bright);line-height:1.12;font-size:58px}
+.louise .lj-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:36px;
+  padding-top:28px;border-top:1px solid var(--border-soft)}
+.louise .lj-cell .lb{font-family:var(--mono);font-size:19px;color:var(--green-bright);line-height:1.3}
+.louise .lj-cell .vl{font-size:19px;line-height:1.4;color:var(--text-2);margin-top:10px}
 
 /* ---------- slide 15 ---------- */
 /* Ownership matrix. Cells are placed explicitly rather than auto-flowed, because
@@ -1440,21 +1450,19 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 </section>
 
 <!-- ============ 12 · CASE STUDY ============ -->
-<section class="slide" data-speaker="Dafydd" data-speaker-note="intro, then video" data-notes="Louise's story shows this is achievable from any starting point. No prior CLI, Mac support background. State clicked in week four after a real incident. Her turning point was the first solo PR merged to main. Her advice: don't skip the fundamentals. Replace the placeholder with the 3-4 minute interview.">
+<section class="slide louise" data-speaker="Dafydd" data-speaker-note="intro, then video" data-notes="Louise's story shows this is achievable from any starting point. No prior CLI, Mac support background. State clicked in week four after a real incident. Her turning point was the first solo PR merged to main. Her advice: don't skip the fundamentals. The interview is on the slide - press play, it runs 2 minutes 52 seconds. The space bar plays and pauses it while it has focus; the arrow keys still move the deck, so you do not have to click away to advance.">
   <div class="eyebrow"><i class="dot"></i>12 &middot; Case study</div>
   <h1>Louise's journey</h1>
-  <div class="body split">
-    <div class="videoph">
-      <div class="btn"><i></i></div>
-      <div class="t1">TODO: 3-4 min interview with Louise</div>
-      <div class="t2">replace this placeholder with the video</div>
+  <div class="body">
+    <div class="lj-top">
+      <video class="lv" src="../_shared/louise_story_final.mp4" poster="../_shared/louise_story_poster.jpg" controls preload="metadata" playsinline></video>
+      <p class="lj-quote">&ldquo;Anyone can do this.&rdquo;</p>
     </div>
-    <div>
-      <div style="font-size:52px;font-weight:700;color:var(--green-bright);margin-bottom:44px">&ldquo;Anyone can do this.&rdquo;</div>
-      <div class="jrow"><div class="lb">Starting point</div><div class="vl">No prior CLI or scripting experience. Mac support background.</div></div>
-      <div class="jrow"><div class="lb">Challenge</div><div class="vl">Understanding why state matters. It clicked in week 4 after a real incident.</div></div>
-      <div class="jrow"><div class="lb">Turning point</div><div class="vl">First solo PR merged into main - "It felt like I'd actually built something real."</div></div>
-      <div class="jrow"><div class="lb">Advice</div><div class="vl">"Don't skip the fundamentals. It feels slow but it saves you later."</div></div>
+    <div class="lj-strip">
+      <div class="lj-cell"><div class="lb">Starting point</div><div class="vl">No prior CLI or scripting experience. Mac support background.</div></div>
+      <div class="lj-cell"><div class="lb">Challenge</div><div class="vl">Understanding why state matters. It clicked in week 4 after a real incident.</div></div>
+      <div class="lj-cell"><div class="lb">Turning point</div><div class="vl">First solo PR merged into main - "It felt like I'd actually built something real."</div></div>
+      <div class="lj-cell"><div class="lb">Advice</div><div class="vl">"Don't skip the fundamentals. It feels slow but it saves you later."</div></div>
     </div>
   </div>
 </section>
@@ -2125,6 +2133,10 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   }
   document.addEventListener('keydown',function(e){
     if(e.target.closest&&e.target.closest('#knobs'))return;
+    // Slide 12 carries a real <video controls>. Without this, pressing space to play
+    // would start the clip AND advance the deck. Only the space bar is handed over:
+    // the arrows stay with the deck, so the presenter can advance without clicking away.
+    if(e.key===' '&&e.target.closest&&e.target.closest('video'))return;
     if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '||e.key==='ArrowDown'){show(i+1);e.preventDefault()}
     else if(e.key==='ArrowLeft'||e.key==='PageUp'||e.key==='ArrowUp'){show(i-1);e.preventDefault()}
     else if(e.key==='Home'){show(0)}

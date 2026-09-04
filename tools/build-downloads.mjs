@@ -61,7 +61,14 @@ const DECKS = [
 // On-screen affordances that mean nothing in a downloaded file. The slide
 // counters and the timeline strip are deliberately NOT here - the counter is
 // useful on paper and the timeline is deck content, not chrome.
-const HIDE_WHILE_CAPTURING = '#help { display: none !important; }';
+const HIDE_WHILE_CAPTURING = [
+  '#help { display: none !important; }',
+  // A <video> exports as its poster frame - nobody can press play in a .key or a
+  // .pptx - so the controls are an affordance the file cannot offer. They also carry
+  // Chrome's loading spinner, which sits over the poster long enough to be caught by
+  // the settle below and shipped as a smudge on the slide.
+  'video::-webkit-media-controls { display: none !important; }',
+].join('\n');
 
 // Runs in the page. Covers both decks without per-deck config: one keeps its
 // notes in <aside class="notes">, the other in a data-notes attribute.
