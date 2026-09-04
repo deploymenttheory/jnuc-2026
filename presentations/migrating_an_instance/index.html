@@ -551,6 +551,10 @@ body.reader .reader-extra {
 /* The icon is a flex item rather than an inline run, so a long single-word name
    like Mac@LBG stays on the icon's line instead of wrapping under it. */
 .team-name .ico { margin-right: 0; position: relative; top: 0.125em; }
+/* "App Packaging & Deployment" is the only name too long to sit beside its icon in a
+   fifth of the row at --fs-h2. The break before the ampersand is explicit in the markup
+   and the whole name steps down a size so "App Packaging" holds the icon's line. */
+.team-name-long { font-size: var(--fs-body); }
 /* Each card reads top to bottom: who they are, what they do, then what they perform.
    The head block sits at the top and the performs block is pinned to the foot by the
    card's space-between, so the tags line up across all five cards. */
@@ -785,11 +789,26 @@ body.reader .reader-extra {
 .control-note strong { color: var(--c-accent); }
 
 /* ============================ Singletons ============================ */
-.s-single-grid { display: grid; grid-template-columns: 420px 1fr; gap: var(--sp-4); align-items: start; }
-.s-single-grid > div { display: flex; flex-direction: column; gap: var(--sp-3); }
-.s-single-grid .control-note { margin-top: 0; max-width: none; }
-.s-single-grid .takeaway { margin-top: 0; }
-.s-single-code { margin: 0; font-size: 22px; line-height: 1.35; }
+/* Rewritten around the missing id (sandbox option A, accepted 2026-09-04): the constant
+   the provider hands a singleton is the slide, blown up and annotated, with two lines
+   under it. */
+#s-singletons .sg-spec { margin-top: var(--sp-4); display: flex; flex-direction: column; align-items: center; gap: var(--sp-3); }
+#s-singletons .sg-spec-code { font-size: 34px; line-height: 1.5; padding: var(--sp-4) var(--sp-5); }
+#s-singletons .sg-mark {
+  color: var(--c-ink);
+  background: var(--c-accent);
+  padding: 2px 10px;
+  border-radius: var(--radius-sm);
+}
+#s-singletons .sg-annot {
+  max-width: 1100px;
+  text-align: center;
+  font-size: var(--fs-code);
+  color: var(--c-text-muted);
+}
+#s-singletons .sg-so { margin-top: var(--sp-4); max-width: 1560px; }
+#s-singletons .sg-so strong { color: var(--c-accent); }
+#s-singletons .sg-so .takeaway { margin-top: var(--sp-3); }
 
 /* ============================ S07 ============================ */
 /* Tidied down to three items (sandbox option A, accepted 2026-08-27): bigger row
@@ -1520,7 +1539,7 @@ body.presenter #viewport { display: none; }
         </div>
         <div class="card team">
           <div class="team-head">
-            <h2 class="team-name"><svg class="ico" aria-hidden="true"><use href="#i-box"/></svg>App Packaging&nbsp;&amp; Deployment</h2>
+            <h2 class="team-name team-name-long"><svg class="ico" aria-hidden="true"><use href="#i-box"/></svg><span>App Packaging<br>&amp; Deployment</span></h2>
             <p class="team-role">Packages, tests and ships the application catalogue to the fleet.</p>
           </div>
           <div class="team-performs">
@@ -1882,44 +1901,30 @@ body.presenter #viewport { display: none; }
     </section>
 
     <!-- ============================ Singletons first ============================ -->
-    <section class="slide" id="s-singletons" aria-label="Singletons first" data-speaker="Gordon" data-when="2025-12">
-      <h1 class="slide-title">Singletons first</h1>
-      <p class="slide-sub">Settings panes went into state first, imported by default and applied only as a fallback.</p>
-      <div class="s-single-grid">
-        <div>
-          <p>Settings panes are single-instance resources - there's only ever one. Import stayed the default; apply was the fallback.</p>
-          <div class="card control-note">
-            <p><strong><svg class="ico ico-accent" aria-hidden="true"><use href="#i-information-circle"/></svg>Don't skip import if you can.</strong> Apply was only the fallback when no import statement existed.</p>
-          </div>
-          <p class="takeaway"><svg class="ico ico-accent" aria-hidden="true"><use href="#i-check-circle"/></svg>Every settings resource under management in about a day.</p>
-        </div>
-        <pre class="code s-single-code"><span class="tk-kw">resource</span> <span class="tk-str">"jamfpro_client_checkin"</span> <span class="tk-str">"jamfpro_client_checkin"</span> {
-  check_in_frequency                  = <span class="tk-num">30</span> <span class="tk-cm">// Valid values: 5, 15, 30, 60</span>
-  create_startup_script               = true
-  startup_log                         = true <span class="tk-cm">// requires create_startup_script</span>
-  startup_ssh                         = true <span class="tk-cm">// requires create_startup_script</span>
-  startup_policies                    = true <span class="tk-cm">// requires create_startup_script</span>
-  create_hooks                        = true
-  hook_log                            = true <span class="tk-cm">// requires create_hooks</span>
-  hook_policies                       = true <span class="tk-cm">// requires create_hooks</span>
-  enable_local_configuration_profiles = true
-  allow_network_state_change_triggers = true
-}
-
-<span class="tk-kw">import</span> {
+    <section class="slide" id="s-singletons" aria-label="Singletons have no id" data-speaker="Gordon" data-when="2025-12">
+      <h1 class="slide-title">Singletons have no id</h1>
+      <p class="slide-sub">Some Jamf Pro resources exist exactly once per instance - the settings panes. There is only one, so there is nothing to point an import at.</p>
+      <div class="sg-spec">
+        <pre class="code sg-spec-code"><span class="tk-kw">import</span> {
   to = jamfpro_client_checkin.jamfpro_client_checkin
-  id = <span class="tk-str">"jamfpro_client_checkin_singleton"</span>
+  id = <span class="tk-str sg-mark">"jamfpro_client_checkin_singleton"</span>
 }</pre>
+        <p class="sg-annot">Not an object id. A constant the provider defines, because there is no second client check-in to tell it apart from.</p>
+      </div>
+      <div class="sg-so">
+        <p><strong>So you do not have to import at all.</strong> Write the resource to match what the settings pane already shows and apply it. Terraform creates values that are already there, nothing changes on the server, and the resource is in state.</p>
+        <p class="takeaway"><svg class="ico ico-accent" aria-hidden="true"><use href="#i-check-circle"/></svg>That is why they went first: every settings resource under management in about a day, and the repo's first real state.</p>
       </div>
       <details class="reader-extra">
         <summary>More detail</summary>
         <div class="detail-body">
-          <p>Most settings panes were imported like any other resource, tracked in state via <code class="inline">terraform import</code>. The apply-only path was reserved for the handful whose provider had no import statement - there, Terraform's "create" simply writes the values the UI already shows, a no-op change that leaves the resource tracked in state without ever touching the server.</p>
+          <p>The settings panes are things like client check-in, inventory collection and the activation code. Jamf Pro holds one of each, so there is no list to search and no object id to quote. Where the provider does accept an <code class="inline">import</code> block it takes a fixed string it defines itself, and where it does not, an apply that matches the UI is a no-op that still lands the resource in state.</p>
         </div>
       </details>
       <aside class="notes">
         <p>November 2025 - the first real state in the repo.</p>
-        <p>Mechanic: import first if the provider supports it - only fall back to apply where there's no import statement. The apply just sets the same values the UI shows, so nothing changes, but the resource lands in state. All settings panes done in about a day.</p>
+        <p>Point at the id and say what it is: a constant the provider made up, because a singleton has nothing to be identified by. There is only one client check-in.</p>
+        <p>So the import ceremony is optional. Match the resource to what the UI already shows, apply, and Terraform writes values that are already there - no change on the server, but it is now in state. Every settings resource done in about a day.</p>
       </aside>
     </section>
 

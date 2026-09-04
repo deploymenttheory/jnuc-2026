@@ -145,7 +145,7 @@ quotes is stale.
   for navy surfaces, HelveticaNeue stack. Code blocks map hand-tokenised HCL to lime
   keywords, light-cornflower strings and amber numbers; TODO chips are solid amber with navy
   ink. Logos (jamf white, JNUC 2026) live in tokens as data URIs.
-- **Icons.** 97 marks from `_shared/jamf_pro_icons` sit across 18 of the 23 slides, all 25
+- **Icons.** 96 marks from `_shared/jamf_pro_icons` sit across 18 of the 23 slides, all 25
   candidates from the 2026-09-02 round accepted at once. They ship as one `<svg id="ico-sprite">`
   block of 41 `<symbol>`s at the top of the body, referenced as
   `<svg class="ico" aria-hidden="true"><use href="#i-name"/></svg>`, so an icon used on ten
@@ -262,7 +262,10 @@ overlay - keep the two in step when slides move.
 3. `s02` Who uses Jamf Pro in our Org ? (five team cards, each reading team name, a one-line
    description of what that team does, then a "Performs:" label above the existing access tag,
    via `.team-head`, `.team-role`, `.team-performs` and `.team-performs-label`; the closing note
-   makes the depth-and-breadth point rather than recounting the cards) - **Dafydd**
+   makes the depth-and-breadth point rather than recounting the cards. "App Packaging &
+   Deployment" is the one name that will not sit beside its icon in a fifth of the row at
+   `--fs-h2`: it carries `.team-name-long` and an explicit `<br>` so it breaks to "App
+   Packaging" over "& Deployment" rather than three ragged lines) - **Dafydd**
 4. `s-workspace` What a Terraform workspace is (definition, HashiCorp workspace-anatomy
    diagram, four lenses that decide how an instance gets carved up) - **Dafydd (TBC)**
 5. `s-takeaway` Key Takeaway: Plan your tf workspace and state design up front (the first of three key takeaways: the sentence that used to lead the four lenses on the slide before it, set as a pull quote behind an oversized lime quote mark, with "before you migrate" the only emphasised phrase and the takeaway label as a byline underneath. Nothing else on the slide. Sandbox option C, accepted 2026-09-02. Rules are `#s-takeaway .tk-*`, and the remaining two takeaways should reuse them) - **Dafydd**
@@ -273,7 +276,13 @@ overlay - keep the two in step when slides move.
    `#s01`'s constraints panels - so the heading and each checklist row line up across both
    columns) - **Gordon**
 9. `s10` Resource migration sequencing (per-resource-type choice + matrix intro + 5-tier diagram) - **Dafydd**
-10. `s-singletons` Singletons first (Nov 2025, no-import trick) - **Gordon**
+10. `s-singletons` Singletons have no id (rewritten 2026-09-04, sandbox option A: the point
+    is that a settings pane exists once per instance, so there is nothing to identify it by -
+    the `import` block sits alone at 34px with its constant id marked in the accent and
+    annotated as a constant the provider defines, then two lines saying you need not import
+    at all. The old two-column layout, the full resource block and the "don't skip import if
+    you can" control note are gone; dropping that caveat was decided with the option, and
+    matches `spec.md` SQ5) - **Gordon**
 11. `s-sentinel` You will not own the whole stack (refocused 2026-09-02, sandbox option A:
     the slide is the general point - your migration runs inside controls other teams own, so
     map the touch points, learn who owns them and ask for a narrow evidenced exception rather
@@ -840,10 +849,20 @@ other two SVGs removed); the fall through each gap was steepened in the same PR 
 request so the downturn reads as a real drop, not a shallow taper - six months, six cycles
 and the gentle net upward trend by the end are unchanged; the page is deleted, the index
 keeps the record as a non-linked `.done` entry).
-Current pages (all under `presentations/sandbox/migrating_an_instance/`):
-`s-singletons-no-id` (2026-09-02, slide 10 - four rewrites, not restyles, after Dafydd said the words were garbage and the point unclear: a settings pane exists once per instance, so there is nothing to identify it by and the id in an `import` block is a constant the provider defines. A leads on that constant blown up and annotated, B sets what any other resource needs against what a singleton needs, C defines the word then takes three consequences in order and is the only option keeping today's "don't skip import if you can" caveat, D lets the HCL carry the slide with three callouts. Open question with it: that caveat contradicts the new framing and spec.md's own narrative.
+No pages currently awaiting a decision under
+`presentations/sandbox/migrating_an_instance/`.
 
 Decided (all under `presentations/sandbox/migrating_an_instance/`):
+`s-singletons-no-id` (2026-09-02, slide 10 - four rewrites, not restyles, after Dafydd said
+the words were garbage and the point unclear: a settings pane exists once per instance, so
+there is nothing to identify it by and the id in an `import` block is a constant the provider
+defines. A leads on that constant blown up and annotated, B sets what any other resource needs
+against what a singleton needs, C defines the word then takes three consequences in order and
+is the only option keeping today's "don't skip import if you can" caveat, D lets the HCL carry
+the slide with three callouts. Decided 2026-09-04: option A, applied to the deck - the slide
+is now titled "Singletons have no id", the old two-column layout and full resource block are
+gone, and the open question went the other way from option C, dropping the caveat to match
+`spec.md` SQ5. Page retired);
 `s18-reformat-qr` (2026-09-01, slide 22 - three ways to reformat the links and reserve
 space for the QR the training deck carries: A two link columns plus a QR rail, live from
 2026-09-01; B the QR and the outstanding jamfpy chip in a footer bar; C a bold QR hero

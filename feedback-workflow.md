@@ -734,6 +734,31 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-04, slide 10 (`#s-singletons`) rewritten around the missing id, sandbox option A
+  accepted.** Dafydd: "apply option a to the project". Option A from
+  `presentations/sandbox/migrating_an_instance/s-singletons-no-id.html` is now the slide: the
+  title is "Singletons have no id", the `import` block stands alone at 34px with its constant
+  id marked in the accent and annotated as a constant the provider defines rather than an
+  object id, and two lines under it say you need not import at all and why these went first.
+  The old `.s-single-grid` two-column layout, the full `jamfpro_client_checkin` resource block
+  and the "Don't skip import if you can" control note all came off, and the CSS block was
+  rewritten as one clean run of `#s-singletons .sg-*` rules rather than the option layered on
+  the old ones. That settles the open question the options round left with it, and settles it
+  the opposite way from option C: the caveat is dropped, which is what `spec.md`'s own
+  narrative (SQ5) says - these do not even need importing. New speaker notes (three, up from
+  two), a rewritten reader-mode popover and the matching `presenter.json` entry ship with it;
+  the takeaway keeps its `check-circle` icon, the control note's `information-circle` goes
+  with the note, so the deck-wide icon count is 96. Sandbox page retired and its index entry
+  turned into a `.done` line; AGENTS.md's slide list, Sandbox section and icon count follow.
+- **2026-09-04, slide 3 (`#s02`) "App Packaging & Deployment" broken onto two lines.** Dafydd:
+  "change the App Packaging & Deployment wording so that the icon and 'App Packaging' are on
+  one line and '& Deployment' are on the line below". The name was wrapping into three ragged
+  lines because it cannot fit beside its icon in a fifth of the row at `--fs-h2`. The text is
+  now wrapped in a `<span>` with an explicit `<br>` before the ampersand, and the heading
+  carries `.team-name-long`, which steps that one name down to `--fs-body` so "App Packaging"
+  holds the icon's line. Nothing else on the slide changed and the other four names are
+  untouched at `--fs-h2`. Wording is unchanged. Deterministic round, no sandbox page.
+
 - **2026-08-28, training_a_team slide 6 (`#6`) "What worked" - content correction, no
   options.** Deterministic round, no sandbox page. The "Scenario-based hack labs" card was
   removed: it praised hack labs as a way to teach Git, which directly contradicted slide 4's
@@ -887,8 +912,8 @@ it up - either way it is on disk for a recovering session.
   Sandbox page `presentations/sandbox/migrating_an_instance/s-singletons-no-id.html`, also
   published as an artifact (PR #88). Open question to settle with the option: today's "don't skip import
   if you can" caveat contradicts the new framing and `spec.md`'s own narrative (SQ5), which
-  says these do not even need importing - only option C keeps it. Nothing in the deck changes
-  until an option is chosen.
+  says these do not even need importing - only option C keeps it. Closed out 2026-09-04 by
+  the option A entry at the top of this list.
 - **2026-09-02, slide 11 (`#s-sentinel`) refocused off the Sentinel story and onto the point
   it illustrates.** Dafydd: "the slide must stay but we need to shift the focus... what we
   want listening to understand is, you will almost assurdedly not own the full tech stack. so

@@ -84,11 +84,12 @@
     },
     {
       "id": "s-singletons",
-      "title": "Singletons first",
+      "title": "Singletons have no id",
       "timerSeconds": 75,
       "notes": [
         "November 2025 - the first real state in the repo.",
-        "Mechanic: import first if the provider supports it - only fall back to apply where there's no import statement. The apply just sets the same values the UI shows, so nothing changes, but the resource lands in state. All settings panes done in about a day."
+        "Point at the id and say what it is: a constant the provider made up, because a singleton has nothing to be identified by. There is only one client check-in.",
+        "So the import ceremony is optional. Match the resource to what the UI already shows, apply, and Terraform writes values that are already there - no change on the server, but it is now in state. Every settings resource done in about a day."
       ]
     },
     {
