@@ -734,6 +734,24 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-07, training_a_team slide 3, five new sandbox options awaiting a decision.**
+  Dafydd requested the same five-option loop for slide 3. A leads with the practical
+  definition of trained; B separates intended capabilities from observed results on two
+  grounds; C follows a real change from branch through plan and peer review to production;
+  D shows the intended benefits for the individual, team and organisation; E centres on
+  predicting a change, recovery and knowing when to stop. The title remains "Learning
+  outcomes & what success looked like". Each option has a different composition, shorter
+  visible copy and externally reviewable speaker notes retaining the established outcomes,
+  intended benefits, trained definition and non-goals. The normal PR route and breakglass
+  exception remain explicit. Page `s03-learning-outcomes.html` in the training sandbox
+  offers five real-deck iframe renders, direct anchors and
+  full-size views. All five renders passed browser and visual review at 1920x1080, with
+  37-65 body words, no text overlaps or footer collisions, working notes and speaker keys,
+  pinned previews, direct anchors, full-size views and mobile layouts. File and missing-source
+  fallbacks keep unavailable previews hidden. No browser or resource errors. Both source
+  decks are byte-unchanged; shared files and downloads are untouched. Training has no
+  presenter.json, so its presenter sync check does not apply. PR #93.
+
 - **2026-09-07, training_a_team slide 2 option E accepted.** Dafydd: "proceed with option E".
   Applied "One statement, four proofs" from the five-option review to the real deck as
   `#s-estate`: the large lime "Terraform is how we work" statement, daily whole-team use,

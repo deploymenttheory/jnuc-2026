@@ -897,7 +897,8 @@ automatically.
 
 - Option A is by convention whatever the deck currently ships and injects nothing, unless
   a round explicitly asks for all-new designs. The training slide 2 round offered five
-  new variants; option E was accepted on 2026-09-07.
+  new variants; option E was accepted on 2026-09-07. The slide 3 round continues with five
+  new variants and is awaiting a decision.
 - Variant CSS only touches the slide's `#id` and only uses the deck's own tokens, so an
   accepted option pastes into the deck unchanged.
 - Injection needs same-origin access, so it only works over HTTP. Opened from `file://` the
@@ -910,7 +911,13 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-No pages currently awaiting a decision under `presentations/sandbox/training_a_team/`.
+Current pages awaiting a decision under `presentations/sandbox/training_a_team/`:
+`s03-learning-outcomes` (2026-09-07, slide 3, Dafydd, five new treatments in the training
+refinement: A the finish line, B what we taught and what changed, C one real change,
+D who benefits, E the judgement that makes it safe. The fixed title stays, detailed content
+moves into reviewable proposed speaker notes, and observed results stay distinct from
+intended capabilities and benefits. Each option has a direct anchor and a full-size view.
+The source deck is unchanged).
 Decided (under `presentations/sandbox/training_a_team/`):
 `s02-where-we-are-today` (2026-09-07, five treatments for slide 2, the first review in
 Dafydd's slide 1-10 refinement: A people first, B three outcomes, C everyday workflow,
