@@ -746,7 +746,7 @@ it up - either way it is on disk for a recovering session.
   match: content is pixel-identical to approved E, the footer matches the source deck,
   neighbouring slides 1 and 3 are unchanged, and notes, speaker controls and one-step
   navigation across all 23 slides pass. No overflow, browser errors or external requests.
-  Training has no presenter.json, so its presenter sync check does not apply.
+  Training has no presenter.json, so its presenter sync check does not apply. PR #92.
 
 - **2026-09-07, training_a_team slide 2, five new sandbox options awaiting a decision.**
   Dafydd requested five reviewable options for each of slides 1-10, starting with slide 2,
