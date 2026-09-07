@@ -37,7 +37,7 @@ landing page keeps its own near-black look - it is not a deck.
 | `presentations/<slug>/` | One talk. Snake-case slug. Each deck owns its own HTML, tokens and script; decks do not import from each other beyond `_shared/`. |
 | `presentations/_shared/` | Data used by more than one deck: `speakers.js`, `qr-code.png` (the training deck's take-it-with-you code), `louise_story_final.mp4` with its `louise_story_poster.jpg` (the training deck's slide 12 interview, 1280x720, 2m52s, about 40 MB - the only file here big enough to matter to the deploy, and the only one that is not text or an icon) and `jamf_pro_icons/` (a 934-file dump of Jamf Pro's own icon set, scraped from a dev instance in `a886f28`; `migrating_an_instance` inlines 41 of them, see Icons). Content, not styling - see below. |
 | `presentations/<slug>/art/` | Source art for anything a deck embeds as a data URI: one Markdown Pixelforge spec plus the PNGs exported from it. Deploy excludes `*.md`, so the spec is kept for regeneration only; the PNGs ride along but nothing links to them, because the deck carries its own base64 copy. Currently only `migrating_an_instance/art/`. |
-| `presentations/sandbox/` | Feedback review pages, one sandbox per deck: a shared `sandbox.css`, a minimal chooser `index.html`, and one subdirectory per deck (`migrating_an_instance/`, `training_a_team/`) each with its own hand-maintained `index.html` listing that deck's pages, one page per change showing three implementation options as live renders of the real slide. Deploys with the site at `/sandbox/`, linked from a Sandbox button on each deck card on the landing page (added 2026-08-27 at Joseph's request; split into one sandbox per deck the same day). See Sandbox. |
+| `presentations/sandbox/` | Feedback review pages, one sandbox per deck: a shared `sandbox.css`, a minimal chooser `index.html`, and one subdirectory per deck (`migrating_an_instance/`, `training_a_team/`) each with its own hand-maintained `index.html` listing that deck's pages, one page per change showing implementation options as live renders of the real slide (three by default, five for the current training refinement). Deploys with the site at `/sandbox/`, linked from a Sandbox button on each deck card on the landing page (added 2026-08-27 at Joseph's request; split into one sandbox per deck the same day). See Sandbox. |
 | `template.key` | The Jamf-supplied JNUC 2026 Keynote template. Canonical reference for palette, typography and mandatory slides. |
 | `.github/workflows/` | `deploy.yml` only - the S3 sync and CloudFront invalidation. See Deployment. |
 | `Makefile` | The local Mac build for the deck downloads: `make pptx`, `make key`, `make downloads`, plus the dependency install they need. Wraps the npm scripts and guards the Mac/Keynote requirements - the Keynote guard resolves the app by name so it works on both the old `/Applications/Keynote.app` and the Apple Creator Studio build. See Building the downloads. |
@@ -877,20 +877,22 @@ deck's own sandbox, `presentations/sandbox/migrating_an_instance/` and
 hand-maintained `index.html` listing that deck's pages by hand, and holds that deck's
 review pages alongside it. Each change gets a review page under
 `presentations/sandbox/<deck>/`, created from `tools/sandbox-template.html`, showing three
-implementation options; Joseph picks one in chat or asks for another set, and the winner
+implementation options by default, or the number requested for that round; Joseph picks one in chat or asks for another set, and the winner
 goes into the deck. Every page carries `<meta name="robots" content="noindex">`. The
 landing page carries a "Sandbox" button on each deck card, linking to that deck's sandbox
 (added 2026-08-27 at Joseph's request; moved from one global button to one per deck card
 the same day, when the sandbox itself split one-per-deck).
 
-How a review page works: it embeds the real slide three times in iframes
+How a review page works: it embeds the real slide once per option in iframes
 (`../../<deck>/index.html#<slide-id>` - two levels up from `presentations/sandbox/<deck>/`
 to `presentations/`, then into the deck) and, on each iframe's `load`, appends a `<style>`
 with that option's CSS to the iframe document. The options are therefore always the
 deployed deck plus a few rules, never a copy of the deck, and they track deck edits
 automatically.
 
-- Option A is by convention whatever the deck currently ships and injects nothing.
+- Option A is by convention whatever the deck currently ships and injects nothing, unless
+  a round explicitly asks for all-new designs. The current training slide 2 round has five
+  new variants and leaves the source deck unchanged.
 - Variant CSS only touches the slide's `#id` and only uses the deck's own tokens, so an
   accepted option pastes into the deck unchanged.
 - Injection needs same-origin access, so it only works over HTTP. Opened from `file://` the
@@ -903,8 +905,17 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-No pages currently awaiting a decision under
-`presentations/sandbox/training_a_team/`.
+Current pages awaiting a decision under `presentations/sandbox/training_a_team/`:
+`s02-where-we-are-today` (2026-09-07, five new treatments for slide 2, the first review in
+the slide 1-10 refinement requested by Dafydd: A people first, B three outcomes, C everyday
+workflow, D platform and people, E one statement with four proofs). All five inject only
+the second slide's content inside their iframe, scoped to `#s02-review`; the deck and
+downloads are unchanged. New size tokens live only in the injected preview `:root`.
+The page carries `#a`-`#e` anchors, full-size `?option=a`-`?option=e` views, and proposed
+speaker notes that retain the established facts. Source deck navigation is suppressed
+inside previews so they stay on slide 2. When opened from disk or when injection fails,
+the page explains that the proposal is unavailable rather than displaying the unchanged
+slide as a variant; descriptions and notes remain readable.
 Decided (under `presentations/sandbox/training_a_team/`):
 `s08-mindset-three` (2026-09-04, three rounds on a proposed new slide 8 - the mindset shift the
 engineers had to make to get from ClickOps to GitOps, which Dafydd calls probably the most
