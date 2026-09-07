@@ -734,6 +734,22 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-07, training_a_team slide 2, five new sandbox options awaiting a decision.**
+  Dafydd requested five reviewable options for each of slides 1-10, starting with slide 2,
+  to reduce the word-heavy training deck. This round implements slide 2 only. A leads with
+  the whole Mac team working in Terraform; B gives the estate, team and expanding training
+  three large outcome columns; C shows the everyday change, pull request, review and
+  production flow; D pairs platform and people on contrasting grounds; E places four
+  supporting facts beside "Terraform is how we work". The fixed title stays. Operational
+  detail moves into externally reviewable speaker notes, including the three-stage route
+  to live, peer approval, versioning, rollback and the explicit breakglass exception.
+  Open-source training and packaging/endpoint security upskilling are retained. Page
+  `presentations/sandbox/training_a_team/s02-where-we-are-today.html` has five live iframe
+  renders, direct anchors, full-size option views and proposed notes. Source decks and
+  downloads are unchanged. All five rendered and checked over HTTP at 1920x1080; the review
+  page also handles local-file and script failure without showing the source as a proposal.
+  Training has no presenter.json, so its presenter sync check does not apply. PR #91.
+
 - **2026-09-04, the downloads now carry the Louise interview as a playable movie.** Dafydd:
   "the video is not embeded in either generated presentation. that's a failure state". He was
   right, and it had been true since the video landed: `build-downloads.mjs` flattens every
