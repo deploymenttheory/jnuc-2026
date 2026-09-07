@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sandbox - slide 3 Learning outcomes</title>
+<link rel="stylesheet" href="../sandbox.css">
+<style>
+  .jump { flex-wrap: wrap; }
+  .option { scroll-margin-top: 24px; }
+  .option-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .open-option { white-space: nowrap; }
+  .frame { position: relative; }
+  .frame iframe { visibility: hidden; }
+  .frame[data-state="ready"] iframe { visibility: visible; }
+  .frame-status { position: absolute; inset: 0; display: grid; place-content: center; padding: 32px; color: var(--muted); text-align: center; }
+  .frame[data-state="ready"] .frame-status { display: none; }
+  .notes-copy { max-width: 80ch; padding: 20px 24px 4px; border-left: 2px solid var(--border); }
+  summary:focus-visible { outline: 2px solid var(--green-bright); outline-offset: 4px; }
+  .viewer-bar { display: none; }
+  body.single { padding: 0 0 32px; }
+  .single .wrap { max-width: none; }
+  .single .review-intro, .single .option:not(.selected), .single .option-heading, .single .option-description, .single .foot { display: none; }
+  .single .viewer-bar { min-height: 64px; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; background: var(--surface); }
+  .viewer-bar nav { display: flex; gap: 18px; }
+  .viewer-bar [aria-current="page"] { color: var(--text); text-decoration-thickness: 3px; }
+  .single .frame { height: calc(100dvh - 64px); aspect-ratio: auto; border: 0; border-radius: 0; }
+  .single .option > details { margin: 20px 24px 0; }
+  .single .option { margin-bottom: 0; }
+  @media (max-width: 620px) {
+    .option-heading { display: block; }
+    .open-option { display: inline-block; margin-bottom: 12px; }
+    .single .viewer-bar { flex-wrap: wrap; }
+    .single .frame { height: auto; aspect-ratio: 16 / 9; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="review-intro">
+    <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / Training a team / slide 3</p>
+    <h1>Slide 3 - Learning outcomes &amp; what success looked like</h1>
+    <p class="lede">Five new treatments with less text and a different emphasis in each. The title stays; supporting detail moves into the proposed speaker notes. Capabilities, observed results and intended benefits remain distinct. The presentation is unchanged.</p>
+    <nav class="jump" aria-label="Options">
+      <a href="#a">A - The finish line</a><a href="#b">B - What we taught and what changed</a><a href="#c">C - Show it in one real change</a><a href="#d">D - Who benefits</a><a href="#e">E - The judgement that makes it safe</a>
+    </nav>
+  </header>
+  <div class="viewer-bar">
+    <a class="back-link" href="s03-learning-outcomes.html">All five options</a>
+    <strong id="viewer-title">Slide 3</strong>
+    <nav aria-label="Full-size options"><a href="?option=a">A</a><a href="?option=b">B</a><a href="?option=c">C</a><a href="?option=d">D</a><a href="?option=e">E</a></nav>
+  </div>
+
+  <section class="option" id="a">
+    <div class="option-heading"><h2>Option A - The finish line</h2><a class="open-option" href="?option=a">Open full-size option A</a></div>
+    <p class="option-description">Lead with the practical definition of trained, then show the three behaviours we observed. Pick this to make the finish line unmistakable and leave the wider benefits for delivery.</p>
+    <div class="frame"><div class="frame-status">Preparing option A. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="a" title="Option A - The finish line"></iframe></div>
+    <details><summary>Proposed speaker notes for A</summary><div class="notes-copy">
+      <p>Start with the finish line. An engineer counted as trained when they could take a real change from branch to production unaided. Pause on that word, while making clear that the normal process still includes peer review. The three statements underneath are the behaviours we actually observed.</p>
+      <p>We wanted any team member to be able to pick up any change and take it through review into production with confidence. Collaboration meant externalising domain knowledge from people&#x27;s heads into self-documenting code, reducing single points of failure and catching mistakes before production. Every engineer needed to read a terraform plan and predict its effect before approval, and to recognise when breakglass GUI access or stopping to ask for review was the right call.</p>
+      <p>Fast recovery meant returning to a known good configuration. Once mistakes were recoverable, engineers took on changes they would previously have avoided or escalated. Normal production changes go through a pull request, with the commit history explaining what changed, when and why for stakeholders and external audit. Breakglass GUI write access remains the exception to that normal route.</p>
+      <p>The observed results were that the Mac engineering team became self-sufficient committing and reviewing pull requests without assistance, they were making architectural decisions, and resources were being managed in code exclusively. These are the reported outcomes, distinct from the benefits we intended the programme to bring.</p>
+      <p>For individuals, the intended benefits were transferable skills, recoverable mistakes and lower cognitive load across instances. For the team, they were fewer single points of failure, shared engineering practices and language with cloud teams, awareness of changes across teams, learning rather than blame, collaboration without conflicting changes, and Terraform modules that sister engineering teams could consume through self-service. For the organisation, the aims were compliance and audit without a scramble, governance without slowing delivery, and deployment guardrails that scale beyond one team.</p>
+      <p>An engineer counted as trained when they could take a real change from branch to production unaided. That finish line sits alongside the required peer review in the normal change process. The goals were not to make everyone a Terraform expert, promise zero incidents or abandon Jamf GUI knowledge; that knowledge still matters for breakglass.</p>
+    </div></details>
+  </section>
+
+  <section class="option" id="b">
+    <div class="option-heading"><h2>Option B - What we taught and what changed</h2><a class="open-option" href="?option=b">Open full-size option B</a></div>
+    <p class="option-description">Two contrasting grounds keep the capabilities we aimed to teach apart from the results we observed. Pick this to explain both sides of the title without implying that each result has one isolated cause.</p>
+    <div class="frame"><div class="frame-status">Preparing option B. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="b" title="Option B - What we taught and what changed"></iframe></div>
+    <details><summary>Proposed speaker notes for B</summary><div class="notes-copy">
+      <p>Read the left side as capabilities we wanted engineers to develop and the right side as results we actually observed. They are two views of the programme, not a row-by-row claim of cause and effect. Close with the definition of trained along the foot.</p>
+      <p>We wanted any team member to be able to pick up any change and take it through review into production with confidence. Collaboration meant externalising domain knowledge from people&#x27;s heads into self-documenting code, reducing single points of failure and catching mistakes before production. Every engineer needed to read a terraform plan and predict its effect before approval, and to recognise when breakglass GUI access or stopping to ask for review was the right call.</p>
+      <p>Fast recovery meant returning to a known good configuration. Once mistakes were recoverable, engineers took on changes they would previously have avoided or escalated. Normal production changes go through a pull request, with the commit history explaining what changed, when and why for stakeholders and external audit. Breakglass GUI write access remains the exception to that normal route.</p>
+      <p>The observed results were that the Mac engineering team became self-sufficient committing and reviewing pull requests without assistance, they were making architectural decisions, and resources were being managed in code exclusively. These are the reported outcomes, distinct from the benefits we intended the programme to bring.</p>
+      <p>For individuals, the intended benefits were transferable skills, recoverable mistakes and lower cognitive load across instances. For the team, they were fewer single points of failure, shared engineering practices and language with cloud teams, awareness of changes across teams, learning rather than blame, collaboration without conflicting changes, and Terraform modules that sister engineering teams could consume through self-service. For the organisation, the aims were compliance and audit without a scramble, governance without slowing delivery, and deployment guardrails that scale beyond one team.</p>
+      <p>An engineer counted as trained when they could take a real change from branch to production unaided. That finish line sits alongside the required peer review in the normal change process. The goals were not to make everyone a Terraform expert, promise zero incidents or abandon Jamf GUI knowledge; that knowledge still matters for breakglass.</p>
+    </div></details>
+  </section>
+
+  <section class="option" id="c">
+    <div class="option-heading"><h2>Option C - Show it in one real change</h2><a class="open-option" href="?option=c">Open full-size option C</a></div>
+    <p class="option-description">One change makes the learning practical: make it, understand the plan, get peer review and reach production. Pick this to explain the finish line through the work, with recovery and judgement supporting the route.</p>
+    <div class="frame"><div class="frame-status">Preparing option C. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="c" title="Option C - Show it in one real change"></iframe></div>
+    <details><summary>Proposed speaker notes for C</summary><div class="notes-copy">
+      <p>Follow one real change from branch to production. The engineer makes the change, reads the Terraform plan to predict its effect before approval, gets peer review and takes the change into production. This is a summary of the normal workflow, not a replacement for its controls. Recovery and knowing when to stop are capabilities that support the whole route.</p>
+      <p>We wanted any team member to be able to pick up any change and take it through review into production with confidence. Collaboration meant externalising domain knowledge from people&#x27;s heads into self-documenting code, reducing single points of failure and catching mistakes before production. Every engineer needed to read a terraform plan and predict its effect before approval, and to recognise when breakglass GUI access or stopping to ask for review was the right call.</p>
+      <p>Fast recovery meant returning to a known good configuration. Once mistakes were recoverable, engineers took on changes they would previously have avoided or escalated. Normal production changes go through a pull request, with the commit history explaining what changed, when and why for stakeholders and external audit. Breakglass GUI write access remains the exception to that normal route.</p>
+      <p>The observed results were that the Mac engineering team became self-sufficient committing and reviewing pull requests without assistance, they were making architectural decisions, and resources were being managed in code exclusively. These are the reported outcomes, distinct from the benefits we intended the programme to bring.</p>
+      <p>For individuals, the intended benefits were transferable skills, recoverable mistakes and lower cognitive load across instances. For the team, they were fewer single points of failure, shared engineering practices and language with cloud teams, awareness of changes across teams, learning rather than blame, collaboration without conflicting changes, and Terraform modules that sister engineering teams could consume through self-service. For the organisation, the aims were compliance and audit without a scramble, governance without slowing delivery, and deployment guardrails that scale beyond one team.</p>
+      <p>An engineer counted as trained when they could take a real change from branch to production unaided. That finish line sits alongside the required peer review in the normal change process. The goals were not to make everyone a Terraform expert, promise zero incidents or abandon Jamf GUI knowledge; that knowledge still matters for breakglass.</p>
+    </div></details>
+  </section>
+
+  <section class="option" id="d">
+    <div class="option-heading"><h2>Option D - Who benefits</h2><a class="open-option" href="?option=d">Open full-size option D</a></div>
+    <p class="option-description">Three widening bands show the intended gains for an individual, the team and the organisation. Pick this when the audience needs a reason to invest in training, with the practical finish line anchoring the benefits.</p>
+    <div class="frame"><div class="frame-status">Preparing option D. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="d" title="Option D - Who benefits"></iframe></div>
+    <details><summary>Proposed speaker notes for D</summary><div class="notes-copy">
+      <p>Take the widening bands in order: individual, team, organisation. These are the benefits we wanted the training to bring, not a new set of measured results. Use the practical definition of trained at the foot to keep the ambition grounded in something an engineer could demonstrate.</p>
+      <p>We wanted any team member to be able to pick up any change and take it through review into production with confidence. Collaboration meant externalising domain knowledge from people&#x27;s heads into self-documenting code, reducing single points of failure and catching mistakes before production. Every engineer needed to read a terraform plan and predict its effect before approval, and to recognise when breakglass GUI access or stopping to ask for review was the right call.</p>
+      <p>Fast recovery meant returning to a known good configuration. Once mistakes were recoverable, engineers took on changes they would previously have avoided or escalated. Normal production changes go through a pull request, with the commit history explaining what changed, when and why for stakeholders and external audit. Breakglass GUI write access remains the exception to that normal route.</p>
+      <p>The observed results were that the Mac engineering team became self-sufficient committing and reviewing pull requests without assistance, they were making architectural decisions, and resources were being managed in code exclusively. These are the reported outcomes, distinct from the benefits we intended the programme to bring.</p>
+      <p>For individuals, the intended benefits were transferable skills, recoverable mistakes and lower cognitive load across instances. For the team, they were fewer single points of failure, shared engineering practices and language with cloud teams, awareness of changes across teams, learning rather than blame, collaboration without conflicting changes, and Terraform modules that sister engineering teams could consume through self-service. For the organisation, the aims were compliance and audit without a scramble, governance without slowing delivery, and deployment guardrails that scale beyond one team.</p>
+      <p>An engineer counted as trained when they could take a real change from branch to production unaided. That finish line sits alongside the required peer review in the normal change process. The goals were not to make everyone a Terraform expert, promise zero incidents or abandon Jamf GUI knowledge; that knowledge still matters for breakglass.</p>
+    </div></details>
+  </section>
+
+  <section class="option" id="e">
+    <div class="option-heading"><h2>Option E - The judgement that makes it safe</h2><a class="open-option" href="?option=e">Open full-size option E</a></div>
+    <p class="option-description">Three large rows put judgement at the centre: predict the change, recover if needed, and know when to stop and ask. Pick this to stress that capability includes making a sound decision before acting.</p>
+    <div class="frame"><div class="frame-status">Preparing option E. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="e" title="Option E - The judgement that makes it safe"></iframe></div>
+    <details><summary>Proposed speaker notes for E</summary><div class="notes-copy">
+      <p>Land each judgement in turn. An engineer needs to predict what the plan will change before approving it, recover a known good configuration if needed, and recognise when to stop and ask for review or use breakglass GUI access. These are capabilities we wanted to teach. The statement at the foot records an observed result, alongside our definition of trained.</p>
+      <p>We wanted any team member to be able to pick up any change and take it through review into production with confidence. Collaboration meant externalising domain knowledge from people&#x27;s heads into self-documenting code, reducing single points of failure and catching mistakes before production. Every engineer needed to read a terraform plan and predict its effect before approval, and to recognise when breakglass GUI access or stopping to ask for review was the right call.</p>
+      <p>Fast recovery meant returning to a known good configuration. Once mistakes were recoverable, engineers took on changes they would previously have avoided or escalated. Normal production changes go through a pull request, with the commit history explaining what changed, when and why for stakeholders and external audit. Breakglass GUI write access remains the exception to that normal route.</p>
+      <p>The observed results were that the Mac engineering team became self-sufficient committing and reviewing pull requests without assistance, they were making architectural decisions, and resources were being managed in code exclusively. These are the reported outcomes, distinct from the benefits we intended the programme to bring.</p>
+      <p>For individuals, the intended benefits were transferable skills, recoverable mistakes and lower cognitive load across instances. For the team, they were fewer single points of failure, shared engineering practices and language with cloud teams, awareness of changes across teams, learning rather than blame, collaboration without conflicting changes, and Terraform modules that sister engineering teams could consume through self-service. For the organisation, the aims were compliance and audit without a scramble, governance without slowing delivery, and deployment guardrails that scale beyond one team.</p>
+      <p>An engineer counted as trained when they could take a real change from branch to production unaided. That finish line sits alongside the required peer review in the normal change process. The goals were not to make everyone a Terraform expert, promise zero incidents or abandon Jamf GUI knowledge; that knowledge still matters for breakglass.</p>
+    </div></details>
+  </section>
+
+  <p class="foot">To choose, name A, B, C, D or E in chat, or describe a further change. Each preview loads the real deck and replaces only slide 3 inside that iframe. Serve this page over HTTP to see the proposals; the source deck remains available <a href="../../training_a_team/index.html?theme=default#3">as it stands today</a>.</p>
+</div>
+
+<template id="markup-a">
+  <div class="s03-content s03-finish">
+    <div class="s03-finish-main">
+      <p class="s03-label">Our definition of trained</p>
+      <h2>A real change.<br>Branch to production.<br><em>Unaided.</em></h2>
+      <p class="s03-small">Peer review remains part of the normal change process.</p>
+    </div>
+    <div class="s03-observed">
+      <p class="s03-label">What we saw</p>
+      <div class="s03-proof-strip">
+        <p>Committing and reviewing PRs<br><strong>without assistance</strong></p>
+        <p>Making<br><strong>architectural decisions</strong></p>
+        <p>Resources managed<br><strong>exclusively in code</strong></p>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="markup-b">
+  <div class="s03-content s03-compare">
+    <div class="s03-aims">
+      <p class="s03-label">What we aimed to teach</p>
+      <ul class="s03-comparison-list">
+        <li><h2>Work together</h2><p>Share knowledge through code</p></li>
+        <li><h2>Change with confidence</h2><p>Read the plan. Recover if needed.</p></li>
+        <li><h2>Use judgement</h2><p>Know when to stop and ask</p></li>
+      </ul>
+    </div>
+    <div class="s03-results">
+      <p class="s03-label">What we observed</p>
+      <ul class="s03-comparison-list">
+        <li><h2>Self-sufficient team</h2><p>Committing and reviewing without assistance</p></li>
+        <li><h2>Architectural decisions</h2><p>Made by the Mac engineering team</p></li>
+        <li><h2>Resources in code</h2><p>Managed exclusively through code</p></li>
+      </ul>
+    </div>
+    <p class="s03-finish-line"><strong>Trained</strong> A real change from branch to production, unaided</p>
+  </div>
+</template>
+<template id="markup-c">
+  <div class="s03-content s03-practice">
+    <h2>A real change, <em>unaided</em></h2>
+    <p class="s03-small">The practical finish line, from branch to production</p>
+    <ol class="s03-route" aria-label="The normal change route">
+      <li><span class="s03-step-number">01</span><h3>Make a change</h3><p>On a branch</p></li>
+      <li><span class="s03-step-number">02</span><h3>Read the plan</h3><p>Predict its effect<br>before approval</p></li>
+      <li><span class="s03-step-number">03</span><h3>Peer review</h3><p>Get the change<br>reviewed</p></li>
+      <li><span class="s03-step-number">04</span><h3>Production</h3><p>Take the change<br>through to live</p></li>
+    </ol>
+    <div class="s03-support">
+      <p><strong>Recover if needed</strong><span>Return to a known good configuration</span></p>
+      <p><strong>Know when to stop</strong><span>Ask for review or recognise a breakglass need</span></p>
+    </div>
+  </div>
+</template>
+<template id="markup-d">
+  <div class="s03-content s03-benefits">
+    <p class="s03-label">The benefits we wanted</p>
+    <div class="s03-benefit-bands">
+      <div class="s03-benefit s03-individual"><h2>Individual</h2><p>Transferable skills<br>Recoverable mistakes. Lower cognitive load.</p></div>
+      <div class="s03-benefit s03-team"><h2>Team</h2><p>Shared knowledge and collaboration<br>Fewer single points of failure</p></div>
+      <div class="s03-benefit s03-organisation"><h2>Organisation</h2><p>Audit and governance<br>Deployment guardrails that scale beyond one team</p></div>
+    </div>
+    <p class="s03-finish-line"><strong>Trained</strong> A real change from branch to production, unaided</p>
+  </div>
+</template>
+<template id="markup-e">
+  <div class="s03-content s03-judgement">
+    <p class="s03-label">The capabilities we wanted to build</p>
+    <div class="s03-judgement-rows">
+      <div><h2>Predict the change</h2><p>Read the plan.<br>Understand its effect before approval.</p></div>
+      <div><h2>Recover if needed</h2><p>Return to a known good configuration.<br>Have the confidence to try.</p></div>
+      <div><h2>Know when to stop</h2><p>Ask for review.<br>Recognise when breakglass is the right call.</p></div>
+    </div>
+    <div class="s03-judgement-close">
+      <p><strong>Trained</strong><span>A real change from branch<br>to production, unaided</span></p>
+      <p><strong>What we saw</strong><span>The team committing and reviewing PRs<br>without assistance</span></p>
+    </div>
+  </div>
+</template>
+
+<script>
+// All five variants replace the third slide body inside the real deck.
+// Added sizing tokens belong only to preview documents, so the source deck stays intact.
+const CSS = `
+:root {
+  --s03-unit: 8px;
+  --s03-hairline: 1px;
+  --s03-body-height: 688px;
+  --s03-small: 26px;
+  --s03-body: 30px;
+  --s03-medium: 40px;
+  --s03-large: 54px;
+  --s03-hero: 86px;
+  --s03-leading: 1.3;
+  --s03-heading-leading: 1.05;
+  --s03-tracking: -.025em;
+  --s03-label-tracking: .06em;
+}
+#s03-review .s03-content { margin-top: calc(var(--s03-unit) * 8); height: var(--s03-body-height); font-family: var(--sans); }
+#s03-review .s03-content h2, #s03-review .s03-content h3, #s03-review .s03-content p, #s03-review .s03-content ul, #s03-review .s03-content ol { margin: 0; padding: 0; }
+#s03-review .s03-content h2, #s03-review .s03-content h3 { font-weight: 700; letter-spacing: var(--s03-tracking); line-height: var(--s03-heading-leading); }
+#s03-review .s03-content p { font-size: var(--s03-body); line-height: var(--s03-leading); }
+#s03-review .s03-content em { font-style: normal; color: var(--accent); }
+#s03-review .s03-content .s03-label { color: var(--accent); font-size: var(--s03-small); font-weight: 700; letter-spacing: var(--s03-label-tracking); }
+#s03-review .s03-content .s03-small { color: var(--text-dimmer); font-size: var(--s03-small); }
+#s03-review .s03-content .s03-finish-line { padding-top: calc(var(--s03-unit) * 3); border-top: var(--s03-hairline) solid var(--border); font-size: var(--s03-body); }
+#s03-review .s03-finish-line strong { color: var(--accent); margin-right: calc(var(--s03-unit) * 4); }
+#s03-review .s03-finish { display: flex; flex-direction: column; justify-content: space-between; padding-top: calc(var(--s03-unit) * 2); padding-bottom: calc(var(--s03-unit) * 3); }
+#s03-review .s03-finish-main h2 { font-size: var(--s03-hero); margin-top: calc(var(--s03-unit) * 3); }
+#s03-review .s03-finish-main .s03-small { margin-top: calc(var(--s03-unit) * 3); }
+#s03-review .s03-observed { border-top: var(--s03-hairline) solid var(--border); padding-top: calc(var(--s03-unit) * 3); }
+#s03-review .s03-proof-strip { display: grid; grid-template-columns: 1.12fr 1fr 1fr; gap: calc(var(--s03-unit) * 5); margin-top: calc(var(--s03-unit) * 3); }
+#s03-review .s03-proof-strip p { font-size: var(--s03-body); color: var(--text-dim); }
+#s03-review .s03-proof-strip strong { color: var(--text); }
+#s03-review .s03-compare { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto; row-gap: calc(var(--s03-unit) * 4); }
+#s03-review .s03-aims, #s03-review .s03-results { padding: calc(var(--s03-unit) * 5); }
+#s03-review .s03-aims { background: var(--surface); }
+#s03-review .s03-results { padding-right: 0; padding-left: calc(var(--s03-unit) * 7); border-left: calc(var(--s03-hairline) * 3) solid var(--accent); }
+#s03-review .s03-comparison-list { list-style: none; display: grid; gap: calc(var(--s03-unit) * 5); padding-top: calc(var(--s03-unit) * 6) !important; }
+#s03-review .s03-comparison-list h2 { font-size: var(--s03-medium); }
+#s03-review .s03-comparison-list p { color: var(--text-dim); font-size: var(--s03-small); margin-top: calc(var(--s03-unit) * 1.5); }
+#s03-review .s03-compare .s03-finish-line { grid-column: 1 / -1; margin-bottom: calc(var(--s03-unit) * 3); }
+#s03-review .s03-practice { padding-top: calc(var(--s03-unit) * 2); }
+#s03-review .s03-practice > h2 { font-size: var(--s03-hero); }
+#s03-review .s03-practice > .s03-small { margin-top: calc(var(--s03-unit) * 2); }
+#s03-review .s03-route { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); margin-top: calc(var(--s03-unit) * 9) !important; }
+#s03-review .s03-route li { position: relative; border-top: calc(var(--s03-hairline) * 3) solid var(--accent); padding-top: calc(var(--s03-unit) * 3); padding-right: calc(var(--s03-unit) * 4); }
+#s03-review .s03-route li:last-child { border-color: var(--border); }
+#s03-review .s03-route li:not(:last-child)::after { content: '→'; position: absolute; right: calc(var(--s03-unit) * 3); top: calc(var(--s03-unit) * 2.5); font-size: var(--s03-medium); color: var(--accent); }
+#s03-review .s03-step-number { font-size: var(--s03-small); font-weight: 700; color: var(--accent); }
+#s03-review .s03-route h3 { font-size: var(--s03-medium); margin-top: calc(var(--s03-unit) * 3); }
+#s03-review .s03-route p { font-size: var(--s03-small); color: var(--text-dim); margin-top: calc(var(--s03-unit) * 2); }
+#s03-review .s03-support { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--s03-unit) * 6); margin-top: calc(var(--s03-unit) * 8); padding-top: calc(var(--s03-unit) * 4); border-top: var(--s03-hairline) solid var(--border); }
+#s03-review .s03-support strong { display: block; font-size: var(--s03-body); }
+#s03-review .s03-support span { display: block; font-size: var(--s03-small); color: var(--text-dimmer); margin-top: calc(var(--s03-unit) * 2); }
+#s03-review .s03-benefits { display: flex; flex-direction: column; padding-top: calc(var(--s03-unit) * 2); padding-bottom: calc(var(--s03-unit) * 3); }
+#s03-review .s03-benefit-bands { display: grid; gap: calc(var(--s03-unit) * 2); margin-top: calc(var(--s03-unit) * 4); }
+#s03-review .s03-benefit { display: grid; grid-template-columns: calc(var(--s03-unit) * 35) 1fr; align-items: center; gap: calc(var(--s03-unit) * 4); padding: calc(var(--s03-unit) * 3.5) calc(var(--s03-unit) * 4); background: var(--surface); border-left: calc(var(--s03-hairline) * 4) solid var(--accent); }
+#s03-review .s03-benefit h2 { font-size: var(--s03-medium); color: var(--accent); }
+#s03-review .s03-benefit p { font-size: var(--s03-small); color: var(--text-dim); }
+#s03-review .s03-individual { width: 72%; }
+#s03-review .s03-team { width: 86%; }
+#s03-review .s03-organisation { width: 100%; }
+#s03-review .s03-benefits .s03-finish-line { margin-top: auto; }
+#s03-review .s03-judgement { display: flex; flex-direction: column; padding-top: calc(var(--s03-unit) * 2); padding-bottom: calc(var(--s03-unit) * 3); }
+#s03-review .s03-judgement-rows { margin-top: calc(var(--s03-unit) * 3); }
+#s03-review .s03-judgement-rows > div { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: calc(var(--s03-unit) * 6); border-top: var(--s03-hairline) solid var(--border); padding: calc(var(--s03-unit) * 4) 0; }
+#s03-review .s03-judgement-rows h2 { font-size: var(--s03-large); color: var(--accent); }
+#s03-review .s03-judgement-rows p { font-size: var(--s03-body); color: var(--text-dim); }
+#s03-review .s03-judgement-close { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--s03-unit) * 6); margin-top: auto; border-top: var(--s03-hairline) solid var(--border); padding-top: calc(var(--s03-unit) * 3); }
+#s03-review .s03-judgement-close strong { display: block; font-size: var(--s03-small); color: var(--text); }
+#s03-review .s03-judgement-close span { display: block; font-size: var(--s03-small); color: var(--text-dimmer); margin-top: var(--s03-unit); }
+`;
+const selected = new URLSearchParams(location.search).get('option');
+const keys = ['a', 'b', 'c', 'd', 'e'];
+if (keys.includes(selected)) {
+  document.body.classList.add('single');
+  document.getElementById(selected).classList.add('selected');
+  document.getElementById('viewer-title').textContent = document.querySelector('#' + selected + ' h2').textContent;
+  document.querySelector('.back-link').href += '#' + selected;
+  document.querySelector('.viewer-bar a[href="?option=' + selected + '"]').setAttribute('aria-current', 'page');
+}
+
+document.querySelectorAll('iframe[data-variant]').forEach((frame) => {
+  const key = frame.dataset.variant;
+  if (keys.includes(selected) && key !== selected) return;
+  const container = frame.parentElement;
+  const status = container.querySelector('.frame-status');
+  frame.addEventListener('load', () => {
+    try {
+      const doc = frame.contentDocument;
+      const slide = doc && doc.querySelectorAll('section.slide')[2];
+      if (!slide || !slide.classList.contains('dense3') || slide.querySelector('h1')?.textContent.trim() !== 'Learning outcomes & what success looked like') {
+        throw new Error('The source slide could not be matched.');
+      }
+      const body = slide.querySelector('.body');
+      if (!body) throw new Error('The source content could not be matched.');
+      slide.id = 's03-review';
+      slide.dataset.reviewOption = key;
+      const style = doc.createElement('style');
+      style.dataset.s03Review = key;
+      style.textContent = CSS;
+      doc.head.appendChild(style);
+      body.replaceWith(doc.importNode(document.getElementById('markup-' + key).content, true));
+      const notes = [...document.querySelectorAll('#' + key + ' .notes-copy p')].map((p) => p.textContent).join('\n\n');
+      slide.setAttribute('data-notes', notes);
+      doc.getElementById('notestext').textContent = notes;
+      // Keep preview clicks, swipes and keyboard navigation on the slide under review.
+      // Notes, speaker and fullscreen keys remain available inside the real deck.
+      doc.addEventListener('keydown', (event) => {
+        if (['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) {
+          event.stopImmediatePropagation();
+          event.preventDefault();
+        }
+      }, true);
+      doc.addEventListener('click', (event) => event.stopPropagation(), true);
+      doc.addEventListener('touchstart', (event) => event.stopPropagation(), true);
+      container.dataset.state = 'ready';
+    } catch (error) {
+      container.dataset.state = 'unavailable';
+      status.textContent = location.protocol === 'file:'
+        ? 'This proposal needs a local HTTP server. The description and proposed speaker notes remain available below.'
+        : 'This proposal could not load. Reload the page or open the source deck using the link below. The proposed speaker notes remain available.';
+    }
+  });
+  // Register the handler first, so a cached deck cannot load before injection is ready.
+  frame.src = '../../training_a_team/index.html?theme=default#3';
+});
+</script>
+</body>
+</html>
