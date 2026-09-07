@@ -750,7 +750,7 @@ it up - either way it is on disk for a recovering session.
   pinned previews, direct anchors, full-size views and mobile layouts. File and missing-source
   fallbacks keep unavailable previews hidden. No browser or resource errors. Both source
   decks are byte-unchanged; shared files and downloads are untouched. Training has no
-  presenter.json, so its presenter sync check does not apply.
+  presenter.json, so its presenter sync check does not apply. PR #93.
 
 - **2026-09-07, training_a_team slide 2 option E accepted.** Dafydd: "proceed with option E".
   Applied "One statement, four proofs" from the five-option review to the real deck as
