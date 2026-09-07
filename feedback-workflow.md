@@ -748,7 +748,7 @@ it up - either way it is on disk for a recovering session.
   renders, direct anchors, full-size option views and proposed notes. Source decks and
   downloads are unchanged. All five rendered and checked over HTTP at 1920x1080; the review
   page also handles local-file and script failure without showing the source as a proposal.
-  Training has no presenter.json, so its presenter sync check does not apply.
+  Training has no presenter.json, so its presenter sync check does not apply. PR #91.
 
 - **2026-09-04, the downloads now carry the Louise interview as a playable movie.** Dafydd:
   "the video is not embeded in either generated presentation. that's a failure state". He was
