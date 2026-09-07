@@ -734,6 +734,20 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-07, training_a_team slide 2 option E accepted.** Dafydd: "proceed with option E".
+  Applied "One statement, four proofs" from the five-option review to the real deck as
+  `#s-estate`: the large lime "Terraform is how we work" statement, daily whole-team use,
+  four supporting facts and the open-source training/sister-team line. Copied the accepted
+  three paragraphs of speaker notes, retaining versioning, rollback, the three-stage route
+  to live, +1 peer approval and the normal-change/breakglass distinction. Replaced the old
+  estate statecards and their unused CSS with one scoped block and the required sizing
+  tokens. Retired `s02-where-we-are-today.html`, marked the sandbox entry done and updated
+  AGENTS.md. Downloads are deferred under the feedback workflow. File and HTTP renders
+  match: content is pixel-identical to approved E, the footer matches the source deck,
+  neighbouring slides 1 and 3 are unchanged, and notes, speaker controls and one-step
+  navigation across all 23 slides pass. No overflow, browser errors or external requests.
+  Training has no presenter.json, so its presenter sync check does not apply.
+
 - **2026-09-07, training_a_team slide 2, five new sandbox options awaiting a decision.**
   Dafydd requested five reviewable options for each of slides 1-10, starting with slide 2,
   to reduce the word-heavy training deck. This round implements slide 2 only. A leads with

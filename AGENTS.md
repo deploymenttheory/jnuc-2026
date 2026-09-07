@@ -497,8 +497,12 @@ round.
 Slide map (after the template adoption and the merge with Dafydd's Aug 2026 edits): `#1`
 title (template three-speaker layout, LBG logo in the template's customer-logo slot, stats
 row kept; the full session title replaced the ClickOps -> GitOps lockup and its tagline on
-2026-09-04, and the progress bar and counter are hidden on this slide), `#2` "Where we are today" (the old half-speakers slide kept its real content -
-the estate statecards, centred and enlarged - when the speakers moved to `#1`), `#3` goals,
+2026-09-04, and the progress bar and counter are hidden on this slide), `#2` "Where we are today"
+(`s-estate`, sandbox option E accepted 2026-09-07: "Terraform is how we work" in large lime type
+beside four supporting facts - 1,500+ resources, three stages on the route to live, +1 approval
+and breakglass GUI write access. The whole Mac team works this way every day; a quiet line
+retains open-source training and the sister teams now learning. The full operational detail
+lives in the speaker notes. Rules are scoped to `#s-estate`, with `--s02-*` sizing tokens), `#3` goals,
 `#4` execution, `#5` what didn't work, `#6` what worked, `#7` conditions, `#8` learning
 priorities by role, `#9` the learning pathway (four phases - **merges the old `#9` matrix and
 `#10` timeline**, Aug 2026: both said the same thing twice and neither described what the team
@@ -750,8 +754,9 @@ When changing anything colour-related, screenshot all 23 slides on `default` bef
 and `cmp` them. A pure tokenising change must not alter the rendering of any theme you did
 not intend to change; that check is what catches a wrong substitution.
 
-- Slides are `<section class="slide">` with no ids except `#s1`. Navigation is by index -
-  the URL hash is `#1`..`#21`, not a slide name. Removing or adding a slide renumbers
+- Slides are `<section class="slide">`; `#s1` identifies the title and `#s-estate` scopes
+  slide 2's accepted layout. Navigation remains by index -
+  the URL hash is `#1`..`#23`, not a slide name. Removing or adding a slide renumbers
   everything after it - update this file's slide references when that happens.
 - Notes live in a `data-notes` attribute on each section, shown in an overlay toggled with
   `n`. There is no second-window presenter view and no `presenter.json`.
@@ -891,8 +896,8 @@ deployed deck plus a few rules, never a copy of the deck, and they track deck ed
 automatically.
 
 - Option A is by convention whatever the deck currently ships and injects nothing, unless
-  a round explicitly asks for all-new designs. The current training slide 2 round has five
-  new variants and leaves the source deck unchanged.
+  a round explicitly asks for all-new designs. The training slide 2 round offered five
+  new variants; option E was accepted on 2026-09-07.
 - Variant CSS only touches the slide's `#id` and only uses the deck's own tokens, so an
   accepted option pastes into the deck unchanged.
 - Injection needs same-origin access, so it only works over HTTP. Opened from `file://` the
@@ -905,18 +910,14 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages awaiting a decision under `presentations/sandbox/training_a_team/`:
-`s02-where-we-are-today` (2026-09-07, five new treatments for slide 2, the first review in
-the slide 1-10 refinement requested by Dafydd: A people first, B three outcomes, C everyday
-workflow, D platform and people, E one statement with four proofs). All five inject only
-the second slide's content inside their iframe, scoped to `#s02-review`; the deck and
-downloads are unchanged. New size tokens live only in the injected preview `:root`.
-The page carries `#a`-`#e` anchors, full-size `?option=a`-`?option=e` views, and proposed
-speaker notes that retain the established facts. Source deck navigation is suppressed
-inside previews so they stay on slide 2. When opened from disk or when injection fails,
-the page explains that the proposal is unavailable rather than displaying the unchanged
-slide as a variant; descriptions and notes remain readable.
+No pages currently awaiting a decision under `presentations/sandbox/training_a_team/`.
 Decided (under `presentations/sandbox/training_a_team/`):
+`s02-where-we-are-today` (2026-09-07, five treatments for slide 2, the first review in
+Dafydd's slide 1-10 refinement: A people first, B three outcomes, C everyday workflow,
+D platform and people, E one statement with four proofs. Decided the same day: option E,
+applied to the deck as `#s-estate`. The accepted copy, layout and three paragraphs of
+speaker notes are retained, including the normal-change PR route and breakglass exception.
+The page is retired and its index entry marked done. Downloads await a separate request);
 `s08-mindset-three` (2026-09-04, three rounds on a proposed new slide 8 - the mindset shift the
 engineers had to make to get from ClickOps to GitOps, which Dafydd calls probably the most
 crucial part of the journey. Round one settled the content, six from-and-to pairs each anchored
