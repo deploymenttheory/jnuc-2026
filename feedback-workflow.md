@@ -734,6 +734,33 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training slide 8, five text-size options.** Dafydd asked for the Mindset shift
+  slide to keep its content and its layout exactly as they are and simply have larger text, with
+  five sizes to choose from. Added `presentations/sandbox/training_a_team/s08-mindset-text-sizes.html`,
+  a sizing-only round: the page renders the shipped slide five times and each option injects a
+  `--s08-*` token block scoped to `#s08-review`, so no markup, wording, note, colour, band or
+  column width is touched and the deck itself is unchanged in this PR. The five steps scale the
+  two mindset columns, the question column on the lime rail and the three column labels together,
+  against today's body 24px, questions 17px, labels 17px: A body 26px, questions 18px, labels
+  18px, spacing untouched; B body 28px, questions 20px, labels 19px, spacing untouched; C body
+  30px, questions 21px, labels 20px, with leading 1.22 and 1.25, row padding and gap 24px and the
+  space under the title 32px; D body 32px, questions 23px, labels 21px, leading 1.2 and 1.24,
+  padding and gap 22px, title gap 30px; E body 34px, questions 24px, labels 22px, leading 1.2 and
+  1.22, padding and gap 20px, title gap 28px. E is capped there and the option says so: 35px puts
+  the grid at 1014 in deck coordinates, past the 1008 bottom of the content box, and getting
+  further would mean cutting the row padding below 20px or widening the 340px question column,
+  which this round does not do. The slide title stays at the deck's shared 56px so slide 8 still
+  matches its neighbours. Evidence: headless Chrome over HTTP on port 8751, each option
+  screenshotted at 1920x1080 through `?option=a` to `?option=e`, the whole page at 1400x5400 and
+  the plain deck slide for comparison; measured in deck coordinates through the review page, the
+  grid bottom runs 891.2 (A), 947.8 (B), 972.6 (C), 977.9 (D) and 993.3 (E) against a 1008
+  content limit and the footer hairline at 1030, all three columns of all seven rows share a top
+  edge in every option, the before column's ink stops at 445 to 545 inside the navy band that
+  ends at 640, the questions stay between 670 and 950 inside the lime rail, and the after column
+  starts at 1038 on the canvas. Question wrapping against today's slide: A none, B one question
+  onto a third line, C and D three, E four, each row growing as one. `git diff --stat origin/main
+  -- presentations/training_a_team/` is empty. The index entry and the AGENTS.md sandbox line are
+  added; the downloads are untouched. PR #110.
 - **2026-09-08, training slide 7, option D accepted with the numerals removed.** Dafydd took
   "Gates on a rail" and said in the same message that the rail was cluttered by carrying both
   a large numeral and an icon per condition, so the numerals go and the icons alone mark the
