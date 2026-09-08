@@ -747,10 +747,13 @@ it up - either way it is on disk for a recovering session.
   and full-size views. Slide 3 remains awaiting a decision, with its review page unchanged.
   All five renders passed browser and visual review at 1920x1080, with 46-56 body words,
   no overflow, text overlap or footer collision, working notes and speaker keys, pinned
-  navigation, direct anchors, full-size views and mobile layouts. File and missing-source
-  fallbacks hide unavailable previews. No browser or resource errors. Both source decks
+  navigation, direct anchors, full-size views and mobile layouts. The preview counter and
+  help text scale with the slide so they stay below the content on mobile. Focused checks
+  confirm all five mobile layouts and unchanged full-size pixels outside the source deck's
+  animated progress strip. File and missing-source fallbacks hide unavailable previews.
+  No browser or resource errors. Both source decks
   and the pending slide 3 page are byte-unchanged. Downloads and shared files are untouched.
-  Training has no presenter.json, so its presenter sync check does not apply.
+  Training has no presenter.json, so its presenter sync check does not apply. PR #94.
 
 - **2026-09-07, training_a_team slide 3, five new sandbox options awaiting a decision.**
   Dafydd requested the same five-option loop for slide 3. A leads with the practical

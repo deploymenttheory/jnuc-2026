@@ -917,7 +917,9 @@ B a two-way exchange, C train the trainer, D we changed the delivery, E what the
 made possible. Each condenses the visible copy while retaining the secondment, joint materials,
 iteration, hackathon result, lack of a playbook and plans by skill level across the slide and
 reviewable proposed speaker notes. Three months describes the secondment only. Each option has
-a direct anchor and a full-size view. The source deck is unchanged and slide 3 stays open);
+a direct anchor and a full-size view. This page also scales the preview counter and help
+text with the slide to avoid mobile collisions, while notes and speaker panels keep their
+screen sizing. The source deck is unchanged and slide 3 stays open);
 `s03-learning-outcomes` (2026-09-07, slide 3, Dafydd, five new treatments in the training
 refinement: A the finish line, B what we taught and what changed, C one real change,
 D who benefits, E the judgement that makes it safe. The fixed title stays, detailed content
