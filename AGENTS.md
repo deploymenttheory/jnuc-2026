@@ -967,12 +967,20 @@ shipped slide after Dafydd asked for the type to be bigger with everything else 
 body 26px, questions 18px, labels 18px; B body 28px, questions 20px, labels 19px; C body 30px,
 questions 21px, labels 20px; D body 32px, questions 23px, labels 21px; E body 34px, questions
 24px, labels 22px, the largest that fits, since 35px pushes the grid past the bottom of the
-content box and the only ways past that would be cutting the row padding below 20px or widening
+content box and the only ways past that would be cutting the row padding further or widening
 the 340px question column. Today's slide is body 24px, questions 17px, labels 17px. C, D and E
 also trim line height, row padding, row gap and the space under the title to stay on the slide.
-Content and layout are unchanged in every step - the same wording, notes, bands, colours and
-518/340/1fr columns - so each option injects sizing only and the deck is untouched by this
-round. No option accepted).
+All five gained a rule under the three column headers on 2026-09-08 at Dafydd's request, the
+same hairline the rows already use and in the same colour per band (`--border-soft` on the navy
+panel, `--accent-deep` on the lime rail and on the canvas column), with the header cells given
+the full row gap beneath so the first row sits like every other row; that costs a row gap plus a
+hairline, so option E dropped its row padding from 20px to 19px and its grid bottom is 1007px
+against the 1008px content limit. Grid bottoms are A 918px, B 975px, C 998px, D 1001px, E
+1007px. It is CSS only on the shipped markup - the header cells are already their own
+`.ms-head` elements - so the deck edit would be a bottom border and a bottom margin on
+`.mindset .ms-head`. Content and layout are otherwise unchanged in every step - the same
+wording, notes, bands, colours and 518/340/1fr columns - so each option injects sizing and that
+rule only and the deck is untouched by this round. No option accepted).
 
 Slide 5's review page and the public index entries for slides 4 and 5 were removed after
 Dafydd accepted option E for both on 2026-09-08. Slide 4 already held its accepted wording

@@ -41,7 +41,7 @@
   <header class="review-intro">
     <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / Training a team / slide 8</p>
     <h1>Slide 8 - Mindset shift</h1>
-    <p class="lede">A sizing round only. Every word, every band and the whole three-column layout stay exactly as the deck ships them; the only thing that changes is how big the type is. Five steps trial the same slide at five sizes, from a modest increase up to the largest that still fits above the footer, with the line height, the row padding and the gap under the title trimmed only where a step needs it to stay on the slide. The title, the eyebrow and the column widths are untouched. <a href="../../training_a_team/index.html?theme=default#8">Compare the current slide</a>.</p>
+    <p class="lede">A sizing round only. Every word, every band and the whole three-column layout stay exactly as the deck ships them; the only thing that changes is how big the type is. Five steps trial the same slide at five sizes, from a modest increase up to the largest that still fits above the footer, with the line height, the row padding and the gap under the title trimmed only where a step needs it to stay on the slide. The title, the eyebrow and the column widths are untouched. At Dafydd's request every one of the five options now also carries a rule under the three column headers, drawn in each band's own hairline colour - the navy band's soft border, the lime rail's deepened lime, the same deepened lime on the canvas - with the first row set the same distance below that rule as every later row sits below the rule above it, so the header row reads exactly like the rows beneath it. The size steps themselves are unchanged, apart from one pixel off option E's row padding to keep it inside the content box. <a href="../../training_a_team/index.html?theme=default#8">Compare the current slide</a>.</p>
     <nav class="jump" aria-label="Options">
       <a href="#a">A - Slightly larger</a>
       <a href="#b">B - Larger</a>
@@ -73,16 +73,19 @@
   </section>
   <section class="option" id="e">
     <div class="option-heading"><h2>Option E - Largest that fits</h2><a class="open-option" href="?option=e">Open full-size option E</a></div>
-    <p class="option-description">Body 24px to 34px, questions 17px to 24px, column labels 17px to 22px. Line height 1.2 on the mindset columns and 1.22 on the rail, row padding and row gap 20px, and the space under the title 28px. Four of the six questions run to three lines and the grid finishes just inside the content box. This is the cap: 35px body takes the grid past the bottom of the content area, and the only ways past that are cutting the row padding below 20px or widening the 340px question column, neither of which this round does. Pick this if the slide has to read from the very back.</p>
+    <p class="option-description">Body 24px to 34px, questions 17px to 24px, column labels 17px to 22px. Line height 1.2 on the mindset columns and 1.22 on the rail, row gap 20px, and the space under the title 28px. Row padding is 19px rather than the 20px this option carried before: the new header rule and the full row gap beneath it add 21px to the grid, which took the bottom edge to 1014px against a content box that stops at 1008px, and one pixel off the padding of all seven rows brings it back to 1007px. Four of the six questions run to three lines. This is still the cap: 35px body takes the grid past the bottom of the content area again, and the only ways past that are cutting the row padding further or widening the 340px question column, neither of which this round does. Pick this if the slide has to read from the very back.</p>
     <div class="frame"><div class="frame-status">Preparing option E. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="e" title="Option E - Largest that fits"></iframe></div>
   </section>
-  <p class="foot">All five options inject sizing only. The markup, the wording, the speaker notes, the navy and lime bands, the 518/340/1fr column widths and every colour are the deck's own and are not touched by any option, so whichever step is chosen pastes into the deck as a handful of size values. Slide 8 is awaiting a decision. <a href="../../training_a_team/index.html?theme=default#8">Open the current slide 8</a>.</p>
+  <p class="foot">All five options inject sizing and the header rule, and nothing else. The markup, the wording, the speaker notes, the navy and lime bands, the 518/340/1fr column widths and every colour are the deck's own and are not touched by any option, so whichever step is chosen pastes into the deck as a handful of size values plus a bottom border and a bottom margin on <code>.mindset .ms-head</code>, with the deepened lime kept for the rail and the After column. Slide 8 is awaiting a decision. <a href="../../training_a_team/index.html?theme=default#8">Open the current slide 8</a>.</p>
 </div>
 <script>
 // Five size steps on the shipped slide 8. Nothing but type size, leading and the
 // spacing that leading forces changes; the deck itself remains unchanged.
 // Today's values, for reference: body 24px/1.25, questions 17px/1.3, labels 17px,
 // row padding 26px, row gap 26px, space under the title 40px.
+// Every step also gives the three column headers the row hairline in their own band's
+// colour and the full row gap beneath it, so the header row is spaced like the rest.
+// That costs a row gap plus a hairline, which option E pays for with 1px of row padding.
 const SIZE_CSS = `
 #s08-review {
   --s08-body: 26px;
@@ -92,7 +95,8 @@ const SIZE_CSS = `
   --s08-question-leading: 1.3;
   --s08-row-pad: 26px;
   --s08-row-gap: 26px;
-  --s08-head-gap: 0px;
+  --s08-head-gap: var(--s08-row-gap);
+  --s08-rule: 1px;
   --s08-title-gap: 40px;
 }
 #s08-review[data-size="b"] {
@@ -126,13 +130,14 @@ const SIZE_CSS = `
   --s08-head: 22px;
   --s08-body-leading: 1.2;
   --s08-question-leading: 1.22;
-  --s08-row-pad: 20px;
+  --s08-row-pad: 19px;
   --s08-row-gap: 20px;
   --s08-title-gap: 28px;
 }
 #s08-review .ms h1 { margin-bottom: var(--s08-title-gap); }
 #s08-review .ms-grid > * { padding-bottom: var(--s08-row-pad); margin-bottom: var(--s08-row-gap); }
-#s08-review .ms-head { font-size: var(--s08-head); margin-bottom: var(--s08-head-gap); }
+#s08-review .ms-head { font-size: var(--s08-head); margin-bottom: var(--s08-head-gap); border-bottom: var(--s08-rule) solid var(--border-soft); }
+#s08-review .ms-head-rail, #s08-review .ms-head-new { border-bottom-color: var(--accent-deep); }
 #s08-review .ms-old, #s08-review .ms-new { font-size: var(--s08-body); line-height: var(--s08-body-leading); }
 #s08-review .ms-rail-item { font-size: var(--s08-question); line-height: var(--s08-question-leading); }
 `;
