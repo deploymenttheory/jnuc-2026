@@ -738,15 +738,19 @@ it up - either way it is on disk for a recovering session.
   Dafydd rejected all five round-one layouts because every one of them was a block of text
   with no visual device. Added `s07-conditions-visual.html` and deleted
   `s07-conditions-for-success.html`, replacing its index entry rather than adding a second
-  page. A Two pillars is an SVG post and lintel: two labelled pillars carry a beam with the
-  premise on it and the seven conditions rest on the beam as numbered tiles. B When it
-  applies is a horizontal track whose three zones come from the copy's own words, before you
-  start (01, 02, 07), during (03, 04, 06) and one condition running throughout (05) as a bar
-  spanning the whole track, over a ground band of both safeties; the description says the
-  zones are read from the copy and the numbers are not a sequence. C The dip is one
-  illustrative slower-before-faster curve, coral on the fall and lime on the rise, with
-  condition 06 in the trough, the two-to-three-month span marked underneath and a visible
-  SHAPE IS ILLUSTRATIVE disclosure, the other six running as a numbered column beside it. D
+  page. A Two pillars is an SVG post and lintel: two labelled columns with capitals and base
+  plinths stand on a hatched ground line with open canvas between them, carrying one solid
+  lime beam that holds the premise in navy, and the seven conditions rest on top of that beam
+  as numbered tiles. The safety paragraphs sit inside the column shafts under their labels.
+  B When it applies is a horizontal track whose three zones come from the copy's own words,
+  before you start (01, 02, 07), during (03, 04, 06) and one condition running throughout
+  (05) as a bar spanning the whole track, over a ground band of both safeties; the
+  description says the zones are read from the copy and the numbers are not a sequence. C The
+  dip is one illustrative slower-before-faster curve, coral on the fall and lime on the rise,
+  filling its column and about 60 per cent of its height, with a marked trough, a dashed drop
+  to a bracketed two-to-three-month span whose label sits clear below the bracket, condition
+  06 directly under the trough and a visible SHAPE IS ILLUSTRATIVE disclosure, the other six
+  running as a numbered column beside it. D
   Gates on a rail runs the seven down a vertical rail with large mono numerals and line-art
   marks, a boom barrier on 02 and 07, converging arrows on 01, a clock on 03, two figures on
   04, a chain link on 05 and a dip glyph on 06, against a navy safety panel carrying a shield
@@ -764,7 +768,9 @@ it up - either way it is on disk for a recovering session.
   proposed paragraphs and matches `data-notes`, and the word-count widget reports 217 body
   words for A, D and E, 222 for B and 224 for C, the difference being each option's own drawn
   labels. The deck diff against origin/main for `presentations/training_a_team/` is empty, so
-  the source slide and both downloads are unchanged. PR #106.
+  the source slide and both downloads are unchanged. A and C were reworked in review: A's
+  structure was redrawn so the post and lintel actually reads, and C's curve was scaled up
+  with the span label moved clear of its own bracket. PR #106.
 
 - **2026-09-08, training slide 6, five layout options with shorter copy.** Added
   `s06-what-worked.html` to the training sandbox for Joseph's "What worked" slide.

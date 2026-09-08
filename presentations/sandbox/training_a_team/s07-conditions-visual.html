@@ -56,7 +56,7 @@
   <div class="viewer-bar"><a class="back-link" href="s07-conditions-visual.html">All five options</a><strong id="viewer-title">Slide 7</strong><nav aria-label="Full-size options"><a href="?option=a">A</a><a href="?option=b">B</a><a href="?option=c">C</a><a href="?option=d">D</a><a href="?option=e">E</a></nav></div>
   <section class="option" id="a">
     <div class="option-heading"><h2>Option A - Two pillars</h2><a class="open-option" href="?option=a">Open full-size option A</a></div>
-    <p class="option-description">Two drawn pillars, one labelled operational safety and one psychological safety, carry a beam, and the seven conditions rest on that beam as numbered tiles. Pick this to draw the premise rather than state it: take either pillar away and the beam and everything standing on it comes down. <span data-word-count></span></p>
+    <p class="option-description">Two drawn columns, one labelled operational safety and one psychological safety, stand on a ground line with open canvas between them and carry one solid beam holding the premise, and the seven conditions rest on top of that beam as numbered tiles. Pick this to draw the premise rather than state it: take either column away and the beam and everything standing on it comes down. <span data-word-count></span></p>
     <div class="frame"><div class="frame-status">Preparing option A. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="a" title="Option A - Two pillars"></iframe></div>
     <details><summary>Proposed speaker notes</summary><div class="notes-copy">
       <p>Lead with both kinds of safety and give them time. Leadership needed operational safety: no downtime, support unaffected and a team able to adopt the new way of working. Answer the question of whether this could take the estate down before starting. Engineers also needed psychological safety: room to learn while protecting the estate, with mistakes treated as learning rather than blame. All seven conditions depend on both kinds of safety.</p>
@@ -162,6 +162,7 @@ const CONTENT_CSS = `
   --s07-stroke: 2;
   --s07-stroke-icon: 1.6;
   --s07-stroke-curve: 6;
+  --s07-dash: 4 6;
   --s07-content-top: 30px;
   --s07-content-height: 744px;
   --s07-size-4: 4px;
@@ -171,7 +172,6 @@ const CONTENT_CSS = `
   --s07-size-12: 12px;
   --s07-size-14: 14px;
   --s07-size-16: 16px;
-  --s07-size-18: 18px;
   --s07-size-20: 20px;
   --s07-size-24: 24px;
   --s07-size-26: 26px;
@@ -182,17 +182,21 @@ const CONTENT_CSS = `
   --s07-size-44: 44px;
   --s07-size-46: 46px;
   --s07-size-47: 47px;
-  --s07-size-55: 55px;
+  --s07-size-52: 52px;
   --s07-size-56: 56px;
   --s07-size-68: 68px;
   --s07-size-96: 96px;
   --s07-size-140: 140px;
-  --s07-size-320: 320px;
+  --s07-size-264: 264px;
   --s07-size-350: 350px;
-  --s07-size-380: 380px;
+  --s07-size-356: 356px;
+  --s07-size-388: 388px;
+  --s07-size-396: 396px;
   --s07-size-560: 560px;
-  --s07-size-580: 580px;
+  --s07-size-600: 600px;
+  --s07-size-620: 620px;
   --s07-size-700: 700px;
+  --s07-size-720: 720px;
 }
 #s07-review .s07-content { height: var(--s07-content-height); margin-top: var(--s07-content-top); flex: none; min-height: 0; font-size: var(--s07-body); line-height: var(--s07-leading); }
 #s07-review .s07-content :is(div, section, article, figure) { min-width: 0; }
@@ -211,25 +215,27 @@ const CONTENT_CSS = `
 #s07-review .s07-band-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s07-size-24); padding-bottom: var(--s07-size-10); border-bottom: var(--s07-rule) solid var(--accent); }
 #s07-review .s07-band-cols { display: grid; grid-template-columns: 1fr 1.35fr; gap: var(--s07-size-40); padding-top: var(--s07-size-12); }
 
-/* A: two drawn pillars carry a beam, and the seven conditions rest on the beam. */
+/* A: two drawn pillars stand on a ground line and carry a solid beam. The seven
+   conditions rest on top of the beam, so the drawing visibly holds them up. */
+#s07-review[data-design="a"] { --s07-content-height: 776px; }
 #s07-review[data-design="a"] .s07-content { display: grid; grid-template-rows: 1fr auto; gap: var(--s07-size-24); }
-#s07-review[data-design="a"] .s07-tiles { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--s07-size-18) var(--s07-size-24); align-content: space-between; }
-#s07-review[data-design="a"] .s07-condition { grid-column: span 3; border-top: var(--s07-hairline) solid var(--border); padding-top: var(--s07-size-12); }
+#s07-review[data-design="a"] .s07-tiles { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--s07-size-14) var(--s07-size-24); align-content: space-between; }
+#s07-review[data-design="a"] .s07-condition { grid-column: span 3; border-top: var(--s07-hairline) solid var(--border); padding-top: var(--s07-size-8); }
 #s07-review[data-design="a"] .s07-condition:nth-child(n+5) { grid-column: span 4; }
 #s07-review[data-design="a"] .s07-number { float: left; margin-right: var(--s07-size-14); }
-#s07-review[data-design="a"] .s07-condition p { clear: both; margin-top: var(--s07-size-8); }
-#s07-review[data-design="a"] .s07-structure { position: relative; height: var(--s07-size-320); }
+#s07-review[data-design="a"] .s07-condition p { clear: both; margin-top: var(--s07-size-6); }
+#s07-review[data-design="a"] .s07-structure { position: relative; height: var(--s07-size-396); }
 #s07-review[data-design="a"] .s07-frame { position: absolute; inset: 0; width: 100%; height: 100%; }
-#s07-review[data-design="a"] .s07-beam { fill: var(--surface); stroke: var(--accent); stroke-width: var(--s07-stroke); }
-#s07-review[data-design="a"] .s07-cap { fill: var(--accent-deep); }
-#s07-review[data-design="a"] .s07-shaft { fill: var(--surface); stroke: var(--border); stroke-width: var(--s07-stroke); }
-#s07-review[data-design="a"] .s07-flute { fill: none; stroke: var(--border-soft); stroke-width: var(--s07-stroke); }
-#s07-review[data-design="a"] .s07-structure-text { position: relative; height: 100%; display: grid; grid-template-rows: var(--s07-size-56) var(--s07-size-20) 1fr var(--s07-size-16); grid-template-columns: var(--s07-size-700) var(--s07-size-40) 1fr; }
-#s07-review[data-design="a"] .s07-beam-line { grid-row: 1; grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; font-size: var(--s07-size-26); }
-#s07-review[data-design="a"] .s07-pillar { grid-row: 3; display: flex; flex-direction: column; justify-content: center; padding: 0 var(--s07-size-55); }
+#s07-review[data-design="a"] .s07-beam { fill: var(--accent); }
+#s07-review[data-design="a"] .s07-stone { fill: var(--surface); stroke: var(--accent-deep); stroke-width: var(--s07-stroke); }
+#s07-review[data-design="a"] .s07-ground { fill: none; stroke: var(--accent-deep); stroke-width: var(--s07-rule); }
+#s07-review[data-design="a"] .s07-hatch { fill: none; stroke: var(--border); stroke-width: var(--s07-stroke); }
+#s07-review[data-design="a"] .s07-structure-text { position: relative; height: 100%; display: grid; grid-template-rows: var(--s07-size-68) var(--s07-size-20) var(--s07-size-264) var(--s07-size-44); grid-template-columns: var(--s07-size-600) var(--s07-size-356) var(--s07-size-720); }
+#s07-review[data-design="a"] .s07-beam-line { grid-row: 1; grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; font-size: var(--s07-size-28); color: var(--on-accent); font-weight: 700; }
+#s07-review[data-design="a"] .s07-pillar { grid-row: 3; padding: var(--s07-size-24) var(--s07-size-52); }
 #s07-review[data-design="a"] .s07-pillar:nth-of-type(1) { grid-column: 1; }
 #s07-review[data-design="a"] .s07-pillar:nth-of-type(2) { grid-column: 3; }
-#s07-review[data-design="a"] .s07-pillar .s07-tag { margin-bottom: var(--s07-size-8); }
+#s07-review[data-design="a"] .s07-pillar .s07-tag { margin-bottom: var(--s07-size-10); }
 
 /* B: a left to right track, three zones read from the copy, safety as the ground band. */
 #s07-review[data-design="b"] { --s07-content-height: 772px; }
@@ -256,14 +262,15 @@ const CONTENT_CSS = `
 #s07-review[data-design="c"] .s07-content { display: grid; grid-template-rows: 1fr auto; gap: var(--s07-size-16); }
 #s07-review[data-design="c"] .s07-dipwrap { display: grid; grid-template-columns: var(--s07-size-700) 1fr; gap: var(--s07-size-40); }
 #s07-review[data-design="c"] .s07-curve { position: relative; }
-#s07-review[data-design="c"] .s07-disclosure { text-align: right; color: var(--text-dimmer); }
+#s07-review[data-design="c"] .s07-disclosure { text-align: right; color: var(--text-dimmer); margin-bottom: var(--s07-size-12); }
 #s07-review[data-design="c"] .s07-curve-art { display: block; width: 100%; }
 #s07-review[data-design="c"] .s07-fall { fill: none; stroke: var(--warn); stroke-width: var(--s07-stroke-curve); stroke-linecap: round; }
 #s07-review[data-design="c"] .s07-rise { fill: none; stroke: var(--accent); stroke-width: var(--s07-stroke-curve); stroke-linecap: round; }
 #s07-review[data-design="c"] .s07-trough { fill: var(--accent); }
-#s07-review[data-design="c"] .s07-span { fill: none; stroke: var(--text-dimmer); stroke-width: var(--s07-stroke); }
+#s07-review[data-design="c"] .s07-drop { fill: none; stroke: var(--accent-deep); stroke-width: var(--s07-stroke); stroke-dasharray: var(--s07-dash); }
+#s07-review[data-design="c"] .s07-span { fill: none; stroke: var(--text-dimmer); stroke-width: var(--s07-stroke); stroke-linecap: round; }
 #s07-review[data-design="c"] .s07-span-label { fill: var(--text-dim); font-family: var(--mono); font-size: var(--s07-label); }
-#s07-review[data-design="c"] .s07-valley { position: absolute; left: var(--s07-size-56); top: var(--s07-size-380); width: var(--s07-size-580); }
+#s07-review[data-design="c"] .s07-valley { position: absolute; left: var(--s07-size-40); top: var(--s07-size-388); width: var(--s07-size-620); }
 #s07-review[data-design="c"] .s07-valley .s07-number { float: left; margin-right: var(--s07-size-14); }
 #s07-review[data-design="c"] .s07-valley p { clear: both; margin-top: var(--s07-size-8); }
 #s07-review[data-design="c"] .s07-list { display: flex; flex-direction: column; gap: var(--s07-size-12); }
@@ -326,16 +333,20 @@ const GLYPHS = {
 const MARK_FOR = { 'buy-in': 'agree', prerequisites: 'gate', practice: 'clock', pairing: 'pair', owners: 'link', dip: 'dip', approvers: 'gate' };
 const glyph = (name, className) => '<svg class="s07-icon ' + className + '" viewBox="0 0 24 24" aria-hidden="true">' + GLYPHS[name] + '</svg>';
 // A: post and lintel. Two pillars carry one beam; the conditions sit on the beam.
-const beamStructure = () => '<svg class="s07-frame" viewBox="0 0 1676 320" role="img" aria-label="A post and lintel structure. Two pillars, operational safety and psychological safety, carry a single beam, and the seven conditions rest on that beam.">'
-  + '<rect class="s07-beam" x="1" y="1" width="1674" height="54"/>'
-  + '<rect class="s07-cap" x="1" y="60" width="698" height="16"/>'
-  + '<rect class="s07-shaft" x="31" y="76" width="638" height="228"/>'
-  + '<rect class="s07-cap" x="1" y="304" width="698" height="16"/>'
-  + '<rect class="s07-cap" x="741" y="60" width="934" height="16"/>'
-  + '<rect class="s07-shaft" x="771" y="76" width="874" height="228"/>'
-  + '<rect class="s07-cap" x="741" y="304" width="934" height="16"/>'
-  + '<path class="s07-flute" d="M45 92v196M655 92v196M785 92v196M1631 92v196"/>'
-  + '</svg>';
+const beamStructure = () => {
+  // Two columns standing on a ground line, carrying one solid beam. Capital and plinth are
+  // wider than the shaft so each post reads as a column rather than a box.
+  const post = (x, width) => '<rect class="s07-stone" x="' + x + '" y="68" width="' + width + '" height="20" rx="3"/>'
+    + '<rect class="s07-stone" x="' + (x + 26) + '" y="88" width="' + (width - 52) + '" height="264" rx="10"/>'
+    + '<rect class="s07-stone" x="' + x + '" y="352" width="' + width + '" height="26" rx="3"/>';
+  const hatch = Array.from({ length: 28 }, (_, index) => 'M' + (index * 60 + 4) + ' 396l14-12').join('');
+  return '<svg class="s07-frame" viewBox="0 0 1676 396" role="img" aria-label="A post and lintel structure. Two columns, operational safety and psychological safety, stand on the ground and carry one solid beam, and the seven conditions rest on top of that beam.">'
+    + '<rect class="s07-beam" x="0" y="0" width="1676" height="68" rx="3"/>'
+    + post(0, 600) + post(956, 720)
+    + '<path class="s07-ground" d="M0 383h1676"/>'
+    + '<path class="s07-hatch" d="' + hatch + '"/>'
+    + '</svg>';
+};
 // B: the track. Two marked zones run left to right; the third zone is the bar below.
 const trackRail = () => '<svg class="s07-rail-art" viewBox="0 0 1676 68" role="img" aria-label="A track running left to right, divided into two marked zones, before you start and during, with an arrow at the end showing time running forward.">'
   + '<path class="s07-rail-base" d="M0 52h1638"/>'
@@ -347,12 +358,14 @@ const trackRail = () => '<svg class="s07-rail-art" viewBox="0 0 1676 68" role="i
 const throughArrow = () => '<svg class="s07-through-art" viewBox="0 0 1468 14" aria-hidden="true">'
   + '<path d="M8 7h1452"/><path d="M15 1 8 7l7 6"/><path d="M1453 1l7 6-7 6"/></svg>';
 // C: one curve, drawn not measured. The span under the trough is the copy's own figure.
-const dipCurve = () => '<svg class="s07-curve-art" viewBox="0 0 700 500" role="img" aria-label="One curve. It falls from a high start to a trough, the trough spanning two to three months, then rises higher than where it began.">'
-  + '<path class="s07-fall" d="M28 96C150 96 240 262 360 272"/>'
-  + '<path class="s07-rise" d="M360 272C480 282 545 170 672 44"/>'
-  + '<circle class="s07-trough" cx="360" cy="272" r="7"/>'
-  + '<path class="s07-span" d="M236 312h228M236 302v20M464 302v20"/>'
-  + '<text class="s07-span-label" x="350" y="342" text-anchor="middle">two to three months</text>'
+const dipCurve = () => '<svg class="s07-curve-art" viewBox="0 0 700 336" role="img" aria-label="One curve. It falls from a high start to a trough, the trough spanning two to three months, then rises higher than where it began.">'
+  + '<path class="s07-fall" d="M20 40C150 40 240 234 350 244"/>'
+  + '<path class="s07-rise" d="M350 244C462 254 548 140 680 16"/>'
+  + '<circle class="s07-trough" cx="350" cy="244" r="9"/>'
+  + '<path class="s07-drop" d="M350 256v20"/>'
+  + '<path class="s07-span" d="M214 284h272"/>'
+  + '<path class="s07-span" d="M214 276v16M486 276v16"/>'
+  + '<text class="s07-span-label" x="350" y="322" text-anchor="middle">two to three months</text>'
   + '</svg>';
 
 const condition = (index, options) => {
