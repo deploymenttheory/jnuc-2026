@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sandbox - slide 4 How we ran it</title>
+<link rel="stylesheet" href="../sandbox.css">
+<style>
+  .jump { flex-wrap: wrap; }
+  .option { scroll-margin-top: 24px; }
+  .option-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .open-option { white-space: nowrap; }
+  .frame { position: relative; }
+  .frame iframe { visibility: hidden; }
+  .frame[data-state="ready"] iframe { visibility: visible; }
+  .frame-status { position: absolute; inset: 0; display: grid; place-content: center; padding: 32px; color: var(--muted); text-align: center; }
+  .frame[data-state="ready"] .frame-status { display: none; }
+  .notes-copy { max-width: 80ch; padding: 20px 24px 4px; border-left: 2px solid var(--border); }
+  summary:focus-visible { outline: 2px solid var(--green-bright); outline-offset: 4px; }
+  .viewer-bar { display: none; }
+  body.single { padding: 0 0 32px; }
+  .single .wrap { max-width: none; }
+  .single .review-intro, .single .option:not(.selected), .single .option-heading, .single .option-description, .single .foot { display: none; }
+  .single .viewer-bar { min-height: 64px; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; background: var(--surface); }
+  .viewer-bar nav { display: flex; gap: 18px; }
+  .viewer-bar [aria-current="page"] { color: var(--text); text-decoration-thickness: 3px; }
+  .single .frame { height: calc(100dvh - 64px); aspect-ratio: auto; border: 0; border-radius: 0; }
+  .single .option > details { margin: 20px 24px 0; }
+  .single .option { margin-bottom: 0; }
+  @media (max-width: 620px) {
+    .option-heading { display: block; }
+    .open-option { display: inline-block; margin-bottom: 12px; }
+    .single .viewer-bar { flex-wrap: wrap; }
+    .single .frame { height: auto; aspect-ratio: 16 / 9; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="review-intro">
+    <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / Training a team / slide 4</p>
+    <h1>Slide 4 - How we ran it</h1>
+    <p class="lede">Five new treatments with shorter visible copy. Each keeps the secondment and the lessons from delivery, with the full story in proposed speaker notes. Slide 3 remains open for review. The presentation is unchanged.</p>
+    <nav class="jump" aria-label="Options">
+      <a href="#a">A - The secondment</a>
+      <a href="#b">B - A two-way exchange</a>
+      <a href="#c">C - Train the trainer</a>
+      <a href="#d">D - We changed the delivery</a>
+      <a href="#e">E - What the secondment made possible</a>
+    </nav>
+  </header>
+  <div class="viewer-bar">
+    <a class="back-link" href="s04-how-we-ran-it.html">All five options</a>
+    <strong id="viewer-title">Slide 4</strong>
+    <nav aria-label="Full-size options"><a href="?option=a">A</a><a href="?option=b">B</a><a href="?option=c">C</a><a href="?option=d">D</a><a href="?option=e">E</a></nav>
+  </div>
+
+  <section class="option" id="a">
+    <div class="option-heading"><h2>Option A - The secondment</h2><a class="open-option" href="?option=a">Open full-size option A</a></div>
+    <p class="option-description">Put the decision at the centre: one Mac engineer, full time in the CoE for three months. Pick this for the clearest introduction to how the programme began, with the exchange of knowledge as the supporting visual.</p>
+    <div class="frame"><div class="frame-status">Preparing option A. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="a" title="Option A - The secondment"></iframe></div>
+    <details><summary>Proposed speaker notes for A</summary><div class="notes-copy">
+      <p>Lead with the large duration, then connect it to the engineer and the purpose. The two lines below show what each side contributed. Keep the three months attached to the secondment.</p>
+      <p>We seconded one Mac engineer into the DevOps Centre of Excellence full time for three months on a train-the-trainer model. That was the length of the secondment. We ran the programme iteratively rather than fixing the whole plan upfront.</p>
+      <p>We wrote the materials together. The CoE brought the Terraform and Git content, while the seconded engineer translated it into Mac language and cut what did not apply. Knowledge moved both ways: macOS and Jamf Pro domain context went into the CoE, and Terraform, Git and GitOps practice came back to the Mac team.</p>
+      <p>We went back and forth between theory-led and hands-on delivery. Practical sessions landed better and became the settled format. The hackathons did not work as intended. They were in-person labs on familiar tasks, with homework between sessions. That particular format failing sits alongside the finding that practical delivery worked better overall.</p>
+      <p>We had no playbook to copy for this Mac-centric Terraform migration training, so we worked out the plan as we went. We matched delivery to prior skill: higher-skill engineers had a more laid-back, project-based plan, while others had a more structured plan suited to their starting point.</p>
+      <p>The secondment also left us with someone who could step in and run migration work whenever needed. Keep that as a supporting consequence of the knowledge exchange, with training the team as the purpose of the secondment.</p>
+    </div></details>
+  </section>
+
+  <section class="option" id="b">
+    <div class="option-heading"><h2>Option B - A two-way exchange</h2><a class="open-option" href="?option=b">Open full-size option B</a></div>
+    <p class="option-description">Make the knowledge exchange the main diagram, with the seconded engineer connecting both teams. Pick this to explain why the arrangement helped each side, rather than presenting the CoE as a one-way training service.</p>
+    <div class="frame"><div class="frame-status">Preparing option B. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="b" title="Option B - A two-way exchange"></iframe></div>
+    <details><summary>Proposed speaker notes for B</summary><div class="notes-copy">
+      <p>Use the upper arrow for Mac domain knowledge going into the CoE, then the lower arrow for engineering practice coming back. The engineer in the middle connects the two sides.</p>
+      <p>We seconded one Mac engineer into the DevOps Centre of Excellence full time for three months on a train-the-trainer model. That was the length of the secondment. We ran the programme iteratively rather than fixing the whole plan upfront.</p>
+      <p>We wrote the materials together. The CoE brought the Terraform and Git content, while the seconded engineer translated it into Mac language and cut what did not apply. Knowledge moved both ways: macOS and Jamf Pro domain context went into the CoE, and Terraform, Git and GitOps practice came back to the Mac team.</p>
+      <p>We went back and forth between theory-led and hands-on delivery. Practical sessions landed better and became the settled format. The hackathons did not work as intended. They were in-person labs on familiar tasks, with homework between sessions. That particular format failing sits alongside the finding that practical delivery worked better overall.</p>
+      <p>We had no playbook to copy for this Mac-centric Terraform migration training, so we worked out the plan as we went. We matched delivery to prior skill: higher-skill engineers had a more laid-back, project-based plan, while others had a more structured plan suited to their starting point.</p>
+      <p>The secondment also left us with someone who could step in and run migration work whenever needed. Keep that as a supporting consequence of the knowledge exchange, with training the team as the purpose of the secondment.</p>
+    </div></details>
+  </section>
+
+  <section class="option" id="c">
+    <div class="option-heading"><h2>Option C - Train the trainer</h2><a class="open-option" href="?option=c">Open full-size option C</a></div>
+    <p class="option-description">Follow the training model from the secondment through joint materials to teaching the Mac team. Pick this for a simple story route that makes the purpose visible. The three-month label belongs to the secondment, not the whole programme.</p>
+    <div class="frame"><div class="frame-status">Preparing option C. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="c" title="Option C - Train the trainer"></iframe></div>
+    <details><summary>Proposed speaker notes for C</summary><div class="notes-copy">
+      <p>Follow the route from left to right as a summary of the training model. These are connected parts of the work, not a dated schedule. Point out that the three-month label describes only the secondment.</p>
+      <p>We seconded one Mac engineer into the DevOps Centre of Excellence full time for three months on a train-the-trainer model. That was the length of the secondment. We ran the programme iteratively rather than fixing the whole plan upfront.</p>
+      <p>We wrote the materials together. The CoE brought the Terraform and Git content, while the seconded engineer translated it into Mac language and cut what did not apply. Knowledge moved both ways: macOS and Jamf Pro domain context went into the CoE, and Terraform, Git and GitOps practice came back to the Mac team.</p>
+      <p>We went back and forth between theory-led and hands-on delivery. Practical sessions landed better and became the settled format. The hackathons did not work as intended. They were in-person labs on familiar tasks, with homework between sessions. That particular format failing sits alongside the finding that practical delivery worked better overall.</p>
+      <p>We had no playbook to copy for this Mac-centric Terraform migration training, so we worked out the plan as we went. We matched delivery to prior skill: higher-skill engineers had a more laid-back, project-based plan, while others had a more structured plan suited to their starting point.</p>
+      <p>The secondment also left us with someone who could step in and run migration work whenever needed. Keep that as a supporting consequence of the knowledge exchange, with training the team as the purpose of the secondment.</p>
+    </div></details>
+  </section>
+
+  <section class="option" id="d">
+    <div class="option-heading"><h2>Option D - We changed the delivery</h2><a class="open-option" href="?option=d">Open full-size option D</a></div>
+    <p class="option-description">Lead with what iteration meant in practice. A quiet account of the formats we tried sits beside the larger decisions we settled on. Pick this to foreground adaptation while keeping the secondment as context.</p>
+    <div class="frame"><div class="frame-status">Preparing option D. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="d" title="Option D - We changed the delivery"></iframe></div>
+    <details><summary>Proposed speaker notes for D</summary><div class="notes-copy">
+      <p>Read the left side as formats we tried and the right side as the delivery decisions we settled on. Make the distinction explicit: the hackathons failed to land, while practical delivery overall landed better.</p>
+      <p>We seconded one Mac engineer into the DevOps Centre of Excellence full time for three months on a train-the-trainer model. That was the length of the secondment. We ran the programme iteratively rather than fixing the whole plan upfront.</p>
+      <p>We wrote the materials together. The CoE brought the Terraform and Git content, while the seconded engineer translated it into Mac language and cut what did not apply. Knowledge moved both ways: macOS and Jamf Pro domain context went into the CoE, and Terraform, Git and GitOps practice came back to the Mac team.</p>
+      <p>We went back and forth between theory-led and hands-on delivery. Practical sessions landed better and became the settled format. The hackathons did not work as intended. They were in-person labs on familiar tasks, with homework between sessions. That particular format failing sits alongside the finding that practical delivery worked better overall.</p>
+      <p>We had no playbook to copy for this Mac-centric Terraform migration training, so we worked out the plan as we went. We matched delivery to prior skill: higher-skill engineers had a more laid-back, project-based plan, while others had a more structured plan suited to their starting point.</p>
+      <p>The secondment also left us with someone who could step in and run migration work whenever needed. Keep that as a supporting consequence of the knowledge exchange, with training the team as the purpose of the secondment.</p>
+    </div></details>
+  </section>
+
+  <section class="option" id="e">
+    <div class="option-heading"><h2>Option E - What the secondment made possible</h2><a class="open-option" href="?option=e">Open full-size option E</a></div>
+    <p class="option-description">Group the five original consequences into three clear outputs under one shared origin. Pick this to keep the breadth of the original slide with fewer words and larger type. The hackathon result and lack of a playbook stay in the proposed notes.</p>
+    <div class="frame"><div class="frame-status">Preparing option E. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="e" title="Option E - What the secondment made possible"></iframe></div>
+    <details><summary>Proposed speaker notes for E</summary><div class="notes-copy">
+      <p>Begin at the secondment, then follow the connections to the three outputs. Joint materials, the delivery format and plans by skill level group the original consequences without giving every detail its own box.</p>
+      <p>We seconded one Mac engineer into the DevOps Centre of Excellence full time for three months on a train-the-trainer model. That was the length of the secondment. We ran the programme iteratively rather than fixing the whole plan upfront.</p>
+      <p>We wrote the materials together. The CoE brought the Terraform and Git content, while the seconded engineer translated it into Mac language and cut what did not apply. Knowledge moved both ways: macOS and Jamf Pro domain context went into the CoE, and Terraform, Git and GitOps practice came back to the Mac team.</p>
+      <p>We went back and forth between theory-led and hands-on delivery. Practical sessions landed better and became the settled format. The hackathons did not work as intended. They were in-person labs on familiar tasks, with homework between sessions. That particular format failing sits alongside the finding that practical delivery worked better overall.</p>
+      <p>We had no playbook to copy for this Mac-centric Terraform migration training, so we worked out the plan as we went. We matched delivery to prior skill: higher-skill engineers had a more laid-back, project-based plan, while others had a more structured plan suited to their starting point.</p>
+      <p>The secondment also left us with someone who could step in and run migration work whenever needed. Keep that as a supporting consequence of the knowledge exchange, with training the team as the purpose of the secondment.</p>
+    </div></details>
+  </section>
+
+  <p class="foot">To choose, name A, B, C, D or E in chat, or describe a further change. Each preview loads the real deck and replaces only slide 4 inside that iframe. Serve this page over HTTP to see the proposals; the source deck remains available <a href="../../training_a_team/index.html?theme=default#4">as it stands today</a>. <a href="s03-learning-outcomes.html">Slide 3 options</a> remain awaiting a decision.</p>
+</div>
+<template id="markup-a">
+<div class="s04-content s04-secondment">
+  <div class="s04-secondment-main">
+    <div class="s04-duration"><h2>3</h2><p>months</p></div>
+    <div class="s04-posting"><p class="s04-label">Full time in the DevOps Centre of Excellence</p><h2>We seconded<br><em>one Mac engineer</em></h2><p>To train the trainer.<br>We shaped the programme as we went.</p></div>
+  </div>
+  <div class="s04-exchange-strip">
+    <div><p>macOS and Jamf Pro knowledge</p><span class="s04-direction" aria-hidden="true">→</span><p>Into the CoE</p></div>
+    <div><p>Back to the Mac team</p><span class="s04-direction" aria-hidden="true">←</span><p>Terraform, Git and GitOps practice</p></div>
+  </div>
+</div>
+</template>
+<template id="markup-b">
+<div class="s04-content s04-exchange">
+  <p class="s04-label">We shared knowledge in both directions</p>
+  <div class="s04-exchange-diagram">
+    <div class="s04-origin"><h2>Mac<br>engineering</h2><p>macOS<br>Jamf Pro</p></div>
+    <div class="s04-bridge">
+      <p class="s04-arrow-caption">Mac domain knowledge into the CoE</p><div class="s04-arrow s04-arrow-right" aria-hidden="true"></div>
+      <div class="s04-engineer"><h3>One seconded engineer</h3><p>3 months full time</p></div>
+      <div class="s04-arrow s04-arrow-left" aria-hidden="true"></div><p class="s04-arrow-caption">Engineering practice back to the Mac team</p>
+    </div>
+    <div class="s04-destination"><h2>DevOps<br>Centre of<br>Excellence</h2><p>Terraform<br>Git and GitOps</p></div>
+  </div>
+  <p class="s04-baseline"><strong>Train the trainer</strong> We wrote the materials together and adapted delivery as we went.</p>
+</div>
+</template>
+<template id="markup-c">
+<div class="s04-content s04-training">
+  <h2>We trained one engineer<br><em>to teach the Mac team</em></h2>
+  <div class="s04-training-route" aria-label="The train-the-trainer model">
+    <div class="s04-route-part"><p class="s04-label">The secondment</p><h3>Into the CoE</h3><p>One Mac engineer<br>3 months full time</p></div>
+    <div class="s04-route-connector" aria-hidden="true">→</div>
+    <div class="s04-route-part"><p class="s04-label">Written together</p><h3>Materials in<br>Mac language</h3><p>Terraform and Git content<br>translated for our work</p></div>
+    <div class="s04-route-connector" aria-hidden="true">→</div>
+    <div class="s04-route-part"><p class="s04-label">The Mac team</p><h3>Practical<br>training</h3><p>Delivery adapted<br>to starting skills</p></div>
+  </div>
+  <p class="s04-baseline">We refined the programme as we went.</p>
+</div>
+</template>
+<template id="markup-d">
+<div class="s04-content s04-delivery">
+  <div class="s04-delivery-columns">
+    <div class="s04-tried"><p class="s04-label">What we tried</p><h2>Theory and<br>hands-on sessions</h2><p>We went back and forth on format.</p><h3>Hackathons</h3><p>Familiar tasks and homework.<br>The format did not land.</p></div>
+    <div class="s04-settled"><p class="s04-label">Where we settled</p><h2><em>Practical<br>landed better</em></h2><p>We matched delivery to starting skills.</p><div class="s04-skill-lines"><p><strong>Higher skill</strong> Project-based</p><p><strong>Others</strong> More structure</p></div></div>
+  </div>
+  <p class="s04-baseline"><strong>Train the trainer</strong> One Mac engineer, 3 months full time in the DevOps CoE.</p>
+</div>
+</template>
+<template id="markup-e">
+<div class="s04-content s04-outputs">
+  <div class="s04-output-hub"><p class="s04-label">Train the trainer</p><h2>One Mac engineer in the DevOps CoE</h2><p>3 months, full time</p></div>
+  <div class="s04-output-lines" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="s04-output-columns">
+    <div><h3>Materials in<br><em>Mac language</em></h3><p>We wrote them together.<br>We cut what did not apply.</p></div>
+    <div><h3>Practical<br><em>delivery</em></h3><p>We tried different formats.<br>Practical landed better.</p></div>
+    <div><h3>Plans matched<br><em>to starting skills</em></h3><p>Project work for higher-skill engineers.<br>More structure for others.</p></div>
+  </div>
+</div>
+</template>
+<script>
+// Five variants replace the fourth slide body inside real-deck previews only.
+const CSS = `
+:root {
+  --s04-unit: 8px;
+  --s04-hairline: 1px;
+  --s04-line: 2px;
+  --s04-body-height: 688px;
+  --s04-small: 26px;
+  --s04-body: 30px;
+  --s04-medium: 42px;
+  --s04-large: 56px;
+  --s04-hero: 72px;
+  --s04-numeral: 320px;
+  --s04-leading: 1.3;
+  --s04-heading-leading: 1.08;
+  --s04-tracking: -.025em;
+  --s04-label-tracking: .025em;
+}
+#s04-review .s04-content { margin-top: calc(var(--s04-unit) * 8); height: var(--s04-body-height); font-family: var(--sans); }
+#s04-review .s04-content h2, #s04-review .s04-content h3, #s04-review .s04-content p { margin: 0; padding: 0; }
+#s04-review .s04-content h2, #s04-review .s04-content h3 { font-weight: 700; letter-spacing: var(--s04-tracking); line-height: var(--s04-heading-leading); }
+#s04-review .s04-content h2 { font-size: var(--s04-large); }
+#s04-review .s04-content h3 { font-size: var(--s04-medium); }
+#s04-review .s04-content p { font-size: var(--s04-body); line-height: var(--s04-leading); color: var(--text-dim); }
+#s04-review .s04-content em { font-style: normal; color: var(--accent); }
+#s04-review .s04-content .s04-label { color: var(--accent); font-size: var(--s04-small); font-weight: 700; letter-spacing: var(--s04-label-tracking); }
+#s04-review .s04-content .s04-baseline { border-top: var(--s04-hairline) solid var(--border); padding-top: calc(var(--s04-unit) * 3); font-size: var(--s04-small); }
+#s04-review .s04-baseline strong { color: var(--accent); margin-right: calc(var(--s04-unit) * 3); }
+#s04-review .s04-secondment { display: flex; flex-direction: column; justify-content: space-between; }
+#s04-review .s04-secondment-main { display: grid; grid-template-columns: .8fr 1.8fr; gap: calc(var(--s04-unit) * 10); align-items: center; }
+#s04-review .s04-duration h2 { color: var(--accent); font-size: var(--s04-numeral); line-height: .9; letter-spacing: -.07em; }
+#s04-review .s04-duration p { color: var(--text); font-size: var(--s04-large); margin-top: calc(var(--s04-unit) * 2); }
+#s04-review .s04-posting { border-left: var(--s04-hairline) solid var(--border); padding-left: calc(var(--s04-unit) * 9); }
+#s04-review .s04-posting h2 { font-size: var(--s04-hero); margin-top: calc(var(--s04-unit) * 3); }
+#s04-review .s04-posting > p:last-child { margin-top: calc(var(--s04-unit) * 4); }
+#s04-review .s04-exchange-strip { border-top: var(--s04-hairline) solid var(--border); padding-top: calc(var(--s04-unit) * 3); padding-bottom: calc(var(--s04-unit) * 2); }
+#s04-review .s04-exchange-strip > div { display: grid; grid-template-columns: 1fr .5fr 1fr; gap: calc(var(--s04-unit) * 4); align-items: center; margin-top: calc(var(--s04-unit) * 2); }
+#s04-review .s04-exchange-strip > div p:last-child { text-align: right; }
+#s04-review .s04-direction { color: var(--accent); font-size: var(--s04-large); text-align: center; line-height: 1; }
+#s04-review .s04-exchange { display: flex; flex-direction: column; justify-content: space-between; padding-top: var(--s04-unit); }
+#s04-review .s04-exchange-diagram { display: grid; grid-template-columns: .85fr 1.5fr 1fr; gap: calc(var(--s04-unit) * 5); align-items: center; }
+#s04-review .s04-origin, #s04-review .s04-destination { padding: calc(var(--s04-unit) * 3) 0; }
+#s04-review .s04-origin p, #s04-review .s04-destination p { margin-top: calc(var(--s04-unit) * 4); color: var(--text-dimmer); }
+#s04-review .s04-origin { padding-right: calc(var(--s04-unit) * 3); }
+#s04-review .s04-destination { padding-left: calc(var(--s04-unit) * 3); }
+#s04-review .s04-bridge { text-align: center; }
+#s04-review .s04-bridge .s04-arrow-caption { font-size: var(--s04-small); }
+#s04-review .s04-arrow { position: relative; height: var(--s04-line); background: var(--accent); margin: calc(var(--s04-unit) * 2) 0; }
+#s04-review .s04-arrow::after { content: ''; position: absolute; top: calc(var(--s04-unit) * -.875); width: calc(var(--s04-unit) * 2); height: calc(var(--s04-unit) * 2); border-top: var(--s04-line) solid var(--accent); border-right: var(--s04-line) solid var(--accent); }
+#s04-review .s04-arrow-right::after { right: 0; transform: rotate(45deg); }
+#s04-review .s04-arrow-left::after { left: 0; transform: rotate(225deg); }
+#s04-review .s04-engineer { background: var(--surface); padding: calc(var(--s04-unit) * 4) calc(var(--s04-unit) * 2); margin: calc(var(--s04-unit) * 4) 0; }
+#s04-review .s04-engineer h3 { color: var(--accent); }
+#s04-review .s04-engineer p { margin-top: calc(var(--s04-unit) * 2); }
+#s04-review .s04-training { display: flex; flex-direction: column; justify-content: space-between; padding-top: var(--s04-unit); }
+#s04-review .s04-training > h2 { font-size: var(--s04-hero); }
+#s04-review .s04-training-route { display: grid; grid-template-columns: 1fr .15fr 1.1fr .15fr 1fr; gap: calc(var(--s04-unit) * 3); align-items: start; }
+#s04-review .s04-route-part { border-top: var(--s04-line) solid var(--accent); padding-top: calc(var(--s04-unit) * 3); }
+#s04-review .s04-route-part h3 { margin-top: calc(var(--s04-unit) * 3); }
+#s04-review .s04-route-part > p:last-child { margin-top: calc(var(--s04-unit) * 3); }
+#s04-review .s04-route-connector { color: var(--accent); font-size: var(--s04-large); line-height: 1; align-self: center; }
+#s04-review .s04-delivery { display: flex; flex-direction: column; justify-content: space-between; }
+#s04-review .s04-delivery-columns { display: grid; grid-template-columns: 1fr 1.25fr; gap: calc(var(--s04-unit) * 10); }
+#s04-review .s04-tried { padding-top: calc(var(--s04-unit) * 2); }
+#s04-review .s04-tried h2 { font-size: var(--s04-medium); margin-top: calc(var(--s04-unit) * 4); color: var(--text-dim); }
+#s04-review .s04-tried h3 { margin-top: calc(var(--s04-unit) * 5); color: var(--text-dim); }
+#s04-review .s04-tried > p:not(.s04-label) { margin-top: calc(var(--s04-unit) * 2); color: var(--text-dimmer); }
+#s04-review .s04-settled { border-left: var(--s04-hairline) solid var(--border); padding: calc(var(--s04-unit) * 2) 0 calc(var(--s04-unit) * 2) calc(var(--s04-unit) * 8); }
+#s04-review .s04-settled h2 { margin-top: calc(var(--s04-unit) * 4); font-size: var(--s04-hero); }
+#s04-review .s04-settled > p:not(.s04-label) { margin-top: calc(var(--s04-unit) * 4); }
+#s04-review .s04-skill-lines { margin-top: calc(var(--s04-unit) * 4); }
+#s04-review .s04-skill-lines p { display: grid; grid-template-columns: 1fr 1.25fr; gap: calc(var(--s04-unit) * 2); margin-top: calc(var(--s04-unit) * 2); }
+#s04-review .s04-skill-lines strong { color: var(--text); }
+#s04-review .s04-outputs { display: flex; flex-direction: column; align-items: center; padding-top: var(--s04-unit); }
+#s04-review .s04-output-hub { background: var(--surface); text-align: center; padding: calc(var(--s04-unit) * 3) calc(var(--s04-unit) * 5); }
+#s04-review .s04-output-hub h2 { font-size: var(--s04-medium); margin-top: calc(var(--s04-unit) * 2); }
+#s04-review .s04-output-hub > p:last-child { margin-top: calc(var(--s04-unit) * 2); }
+#s04-review .s04-output-lines { display: grid; grid-template-columns: repeat(3,1fr); width: 100%; height: calc(var(--s04-unit) * 12); position: relative; }
+#s04-review .s04-output-lines::before { content: ''; position: absolute; width: 66.6667%; left: 16.6667%; top: 50%; border-top: var(--s04-line) solid var(--accent); }
+#s04-review .s04-output-lines span { border-left: var(--s04-line) solid var(--accent); height: 50%; margin-left: 50%; align-self: end; }
+#s04-review .s04-output-lines span:nth-child(2) { height: 100%; }
+#s04-review .s04-output-columns { display: grid; grid-template-columns: repeat(3,1fr); width: 100%; }
+#s04-review .s04-output-columns > div { padding: calc(var(--s04-unit) * 3); text-align: center; }
+#s04-review .s04-output-columns h3 { font-size: var(--s04-medium); }
+#s04-review .s04-output-columns p { margin-top: calc(var(--s04-unit) * 4); font-size: var(--s04-small); }
+`;
+const selected = new URLSearchParams(location.search).get('option');
+const keys = ['a', 'b', 'c', 'd', 'e'];
+if (keys.includes(selected)) {
+  document.body.classList.add('single');
+  document.getElementById(selected).classList.add('selected');
+  document.getElementById('viewer-title').textContent = document.querySelector('#' + selected + ' h2').textContent;
+  document.querySelector('.back-link').href += '#' + selected;
+  document.querySelector('.viewer-bar a[href="?option=' + selected + '"]').setAttribute('aria-current', 'page');
+}
+
+document.querySelectorAll('iframe[data-variant]').forEach((frame) => {
+  const key = frame.dataset.variant;
+  if (keys.includes(selected) && key !== selected) return;
+  const container = frame.parentElement;
+  const status = container.querySelector('.frame-status');
+  frame.addEventListener('load', () => {
+    try {
+      const doc = frame.contentDocument;
+      const slide = doc && doc.querySelectorAll('section.slide')[3];
+      if (!slide || !slide.querySelector('.fanout') || slide.querySelector('h1')?.textContent.trim() !== 'How we ran it') {
+        throw new Error('The source slide could not be matched.');
+      }
+      const body = slide.querySelector('.body');
+      if (!body) throw new Error('The source content could not be matched.');
+      slide.id = 's04-review';
+      slide.dataset.reviewOption = key;
+      const style = doc.createElement('style');
+      style.dataset.s04Review = key;
+      style.textContent = CSS;
+      doc.head.appendChild(style);
+      body.replaceWith(doc.importNode(document.getElementById('markup-' + key).content, true));
+      const notes = [...document.querySelectorAll('#' + key + ' .notes-copy p')].map((p) => p.textContent).join('\n\n');
+      slide.setAttribute('data-notes', notes);
+      doc.getElementById('notestext').textContent = notes;
+      // Keep preview clicks, swipes and keyboard navigation on the slide under review.
+      // Notes, speaker and fullscreen keys remain available inside the real deck.
+      doc.addEventListener('keydown', (event) => {
+        if (['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) {
+          event.stopImmediatePropagation();
+          event.preventDefault();
+        }
+      }, true);
+      doc.addEventListener('click', (event) => event.stopPropagation(), true);
+      doc.addEventListener('touchstart', (event) => event.stopPropagation(), true);
+      container.dataset.state = 'ready';
+    } catch (error) {
+      container.dataset.state = 'unavailable';
+      status.textContent = location.protocol === 'file:'
+        ? 'This proposal needs a local HTTP server. The description and proposed speaker notes remain available below.'
+        : 'This proposal could not load. Reload the page or open the source deck using the link below. The proposed speaker notes remain available.';
+    }
+  });
+  // Register the handler first, so a cached deck cannot load before injection is ready.
+  frame.src = '../../training_a_team/index.html?theme=default#4';
+});
+</script>
+</body>
+</html>
