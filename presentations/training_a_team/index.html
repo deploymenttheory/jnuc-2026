@@ -116,6 +116,32 @@
   --s02-leading: 1.3;
   --s02-heading-leading: 1.04;
   --s02-tracking: -.025em;
+
+  /* Slide 6: accepted around-the-learner layout. */
+  --s06-unit: 8px;
+  --s06-body: 24px;
+  --s06-heading: 27px;
+  --s06-label: 24px;
+  --s06-leading: 1.25;
+  --s06-tight: 1.12;
+  --s06-top: 36px;
+  --s06-height: 728px;
+  --s06-stroke: 1.6;
+  --s06-draw-stroke: 2;
+  --s06-ring-stroke: 3;
+  --s06-dash: 6 7;
+  --s06-c-col: 500px;
+  --s06-c-right: 1176px;
+  --s06-c-centre: 588px;
+  --s06-c-l1: 6px;
+  --s06-c-l2: 268px;
+  --s06-c-l3: 536px;
+  --s06-c-r1: 6px;
+  --s06-c-r2: 152px;
+  --s06-c-r3: 448px;
+  --s06-ring-left: 538px;
+  --s06-ring-top: 105px;
+  --s06-ring-size: 600px;
 }
 /* ---------- THEME PRESETS -------------------------------------------------
    Each block restates only the knobs it changes. "default" is :root above and
@@ -506,12 +532,26 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 #s-what-didnt-work .s05-after { display: grid; grid-template-columns: var(--s05-size-490) var(--s05-size-490) 1fr; gap: var(--s05-size-46); }
 #s-what-didnt-work .s05-after .s05-issue h2 { color: var(--warn-light); }
 
-/* ---------- slide 6 ---------- */
-.icard{display:flex;gap:22px;align-items:flex-start;background:var(--surface);
-  border:1px solid var(--border);border-radius:12px;padding:26px 30px}
-.icard svg{width:32px;height:32px;flex:none;stroke:var(--green-bright);fill:none;stroke-width:1.6;margin-top:4px}
-.icard h3{font-size:25px;font-weight:700}
-.icard p{font-size:19px;line-height:1.42;color:var(--text-dimmer);margin-top:8px}
+/* ---------- slide 6: around the learner ---------- */
+#s-what-worked .s06-content { position: relative; margin-top: var(--s06-top); height: var(--s06-height); }
+#s-what-worked .s06-point { position: absolute; width: var(--s06-c-col); min-width: 0; }
+#s-what-worked .s06-point h2 { font: 700 var(--s06-heading)/var(--s06-tight) var(--sans); color: var(--accent); margin: 0 0 calc(var(--s06-unit) * 1.25); letter-spacing: 0; }
+#s-what-worked .s06-point p { font: 400 var(--s06-body)/var(--s06-leading) var(--sans); color: var(--text-dim); margin: 0; }
+#s-what-worked .s06-at-pair { left: 0; top: var(--s06-c-l1); }
+#s-what-worked .s06-at-principles { left: 0; top: var(--s06-c-l2); }
+#s-what-worked .s06-at-cohorts { left: 0; top: var(--s06-c-l3); }
+#s-what-worked .s06-at-sandbox { left: var(--s06-c-right); top: var(--s06-c-r1); }
+#s-what-worked .s06-at-secondment { left: var(--s06-c-right); top: var(--s06-c-r2); }
+#s-what-worked .s06-at-docs { left: var(--s06-c-right); top: var(--s06-c-r3); }
+#s-what-worked .s06-at-patience { left: var(--s06-c-centre); top: 0; text-align: center; }
+#s-what-worked .s06-draw { display: block; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+#s-what-worked .s06-ring { position: absolute; left: var(--s06-ring-left); top: var(--s06-ring-top); width: var(--s06-ring-size); height: var(--s06-ring-size); }
+#s-what-worked .s06-draw .dw-ring { fill: none; stroke: var(--accent); stroke-width: var(--s06-ring-stroke); }
+#s-what-worked .s06-draw .dw-spoke { fill: none; stroke: var(--alt-light); stroke-width: var(--s06-draw-stroke); stroke-dasharray: var(--s06-dash); }
+#s-what-worked .s06-draw .dw-node { fill: var(--surface-2); stroke: var(--border); stroke-width: var(--s06-draw-stroke); }
+#s-what-worked .s06-draw .dw-panel-open { fill: none; stroke: var(--accent); stroke-width: var(--s06-draw-stroke); }
+#s-what-worked .s06-draw .dw-ico { fill: none; stroke: var(--accent-strong); stroke-width: var(--s06-stroke); stroke-linecap: round; stroke-linejoin: round; }
+#s-what-worked .s06-draw .dw-label { font-family: var(--sans); font-size: var(--s06-label); font-weight: 400; fill: var(--text); }
 
 /* ---------- slide 7 ---------- */
 .herowrap{display:grid;grid-template-columns:640px 1fr;gap:40px;height:706px}
@@ -1225,39 +1265,57 @@ The next slide explains what replaced the original material: 3,778 words, 57 tim
 </section>
 
 <!-- ============ 6 · WHAT WORKED ============ -->
-<section class="slide" data-speaker="Joseph" data-notes="Principles first: teach each discipline individually before building up to the full picture, starting with what the team didn't already know, like Git. On third-party documentation, point to our own replacement curriculum as the example: 3,778 words across two modules and four labs, one of them deliberately broken, 57 times smaller than the 214,645-word manual it replaced, and both public in the training repo for people to compare.">
+<section class="slide" id="s-what-worked" data-speaker="Joseph" data-notes="Explain the seven approaches that helped the team learn. Keep the practical detail with each point, and take time over the conditions that made secondments useful.
+
+Paired programming transfers knowledge in real time. Engineers learn faster from a peer than from documentation alone. Effective pairs work with discipline: they stay on one topic at a time, clarify understanding in stages and deliberately share the context behind the work. They go beyond simply answering the questions the learner happens to ask.
+
+We scaled training back to foundational principles the team did not already know, starting with Git. We taught each discipline individually and built understanding incrementally before introducing the full picture. Those foundations gave engineers something to build on in their later self-directed learning.
+
+Grouping engineers into learning cohorts with similar skill levels helped us keep the pace right. The aim was to avoid leaving some people bored while others fell behind.
+
+Engineers need dedicated non-production sandboxes where they can experiment freely without fear of breaking production. Keep the experiments in those safe lab environments.
+
+Secondments and team shadowing provide grounding and broad exposure, even when the host team uses other Terraform providers. This is a specific approach, and it only works when a platform engineering team has time to dedicate to training the seconded engineer. Where that time is unavailable, lean on an enthusiastic employee who is willing to learn independently. Prior experience with GitHub and scripting or software development helps the engineer going on secondment.
+
+The Terraform registry and other teams&#x27; open-source reference implementations worked as learning material. They provide known good working examples of individual resources and inspiration for a syllabus. Our own documentation only worked after we cut it back to the essentials. The replacement curriculum contained 3,778 words across two modules and four labs, with one lab deliberately broken. It was 57 times smaller than the 214,645-word manual it replaced. Both versions are public in the training repo for people to compare.
+
+Close with patience. Engineers have a broad range of concepts to cover, and developing that understanding takes time.">
   <div class="eyebrow"><i class="dot"></i>06 &middot; Retrospective</div>
   <h1>What worked</h1>
-  <div class="body grid g2" style="gap:20px">
-    <div class="icard">
-      <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M15.5 14.2c2.6.3 4.5 1.9 4.5 4.8"/></svg>
-
-      <div><h3>Paired programming</h3><p>Real-time knowledge transfer. Engineers learn faster from a peer than from documentation alone. Effective pairs that transfer knowledge well share a disciplined (one topic at a time, staged clarification, deliberately pushing context rather than only answering questions asked) approach.</p></div>
-    </div>
-    <div class="icard">
-      <svg viewBox="0 0 24 24"><rect x="3" y="15" width="18" height="6" rx="1"/><rect x="6" y="9" width="12" height="6" rx="1"/><rect x="9" y="3" width="6" height="6" rx="1"/></svg>
-      <div><h3>Principles before the full picture</h3><p>Training was scaled back to the foundational principles the team did not already know, like Git, taught one discipline at a time and built up incrementally rather than trying to present the whole system too quickly. That foundation is what self-directed learning built on afterwards.</p></div>
-    </div>
-    <div class="icard">
-      <svg viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="M3 12.5 12 17l9-4.5"/><path d="M3 17.5 12 22l9-4.5"/></svg>
-      <div><h3>Ability-grouped learning cohorts</h3><p>Grouping engineers at similar skill levels keeps pace right, no one gets bored or is left behind.</p></div>
-    </div>
-    <div class="icard">
-      <svg viewBox="0 0 24 24"><path d="M12 2.5 20 6v6c0 5-3.4 8.4-8 9.5-4.6-1.1-8-4.5-8-9.5V6l8-3.5Z"/><path d="m8.7 12 2.2 2.2 4.4-4.4"/></svg>
-      <div><h3>Safe lab environments</h3><p>Ensure that you have dedicated non-prod sandboxes for engineers to experiment freely and without fear of breaking production. Do not YOLO in prod!</p></div>
-    </div>
-    <div class="icard">
-      <svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="12.5" rx="1.5"/><path d="M9 20.5h6M12 16.5v4"/><path d="m9.5 8.5 3 2-3 2"/></svg>
-      <div><h3>Secondments to DevOps teams</h3><p>Team shadowing (even on other tf providers) gives real grounding and broad exposure. This is a specific approach: it only works if a platform engineering team has time to dedicate to training the seconded engineer. Where that is not available, lean on an enthusiastic employee willing to learn it themselves instead. It also helps if whoever goes on secondment already has some prior experience with GitHub and scripting or software development.</p></div>
-    </div>
-    <div class="icard">
-      <svg viewBox="0 0 24 24"><path d="M5 3.5h9l5 5v12a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 4 20.5v-16A1 1 0 0 1 5 3.5Z"/><path d="M14 3.5v5h5"/><path d="M8 13h8M8 17h5"/></svg>
-      <div><h3>Good third-party documentation</h3><p>The Terraform registry and other teams' open-sourced reference implementations worked as learning material - use them for known good working examples of each resource, or as inspiration for your own syllabus. (Our own docs only worked once cut right back to the essentials: 3,778 words, 57x smaller than the manual it replaced.)</p></div>
-    </div>
-    <div class="icard">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.4l3.4 2"/></svg>
-      <div><h3>Patience. It takes time&hellip;..</h3><p>The sheer size of conceptual surface area that needs to be covered is large.</p></div>
-    </div>
+  <div class="body s06-content">
+    <svg class="s06-draw s06-ring" viewBox="0 0 560 560" role="img" aria-label="A ring around a central disc labelled The engineer, with seven spokes out to marks on the ring, one for each approach. The ring itself stands for patience.">
+      <circle class="dw-ring" cx="280" cy="280" r="190"/>
+      <path class="dw-spoke" d="M280 194 L280 126"/>
+      <circle class="dw-node" cx="280" cy="90" r="36"/>
+      <svg class="dw-ico" x="264" y="74" width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.4l3.4 2"/></svg>
+      <path class="dw-spoke" d="M347.2 226.4 L400.4 184"/>
+      <circle class="dw-node" cx="428.5" cy="161.5" r="36"/>
+      <svg class="dw-ico" x="412.5" y="145.5" width="32" height="32" viewBox="0 0 24 24"><path d="M12 2.5 20 6v6c0 5-3.4 8.4-8 9.5-4.6-1.1-8-4.5-8-9.5V6l8-3.5Z"/><path d="m8.7 12 2.2 2.2 4.4-4.4"/></svg>
+      <path class="dw-spoke" d="M363.8 299.1 L430.1 314.3"/>
+      <circle class="dw-node" cx="465.2" cy="322.3" r="36"/>
+      <svg class="dw-ico" x="449.2" y="306.3" width="32" height="32" viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="12.5" rx="1.5"/><path d="M9 20.5h6M12 16.5v4"/><path d="m9.5 8.5 3 2-3 2"/></svg>
+      <path class="dw-spoke" d="M317.3 357.5 L346.8 418.7"/>
+      <circle class="dw-node" cx="362.4" cy="451.2" r="36"/>
+      <svg class="dw-ico" x="346.4" y="435.2" width="32" height="32" viewBox="0 0 24 24"><path d="M5 3.5h9l5 5v12a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 4 20.5v-16A1 1 0 0 1 5 3.5Z"/><path d="M14 3.5v5h5"/><path d="M8 13h8M8 17h5"/></svg>
+      <path class="dw-spoke" d="M242.7 357.5 L213.2 418.7"/>
+      <circle class="dw-node" cx="197.6" cy="451.2" r="36"/>
+      <svg class="dw-ico" x="181.6" y="435.2" width="32" height="32" viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="M3 12.5 12 17l9-4.5"/><path d="M3 17.5 12 22l9-4.5"/></svg>
+      <path class="dw-spoke" d="M196.2 299.1 L129.9 314.3"/>
+      <circle class="dw-node" cx="94.8" cy="322.3" r="36"/>
+      <svg class="dw-ico" x="78.8" y="306.3" width="32" height="32" viewBox="0 0 24 24"><rect x="3" y="15" width="18" height="6" rx="1"/><rect x="6" y="9" width="12" height="6" rx="1"/><rect x="9" y="3" width="6" height="6" rx="1"/></svg>
+      <path class="dw-spoke" d="M212.8 226.4 L159.6 184"/>
+      <circle class="dw-node" cx="131.5" cy="161.5" r="36"/>
+      <svg class="dw-ico" x="115.5" y="145.5" width="32" height="32" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M15.5 14.2c2.6.3 4.5 1.9 4.5 4.8"/></svg>
+      <circle class="dw-panel-open" cx="280" cy="280" r="86"/>
+      <text class="dw-label" x="280" y="289" text-anchor="middle">The engineer</text>
+    </svg>
+    <article class="s06-point s06-at-pair" data-topic="pair"><h2>Paired programming</h2><p>Pairing transfers knowledge in real time. Engineers learn faster from a peer than from documentation alone. Good pairs stay disciplined: one topic at a time, clarification in stages and context shared proactively, beyond the questions asked.</p></article>
+    <article class="s06-point s06-at-principles" data-topic="principles"><h2>Principles before the full picture</h2><p>We scaled training back to unfamiliar foundations, starting with Git. Teaching one discipline at a time let engineers build understanding incrementally before introducing the whole system. Those foundations supported self-directed learning afterwards.</p></article>
+    <article class="s06-point s06-at-cohorts" data-topic="cohorts"><h2>Learning cohorts by ability</h2><p>Grouping engineers at similar skill levels keeps the pace right throughout training, without leaving people bored or behind.</p></article>
+    <article class="s06-point s06-at-sandbox" data-topic="sandbox"><h2>Safe lab environments</h2><p>Dedicated non-production sandboxes let engineers experiment freely, without fear of breaking production.</p></article>
+    <article class="s06-point s06-at-secondment" data-topic="secondment"><h2>Secondments to DevOps teams</h2><p>Shadowing gives grounding and broad exposure, even with other Terraform providers. It only works if a platform engineering team can dedicate time to training. Otherwise, lean on an enthusiastic employee willing to learn independently. Prior GitHub and scripting or software development experience helps.</p></article>
+    <article class="s06-point s06-at-docs" data-topic="docs"><h2>Good third-party documentation</h2><p>The Terraform registry and other teams&#x27; open-source implementations provide working resource examples and inspiration for a syllabus. Our own docs worked after cutting back to the essentials: 3,778 words, 57x smaller than the manual they replaced.</p></article>
+    <article class="s06-point s06-at-patience" data-topic="patience"><h2>Patience</h2><p>There is a broad range of concepts to cover. It takes time.</p></article>
   </div>
 </section>
 

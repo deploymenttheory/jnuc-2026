@@ -734,6 +734,28 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training slide 6, option C accepted.** Dafydd accepted "Around the
+  learner" from `s06-what-worked-visual.html`. Applied to the deck as `#s-what-worked`:
+  the section takes that stable id, the `.body.grid.g2` of seven `.icard` blocks is
+  replaced by the option's static markup - a 560 unit ring drawing with a navy "The
+  engineer" disc, seven dashed spokes out to icon nodes carrying the deck's own slide 6
+  glyphs, and the seven headings and paragraphs positioned in their own sectors - and
+  `data-notes` becomes the option's eight proposed note paragraphs. The option's CSS lands
+  as one block scoped to `#s-what-worked` next to the other accepted-slide blocks, with
+  only the rules option C uses; the A, B, D and E rules and the tokens only they needed are
+  dropped, and the `--s06-*` sizing, stroke and ring coordinates go into the deck's `:root`
+  beside the `--s02-*` group. Preserved: the accepted copy word for word at 211 body words,
+  all eight note paragraphs, all seven approaches visible, and slides 5 and 7 untouched.
+  The four `.icard` rules were removed because nothing else in the deck used the class;
+  `.grid.g2` stays for slides 11 and 16. `s06-what-worked-visual.html` is deleted and its
+  sandbox index entry removed entirely at Dafydd's request. Evidence: slides 5, 6 and 7
+  screenshotted from `origin/main` and again after the edit in headless Chrome at
+  1920x1080 with no virtual time budget; slides 5 and 7 are byte-identical to their
+  baselines under `cmp`, slide 6 matches the accepted option C render from the review page,
+  and the `file://` render of slide 6 is byte-identical to the HTTP one. ArrowRight
+  advances exactly one slide per press across all 24 slides and stops at the end. No hex
+  colours, no em or en dashes and no `s06-review` remain in the deck. Downloads are not
+  rebuilt. PR #108.
 - **2026-09-08, training slide 6, five visual options replacing the text-only round.**
   Dafydd rejected all five round-one layouts because every one was still a block of text
   with no visual device. Added `s06-what-worked-visual.html` and deleted
