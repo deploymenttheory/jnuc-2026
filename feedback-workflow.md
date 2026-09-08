@@ -734,6 +734,27 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training_a_team slide 4, five new sandbox options awaiting a decision.**
+  Dafydd left slide 3 open and requested the same five-option loop for the next slide.
+  "How we ran it" remains slide 4, with Joseph as speaker. A leads with the secondment;
+  B diagrams the two-way knowledge exchange; C follows the train-the-trainer model;
+  D foregrounds the changes to delivery; E groups the consequences into three outputs.
+  All five are new compositions, with less visible copy and reviewable speaker notes
+  retaining the three-month full-time secondment, joint materials, iteration, practical
+  delivery, the unsuccessful hackathon format, lack of a playbook, skill-based delivery
+  plans and the ability to step into migration work. Three months describes the secondment
+  only. Page `s04-how-we-ran-it.html` offers five real-deck iframe renders, direct anchors
+  and full-size views. Slide 3 remains awaiting a decision, with its review page unchanged.
+  All five renders passed browser and visual review at 1920x1080, with 46-56 body words,
+  no overflow, text overlap or footer collision, working notes and speaker keys, pinned
+  navigation, direct anchors, full-size views and mobile layouts. The preview counter and
+  help text scale with the slide so they stay below the content on mobile. Focused checks
+  confirm all five mobile layouts and unchanged full-size pixels outside the source deck's
+  animated progress strip. File and missing-source fallbacks hide unavailable previews.
+  No browser or resource errors. Both source decks
+  and the pending slide 3 page are byte-unchanged. Downloads and shared files are untouched.
+  Training has no presenter.json, so its presenter sync check does not apply. PR #94.
+
 - **2026-09-07, training_a_team slide 3, five new sandbox options awaiting a decision.**
   Dafydd requested the same five-option loop for slide 3. A leads with the practical
   definition of trained; B separates intended capabilities from observed results on two
