@@ -753,7 +753,7 @@ it up - either way it is on disk for a recovering session.
   inline scripts parse and `git diff --check` passes. Evidence is in
   `/tmp/jnuc-s05-accept-{source,reference,file}.png` and `/tmp/jnuc-s05-accept-qa.json`.
   Training has no presenter.json, so presenter sync does not apply. Downloads remain
-  deferred under the standing feedback convention.
+  deferred under the standing feedback convention. PR #103.
 
 - **2026-09-08, training_a_team slide 5 option E chart notes restored for review.**
   Dafydd: "refine option e's diagram to include the word notes from the original. then
