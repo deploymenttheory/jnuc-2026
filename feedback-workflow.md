@@ -751,7 +751,7 @@ it up - either way it is on disk for a recovering session.
   role pairing its fixed minimum with what changes underneath it by org size in a single
   sentence, no grid or table. Every option keeps both required points and every settled fact
   from AGENTS.md's "How #9's two charts are scored" in the section's one shared `data-notes`.
-  Added `s-learning-priorities-option-d-variants.html`. No option is accepted. PR TBC.
+  Added `s-learning-priorities-option-d-variants.html`. No option is accepted. PR #8.
 
 - **2026-09-08, training_a_team slide 9, five full-redesign layouts for "Learning
   priorities by role".** Dafydd said the slide (three role cards plus twin six-axis radar
