@@ -749,7 +749,7 @@ it up - either way it is on disk for a recovering session.
   decks and downloads remain unchanged. Added the pending index and AGENTS.md entry.
   Browser checks passed across all five layouts: 25-27px minimum body text, no overflow,
   clipping or overlap, matching notes, pinned navigation, full-size routes and mobile
-  review controls. All five rendered screenshots were visually reviewed. PR pending.
+  review controls. All five rendered screenshots were visually reviewed. PR #104.
 
 - **2026-09-08, training_a_team slide 5 option E accepted and slides 4 and 5 cleared from the sandbox.**
   Dafydd: "now implement option E for slide 5 and option e for slide 4. once applied then
