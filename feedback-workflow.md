@@ -766,6 +766,44 @@ it up - either way it is on disk for a recovering session.
   so every drawing label was painted off-centre until the page re-parsed each drawing on
   the next animation frame. PR #107.
 
+- **2026-09-08, training slide 7, five visual options replacing the text-only round.**
+  Dafydd rejected all five round-one layouts because every one of them was a block of text
+  with no visual device. Added `s07-conditions-visual.html` and deleted
+  `s07-conditions-for-success.html`, replacing its index entry rather than adding a second
+  page. A Two pillars is an SVG post and lintel: two labelled columns with capitals and base
+  plinths stand on a hatched ground line with open canvas between them, carrying one solid
+  lime beam that holds the premise in navy, and the seven conditions rest on top of that beam
+  as numbered tiles. The safety paragraphs sit inside the column shafts under their labels.
+  B When it applies is a horizontal track whose three zones come from the copy's own words,
+  before you start (01, 02, 07), during (03, 04, 06) and one condition running throughout
+  (05) as a bar spanning the whole track, over a ground band of both safeties; the
+  description says the zones are read from the copy and the numbers are not a sequence. C The
+  dip is one illustrative slower-before-faster curve, coral on the fall and lime on the rise,
+  filling its column and about 60 per cent of its height, with a marked trough, a dashed drop
+  to a bracketed two-to-three-month span whose label sits clear below the bracket, condition
+  06 directly under the trough and a visible SHAPE IS ILLUSTRATIVE disclosure, the other six
+  running as a numbered column beside it. D
+  Gates on a rail runs the seven down a vertical rail with large mono numerals and line-art
+  marks, a boom barrier on 02 and 07, converging arrows on 01, a clock on 03, two figures on
+  04, a chain link on 05 and a dip glyph on 06, against a navy safety panel carrying a shield
+  and a pair of speech marks. E Big numerals sets 01 to 07 at 120px in lime mono, four across
+  and then three, under a full-width safety band with the premise at its right edge.
+  Preserved exactly: the round-one `COPY` object of 217 body words and the seven paragraphs
+  of proposed speaker notes, both kinds of safety, all seven conditions, the confirmed
+  two-to-three-month dip and PR approvers chosen before handover. Only layout and artwork
+  changed. All colours, fonts and sizes are deck tokens or scoped `--s07-*` sizing tokens,
+  with no literal colour anywhere including inside the SVG; decorative marks carry
+  `aria-hidden` and the three diagrams carry `role="img"` with a description, so every option
+  still reads with the artwork deleted. Verified in headless Chrome at 1920 by 1080 for all
+  five options plus the whole page: nothing overflows the footer hairline or reaches the
+  slide counter, no clipped labels, the notes overlay in every option carries the seven
+  proposed paragraphs and matches `data-notes`, and the word-count widget reports 217 body
+  words for A, D and E, 222 for B and 224 for C, the difference being each option's own drawn
+  labels. The deck diff against origin/main for `presentations/training_a_team/` is empty, so
+  the source slide and both downloads are unchanged. A and C were reworked in review: A's
+  structure was redrawn so the post and lintel actually reads, and C's curve was scaled up
+  with the span label moved clear of its own bracket. PR #106.
+
 - **2026-09-08, training slide 6, five layout options with shorter copy.** Added
   `s06-what-worked.html` to the training sandbox for Joseph's "What worked" slide.
   A uses two plain columns, B seven aligned full-width rows, C a navy secondment column,
