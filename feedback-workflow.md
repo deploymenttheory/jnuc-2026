@@ -755,7 +755,7 @@ it up - either way it is on disk for a recovering session.
   and the `file://` render of slide 6 is byte-identical to the HTTP one. ArrowRight
   advances exactly one slide per press across all 24 slides and stops at the end. No hex
   colours, no em or en dashes and no `s06-review` remain in the deck. Downloads are not
-  rebuilt. PR #n.
+  rebuilt. PR #108.
 - **2026-09-08, training slide 6, five visual options replacing the text-only round.**
   Dafydd rejected all five round-one layouts because every one was still a block of text
   with no visual device. Added `s06-what-worked-visual.html` and deleted
