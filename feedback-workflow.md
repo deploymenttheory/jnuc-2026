@@ -751,7 +751,7 @@ it up - either way it is on disk for a recovering session.
   unchanged shared copy and note blocks, punctuation and diff whitespace checks pass.
   Evidence: `/tmp/jnuc-s05-e-refined.png`, `/tmp/jnuc-s05-e-refined-mobile.png` and
   `/tmp/jnuc-s05-e-refined-qa.json`. Training has no presenter.json; downloads remain
-  deferred under the standing feedback convention. PR pending.
+  deferred under the standing feedback convention. PR #102.
 
 - **2026-09-08, training_a_team slide 4 option E accepted.** Dafydd: "slide 4 proceed
   with option e". Applied "Option E - Plain sentences" to the sixteen existing text fields
