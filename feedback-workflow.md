@@ -753,7 +753,7 @@ it up - either way it is on disk for a recovering session.
   The unchanged back-arrow glyph extends its font box in both source and previews.
   Anchors, full-size and mobile routes, proposed notes, pinned navigation and resource
   checks pass. Both source decks are byte-identical; local links, inline JavaScript syntax,
-  dash checks and `git diff --check` pass. No option has been accepted.
+  dash checks and `git diff --check` pass. No option has been accepted. PR #99.
 
 - **2026-09-08, training_a_team sandbox reset.** Dafydd requested removal of all existing
   training sandbox options before a fresh slide 4 wording round. Deleted the old slide 4
