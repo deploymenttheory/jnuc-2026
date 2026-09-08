@@ -485,7 +485,7 @@ chip in the deck; their context is in `spec.md` and the git history of this file
 (the full session title, set 2026-09-04; it was "ClickOps to GitOps - Learning Journey"). Renamed from
 `clickops-to-gitops.html` when the site moved to path-per-deck: the CloudFront Function
 resolves `/training_a_team/` to `index.html`, so any other filename is only reachable by its
-full path. **23 slides.** `ClickOps_to_GitOps.key` and `ClickOps_to_GitOps.pptx` alongside it
+full path. **24 slides.** `ClickOps_to_GitOps.key` and `ClickOps_to_GitOps.pptx` alongside it
 are the committed downloads from `tools/build-downloads.mjs`. No spec, notes file or slot
 length has been recorded here yet. Content work is ongoing, slide by slide (Aug 2026).
 
@@ -503,8 +503,8 @@ beside four supporting facts - 1,500+ resources, three stages on the route to li
 and breakglass GUI write access. The whole Mac team works this way every day; a quiet line
 retains open-source training and the sister teams now learning. The full operational detail
 lives in the speaker notes. Rules are scoped to `#s-estate`, with `--s02-*` sizing tokens), `#3` goals,
-`#4` execution, `#5` what didn't work, `#6` what worked, `#7` conditions, `#8` learning
-priorities by role, `#9` the learning pathway (four phases - **merges the old `#9` matrix and
+`#4` execution, `#5` what didn't work, `#6` what worked, `#7` conditions, `#8` mindset,
+`#9` learning priorities by role, `#10` the learning pathway (four phases - **merges the old `#9` matrix and
 `#10` timeline**, Aug 2026: both said the same thing twice and neither described what the team
 actually did). Titled "the pathway we **followed**", not "that worked": phase 1 front-loaded
 all the theory and the team only found out afterwards that it did not land, so that card
@@ -525,8 +525,8 @@ moment one question wraps to a second line. Column widths (518/340/1fr) and band
 together - change one and change the other. Every question is anchored in a line elsewhere in
 the deck rather than invented; the anchors are in the feedback log. Speaker still unassigned.
 
-`#9` deliberately does **not** use the bordered-card grid the rest of the deck runs on (`#7`,
-`#8`, `#11`, `#14` all do). It is drawn as a **route**: one rising SVG track with four stop
+`#10` deliberately does **not** use the bordered-card grid used by several other slides.
+It is drawn as a **route**: one rising SVG track with four stop
 dots, and the text for each phase hanging beneath its own stop. **The track and the dots share
 one coordinate space** - an earlier attempt put the line in an SVG and the dots in CSS and they
 never met. The viewBox is `0 0 1676 376`, where **1676 is the real content box**: the deck is
@@ -544,23 +544,21 @@ A dashed `--alt-light` **gate** sits in the column gap after stop 3 (75.7%): an 
 competent to change a live production instance from the end of phase 3, once Git and the GitOps
 flow were in. Everything left of the gate is the whole team; phase 4 is the maintainers only.
 Confirmed by Gordon Deacon, Aug 2026. Move the gate and you must move the `.gate-label` width
-with it - the label is right-aligned inside a box the same width as the gate offset. Then `#11` delivery, `#12` content types, `#13` case study, `#14` scope, `#15`
-onboarding, `#16` hiring, `#17` resources (with the QR rail - see below), `#18` Questions
-("Questions? Your turn!", navy), `#19` Thank You, `#20` the skills map (moved to post-matter by
-Dafydd, kept there), `#20` and `#21` the two slides the merge replaced - the old pathway matrix
-and the old week-by-week timeline, kept as appendix reference at Gordon's request (Aug 2026),
-with `data-speaker` stripped so they stay out of the speaking rotation - `#21` and `#22` are those two - and `#23` the colour
-appendix. A new **`#8` Mindset shift** was inserted after `#7` on 2026-09-04 (sandbox option C:
-the questions engineers asked themselves on a full-height lime rail between the old mindset on
-the navy panel and the new one on the canvas), which pushed everything from the old `#8` on by
-one - the numbers in this paragraph are the current ones. The deck is **23 slides**; eyebrow
-numbers and section banners were renumbered to match. `#18`-`#23` are post-matter: Thank You closes the talk.
-Thank You closes the talk; `#21`-`#22` are reference material for readers. Eyebrow numbers
-match slide numbers (Dafydd's convention) - renumber them when slides move.
+with it - the label is right-aligned inside a box the same width as the gate offset.
+
+Then `#11` delivery, `#12` content types, `#13` Louise's case study, `#14` sister-team
+scope, `#15` onboarding, `#16` hiring, `#17` learner benefits, `#18` learning materials,
+`#19` Questions and `#20` Thank You. The appendix is `#21` the skills map, `#22` the old
+pathway matrix, `#23` the old week-by-week timeline and `#24` the colour system. The
+matrix and timeline remain for readers at Gordon's request and have no assigned speaker.
+The new benefits slide was split from slide 3 on 2026-09-08 and inserted at position 17,
+between hiring and learning materials. The deck is **24 slides**. Eyebrow numbers match
+slide positions and are renumbered when slides move; Thank You closes the talk and
+`#21`-`#24` are appendix material.
 
 Merged in from Dafydd's edits, on top of the restyle:
 
-- **QR rail on `#17`**: a third grid column (`.res3`, `.qr-rail`, `.qr-tile`) holding
+- **QR rail on `#18`**: a third grid column (`.res3`, `.qr-rail`, `.qr-tile`) holding
   `../_shared/qr-code.png` with a "take it with you" caption; the delivery note says to
   leave it up while taking questions. The tile's white background is a deliberate literal -
   a QR code stays black-on-white under every theme - with a `var(--border)` hairline so it
@@ -575,6 +573,13 @@ Notable content slides:
 
 - **Goals** (`#3`): learning-outcome cards, a "what success looked like" behaviours block,
   a non-goals strip and a trained-bar definition.
+- **Learner benefits** (`#17`, `s-learner-benefits`): split out of slide 3 on 2026-09-08.
+  All twelve original benefits remain visible across Individual, Team and Organisation.
+  The benefits are explicitly intended; a separate "What we saw in the Mac engineering
+  team" strip preserves the three observed behaviours: self-sufficient PR work without
+  assistance, architectural decisions and resources managed exclusively in code. The source
+  is a straightforward three-column reflow while five sandbox visual options await a choice.
+  Scoped `.bn-*` rules and a separate `:root` block hold the new sizing tokens.
 - **Execution** (`#4`): a fan-out - a hub panel (one engineer seconded into the DevOps CoE,
   3 months, train-the-trainer, run iteratively rather than planned end to end) bracketed by
   an SVG to five outcome cards, all plain (no per-card colour variants): materials written
@@ -619,7 +624,7 @@ Notable content slides:
   weight the copy claims for it ("the most evidenced condition of all") with three practical
   points under it; the other six conditions, including "Expect the dip", sit right as
   compact numbered cards. Classes `.herowrap`, `.heropanel`, `.supp`/`.suppcard` (`.dip`).
-- **Learning priorities by role** (`#8`): three role cards across the top; below them two
+- **Learning priorities by role** (`#9`): three role cards across the top; below them two
   radar webs (grid rings plus spokes, thin outlines, translucent fills), each carrying all
   three roles. Left is a small org with no DevOps function, where every shape is broad;
   right is a large org like LBG, where the shapes narrow but spike on Jamf APIs and
@@ -632,31 +637,30 @@ Notable content slides:
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an amber
 token for exactly that. Current chips (3): photos for Joseph and Gordon (`#1`); how long the
 dip lasts (`#7`); the 3-4 minute interview with Louise. The `#5` engineer quote was confirmed
-by Gordon Deacon, Aug 2026, and its chip is gone. The `#3` "what success looked like" behaviours
-(the team became self-sufficient committing and reviewing PRs without assistance, was making
+by Gordon Deacon, Aug 2026, and its chip is gone. The "what success looked like" behaviours
+(now on `#17`: the team became self-sufficient committing and reviewing PRs without assistance, was making
 architectural decisions and was managing resources in code exclusively), the trained bar and the
 non-goals were confirmed by the user, Aug 2026, and all three `#3` chips are gone.
 
-Speakers (`data-speaker`), after the `#9`/`#10` merge - `docs/timeline-notes.md` is
-authoritative here too; this list is corrected to match it when they disagree: `#5`, `#7`,
-`#9` and `#14` are Gordon; `#4`, `#6`, `#10`, `#11` and `#13` are Joseph; `#3`, `#8`, `#12`,
-`#15` and `#16` are Dafydd. Scope moved from Dafydd to Joseph and onboarding from Dafydd to
-Gordon, Aug 2026. `#2` is still marked **All** but Gordon's notes assign it to Dafydd -
-unresolved.
+Speakers (`data-speaker`), matching `docs/timeline-notes.md`: `#5`, `#7`, `#10` and
+`#15` are Gordon; `#4`, `#6`, `#11`, `#12` and `#14` are Joseph; `#3`, `#9`, `#13`,
+`#16`, `#17` and `#18` are Dafydd. `#2` is All. The title, Mindset shift, Questions,
+Thank You and the appendix slides are unassigned. The new benefits slide keeps Dafydd,
+who presented the original benefits on slide 3.
 
 `#7` carries a seventh condition, "Decide who approves the pull requests" (`.suppcard.wide`,
 full-width across the 2-column grid), and its hero panel is now **Two kinds of safety** -
 operational (leadership) and psychological (engineers) - rather than psychological alone.
 Both from Gordon, Aug 2026. The dip lasted 2-3 months.
 
-**The four disciplines are a shared vocabulary.** `#19` (skills map) is built on
-**Environment, Git, Terraform, GitOps**. The merged `#9` deliberately drops the discipline
-tagging to stay readable from the back of the room; `#19` still calls
-them "the four core disciplines" in its subtitle. `#8`'s radar uses those same four plus
+**The four disciplines are a shared vocabulary.** `#21` (skills map) is built on
+**Environment, Git, Terraform, GitOps**. The merged `#10` deliberately drops the discipline
+tagging to stay readable from the back of the room; `#21` still calls
+them "the four core disciplines" in its subtitle. `#9`'s radar uses those same four plus
 Jamf APIs and Mentoring, the two that only start to matter as people move up. If you rename
 or re-cut a discipline on any of those four slides, change all four.
 
-Two deliberate decisions on `#8` worth not undoing:
+Two deliberate decisions on `#9` worth not undoing:
 
 - **Provider architecture and SDK design were removed.** Building the Terraform provider is a
   different job from using it, and no Mac team needs a Go developer to adopt this. It was
@@ -665,12 +669,12 @@ Two deliberate decisions on `#8` worth not undoing:
 - **The senior label is "The escalation point", not "End-to-end mastery"**, because seniors
   are defined here by responsibility rather than by a completed body of knowledge.
 
-Known tension, left as-is on purpose: `#8` organises the curriculum by job grade, while `#9`
+Known tension, left as-is on purpose: `#9` organises the curriculum by job grade, while `#10`
 organises it by stage of learning (Oriented, Safe Contributor, and so on) and `#5` reports
 that prior coding experience predicted success rather than seniority. The speaker owns that
 framing and chose to keep grades, since that is how the audience's own org charts read.
 
-**How `#8`'s two charts are scored** - this came from the speaker directly, so do not
+**How `#9`'s two charts are scored** - this came from the speaker directly, so do not
 "correct" it back:
 
 - **Jamf APIs score identically in both charts.** No external team is ever going to know your
@@ -897,8 +901,8 @@ automatically.
 
 - Option A is by convention whatever the deck currently ships and injects nothing, unless
   a round explicitly asks for all-new designs. The training slide 2 round offered five
-  new variants; option E was accepted on 2026-09-07. The slide 3 and slide 4 rounds each offer five
-  new variants and are awaiting decisions.
+  new variants; option E was accepted on 2026-09-07. The slide 3, slide 4 and new slide 17 rounds each
+  offer five new variants and are awaiting decisions.
 - Variant CSS only touches the slide's `#id` and only uses the deck's own tokens, so an
   accepted option pastes into the deck unchanged.
 - Injection needs same-origin access, so it only works over HTTP. Opened from `file://` the
@@ -912,6 +916,13 @@ automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages awaiting a decision under `presentations/sandbox/training_a_team/`:
+`s17-learner-benefits` (2026-09-08, new slide 17, Dafydd, five complete visual treatments:
+A three levels side by side, B benefits that widen, C start with the learner, D three steps
+outward, E the wider support around learners. Every option keeps the twelve individual,
+team and organisational benefits visible, with the three observed Mac-team behaviours in a
+separate strip. The source content has been split out of slide 3 into a straightforward
+reflow at position 17; these visual alternatives await a decision. Full-size views,
+reviewable notes and mobile preview chrome follow the slide 4 review pattern);
 `s04-how-we-ran-it` (2026-09-08, slide 4, Joseph, five new treatments: A the secondment,
 B a two-way exchange, C train the trainer, D we changed the delivery, E what the secondment
 made possible. Each condenses the visible copy while retaining the secondment, joint materials,
@@ -919,7 +930,7 @@ iteration, hackathon result, lack of a playbook and plans by skill level across 
 reviewable proposed speaker notes. Three months describes the secondment only. Each option has
 a direct anchor and a full-size view. This page also scales the preview counter and help
 text with the slide to avoid mobile collisions, while notes and speaker panels keep their
-screen sizing. The source deck is unchanged and slide 3 stays open);
+screen sizing. Slide 4 is unchanged and slide 3 stays open);
 `s03-learning-outcomes` (2026-09-07, slide 3, Dafydd, five new treatments in the training
 refinement: A the finish line, B what we taught and what changed, C one real change,
 D who benefits, E the judgement that makes it safe. The fixed title stays, detailed content
