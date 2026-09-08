@@ -904,16 +904,17 @@ the same day, when the sandbox itself split one-per-deck).
 
 How a review page works: it embeds the real slide once per option in iframes
 (`../../<deck>/index.html#<slide-id>` - two levels up from `presentations/sandbox/<deck>/`
-to `presentations/`, then into the deck) and, on each iframe's `load`, appends a `<style>`
-with that option's CSS to the iframe document. The options are therefore always the
-deployed deck plus a few rules, never a copy of the deck, and they track deck edits
-automatically.
+to `presentations/`, then into the deck). On each iframe's `load`, a visual round appends
+that option's CSS and a wording round updates the existing text fields in place. The options
+are therefore the deployed deck plus the proposed changes, never a copy of the deck, and
+they track deck edits automatically.
 
 - Option A is by convention whatever the deck currently ships and injects nothing, unless
-  a round explicitly asks for all-new designs. The training slide 2 round offered five
+  a round explicitly asks for all-new wording or designs. The training slide 2 round offered five
   new variants; option E was accepted on 2026-09-07. Slide 3
   accepted option E from its five replacement variants on 2026-09-08. The earlier slide 4
   and new slide 17 rounds were closed without acceptance in the 2026-09-08 sandbox reset.
+  The fresh slide 4 round offers five wording options in the exact source layout.
 - Variant CSS only touches the slide's `#id` and only uses the deck's own tokens, so an
   accepted option pastes into the deck unchanged.
 - Injection needs same-origin access, so it only works over HTTP. Opened from `file://` the
@@ -926,11 +927,21 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-No pages currently awaiting a decision under
-`presentations/sandbox/training_a_team/`. Dafydd requested a fresh sandbox on 2026-09-08:
-all old review pages and index entries, including non-linked decision history, were removed.
-Accepted source changes remain in the deck; their provenance is retained below and in
-`feedback-workflow.md`.
+Current page awaiting a decision under `presentations/sandbox/training_a_team/`:
+`s04-wording-refinement` (2026-09-08, slide 4, Joseph, five new wording options:
+A a shorter account, B what we did, C what we learnt, D speaking prompts, E plain sentences).
+Every option keeps the source slide's hub, five numbered spokes, brace and two arrows,
+including their markup, CSS, typography and dimensions. Only existing text fields and
+the preview's proposed speaker notes change. Each has an anchor, a full-size view and
+reviewable notes; body word counts compare the proposal with the current slide. The
+preview counter and help scale with small frames. A file or source-loading failure hides
+the preview and explains how to review it over HTTP, while leaving the proposed notes
+available. Three months describes only the secondment. The source deck is unchanged.
+
+Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
+including non-linked decision history, were removed before the new slide 4 wording page
+was added. Accepted source changes remain in the deck; their provenance is retained below
+and in `feedback-workflow.md`.
 
 Closed without acceptance in the 2026-09-08 training sandbox reset:
 `s17-learner-benefits` (2026-09-08, new slide 17, Dafydd, five complete visual treatments:

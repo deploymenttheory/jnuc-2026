@@ -734,6 +734,27 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training_a_team slide 4 wording options in the current layout.** Dafydd
+  asked for fresh slide 4 options after clearing the training sandbox, retaining the
+  existing visual design and refining the wording because the slide had too many words.
+  Added `s04-wording-refinement.html` as the sandbox's only review page: A a shorter
+  account, B what we did, C what we learnt, D speaking prompts, E plain sentences. All
+  five edit existing text fields in real-deck iframes. The hub, five numbered spokes,
+  brace, two arrows, source markup, styling and typography remain intact. Every option
+  keeps the secondment, joint Mac-specific materials, practical delivery, failed
+  hackathons, lack of a training playbook, plans by skill and two-way knowledge exchange
+  visible. Full proposed notes retain the delivery context and the supporting migration
+  capability; three months remains the secondment duration only. Direct anchors,
+  full-size views and word-count comparisons support the review. Both source decks,
+  shared files, downloads, tools, packages and timeline notes are unchanged. Body word
+  counts are 141 / 142 / 132 / 102 / 159 for A-E, against 236 in the source. Browser and
+  visual review pass for all five: source element structure and attributes, deck CSS,
+  typography and fixed geometry match exactly, with no new overflow or text overlap.
+  The unchanged back-arrow glyph extends its font box in both source and previews.
+  Anchors, full-size and mobile routes, proposed notes, pinned navigation and resource
+  checks pass. Both source decks are byte-identical; local links, inline JavaScript syntax,
+  dash checks and `git diff --check` pass. No option has been accepted. PR #99.
+
 - **2026-09-08, training_a_team sandbox reset.** Dafydd requested removal of all existing
   training sandbox options before a fresh slide 4 wording round. Deleted the old slide 4
   and slide 17 review pages and cleared every index entry, including non-linked done
