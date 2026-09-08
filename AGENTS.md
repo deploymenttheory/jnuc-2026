@@ -506,7 +506,8 @@ lives in the speaker notes. Rules are scoped to `#s-estate`, with `--s02-*` sizi
 (`s-learning-outcomes`, sandbox option E accepted 2026-09-08: the trained threshold in a
 central navy panel, with seven capabilities on either side and the non-goals below),
 `#4` execution, `#5` what didn't work, `#6` what worked, `#7` conditions, `#8` mindset,
-`#9` learning priorities by role, `#10` the learning pathway (four phases - **merges the old `#9` matrix and
+`#9` learning priorities by role (`s-learning-priorities`, id added 2026-09-08; five-option
+sandbox round open, see Notable content slides and Sandbox), `#10` the learning pathway (four phases - **merges the old `#9` matrix and
 `#10` timeline**, Aug 2026: both said the same thing twice and neither described what the team
 actually did). Titled "the pathway we **followed**", not "that worked": phase 1 front-loaded
 all the theory and the team only found out afterwards that it did not land, so that card
@@ -634,15 +635,23 @@ Notable content slides:
   weight the copy claims for it ("the most evidenced condition of all") with three practical
   points under it; the other six conditions, including "Expect the dip", sit right as
   compact numbered cards. Classes `.herowrap`, `.heropanel`, `.supp`/`.suppcard` (`.dip`).
-- **Learning priorities by role** (`#9`): three role cards across the top; below them two
-  radar webs (grid rings plus spokes, thin outlines, translucent fills), each carrying all
-  three roles. Left is a small org with no DevOps function, where every shape is broad;
-  right is a large org like LBG, where the shapes narrow but spike on Jamf APIs and
-  Mentoring while Environment and GitOps pull back to the platform team. Classes `.roles3`,
-  `.scen2`. The colour chip in each role-card header is the chart key, so **chip and polygon
-  colours must stay in step**: junior `--accent` (lime), engineer `--alt-light`
-  (cornflower), senior `--text-2` (off-white). The mapping is documented in the `.roles3`
-  CSS comment.
+- **Learning priorities by role** (`#9`, `s-learning-priorities` - id added 2026-09-08 when
+  a five-option sandbox round opened for it): the shipped layout is still three role cards
+  across the top; below them two radar webs (grid rings plus spokes, thin outlines,
+  translucent fills), each carrying all three roles. Left is a small org with no DevOps
+  function, where every shape is broad; right is a large org like LBG, where the shapes
+  narrow but spike on Jamf APIs and Mentoring while Environment and GitOps pull back to the
+  platform team. Classes `.roles3`, `.scen2`. The colour chip in each role-card header is
+  the chart key, so **chip and polygon colours must stay in step**: junior `--accent`
+  (lime), engineer `--alt-light` (cornflower), senior `--text-2` (off-white). The mapping is
+  documented in the `.roles3` CSS comment. All five sandbox options live as real markup
+  inside the section, each in its own `.s-learning-priorities-opt-*` wrapper, with a single
+  deck rule showing only `-opt-a` (the shipped layout); the sandbox page just flips which
+  wrapper is visible per iframe. Every option keeps the two points - each role's minimum is
+  not the whole picture, and what the team owns and how steep the climb is scales with org
+  size - and every settled fact from "Two deliberate decisions on `#9`" and "How `#9`'s two
+  charts are scored" below, in the shared speaker notes regardless of which option ships.
+  See Sandbox for the five options.
 
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an amber
 token for exactly that. Current chips (3): photos for Joseph and Gordon (`#1`); how long the
@@ -951,6 +960,20 @@ sizing tokens belong to the preview-only `#s05-review` id. Each option has an an
 full-size route, notes disclosure and word-count comparison including SVG labels. The
 body copy is 164 words per option against 232 in the source, a 29.3% reduction. The source
 deck and the open slide 4 wording review remain unchanged. No option is accepted.
+
+`s-learning-priorities-role-clarity` (2026-09-08, slide 9, Dafydd, five full markup
+redesigns after feedback that the slide was too dense to follow: A role cards and paired
+radar (live now), B minimum bar, C two statements with a discipline comparison strip
+replacing the twin radar, D a role-by-org-size matrix, E a staged two-statement narrative).
+This is a full redesign, so every option ships as real markup in the deck itself, inside
+`#s-learning-priorities`, as its own `.s-learning-priorities-opt-*` wrapper; a single deck
+rule shows only `-opt-a` by default and the sandbox page's CSS just flips which wrapper is
+visible per iframe - nothing is generated at preview time. Every option keeps both points
+the speaker wants landed (each role has a minimum rather than needing everything, and what
+the team owns and how steep its learning curve is scales with org size) and every settled
+fact from "Two deliberate decisions on `#9`" and "How `#9`'s two charts are scored" above,
+in the section's one shared `data-notes`, regardless of which option is visible. No option
+is accepted.
 
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page
