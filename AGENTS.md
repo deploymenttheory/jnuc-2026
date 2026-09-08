@@ -627,7 +627,8 @@ Notable content slides:
   underneath. Seven numbered conditions sit on the right, including the confirmed
   two-to-three-month dip and choosing and training PR approvers before handover. The seventh
   spans both columns. Classes `.herowrap`, `.heropanel`, `.supp`/`.suppcard` (`.dip`, `.wide`).
-  Five shorter layout options are awaiting review in the sandbox; the source is unchanged.
+  Five visually led layout options are awaiting review in the sandbox, replacing a text-only
+  round rejected on 2026-09-08; the source is unchanged.
 - **Learning priorities by role** (`#9`): three role cards across the top; below them two
   radar webs (grid rings plus spokes, thin outlines, translucent fills), each carrying all
   three roles. Left is a small org with no DevOps function, where every shape is broad;
@@ -935,9 +936,25 @@ secondment with its independent learner fallback, working reference examples and
 curriculum figures, and patience. All five have direct anchors, full-size views and eight
 paragraphs of reviewable proposed speaker notes. The source slide and both decks are unchanged).
 
-`s07-conditions-for-success` (2026-09-08, slide 7, Gordon. Five layout options sharing
-217 body words instead of 291, a 25.4% reduction, with both kinds of safety and all seven
-conditions. Direct anchors, full-size views and proposed notes. No option accepted).
+`s07-conditions-visual` (2026-09-08, slide 7, Gordon. Round two, five visually led
+compositions: A Two pillars, an SVG post and lintel where two labelled columns stand on a
+ground line with open canvas between them, carry one solid lime beam holding the premise, and
+the seven conditions rest on top of that beam as numbered tiles; B When it applies, a
+horizontal track whose three zones are read from the copy's own words - before you start,
+during, and one condition running throughout as a bar spanning the track - over a ground band
+of both safeties; C The dip, one illustrative slower-before-faster curve filling its column
+with a marked trough, the two-to-three-month span bracketed below it and condition 06 directly
+under that, a visible SHAPE IS ILLUSTRATIVE disclosure and the other six as a run-in numbered
+column; D Gates on a rail, seven conditions on a vertical rail with large mono
+numerals and line-art marks over a navy safety panel carrying a shield and a pair of speech
+marks; E Big numerals, 120px lime mono numerals in a four plus three grid under a full-width
+safety band. Copy and notes are the round-one set unchanged, so only layout and artwork
+differ: 217 body words plus each option's own drawn labels, and the same seven paragraphs of
+proposed notes. All artwork uses deck tokens only, decorative marks carry `aria-hidden` and
+the diagrams carry `role="img"` with a description, so every option still reads with the
+artwork deleted. Direct anchors, full-size views and word counts. The round-one text-only page
+`s07-conditions-for-success` was superseded 2026-09-08 without acceptance, because none of its
+five layouts had a visual device. No option accepted).
 
 Slide 5's review page and the public index entries for slides 4 and 5 were removed after
 Dafydd accepted option E for both on 2026-09-08. Slide 4 already held its accepted wording
