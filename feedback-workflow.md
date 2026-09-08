@@ -734,6 +734,26 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training_a_team slide 7, five shorter layout options.** Dafydd asked for
+  five layout options for slides 6 and 7, reducing each slide's word count by around 25%
+  and putting the options in the sandbox for review. This instruction owns slide 7 only.
+  Added `s07-conditions-for-success.html`: A Safety across the top, B Safety beside seven
+  numbered rows, C Safety as the foundation below, D Safety in the centre and E Safety
+  through the middle. Every composition uses the same 217 body words instead of 291
+  (25.4% shorter), preserving both kinds of safety and all seven conditions, including
+  approver ownership, explicit review training and the confirmed two-to-three-month dip.
+  Seven shared proposed note paragraphs retain the full public account and correct the
+  source notes' stale six-condition wording. Each option has an anchor, selected-only
+  full-size view, notes disclosure, pinned preview navigation, scaled mobile chrome and
+  an unavailable-source message. Both source decks remain byte-identical. The sandbox
+  index and directly related `AGENTS.md` descriptions reflect the open review. Training
+  has no presenter.json, so presenter sync does not apply. All five options pass browser
+  and visual QA at 1920x1080, with no overflow, clipping or overlap. Word counts, notes,
+  mobile chrome, pinned navigation, full-size routes and source checks pass. A's lower
+  three conditions use equal widths to give the dip room; E's upper row has a clear gap
+  above the safety band. Inline JavaScript syntax, added-copy dash lint and
+  `git diff --check` pass. No option has been accepted.
+
 - **2026-09-08, training_a_team slide 5 option E accepted and slides 4 and 5 cleared from the sandbox.**
   Dafydd: "now implement option E for slide 5 and option e for slide 4. once applied then
   remove both from the sandbox". Applied refined E, "Teaching and the gaps", as

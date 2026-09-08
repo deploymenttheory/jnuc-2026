@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sandbox - slide 7 layout options</title>
+<link rel="stylesheet" href="../sandbox.css">
+<style>
+  .jump { flex-wrap: wrap; }
+  .option { scroll-margin-top: 24px; }
+  .option-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .open-option { white-space: nowrap; }
+  .frame { position: relative; }
+  .frame iframe { visibility: hidden; }
+  .frame[data-state="ready"] iframe { visibility: visible; }
+  .frame-status { position: absolute; inset: 0; display: grid; place-content: center; padding: 32px; color: var(--muted); text-align: center; }
+  .frame[data-state="ready"] .frame-status { display: none; }
+  .notes-copy { max-width: 80ch; padding: 20px 24px 4px; border-left: 2px solid var(--border); }
+  summary:focus-visible { outline: 2px solid var(--green-bright); outline-offset: 4px; }
+  .viewer-bar { display: none; }
+  body.single { padding: 0 0 32px; }
+  .single .wrap { max-width: none; }
+  .single .review-intro, .single .option:not(.selected), .single .option-heading, .single .option-description, .single .foot { display: none; }
+  .single .viewer-bar { min-height: 64px; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; background: var(--surface); }
+  .viewer-bar nav { display: flex; gap: 18px; }
+  .viewer-bar [aria-current="page"] { color: var(--text); text-decoration-thickness: 3px; }
+  .single .frame { height: calc(100dvh - 64px); aspect-ratio: auto; border: 0; border-radius: 0; }
+  .single .option > details { margin: 20px 24px 0; }
+  .single .option { margin-bottom: 0; }
+  @media (max-width: 620px) {
+    .option-heading { display: block; }
+    .open-option { display: inline-block; margin-bottom: 12px; }
+    .single .viewer-bar { flex-wrap: wrap; }
+    .single .frame { height: auto; aspect-ratio: 16 / 9; }
+  }
+
+  .viewer-bar nav a { min-width: 24px; text-align: center; }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="review-intro">
+    <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / Training a team / slide 7</p>
+    <h1>Slide 7 - Creating the conditions for success</h1>
+    <p class="lede">Five layout options with about 25% fewer words. Each keeps both kinds of safety and all seven conditions, including choosing PR approvers and the confirmed two-to-three-month dip. The proposed notes retain the fuller account. <a href="../../training_a_team/index.html?theme=default#7">Compare the current slide</a>.</p>
+    <nav class="jump" aria-label="Options">
+      <a href="#a">A - Safety across the top</a>
+      <a href="#b">B - Safety beside seven numbered rows</a>
+      <a href="#c">C - Safety as the foundation below</a>
+      <a href="#d">D - Safety in the centre</a>
+      <a href="#e">E - Safety through the middle</a>
+    </nav>
+  </header>
+  <div class="viewer-bar"><a class="back-link" href="s07-conditions-for-success.html">All five options</a><strong id="viewer-title">Slide 7</strong><nav aria-label="Full-size options"><a href="?option=a">A</a><a href="?option=b">B</a><a href="?option=c">C</a><a href="?option=d">D</a><a href="?option=e">E</a></nav></div>
+  <section class="option" id="a">
+    <div class="option-heading"><h2>Option A - Safety across the top</h2><a class="open-option" href="?option=a">Open full-size option A</a></div>
+    <p class="option-description">A broad safety panel leads, with the seven conditions arranged below in two open rows. <span data-word-count></span></p>
+    <div class="frame"><div class="frame-status">Preparing option A. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="a" title="Option A - Safety across the top"></iframe></div>
+    <details><summary>Proposed speaker notes</summary><div class="notes-copy">
+      <p>Lead with both kinds of safety and give them time. Leadership needed operational safety: no downtime, support unaffected and a team able to adopt the new way of working. Answer the question of whether this could take the estate down before starting. Engineers also needed psychological safety: room to learn while protecting the estate, with mistakes treated as learning rather than blame. All seven conditions depend on both kinds of safety.</p>
+      <p>Make psychological safety explicit, out loud and more than once. Do not assume it exists because the team seems friendly. It has to continue when somebody breaks something that matters.</p>
+      <p>Take the seven conditions in turn. The numbers identify the conditions and do not impose a strict sequence. Get non-technical stakeholders and senior leadership bought in on the priority before starting. Ours were slow to understand it, and that cost early momentum.</p>
+      <p>Gate workshop attendance on completed pre-requisite learning, with no exceptions. Engineers who skipped the pre-work held back their whole cohort. Keep days rather than weeks between learning something and practising it for real, because long gaps caused rapid knowledge loss.</p>
+      <p>Use remote learning for self-paced pre-requisites. Pairing and labs worked far better face to face. Build the relationship with whoever owns Terraform and GitHub early, because their help with access, guardrails and troubleshooting is needed throughout.</p>
+      <p>Set expectations for the dip up front. Our team slowed down before getting faster. It took two to three months before people were comfortable raising and reviewing pull requests. That duration is confirmed. Setting the expectation early helps people understand the initial friction as part of learning.</p>
+      <p>Choose the people who will approve pull requests early and explicitly train them to review. Nobody on the team had used Terraform or GitHub at the start. Someone needs to be qualified to gate a change when the work is handed over, so approval ownership cannot wait until the week before handover.</p>
+    </div></details>
+  </section>
+  <section class="option" id="b">
+    <div class="option-heading"><h2>Option B - Safety beside seven numbered rows</h2><a class="open-option" href="?option=b">Open full-size option B</a></div>
+    <p class="option-description">The safety premise holds the left. One numbered list on the right gives every condition a consistent reading line. <span data-word-count></span></p>
+    <div class="frame"><div class="frame-status">Preparing option B. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="b" title="Option B - Safety beside seven numbered rows"></iframe></div>
+    <details><summary>Proposed speaker notes</summary><div class="notes-copy">
+      <p>Lead with both kinds of safety and give them time. Leadership needed operational safety: no downtime, support unaffected and a team able to adopt the new way of working. Answer the question of whether this could take the estate down before starting. Engineers also needed psychological safety: room to learn while protecting the estate, with mistakes treated as learning rather than blame. All seven conditions depend on both kinds of safety.</p>
+      <p>Make psychological safety explicit, out loud and more than once. Do not assume it exists because the team seems friendly. It has to continue when somebody breaks something that matters.</p>
+      <p>Take the seven conditions in turn. The numbers identify the conditions and do not impose a strict sequence. Get non-technical stakeholders and senior leadership bought in on the priority before starting. Ours were slow to understand it, and that cost early momentum.</p>
+      <p>Gate workshop attendance on completed pre-requisite learning, with no exceptions. Engineers who skipped the pre-work held back their whole cohort. Keep days rather than weeks between learning something and practising it for real, because long gaps caused rapid knowledge loss.</p>
+      <p>Use remote learning for self-paced pre-requisites. Pairing and labs worked far better face to face. Build the relationship with whoever owns Terraform and GitHub early, because their help with access, guardrails and troubleshooting is needed throughout.</p>
+      <p>Set expectations for the dip up front. Our team slowed down before getting faster. It took two to three months before people were comfortable raising and reviewing pull requests. That duration is confirmed. Setting the expectation early helps people understand the initial friction as part of learning.</p>
+      <p>Choose the people who will approve pull requests early and explicitly train them to review. Nobody on the team had used Terraform or GitHub at the start. Someone needs to be qualified to gate a change when the work is handed over, so approval ownership cannot wait until the week before handover.</p>
+    </div></details>
+  </section>
+  <section class="option" id="c">
+    <div class="option-heading"><h2>Option C - Safety as the foundation below</h2><a class="open-option" href="?option=c">Open full-size option C</a></div>
+    <p class="option-description">Three reading columns hold the conditions. Both kinds of safety form a continuous foundation along the bottom. <span data-word-count></span></p>
+    <div class="frame"><div class="frame-status">Preparing option C. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="c" title="Option C - Safety as the foundation below"></iframe></div>
+    <details><summary>Proposed speaker notes</summary><div class="notes-copy">
+      <p>Lead with both kinds of safety and give them time. Leadership needed operational safety: no downtime, support unaffected and a team able to adopt the new way of working. Answer the question of whether this could take the estate down before starting. Engineers also needed psychological safety: room to learn while protecting the estate, with mistakes treated as learning rather than blame. All seven conditions depend on both kinds of safety.</p>
+      <p>Make psychological safety explicit, out loud and more than once. Do not assume it exists because the team seems friendly. It has to continue when somebody breaks something that matters.</p>
+      <p>Take the seven conditions in turn. The numbers identify the conditions and do not impose a strict sequence. Get non-technical stakeholders and senior leadership bought in on the priority before starting. Ours were slow to understand it, and that cost early momentum.</p>
+      <p>Gate workshop attendance on completed pre-requisite learning, with no exceptions. Engineers who skipped the pre-work held back their whole cohort. Keep days rather than weeks between learning something and practising it for real, because long gaps caused rapid knowledge loss.</p>
+      <p>Use remote learning for self-paced pre-requisites. Pairing and labs worked far better face to face. Build the relationship with whoever owns Terraform and GitHub early, because their help with access, guardrails and troubleshooting is needed throughout.</p>
+      <p>Set expectations for the dip up front. Our team slowed down before getting faster. It took two to three months before people were comfortable raising and reviewing pull requests. That duration is confirmed. Setting the expectation early helps people understand the initial friction as part of learning.</p>
+      <p>Choose the people who will approve pull requests early and explicitly train them to review. Nobody on the team had used Terraform or GitHub at the start. Someone needs to be qualified to gate a change when the work is handed over, so approval ownership cannot wait until the week before handover.</p>
+    </div></details>
+  </section>
+  <section class="option" id="d">
+    <div class="option-heading"><h2>Option D - Safety in the centre</h2><a class="open-option" href="?option=d">Open full-size option D</a></div>
+    <p class="option-description">A central safety panel carries the premise, with four conditions on the left and three on the right. <span data-word-count></span></p>
+    <div class="frame"><div class="frame-status">Preparing option D. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="d" title="Option D - Safety in the centre"></iframe></div>
+    <details><summary>Proposed speaker notes</summary><div class="notes-copy">
+      <p>Lead with both kinds of safety and give them time. Leadership needed operational safety: no downtime, support unaffected and a team able to adopt the new way of working. Answer the question of whether this could take the estate down before starting. Engineers also needed psychological safety: room to learn while protecting the estate, with mistakes treated as learning rather than blame. All seven conditions depend on both kinds of safety.</p>
+      <p>Make psychological safety explicit, out loud and more than once. Do not assume it exists because the team seems friendly. It has to continue when somebody breaks something that matters.</p>
+      <p>Take the seven conditions in turn. The numbers identify the conditions and do not impose a strict sequence. Get non-technical stakeholders and senior leadership bought in on the priority before starting. Ours were slow to understand it, and that cost early momentum.</p>
+      <p>Gate workshop attendance on completed pre-requisite learning, with no exceptions. Engineers who skipped the pre-work held back their whole cohort. Keep days rather than weeks between learning something and practising it for real, because long gaps caused rapid knowledge loss.</p>
+      <p>Use remote learning for self-paced pre-requisites. Pairing and labs worked far better face to face. Build the relationship with whoever owns Terraform and GitHub early, because their help with access, guardrails and troubleshooting is needed throughout.</p>
+      <p>Set expectations for the dip up front. Our team slowed down before getting faster. It took two to three months before people were comfortable raising and reviewing pull requests. That duration is confirmed. Setting the expectation early helps people understand the initial friction as part of learning.</p>
+      <p>Choose the people who will approve pull requests early and explicitly train them to review. Nobody on the team had used Terraform or GitHub at the start. Someone needs to be qualified to gate a change when the work is handed over, so approval ownership cannot wait until the week before handover.</p>
+    </div></details>
+  </section>
+  <section class="option" id="e">
+    <div class="option-heading"><h2>Option E - Safety through the middle</h2><a class="open-option" href="?option=e">Open full-size option E</a></div>
+    <p class="option-description">Four conditions sit above a broad safety band and three below it. The band keeps the shared premise in the middle of the slide. <span data-word-count></span></p>
+    <div class="frame"><div class="frame-status">Preparing option E. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="e" title="Option E - Safety through the middle"></iframe></div>
+    <details><summary>Proposed speaker notes</summary><div class="notes-copy">
+      <p>Lead with both kinds of safety and give them time. Leadership needed operational safety: no downtime, support unaffected and a team able to adopt the new way of working. Answer the question of whether this could take the estate down before starting. Engineers also needed psychological safety: room to learn while protecting the estate, with mistakes treated as learning rather than blame. All seven conditions depend on both kinds of safety.</p>
+      <p>Make psychological safety explicit, out loud and more than once. Do not assume it exists because the team seems friendly. It has to continue when somebody breaks something that matters.</p>
+      <p>Take the seven conditions in turn. The numbers identify the conditions and do not impose a strict sequence. Get non-technical stakeholders and senior leadership bought in on the priority before starting. Ours were slow to understand it, and that cost early momentum.</p>
+      <p>Gate workshop attendance on completed pre-requisite learning, with no exceptions. Engineers who skipped the pre-work held back their whole cohort. Keep days rather than weeks between learning something and practising it for real, because long gaps caused rapid knowledge loss.</p>
+      <p>Use remote learning for self-paced pre-requisites. Pairing and labs worked far better face to face. Build the relationship with whoever owns Terraform and GitHub early, because their help with access, guardrails and troubleshooting is needed throughout.</p>
+      <p>Set expectations for the dip up front. Our team slowed down before getting faster. It took two to three months before people were comfortable raising and reviewing pull requests. That duration is confirmed. Setting the expectation early helps people understand the initial friction as part of learning.</p>
+      <p>Choose the people who will approve pull requests early and explicitly train them to review. Nobody on the team had used Terraform or GitHub at the start. Someone needs to be qualified to gate a change when the work is handed over, so approval ownership cannot wait until the week before handover.</p>
+    </div></details>
+  </section>
+  <p class="foot">All five options use the JNUC template and share the same shorter copy and proposed notes. The numbers identify the seven conditions, without imposing a strict sequence. Word counts include all visible body words, headings and numbers, and exclude the unchanged title, eyebrow and footer. Slide 7 is awaiting a decision. <a href="../../training_a_team/index.html?theme=default#7">Open the current slide 7</a>.</p>
+</div>
+<script>
+// One set of pared copy for five compositions. The live deck remains unchanged.
+const COPY = {
+  safetyTitle: 'Two kinds of safety',
+  operational: 'Leadership needed <strong>operational safety</strong>: no downtime, support unaffected, the team able to adopt it. Answer whether this could take the estate down before starting.',
+  psychological: 'Engineers needed <strong>psychological safety</strong>: room to learn while protecting the estate, with mistakes treated as learning rather than blame. Say it early and often. A friendly team is no guarantee. It must still hold when something important breaks.',
+  premise: 'All seven conditions depend on both.',
+  conditions: [
+    ['buy-in', 'Stakeholder buy-in first', 'Win over non-technical stakeholders and senior leaders on the priority before starting. Our slow buy-in cost early momentum.'],
+    ['prerequisites', 'Complete pre-reqs before workshops', 'Gate attendance on completed pre-requisite learning, without exceptions. Skipping pre-work held back the whole cohort.'],
+    ['practice', 'Practise within days', 'Long gaps caused rapid knowledge loss. Leave days, rather than weeks, between learning and real practice.'],
+    ['pairing', 'Pair and learn in person', 'Remote worked for self-paced pre-reqs. Pairing and labs worked far better face to face.'],
+    ['owners', 'Work with platform owners', 'Involve Terraform and GitHub owners early for access, guardrails and troubleshooting throughout.'],
+    ['dip', 'Expect the dip', 'Set expectations early: we slowed down before getting faster. People became comfortable raising and reviewing PRs after two to three months.'],
+    ['approvers', 'Choose PR approvers early', 'Nobody had used Terraform or GitHub. Train review explicitly and choose qualified approvers well before handover.']
+  ]
+};
+const CONTENT_CSS = `
+#s07-review {
+  --s07-body: 24px;
+  --s07-heading: 27px;
+  --s07-safety-heading: 36px;
+  --s07-number: 23px;
+  --s07-leading: 1.32;
+  --s07-tight: 1.16;
+  --s07-hairline: 1px;
+  --s07-rule: 3px;
+  --s07-content-top: 30px;
+  --s07-content-height: 728px;
+  --s07-size-8: 8px;
+  --s07-size-10: 10px;
+  --s07-size-12: 12px;
+  --s07-size-16: 16px;
+  --s07-size-18: 18px;
+  --s07-size-20: 20px;
+  --s07-size-24: 24px;
+  --s07-size-26: 26px;
+  --s07-size-28: 28px;
+  --s07-size-30: 30px;
+  --s07-size-32: 32px;
+  --s07-size-36: 36px;
+  --s07-size-40: 40px;
+  --s07-size-44: 44px;
+  --s07-size-46: 46px;
+  --s07-size-48: 48px;
+  --s07-size-50: 50px;
+  --s07-size-56: 56px;
+  --s07-size-64: 64px;
+  --s07-size-224: 224px;
+  --s07-size-248: 248px;
+  --s07-size-250: 250px;
+  --s07-size-268: 268px;
+  --s07-size-286: 286px;
+  --s07-size-308: 308px;
+  --s07-size-490: 490px;
+  --s07-size-500: 500px;
+  --s07-size-536: 536px;
+  --s07-size-568: 568px;
+}
+#s07-review .s07-content { height: var(--s07-content-height); margin-top: var(--s07-content-top); flex: none; min-height: 0; font-size: var(--s07-body); line-height: var(--s07-leading); }
+#s07-review .s07-content :is(div, section, article) { min-width: 0; }
+#s07-review .s07-content :is(h2, h3, p) { margin: 0; }
+#s07-review .s07-safety { background: var(--surface); padding: var(--s07-size-30); border-top: var(--s07-rule) solid var(--accent); }
+#s07-review .s07-safety h2 { color: var(--accent); font-size: var(--s07-safety-heading); line-height: var(--s07-tight); letter-spacing: -.02em; font-weight: 700; }
+#s07-review .s07-safety p { font-size: var(--s07-body); line-height: var(--s07-leading); color: var(--text-dimmer); }
+#s07-review .s07-safety strong { color: var(--text); font-weight: 700; }
+#s07-review .s07-safety .s07-premise { color: var(--accent); font-weight: 600; }
+#s07-review .s07-condition { min-width: 0; }
+#s07-review .s07-condition h3 { font-size: var(--s07-heading); line-height: var(--s07-tight); font-weight: 700; color: var(--text); }
+#s07-review .s07-condition p { margin-top: var(--s07-size-10); color: var(--text-dimmer); font-size: var(--s07-body); line-height: var(--s07-leading); }
+#s07-review .s07-number { display: block; color: var(--accent); font: var(--s07-number)/var(--s07-tight) var(--mono); margin-bottom: var(--s07-size-12); }
+#s07-review .s07-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s07-size-44); }
+#s07-review .s07-column { display: flex; flex-direction: column; justify-content: space-between; gap: var(--s07-size-24); }
+#s07-review .s07-wide-safety { display: grid; grid-template-columns: var(--s07-size-268) var(--s07-size-500) 1fr; gap: var(--s07-size-30); align-items: start; }
+#s07-review .s07-wide-safety .s07-safety-title { display: flex; height: 100%; flex-direction: column; justify-content: space-between; gap: var(--s07-size-20); }
+/* A: safety reads across the top, with two open rows of conditions below. */
+#s07-review[data-design="a"] .s07-content { display: grid; grid-template-rows: var(--s07-size-248) 1fr; gap: var(--s07-size-36); }
+#s07-review[data-design="a"] .s07-conditions { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--s07-size-28) var(--s07-size-36); }
+#s07-review[data-design="a"] .s07-condition { grid-column: span 3; border-top: var(--s07-hairline) solid var(--border); padding-top: var(--s07-size-18); }
+#s07-review[data-design="a"] .s07-condition:nth-child(n+5) { grid-column: span 4; }
+#s07-review[data-design="a"] .s07-number { float: left; margin: 0 var(--s07-size-16) 0 0; }
+#s07-review[data-design="a"] .s07-condition p { clear: both; }
+/* B: one broad premise beside seven rows, using a shared number and heading gutter. */
+#s07-review[data-design="b"] { --s07-safety-heading: 48px; --s07-heading: 26px; }
+#s07-review[data-design="b"] .s07-content { display: grid; grid-template-columns: var(--s07-size-536) 1fr; gap: var(--s07-size-44); }
+#s07-review[data-design="b"] .s07-safety { display: flex; flex-direction: column; gap: var(--s07-size-28); padding: var(--s07-size-36); }
+#s07-review[data-design="b"] .s07-safety .s07-premise { margin-top: auto; padding-top: var(--s07-size-24); border-top: var(--s07-hairline) solid var(--border); }
+#s07-review[data-design="b"] .s07-conditions { display: flex; flex-direction: column; justify-content: space-between; }
+#s07-review[data-design="b"] .s07-condition { display: grid; grid-template-columns: var(--s07-size-44) var(--s07-size-286) 1fr; align-items: start; gap: var(--s07-size-20); padding: var(--s07-size-16) 0; border-top: var(--s07-hairline) solid var(--border); }
+#s07-review[data-design="b"] .s07-condition:first-child { padding-top: 0; border: 0; }
+#s07-review[data-design="b"] .s07-condition:last-child { padding-bottom: 0; }
+#s07-review[data-design="b"] .s07-condition p { margin: 0; }
+#s07-review[data-design="b"] .s07-number { margin: 0; padding-top: var(--s07-size-8); }
+/* C: three columns rest above a continuous safety foundation. */
+#s07-review[data-design="c"] { --s07-heading: 28px; --s07-safety-heading: 36px; }
+#s07-review[data-design="c"] .s07-content { display: grid; grid-template-rows: 1fr var(--s07-size-248); gap: var(--s07-size-36); }
+#s07-review[data-design="c"] .s07-column { border-left: var(--s07-hairline) solid var(--border); padding-left: var(--s07-size-26); gap: var(--s07-size-16); }
+#s07-review[data-design="c"] .s07-column:first-child { border: 0; padding: 0; }
+#s07-review[data-design="c"] .s07-condition { display: grid; grid-template-columns: var(--s07-size-40) 1fr; column-gap: var(--s07-size-18); }
+#s07-review[data-design="c"] .s07-condition p { grid-column: 2; }
+#s07-review[data-design="c"] .s07-number { margin-bottom: 0; }
+/* D: a central safety panel is flanked by two open columns of conditions. */
+#s07-review[data-design="d"] { --s07-safety-heading: 50px; --s07-heading: 26px; }
+#s07-review[data-design="d"] .s07-content { display: grid; grid-template-columns: 1fr var(--s07-size-568) 1fr; gap: var(--s07-size-40); }
+#s07-review[data-design="d"] .s07-safety { display: flex; flex-direction: column; gap: var(--s07-size-28); padding: var(--s07-size-36); }
+#s07-review[data-design="d"] .s07-safety .s07-premise { margin-top: auto; border-top: var(--s07-hairline) solid var(--border); padding-top: var(--s07-size-24); font-size: var(--s07-size-28); }
+#s07-review[data-design="d"] .s07-condition { border-top: var(--s07-hairline) solid var(--border); padding-top: var(--s07-size-16); }
+#s07-review[data-design="d"] .s07-condition:first-child { border: 0; padding-top: 0; }
+#s07-review[data-design="d"] .s07-number { float: left; margin: 0 var(--s07-size-16) 0 0; }
+#s07-review[data-design="d"] .s07-condition p { clear: both; }
+/* E: a full-width safety band sits between two rows of conditions. */
+#s07-review[data-design="e"] { --s07-heading: 27px; --s07-content-height: 752px; }
+#s07-review[data-design="e"] .s07-content { display: grid; grid-template-rows: var(--s07-size-248) var(--s07-size-248) 1fr; gap: var(--s07-size-28); }
+#s07-review[data-design="e"] .s07-upper { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s07-size-36); }
+#s07-review[data-design="e"] .s07-lower { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s07-size-44); }
+#s07-review[data-design="e"] .s07-condition { padding-top: var(--s07-size-12); border-top: var(--s07-hairline) solid var(--border); }
+#s07-review[data-design="e"] .s07-lower .s07-condition { padding-top: 0; border: 0; }
+`;
+const PREVIEW_CHROME = `
+:root {
+  --s07-preview-scale: 1;
+  --s07-chrome-transform: none;
+  --s07-chrome-left: 22px;
+  --s07-counter-bottom: 38px;
+  --s07-help-bottom: 16px;
+}
+html[data-s07-preview] #counter, html[data-s07-preview] #help { left: calc(var(--s07-chrome-left) * var(--s07-preview-scale)); width: max-content; transform: var(--s07-chrome-transform); transform-origin: left bottom; }
+html[data-s07-preview] #counter { bottom: calc(var(--s07-counter-bottom) * var(--s07-preview-scale)); }
+html[data-s07-preview] #help { bottom: calc(var(--s07-help-bottom) * var(--s07-preview-scale)); }
+`;
+const escapeHTML = (text) => text.replace(/[&<>"']/g, (character) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[character]));
+const condition = (index) => {
+  const [key, title, text] = COPY.conditions[index];
+  return '<article class="s07-condition" data-topic="' + key + '"><span class="s07-number">0' + (index + 1) + '</span><h3>' + escapeHTML(title) + '</h3><p>' + escapeHTML(text) + '</p></article>';
+};
+const conditions = (indices, className = 's07-conditions') => '<div class="' + className + '">' + indices.map(condition).join('') + '</div>';
+const safety = (wide = false) => {
+  const title = '<h2>' + COPY.safetyTitle + '</h2>';
+  const premise = '<p class="s07-premise">' + COPY.premise + '</p>';
+  return '<section class="s07-safety' + (wide ? ' s07-wide-safety' : '') + '">' +
+    (wide ? '<div class="s07-safety-title">' + title + premise + '</div>' : title) +
+    '<p class="s07-operational">' + COPY.operational + '</p><p class="s07-psychological">' + COPY.psychological + '</p>' +
+    (wide ? '' : premise) + '</section>';
+};
+const layout = (key) => {
+  switch (key) {
+    case 'a': return safety(true) + conditions([0, 1, 2, 3, 4, 5, 6]);
+    case 'b': return safety() + conditions([0, 1, 2, 3, 4, 5, 6]);
+    case 'c': return '<div class="s07-columns">' + conditions([0, 1], 's07-column') + conditions([2, 3, 4], 's07-column') + conditions([5, 6], 's07-column') + '</div>' + safety(true);
+    case 'd': return conditions([0, 1, 2, 3], 's07-column') + safety() + conditions([4, 5, 6], 's07-column');
+    case 'e': return conditions([0, 1, 2, 3], 's07-upper') + safety(true) + conditions([4, 5, 6], 's07-lower');
+  }
+};
+const keys = ['a', 'b', 'c', 'd', 'e'];
+const selected = new URLSearchParams(location.search).get('option');
+if (keys.includes(selected)) {
+  document.body.classList.add('single');
+  document.getElementById(selected).classList.add('selected');
+  document.getElementById('viewer-title').textContent = document.querySelector('#' + selected + ' h2').textContent;
+  document.querySelector('.back-link').href += '#' + selected;
+  document.querySelector('.viewer-bar a[href="?option=' + selected + '"]').setAttribute('aria-current', 'page');
+}
+// Read text nodes, including SVG <text>. innerText alone omits SVG labels in browsers.
+// Counting per node also preserves spaces between adjacent semantic blocks.
+const wordCount = (element) => {
+  const walker = element.ownerDocument.createTreeWalker(element, 4);
+  let count = 0;
+  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+    if (node.parentElement.closest('script, style, title, [hidden], [aria-hidden="true"]')) continue;
+    count += node.textContent.trim().split(/\s+/).filter((word) => /[\p{L}\p{N}]/u.test(word)).length;
+  }
+  return count;
+};
+document.querySelectorAll('iframe[data-variant]').forEach((frame) => {
+  const key = frame.dataset.variant;
+  if (keys.includes(selected) && key !== selected) return;
+  const container = frame.parentElement;
+  const status = container.querySelector('.frame-status');
+  frame.addEventListener('load', () => {
+    try {
+      const doc = frame.contentDocument;
+      const slide = doc && doc.querySelectorAll('section.slide')[6];
+      const source = slide && slide.querySelector('.heropanel');
+      if (!slide || !source || slide.querySelector('h1')?.textContent.trim() !== "Creating the conditions for success" || slide.querySelectorAll('.suppcard').length !== 7) {
+        throw new Error('The source slide could not be matched.');
+      }
+      const body = slide.querySelector('.body');
+      const originalWords = wordCount(body);
+      const proposed = layout(key);
+      slide.id = 's07-review';
+      slide.dataset.design = key;
+      body.removeAttribute('style');
+      body.className = 'body s07-content';
+      body.innerHTML = proposed;
+      const notes = [...document.querySelectorAll('#' + key + ' .notes-copy p')].map((p) => p.textContent).join('\n\n');
+      slide.setAttribute('data-notes', notes);
+      doc.getElementById('notestext').textContent = notes;
+      const style = doc.createElement('style');
+      style.dataset.s07Preview = '';
+      style.textContent = CONTENT_CSS + PREVIEW_CHROME;
+      doc.head.appendChild(style);
+      doc.documentElement.dataset.s07Preview = '';
+      const revisedWords = wordCount(body);
+      const reduction = ((originalWords - revisedWords) / originalWords * 100).toFixed(1);
+      document.querySelector('#' + key + ' [data-word-count]').textContent = revisedWords + ' body words, down from ' + originalWords + ' (' + reduction + '% shorter).';
+      const scaleChrome = () => {
+        const preview = frame.contentWindow;
+        const scale = Math.min(preview.innerWidth / 1920, preview.innerHeight / 1080);
+        doc.documentElement.style.setProperty('--s07-preview-scale', scale);
+        doc.documentElement.style.setProperty('--s07-chrome-transform', scale === 1 ? 'none' : 'scale(' + scale + ')');
+      };
+      frame.contentWindow.addEventListener('resize', scaleChrome);
+      scaleChrome();
+      // Pin the live preview to slide 7 while retaining the deck's notes controls.
+      doc.addEventListener('keydown', (event) => {
+        if (['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) {
+          event.stopImmediatePropagation();
+          event.preventDefault();
+        }
+      }, true);
+      doc.addEventListener('click', (event) => event.stopPropagation(), true);
+      doc.addEventListener('touchstart', (event) => event.stopPropagation(), true);
+      container.dataset.state = 'ready';
+    } catch (error) {
+      container.dataset.state = 'unavailable';
+      status.textContent = location.protocol === 'file:'
+        ? 'This proposal needs a local HTTP server. The description and proposed speaker notes remain available below.'
+        : 'This proposal could not load. Reload the page or open the source deck using the link below. The proposed speaker notes remain available.';
+    }
+  });
+  frame.src = '../../training_a_team/index.html?theme=default#7';
+});
+</script>
+</body>
+</html>
