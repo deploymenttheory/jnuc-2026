@@ -507,7 +507,12 @@ lives in the speaker notes. Rules are scoped to `#s-estate`, with `--s02-*` sizi
 central navy panel, with seven capabilities on either side and the non-goals below),
 `#4` execution (sandbox wording option E, "Plain sentences", accepted 2026-09-08 in the
 existing layout), `#5` what didn't work (`s-what-didnt-work`, refined sandbox option E,
-"Teaching and the gaps", accepted 2026-09-08), `#6` what worked, `#7` conditions, `#8` mindset,
+"Teaching and the gaps", accepted 2026-09-08), `#6` what worked (`s-what-worked`, sandbox
+option C, "Around the learner", accepted 2026-09-08: a navy disc labelled "The engineer" at
+the centre of a lime ring, seven dashed spokes out to icon nodes and each approach's copy
+positioned in its own sector, with patience above the ring. Rules are scoped to
+`#s-what-worked` and the sizing and ring coordinates are `--s06-*` tokens in `:root`),
+`#7` conditions, `#8` mindset,
 `#9` learning priorities by role, `#10` the learning pathway (four phases - **merges the old `#9` matrix and
 `#10` timeline**, Aug 2026: both said the same thing twice and neither described what the team
 actually did). Titled "the pathway we **followed**", not "that worked": phase 1 front-loaded
@@ -622,6 +627,22 @@ Notable content slides:
   replacement curriculum on the next slide. The old chart wrapper, five chips and quote
   strip styles are removed. All new rules and required `--s05-*` tokens are scoped to
   `#s-what-didnt-work`; there is no preview injection or alternative layout in the deck.
+- **What worked** (`#6`, `s-what-worked`): sandbox option C, "Around the learner", accepted
+  2026-09-08. A navy disc labelled "The engineer" sits at the centre of a lime ring, with
+  seven dashed spokes out to icon nodes on the ring and each approach's heading and copy
+  positioned in the matching sector: paired programming, principles before the full picture
+  and learning cohorts down the left, safe lab environments, secondments and third-party
+  documentation down the right, and patience centred above the ring, which the ring itself
+  stands for. All seven approaches remain visible, and the copy and the eight paragraphs of
+  speaker notes are the round-one set unchanged, including the platform team's dedicated
+  training time, the independent learner fallback and the 3,778-word replacement curriculum
+  at 57 times smaller than the manual it replaced. The seven glyphs are the deck's own
+  slide 6 line art, carried into the ring nodes. Every rule is scoped to `#s-what-worked`
+  and the sizing, stroke and ring coordinates are `--s06-*` tokens in `:root`; the sector
+  positions are absolute offsets inside the 1676px content box, so moving a text block means
+  moving its token. The seven `.icard` blocks and the four `.icard` rules that only slide 6
+  used are gone; `.grid.g2` stays for slides 11 and 16. There is no preview injection or
+  alternative layout in the deck.
 - **Conditions** (`#7`): a hero layout - a large left panel establishes both operational
   safety for leadership and psychological safety for engineers, with four practical points
   underneath. Seven numbered conditions sit on the right, including the confirmed
@@ -913,7 +934,9 @@ they track deck edits automatically.
   The fresh slide 4 wording round accepted option E, "Plain sentences", the same day,
   preserving the exact source layout. Slide 5 then accepted refined option E, "Teaching
   and the gaps", including the four original chart annotations. Both public sandbox
-  entries were removed at Dafydd's request.
+  entries were removed at Dafydd's request. Slide 6's five all-new visual compositions,
+  the round that replaced a rejected text-only set, accepted option C, "Around the
+  learner", on 2026-09-08, and that page and entry were cleared the same way.
 - Variant CSS only touches the slide's `#id` and only uses the deck's own tokens, so an
   accepted option pastes into the deck unchanged.
 - Injection needs same-origin access, so it only works over HTTP. Opened from `file://` the
@@ -927,30 +950,6 @@ they track deck edits automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages awaiting a decision under `presentations/sandbox/training_a_team/`:
-`s06-what-worked-visual` (2026-09-08, slide 6, Joseph, five visually led compositions:
-A Pictograms, the deck's own seven slide-6 glyphs enlarged to 92px over their copy with
-patience closing on a full-width lime rule; B Building up, a stepped stack of three SVG
-blocks labelled neutrally "one discipline", "the next" and "the full picture" carrying the
-principles point as the hero; C Around the learner, a navy disc labelled "The engineer" at
-the centre of a lime ring with seven spokes to icon nodes and the copy in the matching
-sectors, absolutely positioned in `--s06-*` coordinates; D The exchange, pairing as two
-nodes trading both ways and the secondment as a gate that opens on "a platform engineering
-team can dedicate time to training" and otherwise on "an enthusiastic employee willing to
-learn independently"; E Fifty-seven to one, the documentation figure as a true 57:1 area
-comparison, a 270px navy square against a 35.8px lime one, over an icon rail of the other
-six. The copy is the round-one set unchanged, 211 body words, and the eight paragraphs of
-proposed speaker notes are the round-one set verbatim, so only layout and artwork differ;
-per-option totals rise to 218, 213, 235 and 219 words where a drawing carries labels. All
-seven approaches stay visible. Every colour is a deck token, no drawing names or orders a
-discipline, and each option still reads with the artwork deleted. The source slide and both
-decks are unchanged).
-
-The text-only first round, `s06-what-worked` (five layouts sharing the same 211-word copy:
-A Seven points in two columns, B A full-width reading list, C Secondment in its own column,
-D Three columns and a closing line, E Paired programming across the top), was superseded on
-2026-09-08 without acceptance: Dafydd rejected all five because every one was still a block
-of text with no visual device. Its copy and notes carry forward into the round above.
-
 `s07-conditions-visual` (2026-09-08, slide 7, Gordon. Round two, five visually led
 compositions: A Two pillars, an SVG post and lintel where two labelled columns stand on a
 ground line with open canvas between them, carry one solid lime beam holding the premise, and
@@ -997,6 +996,21 @@ a direct anchor and a full-size view. The alternatives were removed without acce
 source slide 4 was unchanged by that reset. The later wording-only acceptance is below).
 
 Decided (under `presentations/sandbox/training_a_team/`):
+`s06-what-worked-visual` (2026-09-08, slide 6, Joseph, five visually led compositions after
+the text-only first round, `s06-what-worked` (A Seven points in two columns, B A full-width
+reading list, C Secondment in its own column, D Three columns and a closing line, E Paired
+programming across the top), was rejected on 2026-09-08 for having no visual device: A
+Pictograms, B Building up, C Around the learner, D The exchange, E Fifty-seven to one.
+Decided the same day: option C, applied to the deck as `#s-what-worked`. A navy disc
+labelled "The engineer" sits at the centre of a lime ring, with seven dashed spokes out to
+icon nodes carrying the deck's own slide 6 glyphs and each approach's copy in its own
+sector, patience above the ring. The accepted copy, layout and eight paragraphs of speaker
+notes are retained, including the platform team's dedicated training time, the independent
+learner fallback and the 3,778-word replacement curriculum. All seven approaches remain
+visible. Only the chosen markup and the scoped rules and `--s06-*` tokens option C uses
+transfer into the deck; the seven `.icard` blocks and the four `.icard` rules nothing else
+used are gone. The review page and its public index entry are removed at Dafydd's request.
+Downloads await a separate request);
 `s05-what-didnt-work` (2026-09-08, slide 5, Gordon, five visual designs using shorter
 copy. Option E, "Teaching and the gaps", was refined with the original chart's four
 explanatory annotations in PR #102 and then accepted the same day. Its exact 173-word
