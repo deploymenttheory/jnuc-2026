@@ -734,6 +734,23 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training slide 6, five layout options with shorter copy.** Added
+  `s06-what-worked.html` to the training sandbox for Joseph's "What worked" slide.
+  A uses two plain columns, B seven aligned full-width rows, C a navy secondment column,
+  D three columns with patience below, and E a paired programming opening band over two
+  rows of supporting points. Every option uses the same 211-word body, down from 284
+  (25.7% shorter including headings), and eight paragraphs of proposed speaker notes.
+  All seven approaches remain visible. The secondment still requires dedicated platform
+  team training time, retains the independent learner fallback and prior experience
+  qualifier, and the documentation point keeps 3,778 words and 57x smaller. Full notes
+  retain the two modules, four labs, deliberately broken lab and public comparison with
+  the original manual. Direct anchors, full-size views, pinned previews, scaled chrome,
+  loading/error states and notes work through the existing sandbox wrapper. Both source
+  decks and downloads remain unchanged. Added the pending index and AGENTS.md entry.
+  Browser checks passed across all five layouts: 25-27px minimum body text, no overflow,
+  clipping or overlap, matching notes, pinned navigation, full-size routes and mobile
+  review controls. All five rendered screenshots were visually reviewed. PR pending.
+
 - **2026-09-08, training_a_team slide 5 option E accepted and slides 4 and 5 cleared from the sandbox.**
   Dafydd: "now implement option E for slide 5 and option e for slide 4. once applied then
   remove both from the sandbox". Applied refined E, "Teaching and the gaps", as
