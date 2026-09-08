@@ -752,7 +752,7 @@ it up - either way it is on disk for a recovering session.
   links, new-copy punctuation and `git diff --check` pass. Evidence is in
   `/tmp/jnuc-s04-accept-{source,reference,file}.png` and `/tmp/jnuc-s04-accept-qa.json`.
   Training has no presenter.json, so presenter sync does not apply. Downloads remain
-  deferred under the standing feedback convention. PR number will be recorded after creation.
+  deferred under the standing feedback convention. PR #101.
 
 - **2026-09-08, training_a_team slide 5, five visual designs with shorter wording.**
   Dafydd requested five different visual designs and around 25-30% fewer words for
