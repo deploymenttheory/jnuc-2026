@@ -744,6 +744,7 @@ it up - either way it is on disk for a recovering session.
   current review status now matches the cleared sandbox. Verified the exact five-file
   scope, all remaining index links and the absence of deleted-page references in current
   review pages. `git diff --check` passes. No browser check is needed for these deletions.
+  PR #98.
 
 - **2026-09-08, training_a_team slide 3 option E accepted.** Dafydd: "for slide 3 proceed
   with option E", confirmed as "Option E - The trained threshold". Applied the approved
