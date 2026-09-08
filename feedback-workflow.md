@@ -755,7 +755,7 @@ it up - either way it is on disk for a recovering session.
   text gutter in the lower rows and labels recovery "If needed". Notes, speaker, pinned
   preview navigation, normal deck navigation, direct anchors, full-size views, mobile chrome
   and unavailable-source fallbacks pass. Other source sections and the pending slide 4 review
-  page are unchanged. Inline JavaScript syntax, added-copy dash and git diff checks pass.
+  page are unchanged. Inline JavaScript syntax, added-copy dash and git diff checks pass. PR #96.
 
 - **2026-09-08, training_a_team slide 4, five new sandbox options awaiting a decision.**
   Dafydd left slide 3 open and requested the same five-option loop for the next slide.
