@@ -37,7 +37,7 @@ landing page keeps its own near-black look - it is not a deck.
 | `presentations/<slug>/` | One talk. Snake-case slug. Each deck owns its own HTML, tokens and script; decks do not import from each other beyond `_shared/`. |
 | `presentations/_shared/` | Data used by more than one deck: `speakers.js`, `qr-code.png` (the training deck's take-it-with-you code), `louise_story_final.mp4` with its `louise_story_poster.jpg` (the training deck's slide 12 interview, 1280x720, 2m52s, about 40 MB - the only file here big enough to matter to the deploy, and the only one that is not text or an icon) and `jamf_pro_icons/` (a 934-file dump of Jamf Pro's own icon set, scraped from a dev instance in `a886f28`; `migrating_an_instance` inlines 41 of them, see Icons). Content, not styling - see below. |
 | `presentations/<slug>/art/` | Source art for anything a deck embeds as a data URI: one Markdown Pixelforge spec plus the PNGs exported from it. Deploy excludes `*.md`, so the spec is kept for regeneration only; the PNGs ride along but nothing links to them, because the deck carries its own base64 copy. Currently only `migrating_an_instance/art/`. |
-| `presentations/sandbox/` | Feedback review pages, one sandbox per deck: a shared `sandbox.css`, a minimal chooser `index.html`, and one subdirectory per deck (`migrating_an_instance/`, `training_a_team/`) each with its own hand-maintained `index.html` listing that deck's pages, one page per change showing implementation options as live renders of the real slide (three by default, five for the current training refinement). Deploys with the site at `/sandbox/`, linked from a Sandbox button on each deck card on the landing page (added 2026-08-27 at Joseph's request; split into one sandbox per deck the same day). See Sandbox. |
+| `presentations/sandbox/` | Feedback review pages, one sandbox per deck: a shared `sandbox.css`, a minimal chooser `index.html`, and one subdirectory per deck (`migrating_an_instance/`, `training_a_team/`) each with its own hand-maintained `index.html` listing that deck's pages, one page per change showing implementation options as live renders of the real slide (three by default, or the number requested for that round). Deploys with the site at `/sandbox/`, linked from a Sandbox button on each deck card on the landing page (added 2026-08-27 at Joseph's request; split into one sandbox per deck the same day). See Sandbox. |
 | `template.key` | The Jamf-supplied JNUC 2026 Keynote template. Canonical reference for palette, typography and mandatory slides. |
 | `.github/workflows/` | `deploy.yml` only - the S3 sync and CloudFront invalidation. See Deployment. |
 | `Makefile` | The local Mac build for the deck downloads: `make pptx`, `make key`, `make downloads`, plus the dependency install they need. Wraps the npm scripts and guards the Mac/Keynote requirements - the Keynote guard resolves the app by name so it works on both the old `/Applications/Keynote.app` and the Apple Creator Studio build. See Building the downloads. |
@@ -586,7 +586,8 @@ Notable content slides:
   The benefits are explicitly intended; a separate "What we saw in the Mac engineering
   team" strip preserves the three observed behaviours: self-sufficient PR work without
   assistance, architectural decisions and resources managed exclusively in code. The source
-  is a straightforward three-column reflow while five sandbox visual options await a choice.
+  remains a straightforward three-column reflow. Its five sandbox visual options were closed
+  without acceptance in the 2026-09-08 sandbox reset; no visual option was implemented.
   Scoped `.bn-*` rules and a separate `:root` block hold the new sizing tokens.
 - **Execution** (`#4`): a fan-out - a hub panel (one engineer seconded into the DevOps CoE,
   3 months, train-the-trainer, run iteratively rather than planned end to end) bracketed by
@@ -616,7 +617,8 @@ Notable content slides:
   reads as a real drop rather than a shallow taper; the six months, six teaching-then-gap
   cycles, 144 hours and the gentle net upward trend by the end are unchanged. The rejected
   column and blocks-per-month treatments are gone; the sandbox page is deleted and the
-  index entry is `.done`. Below it, five chips: mixed-ability cohorts (now states plainly that trainers were
+  former index entry was cleared in the 2026-09-08 sandbox reset. Below it, five chips:
+  mixed-ability cohorts (now states plainly that trainers were
   pitching some sessions too fast and others too slow), theory before the hands-on,
   documentation shaped like a reference manual (merges the old step-by-step-tutorials and
   reference-manual chips, adding that the 214,645-word curriculum was AI-assisted and too
@@ -910,8 +912,8 @@ automatically.
 - Option A is by convention whatever the deck currently ships and injects nothing, unless
   a round explicitly asks for all-new designs. The training slide 2 round offered five
   new variants; option E was accepted on 2026-09-07. Slide 3
-  accepted option E from its five replacement variants on 2026-09-08. The slide 4 and new
-  slide 17 rounds each offer five new variants and are awaiting decisions.
+  accepted option E from its five replacement variants on 2026-09-08. The earlier slide 4
+  and new slide 17 rounds were closed without acceptance in the 2026-09-08 sandbox reset.
 - Variant CSS only touches the slide's `#id` and only uses the deck's own tokens, so an
   accepted option pastes into the deck unchanged.
 - Injection needs same-origin access, so it only works over HTTP. Opened from `file://` the
@@ -924,37 +926,44 @@ automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages awaiting a decision under `presentations/sandbox/training_a_team/`:
+No pages currently awaiting a decision under
+`presentations/sandbox/training_a_team/`. Dafydd requested a fresh sandbox on 2026-09-08:
+all old review pages and index entries, including non-linked decision history, were removed.
+Accepted source changes remain in the deck; their provenance is retained below and in
+`feedback-workflow.md`.
+
+Closed without acceptance in the 2026-09-08 training sandbox reset:
 `s17-learner-benefits` (2026-09-08, new slide 17, Dafydd, five complete visual treatments:
 A three levels side by side, B benefits that widen, C start with the learner, D three steps
 outward, E the wider support around learners. Every option keeps the twelve individual,
 team and organisational benefits visible, with the three observed Mac-team behaviours in a
 separate strip. The source content has been split out of slide 3 into a straightforward
-reflow at position 17; these visual alternatives await a decision. Full-size views,
-reviewable notes and mobile preview chrome follow the slide 4 review pattern);
+reflow at position 17. The alternatives were removed without implementing a visual choice;
+the source content split and baseline remain);
 `s04-how-we-ran-it` (2026-09-08, slide 4, Joseph, five new treatments: A the secondment,
 B a two-way exchange, C train the trainer, D we changed the delivery, E what the secondment
 made possible. Each condenses the visible copy while retaining the secondment, joint materials,
 iteration, hackathon result, lack of a playbook and plans by skill level across the slide and
 reviewable proposed speaker notes. Three months describes the secondment only. Each option has
-a direct anchor and a full-size view. This page also scales the preview counter and help
-text with the slide to avoid mobile collisions, while notes and speaker panels keep their
-screen sizing. Slide 4 is unchanged; slide 3 now uses accepted option E).
+a direct anchor and a full-size view. The alternatives were removed without acceptance;
+slide 4 is unchanged).
+
 Decided (under `presentations/sandbox/training_a_team/`):
 `s03-learning-outcomes` (2026-09-08, slide 3, Dafydd, five replacement treatments after
 splitting learning outcomes from benefits. Decided the same day: option E, "The trained
 threshold", applied to the deck as `#s-learning-outcomes`. The definition of trained sits
 in a central navy panel, with all seven capabilities on either side and the three non-goals
 below. The accepted copy, layout and seven paragraphs of speaker notes are retained,
-including normal peer review. The page is retired and its index entry marked done. Links
-from the pending slide 4 and slide 17 reviews now point to the accepted source slide.
+including normal peer review. The page is retired; its former done entry was cleared in
+the 2026-09-08 sandbox reset.
 Downloads await a separate request);
 `s02-where-we-are-today` (2026-09-07, five treatments for slide 2, the first review in
 Dafydd's slide 1-10 refinement: A people first, B three outcomes, C everyday workflow,
 D platform and people, E one statement with four proofs. Decided the same day: option E,
 applied to the deck as `#s-estate`. The accepted copy, layout and three paragraphs of
 speaker notes are retained, including the normal-change PR route and breakglass exception.
-The page is retired and its index entry marked done. Downloads await a separate request);
+The page is retired; its former done entry was cleared in the 2026-09-08 sandbox reset.
+Downloads await a separate request);
 `s08-mindset-three` (2026-09-04, three rounds on a proposed new slide 8 - the mindset shift the
 engineers had to make to get from ClickOps to GitOps, which Dafydd calls probably the most
 crucial part of the journey. Round one settled the content, six from-and-to pairs each anchored
@@ -983,8 +992,8 @@ with the deck showing A and the page flipping which wrapper was visible. Decided
 option B, the ratchet, applied to the deck as plain markup (the wrapper classes and the
 other two SVGs removed); the fall through each gap was steepened in the same PR at Joseph's
 request so the downturn reads as a real drop, not a shallow taper - six months, six cycles
-and the gentle net upward trend by the end are unchanged; the page is deleted, the index
-keeps the record as a non-linked `.done` entry).
+and the gentle net upward trend by the end are unchanged; the page is deleted, and its
+former done entry was cleared in the 2026-09-08 sandbox reset).
 No pages currently awaiting a decision under
 `presentations/sandbox/migrating_an_instance/`.
 
@@ -1092,8 +1101,7 @@ tier labels and examples pushed further up the font scale and the four bands gro
 match - applied to the deck's `#s10` rules and SVG; the page is deleted, the index keeps
 the record as a non-linked `.done` entry); `s-pivot-display` (2026-08-27, closed without a
 decision - live slide (option A) kept, B to D not chosen; the page is deleted, the index
-keeps the record as a non-linked `.done` entry). `presentations/sandbox/training_a_team/`
-has no pages yet.
+keeps the record as a non-linked `.done` entry).
 
 ## Deployment
 
