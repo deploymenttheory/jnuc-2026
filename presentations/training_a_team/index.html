@@ -600,28 +600,33 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 
 /* ---------- slide 10 ---------- */
 /* per-slide density fixes so nothing clips the 1080px page */
-/* Slide 3 learning outcomes, after the benefits were split into their own slide. */
+/* Slide 3 learning outcomes, accepted option E: the trained threshold. */
 :root {
-  --lo-unit: 8px;
-  --lo-hairline: 1px;
-  --lo-rule: 4px;
-  --lo-copy: 26px;
-  --lo-title: 30px;
-  --lo-leading: 1.25;
-  --lo-heading-leading: 1.12;
-  --lo-body-height: 724px;
+  --s03-unit: 8px;
+  --s03-hairline: 1px;
+  --s03-copy: 28px;
+  --s03-small: 26px;
+  --s03-title: 32px;
+  --s03-hero: 64px;
+  --s03-leading: 1.25;
+  --s03-heading-leading: 1.1;
+  --s03-body-height: 724px;
 }
-#s-learning-outcomes .lo-baseline { margin-top: calc(var(--lo-unit) * 4); height: var(--lo-body-height); display: flex; flex-direction: column; gap: calc(var(--lo-unit) * 3); }
-#s-learning-outcomes .lo-baseline-grid { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--lo-unit) * 2); }
-#s-learning-outcomes .lo-item { background: var(--surface); padding: calc(var(--lo-unit) * 2) calc(var(--lo-unit) * 3); }
-#s-learning-outcomes .lo-item:last-child { grid-column: 1 / -1; }
-#s-learning-outcomes .lo-item h3 { font-size: var(--lo-title); line-height: var(--lo-heading-leading); margin: 0; }
-#s-learning-outcomes .lo-item p { font-size: var(--lo-copy); line-height: var(--lo-leading); color: var(--text-dim); margin-top: var(--lo-unit); }
-#s-learning-outcomes .lo-footer { display: grid; grid-template-columns: 1.1fr 1fr; gap: calc(var(--lo-unit) * 4); }
-#s-learning-outcomes .lo-threshold { border-left: var(--lo-rule) solid var(--accent); padding-left: calc(var(--lo-unit) * 3); }
-#s-learning-outcomes .lo-threshold strong { color: var(--accent); font-size: var(--lo-copy); }
-#s-learning-outcomes .lo-threshold p, #s-learning-outcomes .lo-limits { color: var(--text-dim); font-size: var(--lo-copy); line-height: var(--lo-leading); }
-#s-learning-outcomes .lo-limits { border-left: var(--lo-hairline) solid var(--border); padding-left: calc(var(--lo-unit) * 3); }
+#s-learning-outcomes .lo-content { margin-top: calc(var(--s03-unit) * 4); height: var(--s03-body-height); display: flex; flex-direction: column; justify-content: space-between; gap: calc(var(--s03-unit) * 3); }
+#s-learning-outcomes .lo-content h2, #s-learning-outcomes .lo-content h3, #s-learning-outcomes .lo-content p { margin: 0; padding: 0; }
+#s-learning-outcomes .lo-content h2, #s-learning-outcomes .lo-content h3 { font-weight: 700; line-height: var(--s03-heading-leading); }
+#s-learning-outcomes .lo-content h2 { color: var(--accent); }
+#s-learning-outcomes .lo-content h3 { font-size: var(--s03-title); }
+#s-learning-outcomes .lo-content p { font-size: var(--s03-copy); line-height: var(--s03-leading); color: var(--text-dim); }
+#s-learning-outcomes .lo-item, #s-learning-outcomes .lo-item > div { min-width: 0; }
+#s-learning-outcomes .lo-content .lo-item p { margin-top: var(--s03-unit); }
+#s-learning-outcomes .lo-content .lo-limits { border-top: var(--s03-hairline) solid var(--border); padding-top: calc(var(--s03-unit) * 2); font-size: var(--s03-small); line-height: var(--s03-leading); color: var(--text-dimmer); }
+#s-learning-outcomes .lo-wings { display: grid; grid-template-columns: 1fr .75fr 1fr; gap: calc(var(--s03-unit) * 5); height: 100%; }
+#s-learning-outcomes .lo-wing { display: flex; flex-direction: column; justify-content: space-between; padding-top: calc(var(--s03-unit) * 2); padding-bottom: calc(var(--s03-unit) * 2); }
+#s-learning-outcomes .lo-centre-goal { display: flex; flex-direction: column; justify-content: center; background: var(--surface); padding: calc(var(--s03-unit) * 4); }
+#s-learning-outcomes .lo-centre-goal .lo-kicker { color: var(--accent); font-size: var(--s03-small); }
+#s-learning-outcomes .lo-centre-goal h2 { font-size: var(--s03-hero); margin: calc(var(--s03-unit) * 2) 0 calc(var(--s03-unit) * 4); }
+#s-learning-outcomes .lo-centre-goal > p:last-child { font-size: var(--s03-title); }
 
 .slide.dense3 .card{padding:22px 30px}
 .slide.dense3 .card p{font-size:18px;margin-top:8px}
@@ -1052,7 +1057,9 @@ We have released the training materials as open source and are now upskilling ou
 </section>
 
 <!-- ============ 3 · GOALS ============ -->
-<section class="slide" id="s-learning-outcomes" data-speaker="Dafydd" data-notes="These are the capabilities we wanted every engineer to develop. Learning outcomes sit here; the benefits for individuals, teams and the organisation, alongside what success looked like, now have their own slide later in the talk.
+<section class="slide" id="s-learning-outcomes" data-speaker="Dafydd" data-notes="Start at the centre: trained means taking a real change through to production without a trainer carrying you through it. Normal peer review remains. Move to the capabilities on either side to show what supports that independence.
+
+These are the capabilities we wanted every engineer to develop. Learning outcomes sit here; the benefits for individuals, teams and the organisation, alongside what success looked like, now have their own slide later in the talk.
 
 Collaboration means working on changes together and externalising domain knowledge from people&#x27;s heads into self-documenting code. That reduces single points of failure and gives the team a chance to catch mistakes before they reach production. Team confidence means being able to implement changes with GitOps and Terraform and perform your role effectively: any team member can pick up a change, make it, get it reviewed and ship it.
 
@@ -1065,7 +1072,7 @@ Engineers should be able to show stakeholders or external audit what changed, wh
 Name the finish line: an engineer counted as trained when they could take a real change from branch to production unaided. Unaided means they did not need a trainer to carry them through it; normal peer review and approval still apply. Be honest about the non-goals: not everyone becomes a Terraform expert, incidents still happen, and Jamf GUI knowledge still matters for breakglass.">
   <div class="eyebrow"><i class="dot"></i>03 &middot; Goals</div>
   <h1>Learning outcomes</h1>
-  <div class="body lo-baseline"><div class="lo-baseline-grid"><article class="lo-item" data-capability="collaborate"><div><h3>Collaborate in code</h3><p>Share domain knowledge in self-documenting code, reduce single points of failure and catch mistakes before production.</p></div></article><article class="lo-item" data-capability="recover"><div><h3>Recover with confidence</h3><p>Revert to a known good configuration and attempt changes previously avoided or escalated.</p></div></article><article class="lo-item" data-capability="deliver"><div><h3>Take a change through to production</h3><p>Any engineer can make a change, get it reviewed and ship it confidently with GitOps and Terraform.</p></div></article><article class="lo-item" data-capability="plan"><div><h3>Read the plan before approval</h3><p>Read a Terraform plan and predict its impact before approving it.</p></div></article><article class="lo-item" data-capability="judge"><div><h3>Know when to stop</h3><p>Recognise when breakglass GUI access is right, or stop and ask for review.</p></div></article><article class="lo-item" data-capability="explain"><div><h3>Prove what changed, when and why</h3><p>Show stakeholders or external audit what changed, when and why.</p></div></article><article class="lo-item" data-capability="trace"><div><h3>Make the history reliable</h3><p>Normal production changes go through pull requests. Commit history is the source of truth; GUI writes are the breakglass exception.</p></div></article></div><div class="lo-footer"><div class="lo-threshold"><strong>Trained</strong><p>Take a real change from branch to production unaided. Normal peer review still applies.</p></div><p class="lo-limits">Not the goal: everyone becoming a Terraform expert, zero incidents or the end of Jamf GUI knowledge.</p></div></div>
+  <div class="lo-content lo-centre"><div class="lo-wings"><div class="lo-wing"><article class="lo-item" data-capability="collaborate"><div><h3>Collaborate in code</h3><p>Share domain knowledge in self-documenting code, reduce single points of failure and catch mistakes before production.</p></div></article><article class="lo-item" data-capability="recover"><div><h3>Recover with confidence</h3><p>Revert to a known good configuration and attempt changes previously avoided or escalated.</p></div></article><article class="lo-item" data-capability="deliver"><div><h3>Take a change through to production</h3><p>Any engineer can make a change, get it reviewed and ship it confidently with GitOps and Terraform.</p></div></article></div><div class="lo-centre-goal"><p class="lo-kicker">The finish line</p><h2>Trained</h2><p>Take a real change from branch to production unaided. Normal peer review still applies.</p></div><div class="lo-wing"><article class="lo-item" data-capability="plan"><div><h3>Read the plan before approval</h3><p>Read a Terraform plan and predict its impact before approving it.</p></div></article><article class="lo-item" data-capability="judge"><div><h3>Know when to stop</h3><p>Recognise when breakglass GUI access is right, or stop and ask for review.</p></div></article><article class="lo-item" data-capability="explain"><div><h3>Prove what changed, when and why</h3><p>Show stakeholders or external audit what changed, when and why.</p></div></article><article class="lo-item" data-capability="trace"><div><h3>Make the history reliable</h3><p>Normal production changes go through pull requests. Commit history is the source of truth; GUI writes are the breakglass exception.</p></div></article></div></div><p class="lo-limits">Not the goal: everyone becoming a Terraform expert, zero incidents or the end of Jamf GUI knowledge.</p></div>
 </section>
 
 <!-- ============ 4 · EXECUTION ============ -->
