@@ -44,7 +44,7 @@
   <header class="review-intro">
     <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / Training a team / slide 5</p>
     <h1>Slide 5 - What didn't work</h1>
-    <p class="lede">Five visual designs with the same shorter wording, reduced by around 29%. Each keeps the illustrative confidence chart, five problems and exact engineer feedback. Open the proposed notes for the fuller story. <a href="../../training_a_team/index.html?theme=default#5">Compare the current slide</a>.</p>
+    <p class="lede">Five visual designs with shorter wording. Option E now restores the original diagram's explanatory notes for another review. Each keeps the illustrative confidence chart, five problems and exact engineer feedback. Open the proposed notes for the fuller story. <a href="../../training_a_team/index.html?theme=default#5">Compare the current slide</a>.</p>
     <nav class="jump" aria-label="Options">
       <a href="#a">A - The chart across the page</a>
       <a href="#b">B - The chart beside the account</a>
@@ -116,7 +116,7 @@
   </section>
   <section class="option" id="e">
     <div class="option-heading"><h2>Option E - Teaching and the gaps</h2><a class="open-option" href="?option=e">Open full-size option E</a></div>
-    <p class="option-description">The chart runs through the middle of the slide. Teaching issues sit above it, with the gaps, online delivery and engineer feedback below. <span data-word-count></span></p>
+    <p class="option-description">The chart runs through the middle of the slide, with the original notes explaining the rises, gaps, rising floor and shaded teaching bands. Teaching issues sit above it, with the gaps, online delivery and engineer feedback below. <span data-word-count></span></p>
     <div class="frame"><div class="frame-status">Preparing option E. If this message remains, serve this page over HTTP and enable JavaScript to review the proposal.</div><iframe data-variant="e" title="Option E - Teaching and the gaps"></iframe></div>
     <details><summary>Proposed speaker notes</summary><div class="notes-copy">
       <p>Take time over this slide because it is useful to anyone planning a training programme. Explain the chart as six teaching sessions across six months. Each session raised confidence and the following gap gave much of that gain back. The floor still rose after every cycle, so people genuinely built confidence over the programme. The shape is illustrative, not measured. The six months, six sessions and 144 hours are real.</p>
@@ -128,10 +128,11 @@
       <p>The next slide explains what replaced the original material: 3,778 words, 57 times smaller. We wrote it after direct feedback that the first version was too heavy going and too theoretical. Keep that replacement on the next slide.</p>
     </div></details>
   </section>
-  <p class="foot">All five options use the same wording and the JNUC template. The chart remains illustrative, with six teaching rises, six drops and an overall confidence gain. Word counts include every visible body word, including SVG labels and the quotation, and exclude the unchanged slide title, eyebrow and footer. Slide 5 remains open for review. Slide 4 has accepted option E - Plain sentences. <a href="../../training_a_team/index.html?theme=default#5">Open the current slide 5</a>.</p>
+  <p class="foot">All five options use the JNUC template and share the same issue wording, engineer quote and proposed speaker notes. Option E restores the original diagram's explanatory notes; options A to D keep their shorter chart legend. The chart remains illustrative, with six teaching rises, six drops and an overall confidence gain. Word counts include every visible body word, including SVG labels and the quotation, and exclude the unchanged slide title, eyebrow and footer. Slide 5 remains open for review. Slide 4 has accepted option E - Plain sentences. <a href="../../training_a_team/index.html?theme=default#5">Open the current slide 5</a>.</p>
 </div>
 <script>
-// Shared copy makes this a comparison of visual designs. The source deck stays intact.
+// The issue wording and quotation are shared. E restores the source chart's notes.
+// The source deck stays intact.
 const COPY = {
   lead: '144 hours of learning, roughly four weeks, spread across six months',
   quote: 'I understood the slides but had no idea what to actually do when I opened VS Code.',
@@ -291,11 +292,13 @@ const CONTENT_CSS = `
 #s05-review[data-design="d"] .s05-problems { display: flex; flex-direction: column; justify-content: space-between; padding: var(--s05-size-24) var(--s05-size-28); background: var(--surface); }
 #s05-review[data-design="d"] .s05-issue h2 { color: var(--warn-light); }
 /* E: three teaching issues above the chart, gaps and delivery below it. */
-#s05-review[data-design="e"] { --s05-body: 23px; --s05-heading: 25px; --s05-chart-height: 216px; --s05-quote: 29px; }
+#s05-review[data-design="e"] { --s05-body: 23px; --s05-heading: 25px; --s05-chart-height: 250px; --s05-quote: 29px; }
 #s05-review[data-design="e"] .s05-content { display: grid; grid-template-rows: auto var(--s05-size-170) auto 1fr; gap: var(--s05-size-20); }
 #s05-review[data-design="e"] .s05-teaching { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s05-size-46); }
 #s05-review[data-design="e"] .s05-teaching .s05-issue { border-top: var(--s05-rule) solid var(--accent); padding-top: var(--s05-size-14); }
 #s05-review[data-design="e"] .s05-chart { margin-left: var(--s05-size-minus-24); margin-right: var(--s05-size-minus-24); padding: var(--s05-size-16) var(--s05-size-24) var(--s05-size-14); background: var(--surface); }
+#s05-review[data-design="e"] .s05-note-floor, #s05-review[data-design="e"] .s05-note-rise { fill: var(--accent-strong); }
+#s05-review[data-design="e"] .s05-note-gap { fill: var(--warn-light); }
 #s05-review[data-design="e"] .s05-after { display: grid; grid-template-columns: var(--s05-size-490) var(--s05-size-490) 1fr; gap: var(--s05-size-46); }
 #s05-review[data-design="e"] .s05-after .s05-issue h2 { color: var(--warn-light); }
 `;
@@ -322,7 +325,7 @@ const allIssues = () => '<div class="s05-problems">' + COPY.issues.map((_, index
 
 // Reuse the accepted ratchet's actual SVG geometry. Reposition its labels separately
 // so a narrower chart does not shrink the lettering or add a numerical confidence scale.
-const chart = (source, width, height) => {
+const chart = (source, width, height, originalNotes = false) => {
   const geometry = source.ownerDocument.createElementNS('http://www.w3.org/2000/svg', 'g');
   const groupClasses = ['s05-grid', 's05-bands', 's05-floors', 's05-drops', 's05-rises', 's05-peaks', 's05-troughs'];
   [...source.children].filter((element) => element.tagName.toLowerCase() === 'line').forEach((element) => {
@@ -352,10 +355,24 @@ const chart = (source, width, height) => {
   });
   const positions = [194, 442, 690, 938, 1186, 1434];
   const months = positions.map((x, index) => '<text x="' + (56 + (x - 70) * sx) + '" y="' + (height - 8) + '" text-anchor="middle">MONTH ' + (index + 1) + '</text>').join('');
+  // E uses the original four explanatory notes verbatim, placed around the same
+  // chart features. Its former legend gives the plot another 34 pixels of height.
+  const notePositions = [
+    ['floor', 76, 63],
+    ['rise', 142, 126],
+    ['gap', 146, height - 40],
+    ['bands', width - 26, height - 40]
+  ];
+  const annotations = originalNotes ? [...source.children]
+    .filter((element) => element.tagName.toLowerCase() === 'text').slice(-4)
+    .map((element, index) => {
+      const [name, x, y] = notePositions[index];
+      return '<text class="s05-note-' + name + '" x="' + x + '" y="' + y + '"' + (name === 'bands' ? ' text-anchor="end"' : '') + '>' + escapeHTML(element.textContent) + '</text>';
+    }).join('') : '';
+  const legend = originalNotes ? '' : '<div class="s05-legend"><span class="s05-up">Teaching lifts confidence</span><span class="s05-down">Gaps give much of it back</span><span class="s05-gain">The floor rises after each cycle</span></div>';
   return '<figure class="s05-chart"><figcaption class="s05-chart-head"><h2>Six teaching sessions</h2><span class="s05-disclosure">SHAPE IS ILLUSTRATIVE</span></figcaption>' +
     '<svg class="s05-diagram" viewBox="0 0 ' + width + ' ' + height + '" role="img" aria-label="Illustrative confidence across six months: six teaching sessions each lift confidence, each following gap causes a steep drop, and the floor rises after every cycle for a genuine overall confidence gain. No measured confidence values.">' +
-    geometry.outerHTML + markers.outerHTML + '<text x="56" y="19">CONFIDENCE</text><text x="46" y="48" text-anchor="end">high</text><text x="46" y="' + (height - 36) + '" text-anchor="end">low</text>' + months + '</svg>' +
-    '<div class="s05-legend"><span class="s05-up">Teaching lifts confidence</span><span class="s05-down">Gaps give much of it back</span><span class="s05-gain">The floor rises after each cycle</span></div></figure>';
+    geometry.outerHTML + markers.outerHTML + '<text x="56" y="19">CONFIDENCE</text><text x="46" y="48" text-anchor="end">high</text><text x="46" y="' + (height - 36) + '" text-anchor="end">low</text>' + months + annotations + '</svg>' + legend + '</figure>';
 };
 const layout = (key, source) => {
   switch (key) {
@@ -363,7 +380,7 @@ const layout = (key, source) => {
     case 'b': return '<div class="s05-story">' + lead() + chart(source, 800, 348) + quotation() + '</div>' + allIssues();
     case 'c': return '<div class="s05-opening"><div>' + quotation() + lead() + '</div>' + chart(source, 606, 226) + '</div><div class="s05-problems"><div class="s05-column">' + issue(0) + issue(1) + '</div><div class="s05-column">' + issue(2) + '</div><div class="s05-column">' + issue(3) + issue(4) + '</div></div>';
     case 'd': return '<div class="s05-story"><p class="s05-lead"><span class="s05-hours">144</span><span class="s05-unit-label">hours of learning,</span><span class="s05-weeks">roughly four weeks,</span><span class="s05-spread">spread across</span><strong class="s05-months">six months</strong></p>' + chart(source, 622, 410) + quotation() + '</div>' + allIssues();
-    case 'e': return lead() + '<div class="s05-teaching">' + issue(0) + issue(1) + issue(2) + '</div>' + chart(source, 1676, 216) + '<div class="s05-after">' + issue(3) + issue(4) + quotation() + '</div>';
+    case 'e': return lead() + '<div class="s05-teaching">' + issue(0) + issue(1) + issue(2) + '</div>' + chart(source, 1676, 250, true) + '<div class="s05-after">' + issue(3) + issue(4) + quotation() + '</div>';
   }
 };
 const keys = ['a', 'b', 'c', 'd', 'e'];
