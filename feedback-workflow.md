@@ -764,7 +764,7 @@ it up - either way it is on disk for a recovering session.
   proposed paragraphs and matches `data-notes`, and the word-count widget reports 217 body
   words for A, D and E, 222 for B and 224 for C, the difference being each option's own drawn
   labels. The deck diff against origin/main for `presentations/training_a_team/` is empty, so
-  the source slide and both downloads are unchanged. PR #n.
+  the source slide and both downloads are unchanged. PR #106.
 
 - **2026-09-08, training slide 6, five layout options with shorter copy.** Added
   `s06-what-worked.html` to the training sandbox for Joseph's "What worked" slide.
