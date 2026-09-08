@@ -561,18 +561,6 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .mindset .ms-new{font-size:24px;color:var(--green-bright);font-weight:700;line-height:1.25}
 .mindset .ms-rail-item{font-size:17px;line-height:1.3;color:var(--surface)}
 
-/* ---------- slide 8 ---------- */
-.rolecard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 30px;margin-bottom:22px}
-.rolecard .hd{display:flex;align-items:baseline;gap:16px;margin-bottom:14px}
-.rolecard .hd h3{font-size:27px;font-weight:700}
-.rolecard .hd span{font-family:var(--mono);font-size:19px;color:var(--green-bright)}
-.rolecard .hd span.blue{color:var(--blue-light)}
-.rolecard ul{list-style:none}
-.rolecard li{position:relative;padding-left:28px;font-size:20px;line-height:1.4;margin-bottom:9px;color:var(--text-dim)}
-.rolecard li::before{content:"\25B8";position:absolute;left:2px;color:var(--accent);font-size:18px}
-.legend{display:flex;gap:34px;justify-content:center;font-family:var(--mono);font-size:22px;color:var(--muted);margin-top:18px}
-.legend i{width:13px;height:13px;display:inline-block;border-radius:2px;margin-right:10px}
-
 /* ---------- slide 9 ---------- */
 .matrix{display:grid;grid-template-columns:230px repeat(5,1fr);gap:14px;margin-top:26px}
 .mx-corner{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end;
@@ -656,135 +644,20 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .goalfoot .bar3.not .lb{color:var(--muted)}
 .goalfoot p{font-size:17px;line-height:1.3;color:var(--text-dim)}
 .goalfoot .todo{display:inline-block;margin:2px 0 0}
-/* Role cards run across the top, so the two scenario radars below get the
-   height they need for three polygons each. The colour chip in each card
-   header doubles as the chart legend - keep the chip and polygon colours
-   in step (junior --accent, engineer --alt-light, senior --text-2). */
-.roles3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.roles3 .rolecard{margin-bottom:0;padding:14px 22px}
-.roles3 .rolecard .hd{margin-bottom:8px;gap:12px}
-.roles3 .rolecard .hd h3{font-size:23px}
-.roles3 .rolecard .hd span{font-size:16px}
-.roles3 .rolecard .hd i{width:13px;height:13px;border-radius:3px;flex:none}
-.roles3 .rolecard li{font-size:16.5px;line-height:1.3;margin-bottom:4px;padding-left:22px}
-.roles3 .rolecard li::before{font-size:17px;left:2px}
-.scen2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:12px}
-.scen2 .pane{border:1px solid var(--border);border-radius:12px;background:var(--surface);padding:16px 24px}
-.scen2 .phd{display:flex;align-items:baseline;gap:16px}
-.scen2 .phd .tag{font-family:var(--mono);font-size:16px;letter-spacing:.16em;color:var(--accent-strong)}
-.scen2 .pane.big .phd .tag{color:var(--alt-light)}
-.scen2 .phd h3{font-size:23px;font-weight:700}
-.scen2 .strap{font-size:17px;color:var(--text-dimmer);line-height:1.35;margin-top:5px}
-.scen2 svg{width:100%;height:300px;display:block;margin-top:4px}
-.scen2 .why{list-style:none;margin-top:8px}
-.scen2 .why li{position:relative;padding-left:20px;font-size:16px;line-height:1.3;
-  margin-bottom:4px;color:var(--text-dimmer)}
-.scen2 .why li::before{content:"\203A";position:absolute;left:2px;color:var(--accent);font-size:16px}
-.scen2 .pane.big .why li::before{color:var(--alt-light)}
-
-/* Option B - Minimum bar */
-#s-learning-priorities .s-learning-priorities-opt-b{display:flex;flex-direction:column;gap:26px}
-#s-learning-priorities .lp-lead{font-size:26px;font-weight:700;color:var(--text-2);line-height:1.3;margin-bottom:16px}
-#s-learning-priorities .lp-roles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-#s-learning-priorities .lp-role{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px}
-#s-learning-priorities .lp-role h3{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;margin-bottom:8px}
-#s-learning-priorities .lp-role h3 i{width:12px;height:12px;border-radius:3px;flex:none}
-#s-learning-priorities .lp-role p{font-size:17px;line-height:1.35;color:var(--text-dim)}
-#s-learning-priorities .lp-orgs{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-#s-learning-priorities .lp-org{border:1px solid var(--border);border-radius:12px;background:var(--surface);padding:16px 22px}
-#s-learning-priorities .lp-tag{font-family:var(--mono);font-size:15px;letter-spacing:.16em;color:var(--accent-strong)}
-#s-learning-priorities .lp-org.big .lp-tag{color:var(--alt-light)}
-#s-learning-priorities .lp-strap{font-size:17px;font-weight:700;color:var(--text-2);line-height:1.3;margin-top:4px}
-#s-learning-priorities .lp-org ul{list-style:none;margin-top:10px}
-#s-learning-priorities .lp-org li{position:relative;padding-left:18px;font-size:16px;line-height:1.32;margin-bottom:5px;color:var(--text-dimmer)}
-#s-learning-priorities .lp-org li::before{content:"\203A";position:absolute;left:2px;color:var(--accent)}
-#s-learning-priorities .lp-org.big li::before{color:var(--alt-light)}
-#s-learning-priorities .lp-foot{font-size:16px;color:var(--muted);margin-top:10px}
-
-/* Option C - Two statements with a discipline comparison strip */
-#s-learning-priorities .s-learning-priorities-opt-c{display:flex;flex-direction:column;gap:10px}
-#s-learning-priorities .lp2-head{display:flex;align-items:baseline;gap:16px;margin-top:8px}
-#s-learning-priorities .lp2-n{font-family:var(--mono);font-size:20px;color:var(--muted-2)}
-#s-learning-priorities .lp2-head h2{font-size:27px;font-weight:700;color:var(--text-2);line-height:1.25}
-#s-learning-priorities .lp2-roles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:8px}
-#s-learning-priorities .lp2-role{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 18px}
-#s-learning-priorities .lp2-role h3{display:flex;align-items:center;gap:9px;font-size:18px;font-weight:700;margin-bottom:5px}
-#s-learning-priorities .lp2-role h3 i{width:11px;height:11px;border-radius:3px;flex:none}
-#s-learning-priorities .lp2-role span{font-size:15.5px;line-height:1.3;color:var(--text-dim)}
-#s-learning-priorities .lp2-strip{border:1px solid var(--border);border-radius:10px;overflow:hidden}
-#s-learning-priorities .lp2-row{display:grid;grid-template-columns:170px 1fr 1fr;gap:14px;padding:10px 20px;
-  border-top:1px solid var(--border-soft);align-items:center}
-#s-learning-priorities .lp2-row:first-child{border-top:0}
-#s-learning-priorities .lp2-row>span:first-child{font-size:16px;font-weight:700;color:var(--text)}
-#s-learning-priorities .lp2-legend{background:var(--surface-2);font-family:var(--mono);font-size:14px;letter-spacing:.12em;color:var(--muted)}
-#s-learning-priorities .lp2-legend span{font-weight:400}
-#s-learning-priorities .lp2-row span.own{color:var(--accent-strong)}
-#s-learning-priorities .lp2-row span.consume{color:var(--alt-light)}
-#s-learning-priorities .lp2-row span.dim{color:var(--text-dimmer)}
-#s-learning-priorities .lp2-row:not(.lp2-legend) span:not(:first-child){font-size:16px;line-height:1.3}
-#s-learning-priorities .lp2-foot{font-size:16px;color:var(--muted);margin-top:8px}
-
-/* Option D - Role-by-org-size matrix */
-#s-learning-priorities .s-learning-priorities-opt-d{display:flex;flex-direction:column;gap:16px}
-#s-learning-priorities .lp4-lead{font-size:24px;font-weight:700;color:var(--text-2);line-height:1.3}
-#s-learning-priorities .lp4-grid{border:1px solid var(--border);border-radius:10px;overflow:hidden}
-#s-learning-priorities .lp4-row{display:grid;grid-template-columns:190px 1fr 1fr;gap:18px;padding:16px 22px;
-  border-top:1px solid var(--border-soft);align-items:center}
-#s-learning-priorities .lp4-row:first-child{border-top:0}
-#s-learning-priorities .lp4-legend{background:var(--surface-2);font-family:var(--mono);font-size:14px;letter-spacing:.1em;color:var(--muted)}
-#s-learning-priorities .lp4-role{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:700}
-#s-learning-priorities .lp4-role i{width:12px;height:12px;border-radius:3px;flex:none}
-#s-learning-priorities .lp4-row:not(.lp4-legend){background:var(--surface)}
-#s-learning-priorities .lp4-row:not(.lp4-legend) span:not(.lp4-role){font-size:16.5px;line-height:1.34;color:var(--text-dim)}
-#s-learning-priorities .lp4-row:not(.lp4-legend) span:last-child{color:var(--text-dimmer)}
-#s-learning-priorities .lp4-foot{font-size:16px;color:var(--muted)}
-
-/* Option E - Staged narrative, two statements in sequence */
-#s-learning-priorities .s-learning-priorities-opt-e{display:flex;flex-direction:column;gap:22px}
-#s-learning-priorities .lp3-stage{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 28px}
-#s-learning-priorities .lp3-kicker{font-family:var(--mono);font-size:15px;letter-spacing:.18em;color:var(--accent-strong)}
-#s-learning-priorities .lp3-stage.alt .lp3-kicker{color:var(--alt-light)}
-#s-learning-priorities .lp3-stage h2{font-size:26px;font-weight:700;margin-top:4px;margin-bottom:14px}
-#s-learning-priorities .lp3-list{display:flex;flex-direction:column;gap:8px}
-#s-learning-priorities .lp3-item{display:flex;gap:14px;align-items:flex-start}
-#s-learning-priorities .lp3-n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent-wash);
-  color:var(--accent-strong);font-family:var(--mono);font-size:14px;display:flex;align-items:center;justify-content:center}
-#s-learning-priorities .lp3-item p{font-size:17px;line-height:1.35;color:var(--text-dim)}
-#s-learning-priorities .lp3-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-#s-learning-priorities .lp3-col{border-left:4px solid var(--accent);padding:4px 0 4px 16px}
-#s-learning-priorities .lp3-col.alt{border-left-color:var(--alt-light)}
-#s-learning-priorities .lp3-col h4{font-size:16px;font-family:var(--mono);letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
-#s-learning-priorities .lp3-col p{font-size:17px;line-height:1.35;color:var(--text-dim)}
-#s-learning-priorities .lp3-foot{font-size:16px;color:var(--muted);margin-top:14px}
-
-/* Option D variant 1 - Table: a literal ruled table crossing role against org
-   size, bigger and fuller than the original opt-d grid. */
-#s-learning-priorities .s-learning-priorities-optd-table{display:flex;flex-direction:column;gap:24px}
-#s-learning-priorities .lpt-lead{font-size:28px;font-weight:700;color:var(--text-2);line-height:1.3}
-#s-learning-priorities .lpt-table{width:100%;border-collapse:collapse;table-layout:fixed}
-#s-learning-priorities .lpt-c1{width:16%}
-#s-learning-priorities .lpt-c2{width:30%}
-#s-learning-priorities .lpt-c3,
-#s-learning-priorities .lpt-c4{width:27%}
-#s-learning-priorities .lpt-table th,
-#s-learning-priorities .lpt-table td{border-top:1px solid var(--border-soft);padding:22px 24px;
-  text-align:left;vertical-align:top;font-size:19px;line-height:1.38;color:var(--text-dim)}
-#s-learning-priorities .lpt-table thead th{border-top:0;background:var(--surface-2);font-family:var(--mono);
-  font-size:14.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:400}
-#s-learning-priorities .lpt-table thead th span{display:block;font-family:var(--sans);font-size:15px;
-  letter-spacing:0;text-transform:none;color:var(--muted-2);margin-top:4px}
-#s-learning-priorities .lpt-table tbody th{font-size:21px;font-weight:700;color:var(--text)}
-#s-learning-priorities .lpt-role{display:flex;align-items:center;gap:12px}
-#s-learning-priorities .lpt-role i{width:14px;height:14px;border-radius:3px;flex:none}
-#s-learning-priorities .lpt-table tbody td:last-child{color:var(--text-dimmer)}
-#s-learning-priorities .lpt-table tfoot th,
-#s-learning-priorities .lpt-table tfoot td{border-top:2px solid var(--border);background:var(--surface);
-  font-size:17px;color:var(--muted)}
-#s-learning-priorities .lpt-table tfoot th{font-weight:700;color:var(--text-2)}
-
-/* Option D variant 2 - Graphic: identical role pills carry "same minimum",
-   then a scaled bar per discipline carries "different ownership" by length. */
-#s-learning-priorities .s-learning-priorities-optd-graphic{display:flex;flex-direction:column;gap:14px}
+/* Accepted from the option D graphic sandbox round: three identical role
+   pills carry "the minimum is fixed regardless of role", then a scaled bar
+   chart per discipline carries "ownership shifts with org size" by bar
+   length. The pill colour chip is the role key (junior --accent, engineer
+   --alt-light, senior --text-2) - keep that in step with the role-card
+   convention used elsewhere in the deck. The bar chart is NOT about role -
+   it compares small org against large org per discipline - so its fills
+   deliberately sit outside the lime/cornflower/off-white role palette
+   entirely and use the deck's warm signal hue instead (small org --warn,
+   large org the lighter --warn-light), so a bar can never be mistaken for a
+   role chip. The Jamf APIs row is identical on both sides regardless of org
+   size, so both its bars keep the darker --warn rather than switching to
+   --warn-light, which visually marks it as the one row that does not shift. */
+#s-learning-priorities .lpg{display:flex;flex-direction:column;gap:14px}
 #s-learning-priorities .lpg-lead{font-size:28px;font-weight:700;color:var(--text-2);line-height:1.3}
 #s-learning-priorities .lpg-pills{display:flex;gap:18px}
 #s-learning-priorities .lpg-pill{flex:1;display:flex;align-items:center;justify-content:center;gap:12px;
@@ -796,30 +669,10 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 #s-learning-priorities .lpg-colhead{font-family:var(--mono);font-size:15px;letter-spacing:.12em;fill:var(--muted)}
 #s-learning-priorities .lpg-rowlabel{font-family:var(--sans);font-size:22px;font-weight:700;fill:var(--text-2)}
 #s-learning-priorities .lpg-track{fill:var(--surface-2);stroke:var(--border);stroke-width:1}
-#s-learning-priorities .lpg-fill-small{fill:var(--accent-strong)}
-#s-learning-priorities .lpg-fill-large{fill:var(--alt-light)}
-#s-learning-priorities .lpg-fill-same{fill:var(--text-2)}
+#s-learning-priorities .lpg-fill-small{fill:var(--warn)}
+#s-learning-priorities .lpg-fill-large{fill:var(--warn-light)}
+#s-learning-priorities .lpg-fill-same{fill:var(--warn)}
 #s-learning-priorities .lpg-note{font-family:var(--sans);font-size:15.5px;fill:var(--text-dimmer)}
-
-/* Option D variant 3 - Text: prose and type hierarchy carry the argument,
-   no grid, sized closer to migrating_an_instance's plainest slides. */
-#s-learning-priorities .s-learning-priorities-optd-text{display:flex;flex-direction:column;gap:26px;max-width:1560px}
-#s-learning-priorities .lpx-point{font-size:34px;font-weight:700;color:var(--text-2);line-height:1.28}
-#s-learning-priorities .lpx-point em{color:var(--accent);font-style:normal}
-#s-learning-priorities .lpx-role{font-size:21px;line-height:1.5;color:var(--text-dim)}
-#s-learning-priorities .lpx-name{font-weight:700}
-#s-learning-priorities .lpx-foot{font-size:17px;color:var(--muted)}
-
-/* Only option A is visible in the shipped deck; this rule must come after
-   every option's own display declaration above so it wins the cascade. The
-   sandbox page flips which wrapper shows by injecting CSS after this. */
-#s-learning-priorities .s-learning-priorities-opt-b,
-#s-learning-priorities .s-learning-priorities-opt-c,
-#s-learning-priorities .s-learning-priorities-opt-d,
-#s-learning-priorities .s-learning-priorities-opt-e,
-#s-learning-priorities .s-learning-priorities-optd-table,
-#s-learning-priorities .s-learning-priorities-optd-graphic,
-#s-learning-priorities .s-learning-priorities-optd-text{display:none}
 
 .slide.tight h1{margin-top:14px}
 .slide.tight .sub{margin-top:8px}
@@ -1431,253 +1284,17 @@ Name the finish line: an engineer counted as trained when they could take a real
     </section>
 
 <!-- ============ 9 · CURRICULUM BY ROLE ============ -->
-<section class="slide dense8" id="s-learning-priorities" data-speaker="Dafydd" data-notes="Teach to the role, but the real point of this slide is the pair of charts underneath. The three roles are the same in both, and the coloured chip on each card is the key to the shapes. Juniors need breadth over depth: a working environment, Git basics, branching fundamentals, and enough Terraform to read a plan and predict what it will change. The test is simple - can they write a working PR and apply a change safely. Engineers own modules and everyday resource changes, review each other's work, and go to the Jamf Pro API docs directly when the provider documentation is ambiguous. Seniors are the escalation point rather than a separate species: advanced Terraform, release management, and a strong understanding of the Jamf Pro API, including working out whether an unsupported resource is an API gap or a provider gap and whether it is worth raising upstream. Note what is deliberately absent: provider architecture and SDK design. Building the provider is a different job from using it, and no Mac team needs a Go developer in order to adopt any of this. Now the two charts, and there are two things to draw out. First, look at Jamf APIs. That score is identical in both, deliberately. No external team is ever going to know your own service's APIs better than the team that owns the service, so org size makes no difference to it whatsoever. Second, and this is the real distinction, look at Environment. In a small organisation you design it, build it and maintain it: the toolchain, the runners, the state backend, all of it, because nobody provisions a repo for you. In a large organisation that arrives from the internal developer platform as a template, so the burden lifts. But be careful how you say the rest, because Git and GitOps barely move between the two. In a large organisation you still own your branching strategy, you still wire the event triggers into your own environments, and you still handle merges to main and releases. What you lose is not the knowledge, it is the authority: every PR needs a second approver, your GitHub access stops at the edges of what you own, and you cannot turn off Checkov or the linters even if you want to. That is the sentence worth landing. You still need to know how the platform is designed, but your workflow will have to conform with wider company standards, and how much of it you can change is entirely dependent on your own organisation. Note the wording on both panels: in either case you are managing the Jamf Terraform workflows. What differs is whether you also design, build and maintain the platform underneath them, or consume it inside somebody else's guardrails.">
+<section class="slide dense8" id="s-learning-priorities" data-speaker="Dafydd" data-notes="Teach to the role first, then let the bar chart underneath do the org-size argument. The three pills at the top are the role key - junior lime, engineer cornflower, senior off-white - and that colour never appears again on the slide, because the chart below is not about role at all: it compares a small org against a large org, one bar per discipline. Juniors need breadth over depth: a working environment, Git basics, branching fundamentals, and enough Terraform to read a plan and predict what it will change. The test is simple - can they write a working PR and apply a change safely. Engineers own modules and everyday resource changes, review each other's work, and go to the Jamf Pro API docs directly when the provider documentation is ambiguous. Seniors are the escalation point rather than a separate species: advanced Terraform, release management, and a strong understanding of the Jamf Pro API, including working out whether an unsupported resource is an API gap or a provider gap and whether it is worth raising upstream. Note what is deliberately absent: provider architecture and SDK design. Building the provider is a different job from using it, and no Mac team needs a Go developer in order to adopt any of this. Now the chart, and there are two things to draw out. First, look at Jamf APIs. That bar is identical in both columns, deliberately. No external team is ever going to know your own service's APIs better than the team that owns the service, so org size makes no difference to it whatsoever. Second, and this is the real distinction, look at Environment. In a small organisation you design it, build it and maintain it: the toolchain, the runners, the state backend, all of it, because nobody provisions a repo for you. In a large organisation that arrives from the internal developer platform as a template, so the burden lifts. But be careful how you say the rest, because Git and GitOps barely move between the two - the bars are nearly the same length in both columns. In a large organisation you still own your branching strategy, you still wire the event triggers into your own environments, and you still handle merges to main and releases. What you lose is not the knowledge, it is the authority: every PR needs a second approver, your GitHub access stops at the edges of what you own, and you cannot turn off Checkov or the linters even if you want to. That is the sentence worth landing. Mentoring runs the other way: light in a small org, where one person often spans all three roles, and heavier in a large one, across a bigger team plus the packaging and endpoint security teams learning alongside you. Say &ldquo;the platform&rdquo;, not &ldquo;it&rdquo;: in either case you are managing the Jamf Terraform workflows, and what differs is whether you also design, build and maintain the platform underneath them, or consume it inside somebody else's guardrails - small org is &ldquo;Design, build and maintain the platform and manage the Jamf Terraform workflows&rdquo;; large org is &ldquo;Consume the platform, inside its guardrails and manage the Jamf Terraform workflows&rdquo;. You still need to know how the platform is designed. But your workflow will have to conform with wider company standards, and how much of it you can change is entirely dependent on your own organisation.">
   <div class="eyebrow"><i class="dot"></i>09 &middot; Curriculum</div>
   <h1>Learning priorities by role</h1>
   <div class="sub">The same three roles. How far each has to stretch depends on who else is in the building.</div>
   <div class="body" style="margin-top:24px">
 
-    <!-- Option A - the deck as it currently ships: three role cards, then two
-         six-axis radar panes comparing a small org against a large org. -->
-    <div class="s-learning-priorities-opt-a">
-      <div class="roles3">
-        <div class="rolecard">
-          <div class="hd"><i style="background:var(--accent)"></i><h3>Junior engineers</h3><span>Breadth over depth</span></div>
-          <ul>
-            <li>Environment working: editor, extensions, Terraform on PATH</li>
-            <li>Git basics and branching fundamentals</li>
-            <li>Terraform basics: read a plan and predict what it changes</li>
-            <li>Can they write a working PR and apply a change safely?</li>
-          </ul>
-        </div>
-        <div class="rolecard">
-          <div class="hd"><i style="background:var(--alt-light)"></i><h3>Engineers</h3><span>Applying it daily</span></div>
-          <ul>
-            <li>Own modules and everyday resource changes end-to-end</li>
-            <li>Review junior PRs; raise their own with confidence</li>
-            <li>Read the Jamf Pro API docs when the provider docs are ambiguous</li>
-          </ul>
-        </div>
-        <div class="rolecard">
-          <div class="hd"><i style="background:var(--text-2)"></i><h3>Senior engineers</h3><span class="blue">The escalation point</span></div>
-          <ul>
-            <li>Advanced Terraform: for_each, dynamic blocks, modules</li>
-            <li>Release management: tagging, promotion, rollback</li>
-            <li><span class="g">Strong Jamf Pro API understanding</span></li>
-            <li>Unsupported resource? API gap or provider gap, and is it worth raising</li>
-            <li>Pairs with and mentors juniors; reviews and unblocks</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="scen2">
-        <div class="pane">
-          <div class="phd"><span class="tag">SMALL ORG</span><h3>No DevOps function</h3></div>
-          <p class="strap">Design, build and maintain the platform and manage the Jamf Terraform workflows</p>
-          <svg viewBox="-130 -22 820 546">
-            <g fill="none" stroke-width="1.5" style="stroke:var(--border)">
-              <polygon points="280,173 347,212 347,289 280,327 213,289 213,212"/>
-              <polygon points="280,96 413,173 413,327 280,404 147,327 147,173"/>
-              <polygon points="280,30 470,140 470,360 280,470 90,360 90,140"/>
-              <path d="M280 250 L280 30M280 250 L470 140M280 250 L470 360M280 250 L280 470M280 250 L90 360M280 250 L90 140"/>
-            </g>
-            <polygon points="280,41 451,151 461,355 280,459 100,355 176,190"
-              fill-opacity=".14" stroke-width="3" style="fill:var(--text-2);stroke:var(--text-2)"/>
-            <polygon points="280,85 423,168 413,327 280,382 119,344 204,206"
-              fill-opacity=".16" stroke-width="3" style="fill:var(--alt-light);stroke:var(--alt-light)"/>
-            <polygon points="280,173 366,201 337,283 280,283 166,316 261,239"
-              fill-opacity=".2" stroke-width="3" style="fill:var(--accent);stroke:var(--accent)"/>
-            <g font-family="Helvetica,Arial,sans-serif" font-size="32" style="fill:var(--text-2)">
-              <text x="280" y="12" text-anchor="middle">Terraform</text>
-              <text x="487" y="133" text-anchor="start">Git</text>
-              <text x="487" y="373" text-anchor="start">GitOps</text>
-              <text x="280" y="502" text-anchor="middle">Jamf APIs</text>
-              <text x="73" y="373" text-anchor="end">Environment</text>
-              <text x="73" y="133" text-anchor="end">Mentoring</text>
-            </g>
-          </svg>
-          <ul class="why">
-            <li>The platform is yours too: the toolchain, the runners and the state backend</li>
-            <li>Nobody provisions a repo for you, so the whole environment is yours to stand up and keep alive</li>
-            <li>Fewer people, so one person often spans all three roles at once</li>
-          </ul>
-        </div>
-        <div class="pane big">
-          <div class="phd"><span class="tag">LARGE ORG</span><h3>Specialist teams either side</h3></div>
-          <p class="strap">Consume the platform, inside its guardrails and manage the Jamf Terraform workflows</p>
-          <svg viewBox="-130 -22 820 546">
-            <g fill="none" stroke-width="1.5" style="stroke:var(--border)">
-              <polygon points="280,173 347,212 347,289 280,327 213,289 213,212"/>
-              <polygon points="280,96 413,173 413,327 280,404 147,327 147,173"/>
-              <polygon points="280,30 470,140 470,360 280,470 90,360 90,140"/>
-              <path d="M280 250 L280 30M280 250 L470 140M280 250 L470 360M280 250 L280 470M280 250 L90 360M280 250 L90 140"/>
-            </g>
-            <polygon points="280,52 432,162 432,338 280,459 185,305 109,151"
-              fill-opacity=".14" stroke-width="3" style="fill:var(--text-2);stroke:var(--text-2)"/>
-            <polygon points="280,85 398,182 398,318 280,382 200,296 176,190"
-              fill-opacity=".16" stroke-width="3" style="fill:var(--alt-light);stroke:var(--alt-light)"/>
-            <polygon points="280,173 360,204 337,283 280,283 214,289 261,239"
-              fill-opacity=".2" stroke-width="3" style="fill:var(--accent);stroke:var(--accent)"/>
-            <g font-family="Helvetica,Arial,sans-serif" font-size="32" style="fill:var(--text-2)">
-              <text x="280" y="12" text-anchor="middle">Terraform</text>
-              <text x="487" y="133" text-anchor="start">Git</text>
-              <text x="487" y="373" text-anchor="start">GitOps</text>
-              <text x="280" y="502" text-anchor="middle">Jamf APIs</text>
-              <text x="73" y="373" text-anchor="end">Environment</text>
-              <text x="73" y="133" text-anchor="end">Mentoring</text>
-            </g>
-          </svg>
-          <ul class="why">
-            <li>You still own the branching strategy, the triggers into your environments, merges and releases</li>
-            <li>Repos come from platform templates, every PR needs a second approver, and you cannot disable Checkov or the linters</li>
-            <li>You still need to know how the platform is designed. But your workflow will have to conform with wider company standards</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Option B - Minimum bar: role minimums condensed to one line each,
-         org-size ownership as plain-text panels. No chart. -->
-    <div class="s-learning-priorities-opt-b">
-      <div class="lp-point">
-        <p class="lp-lead">Nobody needs to know everything &ndash; each role has a minimum, not a maximum.</p>
-        <div class="lp-roles">
-          <div class="lp-role"><h3><i style="background:var(--accent)"></i>Junior</h3><p>A working environment, Git basics, and enough Terraform to read a plan and ship a safe PR.</p></div>
-          <div class="lp-role"><h3><i style="background:var(--alt-light)"></i>Engineer</h3><p>Owns modules and daily changes, reviews others, reads the Jamf Pro API when the provider docs are unclear.</p></div>
-          <div class="lp-role"><h3><i style="background:var(--text-2)"></i>Senior</h3><p>The escalation point &ndash; advanced Terraform, releases, and whether a gap is the API or the provider.</p></div>
-        </div>
-      </div>
-      <div class="lp-point">
-        <p class="lp-lead">What your team owns &ndash; and how steep the climb is &ndash; depends on your org&rsquo;s size.</p>
-        <div class="lp-orgs">
-          <div class="lp-org">
-            <div class="lp-tag">SMALL ORG</div>
-            <p class="lp-strap">Design, build and maintain the platform and manage the Jamf Terraform workflows</p>
-            <ul>
-              <li>Owns the environment &ndash; nobody provisions it for you</li>
-              <li>Full authority over Git and GitOps</li>
-              <li>Mentoring stays light &ndash; one person often spans all three roles</li>
-            </ul>
-          </div>
-          <div class="lp-org big">
-            <div class="lp-tag">LARGE ORG</div>
-            <p class="lp-strap">Consume the platform, inside its guardrails and manage the Jamf Terraform workflows</p>
-            <ul>
-              <li>Environment arrives as a platform template</li>
-              <li>Same Git and GitOps knowledge, less authority &ndash; second approver, limited access</li>
-              <li>Mentoring grows &ndash; a bigger team, plus packaging and endpoint security</li>
-            </ul>
-          </div>
-        </div>
-        <p class="lp-foot">Jamf API knowledge does not change &ndash; nobody outside your team will know your own service better.</p>
-      </div>
-    </div>
-
-    <!-- Option C - Two statements: role chips row, then a compact discipline
-         comparison strip replaces the twin radar. -->
-    <div class="s-learning-priorities-opt-c">
-      <div class="lp2-head"><span class="lp2-n">01</span><h2>Each role has a minimum &ndash; not everyone needs to know everything</h2></div>
-      <div class="lp2-roles">
-        <div class="lp2-role"><h3><i style="background:var(--accent)"></i>Junior</h3><span>Environment, Git basics, read a plan, ship a safe PR</span></div>
-        <div class="lp2-role"><h3><i style="background:var(--alt-light)"></i>Engineer</h3><span>Owns modules, reviews others, reads the Jamf Pro API when needed</span></div>
-        <div class="lp2-role"><h3><i style="background:var(--text-2)"></i>Senior</h3><span>The escalation point &ndash; advanced Terraform, releases, API-vs-provider triage</span></div>
-      </div>
-
-      <div class="lp2-head"><span class="lp2-n">02</span><h2>What you own scales with your org&rsquo;s size</h2></div>
-      <div class="lp2-strip">
-        <div class="lp2-row lp2-legend"><span></span><span>SMALL ORG</span><span>LARGE ORG</span></div>
-        <div class="lp2-row"><span>Environment</span><span class="own">Design, build, maintain</span><span class="consume">Consumes a platform template</span></div>
-        <div class="lp2-row"><span>Git &amp; GitOps</span><span class="own">Full authority</span><span class="own dim">Same knowledge, shared authority</span></div>
-        <div class="lp2-row"><span>Jamf APIs</span><span class="own">Owns it</span><span class="own">Owns it &ndash; unchanged</span></div>
-        <div class="lp2-row"><span>Mentoring</span><span class="consume">Light &ndash; one person spans all three roles</span><span class="own">Heavier &ndash; a bigger team to grow</span></div>
-      </div>
-      <p class="lp2-foot">You still need to know how the platform is designed. But your workflow will have to conform with wider company standards.</p>
-    </div>
-
-    <!-- Option D - Role-by-org-size matrix: each role's minimum on the left,
-         one repeated right-hand column showing the minimum does not move -
-         what moves is what the team as a whole owns underneath it. -->
-    <div class="s-learning-priorities-opt-d">
-      <p class="lp4-lead">The minimum bar per role stays the same. What changes with your org&rsquo;s size is what the team owns underneath it.</p>
-      <div class="lp4-grid">
-        <div class="lp4-row lp4-legend"><span></span><span>Minimum to do the job</span><span>What a bigger org changes</span></div>
-        <div class="lp4-row"><span class="lp4-role"><i style="background:var(--accent)"></i>Junior</span><span>Environment, Git basics, read a plan, ship a safe PR</span><span>Same minimum. The environment arrives as a platform template instead of being built from scratch.</span></div>
-        <div class="lp4-row"><span class="lp4-role"><i style="background:var(--alt-light)"></i>Engineer</span><span>Owns modules and daily changes, reviews others, reads the Jamf Pro API when needed</span><span>Same minimum. Same Git and GitOps knowledge, but PRs now need a second approver.</span></div>
-        <div class="lp4-row"><span class="lp4-role"><i style="background:var(--text-2)"></i>Senior</span><span>The escalation point &ndash; advanced Terraform, releases, API-vs-provider triage</span><span>Same minimum. Mentoring grows &ndash; there is a bigger team to grow.</span></div>
-      </div>
-      <p class="lp4-foot">Jamf API knowledge never moves &ndash; nobody outside your team will know your own service better.</p>
-    </div>
-
-    <!-- Option E - Staged narrative: two big statements in sequence, each with
-         its own supporting evidence, no chart. -->
-    <div class="s-learning-priorities-opt-e">
-      <div class="lp3-stage">
-        <div class="lp3-kicker">POINT ONE</div>
-        <h2>Not everyone needs to know everything</h2>
-        <div class="lp3-list">
-          <div class="lp3-item"><span class="lp3-n">1</span><p><strong>Junior</strong> &ndash; environment, Git basics, and enough Terraform to read a plan and ship a safe PR.</p></div>
-          <div class="lp3-item"><span class="lp3-n">2</span><p><strong>Engineer</strong> &ndash; owns modules and daily changes, reviews others, reads the Jamf Pro API when needed.</p></div>
-          <div class="lp3-item"><span class="lp3-n">3</span><p><strong>Senior</strong> &ndash; the escalation point: advanced Terraform, releases, and API-vs-provider triage.</p></div>
-        </div>
-      </div>
-      <div class="lp3-stage alt">
-        <div class="lp3-kicker">POINT TWO</div>
-        <h2>What you own depends on your org&rsquo;s size</h2>
-        <div class="lp3-cols">
-          <div class="lp3-col"><h4>Small org</h4><p>Design, build and maintain the platform and manage the Jamf Terraform workflows.</p></div>
-          <div class="lp3-col alt"><h4>Large org</h4><p>Consume the platform, inside its guardrails, and manage the Jamf Terraform workflows.</p></div>
-        </div>
-        <p class="lp3-foot">You still need to know how the platform is designed. But your workflow will have to conform with wider company standards.</p>
-      </div>
-    </div>
-
-    <!-- Option D variant 1 - Table: the same role-by-org-size matrix as option D,
-         but as a real ruled <table>, bigger and fuller than the original grid. -->
-    <div class="s-learning-priorities-optd-table">
-      <p class="lpt-lead">The minimum bar per role stays the same. What changes with your org&rsquo;s size is what the team owns underneath it.</p>
-      <table class="lpt-table">
-        <colgroup><col class="lpt-c1"><col class="lpt-c2"><col class="lpt-c3"><col class="lpt-c4"></colgroup>
-        <thead>
-          <tr>
-            <th scope="col">Role</th>
-            <th scope="col">Minimum to do the job</th>
-            <th scope="col">Small org<span>No DevOps function</span></th>
-            <th scope="col">Large org<span>Specialist teams either side</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row"><span class="lpt-role"><i style="background:var(--accent)"></i>Junior</span></th>
-            <td>Environment, Git basics, read a plan, ship a safe PR</td>
-            <td>Builds the whole environment &ndash; nobody provisions a repo for you</td>
-            <td>The environment arrives as a platform template</td>
-          </tr>
-          <tr>
-            <th scope="row"><span class="lpt-role"><i style="background:var(--alt-light)"></i>Engineer</span></th>
-            <td>Owns modules and daily changes, reviews others, reads the Jamf Pro API when needed</td>
-            <td>Full authority over Git and GitOps</td>
-            <td>Same Git and GitOps knowledge &ndash; every PR now needs a second approver</td>
-          </tr>
-          <tr>
-            <th scope="row"><span class="lpt-role"><i style="background:var(--text-2)"></i>Senior</span></th>
-            <td>The escalation point &ndash; advanced Terraform, releases, API-vs-provider triage</td>
-            <td>Mentoring stays light &ndash; one person often spans all three roles</td>
-            <td>Mentoring grows &ndash; a bigger team, plus packaging and endpoint security</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th scope="row">Jamf APIs</th>
-            <td colspan="3">Never moves &ndash; no external team will ever know your own service&rsquo;s API better than the team that owns it.</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-
-    <!-- Option D variant 2 - Graphic: three identical role pills carry point one
-         (the minimum is fixed), then a scaled bar chart per discipline carries
-         point two (ownership shifts with org size) using bar length as the argument. -->
-    <div class="s-learning-priorities-optd-graphic">
+    <!-- Accepted 2026-09-08: option D, graphic variant. Three identical role
+         pills carry point one (the minimum is fixed regardless of role),
+         then a scaled bar chart per discipline carries point two (what the
+         team owns shifts with org size) using bar length as the argument. -->
+    <div class="lpg">
       <p class="lpg-lead">The minimum bar per role stays fixed. What changes with your org&rsquo;s size is how much of the platform you own.</p>
       <div class="lpg-pills">
         <div class="lpg-pill"><i style="background:var(--accent)"></i><span>Junior</span></div>
@@ -1717,18 +1334,6 @@ Name the finish line: an engineer counted as trained when they could take a real
         <rect x="960" y="364" width="440" height="30" rx="15" class="lpg-fill-large"/>
         <text x="340" y="418" class="lpg-note">Light in a small org. Heavier in a large one &ndash; plus the packaging and endpoint security teams.</text>
       </svg>
-    </div>
-
-    <!-- Option D variant 3 - Text: the same argument carried by prose and
-         typographic hierarchy, no grid, one paragraph per role pairing its
-         fixed minimum against what changes underneath it by org size. -->
-    <div class="s-learning-priorities-optd-text">
-      <p class="lpx-point">Each role needs a <em>minimum</em>. Not everything.</p>
-      <p class="lpx-role"><span class="lpx-name" style="color:var(--accent)">A junior</span> still needs a working environment, Git basics and enough Terraform to read a plan and ship a safe PR &ndash; in a five-person team or a five-thousand-person one. What changes is who builds that environment. In a small org, you do; nobody provisions a repo for you. In a large one, it arrives as a platform template.</p>
-      <p class="lpx-role"><span class="lpx-name" style="color:var(--alt-light)">An engineer</span> still owns modules and everyday changes, reviews others, and reads the Jamf Pro API when the provider docs are unclear &ndash; wherever they work. What changes is how much authority comes with it. In a small org you have full authority over Git and GitOps. In a large one every PR needs a second approver and you cannot disable Checkov or the linters &ndash; you keep the knowledge, not the authority.</p>
-      <p class="lpx-role"><span class="lpx-name" style="color:var(--text-2)">A senior</span> is still the escalation point &ndash; advanced Terraform, release management, deciding whether a gap is the API&rsquo;s or the provider&rsquo;s &ndash; whatever the org&rsquo;s size. What changes is how much mentoring comes with it: light in a small org, where one person often spans all three roles; heavier in a large one, across a bigger team and the packaging and endpoint security teams learning alongside you.</p>
-      <p class="lpx-point">You still need to know how the platform is designed. But your workflow will have to conform with wider company standards.</p>
-      <p class="lpx-foot">Jamf API knowledge never moves &ndash; no external team will ever know your own service better than the team that owns it.</p>
     </div>
 
   </div>
