@@ -734,6 +734,32 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training slide 8, size option D accepted.** Dafydd accepted option D, "Large",
+  from `presentations/sandbox/training_a_team/s08-mindset-text-sizes.html` (PRs #110 and #111).
+  Applied to `presentations/training_a_team/index.html`: the section gains the stable id
+  `s-mindset` in the deck's convention for accepted slides, and the existing `.mindset` / `.ms-*`
+  rules take option D's values in place rather than gaining an override block - body 32px on the
+  before and after columns, questions 23px on the rail, column labels 21px, leading 1.2 and 1.24,
+  row padding and row gap 22px, 30px under the title, plus the header rule the round added to all
+  five options: a 1px bottom border on `.ms-head` in `--border-soft`, deepened to `--accent-deep`
+  on the rail and the canvas column, with `--s08-head-gap` set to `var(--s08-row-gap)` so the
+  first row sits like every other row. All of it moved into `--s08-*` tokens in `:root`, beside
+  the `--s02-*`, `--s06-*` and `--s07-*` groups, so nothing in the slide's block carries a literal
+  size or a hex value. Preserved exactly: every word, the `data-notes`, the eyebrow, the h1, the
+  markup, the ground layer and the single row-major `.ms-grid`, the 0 to 640 and 640 to 980 band
+  widths and the 518/340/1fr columns. The sandbox page is deleted, the training sandbox index list
+  is empty again as it was before PR #110, and the AGENTS.md slide map, the `#8` paragraph and the
+  Sandbox section record the acceptance. Nothing in the deck addressed this slide by index or
+  class, so the new id broke nothing; the only index-based reference was the review page's own
+  `slides[7]` lookup, which went with the page. Evidence: headless Chrome at 1920x1080 with
+  `--hide-scrollbars` and no virtual time budget, served over HTTP on port 8753. Slides 7 and 9
+  are byte-identical to their `origin/main` baselines under `cmp`. Slide 8 is byte-identical to
+  the `origin/main` deck with option D's CSS injected, and its file:// render is byte-identical to
+  the HTTP one. Measured in deck coordinates: grid top 224.8, grid bottom 1000.9 against the 1008
+  content limit, matching the review page's 1001 figure for option D, and all three columns of all
+  seven rows share a top edge to two decimal places. ArrowRight advances exactly one slide per
+  press across all 24 slides and stops at 24. No `s08-review` reference, hex value or em or en
+  dash in the changed block. The Keynote and PowerPoint downloads are not rebuilt. PR #112.
 - **2026-09-08, training slide 8, header rule added to all five size options.** Dafydd reviewed
   the five text-size options on `presentations/sandbox/training_a_team/s08-mindset-text-sizes.html`
   (PR #110) and asked for one change in all five: a rule under the three column headers, BEFORE,
