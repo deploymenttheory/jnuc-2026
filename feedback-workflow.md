@@ -734,6 +734,18 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training_a_team sandbox reset.** Dafydd requested removal of all existing
+  training sandbox options before a fresh slide 4 wording round. Deleted the old slide 4
+  and slide 17 review pages and cleared every index entry, including non-linked done
+  history. Both reviews are closed without acceptance; no option was implemented. The
+  index now says "No options awaiting review." Accepted slides 2 and 3, the slide 17
+  content split and baseline, both source decks, downloads, shared files and the migration
+  sandbox are unchanged. Historical decisions remain in this log and `AGENTS.md`, whose
+  current review status now matches the cleared sandbox. Verified the exact five-file
+  scope, all remaining index links and the absence of deleted-page references in current
+  review pages. `git diff --check` passes. No browser check is needed for these deletions.
+  PR #98.
+
 - **2026-09-08, training_a_team slide 3 option E accepted.** Dafydd: "for slide 3 proceed
   with option E", confirmed as "Option E - The trained threshold". Applied the approved
   replacement option to `#s-learning-outcomes`: the trained definition in a central navy
