@@ -502,7 +502,7 @@ row kept; the full session title replaced the ClickOps -> GitOps lockup and its 
 beside four supporting facts - 1,500+ resources, three stages on the route to live, +1 approval
 and breakglass GUI write access. The whole Mac team works this way every day; a quiet line
 retains open-source training and the sister teams now learning. The full operational detail
-lives in the speaker notes. Rules are scoped to `#s-estate`, with `--s02-*` sizing tokens), `#3` goals,
+lives in the speaker notes. Rules are scoped to `#s-estate`, with `--s02-*` sizing tokens), `#3` learning outcomes (`s-learning-outcomes`),
 `#4` execution, `#5` what didn't work, `#6` what worked, `#7` conditions, `#8` mindset,
 `#9` learning priorities by role, `#10` the learning pathway (four phases - **merges the old `#9` matrix and
 `#10` timeline**, Aug 2026: both said the same thing twice and neither described what the team
@@ -571,8 +571,12 @@ Merged in from Dafydd's edits, on top of the restyle:
 
 Notable content slides:
 
-- **Goals** (`#3`): learning-outcome cards, a "what success looked like" behaviours block,
-  a non-goals strip and a trained-bar definition.
+- **Learning outcomes** (`#3`, `s-learning-outcomes`): seven capabilities, the trained
+  threshold and three non-goals. Split from the benefits and observed success on 2026-09-08.
+  The source uses a straightforward two-column reflow while five replacement visual options
+  remain open. Collaboration, recovery, confident delivery, plan reading, judgement, audit
+  evidence and PR history all stay visible; unaided delivery still includes normal peer review.
+  Rules are scoped to the stable id and use dedicated `--lo-*` sizing tokens.
 - **Learner benefits** (`#17`, `s-learner-benefits`): split out of slide 3 on 2026-09-08.
   All twelve original benefits remain visible across Individual, Team and Organisation.
   The benefits are explicitly intended; a separate "What we saw in the Mac engineering
@@ -931,12 +935,14 @@ reviewable proposed speaker notes. Three months describes the secondment only. E
 a direct anchor and a full-size view. This page also scales the preview counter and help
 text with the slide to avoid mobile collisions, while notes and speaker panels keep their
 screen sizing. Slide 4 is unchanged and slide 3 stays open);
-`s03-learning-outcomes` (2026-09-07, slide 3, Dafydd, five new treatments in the training
-refinement: A the finish line, B what we taught and what changed, C one real change,
-D who benefits, E the judgement that makes it safe. The fixed title stays, detailed content
-moves into reviewable proposed speaker notes, and observed results stay distinct from
-intended capabilities and benefits. Each option has a direct anchor and a full-size view.
-The source deck is unchanged).
+`s03-learning-outcomes` (2026-09-08, slide 3, Dafydd, five replacement treatments after
+splitting learning outcomes from benefits: A seven capabilities, B three parts of the job,
+C a change from plan to recovery, D what an engineer can do, E the trained threshold.
+All seven capabilities, the trained threshold and three non-goals remain visible in every
+option. The original mixed options were rejected and replaced in place. The source slide
+is now learning-only, with a faithful reflow; no visual option has been selected. Each
+proposal has a direct anchor, a full-size view and reviewable notes, plus a link to the
+benefits options for new slide 17).
 Decided (under `presentations/sandbox/training_a_team/`):
 `s02-where-we-are-today` (2026-09-07, five treatments for slide 2, the first review in
 Dafydd's slide 1-10 refinement: A people first, B three outcomes, C everyday workflow,
