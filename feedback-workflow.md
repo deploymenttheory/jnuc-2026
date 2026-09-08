@@ -734,6 +734,29 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training_a_team slide 3 option E accepted.** Dafydd: "for slide 3 proceed
+  with option E", confirmed as "Option E - The trained threshold". Applied the approved
+  replacement option to `#s-learning-outcomes`: the trained definition in a central navy
+  panel, all seven capabilities on either side and the non-goals below. The exact approved
+  markup and seven paragraphs of proposed speaker notes are retained, including normal
+  peer review. The title, stable id, Dafydd speaker and slide 3 of 24 position are unchanged.
+  Consolidated the accepted styling into one scoped block with dedicated `--s03-*` sizing
+  tokens; removed the old baseline rules and retained the footer typography the preview
+  inherited. The review page is retired and its sandbox index entry is marked done. Links
+  and status wording in the pending slide 4 and slide 17 review wrappers now point to the
+  accepted source slide; their options and decisions are unchanged. Browser and visual QA
+  pass at 1920x1080: accepted content pixels match option E through y1000, excluding the
+  sandbox footer's rasterisation difference; HTTP and file renders match through y1077,
+  excluding the animated progress strip. Element and text-range geometry match exactly,
+  with no clipping, overlap or footer collision and a 26px minimum content size. Exact
+  markup, notes, seven capabilities, title, speaker, counter, N/S controls and all 24 slides
+  forwards and backwards pass. Slides 2 and 4 match visually; all 23 other source sections,
+  scripts and CSS are unchanged. Pending review variants, notes, CSS and scripts remain
+  byte-identical, all ten pending previews and sixteen review links work, and there are no
+  browser errors or remote requests. Inline JavaScript syntax, added-copy dash lint and
+  git diff checks pass. Training has no presenter.json, so presenter sync does not apply.
+  Downloads remain deferred under the standing feedback convention. PR #97.
+
 - **2026-09-08, training_a_team slide 3 split into learning outcomes, five replacement options.**
   Dafydd rejected the earlier options because they lost too much of the original message and
   asked to separate the learning outcomes from the benefits by tier. Slide 3 is now titled

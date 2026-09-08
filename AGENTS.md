@@ -502,7 +502,9 @@ row kept; the full session title replaced the ClickOps -> GitOps lockup and its 
 beside four supporting facts - 1,500+ resources, three stages on the route to live, +1 approval
 and breakglass GUI write access. The whole Mac team works this way every day; a quiet line
 retains open-source training and the sister teams now learning. The full operational detail
-lives in the speaker notes. Rules are scoped to `#s-estate`, with `--s02-*` sizing tokens), `#3` learning outcomes (`s-learning-outcomes`),
+lives in the speaker notes. Rules are scoped to `#s-estate`, with `--s02-*` sizing tokens), `#3` learning outcomes
+(`s-learning-outcomes`, sandbox option E accepted 2026-09-08: the trained threshold in a
+central navy panel, with seven capabilities on either side and the non-goals below),
 `#4` execution, `#5` what didn't work, `#6` what worked, `#7` conditions, `#8` mindset,
 `#9` learning priorities by role, `#10` the learning pathway (four phases - **merges the old `#9` matrix and
 `#10` timeline**, Aug 2026: both said the same thing twice and neither described what the team
@@ -573,10 +575,12 @@ Notable content slides:
 
 - **Learning outcomes** (`#3`, `s-learning-outcomes`): seven capabilities, the trained
   threshold and three non-goals. Split from the benefits and observed success on 2026-09-08.
-  The source uses a straightforward two-column reflow while five replacement visual options
-  remain open. Collaboration, recovery, confident delivery, plan reading, judgement, audit
+  Sandbox option E, "The trained threshold", was accepted on 2026-09-08. The definition of
+  trained sits in a central navy panel, with seven capabilities on either side and the
+  non-goals below. The accepted wording, layout and seven paragraphs of speaker notes are
+  retained. Collaboration, recovery, confident delivery, plan reading, judgement, audit
   evidence and PR history all stay visible; unaided delivery still includes normal peer review.
-  Rules are scoped to the stable id and use dedicated `--lo-*` sizing tokens.
+  Rules are scoped to the stable id and use dedicated `--s03-*` sizing tokens.
 - **Learner benefits** (`#17`, `s-learner-benefits`): split out of slide 3 on 2026-09-08.
   All twelve original benefits remain visible across Individual, Team and Organisation.
   The benefits are explicitly intended; a separate "What we saw in the Mac engineering
@@ -905,8 +909,9 @@ automatically.
 
 - Option A is by convention whatever the deck currently ships and injects nothing, unless
   a round explicitly asks for all-new designs. The training slide 2 round offered five
-  new variants; option E was accepted on 2026-09-07. The slide 3, slide 4 and new slide 17 rounds each
-  offer five new variants and are awaiting decisions.
+  new variants; option E was accepted on 2026-09-07. Slide 3
+  accepted option E from its five replacement variants on 2026-09-08. The slide 4 and new
+  slide 17 rounds each offer five new variants and are awaiting decisions.
 - Variant CSS only touches the slide's `#id` and only uses the deck's own tokens, so an
   accepted option pastes into the deck unchanged.
 - Injection needs same-origin access, so it only works over HTTP. Opened from `file://` the
@@ -934,16 +939,16 @@ iteration, hackathon result, lack of a playbook and plans by skill level across 
 reviewable proposed speaker notes. Three months describes the secondment only. Each option has
 a direct anchor and a full-size view. This page also scales the preview counter and help
 text with the slide to avoid mobile collisions, while notes and speaker panels keep their
-screen sizing. Slide 4 is unchanged and slide 3 stays open);
-`s03-learning-outcomes` (2026-09-08, slide 3, Dafydd, five replacement treatments after
-splitting learning outcomes from benefits: A seven capabilities, B three parts of the job,
-C a change from plan to recovery, D what an engineer can do, E the trained threshold.
-All seven capabilities, the trained threshold and three non-goals remain visible in every
-option. The original mixed options were rejected and replaced in place. The source slide
-is now learning-only, with a faithful reflow; no visual option has been selected. Each
-proposal has a direct anchor, a full-size view and reviewable notes, plus a link to the
-benefits options for new slide 17).
+screen sizing. Slide 4 is unchanged; slide 3 now uses accepted option E).
 Decided (under `presentations/sandbox/training_a_team/`):
+`s03-learning-outcomes` (2026-09-08, slide 3, Dafydd, five replacement treatments after
+splitting learning outcomes from benefits. Decided the same day: option E, "The trained
+threshold", applied to the deck as `#s-learning-outcomes`. The definition of trained sits
+in a central navy panel, with all seven capabilities on either side and the three non-goals
+below. The accepted copy, layout and seven paragraphs of speaker notes are retained,
+including normal peer review. The page is retired and its index entry marked done. Links
+from the pending slide 4 and slide 17 reviews now point to the accepted source slide.
+Downloads await a separate request);
 `s02-where-we-are-today` (2026-09-07, five treatments for slide 2, the first review in
 Dafydd's slide 1-10 refinement: A people first, B three outcomes, C everyday workflow,
 D platform and people, E one statement with four proofs. Decided the same day: option E,
