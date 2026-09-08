@@ -927,7 +927,7 @@ they track deck edits automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current page awaiting a decision under `presentations/sandbox/training_a_team/`:
+Current pages awaiting a decision under `presentations/sandbox/training_a_team/`:
 `s04-wording-refinement` (2026-09-08, slide 4, Joseph, five new wording options:
 A a shorter account, B what we did, C what we learnt, D speaking prompts, E plain sentences).
 Every option keeps the source slide's hub, five numbered spokes, brace and two arrows,
@@ -937,6 +937,20 @@ reviewable notes; body word counts compare the proposal with the current slide. 
 preview counter and help scale with small frames. A file or source-loading failure hides
 the preview and explains how to review it over HTTP, while leaving the proposed notes
 available. Three months describes only the secondment. The source deck is unchanged.
+
+`s05-what-didnt-work` (2026-09-08, slide 5, Gordon, five visual designs using the same
+shorter copy: A the chart across the page, B the chart beside the account, C the engineer
+feedback first, D four weeks across six months, E teaching and the gaps). Each preview
+replaces only slide 5's body and proposed notes in a real-deck iframe. The native ratchet
+geometry comes from the current slide, with separate labels that stay readable in narrow
+charts. All six teaching rises and gap drops, the rising confidence floor and the visible
+`SHAPE IS ILLUSTRATIVE` disclosure remain. The same five problems and exact engineer quote
+stay visible. Proposed notes retain the full context, including geography, the minor
+infrastructure factor and the replacement material on the next slide. Content rules and
+sizing tokens belong to the preview-only `#s05-review` id. Each option has an anchor,
+full-size route, notes disclosure and word-count comparison including SVG labels. The
+body copy is 164 words per option against 232 in the source, a 29.3% reduction. The source
+deck and the open slide 4 wording review remain unchanged. No option is accepted.
 
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page
