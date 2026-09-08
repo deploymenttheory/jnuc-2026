@@ -763,7 +763,7 @@ it up - either way it is on disk for a recovering session.
   file/missing-source fallbacks passed. Existing source sections remained byte-identical
   apart from later eyebrow numbers; source slide 3 and the pending slide 4 page were
   protected. Root visually approved `/tmp/jnuc-s17-baseline.png` and
-  `/tmp/jnuc-s17-option-{a,b,c,d,e}.png`. There were no browser or resource errors.
+  `/tmp/jnuc-s17-option-{a,b,c,d,e}.png`. There were no browser or resource errors. PR #95.
 
 - **2026-09-08, training_a_team slide 4, five new sandbox options awaiting a decision.**
   Dafydd left slide 3 open and requested the same five-option loop for the next slide.
