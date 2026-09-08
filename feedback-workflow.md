@@ -734,6 +734,29 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training_a_team slide 3 split into learning outcomes, five replacement options.**
+  Dafydd rejected the earlier options because they lost too much of the original message and
+  asked to separate the learning outcomes from the benefits by tier. Slide 3 is now titled
+  "Learning outcomes", with stable id `s-learning-outcomes`, retaining Dafydd as speaker.
+  Its deterministic split uses a straightforward two-column reflow, with all seven learning
+  capabilities, the trained threshold and the non-goals. Benefits and observed success are
+  carried by the paired new-slide-17 instruction. The rejected sandbox options are replaced
+  in place: A seven capabilities, B three parts of the job, C a change from plan to recovery,
+  D what an engineer can do, E the trained threshold. Every option retains the complete
+  learning story visibly, including known-good recovery and willingness to attempt changes,
+  shared domain knowledge, plan judgement, audit evidence, the normal PR route and the
+  breakglass GUI exception. Unaided delivery explicitly retains normal peer review.
+  All have direct anchors, full-size views and expandable proposed notes. Source slide 4 and
+  its pending review page, migration, shared files and downloads are untouched. Training has
+  no presenter.json, so its presenter sync check does not apply. The source baseline and
+  all five options pass browser and visual review at 1920x1080. Every capability, the trained
+  threshold and all non-goals remain visible at a minimum of 26px. Element and text-range
+  checks confirm no clipping, overlap or footer collision; option C retains a clear 112px
+  text gutter in the lower rows and labels recovery "If needed". Notes, speaker, pinned
+  preview navigation, normal deck navigation, direct anchors, full-size views, mobile chrome
+  and unavailable-source fallbacks pass. Other source sections and the pending slide 4 review
+  page are unchanged. Inline JavaScript syntax, added-copy dash and git diff checks pass.
+
 - **2026-09-08, training_a_team slide 4, five new sandbox options awaiting a decision.**
   Dafydd left slide 3 open and requested the same five-option loop for the next slide.
   "How we ran it" remains slide 4, with Joseph as speaker. A leads with the secondment;

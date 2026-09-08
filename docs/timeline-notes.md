@@ -44,7 +44,7 @@ month or range.
 |---|---|---|---|
 | 1 | Title | Unassigned | |
 | 2 | Where we are today | All | |
-| 3 | Learning outcomes & what success looked like | Dafydd | |
+| 3 | Learning outcomes | Dafydd | |
 | 4 | How we ran it | Joseph | |
 | 5 | What didn't work | Gordon | |
 | 6 | What worked | Joseph | |

@@ -600,6 +600,29 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 
 /* ---------- slide 10 ---------- */
 /* per-slide density fixes so nothing clips the 1080px page */
+/* Slide 3 learning outcomes, after the benefits were split into their own slide. */
+:root {
+  --lo-unit: 8px;
+  --lo-hairline: 1px;
+  --lo-rule: 4px;
+  --lo-copy: 26px;
+  --lo-title: 30px;
+  --lo-leading: 1.25;
+  --lo-heading-leading: 1.12;
+  --lo-body-height: 724px;
+}
+#s-learning-outcomes .lo-baseline { margin-top: calc(var(--lo-unit) * 4); height: var(--lo-body-height); display: flex; flex-direction: column; gap: calc(var(--lo-unit) * 3); }
+#s-learning-outcomes .lo-baseline-grid { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--lo-unit) * 2); }
+#s-learning-outcomes .lo-item { background: var(--surface); padding: calc(var(--lo-unit) * 2) calc(var(--lo-unit) * 3); }
+#s-learning-outcomes .lo-item:last-child { grid-column: 1 / -1; }
+#s-learning-outcomes .lo-item h3 { font-size: var(--lo-title); line-height: var(--lo-heading-leading); margin: 0; }
+#s-learning-outcomes .lo-item p { font-size: var(--lo-copy); line-height: var(--lo-leading); color: var(--text-dim); margin-top: var(--lo-unit); }
+#s-learning-outcomes .lo-footer { display: grid; grid-template-columns: 1.1fr 1fr; gap: calc(var(--lo-unit) * 4); }
+#s-learning-outcomes .lo-threshold { border-left: var(--lo-rule) solid var(--accent); padding-left: calc(var(--lo-unit) * 3); }
+#s-learning-outcomes .lo-threshold strong { color: var(--accent); font-size: var(--lo-copy); }
+#s-learning-outcomes .lo-threshold p, #s-learning-outcomes .lo-limits { color: var(--text-dim); font-size: var(--lo-copy); line-height: var(--lo-leading); }
+#s-learning-outcomes .lo-limits { border-left: var(--lo-hairline) solid var(--border); padding-left: calc(var(--lo-unit) * 3); }
+
 .slide.dense3 .card{padding:22px 30px}
 .slide.dense3 .card p{font-size:18px;margin-top:8px}
 .slide.dense3 .ripple p{font-size:18px}
@@ -1001,57 +1024,20 @@ We have released the training materials as open source and are now upskilling ou
 </section>
 
 <!-- ============ 3 · GOALS ============ -->
-<section class="slide dense3" data-speaker="Dafydd" data-notes="Two halves: what engineers can do once trained, and what success looked like when it arrived. The learning outcomes are capabilities, not policies: collaborating through self-documenting code, the confidence to take any change end to end, recovery to a known good configuration, reading a plan well enough to predict its effect before approving, and the judgement to know when breakglass GUI access or a second opinion is the right call. Fast recovery has a second-order effect worth calling out: once mistakes were recoverable, engineers took on changes they would previously have avoided or escalated. Success was observable, not abstract: the Mac engineering team became self-sufficient committing and reviewing pull requests without assistance, they were making architectural decisions, and resources were being managed in code exclusively. Be honest about non-goals too: not everyone becomes a Terraform expert, incidents still happen, and Jamf GUI knowledge still matters for breakglass. And name the finish line: an engineer counted as trained when they could take a real change from branch to production unaided.">
+<section class="slide" id="s-learning-outcomes" data-speaker="Dafydd" data-notes="These are the capabilities we wanted every engineer to develop. Learning outcomes sit here; the benefits for individuals, teams and the organisation, alongside what success looked like, now have their own slide later in the talk.
+
+Collaboration means working on changes together and externalising domain knowledge from people&#x27;s heads into self-documenting code. That reduces single points of failure and gives the team a chance to catch mistakes before they reach production. Team confidence means being able to implement changes with GitOps and Terraform and perform your role effectively: any team member can pick up a change, make it, get it reviewed and ship it.
+
+Fast recovery means the team can revert to a known good configuration when something goes wrong. Recoverability also gives engineers the confidence to attempt changes they would previously have avoided or escalated. Every engineer should be able to read a Terraform plan and predict what will change before approving it. Every safe apply depends on that skill.
+
+Judgement matters as much as using the tools. Engineers need to recognise when breakglass GUI access is the right call and when to stop and ask for review. Normal changes to production go through a pull request, with commit history providing the source of truth about how Jamf Pro reached its current state. Breakglass GUI write access is an exception, consistent with the operational model described on slide 2.
+
+Engineers should be able to show stakeholders or external audit what changed, when and why on demand. Traceability belongs in the workflow, rather than relying on people to reconstruct a change from memory.
+
+Name the finish line: an engineer counted as trained when they could take a real change from branch to production unaided. Unaided means they did not need a trainer to carry them through it; normal peer review and approval still apply. Be honest about the non-goals: not everyone becomes a Terraform expert, incidents still happen, and Jamf GUI knowledge still matters for breakglass.">
   <div class="eyebrow"><i class="dot"></i>03 &middot; Goals</div>
-  <h1>Learning outcomes &amp; what success looked like</h1>
-  <div class="body" style="margin-top:24px">
-    <div class="split" style="gap:60px">
-    <div>
-      <div class="collabel">Learning outcomes</div>
-      <div class="oc2">
-        <div class="card"><h3>Collaborate</h3><p>On changes together; externalise domain knowledge from people's heads into self-documenting code. Reduce single points of failure and catch mistakes before they reach production.</p></div>
-        <div class="card"><h3>Fast recovery</h3><p>When something goes wrong the team can revert to a known good configuration. Because mistakes are recoverable, engineers make changes they would previously have avoided or escalated.</p></div>
-        <div class="card"><h3>Team confidence</h3><p>To implement changes using GitOps + Terraform and perform their role effectively. Any team member can pick up any change, make it &rarr; get it reviewed &rarr; ship it.</p></div>
-        <div class="card"><h3>Read a plan before you approve it</h3><p>Every engineer can read a terraform plan and predict exactly what will change before approving it. Every safe apply depends on this skill.</p></div>
-        <div class="card"><h3>Knowing when not to use Terraform</h3><p>Recognising when breakglass GUI access is the right call, and when to stop and ask for review.</p></div>
-        <div class="card"><h3>Prove what changed, when and why</h3><p>On demand, when asked by stakeholders or external audit.</p></div>
-        <div class="card" style="grid-column:1/-1"><h3>Every change to production goes through a pull request</h3><p>Zero manual console changes. If someone asks "how did Jamf Pro get into its current state," the answer is always "check the commit history," never "ask around."</p></div>
-      </div>
-    </div>
-    <div>
-      <div class="collabel">What success looked like</div>
-      <div class="saw">
-        <div class="hd">Success you could see</div>
-        <p>The Mac engineering team became self-sufficient committing and reviewing pull requests without assistance<br>They were making architectural decisions<br>Resources were being managed in code, exclusively</p>
-      </div>
-      <div class="collabel">Benefits ripple outward</div>
-      <div class="ripple">
-        <div class="hd">Individuals <span>Would get&hellip;</span></div>
-        <p>New transferable skills<br>A safety net that makes mistakes recoverable<br>Reduced cognitive load (not having to make changes in different instances)</p>
-      </div>
-      <div class="tick"></div>
-      <div class="ripple">
-        <div class="hd">Team <span>Would get&hellip;</span></div>
-        <p>No single point of failure<br>Same engineering practices as cloud teams and same language<br>Cross team awareness of changes<br>Failures become learning opportunities and not blame<br>Collaboration without stepping on one another's toes<br>TF modules allow for self service consumption by sister engineering teams</p>
-      </div>
-      <div class="tick"></div>
-      <div class="ripple blue">
-        <div class="hd">Org <span>Would get&hellip;</span></div>
-        <p>Compliance and audit without a mad scramble<br>Governance without slowing delivery<br>Deployment guardrails that scale beyond one team</p>
-      </div>
-    </div>
-    </div>
-    <div class="goalfoot">
-      <div class="bar3">
-        <div class="lb">TRAINED =</div>
-        <div><p>An engineer counted as trained when they could take a real change from branch to production unaided.</p></div>
-      </div>
-      <div class="bar3 not">
-        <div class="lb">NOT THE GOAL</div>
-        <div><p>Everyone becoming a Terraform expert &middot; zero incidents &middot; the end of Jamf GUI knowledge</p></div>
-      </div>
-    </div>
-  </div>
+  <h1>Learning outcomes</h1>
+  <div class="body lo-baseline"><div class="lo-baseline-grid"><article class="lo-item" data-capability="collaborate"><div><h3>Collaborate in code</h3><p>Share domain knowledge in self-documenting code, reduce single points of failure and catch mistakes before production.</p></div></article><article class="lo-item" data-capability="recover"><div><h3>Recover with confidence</h3><p>Revert to a known good configuration and attempt changes previously avoided or escalated.</p></div></article><article class="lo-item" data-capability="deliver"><div><h3>Take a change through to production</h3><p>Any engineer can make a change, get it reviewed and ship it confidently with GitOps and Terraform.</p></div></article><article class="lo-item" data-capability="plan"><div><h3>Read the plan before approval</h3><p>Read a Terraform plan and predict its impact before approving it.</p></div></article><article class="lo-item" data-capability="judge"><div><h3>Know when to stop</h3><p>Recognise when breakglass GUI access is right, or stop and ask for review.</p></div></article><article class="lo-item" data-capability="explain"><div><h3>Prove what changed, when and why</h3><p>Show stakeholders or external audit what changed, when and why.</p></div></article><article class="lo-item" data-capability="trace"><div><h3>Make the history reliable</h3><p>Normal production changes go through pull requests. Commit history is the source of truth; GUI writes are the breakglass exception.</p></div></article></div><div class="lo-footer"><div class="lo-threshold"><strong>Trained</strong><p>Take a real change from branch to production unaided. Normal peer review still applies.</p></div><p class="lo-limits">Not the goal: everyone becoming a Terraform expert, zero incidents or the end of Jamf GUI knowledge.</p></div></div>
 </section>
 
 <!-- ============ 4 · EXECUTION ============ -->
