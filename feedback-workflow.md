@@ -756,7 +756,7 @@ it up - either way it is on disk for a recovering session.
   the real differentiator, Git/GitOps barely moving but losing authority, Mentoring low in
   a small org and high in a large one, and the exact governing-principle wording) in the
   section's one shared `data-notes`, unchanged regardless of which option is visible. Added
-  `s-learning-priorities-role-clarity.html`. No option is accepted. PR #<pending>.
+  `s-learning-priorities-role-clarity.html`. No option is accepted. PR #7.
 
 - **2026-09-08, training_a_team slide 5, five visual designs with shorter wording.**
   Dafydd requested five different visual designs and around 25-30% fewer words for
