@@ -754,7 +754,7 @@ it up - either way it is on disk for a recovering session.
   semantics and the exact quote. Notes, anchors, full-size and mobile routes, pinned
   navigation and resource checks pass. Both source decks and the existing slide 4 review
   are byte-identical. Local links, inline JavaScript syntax, scoped content CSS, dash
-  checks and diff whitespace checks pass. No option has been accepted.
+  checks and diff whitespace checks pass. No option has been accepted. PR #100.
 
 - **2026-09-08, training_a_team slide 4 wording options in the current layout.** Dafydd
   asked for fresh slide 4 options after clearing the training sandbox, retaining the
