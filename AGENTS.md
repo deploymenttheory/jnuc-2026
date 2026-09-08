@@ -622,10 +622,12 @@ Notable content slides:
   replacement curriculum on the next slide. The old chart wrapper, five chips and quote
   strip styles are removed. All new rules and required `--s05-*` tokens are scoped to
   `#s-what-didnt-work`; there is no preview injection or alternative layout in the deck.
-- **Conditions** (`#7`): a hero layout - a large left panel gives psychological safety the
-  weight the copy claims for it ("the most evidenced condition of all") with three practical
-  points under it; the other six conditions, including "Expect the dip", sit right as
-  compact numbered cards. Classes `.herowrap`, `.heropanel`, `.supp`/`.suppcard` (`.dip`).
+- **Conditions** (`#7`): a hero layout - a large left panel establishes both operational
+  safety for leadership and psychological safety for engineers, with four practical points
+  underneath. Seven numbered conditions sit on the right, including the confirmed
+  two-to-three-month dip and choosing and training PR approvers before handover. The seventh
+  spans both columns. Classes `.herowrap`, `.heropanel`, `.supp`/`.suppcard` (`.dip`, `.wide`).
+  Five shorter layout options are awaiting review in the sandbox; the source is unchanged.
 - **Learning priorities by role** (`#9`): three role cards across the top; below them two
   radar webs (grid rings plus spokes, thin outlines, translucent fills), each carrying all
   three roles. Left is a small org with no DevOps function, where every shape is broad;
@@ -637,8 +639,9 @@ Notable content slides:
   CSS comment.
 
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an amber
-token for exactly that. Current chips (3): photos for Joseph and Gordon (`#1`); how long the
-dip lasts (`#7`); the 3-4 minute interview with Louise. The `#5` engineer quote was confirmed
+token for exactly that. Earlier TODOs included photos for Joseph and Gordon (`#1`) and the
+interview with Louise. The `#7` dip duration is confirmed at 2-3 months and has no TODO chip.
+The `#5` engineer quote was confirmed
 by Gordon Deacon, Aug 2026, and its chip is gone. The "what success looked like" behaviours
 (now on `#17`: the team became self-sufficient committing and reviewing PRs without assistance, was making
 architectural decisions and was managing resources in code exclusively), the trained bar and the
@@ -931,9 +934,14 @@ visible, including disciplined pairing, foundations, cohorts, sandboxes, the con
 secondment with its independent learner fallback, working reference examples and the reduced
 curriculum figures, and patience. All five have direct anchors, full-size views and eight
 paragraphs of reviewable proposed speaker notes. The source slide and both decks are unchanged).
+
+`s07-conditions-for-success` (2026-09-08, slide 7, Gordon. Five layout options sharing
+217 body words instead of 291, a 25.4% reduction, with both kinds of safety and all seven
+conditions. Direct anchors, full-size views and proposed notes. No option accepted).
+
 Slide 5's review page and the public index entries for slides 4 and 5 were removed after
 Dafydd accepted option E for both on 2026-09-08. Slide 4 already held its accepted wording
-and remains unchanged.
+and remains unchanged. The index was cleared before this new review round.
 
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page
