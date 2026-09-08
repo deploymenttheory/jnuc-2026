@@ -962,7 +962,17 @@ they track deck edits automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages awaiting a decision under `presentations/sandbox/training_a_team/`:
-None. The slide 6 and slide 7 review pages were both accepted on 2026-09-08 and retired. See Decided below.
+`s08-mindset-text-sizes` (2026-09-08, slide 8, speaker unassigned, five text-size steps on the
+shipped slide after Dafydd asked for the type to be bigger with everything else left alone: A
+body 26px, questions 18px, labels 18px; B body 28px, questions 20px, labels 19px; C body 30px,
+questions 21px, labels 20px; D body 32px, questions 23px, labels 21px; E body 34px, questions
+24px, labels 22px, the largest that fits, since 35px pushes the grid past the bottom of the
+content box and the only ways past that would be cutting the row padding below 20px or widening
+the 340px question column. Today's slide is body 24px, questions 17px, labels 17px. C, D and E
+also trim line height, row padding, row gap and the space under the title to stay on the slide.
+Content and layout are unchanged in every step - the same wording, notes, bands, colours and
+518/340/1fr columns - so each option injects sizing only and the deck is untouched by this
+round. No option accepted).
 
 Slide 5's review page and the public index entries for slides 4 and 5 were removed after
 Dafydd accepted option E for both on 2026-09-08. Slide 4 already held its accepted wording
