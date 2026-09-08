@@ -734,6 +734,28 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training_a_team slide 5, five visual designs with shorter wording.**
+  Dafydd requested five different visual designs and around 25-30% fewer words for
+  "What didn't work". Added `s05-what-didnt-work.html` alongside the still-open slide 4
+  wording review. A leads with the wide chart, B places the chart beside an editorial
+  list, C opens on the engineer quote, D leads with learning time against calendar time,
+  and E places teaching issues above the chart and gaps and delivery below it. All five
+  use the same refined copy, the five problems and the exact confirmed engineer quote.
+  The original native SVG ratchet geometry supplies all six rises and steep gap drops,
+  with the gently rising floor and visible illustrative disclosure. Separate 18px chart
+  labels retain their size in narrow compositions. Notes preserve every original
+  nuance, including geography as the main cause of gaps, infrastructure as a minor
+  factor and the next slide's 3,778-word replacement. Each option has an anchor,
+  full-size route, proposed notes and a word count that includes SVG labels. The source
+  deck, slide 4 review, shared files, downloads, tools, packages and timeline notes are
+  unchanged. Each option has 164 visible body words against 232 in the source, a 29.3%
+  reduction. Full browser and visual review pass for all five compositions: no text
+  outside the canvas, clipping or text overlap, with readable labels, accurate diagram
+  semantics and the exact quote. Notes, anchors, full-size and mobile routes, pinned
+  navigation and resource checks pass. Both source decks and the existing slide 4 review
+  are byte-identical. Local links, inline JavaScript syntax, scoped content CSS, dash
+  checks and diff whitespace checks pass. No option has been accepted. PR #100.
+
 - **2026-09-08, training_a_team slide 4 wording options in the current layout.** Dafydd
   asked for fresh slide 4 options after clearing the training sandbox, retaining the
   existing visual design and refining the wording because the slide had too many words.
