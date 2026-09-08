@@ -38,7 +38,7 @@ month or range.
 
 ## From Zero to GitOps (presentations/training_a_team)
 
-23 slides, in the order they run in the deck today.
+24 slides, in the order they run in the deck today.
 
 | Slide | Title | Speaker | Time notes |
 |---|---|---|---|
@@ -58,10 +58,11 @@ month or range.
 | 14 | Don't forget to train your sister engineering teams as well | Joseph | |
 | 15 | Onboarding new starters without Terraform experience | Gordon | |
 | 16 | Hiring for the new world | Dafydd | |
-| 17 | Learning materials | Dafydd | |
-| 18 | Questions | Unassigned | |
-| 19 | Thank You | Unassigned | |
-| 20 | What engineers need to learn | Unassigned | |
-| 21 | The learning pathway that worked for us | Unassigned | |
-| 22 | The learning timeline for a typical engineer | Unassigned | |
-| 23 | Colour system | Unassigned | |
+| 17 | What learners gain | Dafydd | |
+| 18 | Learning materials | Dafydd | |
+| 19 | Questions | Unassigned | |
+| 20 | Thank You | Unassigned | |
+| 21 | What engineers need to learn | Unassigned | |
+| 22 | The learning pathway that worked for us | Unassigned | |
+| 23 | The learning timeline for a typical engineer | Unassigned | |
+| 24 | Colour system | Unassigned | |

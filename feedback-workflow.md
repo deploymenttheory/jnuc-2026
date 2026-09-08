@@ -734,6 +734,37 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training_a_team new slide 17, learner benefits split from slide 3.**
+  Dafydd asked to separate the learning outcomes from the benefits that reach from the
+  individual through the team to the organisation, putting those benefits at new slide 17.
+  The new `s-learner-benefits`, "What learners gain", sits after hiring and before learning
+  materials, keeps Dafydd as speaker and moves the deck to 24 slides. The baseline is a
+  straightforward reflow; no sandbox visual option has been chosen. Every original benefit
+  remains visible: transferable skills, recoverable mistakes, reduced cognitive load from
+  avoiding repeated changes, shared knowledge, cloud-team practices and language, awareness
+  across teams, learning without blame, collaboration without conflicting changes, modules
+  for sister-team self service, audit/compliance, governance and scalable guardrails. The
+  intended benefits are labelled separately from the observed PR self-sufficiency,
+  architectural decisions and exclusive code management. Proposed notes preserve the
+  normal-change/breakglass distinction. Slide 3's removal of the moved material is the
+  companion change in this round.
+  `s17-learner-benefits.html` offers five complete visual treatments: A three levels side
+  by side, B benefits that widen, C start with the learner, D three steps outward and E the
+  wider support around learners. Each has an anchor, a full-size view and reviewable notes.
+  The timeline, later eyebrow numbers and section banners, training overview and sandbox
+  index follow the insertion. Migration, shared assets, downloads and the pending slide 4
+  review are untouched. Downloads remain deferred under the standing feedback rule.
+  Verified with `/tmp/jnuc-s17-benefits-verify.mjs`: all twelve benefit lines and three
+  observed behaviours are visible in the baseline and all five options, with type at least
+  26px. Element and actual text-range checks found no clipping, overlap or footer collision.
+  C and E's widened team columns have minimum actual text clearances of 79.77px and 111.27px.
+  Source navigation passed through all 24 slides in both directions; notes, speaker overlay,
+  HTTP and file source rendering, full-size views, anchors, mobile preview chrome and
+  file/missing-source fallbacks passed. Existing source sections remained byte-identical
+  apart from later eyebrow numbers; source slide 3 and the pending slide 4 page were
+  protected. Root visually approved `/tmp/jnuc-s17-baseline.png` and
+  `/tmp/jnuc-s17-option-{a,b,c,d,e}.png`. There were no browser or resource errors.
+
 - **2026-09-08, training_a_team slide 4, five new sandbox options awaiting a decision.**
   Dafydd left slide 3 open and requested the same five-option loop for the next slide.
   "How we ran it" remains slide 4, with Joseph as speaker. A leads with the secondment;
