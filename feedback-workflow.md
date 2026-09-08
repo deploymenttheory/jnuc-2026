@@ -764,7 +764,7 @@ it up - either way it is on disk for a recovering session.
   is empty, so the deck and both downloads are untouched. One fix worth recording: Chrome
   resolves SVG `text-anchor` on an injected fragment's first layout and does not redo it,
   so every drawing label was painted off-centre until the page re-parsed each drawing on
-  the next animation frame. PR #n.
+  the next animation frame. PR #107.
 
 - **2026-09-08, training slide 6, five layout options with shorter copy.** Added
   `s06-what-worked.html` to the training sandbox for Joseph's "What worked" slide.
