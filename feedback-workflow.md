@@ -756,7 +756,7 @@ it up - either way it is on disk for a recovering session.
   the hairline appears under all three headers in the right band colour in every option, the
   first row is spaced like the rest, all three columns of all seven rows share a top edge, and
   nothing reaches the footer hairline. The lede, option E's description, the closing paragraph,
-  the sandbox index `.meta` and the AGENTS.md sandbox paragraph were updated to match. PR #n.
+  the sandbox index `.meta` and the AGENTS.md sandbox paragraph were updated to match. PR #111.
 
 - **2026-09-08, training slide 8, five text-size options.** Dafydd asked for the Mindset shift
   slide to keep its content and its layout exactly as they are and simply have larger text, with
