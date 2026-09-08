@@ -734,6 +734,38 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training slide 6, five visual options replacing the text-only round.**
+  Dafydd rejected all five round-one layouts because every one was still a block of text
+  with no visual device. Added `s06-what-worked-visual.html` and deleted
+  `s06-what-worked.html`, replacing its index entry. The five are A Pictograms, the deck's
+  own seven slide-6 glyphs enlarged to 92px above their copy with patience closing on a
+  full-width lime rule; B Building up, a stepped stack of three SVG blocks labelled
+  neutrally "one discipline", "the next" and "the full picture" with the principles point
+  as the hero; C Around the learner, a navy "The engineer" disc inside a lime ring with
+  seven spokes to icon nodes and the copy in the matching sectors; D The exchange, pairing
+  as two nodes trading both ways and the secondment as a gate opening on "a platform
+  engineering team can dedicate time to training" and otherwise on "an enthusiastic
+  employee willing to learn independently", every drawing label a phrase from the copy;
+  and E Fifty-seven to one, the documentation figure as a true 57:1 area comparison, a
+  270px navy square against a 35.8px lime one, above the icon rail of the other six.
+  Preserved unchanged: the round-one COPY array at 211 body words and the round-one eight
+  paragraphs of proposed speaker notes, verbatim in all five, plus the page mechanics -
+  the layout builder, CSS and preview-chrome injection, notes replacement, word-count
+  widget, `?option=x` viewer, pinned navigation and the source-match guard. All seven
+  approaches stay visible. Every colour is a deck token, no hex anywhere including inside
+  the SVG, no drawing names or orders a discipline, decorative art is `aria-hidden` and
+  every diagram carries `role="img"` with an `aria-label`. Evidence: all five full-size
+  renders and the whole page screenshotted in headless Chrome at 1920x1080 and 1400x5400
+  and reviewed by eye, with no overflow past the footer hairline or into the slide
+  counter and no clipped labels; the word-count widget reports 211 for A, 218 for B, 213
+  for C, 235 for D and 219 for E, the rises being the drawing labels; the injected
+  `#notestext` is byte-identical to the proposed notes in all five and matches the
+  slide's `data-notes`; `git diff --stat origin/main -- presentations/training_a_team/`
+  is empty, so the deck and both downloads are untouched. One fix worth recording: Chrome
+  resolves SVG `text-anchor` on an injected fragment's first layout and does not redo it,
+  so every drawing label was painted off-centre until the page re-parsed each drawing on
+  the next animation frame. PR #107.
+
 - **2026-09-08, training slide 7, five visual options replacing the text-only round.**
   Dafydd rejected all five round-one layouts because every one of them was a block of text
   with no visual device. Added `s07-conditions-visual.html` and deleted
