@@ -922,10 +922,18 @@ they track deck edits automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-No pages currently awaiting a decision under `presentations/sandbox/training_a_team/`.
+Current pages awaiting a decision under `presentations/sandbox/training_a_team/`:
+`s06-what-worked` (2026-09-08, slide 6, Joseph, five layout options with the same shorter
+copy: A Seven points in two columns, B A full-width reading list, C Secondment in its own
+column, D Three columns and a closing line, E Paired programming across the top. Each body
+is 211 words, down from 284, a 25.7% reduction including headings. All seven approaches stay
+visible, including disciplined pairing, foundations, cohorts, sandboxes, the conditional
+secondment with its independent learner fallback, working reference examples and the reduced
+curriculum figures, and patience. All five have direct anchors, full-size views and eight
+paragraphs of reviewable proposed speaker notes. The source slide and both decks are unchanged).
 Slide 5's review page and the public index entries for slides 4 and 5 were removed after
 Dafydd accepted option E for both on 2026-09-08. Slide 4 already held its accepted wording
-and remains unchanged. The index now reads "No open reviews."
+and remains unchanged.
 
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page
