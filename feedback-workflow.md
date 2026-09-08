@@ -734,7 +734,7 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
-- **2026-09-08, training_a_team slide 3 option E accepted.** Dafydd: "for slide3 proceed
+- **2026-09-08, training_a_team slide 3 option E accepted.** Dafydd: "for slide 3 proceed
   with option E", confirmed as "Option E - The trained threshold". Applied the approved
   replacement option to `#s-learning-outcomes`: the trained definition in a central navy
   panel, all seven capabilities on either side and the non-goals below. The exact approved
