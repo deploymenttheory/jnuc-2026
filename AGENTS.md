@@ -505,7 +505,8 @@ retains open-source training and the sister teams now learning. The full operati
 lives in the speaker notes. Rules are scoped to `#s-estate`, with `--s02-*` sizing tokens), `#3` learning outcomes
 (`s-learning-outcomes`, sandbox option E accepted 2026-09-08: the trained threshold in a
 central navy panel, with seven capabilities on either side and the non-goals below),
-`#4` execution, `#5` what didn't work, `#6` what worked, `#7` conditions, `#8` mindset,
+`#4` execution (sandbox wording option E, "Plain sentences", accepted 2026-09-08 in the
+existing layout), `#5` what didn't work, `#6` what worked, `#7` conditions, `#8` mindset,
 `#9` learning priorities by role, `#10` the learning pathway (four phases - **merges the old `#9` matrix and
 `#10` timeline**, Aug 2026: both said the same thing twice and neither described what the team
 actually did). Titled "the pathway we **followed**", not "that worked": phase 1 front-loaded
@@ -589,18 +590,20 @@ Notable content slides:
   remains a straightforward three-column reflow. Its five sandbox visual options were closed
   without acceptance in the 2026-09-08 sandbox reset; no visual option was implemented.
   Scoped `.bn-*` rules and a separate `:root` block hold the new sizing tokens.
-- **Execution** (`#4`): a fan-out - a hub panel (one engineer seconded into the DevOps CoE,
-  3 months, train-the-trainer, run iteratively rather than planned end to end) bracketed by
-  an SVG to five outcome cards, all plain (no per-card colour variants): materials written
-  together, delivery format iterated from theory-led to practical, hackathons that didn't
-  land, no existing playbook for migrating a Mac-centric team onto Terraform specifically,
-  and different delivery plans by skill level (laid-back and project-based for higher-skill
-  engineers). The hub's foot line carries the migration link as one subordinate sentence -
-  the secondment also produced someone who could run migration work when needed - rather
-  than as its own spokes; migration waves and handover as topics belong elsewhere in the
-  deck, not on this training-execution slide. Two full-width arrows underneath keep the
-  two-way trade: domain context in, GitOps practice back. Classes `.fanout`, `.hub`,
-  `.brace`, `.spokes`/`.spoke`, `.flow`/`.flowrow`.
+- **Execution** (`#4`, "How we ran it"): wording option E, "Plain sentences", accepted
+  2026-09-08. The existing fan-out layout remains: one Mac engineer in the DevOps CoE in
+  a hub panel, a three-month full-time secondment to train the trainer, an SVG brace to
+  five plain numbered outcome cards and two full-width arrows for the knowledge exchange.
+  The five headings read "We wrote the materials together", "Practical sessions worked
+  better", "The hackathon format did not work", "We had no training playbook" and
+  "We tailored plans to skill levels", each with a short supporting sentence. The hub
+  describes pairing Mac expertise with GitOps practice and adjusting training throughout
+  delivery; its foot retains the engineer's ability to support training and run migration
+  work. Body copy is 159 words, down from 236. All seven accepted speaker-note paragraphs
+  remain, including the delivery cue, the secondment-only meaning of three months, the
+  local lack of a training playbook and plans matched to skill level. Markup, styling,
+  typography and dimensions are unchanged. Classes `.fanout`, `.hub`, `.brace`,
+  `.spokes`/`.spoke`, `.flow`/`.flowrow`.
 - **What didn't work** (`#5`): a hero SVG chart across the top - six teaching sessions
   across six months, each one lifting confidence and each following gap giving some of it
   back, trending gently upwards overall (people did genuinely build confidence over the six
@@ -914,7 +917,8 @@ they track deck edits automatically.
   new variants; option E was accepted on 2026-09-07. Slide 3
   accepted option E from its five replacement variants on 2026-09-08. The earlier slide 4
   and new slide 17 rounds were closed without acceptance in the 2026-09-08 sandbox reset.
-  The fresh slide 4 round offers five wording options in the exact source layout.
+  The fresh slide 4 wording round accepted option E, "Plain sentences", the same day,
+  preserving the exact source layout.
 - Variant CSS only touches the slide's `#id` and only uses the deck's own tokens, so an
   accepted option pastes into the deck unchanged.
 - Injection needs same-origin access, so it only works over HTTP. Opened from `file://` the
@@ -928,16 +932,6 @@ they track deck edits automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages awaiting a decision under `presentations/sandbox/training_a_team/`:
-`s04-wording-refinement` (2026-09-08, slide 4, Joseph, five new wording options:
-A a shorter account, B what we did, C what we learnt, D speaking prompts, E plain sentences).
-Every option keeps the source slide's hub, five numbered spokes, brace and two arrows,
-including their markup, CSS, typography and dimensions. Only existing text fields and
-the preview's proposed speaker notes change. Each has an anchor, a full-size view and
-reviewable notes; body word counts compare the proposal with the current slide. The
-preview counter and help scale with small frames. A file or source-loading failure hides
-the preview and explains how to review it over HTTP, while leaving the proposed notes
-available. Three months describes only the secondment. The source deck is unchanged.
-
 `s05-what-didnt-work` (2026-09-08, slide 5, Gordon, five visual designs using the same
 shorter copy: A the chart across the page, B the chart beside the account, C the engineer
 feedback first, D four weeks across six months, E teaching and the gaps). Each preview
@@ -949,8 +943,9 @@ stay visible. Proposed notes retain the full context, including geography, the m
 infrastructure factor and the replacement material on the next slide. Content rules and
 sizing tokens belong to the preview-only `#s05-review` id. Each option has an anchor,
 full-size route, notes disclosure and word-count comparison including SVG labels. The
-body copy is 164 words per option against 232 in the source, a 29.3% reduction. The source
-deck and the open slide 4 wording review remain unchanged. No option is accepted.
+body copy is 164 words per option against 232 in the source, a 29.3% reduction. Source
+slide 5 remains unchanged and no slide 5 option is accepted. The review footer records
+slide 4's acceptance of option E; the five slide 5 variants and proposed notes are unchanged.
 
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page
@@ -971,9 +966,16 @@ made possible. Each condenses the visible copy while retaining the secondment, j
 iteration, hackathon result, lack of a playbook and plans by skill level across the slide and
 reviewable proposed speaker notes. Three months describes the secondment only. Each option has
 a direct anchor and a full-size view. The alternatives were removed without acceptance;
-slide 4 is unchanged).
+source slide 4 was unchanged by that reset. The later wording-only acceptance is below).
 
 Decided (under `presentations/sandbox/training_a_team/`):
+`s04-wording-refinement` (2026-09-08, slide 4, Joseph, five wording options in the existing
+layout. Decided the same day: option E, "Plain sentences", applied to the sixteen existing
+text fields and the speaker notes. The hub, five numbered spokes, SVG brace and two arrows
+retain their exact markup, CSS, typography and dimensions. All seven accepted note
+paragraphs remain, and three months describes only the secondment. Body copy is 159 words,
+down from 236. The review page is retired and its index entry is non-linked and marked done.
+Downloads await a separate request);
 `s03-learning-outcomes` (2026-09-08, slide 3, Dafydd, five replacement treatments after
 splitting learning outcomes from benefits. Decided the same day: option E, "The trained
 threshold", applied to the deck as `#s-learning-outcomes`. The definition of trained sits

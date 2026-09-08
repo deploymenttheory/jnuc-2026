@@ -734,6 +734,26 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training_a_team slide 4 option E accepted.** Dafydd: "slide 4 proceed
+  with option e". Applied "Option E - Plain sentences" to the sixteen existing text fields
+  and all seven accepted speaker-note paragraphs, including the opening delivery cue.
+  The title, Joseph speaker, slide 4 of 24 position, secondment panel, five numbered
+  outcomes, SVG brace and two knowledge-exchange arrows remain. Three months describes
+  the secondment only. Body copy is 159 words, down from 236. The review page is retired
+  and its index entry is non-linked and marked done. Slide 5 remains the only open review;
+  its wrapper footer records this acceptance, with its five variants, notes, CSS and
+  script unchanged. Browser and visual QA confirm exact accepted copy, notes, markup,
+  attributes and element geometry, with no clipping or overlap. Reference and source
+  match visually; minor gradient and SVG rasterisation differences prevent a claim of
+  identical reference pixels. HTTP and file pixels match except for the bottom 3px progress
+  animation. Notes and navigation checks pass, and all five pending slide 5 previews load.
+  Static checks confirm the exact sixteen replacements and seven note paragraphs, original
+  source CSS and scripts, unchanged other 23 source slides and unchanged SVG brace. Index
+  links, new-copy punctuation and `git diff --check` pass. Evidence is in
+  `/tmp/jnuc-s04-accept-{source,reference,file}.png` and `/tmp/jnuc-s04-accept-qa.json`.
+  Training has no presenter.json, so presenter sync does not apply. Downloads remain
+  deferred under the standing feedback convention. PR number will be recorded after creation.
+
 - **2026-09-08, training_a_team slide 5, five visual designs with shorter wording.**
   Dafydd requested five different visual designs and around 25-30% fewer words for
   "What didn't work". Added `s05-what-didnt-work.html` alongside the still-open slide 4
