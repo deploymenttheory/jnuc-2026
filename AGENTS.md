@@ -932,8 +932,8 @@ they track deck edits automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages awaiting a decision under `presentations/sandbox/training_a_team/`:
-`s05-what-didnt-work` (2026-09-08, slide 5, Gordon, five visual designs using the same
-shorter copy: A the chart across the page, B the chart beside the account, C the engineer
+`s05-what-didnt-work` (2026-09-08, slide 5, Gordon, five visual designs using shorter
+copy: A the chart across the page, B the chart beside the account, C the engineer
 feedback first, D four weeks across six months, E teaching and the gaps). Each preview
 replaces only slide 5's body and proposed notes in a real-deck iframe. The native ratchet
 geometry comes from the current slide, with separate labels that stay readable in narrow
@@ -943,9 +943,13 @@ stay visible. Proposed notes retain the full context, including geography, the m
 infrastructure factor and the replacement material on the next slide. Content rules and
 sizing tokens belong to the preview-only `#s05-review` id. Each option has an anchor,
 full-size route, notes disclosure and word-count comparison including SVG labels. The
-body copy is 164 words per option against 232 in the source, a 29.3% reduction. Source
-slide 5 remains unchanged and no slide 5 option is accepted. The review footer records
-slide 4's acceptance of option E; the five slide 5 variants and proposed notes are unchanged.
+body copy in A to D is 164 words against 232 in the source, a 29.3% reduction. Option E
+was refined for another review on 2026-09-08: the original chart's four explanatory notes
+replace its shorter legend, with the freed space added to the plot height. E now has 173
+visible body words, a 25.4% reduction against the source. The issue
+wording, quote, surrounding composition and proposed notes remain. Source slide 5 remains
+unchanged and no slide 5 option is accepted. The review footer records slide 4's acceptance
+of option E.
 
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page

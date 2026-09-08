@@ -734,6 +734,25 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training_a_team slide 5 option E chart notes restored for review.**
+  Dafydd: "refine option e's diagram to include the word notes from the original. then
+  let me review again". Restored the four original explanatory notes verbatim inside
+  E's chart: the rising floor, teaching lift, following gap and shaded teaching bands.
+  They replace E's shorter legend, whose space gives the plot another 34px of height.
+  The original six-cycle coordinates and horizontal sizing remain, with only E's
+  vertical plot transform changing. The surrounding copy, quotation, composition and
+  all proposed speaker notes remain. E has 173 visible body words against 232 in the
+  source, a 25.4% reduction; A to D remain at 164 words and 29.3%. All five options
+  remain reviewable and no option is accepted. Updated the wrapper, index and AGENTS.md
+  to describe the refinement accurately. Browser and visual QA confirm all four notes
+  fit with no text overlaps or clipping, six rises, drops and teaching bands remain,
+  and notes, full-size, all-five and mobile routes and pinned navigation pass. A to D's
+  preview DOM is identical and both source decks are byte-identical. Inline JavaScript,
+  unchanged shared copy and note blocks, punctuation and diff whitespace checks pass.
+  Evidence: `/tmp/jnuc-s05-e-refined.png`, `/tmp/jnuc-s05-e-refined-mobile.png` and
+  `/tmp/jnuc-s05-e-refined-qa.json`. Training has no presenter.json; downloads remain
+  deferred under the standing feedback convention. PR pending.
+
 - **2026-09-08, training_a_team slide 4 option E accepted.** Dafydd: "slide 4 proceed
   with option e". Applied "Option E - Plain sentences" to the sixteen existing text fields
   and all seven accepted speaker-note paragraphs, including the opening delivery cue.
