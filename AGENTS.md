@@ -926,14 +926,29 @@ they track deck edits automatically.
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
 Current pages awaiting a decision under `presentations/sandbox/training_a_team/`:
-`s06-what-worked` (2026-09-08, slide 6, Joseph, five layout options with the same shorter
-copy: A Seven points in two columns, B A full-width reading list, C Secondment in its own
-column, D Three columns and a closing line, E Paired programming across the top. Each body
-is 211 words, down from 284, a 25.7% reduction including headings. All seven approaches stay
-visible, including disciplined pairing, foundations, cohorts, sandboxes, the conditional
-secondment with its independent learner fallback, working reference examples and the reduced
-curriculum figures, and patience. All five have direct anchors, full-size views and eight
-paragraphs of reviewable proposed speaker notes. The source slide and both decks are unchanged).
+`s06-what-worked-visual` (2026-09-08, slide 6, Joseph, five visually led compositions:
+A Pictograms, the deck's own seven slide-6 glyphs enlarged to 92px over their copy with
+patience closing on a full-width lime rule; B Building up, a stepped stack of three SVG
+blocks labelled neutrally "one discipline", "the next" and "the full picture" carrying the
+principles point as the hero; C Around the learner, a navy disc labelled "The engineer" at
+the centre of a lime ring with seven spokes to icon nodes and the copy in the matching
+sectors, absolutely positioned in `--s06-*` coordinates; D The exchange, pairing as two
+nodes trading both ways and the secondment as a gate that opens on "a platform engineering
+team can dedicate time to training" and otherwise on "an enthusiastic employee willing to
+learn independently"; E Fifty-seven to one, the documentation figure as a true 57:1 area
+comparison, a 270px navy square against a 35.8px lime one, over an icon rail of the other
+six. The copy is the round-one set unchanged, 211 body words, and the eight paragraphs of
+proposed speaker notes are the round-one set verbatim, so only layout and artwork differ;
+per-option totals rise to 218, 213, 235 and 219 words where a drawing carries labels. All
+seven approaches stay visible. Every colour is a deck token, no drawing names or orders a
+discipline, and each option still reads with the artwork deleted. The source slide and both
+decks are unchanged).
+
+The text-only first round, `s06-what-worked` (five layouts sharing the same 211-word copy:
+A Seven points in two columns, B A full-width reading list, C Secondment in its own column,
+D Three columns and a closing line, E Paired programming across the top), was superseded on
+2026-09-08 without acceptance: Dafydd rejected all five because every one was still a block
+of text with no visual device. Its copy and notes carry forward into the round above.
 
 `s07-conditions-for-success` (2026-09-08, slide 7, Gordon. Five layout options sharing
 217 body words instead of 291, a 25.4% reduction, with both kinds of safety and all seven
