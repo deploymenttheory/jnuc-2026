@@ -651,7 +651,12 @@ Notable content slides:
   not the whole picture, and what the team owns and how steep the climb is scales with org
   size - and every settled fact from "Two deliberate decisions on `#9`" and "How `#9`'s two
   charts are scored" below, in the shared speaker notes regardless of which option ships.
-  See Sandbox for the five options.
+  A follow-on round opened 2026-09-08 after Joseph said he liked option D but wanted it
+  bigger: three more wrappers, `.s-learning-priorities-optd-table`, `-optd-graphic` and
+  `-optd-text`, carry the same role-by-org-size matrix argument as option D at a larger
+  size, as a literal ruled `<table>`, a scaled bar-per-discipline SVG graphic and a prose
+  treatment respectively. All three are hidden by the same default-hide rule alongside
+  `-opt-b` through `-opt-e`, so `-opt-a` still ships. See Sandbox for both rounds.
 
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an amber
 token for exactly that. Current chips (3): photos for Joseph and Gordon (`#1`); how long the
@@ -974,6 +979,22 @@ the team owns and how steep its learning curve is scales with org size) and ever
 fact from "Two deliberate decisions on `#9`" and "How `#9`'s two charts are scored" above,
 in the section's one shared `data-notes`, regardless of which option is visible. No option
 is accepted.
+
+`s-learning-priorities-option-d-variants` (2026-09-08, slide 9, Dafydd, a follow-on round
+after Joseph reviewed the five options above and said he liked option D but wanted it to
+fill more of the page: three completely different presentational forms of the same
+role-by-org-size matrix, each ships as real markup inside `#s-learning-priorities` -
+`.s-learning-priorities-optd-table` (a literal ruled `<table>` crossing role against org
+size, with a footer row stating the Jamf APIs fact once), `-optd-graphic` (three identical
+role pills for the fixed-minimum point, then an inline SVG bar chart scaling one bar per
+discipline - Environment, Git and GitOps, Jamf APIs, Mentoring - small org against large
+org, bar length carrying the argument) and `-optd-text` (prose close to
+`migrating_an_instance`'s plainest slides: one paragraph per role pairing its fixed
+minimum with what changes underneath it by org size in a single sentence, no grid). All
+three are noticeably bigger than the original option D grid and sit alongside the five
+`-opt-*` wrappers under the same default-hide rule, so `-opt-a` still ships. Every option
+keeps both points the speaker wants landed and every settled fact from "How `#9`'s two
+charts are scored" above, in the section's one shared `data-notes`. No option is accepted.
 
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page

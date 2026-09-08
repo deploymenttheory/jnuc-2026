@@ -734,6 +734,25 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training_a_team slide 9, three variations of Option D for "Learning
+  priorities by role".** Follow-on from the five-option round below (PR #7): Joseph liked
+  Option D, the role-by-org-size matrix, but wanted it to fill more of the page, and asked
+  for exactly three completely different presentational forms of it - one table, one
+  visual/graphic, one text. All three ship as real markup inside `#s-learning-priorities`
+  alongside the five `-opt-*` wrappers, hidden by the same default-hide rule so `-opt-a`
+  still ships: `.s-learning-priorities-optd-table` is a literal ruled `<table>` crossing
+  role against org size, with a footer row stating the Jamf APIs fact once across the full
+  width; `-optd-graphic` opens with three identical role pills to show the minimum is fixed,
+  then an inline SVG bar chart scaling one bar per discipline (Environment, Git and GitOps,
+  Jamf APIs, Mentoring) small org against large org, using bar length and colour as the
+  argument (Jamf APIs drawn identically in both, Git/GitOps kept the same length but a
+  different colour to signal authority narrowing rather than knowledge shrinking); `-optd-text`
+  is a prose treatment close to `migrating_an_instance`'s plainest slides, one paragraph per
+  role pairing its fixed minimum with what changes underneath it by org size in a single
+  sentence, no grid or table. Every option keeps both required points and every settled fact
+  from AGENTS.md's "How #9's two charts are scored" in the section's one shared `data-notes`.
+  Added `s-learning-priorities-option-d-variants.html`. No option is accepted. PR TBC.
+
 - **2026-09-08, training_a_team slide 9, five full-redesign layouts for "Learning
   priorities by role".** Dafydd said the slide (three role cards plus twin six-axis radar
   charts) was too dense to follow and needed two points made plainly: nobody needs to know
