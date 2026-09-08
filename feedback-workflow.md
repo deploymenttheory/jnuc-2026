@@ -734,6 +734,33 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training slide 7, option D accepted with the numerals removed.** Dafydd took
+  "Gates on a rail" and said in the same message that the rail was cluttered by carrying both
+  a large numeral and an icon per condition, so the numerals go and the icons alone mark the
+  rail. Applied: the slide gains the stable id `s-conditions`, keeps its speaker, eyebrow and
+  title, and its body is now the option's static markup - a navy safety panel on the left with
+  the shield over operational safety, the speech marks over psychological safety and the
+  premise at its foot, and the seven conditions down a vertical rail on the right. Every
+  `.s07-number` element is gone; the icons grew from 34px to 44px, sit centred on the rail line
+  and mask it with the stage colour, and the text column starts where the numeral column used
+  to, so each row reads icon, heading, copy with no hole. The option's CSS transfers as
+  `#s-conditions` rules alongside the other accepted slide blocks, with only the rules option D
+  uses, the numeral rules dropped and the grid cut from three columns to two; its sizing values
+  are `--s07-*` tokens in `:root` beside the `--s02-*` group, so the block carries no literal
+  colours or sizes. Preserved: every heading and paragraph word for word from the option's COPY,
+  the visible premise "All seven conditions depend on both.", and all seven proposed note
+  paragraphs, less one sentence - "The numbers identify the conditions and do not impose a
+  strict sequence." - which the acceptance made untrue. The sandbox page is deleted and its
+  index entry removed. The old `.herowrap`, `.heropanel`, `.supp` and `.suppcard` rules and
+  their children came out too: grep showed slide 7 was their only user. Evidence: headless
+  Chrome at 1920x1080 over HTTP, slides 6 and 8 byte-identical to the `origin/main` baseline by
+  `cmp`, slide 7 reviewed by eye with the panel, the rail, seven marks, no numerals, no hole and
+  no overflow (the body measures 225 to 989, clear of the footer hairline at 1030, and its
+  scroll height equals its box height); the `file://` render is byte-identical to the HTTP one;
+  ArrowRight walks 0 to 23 one slide per press across all 24 slides; and the deck greps clean
+  for `s07-review`, `s07-number`, hex colours inside the new block and em or en dashes.
+  PR #109.
+
 - **2026-09-08, training slide 6, five visual options replacing the text-only round.**
   Dafydd rejected all five round-one layouts because every one was still a block of text
   with no visual device. Added `s06-what-worked-visual.html` and deleted

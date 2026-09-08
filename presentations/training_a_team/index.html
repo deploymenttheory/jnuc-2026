@@ -116,6 +116,32 @@
   --s02-leading: 1.3;
   --s02-heading-leading: 1.04;
   --s02-tracking: -.025em;
+
+  /* Slide 7: accepted gates-on-a-rail layout. */
+  --s07-body: 24px;
+  --s07-heading: 26px;
+  --s07-safety-heading: 34px;
+  --s07-premise: 26px;
+  --s07-leading: 1.32;
+  --s07-tight: 1.16;
+  --s07-tighten: -.02em;
+  --s07-hairline: 1px;
+  --s07-rule: 3px;
+  --s07-rail-width: 2px;
+  --s07-rail-left: 47px;
+  --s07-stroke-icon: 1.6;
+  --s07-icon: 44px;
+  --s07-mark: 56px;
+  --s07-content-top: 30px;
+  --s07-content-height: 764px;
+  --s07-size-6: 6px;
+  --s07-size-8: 8px;
+  --s07-size-20: 20px;
+  --s07-size-24: 24px;
+  --s07-size-32: 32px;
+  --s07-size-44: 44px;
+  --s07-size-96: 96px;
+  --s07-size-560: 560px;
 }
 /* ---------- THEME PRESETS -------------------------------------------------
    Each block restates only the knobs it changes. "default" is :root above and
@@ -513,25 +539,37 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .icard h3{font-size:25px;font-weight:700}
 .icard p{font-size:19px;line-height:1.42;color:var(--text-dimmer);margin-top:8px}
 
-/* ---------- slide 7 ---------- */
-.herowrap{display:grid;grid-template-columns:640px 1fr;gap:40px;height:706px}
-.heropanel{border:1px solid var(--green-deep);border-radius:14px;padding:44px 46px;
-  background:linear-gradient(160deg,var(--accent-wash) 0%,var(--accent-wash-4) 55%,var(--surface) 100%);
-  display:flex;flex-direction:column}
-.heropanel .tag{font-family:var(--mono);font-size:17px;letter-spacing:.2em;color:var(--green-bright)}
-.heropanel h2{font-size:52px;font-weight:700;line-height:1.05;margin-top:18px;letter-spacing:-.015em}
-.heropanel .lede{font-size:25px;line-height:1.4;color:var(--text-dim);margin-top:26px}
-.heropanel .rule{border:0;border-top:1px solid var(--border-soft);margin:26px 0}
-.heropanel .pt{display:flex;gap:16px;align-items:flex-start;margin-bottom:16px}
-.heropanel .pt i{width:8px;height:8px;border-radius:2px;background:var(--green-bright);flex:none;margin-top:10px}
-.heropanel .pt p{font-size:19px;line-height:1.42;color:var(--text-dimmer)}
-.heropanel .foot{margin-top:auto;font-family:var(--mono);font-size:18px;color:var(--green-bright);
-  line-height:1.4}
-.supp{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:16px}
-.suppcard{border:1px solid var(--border);border-radius:10px;background:var(--surface);padding:20px 24px}
-.suppcard .n{font-family:var(--mono);font-size:17px;color:var(--muted)}
-.suppcard h3{font-size:21px;font-weight:700;line-height:1.15;margin-top:4px}
-.suppcard p{font-size:17px;line-height:1.38;color:var(--text-dimmer);margin-top:8px}
+/* ---------- slide 7: conditions ----------
+   Sandbox option D, "Gates on a rail", accepted 2026-09-08, with the numerals
+   dropped at Dafydd's request so the line-art marks alone hold the rail. A navy
+   safety panel on the left carries the two kinds of safety and the premise; the
+   seven conditions run down a vertical rail on the right, each marked by its own
+   glyph. The marks are decoration and every one is aria-hidden: delete them all
+   and the slide still reads. The rail line sits at --s07-rail-left, which is the
+   centre of the mark column, and each mark masks it with the stage colour.
+   Sizes and colours come from the --s07-* tokens in :root.                   */
+#s-conditions .s07-content { height: var(--s07-content-height); margin-top: var(--s07-content-top); font-size: var(--s07-body); line-height: var(--s07-leading); display: grid; grid-template-columns: var(--s07-size-560) 1fr; gap: var(--s07-size-44); }
+#s-conditions .s07-content :is(div, section, article) { min-width: 0; }
+#s-conditions .s07-content :is(h2, h3, p) { margin: 0; }
+#s-conditions .s07-condition h3 { font-size: var(--s07-heading); line-height: var(--s07-tight); font-weight: 700; color: var(--text); }
+#s-conditions .s07-condition p { font-size: var(--s07-body); line-height: var(--s07-leading); color: var(--text-dimmer); }
+#s-conditions .s07-safety p { font-size: var(--s07-body); line-height: var(--s07-leading); color: var(--text-dimmer); }
+#s-conditions .s07-safety strong { color: var(--text); font-weight: 700; }
+#s-conditions .s07-safety h2 { color: var(--accent); font-size: var(--s07-safety-heading); line-height: var(--s07-tight); letter-spacing: var(--s07-tighten); font-weight: 700; }
+#s-conditions .s07-premise { color: var(--accent); font-weight: 600; }
+#s-conditions .s07-icon { fill: none; stroke: var(--accent); stroke-width: var(--s07-stroke-icon); stroke-linecap: round; stroke-linejoin: round; }
+#s-conditions .s07-panel { background: var(--surface); border-top: var(--s07-rule) solid var(--accent); padding: var(--s07-size-32); display: flex; flex-direction: column; gap: var(--s07-size-24); }
+#s-conditions .s07-safety-row { display: grid; grid-template-columns: var(--s07-mark) 1fr; gap: var(--s07-size-20); align-items: start; }
+#s-conditions .s07-mark { width: var(--s07-mark); height: var(--s07-mark); }
+#s-conditions .s07-panel .s07-premise { margin-top: auto; border-top: var(--s07-hairline) solid var(--border); padding-top: var(--s07-size-20); font-size: var(--s07-premise); }
+#s-conditions .s07-rail { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+#s-conditions .s07-rail::before { content: ""; position: absolute; left: var(--s07-rail-left); top: var(--s07-size-8); bottom: var(--s07-size-8); width: var(--s07-rail-width); background: var(--border); }
+#s-conditions .s07-rail .s07-condition { position: relative; display: grid; grid-template-columns: var(--s07-size-96) 1fr; align-items: start; }
+#s-conditions .s07-rail .s07-condition-mark { grid-column: 1; grid-row: 1 / span 2; justify-self: center; box-sizing: content-box; width: var(--s07-icon); height: var(--s07-icon); padding: var(--s07-size-6) 0; background: var(--bg); }
+#s-conditions .s07-rail h3 { grid-column: 2; }
+#s-conditions .s07-rail p { grid-column: 2; margin-top: var(--s07-size-6); }
+
+/* ---------- slide 10 lead line ---------- */
 .pw-intro{font-size:26px;line-height:1.4;color:var(--text-dim);margin-top:14px;max-width:1180px}
 
 /* ---- Slide 9: the route ------------------------------------------------
@@ -577,10 +615,6 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
          background:var(--surface-2);font-size:21px;line-height:1.4;color:var(--text-dim)}
 .pw-rule strong{color:var(--text);font-weight:700}
 .pw-sub{display:block;margin-top:8px;font-size:19px;color:var(--text-dimmer)}
-
-.suppcard.wide{grid-column:1 / -1}
-.suppcard.dip{background:var(--alt-surface);border-color:var(--blue-border)}
-.suppcard.dip .n{color:var(--blue-light)}
 
 /* ---------- mindset shift (new slide 8) ----------
    Two grounds with a hard edge, and the questions engineers asked themselves on a lime
@@ -1262,29 +1296,70 @@ The next slide explains what replaced the original material: 3,778 words, 57 tim
 </section>
 
 <!-- ============ 7 · CONDITIONS ============ -->
-<section class="slide" data-speaker="Gordon" data-notes="Lead with the panel on the left, and give it time. Of everything on this slide, psychological safety is the one that carries the rest, and it is the most evidenced: teams that treat mistakes as learning rather than blame retain skills faster and ship more reliably. Three practical things follow from that. Make it explicit, out loud and more than once, because assuming it is understood is not the same as saying it. Do not assume it already exists just because the team seems friendly to each other. And it has to still hold the week somebody breaks something that matters, which is the only real test of it. Then take the six on the right briskly, because they are all conditions we have already touched elsewhere in the talk. Get stakeholder buy-in before you start; ours were slow to get it and that cost us early momentum. Gate workshop attendance on completed pre-requisites, with no exceptions, because the engineers who skipped the pre-work held back their whole cohort. Keep days rather than weeks between learning something and practising it. Do the pairing and labs in person. Build the relationship with whoever owns Terraform and GitHub early, because you will need them for access, guardrails and troubleshooting throughout. And expect the dip: the team gets slower before it gets faster, so set that expectation up front and early friction reads as part of the plan rather than as failure.">
+<section class="slide" id="s-conditions" data-speaker="Gordon" data-notes="Lead with both kinds of safety and give them time. Leadership needed operational safety: no downtime, support unaffected and a team able to adopt the new way of working. Answer the question of whether this could take the estate down before starting. Engineers also needed psychological safety: room to learn while protecting the estate, with mistakes treated as learning rather than blame. All seven conditions depend on both kinds of safety.
+
+Make psychological safety explicit, out loud and more than once. Do not assume it exists because the team seems friendly. It has to continue when somebody breaks something that matters.
+
+Take the seven conditions in turn. Get non-technical stakeholders and senior leadership bought in on the priority before starting. Ours were slow to understand it, and that cost early momentum.
+
+Gate workshop attendance on completed pre-requisite learning, with no exceptions. Engineers who skipped the pre-work held back their whole cohort. Keep days rather than weeks between learning something and practising it for real, because long gaps caused rapid knowledge loss.
+
+Use remote learning for self-paced pre-requisites. Pairing and labs worked far better face to face. Build the relationship with whoever owns Terraform and GitHub early, because their help with access, guardrails and troubleshooting is needed throughout.
+
+Set expectations for the dip up front. Our team slowed down before getting faster. It took two to three months before people were comfortable raising and reviewing pull requests. That duration is confirmed. Setting the expectation early helps people understand the initial friction as part of learning.
+
+Choose the people who will approve pull requests early and explicitly train them to review. Nobody on the team had used Terraform or GitHub at the start. Someone needs to be qualified to gate a change when the work is handed over, so approval ownership cannot wait until the week before handover.">
   <div class="eyebrow"><i class="dot"></i>07 &middot; Conditions</div>
   <h1>Creating the conditions for success</h1>
-  <div class="body herowrap" style="margin-top:38px">
-    <div class="heropanel">
-      <div class="tag">WHAT THE BUY-IN ACTUALLY RESTED ON</div>
+  <div class="body s07-content">
+    <section class="s07-safety s07-panel">
       <h2>Two kinds of safety</h2>
-      <div class="lede">Leadership needed <strong>operational safety</strong>: no downtime, support unaffected, the team able to adopt it. Engineers needed <strong>psychological safety</strong>: room to learn without breaking the estate. Both had to be true.</div>
-      <hr class="rule">
-      <div class="pt"><i></i><p>Answer leadership's question before you start: can this take the estate down?</p></div>
-      <div class="pt"><i></i><p>Teams that treat mistakes as learning, not blame, retain skills faster and ship more reliably.</p></div>
-      <div class="pt"><i></i><p>Say it out loud, early and often. Don't assume it exists because the team seems friendly.</p></div>
-      <div class="pt"><i></i><p>It has to still hold the week somebody breaks something that matters.</p></div>
-      <div class="foot">Everything to the right depends on both of these being true.</div>
-    </div>
-    <div class="supp">
-      <div class="suppcard"><div class="n">01</div><h3>Stakeholder buy-in first</h3><p>Get non-technical stakeholders and senior leadership bought in on the priority before you start. Ours were slow to 'get it', which cost early momentum.</p></div>
-      <div class="suppcard"><div class="n">02</div><h3>Complete pre-reqs before workshops</h3><p>Engineers who skipped pre-requisite learning held back their whole cohort. Gate attendance on it, no exceptions.</p></div>
-      <div class="suppcard"><div class="n">03</div><h3>Tight loop: learn &rarr; practice</h3><p>Long gaps caused rapid knowledge loss. Keep days, not weeks, between learning something and practising it for real.</p></div>
-      <div class="suppcard"><div class="n">04</div><h3>In-person training and pairing</h3><p>Remote worked for self-paced pre-reqs, but pairing and labs were dramatically better face to face.</p></div>
-      <div class="suppcard"><div class="n">05</div><h3>Partner with your platform-tooling owners</h3><p>You'll need whoever owns Terraform and GitHub for access, guardrails and troubleshooting throughout.</p></div>
-      <div class="suppcard dip"><div class="n">06</div><h3>Expect the dip</h3><p>The team gets slower before it gets faster - for us, two to three months before people were comfortable raising and reviewing PRs. Set that expectation up front.</p></div>
-      <div class="suppcard wide"><div class="n">07</div><h3>Decide who approves the pull requests</h3><p>Nobody on the team had used Terraform - or GitHub. So at handover, who is qualified to gate a change? Train for review explicitly, and choose your approvers early rather than the week before you hand over.</p></div>
+      <div class="s07-safety-row">
+        <svg class="s07-icon s07-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 20 6v6c0 5-3.4 8.4-8 9.5-4.6-1.1-8-4.5-8-9.5V6l8-3.5Z"/><path d="m8.7 12 2.2 2.2 4.4-4.4"/></svg>
+        <p>Leadership needed <strong>operational safety</strong>: no downtime, support unaffected, the team able to adopt it. Answer whether this could take the estate down before starting.</p>
+      </div>
+      <div class="s07-safety-row">
+        <svg class="s07-icon s07-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.2 6.6C6.8 7.6 4.8 10 4.8 13v4.4h5.4V12H7.5c.2-1.8 1.3-3.1 2.7-3.7Z"/><path d="M19.4 6.6C16 7.6 14 10 14 13v4.4h5.4V12h-2.7c.2-1.8 1.3-3.1 2.7-3.7Z"/></svg>
+        <p>Engineers needed <strong>psychological safety</strong>: room to learn while protecting the estate, with mistakes treated as learning rather than blame. Say it early and often. A friendly team is no guarantee. It must still hold when something important breaks.</p>
+      </div>
+      <p class="s07-premise">All seven conditions depend on both.</p>
+    </section>
+    <div class="s07-rail">
+      <article class="s07-condition">
+        <svg class="s07-icon s07-condition-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12h7.6"/><path d="M6.6 8.2 10.4 12l-3.8 3.8"/><path d="M21.5 12h-7.6"/><path d="M17.4 8.2 13.6 12l3.8 3.8"/></svg>
+        <h3>Stakeholder buy-in first</h3>
+        <p>Win over non-technical stakeholders and senior leaders on the priority before starting. Our slow buy-in cost early momentum.</p>
+      </article>
+      <article class="s07-condition">
+        <svg class="s07-icon s07-condition-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21.5v-9"/><circle cx="4" cy="9.6" r="2.6"/><path d="M6.5 8.5 21.5 5.8"/><path d="M6.9 11.3 21.9 8.6"/><path d="M10.2 7.7v2.9M14.2 7v2.9M18.2 6.3v2.9"/></svg>
+        <h3>Complete pre-reqs before workshops</h3>
+        <p>Gate attendance on completed pre-requisite learning, without exceptions. Skipping pre-work held back the whole cohort.</p>
+      </article>
+      <article class="s07-condition">
+        <svg class="s07-icon s07-condition-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6.6V12l3.6 2.1"/></svg>
+        <h3>Practise within days</h3>
+        <p>Long gaps caused rapid knowledge loss. Leave days, rather than weeks, between learning and real practice.</p>
+      </article>
+      <article class="s07-condition">
+        <svg class="s07-icon s07-condition-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M15.5 14.2c2.6.3 4.5 1.9 4.5 4.8"/></svg>
+        <h3>Pair and learn in person</h3>
+        <p>Remote worked for self-paced pre-reqs. Pairing and labs worked far better face to face.</p>
+      </article>
+      <article class="s07-condition">
+        <svg class="s07-icon s07-condition-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.2 13.8a3.9 3.9 0 0 1 0-5.5l2.1-2.1a3.9 3.9 0 0 1 5.5 5.5l-1.1 1.1"/><path d="M13.8 10.2a3.9 3.9 0 0 1 0 5.5l-2.1 2.1a3.9 3.9 0 0 1-5.5-5.5l1.1-1.1"/></svg>
+        <h3>Work with platform owners</h3>
+        <p>Involve Terraform and GitHub owners early for access, guardrails and troubleshooting throughout.</p>
+      </article>
+      <article class="s07-condition">
+        <svg class="s07-icon s07-condition-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5c4 .4 4.2 10.3 9 10.3s5.2-8.5 9-11.6"/></svg>
+        <h3>Expect the dip</h3>
+        <p>Set expectations early: we slowed down before getting faster. People became comfortable raising and reviewing PRs after two to three months.</p>
+      </article>
+      <article class="s07-condition">
+        <svg class="s07-icon s07-condition-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21.5v-9"/><circle cx="4" cy="9.6" r="2.6"/><path d="M6.5 8.5 21.5 5.8"/><path d="M6.9 11.3 21.9 8.6"/><path d="M10.2 7.7v2.9M14.2 7v2.9M18.2 6.3v2.9"/></svg>
+        <h3>Choose PR approvers early</h3>
+        <p>Nobody had used Terraform or GitHub. Train review explicitly and choose qualified approvers well before handover.</p>
+      </article>
     </div>
   </div>
 </section>

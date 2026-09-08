@@ -507,7 +507,12 @@ lives in the speaker notes. Rules are scoped to `#s-estate`, with `--s02-*` sizi
 central navy panel, with seven capabilities on either side and the non-goals below),
 `#4` execution (sandbox wording option E, "Plain sentences", accepted 2026-09-08 in the
 existing layout), `#5` what didn't work (`s-what-didnt-work`, refined sandbox option E,
-"Teaching and the gaps", accepted 2026-09-08), `#6` what worked, `#7` conditions, `#8` mindset,
+"Teaching and the gaps", accepted 2026-09-08), `#6` what worked, `#7` conditions
+(`s-conditions`, sandbox option D, "Gates on a rail", accepted 2026-09-08 with the numerals
+dropped at Dafydd's request so the line-art icons alone mark the rail: a navy safety panel on
+the left and the seven conditions on a vertical rail on the right. Rules are scoped to
+`#s-conditions` in the deck's slide 7 CSS block and use `--s07-*` sizing tokens in `:root`),
+`#8` mindset,
 `#9` learning priorities by role, `#10` the learning pathway (four phases - **merges the old `#9` matrix and
 `#10` timeline**, Aug 2026: both said the same thing twice and neither described what the team
 actually did). Titled "the pathway we **followed**", not "that worked": phase 1 front-loaded
@@ -622,13 +627,21 @@ Notable content slides:
   replacement curriculum on the next slide. The old chart wrapper, five chips and quote
   strip styles are removed. All new rules and required `--s05-*` tokens are scoped to
   `#s-what-didnt-work`; there is no preview injection or alternative layout in the deck.
-- **Conditions** (`#7`): a hero layout - a large left panel establishes both operational
-  safety for leadership and psychological safety for engineers, with four practical points
-  underneath. Seven numbered conditions sit on the right, including the confirmed
-  two-to-three-month dip and choosing and training PR approvers before handover. The seventh
-  spans both columns. Classes `.herowrap`, `.heropanel`, `.supp`/`.suppcard` (`.dip`, `.wide`).
-  Five visually led layout options are awaiting review in the sandbox, replacing a text-only
-  round rejected on 2026-09-08; the source is unchanged.
+- **Conditions** (`#7`, `s-conditions`): sandbox option D, "Gates on a rail", accepted
+  2026-09-08 with the numerals dropped at Dafydd's request, so the line-art icons alone mark
+  the rail. A navy safety panel on the left carries both kinds of safety - operational for
+  leadership behind a shield, psychological for engineers behind a pair of speech marks - over
+  the premise "All seven conditions depend on both." The seven conditions run down a vertical
+  rail on the right, each marked by its own glyph: converging arrows on 01, a barrier on 02 and
+  07, a clock on 03, two figures on 04, a link on 05 and a dip on 06. The accepted copy and the
+  seven paragraphs of speaker notes are the round-one set, with the one sentence about the
+  numbers identifying the conditions removed because there are no numbers any more. Both
+  safeties and all seven conditions stay visible, including the confirmed two-to-three-month
+  dip and choosing and training PR approvers before handover. Every mark is decorative and
+  `aria-hidden`, so the slide reads with all the artwork deleted. All rules are scoped to
+  `#s-conditions` and use the `--s07-*` tokens in `:root`; there is no preview injection or
+  alternative layout in the deck. The old `.herowrap`, `.heropanel`, `.supp` and `.suppcard`
+  (`.dip`, `.wide`) classes and their rules are gone, as nothing else used them.
 - **Learning priorities by role** (`#9`): three role cards across the top; below them two
   radar webs (grid rings plus spokes, thin outlines, translucent fills), each carrying all
   three roles. Left is a small org with no DevOps function, where every shape is broad;
@@ -654,10 +667,10 @@ Speakers (`data-speaker`), matching `docs/timeline-notes.md`: `#5`, `#7`, `#10` 
 Thank You and the appendix slides are unassigned. The new benefits slide keeps Dafydd,
 who presented the original benefits on slide 3.
 
-`#7` carries a seventh condition, "Decide who approves the pull requests" (`.suppcard.wide`,
-full-width across the 2-column grid), and its hero panel is now **Two kinds of safety** -
-operational (leadership) and psychological (engineers) - rather than psychological alone.
-Both from Gordon, Aug 2026. The dip lasted 2-3 months.
+`#7` carries a seventh condition, "Choose PR approvers early" (the last row on the rail), and
+its safety panel is **Two kinds of safety** - operational (leadership) and psychological
+(engineers) - rather than psychological alone. Both from Gordon, Aug 2026. The dip lasted
+2-3 months.
 
 **The four disciplines are a shared vocabulary.** `#21` (skills map) is built on
 **Environment, Git, Terraform, GitOps**. The merged `#10` deliberately drops the discipline
@@ -951,26 +964,6 @@ D Three columns and a closing line, E Paired programming across the top), was su
 2026-09-08 without acceptance: Dafydd rejected all five because every one was still a block
 of text with no visual device. Its copy and notes carry forward into the round above.
 
-`s07-conditions-visual` (2026-09-08, slide 7, Gordon. Round two, five visually led
-compositions: A Two pillars, an SVG post and lintel where two labelled columns stand on a
-ground line with open canvas between them, carry one solid lime beam holding the premise, and
-the seven conditions rest on top of that beam as numbered tiles; B When it applies, a
-horizontal track whose three zones are read from the copy's own words - before you start,
-during, and one condition running throughout as a bar spanning the track - over a ground band
-of both safeties; C The dip, one illustrative slower-before-faster curve filling its column
-with a marked trough, the two-to-three-month span bracketed below it and condition 06 directly
-under that, a visible SHAPE IS ILLUSTRATIVE disclosure and the other six as a run-in numbered
-column; D Gates on a rail, seven conditions on a vertical rail with large mono
-numerals and line-art marks over a navy safety panel carrying a shield and a pair of speech
-marks; E Big numerals, 120px lime mono numerals in a four plus three grid under a full-width
-safety band. Copy and notes are the round-one set unchanged, so only layout and artwork
-differ: 217 body words plus each option's own drawn labels, and the same seven paragraphs of
-proposed notes. All artwork uses deck tokens only, decorative marks carry `aria-hidden` and
-the diagrams carry `role="img"` with a description, so every option still reads with the
-artwork deleted. Direct anchors, full-size views and word counts. The round-one text-only page
-`s07-conditions-for-success` was superseded 2026-09-08 without acceptance, because none of its
-five layouts had a visual device. No option accepted).
-
 Slide 5's review page and the public index entries for slides 4 and 5 were removed after
 Dafydd accepted option E for both on 2026-09-08. Slide 4 already held its accepted wording
 and remains unchanged. The index was cleared before this new review round.
@@ -997,6 +990,20 @@ a direct anchor and a full-size view. The alternatives were removed without acce
 source slide 4 was unchanged by that reset. The later wording-only acceptance is below).
 
 Decided (under `presentations/sandbox/training_a_team/`):
+`s07-conditions-visual` (2026-09-08, slide 7, Gordon, round two: five visually led
+compositions after the text-only round one was rejected. Decided the same day: option D,
+"Gates on a rail", accepted with one change that came with the acceptance - the numerals are
+dropped entirely, because carrying both a large mono numeral and an icon per condition
+cluttered the rail, so the line-art icons alone mark it and the text column moves left into
+the space the numerals held. Applied to the deck as `#s-conditions`: a navy safety panel with
+a shield and a pair of speech marks over the premise, and the seven conditions on a vertical
+rail, the icons grown to sit on the rail line. The accepted copy and the seven paragraphs of
+speaker notes are retained word for word, less the one sentence about the numbers identifying
+the conditions, which no longer applies. Both safeties and all seven conditions remain
+visible. Only the chosen markup and the scoped CSS it needs transfer into the deck, with the
+`--s07-*` tokens in `:root`; the dead `.herowrap` and `.suppcard` rules came out with the old
+layout. The review page and its public index entry are removed.
+Downloads await a separate request);
 `s05-what-didnt-work` (2026-09-08, slide 5, Gordon, five visual designs using shorter
 copy. Option E, "Teaching and the gaps", was refined with the original chart's four
 explanatory annotations in PR #102 and then accepted the same day. Its exact 173-word
