@@ -757,7 +757,7 @@ it up - either way it is on disk for a recovering session.
   `#9`" and "How `#9`'s two charts are scored". Both sandbox pages
   (`s-learning-priorities-role-clarity.html`, `s-learning-priorities-option-d-variants.html`)
   removed and their `presentations/sandbox/training_a_team/index.html` entries turned into
-  non-linked `.done` lines. PR #TODO.
+  non-linked `.done` lines. PR #9.
 
 - **2026-09-08, training_a_team slide 9, three variations of Option D for "Learning
   priorities by role".** Follow-on from the five-option round below (PR #7): Joseph liked
