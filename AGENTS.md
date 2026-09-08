@@ -506,7 +506,8 @@ lives in the speaker notes. Rules are scoped to `#s-estate`, with `--s02-*` sizi
 (`s-learning-outcomes`, sandbox option E accepted 2026-09-08: the trained threshold in a
 central navy panel, with seven capabilities on either side and the non-goals below),
 `#4` execution (sandbox wording option E, "Plain sentences", accepted 2026-09-08 in the
-existing layout), `#5` what didn't work, `#6` what worked, `#7` conditions, `#8` mindset,
+existing layout), `#5` what didn't work (`s-what-didnt-work`, refined sandbox option E,
+"Teaching and the gaps", accepted 2026-09-08), `#6` what worked, `#7` conditions, `#8` mindset,
 `#9` learning priorities by role, `#10` the learning pathway (four phases - **merges the old `#9` matrix and
 `#10` timeline**, Aug 2026: both said the same thing twice and neither described what the team
 actually did). Titled "the pathway we **followed**", not "that worked": phase 1 front-loaded
@@ -604,35 +605,23 @@ Notable content slides:
   local lack of a training playbook and plans matched to skill level. Markup, styling,
   typography and dimensions are unchanged. Classes `.fanout`, `.hub`, `.brace`,
   `.spokes`/`.spoke`, `.flow`/`.flowrow`.
-- **What didn't work** (`#5`): a hero SVG chart across the top - six teaching sessions
-  across six months, each one lifting confidence and each following gap giving some of it
-  back, trending gently upwards overall (people did genuinely build confidence over the six
-  months; what was lost was whatever confidence a gap between sessions let leak away, not
-  the whole programme). **That shape is illustrative, not measured**, and the slide says so
-  in a `SHAPE IS ILLUSTRATIVE` label - keep that label if the chart is edited. The original
-  gradient line chart was rejected and replaced with three sandbox treatments; **option B,
-  the ratchet, was chosen and is now the only chart the deck ships**, as plain markup inside
-  `.chartwrap` (no wrapper classes, nothing hidden by CSS): hard straight lines, a short
-  steep lime riser through each teaching band, then a longer coral fall through the gap that
-  follows, with faint dotted floor lines showing the rising baseline after each cycle. The
-  fall through each gap was then steepened at Joseph's request (a fall of roughly 65-70% of
-  that cycle's rise, stroke-width 4, up from the original ~40% and width 3) so the downturn
-  reads as a real drop rather than a shallow taper; the six months, six teaching-then-gap
-  cycles, 144 hours and the gentle net upward trend by the end are unchanged. The rejected
-  column and blocks-per-month treatments are gone; the sandbox page is deleted and the
-  former index entry was cleared in the 2026-09-08 sandbox reset. Below it, five chips:
-  mixed-ability cohorts (now states plainly that trainers were
-  pitching some sessions too fast and others too slow), theory before the hands-on,
-  documentation shaped like a reference manual (merges the old step-by-step-tutorials and
-  reference-manual chips, adding that the 214,645-word curriculum was AI-assisted and too
-  large to take in), too long a gap between sessions (primary driver is the difficulty of
-  getting a geographically dispersed Mac engineering team into one room, not the same
-  country; unclear infra availability is folded in as a minor secondary factor, downgraded
-  from its own chip), and online meetings (in-person let trainers walk around and help
-  people directly). The old "effort stayed invisible" chip is gone, and the `.won` accent
-  chip ("what replaced it") has moved to `#6`, folded into that slide's "Good third-party
-  documentation" card. Then a quote strip. Classes `.chartwrap`/`.chd`, `.fchips`/`.fchip` and
-  `.qstrip`.
+- **What didn't work** (`#5`, `s-what-didnt-work`): refined sandbox option E, "Teaching
+  and the gaps", accepted 2026-09-08. The lead keeps 144 hours, roughly four weeks of
+  learning, spread across six months. Three teaching issues sit above a full-width navy
+  chart: mixed ability, theory before practice and documentation as a reference manual.
+  Long gaps, online delivery and the exact engineer quote sit below it. All five issues
+  remain visible, including prior coding experience, the 214,645-word AI-assisted
+  curriculum, copy-paste without retention, geography as the main reason for the gaps,
+  infrastructure as a minor factor and trainers helping directly in person. The ratchet
+  chart accepted in the 2026-08-28 option B round keeps its original six-cycle geometry:
+  steep lime teaching rises, coral drops through the gaps and dotted floors rising after
+  each cycle. It is now 250px high, with separately placed labels and the four original
+  explanatory annotations inside the plot. **The shape is illustrative, not measured**;
+  the visible `SHAPE IS ILLUSTRATIVE` disclosure must remain. Body copy is 173 words,
+  down from 232. All seven accepted note paragraphs retain the full account and the
+  replacement curriculum on the next slide. The old chart wrapper, five chips and quote
+  strip styles are removed. All new rules and required `--s05-*` tokens are scoped to
+  `#s-what-didnt-work`; there is no preview injection or alternative layout in the deck.
 - **Conditions** (`#7`): a hero layout - a large left panel gives psychological safety the
   weight the copy claims for it ("the most evidenced condition of all") with three practical
   points under it; the other six conditions, including "Expect the dip", sit right as
@@ -918,7 +907,9 @@ they track deck edits automatically.
   accepted option E from its five replacement variants on 2026-09-08. The earlier slide 4
   and new slide 17 rounds were closed without acceptance in the 2026-09-08 sandbox reset.
   The fresh slide 4 wording round accepted option E, "Plain sentences", the same day,
-  preserving the exact source layout.
+  preserving the exact source layout. Slide 5 then accepted refined option E, "Teaching
+  and the gaps", including the four original chart annotations. Both public sandbox
+  entries were removed at Dafydd's request.
 - Variant CSS only touches the slide's `#id` and only uses the deck's own tokens, so an
   accepted option pastes into the deck unchanged.
 - Injection needs same-origin access, so it only works over HTTP. Opened from `file://` the
@@ -931,25 +922,10 @@ they track deck edits automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages awaiting a decision under `presentations/sandbox/training_a_team/`:
-`s05-what-didnt-work` (2026-09-08, slide 5, Gordon, five visual designs using shorter
-copy: A the chart across the page, B the chart beside the account, C the engineer
-feedback first, D four weeks across six months, E teaching and the gaps). Each preview
-replaces only slide 5's body and proposed notes in a real-deck iframe. The native ratchet
-geometry comes from the current slide, with separate labels that stay readable in narrow
-charts. All six teaching rises and gap drops, the rising confidence floor and the visible
-`SHAPE IS ILLUSTRATIVE` disclosure remain. The same five problems and exact engineer quote
-stay visible. Proposed notes retain the full context, including geography, the minor
-infrastructure factor and the replacement material on the next slide. Content rules and
-sizing tokens belong to the preview-only `#s05-review` id. Each option has an anchor,
-full-size route, notes disclosure and word-count comparison including SVG labels. The
-body copy in A to D is 164 words against 232 in the source, a 29.3% reduction. Option E
-was refined for another review on 2026-09-08: the original chart's four explanatory notes
-replace its shorter legend, with the freed space added to the plot height. E now has 173
-visible body words, a 25.4% reduction against the source. The issue
-wording, quote, surrounding composition and proposed notes remain. Source slide 5 remains
-unchanged and no slide 5 option is accepted. The review footer records slide 4's acceptance
-of option E.
+No pages currently awaiting a decision under `presentations/sandbox/training_a_team/`.
+Slide 5's review page and the public index entries for slides 4 and 5 were removed after
+Dafydd accepted option E for both on 2026-09-08. Slide 4 already held its accepted wording
+and remains unchanged. The index now reads "No open reviews."
 
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page
@@ -973,12 +949,23 @@ a direct anchor and a full-size view. The alternatives were removed without acce
 source slide 4 was unchanged by that reset. The later wording-only acceptance is below).
 
 Decided (under `presentations/sandbox/training_a_team/`):
+`s05-what-didnt-work` (2026-09-08, slide 5, Gordon, five visual designs using shorter
+copy. Option E, "Teaching and the gaps", was refined with the original chart's four
+explanatory annotations in PR #102 and then accepted the same day. Its exact 173-word
+body, seven note paragraphs and 250px chart are applied as `#s-what-didnt-work`, with
+three teaching issues above the plot and two issues plus the engineer quote below it.
+All six teaching rises, gap drops and bands, the rising floor and the illustrative-shape
+disclosure remain. Only the chosen markup and required scoped CSS transfer into the
+deck. The review page and its public index entry are removed at Dafydd's request.
+Downloads await a separate request);
 `s04-wording-refinement` (2026-09-08, slide 4, Joseph, five wording options in the existing
 layout. Decided the same day: option E, "Plain sentences", applied to the sixteen existing
 text fields and the speaker notes. The hub, five numbered spokes, SVG brace and two arrows
 retain their exact markup, CSS, typography and dimensions. All seven accepted note
 paragraphs remain, and three months describes only the secondment. Body copy is 159 words,
-down from 236. The review page is retired and its index entry is non-linked and marked done.
+down from 236. The review page is retired. Its former done entry was removed when Dafydd
+requested both slide 4 and slide 5 reviews cleared on the same day; the accepted source
+slide was verified and left unchanged.
 Downloads await a separate request);
 `s03-learning-outcomes` (2026-09-08, slide 3, Dafydd, five replacement treatments after
 splitting learning outcomes from benefits. Decided the same day: option E, "The trained

@@ -734,6 +734,27 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training_a_team slide 5 option E accepted and slides 4 and 5 cleared from the sandbox.**
+  Dafydd: "now implement option E for slide 5 and option e for slide 4. once applied then
+  remove both from the sandbox". Applied refined E, "Teaching and the gaps", as
+  `#s-what-didnt-work`: the exact 173-word body and all seven accepted note paragraphs,
+  with three teaching issues above the 250px chart and two issues plus the engineer quote
+  below. The four restored chart annotations, six teaching rises, gap drops and bands,
+  rising floor and illustrative-shape disclosure remain. Only the required scoped CSS and
+  tokens transfer; the old chart wrapper, chips and quote strip styles are removed.
+  Slide 4 already held accepted E, "Plain sentences", from PR #101 and is byte-unchanged.
+  Deleted the slide 5 review page and removed both public sandbox entries, including
+  slide 4's former done entry. The training index now reads "No open reviews."
+  Browser and visual QA confirm exact accepted DOM, element geometry, computed styles,
+  body copy and notes. All other 23 source slides and scripts remain unchanged. Notes,
+  navigation, HTTP/file parity and sandbox cleanup checks pass. HTTP and file pixels
+  match except for the bottom progress animation; minor iframe-versus-standalone SVG
+  rasterisation differences prevent a claim of identical reference pixels. All three
+  inline scripts parse and `git diff --check` passes. Evidence is in
+  `/tmp/jnuc-s05-accept-{source,reference,file}.png` and `/tmp/jnuc-s05-accept-qa.json`.
+  Training has no presenter.json, so presenter sync does not apply. Downloads remain
+  deferred under the standing feedback convention.
+
 - **2026-09-08, training_a_team slide 5 option E chart notes restored for review.**
   Dafydd: "refine option e's diagram to include the word notes from the original. then
   let me review again". Restored the four original explanatory notes verbatim inside
