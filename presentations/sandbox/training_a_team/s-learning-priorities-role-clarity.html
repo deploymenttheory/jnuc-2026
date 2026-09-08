@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sandbox - slide 9 Learning priorities by role</title>
+<link rel="stylesheet" href="../sandbox.css">
+</head>
+<body>
+<div class="wrap">
+  <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / Training a team / slide 9</p>
+  <h1>Slide 9 - Learning priorities by role</h1>
+  <p class="lede">Five layouts for the same slide, all built as real markup inside <code>#s-learning-priorities</code> (this is a full redesign, so CSS alone could not carry it). Every option keeps both points the speaker wants landed - each role only needs a minimum set of capabilities, not everything, and what the team ends up owning (and how steep the climb is) depends on the org's size - and every settled fact from <code>AGENTS.md</code> stays in the full speaker notes regardless of which option is on screen: Jamf APIs score identically in both org sizes, Environment is the real differentiator, Git and GitOps barely move but lose authority in a large org, Mentoring is low in a small org and high in a large one, and the governing-principle wording ("Design, build and maintain the platform..." / "Consume the platform, inside its guardrails...") is unchanged. The deck ships all five wrappers; only <code>-opt-a</code> shows by default, and this page's CSS just flips which one is visible per iframe. <a href="../../training_a_team/index.html?theme=default#9">Compare the current slide</a>.</p>
+  <nav class="jump" aria-label="Options">
+    <a href="#a">A</a><a href="#b">B</a><a href="#c">C</a><a href="#d">D</a><a href="#e">E</a>
+  </nav>
+
+  <section class="option" id="a">
+    <h2>Option A - Role cards and paired radar <span class="tag">live now</span></h2>
+    <p>The deck as it currently ships: three bullet-heavy role cards across the top, then two six-axis radar charts (small org vs large org) with three overlaid role polygons each, plus a "why" list under each chart. This is the baseline every other option is measured against - it carries every fact but at real cost to reading speed, which is the feedback this round exists to fix.</p>
+    <div class="frame"><iframe data-variant="a" src="../../training_a_team/index.html?theme=default#9" title="Option A"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-a"></pre></details>
+  </section>
+
+  <section class="option" id="b">
+    <h2>Option B - Minimum bar</h2>
+    <p>Drops the radar charts and the bulleted role cards entirely. Two plain-text sections, each opening with a single bold lead sentence that states the point outright: "Nobody needs to know everything" above three one-line role minimums, then "What your team owns depends on your org's size" above two short plain-text panels (small org vs large org) carrying the same governing-principle straplines. No SVG, no chart - pick this if the room needs the two points said in as few words as possible.</p>
+    <div class="frame"><iframe data-variant="b" src="../../training_a_team/index.html?theme=default#9" title="Option B"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-b"></pre></details>
+  </section>
+
+  <section class="option" id="c">
+    <h2>Option C - Two statements, one comparison strip</h2>
+    <p>Each point gets its own numbered headline ("01 Each role has a minimum", "02 What you own scales with your org's size"). Role minimums become three small chips in a row under the first headline. The twin radar is replaced with a compact four-row comparison strip (Environment, Git &amp; GitOps, Jamf APIs, Mentoring) reading small org against large org side by side - the same information the radar carried, in a shape that reads left to right instead of needing six axes decoded per chart. Pick this if you want the chart gone but still want a discipline-by-discipline comparison on screen.</p>
+    <div class="frame"><iframe data-variant="c" src="../../training_a_team/index.html?theme=default#9" title="Option C"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-c"></pre></details>
+  </section>
+
+  <section class="option" id="d">
+    <h2>Option D - Role-by-org-size matrix</h2>
+    <p>A single table crossing role against org size, one row per role: the minimum for that role on the left, and what a bigger org changes on the right. The right-hand column deliberately opens with the same three words each time - "Same minimum." - because the point is that org size does not change what a role needs to know, it changes what the team owns underneath. This is the option that most directly answers "what would your team own based on the size of the org" while keeping the role minimums attached to their own row rather than separated into a different section.</p>
+    <div class="frame"><iframe data-variant="d" src="../../training_a_team/index.html?theme=default#9" title="Option D"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-d"></pre></details>
+  </section>
+
+  <section class="option" id="e">
+    <h2>Option E - Staged narrative</h2>
+    <p>Two full-width statement panels stacked in sequence, styled like a worked argument rather than a reference card: "Point one - not everyone needs to know everything" with three numbered lines underneath, then "Point two - what you own depends on your org's size" with the two governing-principle sentences side by side in a two-column split and the closing line beneath. No chart, no grid - the most linear of the five, closest to reading as a spoken argument rather than a lookup table.</p>
+    <div class="frame"><iframe data-variant="e" src="../../training_a_team/index.html?theme=default#9" title="Option E"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-e"></pre></details>
+  </section>
+
+  <p class="foot">To choose: name the option in chat, or describe what to change and this page gets a new set. Renders need the site served over HTTP - opened from disk the iframes load but the option CSS cannot be injected.</p>
+</div>
+
+<script>
+  // Every option already exists as real markup in the deck, inside
+  // #s-learning-priorities, as .s-learning-priorities-opt-a .. -opt-e. The deck
+  // hides everything but -opt-a by default. Each variant's CSS here just flips
+  // which wrapper is visible in that iframe - nothing here changes the deck's
+  // content or facts, only which prepared layout is shown.
+  const VARIANTS = {
+    a: ``,
+    b: `#s-learning-priorities .s-learning-priorities-opt-a{display:none}
+#s-learning-priorities .s-learning-priorities-opt-b{display:flex}`,
+    c: `#s-learning-priorities .s-learning-priorities-opt-a{display:none}
+#s-learning-priorities .s-learning-priorities-opt-c{display:flex}`,
+    d: `#s-learning-priorities .s-learning-priorities-opt-a{display:none}
+#s-learning-priorities .s-learning-priorities-opt-d{display:flex}`,
+    e: `#s-learning-priorities .s-learning-priorities-opt-a{display:none}
+#s-learning-priorities .s-learning-priorities-opt-e{display:flex}`,
+  };
+
+  for (const [key, css] of Object.entries(VARIANTS)) {
+    document.getElementById('css-' + key).textContent = css || '/* nothing - this is the deck as deployed */';
+  }
+
+  document.querySelectorAll('iframe[data-variant]').forEach((frame) => {
+    frame.addEventListener('load', () => {
+      const css = VARIANTS[frame.dataset.variant];
+      if (!css) return;
+      let doc;
+      try { doc = frame.contentDocument; } catch (e) { doc = null; }
+      if (!doc) return; // file:// - cross-origin iframe, nothing we can do
+      const style = doc.createElement('style');
+      style.textContent = css;
+      doc.head.appendChild(style);
+    });
+  });
+</script>
+</body>
+</html>
