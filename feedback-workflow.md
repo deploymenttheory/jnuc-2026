@@ -752,7 +752,7 @@ it up - either way it is on disk for a recovering session.
   mobile chrome, pinned navigation, full-size routes and source checks pass. A's lower
   three conditions use equal widths to give the dip room; E's upper row has a clear gap
   above the safety band. Inline JavaScript syntax, added-copy dash lint and
-  `git diff --check` pass. No option has been accepted.
+  `git diff --check` pass. No option has been accepted. PR #105.
 
 - **2026-09-08, training_a_team slide 5 option E accepted and slides 4 and 5 cleared from the sandbox.**
   Dafydd: "now implement option E for slide 5 and option e for slide 4. once applied then
