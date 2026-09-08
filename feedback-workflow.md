@@ -755,7 +755,7 @@ it up - either way it is on disk for a recovering session.
   byte-identical, all ten pending previews and sixteen review links work, and there are no
   browser errors or remote requests. Inline JavaScript syntax, added-copy dash lint and
   git diff checks pass. Training has no presenter.json, so presenter sync does not apply.
-  Downloads remain deferred under the standing feedback convention. PR number pending.
+  Downloads remain deferred under the standing feedback convention. PR #97.
 
 - **2026-09-08, training_a_team slide 3 split into learning outcomes, five replacement options.**
   Dafydd rejected the earlier options because they lost too much of the original message and
