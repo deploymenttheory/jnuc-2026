@@ -734,6 +734,30 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training_a_team slide 9, five full-redesign layouts for "Learning
+  priorities by role".** Dafydd said the slide (three role cards plus twin six-axis radar
+  charts) was too dense to follow and needed two points made plainly: nobody needs to know
+  everything, and what the team owns and how steep the climb is depends on the org's size.
+  Deterministic: gave the previously-unidentified section a stable id,
+  `s-learning-priorities`, and scoped its `.roles3`/`.scen2` CSS to it, matching `s-estate`,
+  `s-learning-outcomes` and `s-learner-benefits`. Because this is a full redesign, all five
+  options ship as real markup inside the section as `.s-learning-priorities-opt-a..e`
+  wrappers - a deck rule shows only `-opt-a` by default, and the sandbox page just flips
+  which wrapper is visible per iframe. A keeps the current role cards and paired radar
+  (live now). B drops the chart and role bullets entirely for two plain-text sections, each
+  led by a one-sentence statement of the point. C gives each point a numbered headline, with
+  role minimums as three chips and the twin radar replaced by a four-row small-org/large-org
+  comparison strip. D is a role-by-org-size matrix - one row per role, the minimum on the
+  left, and a right-hand column that opens "Same minimum" every time to show org size
+  changes team ownership, not the per-role bar. E is a staged two-statement narrative with
+  numbered lines and a two-column governing-principle split, no chart. Every option keeps
+  both points and every settled fact from AGENTS.md's "Two deliberate decisions on #9" and
+  "How #9's two charts are scored" (Jamf APIs identical in both org sizes, Environment as
+  the real differentiator, Git/GitOps barely moving but losing authority, Mentoring low in
+  a small org and high in a large one, and the exact governing-principle wording) in the
+  section's one shared `data-notes`, unchanged regardless of which option is visible. Added
+  `s-learning-priorities-role-clarity.html`. No option is accepted. PR #<pending>.
+
 - **2026-09-08, training_a_team slide 5, five visual designs with shorter wording.**
   Dafydd requested five different visual designs and around 25-30% fewer words for
   "What didn't work". Added `s05-what-didnt-work.html` alongside the still-open slide 4
