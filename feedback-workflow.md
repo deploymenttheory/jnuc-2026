@@ -734,6 +734,30 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training slide 8, header rule added to all five size options.** Dafydd reviewed
+  the five text-size options on `presentations/sandbox/training_a_team/s08-mindset-text-sizes.html`
+  (PR #110) and asked for one change in all five: a rule under the three column headers, BEFORE,
+  WHAT THEY WERE ASKING and AFTER, with the first row sitting beneath it at the same spacing as
+  every other row. Before this the header row carried no hairline and the first row sat tighter
+  against the headers than the later rows sit against the rules above them. The page's injected
+  block now gives `.ms-head` the same 1px bottom border the rows already use, in the same colour
+  per band - `--border-soft` on the navy panel, `--accent-deep` on the lime rail and on the
+  canvas column - and sets `--s08-head-gap` to `var(--s08-row-gap)` so the space under the header
+  rule matches the space under every other rule. It is pure CSS on the shipped markup: the three
+  headers are already their own `.ms-head` elements, so no DOM change was needed and the
+  equivalent deck edit is a bottom border and a bottom margin on `.mindset .ms-head`. The five
+  size steps are otherwise untouched, and the deck is still unchanged by this round, with an
+  empty diff against `origin/main` under `presentations/training_a_team/`. The rule and its row
+  gap add 21px to the grid, which put option E past the bottom of the content box at 1014px, so
+  E's row padding drops from 20px to 19px, one pixel across all seven rows, and its description
+  says so. Re-measured grid bottoms in deck coordinates against the 1008 content limit: A 918.2,
+  B 974.8, C 997.6, D 1000.9, E 1007.3. Evidence: headless Chrome with no virtual time budget
+  over HTTP on port 8752, `?option=a` to `?option=e` each screenshotted at 1920x1080 and read -
+  the hairline appears under all three headers in the right band colour in every option, the
+  first row is spaced like the rest, all three columns of all seven rows share a top edge, and
+  nothing reaches the footer hairline. The lede, option E's description, the closing paragraph,
+  the sandbox index `.meta` and the AGENTS.md sandbox paragraph were updated to match. PR #111.
+
 - **2026-09-08, training slide 8, five text-size options.** Dafydd asked for the Mindset shift
   slide to keep its content and its layout exactly as they are and simply have larger text, with
   five sizes to choose from. Added `presentations/sandbox/training_a_team/s08-mindset-text-sizes.html`,
