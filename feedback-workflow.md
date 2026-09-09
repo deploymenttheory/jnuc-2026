@@ -734,6 +734,26 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-09, training_a_team slide 15 "Onboarding" tidied, no sandbox round.** Gordon: "I
+  love this slide, the idea of an open pull request ticket and the details being the PR
+  description. Can you just tidy it up a little, there is a lot on screen and I think it
+  could be clearer and easier on the eyes." Done directly rather than a dispatched agent or a
+  three-option round, since he asked for a light touch on a slide whose concept he already
+  liked, not a redesign. First pass: merged two pairs of the nine left-column checklist items
+  down to seven with no fact lost, grew the row padding and line-height, widened the left
+  column against the right (3fr/2fr) and vertically centred the right column's shorter
+  content as one group instead of leaving a dead gap under it, and tightened one
+  over-formal line. Shown for review, Gordon replied "Can you tidy it up a bit more? The
+  bullet points are looking good now, but the top of the page is still a bit busy." Second
+  pass: split the three label pills onto their own row, moved assignees to a quieter line
+  below headed by a dimmed "Assignees" word, and dropped the one-off blue label variant
+  (`.lbl.b`) that was adding a colour with no real meaning next to the blue already used for
+  the new-starter column. Gordon: "Yup, I like that, merge." Verified with a disk screenshot
+  after each pass and a final one before merging; dash lint clean; `git diff --stat` scoped
+  to `presentations/training_a_team/index.html` and `AGENTS.md`. `data-notes` unchanged - the
+  underlying facts were never in question. Training has no presenter.json, so presenter sync
+  does not apply. Committed and pushed directly to `main`, no PR.
+
 - **2026-09-09, training_a_team slide 11 "Delivery" decided: the spectrum rail, with two
   stop renames.** Gordon: "Okay, I like that, before you merge, change 'Game days' to 'hack
   days' and change 'The bad week' to 'The first bug'" - an acceptance and a same-breath

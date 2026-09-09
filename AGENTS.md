@@ -572,7 +572,7 @@ with it - the label is right-aligned inside a box the same width as the gate off
 
 Then `#11` delivery (`s-delivery`, rebuilt 2026-09-09 as a spectrum rail, see Notable
 content slides), `#12` content types, `#13` Louise's case study, `#14` sister-team
-scope, `#15` onboarding, `#16` hiring, `#17` learner benefits, `#18` learning materials,
+scope, `#15` onboarding (tidied 2026-09-09, see Notable content slides), `#16` hiring, `#17` learner benefits, `#18` learning materials,
 `#19` Questions and `#20` Thank You. The appendix is `#21` the skills map, `#22` the old
 pathway matrix, `#23` the old week-by-week timeline and `#24` the colour system. The
 matrix and timeline remain for readers at Gordon's request and have no assigned speaker.
@@ -697,6 +697,30 @@ Notable content slides:
   "The bad week" to "The first bug" - both updated in the deck and in `data-notes`. Classes
   `#s-delivery .dl-rail` and its `.dlr-*` children; the original `.modecard`/`.rulebar` rules
   and the rejected panels/bands options are removed.
+- **Onboarding** (`#15`, `.issue`/`.onb`, no stable id): the slide Gordon calls out as his
+  favourite idea in the deck - the practices are framed as one open GitHub-style pull
+  request/issue ticket (`OPEN` badge, title, `#1`, labels, assignees, a description callout,
+  then two checklist columns, "what the team puts in place" and "what the new starter
+  brings"). Tidied 2026-09-09 directly (no sandbox round, at Gordon's request - "just tidy it
+  up a little... a lot on screen"), in two passes. First pass: merged two pairs of checklist
+  items (documentation home with environment architecture; ways of working with what a good
+  PR looks like), taking the left column from nine items to seven with no fact dropped; grew
+  `.icols li` padding and line-height; widened the left column against the right
+  (`grid-template-columns:3fr 2fr`, up from `1fr 1fr`, since the left genuinely has more to
+  say) and vertically centred the right column's shorter list plus its closing line as one
+  group (`.icols>section+section{justify-content:center}`) instead of pinning it to the top
+  with a dead gap below; tightened one over-formal line ("Consumption of documentation and
+  coding standards before committing the first PR, so review is spent on the change and not
+  on other factors" to "Reads the documentation and coding standards before their first PR,
+  so review is spent on the change"). Second pass, after Gordon said the top still looked
+  busy: split the three label pills onto their own row (`.meta` now `flex-direction:column`,
+  a nested `.labels` row) and gave assignees its own quieter line below, headed by a dimmed
+  "Assignees" word (`.assign b{color:var(--faint)}`) rather than a plain "assignees:" prefix
+  run straight into the pills; dropped the one-off blue `.lbl.b` label variant so all three
+  tags read as one consistent style, since the second colour wasn't carrying any real
+  distinction and only added noise next to the blue already used for the "new starter"
+  column. `data-notes` unchanged - the underlying facts were never in question, only the
+  layout. Verified with disk screenshots after each pass. No presenter.json for this deck.
 - **Execution** (`#4`, "How we ran it"): wording option E, "Plain sentences", accepted
   2026-09-08. The existing fan-out layout remains: one Mac engineer in the DevOps CoE in
   a hub panel, a three-month full-time secondment to train the trainer, an SVG brace to

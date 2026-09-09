@@ -956,33 +956,35 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .issue .t1 .no{font-family:var(--mono);font-size:24px;color:var(--muted)}
 .issue .open{font-family:var(--mono);font-size:14px;letter-spacing:.12em;background:var(--accent);
   color:var(--on-accent);border-radius:20px;padding:5px 14px;flex:none}
-.issue .meta{display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap}
+.issue .meta{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.issue .labels{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .issue .lbl{font-family:var(--mono);font-size:14px;border-radius:20px;padding:3px 11px;
   border:1px solid var(--green-deep);color:var(--green-bright)}
-.issue .lbl.b{border-color:var(--blue-border);color:var(--blue-light)}
-.issue .assign{font-family:var(--mono);font-size:14px;color:var(--muted);margin-left:6px}
+.issue .assign{font-family:var(--mono);font-size:14px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.issue .assign b{font-weight:400;color:var(--faint)}
 .issue .desc{padding:18px 30px;border-bottom:1px solid var(--border);display:flex;gap:20px}
 .issue .desc i{width:4px;background:var(--green-deep);border-radius:2px;flex:none}
 .issue .desc p{font-size:19px;line-height:1.4;color:var(--text-dim)}
-.icols{display:grid;grid-template-columns:1fr 1fr;flex:1}
-.icols>section{padding:20px 30px;display:flex;flex-direction:column}
-.icols>section+section{border-left:1px solid var(--border)}
+.icols{display:grid;grid-template-columns:3fr 2fr;flex:1}
+.icols>section{padding:26px 34px;display:flex;flex-direction:column}
+.icols>section+section{border-left:1px solid var(--border);justify-content:center}
 .icols h4{font-family:var(--mono);font-size:15px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--green-bright);font-weight:400;margin-bottom:12px}
+  color:var(--green-bright);font-weight:400;margin-bottom:16px}
 .icols .you h4{color:var(--blue-light)}
 .icols ul{list-style:none}
-.icols li{display:flex;gap:14px;align-items:flex-start;padding:7.5px 0;font-size:18.5px;
-  line-height:1.32;color:var(--text-dim-3)}
-.icols .bx{width:20px;height:20px;border:2px solid var(--green-deep);border-radius:4px;flex:none;
+.icols li{display:flex;gap:16px;align-items:flex-start;padding:11px 0;font-size:19.5px;
+  line-height:1.38;color:var(--text-dim-3)}
+.icols .bx{width:21px;height:21px;border:2px solid var(--green-deep);border-radius:5px;flex:none;
   margin-top:3px;position:relative}
 .icols .you .bx{border-color:var(--blue-border)}
 .icols .bx:after{content:"";position:absolute;left:5px;top:1px;width:6px;height:11px;
   border:solid var(--accent);border-width:0 2px 2px 0;transform:rotate(42deg)}
 .icols .you .bx:after{border-color:var(--blue)}
-/* the right column is shorter by design, so its closing line sits on the
-   baseline rather than leaving the whitespace hanging under it */
-.icols .close{font-size:18.5px;line-height:1.4;color:var(--text-dimmer);margin-top:auto;
-  border-top:1px solid var(--blue-border);padding-top:16px}
+/* the right column's content is vertically centred as one group (the list
+   plus the closing line), so the extra room it has next to the longer left
+   column reads as deliberate breathing space, not an unfinished gap. */
+.icols .close{font-size:19px;line-height:1.42;color:var(--text-dimmer);margin-top:28px;
+  border-top:1px solid var(--blue-border);padding-top:18px}
 
 /* ---------- slide 18 ---------- */
 .res{border:1px solid var(--border);border-radius:10px;background:var(--surface);padding:24px 28px;margin-bottom:22px}
@@ -1741,10 +1743,12 @@ Choose the people who will approve pull requests early and explicitly train them
           <span class="no">#1</span>
         </div>
         <div class="meta">
-          <span class="lbl">onboarding</span>
-          <span class="lbl">ways-of-working</span>
-          <span class="lbl b">good-first-fortnight</span>
-          <span class="assign">assignees: the team lead, the SMEs, the buddy, the new starter</span>
+          <div class="labels">
+            <span class="lbl">onboarding</span>
+            <span class="lbl">ways-of-working</span>
+            <span class="lbl">good-first-fortnight</span>
+          </div>
+          <span class="assign"><b>Assignees</b> team lead &middot; SMEs &middot; buddy &middot; new starter</span>
         </div>
       </div>
       <div class="desc"><i></i>
@@ -1757,15 +1761,13 @@ Choose the people who will approve pull requests early and explicitly train them
         <section>
           <h4>What the team puts in place</h4>
           <ul>
-            <li><span class="bx"></span>One documentation home: a repo or Confluence</li>
-            <li><span class="bx"></span>The environment architecture, written down</li>
-            <li><span class="bx"></span>Somewhere to practise: an unused Jamf Pro instance and a local Terraform dev environment, to create, edit and delete freely</li>
+            <li><span class="bx"></span>One documentation home (a repo or Confluence), with the environment architecture written down</li>
+            <li><span class="bx"></span>Somewhere to practise: an unused Jamf Pro instance and a local dev environment, free to create, edit and delete</li>
             <li><span class="bx"></span>Common helper scripts centralised, VS Code config shared</li>
             <li><span class="bx"></span>A getting started reference: access needs and security group membership</li>
             <li><span class="bx"></span>Facilitated 1:1s with the SMEs who own each thing: workflows, module structure, remote state, git triggers, the PR process</li>
             <li><span class="bx"></span>A named senior buddy for 8&ndash;12 weeks, a peer not a manager</li>
-            <li><span class="bx"></span>Ways of working in the repo: coding standards and style guide</li>
-            <li><span class="bx"></span>What a good PR looks like, enshrined and expected of everyone</li>
+            <li><span class="bx"></span>Ways of working in the repo: coding standards, style guide, and what a good PR looks like</li>
           </ul>
         </section>
         <section class="you">
@@ -1774,7 +1776,7 @@ Choose the people who will approve pull requests early and explicitly train them
             <li><span class="bx"></span>Time set aside, because this does not happen in the gaps between other work</li>
             <li><span class="bx"></span>Questions they could not answer themselves, brought to the 1:1s</li>
             <li><span class="bx"></span>Their own knowledge gaps, named out loud and chased down</li>
-            <li><span class="bx"></span>Consumption of documentation and coding standards before committing the first PR, so review is spent on the change and not on other factors</li>
+            <li><span class="bx"></span>Reads the documentation and coding standards before their first PR, so review is spent on the change</li>
           </ul>
           <p class="close">You can build every item on the left and it still will not be enough on
             its own. Onboarding is something a new starter does, not something done to them.</p>
