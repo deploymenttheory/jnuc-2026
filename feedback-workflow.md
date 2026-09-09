@@ -734,6 +734,20 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-09, training_a_team slide 16 "Hiring" decided: the icon board.** Gordon: "I like
+  option F, if you could use that and merge." A plain acceptance, no changes requested. Done
+  directly rather than through a dispatched agent, continuing the cheap-rounds request. Wrote
+  the icon board into the deck as the net result: promoted the wrapper from
+  `.s-hiring-opt-f` to `#s-hiring .hib`, removed the other four options (chip cluster,
+  scorecard table, two-routes fork, stepping bands) and the original two-card layout
+  entirely, along with their CSS. Deleted the sandbox page `s-hiring-five-visuals.html` and
+  turned its index entry into a `.done` line; `AGENTS.md`'s slide map, Notable content slides
+  and Sandbox section all updated to match. Verified: disk screenshot of the final slide, no
+  duplicate ids and balanced section tags across the file, dash lint clean, `git diff --stat`
+  scoped to the deck file, the sandbox index, the deleted sandbox page and `AGENTS.md`.
+  `data-notes` unchanged - the underlying facts were never in question. Training has no
+  presenter.json, so presenter sync does not apply. Pushed directly to `main`, no PR.
+
 - **2026-09-09, training_a_team slide 16 "Hiring", five visual treatments, awaiting a
   decision.** Gordon: "the content is right, it's just a bit boring. Can you come up with 5
   different visuals for this slide. Completely different from each other." Done directly

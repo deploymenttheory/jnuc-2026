@@ -573,8 +573,7 @@ with it - the label is right-aligned inside a box the same width as the gate off
 Then `#11` delivery (`s-delivery`, rebuilt 2026-09-09 as a spectrum rail, see Notable
 content slides), `#12` content types, `#13` Louise's case study, `#14` sister-team
 scope, `#15` onboarding (tidied 2026-09-09, see Notable content slides), `#16` hiring
-(`s-hiring`, id added 2026-09-09; a five-option sandbox round is open to replace the two
-plain bordered cards with a genuinely visual treatment, see Sandbox), `#17` learner benefits, `#18` learning materials,
+(`s-hiring`, rebuilt 2026-09-09 as an icon board, see Notable content slides), `#17` learner benefits, `#18` learning materials,
 `#19` Questions and `#20` Thank You. The appendix is `#21` the skills map, `#22` the old
 pathway matrix, `#23` the old week-by-week timeline and `#24` the colour system. The
 matrix and timeline remain for readers at Gordon's request and have no assigned speaker.
@@ -723,6 +722,22 @@ Notable content slides:
   distinction and only added noise next to the blue already used for the "new starter"
   column. `data-notes` unchanged - the underlying facts were never in question, only the
   layout. Verified with disk screenshots after each pass. No presenter.json for this deck.
+- **Hiring** (`#16`, `s-hiring`): rebuilt 2026-09-09 from two plain bordered cards (a dashed
+  bullet list of six skills, a dashed bullet list of three market facts plus two pieces of
+  advice) into a 3x2 icon board - one hand-drawn geometric mark per skill (this deck has no
+  icon sprite: a hexagon for Terraform, a branch glyph for Git CLI, a terminal for
+  scripting, a refresh loop for CI/CD, a plug pair for API/REST, a star for open source), the
+  skill name and its one-line reason beneath each, then a footer strip splitting the three
+  market facts (left) from the two pieces of advice (right, accent-bordered). Content
+  unchanged from the source - only the presentation changed. Chosen from a five-option round
+  (chip cluster, scorecard table, a two-routes fork diagram, stepping bands matching slides 9
+  and 11, this icon board); two of the round's ideas were built, screenshotted and dropped
+  for misrepresenting the source rather than just restyling it - a "signal strength" dot
+  rating per skill on the scorecard option (the source never ranks these skills against each
+  other) and a Venn-style overlap diagram (would have implied Mac admins already have these
+  skills, when the actual advice is to train towards them). Classes `#s-hiring .hib` and its
+  `.hib-*` children; the other four options and the original two-card layout are removed.
+  `data-notes` unchanged - the underlying facts were never in question, only the layout.
 - **Execution** (`#4`, "How we ran it"): wording option E, "Plain sentences", accepted
   2026-09-08. The existing fan-out layout remains: one Mac engineer in the DevOps CoE in
   a hub panel, a three-month full-time secondment to train the trainer, an SVG brace to
@@ -1092,16 +1107,11 @@ spectrum rail, each borrowing a real `migrating_an_instance` layout) and two fol
 rounds - enlarge and add icons, then two stop renames - all now decided; see the Notable
 content slides entry above for the accepted result. The review page is retired.
 
-`s-hiring-five-visuals` (2026-09-09, slide 16, Dafydd, "the content is right, it's just a
-bit boring": five completely different visual treatments of the same six skills, three
-market facts and two pieces of advice, each real markup inside `#s-hiring` -
-`.s-hiring-opt-b` a chip cluster, `-opt-c` a scorecard table, `-opt-d` a two-routes fork
-diagram, `-opt-e` stepping bands matching slides 9 and 11, `-opt-f` a 3x2 icon board of
-hand-drawn geometric marks (this deck has no icon sprite). Two ideas were tried and dropped
-during the build for inventing claims the source doesn't make: a "signal strength" dot
-rating per skill on the scorecard, and a Venn-style overlap diagram that would have implied
-Mac admins already have these skills. Content is identical across every option; only the
-presentation changes. No option is accepted.
+Slide 16 (hiring) went through one options round - five treatments (a chip cluster, a
+scorecard table, a two-routes fork diagram, stepping bands matching slides 9 and 11, a 3x2
+icon board), each real markup inside `#s-hiring`, content identical throughout - now decided
+in favour of the icon board; see the Notable content slides entry above for the accepted
+result. The review page is retired.
 
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page
