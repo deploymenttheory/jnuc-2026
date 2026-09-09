@@ -734,6 +734,53 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-09, training_a_team slide 16 "Hiring", five visual treatments, awaiting a
+  decision.** Gordon: "the content is right, it's just a bit boring. Can you come up with 5
+  different visuals for this slide. Completely different from each other." Done directly
+  rather than through a dispatched agent, continuing the cheap-rounds request. Gave the slide
+  a stable id, `s-hiring` (it had none), and wrapped the shipped two-card layout as option A.
+  Five new options, content identical throughout (six skills, three market facts, two pieces
+  of advice): B a chip cluster (sized chips, Terraform and Git CLI bigger since the notes
+  single them out); C a scorecard table (skill, why it matters, in a bordered card); D a
+  branching "two routes" diagram (hire externally vs promote internally, forking from one
+  statement); E stepping bands, reusing the pattern from slides 9 and 11; F a 3x2 icon board
+  of hand-drawn geometric marks, since this deck carries no icon sprite. Two ideas were
+  built, screenshotted and then dropped for misrepresenting the source: a "signal strength"
+  dot rating per skill on the scorecard (the source never ranks these skills against each
+  other) and a two-circle Venn diagram with the six skills in the overlap between "Mac admin
+  today" and "Terraform/DevOps" (the source never claims Mac admins already have these
+  skills - the advice is to train towards them). A real layout bug was also caught and fixed
+  before showing this round: every option initially rendered flush against the H1 with no
+  top margin (the original layout's spacing came from an inline style on the deck's own
+  `.body` div that the new option wrappers didn't inherit), and option E's market-facts grid
+  was auto-flowing three facts across two columns in a confusing interleave rather than a
+  clean split - both fixed and reverified before the sandbox page went up. Sandbox page
+  `s-hiring-five-visuals.html`, linked from the training sandbox index. Verified: disk
+  screenshots of every option including the two intermediate bug-fix passes, dash lint
+  clean, `git diff --stat` scoped to `presentations/training_a_team/index.html`, the new
+  sandbox page, the sandbox index and `AGENTS.md`. Training has no presenter.json, so
+  presenter sync does not apply. Pushed directly to `main`, no PR.
+
+- **2026-09-09, training_a_team slide 15 "Onboarding" tidied, no sandbox round.** Gordon: "I
+  love this slide, the idea of an open pull request ticket and the details being the PR
+  description. Can you just tidy it up a little, there is a lot on screen and I think it
+  could be clearer and easier on the eyes." Done directly rather than a dispatched agent or a
+  three-option round, since he asked for a light touch on a slide whose concept he already
+  liked, not a redesign. First pass: merged two pairs of the nine left-column checklist items
+  down to seven with no fact lost, grew the row padding and line-height, widened the left
+  column against the right (3fr/2fr) and vertically centred the right column's shorter
+  content as one group instead of leaving a dead gap under it, and tightened one
+  over-formal line. Shown for review, Gordon replied "Can you tidy it up a bit more? The
+  bullet points are looking good now, but the top of the page is still a bit busy." Second
+  pass: split the three label pills onto their own row, moved assignees to a quieter line
+  below headed by a dimmed "Assignees" word, and dropped the one-off blue label variant
+  (`.lbl.b`) that was adding a colour with no real meaning next to the blue already used for
+  the new-starter column. Gordon: "Yup, I like that, merge." Verified with a disk screenshot
+  after each pass and a final one before merging; dash lint clean; `git diff --stat` scoped
+  to `presentations/training_a_team/index.html` and `AGENTS.md`. `data-notes` unchanged - the
+  underlying facts were never in question. Training has no presenter.json, so presenter sync
+  does not apply. Committed and pushed directly to `main`, no PR.
+
 - **2026-09-09, training_a_team slide 11 "Delivery" decided: the spectrum rail, with two
   stop renames.** Gordon: "Okay, I like that, before you merge, change 'Game days' to 'hack
   days' and change 'The bad week' to 'The first bug'" - an acceptance and a same-breath
