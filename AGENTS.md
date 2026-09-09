@@ -570,8 +570,8 @@ flow were in. Everything left of the gate is the whole team; phase 4 is the main
 Confirmed by Gordon Deacon, Aug 2026. Move the gate and you must move the `.gate-label` width
 with it - the label is right-aligned inside a box the same width as the gate offset.
 
-Then `#11` delivery (`s-delivery`, id added 2026-09-09; a three-option sandbox round is
-open to cut its two ten-item lists down and add visual structure, see Sandbox), `#12` content types, `#13` Louise's case study, `#14` sister-team
+Then `#11` delivery (`s-delivery`, rebuilt 2026-09-09 as a spectrum rail, see Notable
+content slides), `#12` content types, `#13` Louise's case study, `#14` sister-team
 scope, `#15` onboarding, `#16` hiring, `#17` learner benefits, `#18` learning materials,
 `#19` Questions and `#20` Thank You. The appendix is `#21` the skills map, `#22` the old
 pathway matrix, `#23` the old week-by-week timeline and `#24` the colour system. The
@@ -681,6 +681,22 @@ Notable content slides:
   role's minimum is not the whole picture, and what the team owns and how steep the climb is
   scales with org size - and every settled fact from "Two deliberate decisions on `#9`" and
   "How `#9`'s two charts are scored" below, now carried in the section's `data-notes`.
+- **Delivery** (`#11`, `s-delivery`): rebuilt 2026-09-09 from a wordy two-column list (ten
+  scenarios, five room and five remote, each a headline plus a full sentence) into a single
+  spectrum rail - one two-tone bar split into an IN THE ROOM zone and a REMOTE zone, each
+  with its own icon (overlapping circles for room, a monitor glyph for remote, both drawn in
+  `currentColor` so they inherit the zone's hue) and five labelled stops, a headline plus a
+  handful of words each. Echoes the deck's own persistent-timeline idea rather than
+  `migrating_an_instance`'s pattern directly. Sandbox history: an options round offered three
+  treatments (aligned panels, bands with tags, this rail), each borrowing a real
+  `migrating_an_instance` layout; the rail was picked, then enlarged twice (Gordon initially
+  said the wrong letter - he meant the rail, not bands with tags - so the first enlargement
+  landed on the wrong option and was corrected); the bigger type wrapped two headlines to
+  three lines, so "Async PR review" and "Follow-up clinics" were shortened to "PR review" and
+  "Clinics". Before merging, Gordon renamed two more stops - "Game days" to "Hack days" and
+  "The bad week" to "The first bug" - both updated in the deck and in `data-notes`. Classes
+  `#s-delivery .dl-rail` and its `.dlr-*` children; the original `.modecard`/`.rulebar` rules
+  and the rejected panels/bands options are removed.
 - **Execution** (`#4`, "How we ran it"): wording option E, "Plain sentences", accepted
   2026-09-08. The existing fan-out layout remains: one Mac engineer in the DevOps CoE in
   a hub panel, a three-month full-time secondment to train the trainer, an SVG brace to
@@ -1045,19 +1061,10 @@ a colour-safety fix on the graphic option, and a role x org size cross round (ba
 hero) - all now decided; see the Notable content slides entry above for the accepted result
 and `feedback-workflow.md`'s Log for the full history. Both review pages are retired.
 
-`s-delivery-three-visuals` (2026-09-09, slide 11, Joseph, too much writing and not enough
-visuals: three completely different treatments of the same ten scenarios (five where the
-room should be the default, five that work remotely with a condition) and the closing rule,
-each taking inspiration from a real `migrating_an_instance` slide - B aligned panels (the
-s01/s07 fixed-height column technique), C bands with tags (the s08/s11 row pattern, all ten
-scenarios as one list instead of two boxes), D a spectrum rail (the deck's own persistent
-timeline idea as a two-zone bar with labelled stops). Every option ships as real markup
-inside `#s-delivery` - `.s-delivery-opt-b`, `-opt-c`, `-opt-d` - alongside the existing
-`.s-delivery-opt-a` (the slide as it currently ships); a single deck rule shows only
-`-opt-a` by default and the sandbox page's CSS just flips which wrapper is visible per
-iframe. Content is kept in substance but each item is cut from a full sentence to a short
-headline and a few words; the complete original reasoning is unchanged in the section's one
-shared `data-notes` regardless of which option ships. No option is accepted.
+Slide 11 (delivery) went through one options round (aligned panels, bands with tags, a
+spectrum rail, each borrowing a real `migrating_an_instance` layout) and two follow-on
+rounds - enlarge and add icons, then two stop renames - all now decided; see the Notable
+content slides entry above for the accepted result. The review page is retired.
 
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page

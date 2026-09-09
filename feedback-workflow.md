@@ -734,6 +734,42 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-09, training_a_team slide 11 "Delivery" decided: the spectrum rail, with two
+  stop renames.** Gordon: "Okay, I like that, before you merge, change 'Game days' to 'hack
+  days' and change 'The bad week' to 'The first bug'" - an acceptance and a same-breath
+  change, applied together per the standing rule rather than as a further round. Done
+  directly rather than through a dispatched agent, continuing the cheap-rounds request.
+  Renamed the two stops (capitalised to match the deck's sentence-case convention: "Hack
+  days", "The first bug") and made the same swap inside `data-notes`, where the fuller
+  original phrasing became "Hack days" and "the first bug someone introduces". Wrote the rail
+  into the deck as the net result: promoted the wrapper from `.s-delivery-opt-d` to
+  `#s-delivery .dl-rail`, removed the other two options (aligned panels, bands with tags) and
+  the original two-column layout entirely, along with their CSS and the now-dead
+  `.modecard`/`.rulebar` rules the original layout used. Deleted the sandbox page
+  `s-delivery-three-visuals.html` and turned its index entry into a `.done` line;
+  `AGENTS.md`'s slide map, Notable content slides and Sandbox section all updated to match.
+  Verified: disk screenshot of the final slide confirming both renamed stops render correctly
+  and nothing regressed from the last enlargement pass, dash lint clean, `git diff --stat`
+  scoped to the deck file, the sandbox index, the deleted sandbox page and `AGENTS.md`.
+  Training has no presenter.json, so presenter sync does not apply. Pushed directly to
+  `main`, no PR.
+
+- **2026-09-09, training_a_team slide 11 "Delivery", Option D enlarged with icons (Gordon
+  had meant D, not C).** Gordon: "Ohh, I meant option D then. Not option C" - after seeing a
+  screenshot of Option D (having navigated past C without noticing) and asking why he saw no
+  changes. Applied the same treatment to D: room/remote icon (the same overlapping-circles
+  and monitor glyphs as Option C, reused for consistency rather than inventing a second
+  pair) added beside each zone label, then enlarged in two passes - the first still left too
+  much empty canvas below the rail, so zone padding, dot size, headline and caption size and
+  the rule bar all went up again. The bigger type wrapped "Async PR review" and "Follow-up
+  clinics" to three lines each; shortened to "PR review" and "Clinics" (both keep their
+  supporting caption unchanged, so nothing described is lost). Option C's enlargement and
+  icons from the previous round are left in place - Gordon did not ask to revert them, and
+  the same colour-safe icon pattern reused across both keeps the sandbox consistent. Verified
+  with disk screenshots at each sizing pass, confirming the closing rule clears the timeline
+  strip and no headline wraps past two lines. Dash lint clean; `git diff --stat` scoped to
+  the deck file, the sandbox page and its index entry. No option accepted into the deck yet.
+
 - **2026-09-09, training_a_team slide 11 "Delivery", Option C enlarged with icons, still
   awaiting a decision.** Gordon: "I like option C, just make it take up more of the slide.
   Can you also add some icons to represent in the room and remote." Done directly, continuing
