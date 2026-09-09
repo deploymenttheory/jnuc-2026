@@ -892,18 +892,23 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 /* Option C - Bands with tags: one full-width list of ten rows rather than
    two boxes, each tagged ROOM or REMOTE instead of being split into columns
    - migrating_an_instance's s08/s11 row pattern, reused for a single
-   sequence rather than a comparison. */
+   sequence rather than a comparison. Enlarged and given a small icon per
+   tag at Gordon's request: two overlapping circles for room (people
+   together), a simple monitor glyph for remote - both drawn with
+   currentColor so they inherit the tag's own room/remote hue automatically. */
 #s-delivery .s-delivery-opt-c{display:flex;flex-direction:column;gap:0}
-#s-delivery .dlb-row{display:grid;grid-template-columns:118px 1fr 2fr;gap:22px;align-items:center;
-  padding:12px 4px;border-top:1px solid var(--border)}
+#s-delivery .dlb-row{display:grid;grid-template-columns:168px 1fr 2fr;gap:28px;align-items:center;
+  padding:14px 6px;border-top:1px solid var(--border)}
 #s-delivery .dlb-row:last-of-type{border-bottom:1px solid var(--border)}
-#s-delivery .dlb-tag{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;font-weight:700;
-  padding:5px 10px;border-radius:999px;text-align:center}
+#s-delivery .dlb-tag{display:flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--mono);font-size:14px;letter-spacing:.1em;font-weight:700;
+  padding:9px 16px;border-radius:999px}
+#s-delivery .dlb-tag svg{width:19px;height:19px;flex:none}
 #s-delivery .dlb-row.room .dlb-tag{background:var(--accent-wash);color:var(--green-bright);border:1px solid var(--green-deep)}
 #s-delivery .dlb-row.remote .dlb-tag{background:var(--alt-surface);color:var(--blue-light);border:1px solid var(--alt-border)}
-#s-delivery .dlb-row b{font-size:18px;font-weight:700;color:var(--text)}
-#s-delivery .dlb-row span{font-size:14px;color:var(--text-dimmer)}
-#s-delivery .dlb-foot{margin-top:16px;font-size:18px;color:var(--text-2);line-height:1.32}
+#s-delivery .dlb-row b{font-size:22px;font-weight:700;color:var(--text)}
+#s-delivery .dlb-row span{font-size:16.5px;color:var(--text-dimmer)}
+#s-delivery .dlb-foot{margin-top:16px;font-size:20px;color:var(--text-2);line-height:1.34}
 #s-delivery .dlb-foot b{color:var(--accent-strong)}
 
 /* Option D - Spectrum rail: one two-zone continuum rather than two cards,
@@ -1723,16 +1728,16 @@ Choose the people who will approve pull requests early and explicitly train them
        pattern, reused here with a coloured tag standing in for the column
        split, so the ten scenarios read as one sequence, not two totals. -->
   <div class="s-delivery-opt-c">
-    <div class="dlb-row room"><span class="dlb-tag">ROOM</span><b>First exposure to a concept</b><span>You can see they&rsquo;re lost before they say so</span></div>
-    <div class="dlb-row room"><span class="dlb-tag">ROOM</span><b>Debugging a broken config</b><span>Someone&rsquo;s watching your screen the second it breaks</span></div>
-    <div class="dlb-row room"><span class="dlb-tag">ROOM</span><b>Pairing people for the first time</b><span>Trust for a keyboard builds face to face</span></div>
-    <div class="dlb-row room"><span class="dlb-tag">ROOM</span><b>Game days, hacks and scenario labs</b><span>The atmosphere does the work</span></div>
-    <div class="dlb-row room"><span class="dlb-tag">ROOM</span><b>The week someone breaks something</b><span>Owning up is easier in the room</span></div>
-    <div class="dlb-row remote"><span class="dlb-tag">REMOTE</span><b>Pre-requisite training modules</b><span>One right answer, but gate it or it slips</span></div>
-    <div class="dlb-row remote"><span class="dlb-tag">REMOTE</span><b>Recorded expert think-aloud</b><span>Pause and rewind beats live, until you have a question</span></div>
-    <div class="dlb-row remote"><span class="dlb-tag">REMOTE</span><b>Co-editing, not screen sharing</b><span>Works if both people can actually type</span></div>
-    <div class="dlb-row remote"><span class="dlb-tag">REMOTE</span><b>Async PR review</b><span>This is just how review works anyway</span></div>
-    <div class="dlb-row remote"><span class="dlb-tag">REMOTE</span><b>Follow-up clinics</b><span>Under an hour - video drains people fast</span></div>
+    <div class="dlb-row room"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6.5" fill="currentColor" opacity=".85"/><circle cx="15.5" cy="12" r="6.5" fill="currentColor" opacity=".45"/></svg>ROOM</span><b>First exposure to a concept</b><span>You can see they&rsquo;re lost before they say so</span></div>
+    <div class="dlb-row room"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6.5" fill="currentColor" opacity=".85"/><circle cx="15.5" cy="12" r="6.5" fill="currentColor" opacity=".45"/></svg>ROOM</span><b>Debugging a broken config</b><span>Someone&rsquo;s watching your screen the second it breaks</span></div>
+    <div class="dlb-row room"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6.5" fill="currentColor" opacity=".85"/><circle cx="15.5" cy="12" r="6.5" fill="currentColor" opacity=".45"/></svg>ROOM</span><b>Pairing people for the first time</b><span>Trust for a keyboard builds face to face</span></div>
+    <div class="dlb-row room"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6.5" fill="currentColor" opacity=".85"/><circle cx="15.5" cy="12" r="6.5" fill="currentColor" opacity=".45"/></svg>ROOM</span><b>Game days, hacks and scenario labs</b><span>The atmosphere does the work</span></div>
+    <div class="dlb-row room"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6.5" fill="currentColor" opacity=".85"/><circle cx="15.5" cy="12" r="6.5" fill="currentColor" opacity=".45"/></svg>ROOM</span><b>The week someone breaks something</b><span>Owning up is easier in the room</span></div>
+    <div class="dlb-row remote"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="16.5" x2="12" y2="20" stroke="currentColor" stroke-width="2"/></svg>REMOTE</span><b>Pre-requisite training modules</b><span>One right answer, but gate it or it slips</span></div>
+    <div class="dlb-row remote"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="16.5" x2="12" y2="20" stroke="currentColor" stroke-width="2"/></svg>REMOTE</span><b>Recorded expert think-aloud</b><span>Pause and rewind beats live, until you have a question</span></div>
+    <div class="dlb-row remote"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="16.5" x2="12" y2="20" stroke="currentColor" stroke-width="2"/></svg>REMOTE</span><b>Co-editing, not screen sharing</b><span>Works if both people can actually type</span></div>
+    <div class="dlb-row remote"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="16.5" x2="12" y2="20" stroke="currentColor" stroke-width="2"/></svg>REMOTE</span><b>Async PR review</b><span>This is just how review works anyway</span></div>
+    <div class="dlb-row remote"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="16.5" x2="12" y2="20" stroke="currentColor" stroke-width="2"/></svg>REMOTE</span><b>Follow-up clinics</b><span>Under an hour - video drains people fast</span></div>
     <div class="dlb-foot"><b>The rule:</b> depends on other people, put it in the room. Between a learner and the material, remote is fine, often better.</div>
   </div>
 

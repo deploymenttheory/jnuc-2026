@@ -734,6 +734,20 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-09, training_a_team slide 11 "Delivery", Option C enlarged with icons, still
+  awaiting a decision.** Gordon: "I like option C, just make it take up more of the slide.
+  Can you also add some icons to represent in the room and remote." Done directly, continuing
+  the cheap-rounds request. Row padding, type and the tag pills grown throughout (headline
+  18px to 22px, caption 14px to 16.5px, tag 12.5px to 14px); first pass at the larger sizing
+  pushed the closing rule under the timeline strip, caught on the disk screenshot and fixed by
+  trimming row padding back from 20px to 14px and the rule's top margin from 26px to 16px.
+  Added one small icon per tag, inherited via `currentColor` from the tag's own room/remote
+  colour so neither needs a new hue: two overlapping circles (opacity .85/.45) for room, a
+  simple line-drawn monitor for remote. Sandbox page and index entry updated to describe the
+  change. Verified: disk screenshot after the fix, dash lint clean, `git diff --stat` scoped
+  to the deck file, the sandbox page and its index entry. B and D are unchanged from the
+  previous round. No option accepted into the deck yet.
+
 - **2026-09-09, training_a_team slide 11 "Delivery", three visual treatments, awaiting a
   decision.** Done directly rather than through a dispatched agent, continuing Gordon's
   request to keep these rounds cheap. Gordon: "this slide needs tidied up, there is too much
