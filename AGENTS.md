@@ -505,7 +505,19 @@ retains open-source training and the sister teams now learning. The full operati
 lives in the speaker notes. Rules are scoped to `#s-estate`, with `--s02-*` sizing tokens), `#3` learning outcomes
 (`s-learning-outcomes`, sandbox option E accepted 2026-09-08: the trained threshold in a
 central navy panel, with seven capabilities on either side and the non-goals below),
-`#4` execution, `#5` what didn't work, `#6` what worked, `#7` conditions, `#8` mindset,
+`#4` execution (sandbox wording option E, "Plain sentences", accepted 2026-09-08 in the
+existing layout), `#5` what didn't work (`s-what-didnt-work`, refined sandbox option E,
+"Teaching and the gaps", accepted 2026-09-08), `#6` what worked (`s-what-worked`, sandbox
+option C, "Around the learner", accepted 2026-09-08: a navy disc labelled "The engineer" at
+the centre of a lime ring, seven dashed spokes out to icon nodes and each approach's copy
+positioned in its own sector, with patience above the ring. Rules are scoped to
+`#s-what-worked` and the sizing and ring coordinates are `--s06-*` tokens in `:root`), `#7` conditions
+(`s-conditions`, sandbox option D, "Gates on a rail", accepted 2026-09-08 with the numerals
+dropped at Dafydd's request so the line-art icons alone mark the rail: a navy safety panel on
+the left and the seven conditions on a vertical rail on the right. Rules are scoped to
+`#s-conditions` in the deck's slide 7 CSS block and use `--s07-*` sizing tokens in `:root`),
+`#8` mindset (`s-mindset`, size option D, "Large", accepted 2026-09-08 with a rule under the
+three column headers),
 `#9` learning priorities by role (`s-learning-priorities`, rebuilt 2026-09-09 as three
 role bands, see Notable content slides), `#10` the learning pathway (four phases - **merges the old `#9` matrix and
 `#10` timeline**, Aug 2026: both said the same thing twice and neither described what the team
@@ -527,6 +539,15 @@ the engineer asked, the new mindset), and three columns each in their own flow d
 moment one question wraps to a second line. Column widths (518/340/1fr) and band widths are set
 together - change one and change the other. Every question is anchored in a line elsewhere in
 the deck rather than invented; the anchors are in the feedback log. Speaker still unassigned.
+The slide carries the stable id `s-mindset`. Sizing is sandbox option D, "Large", accepted
+2026-09-08: body 32px (the before and after columns), questions 23px on the rail and column
+labels 21px, with the leading, the row padding, the row gap and the space under the title
+trimmed to keep the grid inside the content box. The three column headers carry a rule under
+them, the same hairline the rows use and in the same colour per band - the navy panel's soft
+border, the deepened lime on the rail and on the canvas column - with the full row gap
+beneath, so the first row sits like every other row. All the sizing lives in `--s08-*` tokens
+in `:root` and nothing in the slide's CSS block sets a size of its own. The bands and the
+518/340/1fr columns were not touched by that round.
 
 `#10` deliberately does **not** use the bordered-card grid used by several other slides.
 It is drawn as a **route**: one rising SVG track with four stop
@@ -660,10 +681,73 @@ Notable content slides:
   role's minimum is not the whole picture, and what the team owns and how steep the climb is
   scales with org size - and every settled fact from "Two deliberate decisions on `#9`" and
   "How `#9`'s two charts are scored" below, now carried in the section's `data-notes`.
+- **Execution** (`#4`, "How we ran it"): wording option E, "Plain sentences", accepted
+  2026-09-08. The existing fan-out layout remains: one Mac engineer in the DevOps CoE in
+  a hub panel, a three-month full-time secondment to train the trainer, an SVG brace to
+  five plain numbered outcome cards and two full-width arrows for the knowledge exchange.
+  The five headings read "We wrote the materials together", "Practical sessions worked
+  better", "The hackathon format did not work", "We had no training playbook" and
+  "We tailored plans to skill levels", each with a short supporting sentence. The hub
+  describes pairing Mac expertise with GitOps practice and adjusting training throughout
+  delivery; its foot retains the engineer's ability to support training and run migration
+  work. Body copy is 159 words, down from 236. All seven accepted speaker-note paragraphs
+  remain, including the delivery cue, the secondment-only meaning of three months, the
+  local lack of a training playbook and plans matched to skill level. Markup, styling,
+  typography and dimensions are unchanged. Classes `.fanout`, `.hub`, `.brace`,
+  `.spokes`/`.spoke`, `.flow`/`.flowrow`.
+- **What didn't work** (`#5`, `s-what-didnt-work`): refined sandbox option E, "Teaching
+  and the gaps", accepted 2026-09-08. The lead keeps 144 hours, roughly four weeks of
+  learning, spread across six months. Three teaching issues sit above a full-width navy
+  chart: mixed ability, theory before practice and documentation as a reference manual.
+  Long gaps, online delivery and the exact engineer quote sit below it. All five issues
+  remain visible, including prior coding experience, the 214,645-word AI-assisted
+  curriculum, copy-paste without retention, geography as the main reason for the gaps,
+  infrastructure as a minor factor and trainers helping directly in person. The ratchet
+  chart accepted in the 2026-08-28 option B round keeps its original six-cycle geometry:
+  steep lime teaching rises, coral drops through the gaps and dotted floors rising after
+  each cycle. It is now 250px high, with separately placed labels and the four original
+  explanatory annotations inside the plot. **The shape is illustrative, not measured**;
+  the visible `SHAPE IS ILLUSTRATIVE` disclosure must remain. Body copy is 173 words,
+  down from 232. All seven accepted note paragraphs retain the full account and the
+  replacement curriculum on the next slide. The old chart wrapper, five chips and quote
+  strip styles are removed. All new rules and required `--s05-*` tokens are scoped to
+  `#s-what-didnt-work`; there is no preview injection or alternative layout in the deck.
+- **What worked** (`#6`, `s-what-worked`): sandbox option C, "Around the learner", accepted
+  2026-09-08. A navy disc labelled "The engineer" sits at the centre of a lime ring, with
+  seven dashed spokes out to icon nodes on the ring and each approach's heading and copy
+  positioned in the matching sector: paired programming, principles before the full picture
+  and learning cohorts down the left, safe lab environments, secondments and third-party
+  documentation down the right, and patience centred above the ring, which the ring itself
+  stands for. All seven approaches remain visible, and the copy and the eight paragraphs of
+  speaker notes are the round-one set unchanged, including the platform team's dedicated
+  training time, the independent learner fallback and the 3,778-word replacement curriculum
+  at 57 times smaller than the manual it replaced. The seven glyphs are the deck's own
+  slide 6 line art, carried into the ring nodes. Every rule is scoped to `#s-what-worked`
+  and the sizing, stroke and ring coordinates are `--s06-*` tokens in `:root`; the sector
+  positions are absolute offsets inside the 1676px content box, so moving a text block means
+  moving its token. The seven `.icard` blocks and the four `.icard` rules that only slide 6
+  used are gone; `.grid.g2` stays for slides 11 and 16. There is no preview injection or
+  alternative layout in the deck.
+- **Conditions** (`#7`, `s-conditions`): sandbox option D, "Gates on a rail", accepted
+  2026-09-08 with the numerals dropped at Dafydd's request, so the line-art icons alone mark
+  the rail. A navy safety panel on the left carries both kinds of safety - operational for
+  leadership behind a shield, psychological for engineers behind a pair of speech marks - over
+  the premise "All seven conditions depend on both." The seven conditions run down a vertical
+  rail on the right, each marked by its own glyph: converging arrows on 01, a barrier on 02 and
+  07, a clock on 03, two figures on 04, a link on 05 and a dip on 06. The accepted copy and the
+  seven paragraphs of speaker notes are the round-one set, with the one sentence about the
+  numbers identifying the conditions removed because there are no numbers any more. Both
+  safeties and all seven conditions stay visible, including the confirmed two-to-three-month
+  dip and choosing and training PR approvers before handover. Every mark is decorative and
+  `aria-hidden`, so the slide reads with all the artwork deleted. All rules are scoped to
+  `#s-conditions` and use the `--s07-*` tokens in `:root`; there is no preview injection or
+  alternative layout in the deck. The old `.herowrap`, `.heropanel`, `.supp` and `.suppcard`
+  (`.dip`, `.wide`) classes and their rules are gone, as nothing else used them.
 
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an amber
-token for exactly that. Current chips (3): photos for Joseph and Gordon (`#1`); how long the
-dip lasts (`#7`); the 3-4 minute interview with Louise. The `#5` engineer quote was confirmed
+token for exactly that. Earlier TODOs included photos for Joseph and Gordon (`#1`) and the
+interview with Louise. The `#7` dip duration is confirmed at 2-3 months and has no TODO chip.
+The `#5` engineer quote was confirmed
 by Gordon Deacon, Aug 2026, and its chip is gone. The "what success looked like" behaviours
 (now on `#17`: the team became self-sufficient committing and reviewing PRs without assistance, was making
 architectural decisions and was managing resources in code exclusively), the trained bar and the
@@ -675,10 +759,10 @@ Speakers (`data-speaker`), matching `docs/timeline-notes.md`: `#5`, `#7`, `#10` 
 Thank You and the appendix slides are unassigned. The new benefits slide keeps Dafydd,
 who presented the original benefits on slide 3.
 
-`#7` carries a seventh condition, "Decide who approves the pull requests" (`.suppcard.wide`,
-full-width across the 2-column grid), and its hero panel is now **Two kinds of safety** -
-operational (leadership) and psychological (engineers) - rather than psychological alone.
-Both from Gordon, Aug 2026. The dip lasted 2-3 months.
+`#7` carries a seventh condition, "Choose PR approvers early" (the last row on the rail), and
+its safety panel is **Two kinds of safety** - operational (leadership) and psychological
+(engineers) - rather than psychological alone. Both from Gordon, Aug 2026. The dip lasted
+2-3 months.
 
 **The four disciplines are a shared vocabulary.** `#21` (skills map) is built on
 **Environment, Git, Terraform, GitOps**. The merged `#10` deliberately drops the discipline
@@ -931,7 +1015,12 @@ they track deck edits automatically.
   new variants; option E was accepted on 2026-09-07. Slide 3
   accepted option E from its five replacement variants on 2026-09-08. The earlier slide 4
   and new slide 17 rounds were closed without acceptance in the 2026-09-08 sandbox reset.
-  The fresh slide 4 round offers five wording options in the exact source layout.
+  The fresh slide 4 wording round accepted option E, "Plain sentences", the same day,
+  preserving the exact source layout. Slide 5 then accepted refined option E, "Teaching
+  and the gaps", including the four original chart annotations. Both public sandbox
+  entries were removed at Dafydd's request. Slide 6's five all-new visual compositions,
+  the round that replaced a rejected text-only set, accepted option C, "Around the
+  learner", on 2026-09-08, and that page and entry were cleared the same way.
 - Variant CSS only touches the slide's `#id` and only uses the deck's own tokens, so an
   accepted option pastes into the deck unchanged.
 - Injection needs same-origin access, so it only works over HTTP. Opened from `file://` the
@@ -944,30 +1033,11 @@ they track deck edits automatically.
   entry records date, deck, slide, speaker and decision state. Once an option is accepted,
   apply it to the deck and mark the entry decided (or delete the page and its entry).
 
-Current pages awaiting a decision under `presentations/sandbox/training_a_team/`:
-`s04-wording-refinement` (2026-09-08, slide 4, Joseph, five new wording options:
-A a shorter account, B what we did, C what we learnt, D speaking prompts, E plain sentences).
-Every option keeps the source slide's hub, five numbered spokes, brace and two arrows,
-including their markup, CSS, typography and dimensions. Only existing text fields and
-the preview's proposed speaker notes change. Each has an anchor, a full-size view and
-reviewable notes; body word counts compare the proposal with the current slide. The
-preview counter and help scale with small frames. A file or source-loading failure hides
-the preview and explains how to review it over HTTP, while leaving the proposed notes
-available. Three months describes only the secondment. The source deck is unchanged.
+No pages currently await a decision under `presentations/sandbox/training_a_team/`.
 
-`s05-what-didnt-work` (2026-09-08, slide 5, Gordon, five visual designs using the same
-shorter copy: A the chart across the page, B the chart beside the account, C the engineer
-feedback first, D four weeks across six months, E teaching and the gaps). Each preview
-replaces only slide 5's body and proposed notes in a real-deck iframe. The native ratchet
-geometry comes from the current slide, with separate labels that stay readable in narrow
-charts. All six teaching rises and gap drops, the rising confidence floor and the visible
-`SHAPE IS ILLUSTRATIVE` disclosure remain. The same five problems and exact engineer quote
-stay visible. Proposed notes retain the full context, including geography, the minor
-infrastructure factor and the replacement material on the next slide. Content rules and
-sizing tokens belong to the preview-only `#s05-review` id. Each option has an anchor,
-full-size route, notes disclosure and word-count comparison including SVG labels. The
-body copy is 164 words per option against 232 in the source, a 29.3% reduction. The source
-deck and the open slide 4 wording review remain unchanged. No option is accepted.
+Slide 5's review page and the public index entries for slides 4 and 5 were removed after
+Dafydd accepted option E for both on 2026-09-08. Slide 4 already held its accepted wording
+and remains unchanged. The index was cleared before this new review round.
 
 Slide 9 (learning priorities by role) went through four sandbox rounds between 2026-09-08
 and 2026-09-09 - a five-option redesign, a bigger-option-D follow-on (table, graphic, text),
@@ -1008,9 +1078,72 @@ made possible. Each condenses the visible copy while retaining the secondment, j
 iteration, hackathon result, lack of a playbook and plans by skill level across the slide and
 reviewable proposed speaker notes. Three months describes the secondment only. Each option has
 a direct anchor and a full-size view. The alternatives were removed without acceptance;
-slide 4 is unchanged).
+source slide 4 was unchanged by that reset. The later wording-only acceptance is below).
 
 Decided (under `presentations/sandbox/training_a_team/`):
+slide 9's four rounds (see the Notable content slides entry and the paragraph above this
+list for the full history) settled on the Bands treatment, both original review pages long
+retired;
+`s08-mindset-text-sizes` (2026-09-08, slide 8, speaker unassigned, five text-size steps on the
+shipped slide after Dafydd asked for the type to be bigger with everything else left alone: A
+body 26px, B 28px, C 30px, D 32px, E 34px, the largest that fits. All five also carried a rule
+under the three column headers, added the same day at Dafydd's request. Decided the same day:
+option D, "Large", applied to the deck as `#s-mindset` - body 32px, questions 23px, labels
+21px, leading 1.2 on the mindset columns and 1.24 on the rail, row padding and row gap 22px and
+30px under the title, with the header rule in each band's own hairline colour and the full row
+gap beneath it. The grid bottom lands at 1001px inside a content box that stops at 1008px. It
+is an acceptance of sizing alone: the wording, the speaker notes, the markup, the navy and lime
+bands and the 518/340/1fr columns are exactly as they were, and the sizing now lives in
+`--s08-*` tokens in `:root` and is referenced from the slide's own CSS block, which gained no
+override block of its own. The review page and its public index entry are removed.
+Downloads await a separate request);
+`s06-what-worked-visual` (2026-09-08, slide 6, Joseph, five visually led compositions after
+the text-only first round, `s06-what-worked` (A Seven points in two columns, B A full-width
+reading list, C Secondment in its own column, D Three columns and a closing line, E Paired
+programming across the top), was rejected on 2026-09-08 for having no visual device: A
+Pictograms, B Building up, C Around the learner, D The exchange, E Fifty-seven to one.
+Decided the same day: option C, applied to the deck as `#s-what-worked`. A navy disc
+labelled "The engineer" sits at the centre of a lime ring, with seven dashed spokes out to
+icon nodes carrying the deck's own slide 6 glyphs and each approach's copy in its own
+sector, patience above the ring. The accepted copy, layout and eight paragraphs of speaker
+notes are retained, including the platform team's dedicated training time, the independent
+learner fallback and the 3,778-word replacement curriculum. All seven approaches remain
+visible. Only the chosen markup and the scoped rules and `--s06-*` tokens option C uses
+transfer into the deck; the seven `.icard` blocks and the four `.icard` rules nothing else
+used are gone. The review page and its public index entry are removed at Dafydd's request.
+Downloads await a separate request);
+`s07-conditions-visual` (2026-09-08, slide 7, Gordon, round two: five visually led
+compositions after the text-only round one was rejected. Decided the same day: option D,
+"Gates on a rail", accepted with one change that came with the acceptance - the numerals are
+dropped entirely, because carrying both a large mono numeral and an icon per condition
+cluttered the rail, so the line-art icons alone mark it and the text column moves left into
+the space the numerals held. Applied to the deck as `#s-conditions`: a navy safety panel with
+a shield and a pair of speech marks over the premise, and the seven conditions on a vertical
+rail, the icons grown to sit on the rail line. The accepted copy and the seven paragraphs of
+speaker notes are retained word for word, less the one sentence about the numbers identifying
+the conditions, which no longer applies. Both safeties and all seven conditions remain
+visible. Only the chosen markup and the scoped CSS it needs transfer into the deck, with the
+`--s07-*` tokens in `:root`; the dead `.herowrap` and `.suppcard` rules came out with the old
+layout. The review page and its public index entry are removed.
+Downloads await a separate request);
+`s05-what-didnt-work` (2026-09-08, slide 5, Gordon, five visual designs using shorter
+copy. Option E, "Teaching and the gaps", was refined with the original chart's four
+explanatory annotations in PR #102 and then accepted the same day. Its exact 173-word
+body, seven note paragraphs and 250px chart are applied as `#s-what-didnt-work`, with
+three teaching issues above the plot and two issues plus the engineer quote below it.
+All six teaching rises, gap drops and bands, the rising floor and the illustrative-shape
+disclosure remain. Only the chosen markup and required scoped CSS transfer into the
+deck. The review page and its public index entry are removed at Dafydd's request.
+Downloads await a separate request);
+`s04-wording-refinement` (2026-09-08, slide 4, Joseph, five wording options in the existing
+layout. Decided the same day: option E, "Plain sentences", applied to the sixteen existing
+text fields and the speaker notes. The hub, five numbered spokes, SVG brace and two arrows
+retain their exact markup, CSS, typography and dimensions. All seven accepted note
+paragraphs remain, and three months describes only the secondment. Body copy is 159 words,
+down from 236. The review page is retired. Its former done entry was removed when Dafydd
+requested both slide 4 and slide 5 reviews cleared on the same day; the accepted source
+slide was verified and left unchanged.
+Downloads await a separate request);
 `s03-learning-outcomes` (2026-09-08, slide 3, Dafydd, five replacement treatments after
 splitting learning outcomes from benefits. Decided the same day: option E, "The trained
 threshold", applied to the deck as `#s-learning-outcomes`. The definition of trained sits
