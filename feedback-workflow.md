@@ -734,6 +734,154 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-09, training_a_team slide 11 "Delivery", Option C enlarged with icons, still
+  awaiting a decision.** Gordon: "I like option C, just make it take up more of the slide.
+  Can you also add some icons to represent in the room and remote." Done directly, continuing
+  the cheap-rounds request. Row padding, type and the tag pills grown throughout (headline
+  18px to 22px, caption 14px to 16.5px, tag 12.5px to 14px); first pass at the larger sizing
+  pushed the closing rule under the timeline strip, caught on the disk screenshot and fixed by
+  trimming row padding back from 20px to 14px and the rule's top margin from 26px to 16px.
+  Added one small icon per tag, inherited via `currentColor` from the tag's own room/remote
+  colour so neither needs a new hue: two overlapping circles (opacity .85/.45) for room, a
+  simple line-drawn monitor for remote. Sandbox page and index entry updated to describe the
+  change. Verified: disk screenshot after the fix, dash lint clean, `git diff --stat` scoped
+  to the deck file, the sandbox page and its index entry. B and D are unchanged from the
+  previous round. No option accepted into the deck yet.
+
+- **2026-09-09, training_a_team slide 11 "Delivery", three visual treatments, awaiting a
+  decision.** Done directly rather than through a dispatched agent, continuing Gordon's
+  request to keep these rounds cheap. Gordon: "this slide needs tidied up, there is too much
+  writing on the screen and not enough visuals... take inspiration from slide 9 and from the
+  entire migrating_an_instance deck... 3 totally different visualisations... try and make the
+  visuals match the content. But try and keep the content while tidying it up." Gave the
+  slide a stable id, `s-delivery` (it had none), and wrapped its current layout as
+  `.s-delivery-opt-a` per the standard options mechanism. Three new options, each borrowing a
+  real migrating_an_instance pattern: B Aligned panels (slides 1 and 7's bordered
+  fixed-height column technique - the same ten scenarios in two columns, but with rows held
+  to a matching height so item 1 in the room lines up with item 1 remote all the way down);
+  C Bands with tags (slide 8's wave-workflow rows and slide 11's numbered-list pattern - all
+  ten scenarios as one full-width list read top to bottom, each row tagged ROOM or REMOTE
+  instead of split into two boxes); D Spectrum rail (the deck's own persistent timeline strip
+  idea turned into the whole slide - a two-zone bar, room on one side and remote on the
+  other, with the ten scenarios as labelled stops sitting directly on it). All three keep
+  every one of the ten scenarios and the closing rule in substance, cutting each item from a
+  full sentence to a short headline plus a handful of words; the complete original reasoning
+  is untouched in the section's shared `data-notes`. Sandbox page
+  `s-delivery-three-visuals.html`, linked from the training sandbox index. Verified: disk
+  screenshots of every option (baseline plus all three, with D's type and spacing enlarged
+  after the first pass left too much empty canvas), dash lint clean, `git diff --stat` scoped
+  to `presentations/training_a_team/index.html`, the new sandbox page, the sandbox index and
+  `AGENTS.md`. Training has no presenter.json, so presenter sync does not apply. Pushed
+  directly to `main`, no PR.
+
+- **PR #9 was merged into `main` on GitHub on 2026-09-09 (10:44 UTC), by Gordon directly,
+  after it had already been superseded.** The entry below is PR #9's own accurate record of
+  what it did at the time it was opened (2026-09-08). But Gordon reviewed it live in chat
+  the same day, said "I still don't like it. We need to be able to represent the 3 different
+  role types across the 2 org types", and the round continued through a role x org size
+  cross and a further expanded-graphics round, ending in the Bands decision recorded above.
+  Merging PR #9 after that point collided with the Bands work already on `main` and produced
+  a broken duplicate `<section id="s-learning-priorities">` (PR #9's colour-fixed graphic
+  markup landed directly before the Bands section rather than replacing it, because their
+  common ancestor predates both). Fixed by removing PR #9's reintroduced section entirely
+  and keeping only the Bands section, as part of the merge that lands this slide 11 round.
+  Slide 9's live content is - and after this merge remains - the Bands treatment.
+- **2026-09-08, training_a_team slide 9, "Learning priorities by role" accepted with a
+  colour fix.** The user picked option B from the sandbox's "Option D variants" round (the
+  role-pills-plus-SVG-bar-chart treatment, `.s-learning-priorities-optd-graphic`) but flagged
+  that the colours didn't match up: "I like option B, but the colours don't match up. It
+  looks like Juniors have to know a lot about Environment when in a small org." The bug -
+  the bar chart's `.lpg-fill-small` reused `--accent-strong` (close enough to the Junior
+  pill's `--accent` to read as the same lime) and `.lpg-fill-large` reused the exact
+  `--alt-light` token the Engineer pill uses, so the small-org Environment bar looked like a
+  Junior-specific fact rather than an org-wide one that applies regardless of role;
+  `.lpg-fill-same` had the same problem against the Senior pill's `--text-2`. Fixed by moving
+  all three bar fills onto the deck's warm signal hue instead, `--warn` for the small-org and
+  the identical (Jamf APIs) bars, the lighter `--warn-light` for the large-org bars - a hue
+  the role pills never touch, so a bar can no longer be misread as a role chip; bar length and
+  the SMALL ORG / LARGE ORG column headers carry the meaning, colour no longer does. Written
+  into the deck as clean `#s-learning-priorities .lpg-*` rules, the class promoted from
+  `.s-learning-priorities-optd-graphic` to `.lpg`; the other six option wrappers (`-opt-a`
+  through `-opt-e`, `-optd-table`, `-optd-text`) and their CSS are removed entirely, along
+  with the now-dead `.rolecard`/`.roles3`/`.scen2` rules that only opt-a used. `data-notes`
+  rewritten to match the bar chart (the old notes described the twin radar's polygon shapes,
+  which no longer exist) while keeping every settled fact from "Two deliberate decisions on
+  `#9`" and "How `#9`'s two charts are scored". Both sandbox pages
+  (`s-learning-priorities-role-clarity.html`, `s-learning-priorities-option-d-variants.html`)
+  removed and their `presentations/sandbox/training_a_team/index.html` entries turned into
+  non-linked `.done` lines. PR #9.
+- **2026-09-09, training_a_team slide 9, "Learning priorities by role" decided: the Bands
+  treatment.** Continuation of the round below, done directly rather than through a
+  dispatched agent at Gordon's request ("Don't use the agents, as they are using a high
+  number of tokens for these tasks"). Gordon liked Option F from the role x org size cross
+  round (three self-contained per-role cards, small org as a solid fill and large org as a
+  hollow outline in that role's own colour) but wanted it bigger, and asked for three
+  completely different graphical treatments, each taking inspiration from a real
+  `migrating_an_instance` slide: F1 Bands (slide 8's stepping full-width rows with a
+  numbered gutter), F2 Chevron (slide 1's `clip-path` chevron-arrow flow) and F3 Hero (slide
+  20's hero-number-plus-quiet-row composition). Built and screenshotted directly, with one
+  real bug caught and fixed before showing them: F2's "SMALL" pill was invisible because
+  `background:currentColor` and `color:var(--surface)` in the same rule made `currentColor`
+  resolve to navy-on-navy; fixed by switching to an explicit `--role` custom property
+  throughout, matching the pattern already used safely in the (later dropped) phrase-matrix
+  option. Gordon picked F1, Bands. Applied to the deck as `#s-learning-priorities .lp-bands`
+  and its `.lpb-*` children - one clean block, not layered on the option wrappers - with
+  every rejected wrapper (`-opt-b` through `-opt-e`, `-optd-table`, `-optd-graphic`,
+  `-optd-text`, `-optf-chevron`, `-optf-hero`) and the original `.roles3`/`.scen2` CSS
+  removed as dead weight, along with the `dense8` class (unstyled, leftover from the
+  pre-redesign slide). Speaker notes rewritten to describe the shipped bands and carry every
+  settled fact from "Two deliberate decisions on `#9`" and "How `#9`'s two charts are
+  scored" (`AGENTS.md`). Both retired sandbox pages `git rm`'d and their sandbox index entry
+  collapsed into one `.done` line covering all four rounds; `AGENTS.md`'s Notable content
+  slides entry, slide-map summary and Sandbox section updated to match. Verified: full-page
+  disk screenshot after every cleanup edit, dash lint clean, `git diff --stat` scoped to
+  `presentations/training_a_team/index.html`, `presentations/sandbox/training_a_team/`
+  (two deletions plus the index edit), `AGENTS.md` and this file. Training has no
+  presenter.json, so presenter sync does not apply. Committed directly to `main` under
+  Gordon's own git identity, no PR.
+
+- **2026-09-08, training_a_team slide 9, three variations of Option D for "Learning
+  priorities by role".** Follow-on from the five-option round below (PR #7): Joseph liked
+  Option D, the role-by-org-size matrix, but wanted it to fill more of the page, and asked
+  for exactly three completely different presentational forms of it - one table, one
+  visual/graphic, one text. All three ship as real markup inside `#s-learning-priorities`
+  alongside the five `-opt-*` wrappers, hidden by the same default-hide rule so `-opt-a`
+  still ships: `.s-learning-priorities-optd-table` is a literal ruled `<table>` crossing
+  role against org size, with a footer row stating the Jamf APIs fact once across the full
+  width; `-optd-graphic` opens with three identical role pills to show the minimum is fixed,
+  then an inline SVG bar chart scaling one bar per discipline (Environment, Git and GitOps,
+  Jamf APIs, Mentoring) small org against large org, using bar length and colour as the
+  argument (Jamf APIs drawn identically in both, Git/GitOps kept the same length but a
+  different colour to signal authority narrowing rather than knowledge shrinking); `-optd-text`
+  is a prose treatment close to `migrating_an_instance`'s plainest slides, one paragraph per
+  role pairing its fixed minimum with what changes underneath it by org size in a single
+  sentence, no grid or table. Every option keeps both required points and every settled fact
+  from AGENTS.md's "How #9's two charts are scored" in the section's one shared `data-notes`.
+  Added `s-learning-priorities-option-d-variants.html`. No option is accepted. PR #8.
+
+- **2026-09-08, training_a_team slide 9, five full-redesign layouts for "Learning
+  priorities by role".** Dafydd said the slide (three role cards plus twin six-axis radar
+  charts) was too dense to follow and needed two points made plainly: nobody needs to know
+  everything, and what the team owns and how steep the climb is depends on the org's size.
+  Deterministic: gave the previously-unidentified section a stable id,
+  `s-learning-priorities`, and scoped its `.roles3`/`.scen2` CSS to it, matching `s-estate`,
+  `s-learning-outcomes` and `s-learner-benefits`. Because this is a full redesign, all five
+  options ship as real markup inside the section as `.s-learning-priorities-opt-a..e`
+  wrappers - a deck rule shows only `-opt-a` by default, and the sandbox page just flips
+  which wrapper is visible per iframe. A keeps the current role cards and paired radar
+  (live now). B drops the chart and role bullets entirely for two plain-text sections, each
+  led by a one-sentence statement of the point. C gives each point a numbered headline, with
+  role minimums as three chips and the twin radar replaced by a four-row small-org/large-org
+  comparison strip. D is a role-by-org-size matrix - one row per role, the minimum on the
+  left, and a right-hand column that opens "Same minimum" every time to show org size
+  changes team ownership, not the per-role bar. E is a staged two-statement narrative with
+  numbered lines and a two-column governing-principle split, no chart. Every option keeps
+  both points and every settled fact from AGENTS.md's "Two deliberate decisions on #9" and
+  "How #9's two charts are scored" (Jamf APIs identical in both org sizes, Environment as
+  the real differentiator, Git/GitOps barely moving but losing authority, Mentoring low in
+  a small org and high in a large one, and the exact governing-principle wording) in the
+  section's one shared `data-notes`, unchanged regardless of which option is visible. Added
+  `s-learning-priorities-role-clarity.html`. No option is accepted. PR #7.
 - **2026-09-08, training slide 8, size option D accepted.** Dafydd accepted option D, "Large",
   from `presentations/sandbox/training_a_team/s08-mindset-text-sizes.html` (PRs #110 and #111).
   Applied to `presentations/training_a_team/index.html`: the section gains the stable id

@@ -518,7 +518,8 @@ the left and the seven conditions on a vertical rail on the right. Rules are sco
 `#s-conditions` in the deck's slide 7 CSS block and use `--s07-*` sizing tokens in `:root`),
 `#8` mindset (`s-mindset`, size option D, "Large", accepted 2026-09-08 with a rule under the
 three column headers),
-`#9` learning priorities by role, `#10` the learning pathway (four phases - **merges the old `#9` matrix and
+`#9` learning priorities by role (`s-learning-priorities`, rebuilt 2026-09-09 as three
+role bands, see Notable content slides), `#10` the learning pathway (four phases - **merges the old `#9` matrix and
 `#10` timeline**, Aug 2026: both said the same thing twice and neither described what the team
 actually did). Titled "the pathway we **followed**", not "that worked": phase 1 front-loaded
 all the theory and the team only found out afterwards that it did not land, so that card
@@ -569,7 +570,8 @@ flow were in. Everything left of the gate is the whole team; phase 4 is the main
 Confirmed by Gordon Deacon, Aug 2026. Move the gate and you must move the `.gate-label` width
 with it - the label is right-aligned inside a box the same width as the gate offset.
 
-Then `#11` delivery, `#12` content types, `#13` Louise's case study, `#14` sister-team
+Then `#11` delivery (`s-delivery`, id added 2026-09-09; a three-option sandbox round is
+open to cut its two ten-item lists down and add visual structure, see Sandbox), `#12` content types, `#13` Louise's case study, `#14` sister-team
 scope, `#15` onboarding, `#16` hiring, `#17` learner benefits, `#18` learning materials,
 `#19` Questions and `#20` Thank You. The appendix is `#21` the skills map, `#22` the old
 pathway matrix, `#23` the old week-by-week timeline and `#24` the colour system. The
@@ -610,6 +612,75 @@ Notable content slides:
   remains a straightforward three-column reflow. Its five sandbox visual options were closed
   without acceptance in the 2026-09-08 sandbox reset; no visual option was implemented.
   Scoped `.bn-*` rules and a separate `:root` block hold the new sizing tokens.
+- **Execution** (`#4`): a fan-out - a hub panel (one engineer seconded into the DevOps CoE,
+  3 months, train-the-trainer, run iteratively rather than planned end to end) bracketed by
+  an SVG to five outcome cards, all plain (no per-card colour variants): materials written
+  together, delivery format iterated from theory-led to practical, hackathons that didn't
+  land, no existing playbook for migrating a Mac-centric team onto Terraform specifically,
+  and different delivery plans by skill level (laid-back and project-based for higher-skill
+  engineers). The hub's foot line carries the migration link as one subordinate sentence -
+  the secondment also produced someone who could run migration work when needed - rather
+  than as its own spokes; migration waves and handover as topics belong elsewhere in the
+  deck, not on this training-execution slide. Two full-width arrows underneath keep the
+  two-way trade: domain context in, GitOps practice back. Classes `.fanout`, `.hub`,
+  `.brace`, `.spokes`/`.spoke`, `.flow`/`.flowrow`.
+- **What didn't work** (`#5`): a hero SVG chart across the top - six teaching sessions
+  across six months, each one lifting confidence and each following gap giving some of it
+  back, trending gently upwards overall (people did genuinely build confidence over the six
+  months; what was lost was whatever confidence a gap between sessions let leak away, not
+  the whole programme). **That shape is illustrative, not measured**, and the slide says so
+  in a `SHAPE IS ILLUSTRATIVE` label - keep that label if the chart is edited. The original
+  gradient line chart was rejected and replaced with three sandbox treatments; **option B,
+  the ratchet, was chosen and is now the only chart the deck ships**, as plain markup inside
+  `.chartwrap` (no wrapper classes, nothing hidden by CSS): hard straight lines, a short
+  steep lime riser through each teaching band, then a longer coral fall through the gap that
+  follows, with faint dotted floor lines showing the rising baseline after each cycle. The
+  fall through each gap was then steepened at Joseph's request (a fall of roughly 65-70% of
+  that cycle's rise, stroke-width 4, up from the original ~40% and width 3) so the downturn
+  reads as a real drop rather than a shallow taper; the six months, six teaching-then-gap
+  cycles, 144 hours and the gentle net upward trend by the end are unchanged. The rejected
+  column and blocks-per-month treatments are gone; the sandbox page is deleted and the
+  former index entry was cleared in the 2026-09-08 sandbox reset. Below it, five chips:
+  mixed-ability cohorts (now states plainly that trainers were
+  pitching some sessions too fast and others too slow), theory before the hands-on,
+  documentation shaped like a reference manual (merges the old step-by-step-tutorials and
+  reference-manual chips, adding that the 214,645-word curriculum was AI-assisted and too
+  large to take in), too long a gap between sessions (primary driver is the difficulty of
+  getting a geographically dispersed Mac engineering team into one room, not the same
+  country; unclear infra availability is folded in as a minor secondary factor, downgraded
+  from its own chip), and online meetings (in-person let trainers walk around and help
+  people directly). The old "effort stayed invisible" chip is gone, and the `.won` accent
+  chip ("what replaced it") has moved to `#6`, folded into that slide's "Good third-party
+  documentation" card. Then a quote strip. Classes `.chartwrap`/`.chd`, `.fchips`/`.fchip` and
+  `.qstrip`.
+- **Conditions** (`#7`): a hero layout - a large left panel gives psychological safety the
+  weight the copy claims for it ("the most evidenced condition of all") with three practical
+  points under it; the other six conditions, including "Expect the dip", sit right as
+  compact numbered cards. Classes `.herowrap`, `.heropanel`, `.supp`/`.suppcard` (`.dip`).
+- **Learning priorities by role** (`#9`, `s-learning-priorities`): rebuilt 2026-09-09 as
+  three full-width bands stepping down the slide, one per role, each with a numbered gutter
+  on the left - migrating_an_instance's slide 8 wave-workflow pattern, reused rather than a
+  new visual language invented for this slide. Each band pairs that role's fixed minimum
+  with the one discipline that actually shifts with org size for that role: Junior against
+  Environment, Engineer against Git & GitOps authority, Senior against Mentoring. Within a
+  band, small org is a solid filled bar and large org is a hollow outline, always in that
+  role's own colour (junior `--accent` lime, engineer `--alt-light` cornflower, senior
+  `--text-2` off-white, set via each band's inline `color`) - deliberately so an org-size
+  bar can never be misread as a different role's fact, which is exactly what went wrong in
+  an earlier round (see below). Jamf APIs sits outside all three bands as one shared footer
+  line, since it does not vary by role or org size. Classes `#s-learning-priorities .lp-bands`
+  and its `.lpb-*` children. This replaced the original three-role-cards-plus-twin-radar
+  layout (`.roles3`/`.scen2`, now removed) and four further rounds of options, all now
+  retired from the deck and the sandbox: a five-option redesign round; a follow-on offering
+  the accepted option D bigger in three forms (table, graphic SVG bar chart, prose); a
+  colour-safety fix on the graphic option after its small/large-org bars turned out to reuse
+  a role's own hue (`--alt-light` was literally shared between the Engineer pill and the
+  large-org bar); and, after Gordon said the graphic still lost the per-role dimension, three
+  further expanded treatments (bands, a `clip-path` chevron flow, and a hero-plus-quiet-row
+  layout) - bands is the one that shipped. Every round kept the two required points - each
+  role's minimum is not the whole picture, and what the team owns and how steep the climb is
+  scales with org size - and every settled fact from "Two deliberate decisions on `#9`" and
+  "How `#9`'s two charts are scored" below, now carried in the section's `data-notes`.
 - **Execution** (`#4`, "How we ran it"): wording option E, "Plain sentences", accepted
   2026-09-08. The existing fan-out layout remains: one Mac engineer in the DevOps CoE in
   a hub panel, a three-month full-time secondment to train the trainer, an SVG brace to
@@ -672,15 +743,6 @@ Notable content slides:
   `#s-conditions` and use the `--s07-*` tokens in `:root`; there is no preview injection or
   alternative layout in the deck. The old `.herowrap`, `.heropanel`, `.supp` and `.suppcard`
   (`.dip`, `.wide`) classes and their rules are gone, as nothing else used them.
-- **Learning priorities by role** (`#9`): three role cards across the top; below them two
-  radar webs (grid rings plus spokes, thin outlines, translucent fills), each carrying all
-  three roles. Left is a small org with no DevOps function, where every shape is broad;
-  right is a large org like LBG, where the shapes narrow but spike on Jamf APIs and
-  Mentoring while Environment and GitOps pull back to the platform team. Classes `.roles3`,
-  `.scen2`. The colour chip in each role-card header is the chart key, so **chip and polygon
-  colours must stay in step**: junior `--accent` (lime), engineer `--alt-light`
-  (cornflower), senior `--text-2` (off-white). The mapping is documented in the `.roles3`
-  CSS comment.
 
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an amber
 token for exactly that. Earlier TODOs included photos for Joseph and Gordon (`#1`) and the
@@ -977,6 +1039,26 @@ Slide 5's review page and the public index entries for slides 4 and 5 were remov
 Dafydd accepted option E for both on 2026-09-08. Slide 4 already held its accepted wording
 and remains unchanged. The index was cleared before this new review round.
 
+Slide 9 (learning priorities by role) went through four sandbox rounds between 2026-09-08
+and 2026-09-09 - a five-option redesign, a bigger-option-D follow-on (table, graphic, text),
+a colour-safety fix on the graphic option, and a role x org size cross round (bands, chevron,
+hero) - all now decided; see the Notable content slides entry above for the accepted result
+and `feedback-workflow.md`'s Log for the full history. Both review pages are retired.
+
+`s-delivery-three-visuals` (2026-09-09, slide 11, Joseph, too much writing and not enough
+visuals: three completely different treatments of the same ten scenarios (five where the
+room should be the default, five that work remotely with a condition) and the closing rule,
+each taking inspiration from a real `migrating_an_instance` slide - B aligned panels (the
+s01/s07 fixed-height column technique), C bands with tags (the s08/s11 row pattern, all ten
+scenarios as one list instead of two boxes), D a spectrum rail (the deck's own persistent
+timeline idea as a two-zone bar with labelled stops). Every option ships as real markup
+inside `#s-delivery` - `.s-delivery-opt-b`, `-opt-c`, `-opt-d` - alongside the existing
+`.s-delivery-opt-a` (the slide as it currently ships); a single deck rule shows only
+`-opt-a` by default and the sandbox page's CSS just flips which wrapper is visible per
+iframe. Content is kept in substance but each item is cut from a full sentence to a short
+headline and a few words; the complete original reasoning is unchanged in the section's one
+shared `data-notes` regardless of which option ships. No option is accepted.
+
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page
 was added. Accepted source changes remain in the deck; their provenance is retained below
@@ -999,6 +1081,9 @@ a direct anchor and a full-size view. The alternatives were removed without acce
 source slide 4 was unchanged by that reset. The later wording-only acceptance is below).
 
 Decided (under `presentations/sandbox/training_a_team/`):
+slide 9's four rounds (see the Notable content slides entry and the paragraph above this
+list for the full history) settled on the Bands treatment, both original review pages long
+retired;
 `s08-mindset-text-sizes` (2026-09-08, slide 8, speaker unassigned, five text-size steps on the
 shipped slide after Dafydd asked for the type to be bigger with everything else left alone: A
 body 26px, B 28px, C 30px, D 32px, E 34px, the largest that fits. All five also carried a rule

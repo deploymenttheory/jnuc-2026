@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sandbox - slide 11 Delivery - three visual treatments</title>
+<link rel="stylesheet" href="../sandbox.css">
+</head>
+<body>
+<div class="wrap">
+  <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / Training a team / slide 11</p>
+  <h1>Slide 11 - Delivery (three visual treatments)</h1>
+  <p class="lede">Gordon: too much writing on screen, not enough visuals, in the same vein as slide 9's rework - take inspiration from slide 9 and from <code>migrating_an_instance</code> as a whole, keep the content but tidy it up, and offer three completely different visualisations with the visuals matching the content. The slide's ten scenarios (five where the room should be the default, five that work remotely with a condition attached) and the closing rule are unchanged in substance across all three - only the presentation and the length of each item's caption changes; the full original reasoning stays in the section's <code>data-notes</code> regardless of which option ships. The slide gained a stable id, <code>#s-delivery</code>, so this round can be scoped like every other. <a href="../../training_a_team/index.html?theme=default#11">Compare the current live slide</a>.</p>
+  <nav class="jump" aria-label="Options">
+    <a href="#b">Aligned panels</a><a href="#c">Bands with tags</a><a href="#d">Spectrum rail</a>
+  </nav>
+
+  <section class="option" id="b">
+    <h2>Option B - Aligned panels</h2>
+    <p>Takes migrating_an_instance's slide 1 and slide 7 technique: two bordered column panels with every row held to a fixed height, so item 1 in the room lines up exactly with item 1 remote, all the way down. Each of the ten items is cut to a bold one-line headline plus a short caption (down from a full sentence), freeing up enough room that the two five-item columns read calmly rather than as a wall of text. Closest in structure to the slide as it ships today - the smallest jump for the room, the most direct fix for "too much writing".</p>
+    <div class="frame"><iframe data-variant="b" src="../../training_a_team/index.html?theme=default#11" title="Option B - Aligned panels"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-b"></pre></details>
+  </section>
+
+  <section class="option" id="c">
+    <h2>Option C - Bands with tags (updated)</h2>
+    <p>Takes migrating_an_instance's slide 8 wave-workflow rows and slide 11's numbered-list pattern: instead of two boxes to compare, all ten scenarios become one full-width list read top to bottom, each row carrying a small ROOM or REMOTE tag in place of the column split. Turns two separate totals into a single sequence - reads faster because there's only one shape to scan, not two. Updated at Gordon's request ("I like option C, just make it take up more of the slide... add some icons"): rows, type and the tag pills are all bigger, and each tag now carries a small icon - two overlapping circles for room, a simple monitor glyph for remote - both drawn in the tag's own colour so nothing needs a new hue.</p>
+    <div class="frame"><iframe data-variant="c" src="../../training_a_team/index.html?theme=default#11" title="Option C - Bands with tags"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-c"></pre></details>
+  </section>
+
+  <section class="option" id="d">
+    <h2>Option D - Spectrum rail</h2>
+    <p>Takes migrating_an_instance's own idea of a persistent timeline strip and turns it into the whole slide: one continuous two-tone bar, split into an IN THE ROOM zone and a REMOTE zone, with the ten scenarios as labelled stops sitting directly on it - a headline and a handful of words each, nothing more. The most graphic and the least worded of the three: the room-versus-remote split is the picture itself, not something described in prose. Pick this if the room should read the shape in half a second, then hear the detail rather than read it.</p>
+    <div class="frame"><iframe data-variant="d" src="../../training_a_team/index.html?theme=default#11" title="Option D - Spectrum rail"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-d"></pre></details>
+  </section>
+
+  <p class="foot">To choose: name the option in chat, or describe what to change and this page gets a new set. Renders need the site served over HTTP - opened from disk the iframes load but the option CSS cannot be injected.</p>
+</div>
+
+<script>
+  // All three already exist as real markup in the deck, inside #s-delivery,
+  // as .s-delivery-opt-b / -opt-c / -opt-d. The deck hides everything but
+  // -opt-a by default. Each variant's CSS here just flips which wrapper is
+  // visible in that iframe.
+  const VARIANTS = {
+    b: `#s-delivery .s-delivery-opt-a{display:none}
+#s-delivery .s-delivery-opt-b{display:flex}`,
+    c: `#s-delivery .s-delivery-opt-a{display:none}
+#s-delivery .s-delivery-opt-c{display:flex}`,
+    d: `#s-delivery .s-delivery-opt-a{display:none}
+#s-delivery .s-delivery-opt-d{display:flex}`,
+  };
+
+  for (const [key, css] of Object.entries(VARIANTS)) {
+    document.getElementById('css-' + key).textContent = css || '/* nothing - this is the deck as deployed */';
+  }
+
+  document.querySelectorAll('iframe[data-variant]').forEach((frame) => {
+    frame.addEventListener('load', () => {
+      const css = VARIANTS[frame.dataset.variant];
+      if (!css) return;
+      let doc;
+      try { doc = frame.contentDocument; } catch (e) { doc = null; }
+      if (!doc) return; // file:// - cross-origin iframe, nothing we can do
+      const style = doc.createElement('style');
+      style.textContent = css;
+      doc.head.appendChild(style);
+    });
+  });
+</script>
+</body>
+</html>

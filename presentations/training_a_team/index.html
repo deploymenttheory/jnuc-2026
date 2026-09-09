@@ -705,18 +705,6 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .mindset .ms-new{font-size:var(--s08-body);color:var(--green-bright);font-weight:700;line-height:var(--s08-body-leading)}
 .mindset .ms-rail-item{font-size:var(--s08-question);line-height:var(--s08-question-leading);color:var(--surface)}
 
-/* ---------- slide 8 ---------- */
-.rolecard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 30px;margin-bottom:22px}
-.rolecard .hd{display:flex;align-items:baseline;gap:16px;margin-bottom:14px}
-.rolecard .hd h3{font-size:27px;font-weight:700}
-.rolecard .hd span{font-family:var(--mono);font-size:19px;color:var(--green-bright)}
-.rolecard .hd span.blue{color:var(--blue-light)}
-.rolecard ul{list-style:none}
-.rolecard li{position:relative;padding-left:28px;font-size:20px;line-height:1.4;margin-bottom:9px;color:var(--text-dim)}
-.rolecard li::before{content:"\25B8";position:absolute;left:2px;color:var(--accent);font-size:18px}
-.legend{display:flex;gap:34px;justify-content:center;font-family:var(--mono);font-size:22px;color:var(--muted);margin-top:18px}
-.legend i{width:13px;height:13px;display:inline-block;border-radius:2px;margin-right:10px}
-
 /* ---------- slide 9 ---------- */
 .matrix{display:grid;grid-template-columns:230px repeat(5,1fr);gap:14px;margin-top:26px}
 .mx-corner{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end;
@@ -800,31 +788,35 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .goalfoot .bar3.not .lb{color:var(--muted)}
 .goalfoot p{font-size:17px;line-height:1.3;color:var(--text-dim)}
 .goalfoot .todo{display:inline-block;margin:2px 0 0}
-/* Role cards run across the top, so the two scenario radars below get the
-   height they need for three polygons each. The colour chip in each card
-   header doubles as the chart legend - keep the chip and polygon colours
-   in step (junior --accent, engineer --alt-light, senior --text-2). */
-.roles3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.roles3 .rolecard{margin-bottom:0;padding:14px 22px}
-.roles3 .rolecard .hd{margin-bottom:8px;gap:12px}
-.roles3 .rolecard .hd h3{font-size:23px}
-.roles3 .rolecard .hd span{font-size:16px}
-.roles3 .rolecard .hd i{width:13px;height:13px;border-radius:3px;flex:none}
-.roles3 .rolecard li{font-size:16.5px;line-height:1.3;margin-bottom:4px;padding-left:22px}
-.roles3 .rolecard li::before{font-size:17px;left:2px}
-.scen2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:12px}
-.scen2 .pane{border:1px solid var(--border);border-radius:12px;background:var(--surface);padding:16px 24px}
-.scen2 .phd{display:flex;align-items:baseline;gap:16px}
-.scen2 .phd .tag{font-family:var(--mono);font-size:16px;letter-spacing:.16em;color:var(--accent-strong)}
-.scen2 .pane.big .phd .tag{color:var(--alt-light)}
-.scen2 .phd h3{font-size:23px;font-weight:700}
-.scen2 .strap{font-size:17px;color:var(--text-dimmer);line-height:1.35;margin-top:5px}
-.scen2 svg{width:100%;height:300px;display:block;margin-top:4px}
-.scen2 .why{list-style:none;margin-top:8px}
-.scen2 .why li{position:relative;padding-left:20px;font-size:16px;line-height:1.3;
-  margin-bottom:4px;color:var(--text-dimmer)}
-.scen2 .why li::before{content:"\203A";position:absolute;left:2px;color:var(--accent);font-size:16px}
-.scen2 .pane.big .why li::before{color:var(--alt-light)}
+/* ---------- slide 9 (Learning priorities by role) ---------- */
+/* Three bands, one per role, stepping down the slide - migrating_an_instance's
+   s08 wave-workflow pattern, with a numbered gutter on the left. Each band
+   pairs a role's fixed minimum with the one discipline that actually shifts
+   with org size for that role. Solid fill = small org, hollow outline =
+   large org, always in the role's own colour (set via each band's inline
+   `color`), so a bar can never be misread as a different role's fact. */
+#s-learning-priorities .lp-bands{display:flex;flex-direction:column;gap:0}
+#s-learning-priorities .lpb-lead{font-size:26px;font-weight:700;color:var(--text-2);line-height:1.3;margin-bottom:10px}
+#s-learning-priorities .lpb-band{display:grid;grid-template-columns:88px 400px 1fr;gap:36px;align-items:center;
+  padding:24px 6px;border-top:1px solid var(--border)}
+#s-learning-priorities .lpb-band:last-of-type{border-bottom:1px solid var(--border)}
+#s-learning-priorities .lpb-gutter{display:flex;flex-direction:column;align-items:center;gap:10px;color:inherit}
+#s-learning-priorities .lpb-n{font-family:var(--mono);font-size:15px;color:var(--muted)}
+#s-learning-priorities .lpb-gutter i{width:18px;height:18px;border-radius:50%;background:currentColor;display:block}
+#s-learning-priorities .lpb-main h3{font-size:25px;font-weight:700;color:var(--text)}
+#s-learning-priorities .lpb-min{font-size:14.5px;color:var(--text-dim);margin-top:6px;line-height:1.4}
+#s-learning-priorities .lpb-disc{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+#s-learning-priorities .lpb-bars{display:flex;flex-direction:column;gap:7px}
+#s-learning-priorities .lpb-barrow{display:flex;align-items:center;gap:10px}
+#s-learning-priorities .lpb-barrow span{font-family:var(--mono);font-size:11.5px;color:var(--muted);width:48px;flex:none}
+#s-learning-priorities .lpb-track{flex:1;height:22px;border-radius:11px;background:var(--surface-2);position:relative;overflow:hidden}
+#s-learning-priorities .lpb-fill{position:absolute;inset:0;border-radius:11px}
+#s-learning-priorities .lpb-fill.solid{background:currentColor}
+#s-learning-priorities .lpb-fill.hollow{background:transparent;border:2px solid currentColor;box-sizing:border-box}
+#s-learning-priorities .lpb-note{font-size:13px;color:var(--text-dimmer);margin-top:7px;line-height:1.4;max-width:640px}
+#s-learning-priorities .lpb-foot{display:flex;justify-content:space-between;gap:24px;padding-top:16px;font-size:15px;color:var(--muted)}
+#s-learning-priorities .lpb-foot strong{color:var(--text-dim);font-weight:700}
+
 .slide.tight h1{margin-top:14px}
 .slide.tight .sub{margin-top:8px}
 .term{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;position:relative;z-index:2}
@@ -876,6 +868,77 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .rulebar .rx{margin-top:8px;border-top:1px solid var(--border);padding-top:8px;
   font-size:16px;line-height:1.4;color:var(--muted)}
 .rulebar .rx i{font-style:normal;color:var(--faint);margin:0 12px}
+
+/* Option B - Aligned panels: two bordered columns, fixed-height rows so
+   room and remote items line up across the split. */
+#s-delivery .s-delivery-opt-b{display:flex;flex-direction:column;gap:18px}
+#s-delivery .dlp-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+#s-delivery .dlp-panel{border:1px solid var(--border);border-radius:14px;overflow:hidden}
+#s-delivery .dlp-panel.room{border-color:var(--green-deep)}
+#s-delivery .dlp-panel.remote{border-color:var(--alt-border)}
+#s-delivery .dlp-head{padding:18px 26px;background:var(--surface-2)}
+#s-delivery .dlp-head h3{font-size:25px;font-weight:700;color:var(--text)}
+#s-delivery .dlp-head .sb{font-family:var(--mono);font-size:14px;letter-spacing:.1em;color:var(--green-bright);margin-top:4px}
+#s-delivery .dlp-panel.remote .dlp-head .sb{color:var(--blue-light)}
+#s-delivery .dlp-row{display:flex;align-items:center;gap:14px;padding:12px 26px;min-height:70px;
+  border-top:1px solid var(--border-soft)}
+#s-delivery .dlp-n{font-family:var(--mono);font-size:13px;color:var(--muted);flex:none;width:20px}
+#s-delivery .dlp-row b{display:block;font-size:17px;font-weight:700;color:var(--text);line-height:1.2}
+#s-delivery .dlp-row span{display:block;font-size:13.5px;color:var(--text-dimmer);margin-top:2px}
+#s-delivery .dlp-rule{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:10px;
+  padding:16px 26px;font-size:18px;color:var(--text-2);line-height:1.32}
+#s-delivery .dlp-rule b{color:var(--accent-strong)}
+
+/* Option C - Bands with tags: one full-width list of ten rows rather than
+   two boxes, each tagged ROOM or REMOTE instead of being split into columns
+   - migrating_an_instance's s08/s11 row pattern, reused for a single
+   sequence rather than a comparison. Enlarged and given a small icon per
+   tag at Gordon's request: two overlapping circles for room (people
+   together), a simple monitor glyph for remote - both drawn with
+   currentColor so they inherit the tag's own room/remote hue automatically. */
+#s-delivery .s-delivery-opt-c{display:flex;flex-direction:column;gap:0}
+#s-delivery .dlb-row{display:grid;grid-template-columns:168px 1fr 2fr;gap:28px;align-items:center;
+  padding:14px 6px;border-top:1px solid var(--border)}
+#s-delivery .dlb-row:last-of-type{border-bottom:1px solid var(--border)}
+#s-delivery .dlb-tag{display:flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--mono);font-size:14px;letter-spacing:.1em;font-weight:700;
+  padding:9px 16px;border-radius:999px}
+#s-delivery .dlb-tag svg{width:19px;height:19px;flex:none}
+#s-delivery .dlb-row.room .dlb-tag{background:var(--accent-wash);color:var(--green-bright);border:1px solid var(--green-deep)}
+#s-delivery .dlb-row.remote .dlb-tag{background:var(--alt-surface);color:var(--blue-light);border:1px solid var(--alt-border)}
+#s-delivery .dlb-row b{font-size:22px;font-weight:700;color:var(--text)}
+#s-delivery .dlb-row span{font-size:16.5px;color:var(--text-dimmer)}
+#s-delivery .dlb-foot{margin-top:16px;font-size:20px;color:var(--text-2);line-height:1.34}
+#s-delivery .dlb-foot b{color:var(--accent-strong)}
+
+/* Option D - Spectrum rail: one two-zone continuum rather than two cards,
+   echoing the deck's own persistent-timeline idea - discrete labelled stops
+   along a single bar, captions cut to a headline plus a few words. */
+#s-delivery .s-delivery-opt-d{display:flex;flex-direction:column;gap:20px}
+#s-delivery .dlr-track{display:flex;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+#s-delivery .dlr-zone{flex:1;padding:32px 34px 38px}
+#s-delivery .dlr-zone.room{background:var(--accent-wash)}
+#s-delivery .dlr-zone.remote{background:var(--alt-surface)}
+#s-delivery .dlr-zonehead{font-family:var(--mono);font-size:17px;letter-spacing:.12em;font-weight:700;margin-bottom:30px}
+#s-delivery .dlr-zone.room .dlr-zonehead{color:var(--green-bright)}
+#s-delivery .dlr-zone.remote .dlr-zonehead{color:var(--blue-light)}
+#s-delivery .dlr-stops{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+#s-delivery .dlr-stop{text-align:center}
+#s-delivery .dlr-dot{display:block;width:15px;height:15px;border-radius:50%;margin:0 auto 16px}
+#s-delivery .dlr-zone.room .dlr-dot{background:var(--green-bright)}
+#s-delivery .dlr-zone.remote .dlr-dot{background:var(--blue-light)}
+#s-delivery .dlr-stop b{display:block;font-size:19px;font-weight:700;color:var(--text);line-height:1.22}
+#s-delivery .dlr-stop span{display:block;font-size:14.5px;color:var(--text-dimmer);margin-top:9px;line-height:1.32}
+#s-delivery .dlr-rule{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:10px;
+  padding:22px 30px;font-size:22px;color:var(--text-2);line-height:1.36;text-align:center;margin-top:6px}
+#s-delivery .dlr-rule b{color:var(--accent-strong)}
+
+/* Only option A is visible in the shipped deck; this rule must come after
+   every option's own display declaration above so it wins the cascade. The
+   sandbox page flips which wrapper shows by injecting CSS after this. */
+#s-delivery .s-delivery-opt-b,
+#s-delivery .s-delivery-opt-c,
+#s-delivery .s-delivery-opt-d{display:none}
 
 /* ---------- slide 12 ---------- */
 .skillcol{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 18px}
@@ -1478,105 +1541,64 @@ Choose the people who will approve pull requests early and explicitly train them
     </section>
 
 <!-- ============ 9 · CURRICULUM BY ROLE ============ -->
-<section class="slide dense8" data-speaker="Dafydd" data-notes="Teach to the role, but the real point of this slide is the pair of charts underneath. The three roles are the same in both, and the coloured chip on each card is the key to the shapes. Juniors need breadth over depth: a working environment, Git basics, branching fundamentals, and enough Terraform to read a plan and predict what it will change. The test is simple - can they write a working PR and apply a change safely. Engineers own modules and everyday resource changes, review each other's work, and go to the Jamf Pro API docs directly when the provider documentation is ambiguous. Seniors are the escalation point rather than a separate species: advanced Terraform, release management, and a strong understanding of the Jamf Pro API, including working out whether an unsupported resource is an API gap or a provider gap and whether it is worth raising upstream. Note what is deliberately absent: provider architecture and SDK design. Building the provider is a different job from using it, and no Mac team needs a Go developer in order to adopt any of this. Now the two charts, and there are two things to draw out. First, look at Jamf APIs. That score is identical in both, deliberately. No external team is ever going to know your own service's APIs better than the team that owns the service, so org size makes no difference to it whatsoever. Second, and this is the real distinction, look at Environment. In a small organisation you design it, build it and maintain it: the toolchain, the runners, the state backend, all of it, because nobody provisions a repo for you. In a large organisation that arrives from the internal developer platform as a template, so the burden lifts. But be careful how you say the rest, because Git and GitOps barely move between the two. In a large organisation you still own your branching strategy, you still wire the event triggers into your own environments, and you still handle merges to main and releases. What you lose is not the knowledge, it is the authority: every PR needs a second approver, your GitHub access stops at the edges of what you own, and you cannot turn off Checkov or the linters even if you want to. That is the sentence worth landing. You still need to know how the platform is designed, but your workflow will have to conform with wider company standards, and how much of it you can change is entirely dependent on your own organisation. Note the wording on both panels: in either case you are managing the Jamf Terraform workflows. What differs is whether you also design, build and maintain the platform underneath them, or consume it inside somebody else's guardrails.">
+<section class="slide" id="s-learning-priorities" data-speaker="Dafydd" data-notes="Two points, and the slide is built to make exactly two points, not six. One: each role has its own fixed minimum, not everything - a junior needs enough to read a plan and ship a safe PR, an engineer owns modules and daily changes, a senior is the escalation point for advanced Terraform and API-versus-provider triage. That minimum does not move with org size. Two: what moves is what the team owns underneath that minimum, and each role has its own defining shift. For a junior it is the environment itself - in a small org you design, build and maintain it, because nobody provisions a repo for you; in a large org it arrives as a platform template, so the burden lifts. For an engineer it is authority over Git and GitOps - the bar stays the same length either way, because the knowledge does not shrink, but a large org adds a second approver, so say authority narrows rather than knowledge. For a senior it is mentoring load - light in a small org, where one person often spans all three roles, heavier in a large one across a bigger team, plus the packaging and endpoint security teams. Jamf API knowledge sits outside all three and never moves, because no external team will ever know your own service's API better than the team that owns it. Close on: you still need to know how the platform is designed, but your workflow will have to conform with wider company standards.">
   <div class="eyebrow"><i class="dot"></i>09 &middot; Curriculum</div>
   <h1>Learning priorities by role</h1>
   <div class="sub">The same three roles. How far each has to stretch depends on who else is in the building.</div>
   <div class="body" style="margin-top:24px">
-    <div class="roles3">
-      <div class="rolecard">
-        <div class="hd"><i style="background:var(--accent)"></i><h3>Junior engineers</h3><span>Breadth over depth</span></div>
-        <ul>
-          <li>Environment working: editor, extensions, Terraform on PATH</li>
-          <li>Git basics and branching fundamentals</li>
-          <li>Terraform basics: read a plan and predict what it changes</li>
-          <li>Can they write a working PR and apply a change safely?</li>
-        </ul>
+
+    <!-- Three bands, one per role, stepping down the slide with a numbered
+         gutter on the left - migrating_an_instance's s08 wave-workflow
+         pattern. Each band pairs a role's fixed minimum with the one
+         discipline that actually shifts with org size for that role. Solid
+         fill = small org, hollow outline = large org, always in the role's
+         own colour (each band sets `color` inline), so a bar can never be
+         misread as a different role's fact. -->
+    <div class="lp-bands">
+      <p class="lpb-lead">Each role has a fixed minimum. What shifts with your org&rsquo;s size is what sits underneath it.</p>
+
+      <div class="lpb-band" style="color:var(--accent)">
+        <div class="lpb-gutter"><span class="lpb-n">01</span><i></i></div>
+        <div class="lpb-main"><h3>Junior</h3><p class="lpb-min">Environment, Git basics, read a plan, ship a safe PR</p></div>
+        <div>
+          <div class="lpb-disc">ENVIRONMENT</div>
+          <div class="lpb-bars">
+            <div class="lpb-barrow"><span>SMALL</span><div class="lpb-track"><div class="lpb-fill solid" style="width:100%"></div></div></div>
+            <div class="lpb-barrow"><span>LARGE</span><div class="lpb-track"><div class="lpb-fill hollow" style="width:28%"></div></div></div>
+          </div>
+          <p class="lpb-note">Builds and maintains it in a small org. In a large one it arrives as a platform template.</p>
+        </div>
       </div>
-      <div class="rolecard">
-        <div class="hd"><i style="background:var(--alt-light)"></i><h3>Engineers</h3><span>Applying it daily</span></div>
-        <ul>
-          <li>Own modules and everyday resource changes end-to-end</li>
-          <li>Review junior PRs; raise their own with confidence</li>
-          <li>Read the Jamf Pro API docs when the provider docs are ambiguous</li>
-        </ul>
+
+      <div class="lpb-band" style="color:var(--alt-light)">
+        <div class="lpb-gutter"><span class="lpb-n">02</span><i></i></div>
+        <div class="lpb-main"><h3>Engineer</h3><p class="lpb-min">Owns modules and daily changes, reviews others, reads the Jamf Pro API when needed</p></div>
+        <div>
+          <div class="lpb-disc">GIT &amp; GITOPS</div>
+          <div class="lpb-bars">
+            <div class="lpb-barrow"><span>SMALL</span><div class="lpb-track"><div class="lpb-fill solid" style="width:100%"></div></div></div>
+            <div class="lpb-barrow"><span>LARGE</span><div class="lpb-track"><div class="lpb-fill hollow" style="width:100%"></div></div></div>
+          </div>
+          <p class="lpb-note">Same length both sides &ndash; the knowledge does not shrink. A large org adds a second approver: less authority, not less skill.</p>
+        </div>
       </div>
-      <div class="rolecard">
-        <div class="hd"><i style="background:var(--text-2)"></i><h3>Senior engineers</h3><span class="blue">The escalation point</span></div>
-        <ul>
-          <li>Advanced Terraform: for_each, dynamic blocks, modules</li>
-          <li>Release management: tagging, promotion, rollback</li>
-          <li><span class="g">Strong Jamf Pro API understanding</span></li>
-          <li>Unsupported resource? API gap or provider gap, and is it worth raising</li>
-          <li>Pairs with and mentors juniors; reviews and unblocks</li>
-        </ul>
+
+      <div class="lpb-band" style="color:var(--text-2)">
+        <div class="lpb-gutter"><span class="lpb-n">03</span><i></i></div>
+        <div class="lpb-main"><h3>Senior</h3><p class="lpb-min">The escalation point &ndash; advanced Terraform, releases, API-vs-provider triage</p></div>
+        <div>
+          <div class="lpb-disc">MENTORING</div>
+          <div class="lpb-bars">
+            <div class="lpb-barrow"><span>SMALL</span><div class="lpb-track"><div class="lpb-fill solid" style="width:30%"></div></div></div>
+            <div class="lpb-barrow"><span>LARGE</span><div class="lpb-track"><div class="lpb-fill hollow" style="width:78%"></div></div></div>
+          </div>
+          <p class="lpb-note">Light in a small org, where one person often spans all three roles. Heavier in a large one, across a bigger team.</p>
+        </div>
       </div>
+
+      <div class="lpb-foot"><span>Jamf APIs sit outside all three bands &ndash; identical either way.</span><strong>No external team will ever know your own service&rsquo;s API better than the team that owns it.</strong></div>
     </div>
 
-    <div class="scen2">
-      <div class="pane">
-        <div class="phd"><span class="tag">SMALL ORG</span><h3>No DevOps function</h3></div>
-        <p class="strap">Design, build and maintain the platform and manage the Jamf Terraform workflows</p>
-        <svg viewBox="-130 -22 820 546">
-          <g fill="none" stroke-width="1.5" style="stroke:var(--border)">
-            <polygon points="280,173 347,212 347,289 280,327 213,289 213,212"/>
-            <polygon points="280,96 413,173 413,327 280,404 147,327 147,173"/>
-            <polygon points="280,30 470,140 470,360 280,470 90,360 90,140"/>
-            <path d="M280 250 L280 30M280 250 L470 140M280 250 L470 360M280 250 L280 470M280 250 L90 360M280 250 L90 140"/>
-          </g>
-          <polygon points="280,41 451,151 461,355 280,459 100,355 176,190"
-            fill-opacity=".14" stroke-width="3" style="fill:var(--text-2);stroke:var(--text-2)"/>
-          <polygon points="280,85 423,168 413,327 280,382 119,344 204,206"
-            fill-opacity=".16" stroke-width="3" style="fill:var(--alt-light);stroke:var(--alt-light)"/>
-          <polygon points="280,173 366,201 337,283 280,283 166,316 261,239"
-            fill-opacity=".2" stroke-width="3" style="fill:var(--accent);stroke:var(--accent)"/>
-          <g font-family="Helvetica,Arial,sans-serif" font-size="32" style="fill:var(--text-2)">
-            <text x="280" y="12" text-anchor="middle">Terraform</text>
-            <text x="487" y="133" text-anchor="start">Git</text>
-            <text x="487" y="373" text-anchor="start">GitOps</text>
-            <text x="280" y="502" text-anchor="middle">Jamf APIs</text>
-            <text x="73" y="373" text-anchor="end">Environment</text>
-            <text x="73" y="133" text-anchor="end">Mentoring</text>
-          </g>
-        </svg>
-        <ul class="why">
-          <li>The platform is yours too: the toolchain, the runners and the state backend</li>
-          <li>Nobody provisions a repo for you, so the whole environment is yours to stand up and keep alive</li>
-          <li>Fewer people, so one person often spans all three roles at once</li>
-        </ul>
-      </div>
-      <div class="pane big">
-        <div class="phd"><span class="tag">LARGE ORG</span><h3>Specialist teams either side</h3></div>
-        <p class="strap">Consume the platform, inside its guardrails and manage the Jamf Terraform workflows</p>
-        <svg viewBox="-130 -22 820 546">
-          <g fill="none" stroke-width="1.5" style="stroke:var(--border)">
-            <polygon points="280,173 347,212 347,289 280,327 213,289 213,212"/>
-            <polygon points="280,96 413,173 413,327 280,404 147,327 147,173"/>
-            <polygon points="280,30 470,140 470,360 280,470 90,360 90,140"/>
-            <path d="M280 250 L280 30M280 250 L470 140M280 250 L470 360M280 250 L280 470M280 250 L90 360M280 250 L90 140"/>
-          </g>
-          <polygon points="280,52 432,162 432,338 280,459 185,305 109,151"
-            fill-opacity=".14" stroke-width="3" style="fill:var(--text-2);stroke:var(--text-2)"/>
-          <polygon points="280,85 398,182 398,318 280,382 200,296 176,190"
-            fill-opacity=".16" stroke-width="3" style="fill:var(--alt-light);stroke:var(--alt-light)"/>
-          <polygon points="280,173 360,204 337,283 280,283 214,289 261,239"
-            fill-opacity=".2" stroke-width="3" style="fill:var(--accent);stroke:var(--accent)"/>
-          <g font-family="Helvetica,Arial,sans-serif" font-size="32" style="fill:var(--text-2)">
-            <text x="280" y="12" text-anchor="middle">Terraform</text>
-            <text x="487" y="133" text-anchor="start">Git</text>
-            <text x="487" y="373" text-anchor="start">GitOps</text>
-            <text x="280" y="502" text-anchor="middle">Jamf APIs</text>
-            <text x="73" y="373" text-anchor="end">Environment</text>
-            <text x="73" y="133" text-anchor="end">Mentoring</text>
-          </g>
-        </svg>
-        <ul class="why">
-          <li>You still own the branching strategy, the triggers into your environments, merges and releases</li>
-          <li>Repos come from platform templates, every PR needs a second approver, and you cannot disable Checkov or the linters</li>
-          <li>You still need to know how the platform is designed. But your workflow will have to conform with wider company standards</li>
-        </ul>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1635,10 +1657,14 @@ Choose the people who will approve pull requests early and explicitly train them
 </section>
 
 <!-- ============ 11 · DELIVERY ============ -->
-<section class="slide" data-speaker="Joseph" data-notes="The point of this slide is the small print, not the headings. Anyone can tell you to do training in person. What people actually need is the reason, because the reason is what they can apply to their own material. Left column, and every one of these comes down to the same thing: what you can see, and how cheap it is to ask. First exposure - in a room you can see somebody is lost from across the table, before they have said a word. On a call, asking for help means unmuting and stopping everyone else, so people sit there quietly instead, and you find out three weeks later. Debugging a broken config - somebody is looking at your screen the second you go wrong, not ten minutes later after you have piled three more mistakes on top of the first one. That is why the replacement curriculum hands people a config with faults planted in it. Pairing - and be precise here, because the research does not say what people assume. Distributed pairing, including a 2023 systematic review, performs about as well as sitting together, provided both people can actually type. What the same review found really matters is whether the pair get on. Two people who do not know each other will not share a keyboard honestly, and that trust gets built in the chat around the work, which a scheduled call has none of. So form the pair in the room; after that it can go remote quite happily. Game days and hacks - here it is simply the atmosphere. Ideas bounce, people overhear each other, and a team forms while they are solving something. Nobody has ever built that on a call. And the week someone breaks something - owning up to a screen is much harder than owning up to a room, and in a room everyone else watches the reaction be help rather than blame, which is what makes them speak up sooner the next time. That is the whole mechanism behind psychological safety, and it is why remote can maintain it but rarely creates it. Right column, and the heading matters: with conditions. Pre-requisites - nobody needs to watch you install a toolchain, so do not waste a room on it. But ungated, it does not get finished: median completion for self-paced online content sits around 12.6%, against 60 to 90% for a cohort with a date on it. That is the evidence behind condition 02 earlier. Recorded walkthroughs - a recording can be paused, rewound and watched again at 11pm, which a room genuinely cannot do. What it cannot do is answer a question back, so it is for the parts with a fixed answer. Co-editing - if both people can type it holds up; if only one can, the other is watching somebody work, which is not learning. Pull request review is the easy one to justify, because it is how review works in the job anyway - doing it remotely is not a compromise, it is the real thing. And pull requests by their nature need time for reflection and analysis, which is exactly what a room does not give you. And keep clinics short, because video genuinely drains people faster than a room does - videoconference fatigue shows up on EEG and ECG within about fifteen minutes and is significant by fifty. So under an hour, with a break in the middle. Past that they are still on the call but they have stopped learning, and a full day of remote workshop is a wasted day. Then the rule at the bottom, which is the sentence to leave them with, and it is just the two columns said once. Everything on the left is there because the learning depends on other people - being seen when you are lost, being caught at the moment you go wrong, being reassured when you break something. Everything on the right is between a learner and the material, where there is one right answer, or where they need to pause, re-read and think. So: if the learning depends on other people, put it in the room; if it is between a learner and the material, remote is fine and often better. And the two asides on the right matter more than they look. Environment setup belongs in neither column - automate it, which is exactly what our platform arriving late cost us. And reference material is not a session in its own right - it should be carried out separately, which is the 214,645-word manual said as a delivery rule.">
+<section class="slide" id="s-delivery" data-speaker="Joseph" data-notes="The point of this slide is the small print, not the headings. Anyone can tell you to do training in person. What people actually need is the reason, because the reason is what they can apply to their own material. Left column, and every one of these comes down to the same thing: what you can see, and how cheap it is to ask. First exposure - in a room you can see somebody is lost from across the table, before they have said a word. On a call, asking for help means unmuting and stopping everyone else, so people sit there quietly instead, and you find out three weeks later. Debugging a broken config - somebody is looking at your screen the second you go wrong, not ten minutes later after you have piled three more mistakes on top of the first one. That is why the replacement curriculum hands people a config with faults planted in it. Pairing - and be precise here, because the research does not say what people assume. Distributed pairing, including a 2023 systematic review, performs about as well as sitting together, provided both people can actually type. What the same review found really matters is whether the pair get on. Two people who do not know each other will not share a keyboard honestly, and that trust gets built in the chat around the work, which a scheduled call has none of. So form the pair in the room; after that it can go remote quite happily. Game days and hacks - here it is simply the atmosphere. Ideas bounce, people overhear each other, and a team forms while they are solving something. Nobody has ever built that on a call. And the week someone breaks something - owning up to a screen is much harder than owning up to a room, and in a room everyone else watches the reaction be help rather than blame, which is what makes them speak up sooner the next time. That is the whole mechanism behind psychological safety, and it is why remote can maintain it but rarely creates it. Right column, and the heading matters: with conditions. Pre-requisites - nobody needs to watch you install a toolchain, so do not waste a room on it. But ungated, it does not get finished: median completion for self-paced online content sits around 12.6%, against 60 to 90% for a cohort with a date on it. That is the evidence behind condition 02 earlier. Recorded walkthroughs - a recording can be paused, rewound and watched again at 11pm, which a room genuinely cannot do. What it cannot do is answer a question back, so it is for the parts with a fixed answer. Co-editing - if both people can type it holds up; if only one can, the other is watching somebody work, which is not learning. Pull request review is the easy one to justify, because it is how review works in the job anyway - doing it remotely is not a compromise, it is the real thing. And pull requests by their nature need time for reflection and analysis, which is exactly what a room does not give you. And keep clinics short, because video genuinely drains people faster than a room does - videoconference fatigue shows up on EEG and ECG within about fifteen minutes and is significant by fifty. So under an hour, with a break in the middle. Past that they are still on the call but they have stopped learning, and a full day of remote workshop is a wasted day. Then the rule at the bottom, which is the sentence to leave them with, and it is just the two columns said once. Everything on the left is there because the learning depends on other people - being seen when you are lost, being caught at the moment you go wrong, being reassured when you break something. Everything on the right is between a learner and the material, where there is one right answer, or where they need to pause, re-read and think. So: if the learning depends on other people, put it in the room; if it is between a learner and the material, remote is fine and often better. And the two asides on the right matter more than they look. Environment setup belongs in neither column - automate it, which is exactly what our platform arriving late cost us. And reference material is not a session in its own right - it should be carried out separately, which is the 214,645-word manual said as a delivery rule.">
   <div class="eyebrow"><i class="dot"></i>11 &middot; Delivery</div>
   <h1>What lands well in the room together, what lands well remotely</h1>
   <div class="sub">When delivering technical training, you should consider the following:</div>
+
+  <!-- Option A - the deck as it currently ships: two bordered columns, five
+       scenarios each with a headline and a full sentence. -->
+  <div class="s-delivery-opt-a">
   <div class="body grid g2" style="margin-top:30px">
     <div class="modecard on">
       <h3>In the room</h3>
@@ -1670,6 +1696,81 @@ Choose the people who will approve pull requests early and explicitly train them
     </div>
     <div class="rx">Environment setup is neither - automate it.<i>&middot;</i>Reference material isn't a session in its own right and should be carried out separately.</div>
   </div>
+  </div>
+
+  <!-- Option B - Aligned panels: migrating_an_instance's s01/s07 pattern of
+       two bordered column panels with rows held to a fixed height so items
+       line up across both columns. Captions cut to one short line each. -->
+  <div class="s-delivery-opt-b">
+    <div class="dlp-grid">
+      <div class="dlp-panel room">
+        <div class="dlp-head"><h3>In the room</h3><div class="sb">DEFAULT FOR THESE</div></div>
+        <div class="dlp-row"><span class="dlp-n">01</span><div><b>First exposure to a concept</b><span>You can see they&rsquo;re lost before they say so</span></div></div>
+        <div class="dlp-row"><span class="dlp-n">02</span><div><b>Debugging a broken config</b><span>Someone&rsquo;s watching your screen the second it breaks</span></div></div>
+        <div class="dlp-row"><span class="dlp-n">03</span><div><b>Pairing people for the first time</b><span>Trust for a keyboard builds face to face</span></div></div>
+        <div class="dlp-row"><span class="dlp-n">04</span><div><b>Game days, hacks and scenario labs</b><span>The atmosphere does the work</span></div></div>
+        <div class="dlp-row"><span class="dlp-n">05</span><div><b>The week someone breaks something</b><span>Owning up is easier in the room</span></div></div>
+      </div>
+      <div class="dlp-panel remote">
+        <div class="dlp-head"><h3>Remote</h3><div class="sb">WORKS, WITH CONDITIONS</div></div>
+        <div class="dlp-row"><span class="dlp-n">01</span><div><b>Pre-requisite training modules</b><span>One right answer, but gate it or it slips</span></div></div>
+        <div class="dlp-row"><span class="dlp-n">02</span><div><b>Recorded expert think-aloud</b><span>Pause and rewind beats live, until you have a question</span></div></div>
+        <div class="dlp-row"><span class="dlp-n">03</span><div><b>Co-editing, not screen sharing</b><span>Works if both people can actually type</span></div></div>
+        <div class="dlp-row"><span class="dlp-n">04</span><div><b>Async PR review</b><span>This is just how review works anyway</span></div></div>
+        <div class="dlp-row"><span class="dlp-n">05</span><div><b>Follow-up clinics</b><span>Under an hour - video drains people fast</span></div></div>
+      </div>
+    </div>
+    <div class="dlp-rule"><b>THE RULE.</b> If it depends on other people, put it in the room. If it&rsquo;s between a learner and the material, remote is fine, often better.</div>
+  </div>
+
+  <!-- Option C - Bands with tags: one full-width list rather than two boxes -
+       migrating_an_instance's s08 wave-workflow rows and s11 numbered-list
+       pattern, reused here with a coloured tag standing in for the column
+       split, so the ten scenarios read as one sequence, not two totals. -->
+  <div class="s-delivery-opt-c">
+    <div class="dlb-row room"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6.5" fill="currentColor" opacity=".85"/><circle cx="15.5" cy="12" r="6.5" fill="currentColor" opacity=".45"/></svg>ROOM</span><b>First exposure to a concept</b><span>You can see they&rsquo;re lost before they say so</span></div>
+    <div class="dlb-row room"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6.5" fill="currentColor" opacity=".85"/><circle cx="15.5" cy="12" r="6.5" fill="currentColor" opacity=".45"/></svg>ROOM</span><b>Debugging a broken config</b><span>Someone&rsquo;s watching your screen the second it breaks</span></div>
+    <div class="dlb-row room"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6.5" fill="currentColor" opacity=".85"/><circle cx="15.5" cy="12" r="6.5" fill="currentColor" opacity=".45"/></svg>ROOM</span><b>Pairing people for the first time</b><span>Trust for a keyboard builds face to face</span></div>
+    <div class="dlb-row room"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6.5" fill="currentColor" opacity=".85"/><circle cx="15.5" cy="12" r="6.5" fill="currentColor" opacity=".45"/></svg>ROOM</span><b>Game days, hacks and scenario labs</b><span>The atmosphere does the work</span></div>
+    <div class="dlb-row room"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6.5" fill="currentColor" opacity=".85"/><circle cx="15.5" cy="12" r="6.5" fill="currentColor" opacity=".45"/></svg>ROOM</span><b>The week someone breaks something</b><span>Owning up is easier in the room</span></div>
+    <div class="dlb-row remote"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="16.5" x2="12" y2="20" stroke="currentColor" stroke-width="2"/></svg>REMOTE</span><b>Pre-requisite training modules</b><span>One right answer, but gate it or it slips</span></div>
+    <div class="dlb-row remote"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="16.5" x2="12" y2="20" stroke="currentColor" stroke-width="2"/></svg>REMOTE</span><b>Recorded expert think-aloud</b><span>Pause and rewind beats live, until you have a question</span></div>
+    <div class="dlb-row remote"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="16.5" x2="12" y2="20" stroke="currentColor" stroke-width="2"/></svg>REMOTE</span><b>Co-editing, not screen sharing</b><span>Works if both people can actually type</span></div>
+    <div class="dlb-row remote"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="16.5" x2="12" y2="20" stroke="currentColor" stroke-width="2"/></svg>REMOTE</span><b>Async PR review</b><span>This is just how review works anyway</span></div>
+    <div class="dlb-row remote"><span class="dlb-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="16.5" x2="12" y2="20" stroke="currentColor" stroke-width="2"/></svg>REMOTE</span><b>Follow-up clinics</b><span>Under an hour - video drains people fast</span></div>
+    <div class="dlb-foot"><b>The rule:</b> depends on other people, put it in the room. Between a learner and the material, remote is fine, often better.</div>
+  </div>
+
+  <!-- Option D - Spectrum rail: a single two-zone bar rather than two cards,
+       echoing migrating_an_instance's persistent timeline strip - one
+       continuum with discrete labelled stops, rather than two totals to
+       compare. Captions cut hardest here, to headline plus a few words. -->
+  <div class="s-delivery-opt-d">
+    <div class="dlr-track">
+      <div class="dlr-zone room">
+        <div class="dlr-zonehead">IN THE ROOM &middot; default</div>
+        <div class="dlr-stops">
+          <div class="dlr-stop"><i class="dlr-dot"></i><b>First exposure</b><span>Lost before they say so</span></div>
+          <div class="dlr-stop"><i class="dlr-dot"></i><b>Debugging live</b><span>Seen the second it breaks</span></div>
+          <div class="dlr-stop"><i class="dlr-dot"></i><b>First pairing</b><span>Trust builds face to face</span></div>
+          <div class="dlr-stop"><i class="dlr-dot"></i><b>Game days</b><span>The atmosphere does the work</span></div>
+          <div class="dlr-stop"><i class="dlr-dot"></i><b>The bad week</b><span>Owning up is easier here</span></div>
+        </div>
+      </div>
+      <div class="dlr-zone remote">
+        <div class="dlr-zonehead">REMOTE &middot; with conditions</div>
+        <div class="dlr-stops">
+          <div class="dlr-stop"><i class="dlr-dot"></i><b>Pre-requisites</b><span>Gate it or it slips</span></div>
+          <div class="dlr-stop"><i class="dlr-dot"></i><b>Recorded walkthroughs</b><span>Great until you have a question</span></div>
+          <div class="dlr-stop"><i class="dlr-dot"></i><b>Co-editing</b><span>Fine if both people can type</span></div>
+          <div class="dlr-stop"><i class="dlr-dot"></i><b>Async PR review</b><span>How review works anyway</span></div>
+          <div class="dlr-stop"><i class="dlr-dot"></i><b>Follow-up clinics</b><span>Under an hour, video drains fast</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="dlr-rule"><b>THE RULE.</b> Depends on other people, put it in the room. Between a learner and the material, remote is fine, often better.</div>
+  </div>
+
 </section>
 
 <!-- ============ 12 · CONTENT TYPES ============ -->
