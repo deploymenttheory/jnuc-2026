@@ -549,7 +549,8 @@ flow were in. Everything left of the gate is the whole team; phase 4 is the main
 Confirmed by Gordon Deacon, Aug 2026. Move the gate and you must move the `.gate-label` width
 with it - the label is right-aligned inside a box the same width as the gate offset.
 
-Then `#11` delivery, `#12` content types, `#13` Louise's case study, `#14` sister-team
+Then `#11` delivery (`s-delivery`, id added 2026-09-09; a three-option sandbox round is
+open to cut its two ten-item lists down and add visual structure, see Sandbox), `#12` content types, `#13` Louise's case study, `#14` sister-team
 scope, `#15` onboarding, `#16` hiring, `#17` learner benefits, `#18` learning materials,
 `#19` Questions and `#20` Thank You. The appendix is `#21` the skills map, `#22` the old
 pathway matrix, `#23` the old week-by-week timeline and `#24` the colour system. The
@@ -973,6 +974,20 @@ and 2026-09-09 - a five-option redesign, a bigger-option-D follow-on (table, gra
 a colour-safety fix on the graphic option, and a role x org size cross round (bands, chevron,
 hero) - all now decided; see the Notable content slides entry above for the accepted result
 and `feedback-workflow.md`'s Log for the full history. Both review pages are retired.
+
+`s-delivery-three-visuals` (2026-09-09, slide 11, Joseph, too much writing and not enough
+visuals: three completely different treatments of the same ten scenarios (five where the
+room should be the default, five that work remotely with a condition) and the closing rule,
+each taking inspiration from a real `migrating_an_instance` slide - B aligned panels (the
+s01/s07 fixed-height column technique), C bands with tags (the s08/s11 row pattern, all ten
+scenarios as one list instead of two boxes), D a spectrum rail (the deck's own persistent
+timeline idea as a two-zone bar with labelled stops). Every option ships as real markup
+inside `#s-delivery` - `.s-delivery-opt-b`, `-opt-c`, `-opt-d` - alongside the existing
+`.s-delivery-opt-a` (the slide as it currently ships); a single deck rule shows only
+`-opt-a` by default and the sandbox page's CSS just flips which wrapper is visible per
+iframe. Content is kept in substance but each item is cut from a full sentence to a short
+headline and a few words; the complete original reasoning is unchanged in the section's one
+shared `data-notes` regardless of which option ships. No option is accepted.
 
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page

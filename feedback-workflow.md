@@ -734,6 +734,32 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-09, training_a_team slide 11 "Delivery", three visual treatments, awaiting a
+  decision.** Done directly rather than through a dispatched agent, continuing Gordon's
+  request to keep these rounds cheap. Gordon: "this slide needs tidied up, there is too much
+  writing on the screen and not enough visuals... take inspiration from slide 9 and from the
+  entire migrating_an_instance deck... 3 totally different visualisations... try and make the
+  visuals match the content. But try and keep the content while tidying it up." Gave the
+  slide a stable id, `s-delivery` (it had none), and wrapped its current layout as
+  `.s-delivery-opt-a` per the standard options mechanism. Three new options, each borrowing a
+  real migrating_an_instance pattern: B Aligned panels (slides 1 and 7's bordered
+  fixed-height column technique - the same ten scenarios in two columns, but with rows held
+  to a matching height so item 1 in the room lines up with item 1 remote all the way down);
+  C Bands with tags (slide 8's wave-workflow rows and slide 11's numbered-list pattern - all
+  ten scenarios as one full-width list read top to bottom, each row tagged ROOM or REMOTE
+  instead of split into two boxes); D Spectrum rail (the deck's own persistent timeline strip
+  idea turned into the whole slide - a two-zone bar, room on one side and remote on the
+  other, with the ten scenarios as labelled stops sitting directly on it). All three keep
+  every one of the ten scenarios and the closing rule in substance, cutting each item from a
+  full sentence to a short headline plus a handful of words; the complete original reasoning
+  is untouched in the section's shared `data-notes`. Sandbox page
+  `s-delivery-three-visuals.html`, linked from the training sandbox index. Verified: disk
+  screenshots of every option (baseline plus all three, with D's type and spacing enlarged
+  after the first pass left too much empty canvas), dash lint clean, `git diff --stat` scoped
+  to `presentations/training_a_team/index.html`, the new sandbox page, the sandbox index and
+  `AGENTS.md`. Training has no presenter.json, so presenter sync does not apply. Pushed
+  directly to `main`, no PR.
+
 - **2026-09-09, training_a_team slide 9, "Learning priorities by role" decided: the Bands
   treatment.** Continuation of the round below, done directly rather than through a
   dispatched agent at Gordon's request ("Don't use the agents, as they are using a high
