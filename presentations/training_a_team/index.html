@@ -561,18 +561,6 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .mindset .ms-new{font-size:24px;color:var(--green-bright);font-weight:700;line-height:1.25}
 .mindset .ms-rail-item{font-size:17px;line-height:1.3;color:var(--surface)}
 
-/* ---------- slide 8 ---------- */
-.rolecard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 30px;margin-bottom:22px}
-.rolecard .hd{display:flex;align-items:baseline;gap:16px;margin-bottom:14px}
-.rolecard .hd h3{font-size:27px;font-weight:700}
-.rolecard .hd span{font-family:var(--mono);font-size:19px;color:var(--green-bright)}
-.rolecard .hd span.blue{color:var(--blue-light)}
-.rolecard ul{list-style:none}
-.rolecard li{position:relative;padding-left:28px;font-size:20px;line-height:1.4;margin-bottom:9px;color:var(--text-dim)}
-.rolecard li::before{content:"\25B8";position:absolute;left:2px;color:var(--accent);font-size:18px}
-.legend{display:flex;gap:34px;justify-content:center;font-family:var(--mono);font-size:22px;color:var(--muted);margin-top:18px}
-.legend i{width:13px;height:13px;display:inline-block;border-radius:2px;margin-right:10px}
-
 /* ---------- slide 9 ---------- */
 .matrix{display:grid;grid-template-columns:230px repeat(5,1fr);gap:14px;margin-top:26px}
 .mx-corner{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end;
@@ -656,6 +644,35 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .goalfoot .bar3.not .lb{color:var(--muted)}
 .goalfoot p{font-size:17px;line-height:1.3;color:var(--text-dim)}
 .goalfoot .todo{display:inline-block;margin:2px 0 0}
+/* Accepted from the option D graphic sandbox round: three identical role
+   pills carry "the minimum is fixed regardless of role", then a scaled bar
+   chart per discipline carries "ownership shifts with org size" by bar
+   length. The pill colour chip is the role key (junior --accent, engineer
+   --alt-light, senior --text-2) - keep that in step with the role-card
+   convention used elsewhere in the deck. The bar chart is NOT about role -
+   it compares small org against large org per discipline - so its fills
+   deliberately sit outside the lime/cornflower/off-white role palette
+   entirely and use the deck's warm signal hue instead (small org --warn,
+   large org the lighter --warn-light), so a bar can never be mistaken for a
+   role chip. The Jamf APIs row is identical on both sides regardless of org
+   size, so both its bars keep the darker --warn rather than switching to
+   --warn-light, which visually marks it as the one row that does not shift. */
+#s-learning-priorities .lpg{display:flex;flex-direction:column;gap:14px}
+#s-learning-priorities .lpg-lead{font-size:28px;font-weight:700;color:var(--text-2);line-height:1.3}
+#s-learning-priorities .lpg-pills{display:flex;gap:18px}
+#s-learning-priorities .lpg-pill{flex:1;display:flex;align-items:center;justify-content:center;gap:12px;
+  background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:14px 0}
+#s-learning-priorities .lpg-pill i{width:14px;height:14px;border-radius:50%;flex:none}
+#s-learning-priorities .lpg-pill span{font-size:19px;font-weight:700;color:var(--text)}
+#s-learning-priorities .lpg-sub{font-size:16px;color:var(--muted)}
+#s-learning-priorities .lpg-chart{width:100%;height:auto;margin-top:6px}
+#s-learning-priorities .lpg-colhead{font-family:var(--mono);font-size:15px;letter-spacing:.12em;fill:var(--muted)}
+#s-learning-priorities .lpg-rowlabel{font-family:var(--sans);font-size:22px;font-weight:700;fill:var(--text-2)}
+#s-learning-priorities .lpg-track{fill:var(--surface-2);stroke:var(--border);stroke-width:1}
+#s-learning-priorities .lpg-fill-small{fill:var(--warn)}
+#s-learning-priorities .lpg-fill-large{fill:var(--warn-light)}
+#s-learning-priorities .lpg-fill-same{fill:var(--warn)}
+#s-learning-priorities .lpg-note{font-family:var(--sans);font-size:15.5px;fill:var(--text-dimmer)}
 /* ---------- slide 9 (Learning priorities by role) ---------- */
 /* Three bands, one per role, stepping down the slide - migrating_an_instance's
    s08 wave-workflow pattern, with a numbered gutter on the left. Each band
@@ -1295,11 +1312,58 @@ Name the finish line: an engineer counted as trained when they could take a real
     </section>
 
 <!-- ============ 9 · CURRICULUM BY ROLE ============ -->
+<section class="slide dense8" id="s-learning-priorities" data-speaker="Dafydd" data-notes="Teach to the role first, then let the bar chart underneath do the org-size argument. The three pills at the top are the role key - junior lime, engineer cornflower, senior off-white - and that colour never appears again on the slide, because the chart below is not about role at all: it compares a small org against a large org, one bar per discipline. Juniors need breadth over depth: a working environment, Git basics, branching fundamentals, and enough Terraform to read a plan and predict what it will change. The test is simple - can they write a working PR and apply a change safely. Engineers own modules and everyday resource changes, review each other's work, and go to the Jamf Pro API docs directly when the provider documentation is ambiguous. Seniors are the escalation point rather than a separate species: advanced Terraform, release management, and a strong understanding of the Jamf Pro API, including working out whether an unsupported resource is an API gap or a provider gap and whether it is worth raising upstream. Note what is deliberately absent: provider architecture and SDK design. Building the provider is a different job from using it, and no Mac team needs a Go developer in order to adopt any of this. Now the chart, and there are two things to draw out. First, look at Jamf APIs. That bar is identical in both columns, deliberately. No external team is ever going to know your own service's APIs better than the team that owns the service, so org size makes no difference to it whatsoever. Second, and this is the real distinction, look at Environment. In a small organisation you design it, build it and maintain it: the toolchain, the runners, the state backend, all of it, because nobody provisions a repo for you. In a large organisation that arrives from the internal developer platform as a template, so the burden lifts. But be careful how you say the rest, because Git and GitOps barely move between the two - the bars are nearly the same length in both columns. In a large organisation you still own your branching strategy, you still wire the event triggers into your own environments, and you still handle merges to main and releases. What you lose is not the knowledge, it is the authority: every PR needs a second approver, your GitHub access stops at the edges of what you own, and you cannot turn off Checkov or the linters even if you want to. That is the sentence worth landing. Mentoring runs the other way: light in a small org, where one person often spans all three roles, and heavier in a large one, across a bigger team plus the packaging and endpoint security teams learning alongside you. Say &ldquo;the platform&rdquo;, not &ldquo;it&rdquo;: in either case you are managing the Jamf Terraform workflows, and what differs is whether you also design, build and maintain the platform underneath them, or consume it inside somebody else's guardrails - small org is &ldquo;Design, build and maintain the platform and manage the Jamf Terraform workflows&rdquo;; large org is &ldquo;Consume the platform, inside its guardrails and manage the Jamf Terraform workflows&rdquo;. You still need to know how the platform is designed. But your workflow will have to conform with wider company standards, and how much of it you can change is entirely dependent on your own organisation.">
 <section class="slide" id="s-learning-priorities" data-speaker="Dafydd" data-notes="Two points, and the slide is built to make exactly two points, not six. One: each role has its own fixed minimum, not everything - a junior needs enough to read a plan and ship a safe PR, an engineer owns modules and daily changes, a senior is the escalation point for advanced Terraform and API-versus-provider triage. That minimum does not move with org size. Two: what moves is what the team owns underneath that minimum, and each role has its own defining shift. For a junior it is the environment itself - in a small org you design, build and maintain it, because nobody provisions a repo for you; in a large org it arrives as a platform template, so the burden lifts. For an engineer it is authority over Git and GitOps - the bar stays the same length either way, because the knowledge does not shrink, but a large org adds a second approver, so say authority narrows rather than knowledge. For a senior it is mentoring load - light in a small org, where one person often spans all three roles, heavier in a large one across a bigger team, plus the packaging and endpoint security teams. Jamf API knowledge sits outside all three and never moves, because no external team will ever know your own service's API better than the team that owns it. Close on: you still need to know how the platform is designed, but your workflow will have to conform with wider company standards.">
   <div class="eyebrow"><i class="dot"></i>09 &middot; Curriculum</div>
   <h1>Learning priorities by role</h1>
   <div class="sub">The same three roles. How far each has to stretch depends on who else is in the building.</div>
   <div class="body" style="margin-top:24px">
+
+    <!-- Accepted 2026-09-08: option D, graphic variant. Three identical role
+         pills carry point one (the minimum is fixed regardless of role),
+         then a scaled bar chart per discipline carries point two (what the
+         team owns shifts with org size) using bar length as the argument. -->
+    <div class="lpg">
+      <p class="lpg-lead">The minimum bar per role stays fixed. What changes with your org&rsquo;s size is how much of the platform you own.</p>
+      <div class="lpg-pills">
+        <div class="lpg-pill"><i style="background:var(--accent)"></i><span>Junior</span></div>
+        <div class="lpg-pill"><i style="background:var(--alt-light)"></i><span>Engineer</span></div>
+        <div class="lpg-pill"><i style="background:var(--text-2)"></i><span>Senior</span></div>
+      </div>
+      <p class="lpg-sub">Same three minimums, whatever the org &ndash; the bars below are what shifts underneath them.</p>
+      <svg class="lpg-chart" viewBox="0 0 1676 450" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <text x="620" y="26" text-anchor="middle" class="lpg-colhead">SMALL ORG</text>
+        <text x="1240" y="26" text-anchor="middle" class="lpg-colhead">LARGE ORG</text>
+
+        <text x="0" y="85" class="lpg-rowlabel">Environment</text>
+        <rect x="340" y="64" width="560" height="30" rx="15" class="lpg-track"/>
+        <rect x="340" y="64" width="560" height="30" rx="15" class="lpg-fill-small"/>
+        <rect x="960" y="64" width="560" height="30" rx="15" class="lpg-track"/>
+        <rect x="960" y="64" width="140" height="30" rx="15" class="lpg-fill-large"/>
+        <text x="340" y="118" class="lpg-note">Small org: you build and maintain it. Large org: it arrives as a platform template.</text>
+
+        <text x="0" y="185" class="lpg-rowlabel">Git &amp; GitOps</text>
+        <rect x="340" y="164" width="560" height="30" rx="15" class="lpg-track"/>
+        <rect x="340" y="164" width="470" height="30" rx="15" class="lpg-fill-small"/>
+        <rect x="960" y="164" width="560" height="30" rx="15" class="lpg-track"/>
+        <rect x="960" y="164" width="470" height="30" rx="15" class="lpg-fill-large"/>
+        <text x="340" y="218" class="lpg-note">Same length both sides &ndash; the authority narrows, not the knowledge.</text>
+
+        <text x="0" y="285" class="lpg-rowlabel">Jamf APIs</text>
+        <rect x="340" y="264" width="560" height="30" rx="15" class="lpg-track"/>
+        <rect x="340" y="264" width="560" height="30" rx="15" class="lpg-fill-same"/>
+        <rect x="960" y="264" width="560" height="30" rx="15" class="lpg-track"/>
+        <rect x="960" y="264" width="560" height="30" rx="15" class="lpg-fill-same"/>
+        <text x="340" y="318" class="lpg-note">Identical either way &ndash; no external team knows your own service&rsquo;s API better.</text>
+
+        <text x="0" y="385" class="lpg-rowlabel">Mentoring</text>
+        <rect x="340" y="364" width="560" height="30" rx="15" class="lpg-track"/>
+        <rect x="340" y="364" width="170" height="30" rx="15" class="lpg-fill-small"/>
+        <rect x="960" y="364" width="560" height="30" rx="15" class="lpg-track"/>
+        <rect x="960" y="364" width="440" height="30" rx="15" class="lpg-fill-large"/>
+        <text x="340" y="418" class="lpg-note">Light in a small org. Heavier in a large one &ndash; plus the packaging and endpoint security teams.</text>
+      </svg>
+    </div>
 
     <!-- Three bands, one per role, stepping down the slide with a numbered
          gutter on the left - migrating_an_instance's s08 wave-workflow

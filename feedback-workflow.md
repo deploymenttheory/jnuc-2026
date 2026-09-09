@@ -734,6 +734,30 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-08, training_a_team slide 9, "Learning priorities by role" accepted with a
+  colour fix.** The user picked option B from the sandbox's "Option D variants" round (the
+  role-pills-plus-SVG-bar-chart treatment, `.s-learning-priorities-optd-graphic`) but flagged
+  that the colours didn't match up: "I like option B, but the colours don't match up. It
+  looks like Juniors have to know a lot about Environment when in a small org." The bug -
+  the bar chart's `.lpg-fill-small` reused `--accent-strong` (close enough to the Junior
+  pill's `--accent` to read as the same lime) and `.lpg-fill-large` reused the exact
+  `--alt-light` token the Engineer pill uses, so the small-org Environment bar looked like a
+  Junior-specific fact rather than an org-wide one that applies regardless of role;
+  `.lpg-fill-same` had the same problem against the Senior pill's `--text-2`. Fixed by moving
+  all three bar fills onto the deck's warm signal hue instead, `--warn` for the small-org and
+  the identical (Jamf APIs) bars, the lighter `--warn-light` for the large-org bars - a hue
+  the role pills never touch, so a bar can no longer be misread as a role chip; bar length and
+  the SMALL ORG / LARGE ORG column headers carry the meaning, colour no longer does. Written
+  into the deck as clean `#s-learning-priorities .lpg-*` rules, the class promoted from
+  `.s-learning-priorities-optd-graphic` to `.lpg`; the other six option wrappers (`-opt-a`
+  through `-opt-e`, `-optd-table`, `-optd-text`) and their CSS are removed entirely, along
+  with the now-dead `.rolecard`/`.roles3`/`.scen2` rules that only opt-a used. `data-notes`
+  rewritten to match the bar chart (the old notes described the twin radar's polygon shapes,
+  which no longer exist) while keeping every settled fact from "Two deliberate decisions on
+  `#9`" and "How `#9`'s two charts are scored". Both sandbox pages
+  (`s-learning-priorities-role-clarity.html`, `s-learning-priorities-option-d-variants.html`)
+  removed and their `presentations/sandbox/training_a_team/index.html` entries turned into
+  non-linked `.done` lines. PR #9.
 - **2026-09-09, training_a_team slide 9, "Learning priorities by role" decided: the Bands
   treatment.** Continuation of the round below, done directly rather than through a
   dispatched agent at Gordon's request ("Don't use the agents, as they are using a high
