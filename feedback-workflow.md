@@ -734,6 +734,33 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-09, training_a_team slide 16 "Hiring", five visual treatments, awaiting a
+  decision.** Gordon: "the content is right, it's just a bit boring. Can you come up with 5
+  different visuals for this slide. Completely different from each other." Done directly
+  rather than through a dispatched agent, continuing the cheap-rounds request. Gave the slide
+  a stable id, `s-hiring` (it had none), and wrapped the shipped two-card layout as option A.
+  Five new options, content identical throughout (six skills, three market facts, two pieces
+  of advice): B a chip cluster (sized chips, Terraform and Git CLI bigger since the notes
+  single them out); C a scorecard table (skill, why it matters, in a bordered card); D a
+  branching "two routes" diagram (hire externally vs promote internally, forking from one
+  statement); E stepping bands, reusing the pattern from slides 9 and 11; F a 3x2 icon board
+  of hand-drawn geometric marks, since this deck carries no icon sprite. Two ideas were
+  built, screenshotted and then dropped for misrepresenting the source: a "signal strength"
+  dot rating per skill on the scorecard (the source never ranks these skills against each
+  other) and a two-circle Venn diagram with the six skills in the overlap between "Mac admin
+  today" and "Terraform/DevOps" (the source never claims Mac admins already have these
+  skills - the advice is to train towards them). A real layout bug was also caught and fixed
+  before showing this round: every option initially rendered flush against the H1 with no
+  top margin (the original layout's spacing came from an inline style on the deck's own
+  `.body` div that the new option wrappers didn't inherit), and option E's market-facts grid
+  was auto-flowing three facts across two columns in a confusing interleave rather than a
+  clean split - both fixed and reverified before the sandbox page went up. Sandbox page
+  `s-hiring-five-visuals.html`, linked from the training sandbox index. Verified: disk
+  screenshots of every option including the two intermediate bug-fix passes, dash lint
+  clean, `git diff --stat` scoped to `presentations/training_a_team/index.html`, the new
+  sandbox page, the sandbox index and `AGENTS.md`. Training has no presenter.json, so
+  presenter sync does not apply. Pushed directly to `main`, no PR.
+
 - **2026-09-09, training_a_team slide 15 "Onboarding" tidied, no sandbox round.** Gordon: "I
   love this slide, the idea of an open pull request ticket and the details being the PR
   description. Can you just tidy it up a little, there is a lot on screen and I think it

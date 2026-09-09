@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sandbox - slide 16 Hiring - five visual treatments</title>
+<link rel="stylesheet" href="../sandbox.css">
+</head>
+<body>
+<div class="wrap">
+  <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / Training a team / slide 16</p>
+  <h1>Slide 16 - Hiring for the new world (five visual treatments)</h1>
+  <p class="lede">Gordon: "the content is right, it's just a bit boring. Can you come up with 5 different visuals for this slide. Completely different from each other." The content is unchanged in every option - six skills to hunt for, three market facts and two pieces of advice - only the presentation changes. Gave the slide a stable id, <code>#s-hiring</code>, and wrapped the shipped two-card layout as option A. <a href="../../training_a_team/index.html?theme=default#16">Compare the current live slide</a>.</p>
+  <nav class="jump" aria-label="Options">
+    <a href="#b">Chip cluster</a><a href="#c">Scorecard</a><a href="#d">Two routes</a><a href="#e">Stepping bands</a><a href="#f">Icon board</a>
+  </nav>
+
+  <section class="option" id="b">
+    <h2>Option B - Chip cluster</h2>
+    <p>The six skills as sized chips in a wrapped cluster rather than a vertical list - Terraform and Git CLI get bigger chips, since the notes single them out as the strongest signals, the other four sit at a smaller consistent size. Market facts run as a plain stacked list; the two pieces of advice are pulled out as their own accent-bordered callouts rather than sitting inside the same bullet list as the facts. Pick this if the room should scan the skills like a tag board rather than read them top to bottom.</p>
+    <div class="frame"><iframe data-variant="b" src="../../training_a_team/index.html?theme=default#16" title="Option B - Chip cluster"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-b"></pre></details>
+  </section>
+
+  <section class="option" id="c">
+    <h2>Option C - Scorecard</h2>
+    <p>A real ruled table - skill, why it matters - in a bordered card, reading like an interview rubric rather than a bullet list. No invented rating column: an earlier pass added a "signal strength" dot rating per skill, which was dropped because the source never ranks these skills against each other and inventing one would misrepresent it. Market signals and advice sit in a footer strip below the table. Pick this if the room should be able to scan it like a real hiring scorecard.</p>
+    <div class="frame"><iframe data-variant="c" src="../../training_a_team/index.html?theme=default#16" title="Option C - Scorecard"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-c"></pre></details>
+  </section>
+
+  <section class="option" id="d">
+    <h2>Option D - Two routes</h2>
+    <p>A branching "two routes" diagram - one statement forks into "hire externally" (screen for the six skills) and "promote internally" (the market case for it, from the same market facts and advice as every other option). Deliberately not a Venn/overlap diagram: an earlier idea had the six skills sitting in the overlap between "Mac admin today" and "Terraform/DevOps" circles, which would have implied Mac admins already have these skills - something the source never claims. This version regroups the exact same content under a decision framing instead. Pick this if the room should leave thinking about which path to take, not just what to look for.</p>
+    <div class="frame"><iframe data-variant="d" src="../../training_a_team/index.html?theme=default#16" title="Option D - Two routes"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-d"></pre></details>
+  </section>
+
+  <section class="option" id="e">
+    <h2>Option E - Stepping bands</h2>
+    <p>Migrating_an_instance's s08 wave-workflow pattern, reused here for hiring: six full-width numbered rows for the skills, then a closing band splitting cleanly into the market facts on the left and the two pieces of advice on the right. Pick this if the room has already seen slide 9 or 11's bands and the visual language should stay consistent across the deck.</p>
+    <div class="frame"><iframe data-variant="e" src="../../training_a_team/index.html?theme=default#16" title="Option E - Stepping bands"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-e"></pre></details>
+  </section>
+
+  <section class="option" id="f">
+    <h2>Option F - Icon board</h2>
+    <p>A 3x2 pictogram grid - one simple line-drawn mark per skill (this deck has no icon sprite, so these are hand-drawn geometric glyphs: a hexagon for Terraform, a branch glyph for Git, a terminal for scripting, a refresh loop for CI/CD, a plug pair for API/REST, a star for open source), each paired with the skill name and its one-line reason. Market signals and advice sit in a footer strip below, same as options C and E. Pick this if the room responds best to a picture per item rather than a shape per row.</p>
+    <div class="frame"><iframe data-variant="f" src="../../training_a_team/index.html?theme=default#16" title="Option F - Icon board"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-f"></pre></details>
+  </section>
+
+  <p class="foot">To choose: name the option in chat, or describe what to change and this page gets a new set. Renders need the site served over HTTP - opened from disk the iframes load but the option CSS cannot be injected.</p>
+</div>
+
+<script>
+  // All five already exist as real markup in the deck, inside #s-hiring, as
+  // .s-hiring-opt-b / -opt-c / -opt-d / -opt-e / -opt-f. The deck hides
+  // everything but -opt-a by default. Each variant's CSS here just flips
+  // which wrapper is visible in that iframe.
+  const VARIANTS = {
+    b: `#s-hiring .s-hiring-opt-a{display:none}
+#s-hiring .s-hiring-opt-b{display:flex}`,
+    c: `#s-hiring .s-hiring-opt-a{display:none}
+#s-hiring .s-hiring-opt-c{display:flex}`,
+    d: `#s-hiring .s-hiring-opt-a{display:none}
+#s-hiring .s-hiring-opt-d{display:flex}`,
+    e: `#s-hiring .s-hiring-opt-a{display:none}
+#s-hiring .s-hiring-opt-e{display:flex}`,
+    f: `#s-hiring .s-hiring-opt-a{display:none}
+#s-hiring .s-hiring-opt-f{display:flex}`,
+  };
+
+  for (const [key, css] of Object.entries(VARIANTS)) {
+    document.getElementById('css-' + key).textContent = css || '/* nothing - this is the deck as deployed */';
+  }
+
+  document.querySelectorAll('iframe[data-variant]').forEach((frame) => {
+    frame.addEventListener('load', () => {
+      const css = VARIANTS[frame.dataset.variant];
+      if (!css) return;
+      let doc;
+      try { doc = frame.contentDocument; } catch (e) { doc = null; }
+      if (!doc) return; // file:// - cross-origin iframe, nothing we can do
+      const style = doc.createElement('style');
+      style.textContent = css;
+      doc.head.appendChild(style);
+    });
+  });
+</script>
+</body>
+</html>

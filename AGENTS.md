@@ -572,7 +572,9 @@ with it - the label is right-aligned inside a box the same width as the gate off
 
 Then `#11` delivery (`s-delivery`, rebuilt 2026-09-09 as a spectrum rail, see Notable
 content slides), `#12` content types, `#13` Louise's case study, `#14` sister-team
-scope, `#15` onboarding (tidied 2026-09-09, see Notable content slides), `#16` hiring, `#17` learner benefits, `#18` learning materials,
+scope, `#15` onboarding (tidied 2026-09-09, see Notable content slides), `#16` hiring
+(`s-hiring`, id added 2026-09-09; a five-option sandbox round is open to replace the two
+plain bordered cards with a genuinely visual treatment, see Sandbox), `#17` learner benefits, `#18` learning materials,
 `#19` Questions and `#20` Thank You. The appendix is `#21` the skills map, `#22` the old
 pathway matrix, `#23` the old week-by-week timeline and `#24` the colour system. The
 matrix and timeline remain for readers at Gordon's request and have no assigned speaker.
@@ -1089,6 +1091,17 @@ Slide 11 (delivery) went through one options round (aligned panels, bands with t
 spectrum rail, each borrowing a real `migrating_an_instance` layout) and two follow-on
 rounds - enlarge and add icons, then two stop renames - all now decided; see the Notable
 content slides entry above for the accepted result. The review page is retired.
+
+`s-hiring-five-visuals` (2026-09-09, slide 16, Dafydd, "the content is right, it's just a
+bit boring": five completely different visual treatments of the same six skills, three
+market facts and two pieces of advice, each real markup inside `#s-hiring` -
+`.s-hiring-opt-b` a chip cluster, `-opt-c` a scorecard table, `-opt-d` a two-routes fork
+diagram, `-opt-e` stepping bands matching slides 9 and 11, `-opt-f` a 3x2 icon board of
+hand-drawn geometric marks (this deck has no icon sprite). Two ideas were tried and dropped
+during the build for inventing claims the source doesn't make: a "signal strength" dot
+rating per skill on the scorecard, and a Venn-style overlap diagram that would have implied
+Mac admins already have these skills. Content is identical across every option; only the
+presentation changes. No option is accepted.
 
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page
