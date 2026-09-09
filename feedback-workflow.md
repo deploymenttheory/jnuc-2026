@@ -734,6 +734,26 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-09, training_a_team slide 11 "Delivery" decided: the spectrum rail, with two
+  stop renames.** Gordon: "Okay, I like that, before you merge, change 'Game days' to 'hack
+  days' and change 'The bad week' to 'The first bug'" - an acceptance and a same-breath
+  change, applied together per the standing rule rather than as a further round. Done
+  directly rather than through a dispatched agent, continuing the cheap-rounds request.
+  Renamed the two stops (capitalised to match the deck's sentence-case convention: "Hack
+  days", "The first bug") and made the same swap inside `data-notes`, where the fuller
+  original phrasing became "Hack days" and "the first bug someone introduces". Wrote the rail
+  into the deck as the net result: promoted the wrapper from `.s-delivery-opt-d` to
+  `#s-delivery .dl-rail`, removed the other two options (aligned panels, bands with tags) and
+  the original two-column layout entirely, along with their CSS and the now-dead
+  `.modecard`/`.rulebar` rules the original layout used. Deleted the sandbox page
+  `s-delivery-three-visuals.html` and turned its index entry into a `.done` line;
+  `AGENTS.md`'s slide map, Notable content slides and Sandbox section all updated to match.
+  Verified: disk screenshot of the final slide confirming both renamed stops render correctly
+  and nothing regressed from the last enlargement pass, dash lint clean, `git diff --stat`
+  scoped to the deck file, the sandbox index, the deleted sandbox page and `AGENTS.md`.
+  Training has no presenter.json, so presenter sync does not apply. Pushed directly to
+  `main`, no PR.
+
 - **2026-09-09, training_a_team slide 11 "Delivery", Option D enlarged with icons (Gordon
   had meant D, not C).** Gordon: "Ohh, I meant option D then. Not option C" - after seeing a
   screenshot of Option D (having navigated past C without noticing) and asking why he saw no
