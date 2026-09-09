@@ -506,8 +506,8 @@ lives in the speaker notes. Rules are scoped to `#s-estate`, with `--s02-*` sizi
 (`s-learning-outcomes`, sandbox option E accepted 2026-09-08: the trained threshold in a
 central navy panel, with seven capabilities on either side and the non-goals below),
 `#4` execution, `#5` what didn't work, `#6` what worked, `#7` conditions, `#8` mindset,
-`#9` learning priorities by role (`s-learning-priorities`, id added 2026-09-08; five-option
-sandbox round open, see Notable content slides and Sandbox), `#10` the learning pathway (four phases - **merges the old `#9` matrix and
+`#9` learning priorities by role (`s-learning-priorities`, rebuilt 2026-09-09 as three
+role bands, see Notable content slides), `#10` the learning pathway (four phases - **merges the old `#9` matrix and
 `#10` timeline**, Aug 2026: both said the same thing twice and neither described what the team
 actually did). Titled "the pathway we **followed**", not "that worked": phase 1 front-loaded
 all the theory and the team only found out afterwards that it did not land, so that card
@@ -635,28 +635,30 @@ Notable content slides:
   weight the copy claims for it ("the most evidenced condition of all") with three practical
   points under it; the other six conditions, including "Expect the dip", sit right as
   compact numbered cards. Classes `.herowrap`, `.heropanel`, `.supp`/`.suppcard` (`.dip`).
-- **Learning priorities by role** (`#9`, `s-learning-priorities` - id added 2026-09-08 when
-  a five-option sandbox round opened for it): the shipped layout is still three role cards
-  across the top; below them two radar webs (grid rings plus spokes, thin outlines,
-  translucent fills), each carrying all three roles. Left is a small org with no DevOps
-  function, where every shape is broad; right is a large org like LBG, where the shapes
-  narrow but spike on Jamf APIs and Mentoring while Environment and GitOps pull back to the
-  platform team. Classes `.roles3`, `.scen2`. The colour chip in each role-card header is
-  the chart key, so **chip and polygon colours must stay in step**: junior `--accent`
-  (lime), engineer `--alt-light` (cornflower), senior `--text-2` (off-white). The mapping is
-  documented in the `.roles3` CSS comment. All five sandbox options live as real markup
-  inside the section, each in its own `.s-learning-priorities-opt-*` wrapper, with a single
-  deck rule showing only `-opt-a` (the shipped layout); the sandbox page just flips which
-  wrapper is visible per iframe. Every option keeps the two points - each role's minimum is
-  not the whole picture, and what the team owns and how steep the climb is scales with org
-  size - and every settled fact from "Two deliberate decisions on `#9`" and "How `#9`'s two
-  charts are scored" below, in the shared speaker notes regardless of which option ships.
-  A follow-on round opened 2026-09-08 after Joseph said he liked option D but wanted it
-  bigger: three more wrappers, `.s-learning-priorities-optd-table`, `-optd-graphic` and
-  `-optd-text`, carry the same role-by-org-size matrix argument as option D at a larger
-  size, as a literal ruled `<table>`, a scaled bar-per-discipline SVG graphic and a prose
-  treatment respectively. All three are hidden by the same default-hide rule alongside
-  `-opt-b` through `-opt-e`, so `-opt-a` still ships. See Sandbox for both rounds.
+- **Learning priorities by role** (`#9`, `s-learning-priorities`): rebuilt 2026-09-09 as
+  three full-width bands stepping down the slide, one per role, each with a numbered gutter
+  on the left - migrating_an_instance's slide 8 wave-workflow pattern, reused rather than a
+  new visual language invented for this slide. Each band pairs that role's fixed minimum
+  with the one discipline that actually shifts with org size for that role: Junior against
+  Environment, Engineer against Git & GitOps authority, Senior against Mentoring. Within a
+  band, small org is a solid filled bar and large org is a hollow outline, always in that
+  role's own colour (junior `--accent` lime, engineer `--alt-light` cornflower, senior
+  `--text-2` off-white, set via each band's inline `color`) - deliberately so an org-size
+  bar can never be misread as a different role's fact, which is exactly what went wrong in
+  an earlier round (see below). Jamf APIs sits outside all three bands as one shared footer
+  line, since it does not vary by role or org size. Classes `#s-learning-priorities .lp-bands`
+  and its `.lpb-*` children. This replaced the original three-role-cards-plus-twin-radar
+  layout (`.roles3`/`.scen2`, now removed) and four further rounds of options, all now
+  retired from the deck and the sandbox: a five-option redesign round; a follow-on offering
+  the accepted option D bigger in three forms (table, graphic SVG bar chart, prose); a
+  colour-safety fix on the graphic option after its small/large-org bars turned out to reuse
+  a role's own hue (`--alt-light` was literally shared between the Engineer pill and the
+  large-org bar); and, after Gordon said the graphic still lost the per-role dimension, three
+  further expanded treatments (bands, a `clip-path` chevron flow, and a hero-plus-quiet-row
+  layout) - bands is the one that shipped. Every round kept the two required points - each
+  role's minimum is not the whole picture, and what the team owns and how steep the climb is
+  scales with org size - and every settled fact from "Two deliberate decisions on `#9`" and
+  "How `#9`'s two charts are scored" below, now carried in the section's `data-notes`.
 
 Unconfirmed facts carry amber TODO chips - the deck has a `.todo` chip class and an amber
 token for exactly that. Current chips (3): photos for Joseph and Gordon (`#1`); how long the
@@ -966,35 +968,11 @@ full-size route, notes disclosure and word-count comparison including SVG labels
 body copy is 164 words per option against 232 in the source, a 29.3% reduction. The source
 deck and the open slide 4 wording review remain unchanged. No option is accepted.
 
-`s-learning-priorities-role-clarity` (2026-09-08, slide 9, Dafydd, five full markup
-redesigns after feedback that the slide was too dense to follow: A role cards and paired
-radar (live now), B minimum bar, C two statements with a discipline comparison strip
-replacing the twin radar, D a role-by-org-size matrix, E a staged two-statement narrative).
-This is a full redesign, so every option ships as real markup in the deck itself, inside
-`#s-learning-priorities`, as its own `.s-learning-priorities-opt-*` wrapper; a single deck
-rule shows only `-opt-a` by default and the sandbox page's CSS just flips which wrapper is
-visible per iframe - nothing is generated at preview time. Every option keeps both points
-the speaker wants landed (each role has a minimum rather than needing everything, and what
-the team owns and how steep its learning curve is scales with org size) and every settled
-fact from "Two deliberate decisions on `#9`" and "How `#9`'s two charts are scored" above,
-in the section's one shared `data-notes`, regardless of which option is visible. No option
-is accepted.
-
-`s-learning-priorities-option-d-variants` (2026-09-08, slide 9, Dafydd, a follow-on round
-after Joseph reviewed the five options above and said he liked option D but wanted it to
-fill more of the page: three completely different presentational forms of the same
-role-by-org-size matrix, each ships as real markup inside `#s-learning-priorities` -
-`.s-learning-priorities-optd-table` (a literal ruled `<table>` crossing role against org
-size, with a footer row stating the Jamf APIs fact once), `-optd-graphic` (three identical
-role pills for the fixed-minimum point, then an inline SVG bar chart scaling one bar per
-discipline - Environment, Git and GitOps, Jamf APIs, Mentoring - small org against large
-org, bar length carrying the argument) and `-optd-text` (prose close to
-`migrating_an_instance`'s plainest slides: one paragraph per role pairing its fixed
-minimum with what changes underneath it by org size in a single sentence, no grid). All
-three are noticeably bigger than the original option D grid and sit alongside the five
-`-opt-*` wrappers under the same default-hide rule, so `-opt-a` still ships. Every option
-keeps both points the speaker wants landed and every settled fact from "How `#9`'s two
-charts are scored" above, in the section's one shared `data-notes`. No option is accepted.
+Slide 9 (learning priorities by role) went through four sandbox rounds between 2026-09-08
+and 2026-09-09 - a five-option redesign, a bigger-option-D follow-on (table, graphic, text),
+a colour-safety fix on the graphic option, and a role x org size cross round (bands, chevron,
+hero) - all now decided; see the Notable content slides entry above for the accepted result
+and `feedback-workflow.md`'s Log for the full history. Both review pages are retired.
 
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page
