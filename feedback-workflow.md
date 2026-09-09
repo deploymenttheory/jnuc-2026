@@ -758,6 +758,35 @@ it up - either way it is on disk for a recovering session.
   (`s-learning-priorities-role-clarity.html`, `s-learning-priorities-option-d-variants.html`)
   removed and their `presentations/sandbox/training_a_team/index.html` entries turned into
   non-linked `.done` lines. PR #9.
+- **2026-09-09, training_a_team slide 9, "Learning priorities by role" decided: the Bands
+  treatment.** Continuation of the round below, done directly rather than through a
+  dispatched agent at Gordon's request ("Don't use the agents, as they are using a high
+  number of tokens for these tasks"). Gordon liked Option F from the role x org size cross
+  round (three self-contained per-role cards, small org as a solid fill and large org as a
+  hollow outline in that role's own colour) but wanted it bigger, and asked for three
+  completely different graphical treatments, each taking inspiration from a real
+  `migrating_an_instance` slide: F1 Bands (slide 8's stepping full-width rows with a
+  numbered gutter), F2 Chevron (slide 1's `clip-path` chevron-arrow flow) and F3 Hero (slide
+  20's hero-number-plus-quiet-row composition). Built and screenshotted directly, with one
+  real bug caught and fixed before showing them: F2's "SMALL" pill was invisible because
+  `background:currentColor` and `color:var(--surface)` in the same rule made `currentColor`
+  resolve to navy-on-navy; fixed by switching to an explicit `--role` custom property
+  throughout, matching the pattern already used safely in the (later dropped) phrase-matrix
+  option. Gordon picked F1, Bands. Applied to the deck as `#s-learning-priorities .lp-bands`
+  and its `.lpb-*` children - one clean block, not layered on the option wrappers - with
+  every rejected wrapper (`-opt-b` through `-opt-e`, `-optd-table`, `-optd-graphic`,
+  `-optd-text`, `-optf-chevron`, `-optf-hero`) and the original `.roles3`/`.scen2` CSS
+  removed as dead weight, along with the `dense8` class (unstyled, leftover from the
+  pre-redesign slide). Speaker notes rewritten to describe the shipped bands and carry every
+  settled fact from "Two deliberate decisions on `#9`" and "How `#9`'s two charts are
+  scored" (`AGENTS.md`). Both retired sandbox pages `git rm`'d and their sandbox index entry
+  collapsed into one `.done` line covering all four rounds; `AGENTS.md`'s Notable content
+  slides entry, slide-map summary and Sandbox section updated to match. Verified: full-page
+  disk screenshot after every cleanup edit, dash lint clean, `git diff --stat` scoped to
+  `presentations/training_a_team/index.html`, `presentations/sandbox/training_a_team/`
+  (two deletions plus the index edit), `AGENTS.md` and this file. Training has no
+  presenter.json, so presenter sync does not apply. Committed directly to `main` under
+  Gordon's own git identity, no PR.
 
 - **2026-09-08, training_a_team slide 9, three variations of Option D for "Learning
   priorities by role".** Follow-on from the five-option round below (PR #7): Joseph liked
