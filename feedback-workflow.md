@@ -734,6 +734,22 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-09, training_a_team slide 11 "Delivery", Option D enlarged with icons (Gordon
+  had meant D, not C).** Gordon: "Ohh, I meant option D then. Not option C" - after seeing a
+  screenshot of Option D (having navigated past C without noticing) and asking why he saw no
+  changes. Applied the same treatment to D: room/remote icon (the same overlapping-circles
+  and monitor glyphs as Option C, reused for consistency rather than inventing a second
+  pair) added beside each zone label, then enlarged in two passes - the first still left too
+  much empty canvas below the rail, so zone padding, dot size, headline and caption size and
+  the rule bar all went up again. The bigger type wrapped "Async PR review" and "Follow-up
+  clinics" to three lines each; shortened to "PR review" and "Clinics" (both keep their
+  supporting caption unchanged, so nothing described is lost). Option C's enlargement and
+  icons from the previous round are left in place - Gordon did not ask to revert them, and
+  the same colour-safe icon pattern reused across both keeps the sandbox consistent. Verified
+  with disk screenshots at each sizing pass, confirming the closing rule clears the timeline
+  strip and no headline wraps past two lines. Dash lint clean; `git diff --stat` scoped to
+  the deck file, the sandbox page and its index entry. No option accepted into the deck yet.
+
 - **2026-09-09, training_a_team slide 11 "Delivery", Option C enlarged with icons, still
   awaiting a decision.** Gordon: "I like option C, just make it take up more of the slide.
   Can you also add some icons to represent in the room and remote." Done directly, continuing

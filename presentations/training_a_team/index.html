@@ -913,24 +913,31 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 
 /* Option D - Spectrum rail: one two-zone continuum rather than two cards,
    echoing the deck's own persistent-timeline idea - discrete labelled stops
-   along a single bar, captions cut to a headline plus a few words. */
+   along a single bar, captions cut to a headline plus a few words. Enlarged
+   twice at Gordon's request (he'd meant D, not C, when he first asked) and
+   given a zone icon each - the same room/remote glyphs as Option C, in
+   currentColor so they inherit each zone's own hue. "Async PR review" and
+   "Follow-up clinics" were shortened to "PR review" and "Clinics" once the
+   bigger type started wrapping those two to three lines. */
 #s-delivery .s-delivery-opt-d{display:flex;flex-direction:column;gap:20px}
-#s-delivery .dlr-track{display:flex;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
-#s-delivery .dlr-zone{flex:1;padding:32px 34px 38px}
+#s-delivery .dlr-track{display:flex;border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+#s-delivery .dlr-zone{flex:1;padding:60px 46px 72px}
 #s-delivery .dlr-zone.room{background:var(--accent-wash)}
 #s-delivery .dlr-zone.remote{background:var(--alt-surface)}
-#s-delivery .dlr-zonehead{font-family:var(--mono);font-size:17px;letter-spacing:.12em;font-weight:700;margin-bottom:30px}
+#s-delivery .dlr-zonehead{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:22px;
+  letter-spacing:.12em;font-weight:700;margin-bottom:56px}
+#s-delivery .dlr-zonehead svg{width:30px;height:30px;flex:none}
 #s-delivery .dlr-zone.room .dlr-zonehead{color:var(--green-bright)}
 #s-delivery .dlr-zone.remote .dlr-zonehead{color:var(--blue-light)}
-#s-delivery .dlr-stops{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+#s-delivery .dlr-stops{display:grid;grid-template-columns:repeat(5,1fr);gap:24px}
 #s-delivery .dlr-stop{text-align:center}
-#s-delivery .dlr-dot{display:block;width:15px;height:15px;border-radius:50%;margin:0 auto 16px}
+#s-delivery .dlr-dot{display:block;width:23px;height:23px;border-radius:50%;margin:0 auto 26px}
 #s-delivery .dlr-zone.room .dlr-dot{background:var(--green-bright)}
 #s-delivery .dlr-zone.remote .dlr-dot{background:var(--blue-light)}
-#s-delivery .dlr-stop b{display:block;font-size:19px;font-weight:700;color:var(--text);line-height:1.22}
-#s-delivery .dlr-stop span{display:block;font-size:14.5px;color:var(--text-dimmer);margin-top:9px;line-height:1.32}
-#s-delivery .dlr-rule{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:10px;
-  padding:22px 30px;font-size:22px;color:var(--text-2);line-height:1.36;text-align:center;margin-top:6px}
+#s-delivery .dlr-stop b{display:block;font-size:27px;font-weight:700;color:var(--text);line-height:1.26}
+#s-delivery .dlr-stop span{display:block;font-size:18px;color:var(--text-dimmer);margin-top:14px;line-height:1.36}
+#s-delivery .dlr-rule{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:12px;
+  padding:36px 38px;font-size:29px;color:var(--text-2);line-height:1.4;text-align:center;margin-top:20px}
 #s-delivery .dlr-rule b{color:var(--accent-strong)}
 
 /* Only option A is visible in the shipped deck; this rule must come after
@@ -1748,7 +1755,7 @@ Choose the people who will approve pull requests early and explicitly train them
   <div class="s-delivery-opt-d">
     <div class="dlr-track">
       <div class="dlr-zone room">
-        <div class="dlr-zonehead">IN THE ROOM &middot; default</div>
+        <div class="dlr-zonehead"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6.5" fill="currentColor" opacity=".85"/><circle cx="15.5" cy="12" r="6.5" fill="currentColor" opacity=".45"/></svg>IN THE ROOM &middot; default</div>
         <div class="dlr-stops">
           <div class="dlr-stop"><i class="dlr-dot"></i><b>First exposure</b><span>Lost before they say so</span></div>
           <div class="dlr-stop"><i class="dlr-dot"></i><b>Debugging live</b><span>Seen the second it breaks</span></div>
@@ -1758,13 +1765,13 @@ Choose the people who will approve pull requests early and explicitly train them
         </div>
       </div>
       <div class="dlr-zone remote">
-        <div class="dlr-zonehead">REMOTE &middot; with conditions</div>
+        <div class="dlr-zonehead"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="16.5" x2="12" y2="20" stroke="currentColor" stroke-width="2"/></svg>REMOTE &middot; with conditions</div>
         <div class="dlr-stops">
           <div class="dlr-stop"><i class="dlr-dot"></i><b>Pre-requisites</b><span>Gate it or it slips</span></div>
           <div class="dlr-stop"><i class="dlr-dot"></i><b>Recorded walkthroughs</b><span>Great until you have a question</span></div>
           <div class="dlr-stop"><i class="dlr-dot"></i><b>Co-editing</b><span>Fine if both people can type</span></div>
-          <div class="dlr-stop"><i class="dlr-dot"></i><b>Async PR review</b><span>How review works anyway</span></div>
-          <div class="dlr-stop"><i class="dlr-dot"></i><b>Follow-up clinics</b><span>Under an hour, video drains fast</span></div>
+          <div class="dlr-stop"><i class="dlr-dot"></i><b>PR review</b><span>How review works anyway</span></div>
+          <div class="dlr-stop"><i class="dlr-dot"></i><b>Clinics</b><span>Under an hour, video drains fast</span></div>
         </div>
       </div>
     </div>
