@@ -830,6 +830,297 @@ it up - either way it is on disk for a recovering session.
   a small org and high in a large one, and the exact governing-principle wording) in the
   section's one shared `data-notes`, unchanged regardless of which option is visible. Added
   `s-learning-priorities-role-clarity.html`. No option is accepted. PR #7.
+- **2026-09-08, training slide 8, size option D accepted.** Dafydd accepted option D, "Large",
+  from `presentations/sandbox/training_a_team/s08-mindset-text-sizes.html` (PRs #110 and #111).
+  Applied to `presentations/training_a_team/index.html`: the section gains the stable id
+  `s-mindset` in the deck's convention for accepted slides, and the existing `.mindset` / `.ms-*`
+  rules take option D's values in place rather than gaining an override block - body 32px on the
+  before and after columns, questions 23px on the rail, column labels 21px, leading 1.2 and 1.24,
+  row padding and row gap 22px, 30px under the title, plus the header rule the round added to all
+  five options: a 1px bottom border on `.ms-head` in `--border-soft`, deepened to `--accent-deep`
+  on the rail and the canvas column, with `--s08-head-gap` set to `var(--s08-row-gap)` so the
+  first row sits like every other row. All of it moved into `--s08-*` tokens in `:root`, beside
+  the `--s02-*`, `--s06-*` and `--s07-*` groups, so nothing in the slide's block carries a literal
+  size or a hex value. Preserved exactly: every word, the `data-notes`, the eyebrow, the h1, the
+  markup, the ground layer and the single row-major `.ms-grid`, the 0 to 640 and 640 to 980 band
+  widths and the 518/340/1fr columns. The sandbox page is deleted, the training sandbox index list
+  is empty again as it was before PR #110, and the AGENTS.md slide map, the `#8` paragraph and the
+  Sandbox section record the acceptance. Nothing in the deck addressed this slide by index or
+  class, so the new id broke nothing; the only index-based reference was the review page's own
+  `slides[7]` lookup, which went with the page. Evidence: headless Chrome at 1920x1080 with
+  `--hide-scrollbars` and no virtual time budget, served over HTTP on port 8753. Slides 7 and 9
+  are byte-identical to their `origin/main` baselines under `cmp`. Slide 8 is byte-identical to
+  the `origin/main` deck with option D's CSS injected, and its file:// render is byte-identical to
+  the HTTP one. Measured in deck coordinates: grid top 224.8, grid bottom 1000.9 against the 1008
+  content limit, matching the review page's 1001 figure for option D, and all three columns of all
+  seven rows share a top edge to two decimal places. ArrowRight advances exactly one slide per
+  press across all 24 slides and stops at 24. No `s08-review` reference, hex value or em or en
+  dash in the changed block. The Keynote and PowerPoint downloads are not rebuilt. PR #112.
+- **2026-09-08, training slide 8, header rule added to all five size options.** Dafydd reviewed
+  the five text-size options on `presentations/sandbox/training_a_team/s08-mindset-text-sizes.html`
+  (PR #110) and asked for one change in all five: a rule under the three column headers, BEFORE,
+  WHAT THEY WERE ASKING and AFTER, with the first row sitting beneath it at the same spacing as
+  every other row. Before this the header row carried no hairline and the first row sat tighter
+  against the headers than the later rows sit against the rules above them. The page's injected
+  block now gives `.ms-head` the same 1px bottom border the rows already use, in the same colour
+  per band - `--border-soft` on the navy panel, `--accent-deep` on the lime rail and on the
+  canvas column - and sets `--s08-head-gap` to `var(--s08-row-gap)` so the space under the header
+  rule matches the space under every other rule. It is pure CSS on the shipped markup: the three
+  headers are already their own `.ms-head` elements, so no DOM change was needed and the
+  equivalent deck edit is a bottom border and a bottom margin on `.mindset .ms-head`. The five
+  size steps are otherwise untouched, and the deck is still unchanged by this round, with an
+  empty diff against `origin/main` under `presentations/training_a_team/`. The rule and its row
+  gap add 21px to the grid, which put option E past the bottom of the content box at 1014px, so
+  E's row padding drops from 20px to 19px, one pixel across all seven rows, and its description
+  says so. Re-measured grid bottoms in deck coordinates against the 1008 content limit: A 918.2,
+  B 974.8, C 997.6, D 1000.9, E 1007.3. Evidence: headless Chrome with no virtual time budget
+  over HTTP on port 8752, `?option=a` to `?option=e` each screenshotted at 1920x1080 and read -
+  the hairline appears under all three headers in the right band colour in every option, the
+  first row is spaced like the rest, all three columns of all seven rows share a top edge, and
+  nothing reaches the footer hairline. The lede, option E's description, the closing paragraph,
+  the sandbox index `.meta` and the AGENTS.md sandbox paragraph were updated to match. PR #111.
+
+- **2026-09-08, training slide 8, five text-size options.** Dafydd asked for the Mindset shift
+  slide to keep its content and its layout exactly as they are and simply have larger text, with
+  five sizes to choose from. Added `presentations/sandbox/training_a_team/s08-mindset-text-sizes.html`,
+  a sizing-only round: the page renders the shipped slide five times and each option injects a
+  `--s08-*` token block scoped to `#s08-review`, so no markup, wording, note, colour, band or
+  column width is touched and the deck itself is unchanged in this PR. The five steps scale the
+  two mindset columns, the question column on the lime rail and the three column labels together,
+  against today's body 24px, questions 17px, labels 17px: A body 26px, questions 18px, labels
+  18px, spacing untouched; B body 28px, questions 20px, labels 19px, spacing untouched; C body
+  30px, questions 21px, labels 20px, with leading 1.22 and 1.25, row padding and gap 24px and the
+  space under the title 32px; D body 32px, questions 23px, labels 21px, leading 1.2 and 1.24,
+  padding and gap 22px, title gap 30px; E body 34px, questions 24px, labels 22px, leading 1.2 and
+  1.22, padding and gap 20px, title gap 28px. E is capped there and the option says so: 35px puts
+  the grid at 1014 in deck coordinates, past the 1008 bottom of the content box, and getting
+  further would mean cutting the row padding below 20px or widening the 340px question column,
+  which this round does not do. The slide title stays at the deck's shared 56px so slide 8 still
+  matches its neighbours. Evidence: headless Chrome over HTTP on port 8751, each option
+  screenshotted at 1920x1080 through `?option=a` to `?option=e`, the whole page at 1400x5400 and
+  the plain deck slide for comparison; measured in deck coordinates through the review page, the
+  grid bottom runs 891.2 (A), 947.8 (B), 972.6 (C), 977.9 (D) and 993.3 (E) against a 1008
+  content limit and the footer hairline at 1030, all three columns of all seven rows share a top
+  edge in every option, the before column's ink stops at 445 to 545 inside the navy band that
+  ends at 640, the questions stay between 670 and 950 inside the lime rail, and the after column
+  starts at 1038 on the canvas. Question wrapping against today's slide: A none, B one question
+  onto a third line, C and D three, E four, each row growing as one. `git diff --stat origin/main
+  -- presentations/training_a_team/` is empty. The index entry and the AGENTS.md sandbox line are
+  added; the downloads are untouched. PR #110.
+- **2026-09-08, training slide 7, option D accepted with the numerals removed.** Dafydd took
+  "Gates on a rail" and said in the same message that the rail was cluttered by carrying both
+  a large numeral and an icon per condition, so the numerals go and the icons alone mark the
+  rail. Applied: the slide gains the stable id `s-conditions`, keeps its speaker, eyebrow and
+  title, and its body is now the option's static markup - a navy safety panel on the left with
+  the shield over operational safety, the speech marks over psychological safety and the
+  premise at its foot, and the seven conditions down a vertical rail on the right. Every
+  `.s07-number` element is gone; the icons grew from 34px to 44px, sit centred on the rail line
+  and mask it with the stage colour, and the text column starts where the numeral column used
+  to, so each row reads icon, heading, copy with no hole. The option's CSS transfers as
+  `#s-conditions` rules alongside the other accepted slide blocks, with only the rules option D
+  uses, the numeral rules dropped and the grid cut from three columns to two; its sizing values
+  are `--s07-*` tokens in `:root` beside the `--s02-*` group, so the block carries no literal
+  colours or sizes. Preserved: every heading and paragraph word for word from the option's COPY,
+  the visible premise "All seven conditions depend on both.", and all seven proposed note
+  paragraphs, less one sentence - "The numbers identify the conditions and do not impose a
+  strict sequence." - which the acceptance made untrue. The sandbox page is deleted and its
+  index entry removed. The old `.herowrap`, `.heropanel`, `.supp` and `.suppcard` rules and
+  their children came out too: grep showed slide 7 was their only user. Evidence: headless
+  Chrome at 1920x1080 over HTTP, slides 6 and 8 byte-identical to the `origin/main` baseline by
+  `cmp`, slide 7 reviewed by eye with the panel, the rail, seven marks, no numerals, no hole and
+  no overflow (the body measures 225 to 989, clear of the footer hairline at 1030, and its
+  scroll height equals its box height); the `file://` render is byte-identical to the HTTP one;
+  ArrowRight walks 0 to 23 one slide per press across all 24 slides; and the deck greps clean
+  for `s07-review`, `s07-number`, hex colours inside the new block and em or en dashes.
+  PR #109.
+- **2026-09-08, training slide 6, option C accepted.** Dafydd accepted "Around the
+  learner" from `s06-what-worked-visual.html`. Applied to the deck as `#s-what-worked`:
+  the section takes that stable id, the `.body.grid.g2` of seven `.icard` blocks is
+  replaced by the option's static markup - a 560 unit ring drawing with a navy "The
+  engineer" disc, seven dashed spokes out to icon nodes carrying the deck's own slide 6
+  glyphs, and the seven headings and paragraphs positioned in their own sectors - and
+  `data-notes` becomes the option's eight proposed note paragraphs. The option's CSS lands
+  as one block scoped to `#s-what-worked` next to the other accepted-slide blocks, with
+  only the rules option C uses; the A, B, D and E rules and the tokens only they needed are
+  dropped, and the `--s06-*` sizing, stroke and ring coordinates go into the deck's `:root`
+  beside the `--s02-*` group. Preserved: the accepted copy word for word at 211 body words,
+  all eight note paragraphs, all seven approaches visible, and slides 5 and 7 untouched.
+  The four `.icard` rules were removed because nothing else in the deck used the class;
+  `.grid.g2` stays for slides 11 and 16. `s06-what-worked-visual.html` is deleted and its
+  sandbox index entry removed entirely at Dafydd's request. Evidence: slides 5, 6 and 7
+  screenshotted from `origin/main` and again after the edit in headless Chrome at
+  1920x1080 with no virtual time budget; slides 5 and 7 are byte-identical to their
+  baselines under `cmp`, slide 6 matches the accepted option C render from the review page,
+  and the `file://` render of slide 6 is byte-identical to the HTTP one. ArrowRight
+  advances exactly one slide per press across all 24 slides and stops at the end. No hex
+  colours, no em or en dashes and no `s06-review` remain in the deck. Downloads are not
+  rebuilt. PR #108.
+- **2026-09-08, training slide 6, five visual options replacing the text-only round.**
+  Dafydd rejected all five round-one layouts because every one was still a block of text
+  with no visual device. Added `s06-what-worked-visual.html` and deleted
+  `s06-what-worked.html`, replacing its index entry. The five are A Pictograms, the deck's
+  own seven slide-6 glyphs enlarged to 92px above their copy with patience closing on a
+  full-width lime rule; B Building up, a stepped stack of three SVG blocks labelled
+  neutrally "one discipline", "the next" and "the full picture" with the principles point
+  as the hero; C Around the learner, a navy "The engineer" disc inside a lime ring with
+  seven spokes to icon nodes and the copy in the matching sectors; D The exchange, pairing
+  as two nodes trading both ways and the secondment as a gate opening on "a platform
+  engineering team can dedicate time to training" and otherwise on "an enthusiastic
+  employee willing to learn independently", every drawing label a phrase from the copy;
+  and E Fifty-seven to one, the documentation figure as a true 57:1 area comparison, a
+  270px navy square against a 35.8px lime one, above the icon rail of the other six.
+  Preserved unchanged: the round-one COPY array at 211 body words and the round-one eight
+  paragraphs of proposed speaker notes, verbatim in all five, plus the page mechanics -
+  the layout builder, CSS and preview-chrome injection, notes replacement, word-count
+  widget, `?option=x` viewer, pinned navigation and the source-match guard. All seven
+  approaches stay visible. Every colour is a deck token, no hex anywhere including inside
+  the SVG, no drawing names or orders a discipline, decorative art is `aria-hidden` and
+  every diagram carries `role="img"` with an `aria-label`. Evidence: all five full-size
+  renders and the whole page screenshotted in headless Chrome at 1920x1080 and 1400x5400
+  and reviewed by eye, with no overflow past the footer hairline or into the slide
+  counter and no clipped labels; the word-count widget reports 211 for A, 218 for B, 213
+  for C, 235 for D and 219 for E, the rises being the drawing labels; the injected
+  `#notestext` is byte-identical to the proposed notes in all five and matches the
+  slide's `data-notes`; `git diff --stat origin/main -- presentations/training_a_team/`
+  is empty, so the deck and both downloads are untouched. One fix worth recording: Chrome
+  resolves SVG `text-anchor` on an injected fragment's first layout and does not redo it,
+  so every drawing label was painted off-centre until the page re-parsed each drawing on
+  the next animation frame. PR #107.
+
+- **2026-09-08, training slide 7, five visual options replacing the text-only round.**
+  Dafydd rejected all five round-one layouts because every one of them was a block of text
+  with no visual device. Added `s07-conditions-visual.html` and deleted
+  `s07-conditions-for-success.html`, replacing its index entry rather than adding a second
+  page. A Two pillars is an SVG post and lintel: two labelled columns with capitals and base
+  plinths stand on a hatched ground line with open canvas between them, carrying one solid
+  lime beam that holds the premise in navy, and the seven conditions rest on top of that beam
+  as numbered tiles. The safety paragraphs sit inside the column shafts under their labels.
+  B When it applies is a horizontal track whose three zones come from the copy's own words,
+  before you start (01, 02, 07), during (03, 04, 06) and one condition running throughout
+  (05) as a bar spanning the whole track, over a ground band of both safeties; the
+  description says the zones are read from the copy and the numbers are not a sequence. C The
+  dip is one illustrative slower-before-faster curve, coral on the fall and lime on the rise,
+  filling its column and about 60 per cent of its height, with a marked trough, a dashed drop
+  to a bracketed two-to-three-month span whose label sits clear below the bracket, condition
+  06 directly under the trough and a visible SHAPE IS ILLUSTRATIVE disclosure, the other six
+  running as a numbered column beside it. D
+  Gates on a rail runs the seven down a vertical rail with large mono numerals and line-art
+  marks, a boom barrier on 02 and 07, converging arrows on 01, a clock on 03, two figures on
+  04, a chain link on 05 and a dip glyph on 06, against a navy safety panel carrying a shield
+  and a pair of speech marks. E Big numerals sets 01 to 07 at 120px in lime mono, four across
+  and then three, under a full-width safety band with the premise at its right edge.
+  Preserved exactly: the round-one `COPY` object of 217 body words and the seven paragraphs
+  of proposed speaker notes, both kinds of safety, all seven conditions, the confirmed
+  two-to-three-month dip and PR approvers chosen before handover. Only layout and artwork
+  changed. All colours, fonts and sizes are deck tokens or scoped `--s07-*` sizing tokens,
+  with no literal colour anywhere including inside the SVG; decorative marks carry
+  `aria-hidden` and the three diagrams carry `role="img"` with a description, so every option
+  still reads with the artwork deleted. Verified in headless Chrome at 1920 by 1080 for all
+  five options plus the whole page: nothing overflows the footer hairline or reaches the
+  slide counter, no clipped labels, the notes overlay in every option carries the seven
+  proposed paragraphs and matches `data-notes`, and the word-count widget reports 217 body
+  words for A, D and E, 222 for B and 224 for C, the difference being each option's own drawn
+  labels. The deck diff against origin/main for `presentations/training_a_team/` is empty, so
+  the source slide and both downloads are unchanged. A and C were reworked in review: A's
+  structure was redrawn so the post and lintel actually reads, and C's curve was scaled up
+  with the span label moved clear of its own bracket. PR #106.
+
+- **2026-09-08, training slide 6, five layout options with shorter copy.** Added
+  `s06-what-worked.html` to the training sandbox for Joseph's "What worked" slide.
+  A uses two plain columns, B seven aligned full-width rows, C a navy secondment column,
+  D three columns with patience below, and E a paired programming opening band over two
+  rows of supporting points. Every option uses the same 211-word body, down from 284
+  (25.7% shorter including headings), and eight paragraphs of proposed speaker notes.
+  All seven approaches remain visible. The secondment still requires dedicated platform
+  team training time, retains the independent learner fallback and prior experience
+  qualifier, and the documentation point keeps 3,778 words and 57x smaller. Full notes
+  retain the two modules, four labs, deliberately broken lab and public comparison with
+  the original manual. Direct anchors, full-size views, pinned previews, scaled chrome,
+  loading/error states and notes work through the existing sandbox wrapper. Both source
+  decks and downloads remain unchanged. Added the pending index and AGENTS.md entry.
+  Browser checks passed across all five layouts: 25-27px minimum body text, no overflow,
+  clipping or overlap, matching notes, pinned navigation, full-size routes and mobile
+  review controls. All five rendered screenshots were visually reviewed. PR #104.
+
+- **2026-09-08, training_a_team slide 7, five shorter layout options.** Dafydd asked for
+  five layout options for slides 6 and 7, reducing each slide's word count by around 25%
+  and putting the options in the sandbox for review. This instruction owns slide 7 only.
+  Added `s07-conditions-for-success.html`: A Safety across the top, B Safety beside seven
+  numbered rows, C Safety as the foundation below, D Safety in the centre and E Safety
+  through the middle. Every composition uses the same 217 body words instead of 291
+  (25.4% shorter), preserving both kinds of safety and all seven conditions, including
+  approver ownership, explicit review training and the confirmed two-to-three-month dip.
+  Seven shared proposed note paragraphs retain the full public account and correct the
+  source notes' stale six-condition wording. Each option has an anchor, selected-only
+  full-size view, notes disclosure, pinned preview navigation, scaled mobile chrome and
+  an unavailable-source message. Both source decks remain byte-identical. The sandbox
+  index and directly related `AGENTS.md` descriptions reflect the open review. Training
+  has no presenter.json, so presenter sync does not apply. All five options pass browser
+  and visual QA at 1920x1080, with no overflow, clipping or overlap. Word counts, notes,
+  mobile chrome, pinned navigation, full-size routes and source checks pass. A's lower
+  three conditions use equal widths to give the dip room; E's upper row has a clear gap
+  above the safety band. Inline JavaScript syntax, added-copy dash lint and
+  `git diff --check` pass. No option has been accepted. PR #105.
+
+- **2026-09-08, training_a_team slide 5 option E accepted and slides 4 and 5 cleared from the sandbox.**
+  Dafydd: "now implement option E for slide 5 and option e for slide 4. once applied then
+  remove both from the sandbox". Applied refined E, "Teaching and the gaps", as
+  `#s-what-didnt-work`: the exact 173-word body and all seven accepted note paragraphs,
+  with three teaching issues above the 250px chart and two issues plus the engineer quote
+  below. The four restored chart annotations, six teaching rises, gap drops and bands,
+  rising floor and illustrative-shape disclosure remain. Only the required scoped CSS and
+  tokens transfer; the old chart wrapper, chips and quote strip styles are removed.
+  Slide 4 already held accepted E, "Plain sentences", from PR #101 and is byte-unchanged.
+  Deleted the slide 5 review page and removed both public sandbox entries, including
+  slide 4's former done entry. The training index now reads "No open reviews."
+  Browser and visual QA confirm exact accepted DOM, element geometry, computed styles,
+  body copy and notes. All other 23 source slides and scripts remain unchanged. Notes,
+  navigation, HTTP/file parity and sandbox cleanup checks pass. HTTP and file pixels
+  match except for the bottom progress animation; minor iframe-versus-standalone SVG
+  rasterisation differences prevent a claim of identical reference pixels. All three
+  inline scripts parse and `git diff --check` passes. Evidence is in
+  `/tmp/jnuc-s05-accept-{source,reference,file}.png` and `/tmp/jnuc-s05-accept-qa.json`.
+  Training has no presenter.json, so presenter sync does not apply. Downloads remain
+  deferred under the standing feedback convention. PR #103.
+
+- **2026-09-08, training_a_team slide 5 option E chart notes restored for review.**
+  Dafydd: "refine option e's diagram to include the word notes from the original. then
+  let me review again". Restored the four original explanatory notes verbatim inside
+  E's chart: the rising floor, teaching lift, following gap and shaded teaching bands.
+  They replace E's shorter legend, whose space gives the plot another 34px of height.
+  The original six-cycle coordinates and horizontal sizing remain, with only E's
+  vertical plot transform changing. The surrounding copy, quotation, composition and
+  all proposed speaker notes remain. E has 173 visible body words against 232 in the
+  source, a 25.4% reduction; A to D remain at 164 words and 29.3%. All five options
+  remain reviewable and no option is accepted. Updated the wrapper, index and AGENTS.md
+  to describe the refinement accurately. Browser and visual QA confirm all four notes
+  fit with no text overlaps or clipping, six rises, drops and teaching bands remain,
+  and notes, full-size, all-five and mobile routes and pinned navigation pass. A to D's
+  preview DOM is identical and both source decks are byte-identical. Inline JavaScript,
+  unchanged shared copy and note blocks, punctuation and diff whitespace checks pass.
+  Evidence: `/tmp/jnuc-s05-e-refined.png`, `/tmp/jnuc-s05-e-refined-mobile.png` and
+  `/tmp/jnuc-s05-e-refined-qa.json`. Training has no presenter.json; downloads remain
+  deferred under the standing feedback convention. PR #102.
+
+- **2026-09-08, training_a_team slide 4 option E accepted.** Dafydd: "slide 4 proceed
+  with option e". Applied "Option E - Plain sentences" to the sixteen existing text fields
+  and all seven accepted speaker-note paragraphs, including the opening delivery cue.
+  The title, Joseph speaker, slide 4 of 24 position, secondment panel, five numbered
+  outcomes, SVG brace and two knowledge-exchange arrows remain. Three months describes
+  the secondment only. Body copy is 159 words, down from 236. The review page is retired
+  and its index entry is non-linked and marked done. Slide 5 remains the only open review;
+  its wrapper footer records this acceptance, with its five variants, notes, CSS and
+  script unchanged. Browser and visual QA confirm exact accepted copy, notes, markup,
+  attributes and element geometry, with no clipping or overlap. Reference and source
+  match visually; minor gradient and SVG rasterisation differences prevent a claim of
+  identical reference pixels. HTTP and file pixels match except for the bottom 3px progress
+  animation. Notes and navigation checks pass, and all five pending slide 5 previews load.
+  Static checks confirm the exact sixteen replacements and seven note paragraphs, original
+  source CSS and scripts, unchanged other 23 source slides and unchanged SVG brace. Index
+  links, new-copy punctuation and `git diff --check` pass. Evidence is in
+  `/tmp/jnuc-s04-accept-{source,reference,file}.png` and `/tmp/jnuc-s04-accept-qa.json`.
+  Training has no presenter.json, so presenter sync does not apply. Downloads remain
+  deferred under the standing feedback convention. PR #101.
 
 - **2026-09-08, training_a_team slide 5, five visual designs with shorter wording.**
   Dafydd requested five different visual designs and around 25-30% fewer words for
