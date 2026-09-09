@@ -609,10 +609,25 @@ Notable content slides:
   All twelve original benefits remain visible across Individual, Team and Organisation.
   The benefits are explicitly intended; a separate "What we saw in the Mac engineering
   team" strip preserves the three observed behaviours: self-sufficient PR work without
-  assistance, architectural decisions and resources managed exclusively in code. The source
-  remains a straightforward three-column reflow. Its five sandbox visual options were closed
-  without acceptance in the 2026-09-08 sandbox reset; no visual option was implemented.
-  Scoped `.bn-*` rules and a separate `:root` block hold the new sizing tokens.
+  assistance, architectural decisions and resources managed exclusively in code. Its five
+  sandbox visual options were closed without acceptance in the 2026-09-08 sandbox reset, and
+  the three-column reflow shipped as a plain, undifferentiated layout after that - three
+  identical navy boxes with no colour or icon to tell them apart. Tidied 2026-09-09 directly
+  (Gordon: "I like the layout with the 3 boxes... it looks very static"), no sandbox round:
+  each box now carries an icon (a person for Individual, three clustered dots for Team, a
+  small building for Organisation) and its own colour, reusing the lime/cornflower/off-white
+  convention already established for junior/engineer/senior on slide 9 - `--tier` set inline
+  per box, driving the icon colour, the heading colour and a 4px coloured top edge. A small
+  arrow sits in the gap between each pair of boxes so the slide reads as benefits rippling
+  outward (individual, then team, then organisation, matching what the speaker notes already
+  say) rather than three unrelated panels. Two things were caught and fixed before this
+  shipped: the icons initially pushed every box taller than the slide's fixed height budget
+  (`--bn-height`), overlapping the "What we saw" strip underneath, fixed by shrinking the
+  icon and its margin; and even after that fix, the Team box specifically (six items against
+  three in the others) still clipped its last line against the bottom edge, fixed by
+  tightening the list item gap and the box's own padding. Scoped `.bn-*` rules and a separate
+  `:root` block hold the sizing tokens; content and wording are unchanged throughout - only
+  the presentation changed.
 - **Execution** (`#4`): a fan-out - a hub panel (one engineer seconded into the DevOps CoE,
   3 months, train-the-trainer, run iteratively rather than planned end to end) bracketed by
   an SVG to five outcome cards, all plain (no per-card colour variants): materials written

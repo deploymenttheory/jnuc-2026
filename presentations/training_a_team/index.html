@@ -1154,12 +1154,23 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 #s-learner-benefits .bn-content { margin-top: calc(var(--bn-unit) * 4); height: var(--bn-height); display: flex; flex-direction: column; font-family: var(--sans); }
 #s-learner-benefits .bn-content h2, #s-learner-benefits .bn-content p, #s-learner-benefits .bn-content ul { margin: 0; }
 #s-learner-benefits .bn-intent { font-size: var(--bn-label); line-height: var(--bn-leading); color: var(--text-dimmer); padding-bottom: calc(var(--bn-unit) * 3); }
-#s-learner-benefits .bn-tiers { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: calc(var(--bn-unit) * 3); flex: 1; min-height: 0; }
-#s-learner-benefits .bn-tier { min-width: 0; }
-#s-learner-benefits .bn-tier h2 { color: var(--accent); font-size: var(--bn-heading); line-height: var(--bn-heading-leading); letter-spacing: var(--bn-tracking); padding-bottom: calc(var(--bn-unit) * 3); }
-#s-learner-benefits .bn-tier ul { list-style: none; padding: 0; display: grid; gap: calc(var(--bn-unit) * 2); }
+#s-learner-benefits .bn-tiers { display: grid; grid-template-columns: 1fr 48px 1.5fr 48px 1fr; gap: calc(var(--bn-unit) * 2); flex: 1; min-height: 0; }
+#s-learner-benefits .bn-tier { min-width: 0; min-height: 0; }
+#s-learner-benefits .bn-icon { width: 32px; height: 32px; color: var(--tier); margin-bottom: calc(var(--bn-unit) * 1.25); }
+#s-learner-benefits .bn-icon svg { width: 100%; height: 100%; }
+#s-learner-benefits .bn-tier h2 { color: var(--tier); font-size: var(--bn-heading); line-height: var(--bn-heading-leading); letter-spacing: var(--bn-tracking); padding-bottom: calc(var(--bn-unit) * 3); }
+#s-learner-benefits .bn-tier ul { list-style: none; padding: 0; display: grid; gap: calc(var(--bn-unit) * 1.25); }
 #s-learner-benefits .bn-tier li { color: var(--text); font-size: var(--bn-body); line-height: var(--bn-leading); }
-#s-learner-benefits .bn-baseline .bn-tier { padding: calc(var(--bn-unit) * 3); background: var(--surface); border: var(--bn-line) solid var(--border); }
+#s-learner-benefits .bn-baseline .bn-tier { padding: calc(var(--bn-unit) * 2); background: var(--surface); border: var(--bn-line) solid var(--border); border-top: 4px solid var(--tier); }
+/* The two arrow columns carry the "individual, then team, then organisation"
+   flow the speaker notes describe - benefits ripple outward, so the slide
+   should read left to right, not as three unrelated boxes. Each arrow's
+   grid cell spans the full row height (grid rows size to the tallest
+   tier), so centring it vertically lands it against the taller Team
+   panel, which is deliberate rather than an accident of the shorter
+   panels either side. */
+#s-learner-benefits .bn-flow { display: flex; align-items: center; justify-content: center; align-self: center; color: var(--faint); }
+#s-learner-benefits .bn-flow svg { width: 26px; height: 26px; }
 #s-learner-benefits .bn-observed { margin-top: calc(var(--bn-unit) * 3); padding-top: calc(var(--bn-unit) * 2); border-top: var(--bn-line) solid var(--border); }
 #s-learner-benefits .bn-observed h2 { font-size: var(--bn-small); line-height: var(--bn-leading); color: var(--text-dimmer); font-weight: 500; padding-bottom: calc(var(--bn-unit) * 2); }
 #s-learner-benefits .bn-proof { display: grid; grid-template-columns: 1.45fr 1fr 1fr; gap: calc(var(--bn-unit) * 4); }
@@ -1852,7 +1863,8 @@ Keep the observed behaviour separate from those intended benefits. The Mac engin
   <div class="body bn-content bn-baseline">
   <p class="bn-intent">The benefits we wanted learners to gain</p>
   <div class="bn-tiers">
-  <div class="bn-tier bn-individual">
+  <div class="bn-tier bn-individual" style="--tier:var(--accent)">
+  <div class="bn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
   <h2>Individual</h2>
   <ul>
   <li data-benefit="skills">Engineering skills you can use elsewhere</li>
@@ -1860,7 +1872,9 @@ Keep the observed behaviour separate from those intended benefits. The Mac engin
   <li data-benefit="load">Less cognitive load: no repeated changes across instances</li>
   </ul>
   </div>
-  <div class="bn-tier bn-team">
+  <div class="bn-flow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
+  <div class="bn-tier bn-team" style="--tier:var(--alt-light)">
+  <div class="bn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="9" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="9" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
   <h2>Team</h2>
   <ul>
   <li data-benefit="knowledge">Shared knowledge, without a single point of failure</li>
@@ -1871,7 +1885,9 @@ Keep the observed behaviour separate from those intended benefits. The Mac engin
   <li data-benefit="modules">Terraform modules for sister teams to use through self service</li>
   </ul>
   </div>
-  <div class="bn-tier bn-organisation">
+  <div class="bn-flow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
+  <div class="bn-tier bn-organisation" style="--tier:var(--text-2)">
+  <div class="bn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="6.5" width="3" height="3" fill="currentColor"/><rect x="14" y="6.5" width="3" height="3" fill="currentColor"/><rect x="7" y="12" width="3" height="3" fill="currentColor"/><rect x="14" y="12" width="3" height="3" fill="currentColor"/><rect x="9.5" y="17.5" width="5" height="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
   <h2>Organisation</h2>
   <ul>
   <li data-benefit="audit">Audit and compliance without a last-minute scramble</li>
