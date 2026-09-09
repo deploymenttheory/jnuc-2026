@@ -987,106 +987,10 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
   border-top:1px solid var(--blue-border);padding-top:18px}
 
 /* ---------- slide 16 (Hiring) ---------- */
-/* Five genuinely different visual treatments of the same content - six skills
-   to hunt for, three market facts and two pieces of advice - offered as a
-   sandbox round after Gordon said the shipped two-card layout was "a bit
-   boring". Only option A (the shipped layout, above under slide 15's block
-   by mistake of an old comment) is visible by default; see the hide rule at
-   the end of this block. */
-
-/* Option B - Chip cluster: skills as sized chips (bigger chip = stronger
-   signal) in a loose wrapped cluster rather than a vertical list; market
-   facts as compact stat rows, the two pieces of advice pulled out as
-   accent-bordered callouts. */
-#s-hiring .s-hiring-opt-b{display:flex;flex-direction:column;gap:28px;margin-top:36px}
-#s-hiring .hbc-lead{font-size:22px;color:var(--text-dim);line-height:1.35}
-#s-hiring .hbc-grid{display:grid;grid-template-columns:3fr 2fr;gap:44px;align-items:start}
-#s-hiring .hbc-h{font-family:var(--mono);font-size:16px;letter-spacing:.14em;color:var(--green-bright);margin-bottom:22px}
-#s-hiring .hbc-cloud{display:flex;flex-wrap:wrap;gap:20px}
-#s-hiring .hbc-chip{border:1.5px solid var(--green-deep);background:var(--accent-wash);border-radius:16px;
-  padding:26px 30px;display:flex;flex-direction:column;gap:8px;flex:1 1 260px}
-#s-hiring .hbc-chip.big{padding:34px 36px}
-#s-hiring .hbc-chip.big b{font-size:27px}
-#s-hiring .hbc-chip b{font-size:22px;font-weight:700;color:var(--text)}
-#s-hiring .hbc-chip span{font-size:15.5px;color:var(--text-dimmer);line-height:1.36}
-#s-hiring .hbc-facts{display:flex;flex-direction:column;gap:14px}
-#s-hiring .hbc-fact{border-bottom:1px solid var(--border);padding-bottom:14px;font-size:18px;color:var(--text-dim);line-height:1.4}
-#s-hiring .hbc-advice{margin-top:22px;display:flex;flex-direction:column;gap:16px}
-#s-hiring .hbc-adv{border:1px solid var(--green-deep);background:var(--accent-wash);border-radius:12px;
-  padding:20px 24px;font-size:18px;line-height:1.4;color:var(--text-2)}
-#s-hiring .hbc-adv b{color:var(--green-bright);display:block;margin-bottom:3px}
-
-/* Option C - Scorecard: a real ruled table (skill, why it matters), so it
-   reads like an interview rubric rather than a bullet list; market signals
-   and advice as a footer strip. Two columns only - a fabricated third
-   "signal strength" rating was dropped, since the source never ranks these
-   skills against each other and inventing one would misrepresent it. */
-#s-hiring .s-hiring-opt-c{display:flex;flex-direction:column;gap:32px;margin-top:36px}
-#s-hiring .hsc-card{border:1px solid var(--border);border-radius:14px;background:var(--surface);
-  padding:8px 34px;overflow:hidden}
-#s-hiring .hsc-table{width:100%;border-collapse:collapse}
-#s-hiring .hsc-table th{font-family:var(--mono);font-size:15px;letter-spacing:.12em;color:var(--muted);
-  text-align:left;font-weight:400;padding:16px 18px 16px 0;border-bottom:1px solid var(--border)}
-#s-hiring .hsc-table td{padding:20px 18px 20px 0;border-bottom:1px solid var(--border-soft);font-size:20px;
-  color:var(--text-dim);vertical-align:middle}
-#s-hiring .hsc-table tr:last-child td{border-bottom:none}
-#s-hiring .hsc-table td:first-child{font-weight:700;color:var(--text);white-space:nowrap;width:220px}
-#s-hiring .hsc-foot{display:flex;gap:24px}
-#s-hiring .hsc-mkt{flex:1;border:1px solid var(--border);border-radius:12px;padding:22px 26px}
-#s-hiring .hsc-mkt h4{font-family:var(--mono);font-size:14.5px;letter-spacing:.12em;color:var(--muted);margin-bottom:12px}
-#s-hiring .hsc-mkt p{font-size:17px;color:var(--text-dimmer);line-height:1.4;margin-bottom:8px}
-#s-hiring .hsc-adv{flex:1;border:1px solid var(--green-deep);background:var(--accent-wash);border-radius:12px;padding:22px 26px}
-#s-hiring .hsc-adv p{font-size:17px;color:var(--text-2);line-height:1.4;margin-bottom:10px}
-#s-hiring .hsc-adv b{color:var(--green-bright)}
-
-/* Option D - Fork: a branching "two routes" diagram rather than a two-card
-   comparison - one statement forks into "hire externally" (screen for the
-   six skills) and "promote internally" (the market case for it, from the
-   same market facts and advice as every other option). Content is
-   identical to the source, just regrouped under a decision framing;
-   deliberately not a Venn/overlap diagram, since the source never claims
-   these skills already sit inside a typical Mac admin's toolkit. */
-#s-hiring .s-hiring-opt-d{display:flex;flex-direction:column;gap:0;margin-top:24px}
-#s-hiring .hfk-lead{font-size:32px;font-weight:700;color:var(--text-2);text-align:center;margin-bottom:10px}
-#s-hiring .hfk-fork{position:relative;height:64px}
-#s-hiring .hfk-fork svg{width:100%;height:100%}
-#s-hiring .hfk-cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;flex:1}
-#s-hiring .hfk-path{border-radius:16px;padding:40px 44px;display:flex;flex-direction:column}
-#s-hiring .hfk-path.a{background:var(--surface-2);border:1px solid var(--border)}
-#s-hiring .hfk-path.b{background:var(--accent-wash);border:1px solid var(--green-deep)}
-#s-hiring .hfk-tag{font-family:var(--mono);font-size:15px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px}
-#s-hiring .hfk-path.b .hfk-tag{color:var(--green-bright)}
-#s-hiring .hfk-path h4{font-size:29px;font-weight:700;color:var(--text);margin-bottom:26px}
-#s-hiring .hfk-path ul{list-style:none;display:flex;flex-direction:column;gap:18px}
-#s-hiring .hfk-path li{font-size:19px;line-height:1.4;color:var(--text-dim)}
-#s-hiring .hfk-path li b{color:var(--text);font-weight:700}
-#s-hiring .hfk-path p{font-size:19px;line-height:1.46;color:var(--text-dim);margin-bottom:20px}
-#s-hiring .hfk-path p:last-child{margin-bottom:0}
-
-/* Option E - Stepping bands: migrating_an_instance's s08 wave-workflow
-   pattern reused - six full-width numbered rows for the skills, then a
-   distinct closing band holding the market read and the two pieces of
-   advice. */
-#s-hiring .s-hiring-opt-e{display:flex;flex-direction:column;gap:0;margin-top:40px}
-#s-hiring .heb-row{display:grid;grid-template-columns:64px 1fr 2fr;gap:28px;align-items:center;
-  padding:17px 6px;border-top:1px solid var(--border)}
-#s-hiring .heb-row:first-of-type{border-top:none}
-#s-hiring .heb-n{font-family:var(--mono);font-size:15px;color:var(--muted)}
-#s-hiring .heb-row b{font-size:22px;font-weight:700;color:var(--text)}
-#s-hiring .heb-row span{font-size:17px;color:var(--text-dimmer)}
-#s-hiring .heb-mkt{margin-top:26px;border-top:1px solid var(--border);padding-top:26px;
-  display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-#s-hiring .heb-facts{display:flex;flex-direction:column;gap:14px}
-#s-hiring .heb-facts div{font-size:17px;color:var(--text-dimmer);line-height:1.42}
-#s-hiring .heb-advcol{display:flex;flex-direction:column;gap:14px}
-#s-hiring .heb-adv{border:1px solid var(--green-deep);background:var(--accent-wash);border-radius:12px;
-  padding:18px 22px;font-size:17px;color:var(--text-2);line-height:1.4}
-#s-hiring .heb-adv b{color:var(--green-bright)}
-
-/* Option F - Icon board: a 3x2 pictogram grid for the six skills (simple
-   geometric marks, no icon sprite in this deck), market signals and
-   advice as a footer strip. */
-#s-hiring .s-hiring-opt-f{display:flex;flex-direction:column;gap:32px;margin-top:36px}
+/* A 3x2 pictogram grid, one hand-drawn geometric mark per skill (this deck
+   has no icon sprite), then a footer strip for the market facts and the
+   two pieces of advice. */
+#s-hiring .hib{display:flex;flex-direction:column;gap:32px;margin-top:36px}
 #s-hiring .hib-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 #s-hiring .hib-tile{border:1px solid var(--border);border-radius:14px;background:var(--surface);
   padding:32px 34px;display:flex;flex-direction:column;gap:16px}
@@ -1099,14 +1003,6 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 #s-hiring .hib-adv{flex:1;border:1px solid var(--green-deep);background:var(--accent-wash);border-radius:12px;padding:20px 24px}
 #s-hiring .hib-adv p{font-size:16.5px;color:var(--text-2);line-height:1.4;margin-bottom:10px}
 #s-hiring .hib-adv b{color:var(--green-bright)}
-
-/* Only option A is visible in the shipped deck. */
-#s-hiring .s-hiring-opt-b,
-#s-hiring .s-hiring-opt-c,
-#s-hiring .s-hiring-opt-d,
-#s-hiring .s-hiring-opt-e,
-#s-hiring .s-hiring-opt-f{display:none}
-
 /* ---------- slide 18 ---------- */
 .res{border:1px solid var(--border);border-radius:10px;background:var(--surface);padding:24px 28px;margin-bottom:22px}
 .res.hi{background:var(--surface-2);border-color:var(--border-soft)}
@@ -1258,12 +1154,23 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 #s-learner-benefits .bn-content { margin-top: calc(var(--bn-unit) * 4); height: var(--bn-height); display: flex; flex-direction: column; font-family: var(--sans); }
 #s-learner-benefits .bn-content h2, #s-learner-benefits .bn-content p, #s-learner-benefits .bn-content ul { margin: 0; }
 #s-learner-benefits .bn-intent { font-size: var(--bn-label); line-height: var(--bn-leading); color: var(--text-dimmer); padding-bottom: calc(var(--bn-unit) * 3); }
-#s-learner-benefits .bn-tiers { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: calc(var(--bn-unit) * 3); flex: 1; min-height: 0; }
-#s-learner-benefits .bn-tier { min-width: 0; }
-#s-learner-benefits .bn-tier h2 { color: var(--accent); font-size: var(--bn-heading); line-height: var(--bn-heading-leading); letter-spacing: var(--bn-tracking); padding-bottom: calc(var(--bn-unit) * 3); }
-#s-learner-benefits .bn-tier ul { list-style: none; padding: 0; display: grid; gap: calc(var(--bn-unit) * 2); }
+#s-learner-benefits .bn-tiers { display: grid; grid-template-columns: 1fr 48px 1.5fr 48px 1fr; gap: calc(var(--bn-unit) * 2); flex: 1; min-height: 0; }
+#s-learner-benefits .bn-tier { min-width: 0; min-height: 0; }
+#s-learner-benefits .bn-icon { width: 32px; height: 32px; color: var(--tier); margin-bottom: calc(var(--bn-unit) * 1.25); }
+#s-learner-benefits .bn-icon svg { width: 100%; height: 100%; }
+#s-learner-benefits .bn-tier h2 { color: var(--tier); font-size: var(--bn-heading); line-height: var(--bn-heading-leading); letter-spacing: var(--bn-tracking); padding-bottom: calc(var(--bn-unit) * 3); }
+#s-learner-benefits .bn-tier ul { list-style: none; padding: 0; display: grid; gap: calc(var(--bn-unit) * 1.25); }
 #s-learner-benefits .bn-tier li { color: var(--text); font-size: var(--bn-body); line-height: var(--bn-leading); }
-#s-learner-benefits .bn-baseline .bn-tier { padding: calc(var(--bn-unit) * 3); background: var(--surface); border: var(--bn-line) solid var(--border); }
+#s-learner-benefits .bn-baseline .bn-tier { padding: calc(var(--bn-unit) * 2); background: var(--surface); border: var(--bn-line) solid var(--border); border-top: 4px solid var(--tier); }
+/* The two arrow columns carry the "individual, then team, then organisation"
+   flow the speaker notes describe - benefits ripple outward, so the slide
+   should read left to right, not as three unrelated boxes. Each arrow's
+   grid cell spans the full row height (grid rows size to the tallest
+   tier), so centring it vertically lands it against the taller Team
+   panel, which is deliberate rather than an accident of the shorter
+   panels either side. */
+#s-learner-benefits .bn-flow { display: flex; align-items: center; justify-content: center; align-self: center; color: var(--faint); }
+#s-learner-benefits .bn-flow svg { width: 26px; height: 26px; }
 #s-learner-benefits .bn-observed { margin-top: calc(var(--bn-unit) * 3); padding-top: calc(var(--bn-unit) * 2); border-top: var(--bn-line) solid var(--border); }
 #s-learner-benefits .bn-observed h2 { font-size: var(--bn-small); line-height: var(--bn-leading); color: var(--text-dimmer); font-weight: 500; padding-bottom: calc(var(--bn-unit) * 2); }
 #s-learner-benefits .bn-proof { display: grid; grid-template-columns: 1.45fr 1fr 1fr; gap: calc(var(--bn-unit) * 4); }
@@ -1912,147 +1819,10 @@ Choose the people who will approve pull requests early and explicitly train them
   <div class="eyebrow"><i class="dot"></i>16 &middot; Hiring</div>
   <h1>Hiring for the new world</h1>
 
-  <!-- Option A - the deck as it currently ships: two plain bordered cards,
-       each a dashed bullet list. -->
-  <div class="s-hiring-opt-a">
-  <div class="body grid g2">
-    <div class="card" style="padding:38px 42px;height:720px">
-      <h3 style="font-size:32px;margin-bottom:28px">Skills to hunt for</h3>
-      <ul class="dash">
-        <li>Terraform (any provider) - concept transfer is fast</li>
-        <li>Git + GitHub / GitLab - daily CLI use, not just GUI</li>
-        <li>Any scripting - Bash, Python, Ruby - comfort in a terminal</li>
-        <li>CI/CD pipeline experience (GitHub Actions, Jenkins&hellip;)</li>
-        <li>API / REST familiarity - a great signal for IaC aptitude</li>
-        <li>Open-source contribution - shows self-directed learning</li>
-      </ul>
-    </div>
-    <div class="card" style="padding:38px 42px;height:720px">
-      <h3 style="font-size:32px;margin-bottom:28px">Market signals</h3>
-      <ul class="dash">
-        <li>TF skills are still emerging in the Mac/endpoint space - the pool is small</li>
-        <li>Postings now list Terraform as required for senior Mac/MDM roles</li>
-        <li>Jamf + Terraform experience commands a premium - the gap will widen</li>
-        <li><span class="g">Consider internal promotion</span> - train your best Mac admins rather than competing for scarce talent</li>
-        <li><span class="g">Screen for aptitude over credentials</span> - curiosity + scripting beats a CV match</li>
-      </ul>
-    </div>
-  </div>
-  </div>
-
-  <!-- Option B - Chip cluster -->
-  <div class="s-hiring-opt-b">
-    <div class="hbc-grid">
-      <div>
-        <div class="hbc-h">SKILLS TO HUNT FOR</div>
-        <div class="hbc-cloud">
-          <div class="hbc-chip big"><b>Terraform</b><span>Any provider &ndash; concept transfer is fast</span></div>
-          <div class="hbc-chip big"><b>Git CLI</b><span>Daily use, not just GUI</span></div>
-          <div class="hbc-chip"><b>Scripting</b><span>Bash, Python, Ruby &ndash; comfort in a terminal</span></div>
-          <div class="hbc-chip"><b>CI/CD</b><span>GitHub Actions, Jenkins&hellip;</span></div>
-          <div class="hbc-chip"><b>API / REST</b><span>A great signal for IaC aptitude</span></div>
-          <div class="hbc-chip"><b>Open source</b><span>Shows self-directed learning</span></div>
-        </div>
-      </div>
-      <div>
-        <div class="hbc-h">MARKET SIGNALS</div>
-        <div class="hbc-facts">
-          <div class="hbc-fact">TF skills are still emerging in the Mac/endpoint space &ndash; the pool is small</div>
-          <div class="hbc-fact">Postings now list Terraform as required for senior Mac/MDM roles</div>
-          <div class="hbc-fact">Jamf + Terraform experience commands a premium &ndash; the gap will widen</div>
-        </div>
-        <div class="hbc-advice">
-          <div class="hbc-adv"><b>Consider internal promotion</b>Train your best Mac admins rather than competing for scarce talent</div>
-          <div class="hbc-adv"><b>Screen for aptitude over credentials</b>Curiosity + scripting beats a CV match</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Option C - Scorecard table -->
-  <div class="s-hiring-opt-c">
-    <div class="hsc-card">
-    <table class="hsc-table">
-      <thead><tr><th>Skill</th><th>Why it matters</th></tr></thead>
-      <tbody>
-        <tr><td>Terraform</td><td>Any provider &ndash; concept transfer is fast</td></tr>
-        <tr><td>Git CLI</td><td>Daily use, not just GUI</td></tr>
-        <tr><td>Scripting</td><td>Bash, Python, Ruby &ndash; comfort in a terminal</td></tr>
-        <tr><td>CI/CD</td><td>GitHub Actions, Jenkins&hellip;</td></tr>
-        <tr><td>API / REST</td><td>A great signal for IaC aptitude</td></tr>
-        <tr><td>Open source</td><td>Shows self-directed learning</td></tr>
-      </tbody>
-    </table>
-    </div>
-    <div class="hsc-foot">
-      <div class="hsc-mkt">
-        <h4>MARKET SIGNALS</h4>
-        <p>TF skills are still emerging in the Mac/endpoint space &ndash; the pool is small</p>
-        <p>Postings now list Terraform as required for senior Mac/MDM roles</p>
-        <p>Jamf + Terraform experience commands a premium &ndash; the gap will widen</p>
-      </div>
-      <div class="hsc-adv">
-        <p><b>Consider internal promotion</b> &ndash; train your best Mac admins rather than competing for scarce talent</p>
-        <p><b>Screen for aptitude over credentials</b> &ndash; curiosity + scripting beats a CV match</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Option D - Fork: two routes -->
-  <div class="s-hiring-opt-d">
-    <div class="hfk-lead">Two ways to close the gap</div>
-    <div class="hfk-fork">
-      <svg viewBox="0 0 1676 56" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M838 0 L838 20 L420 20 L420 56" fill="none" stroke="var(--border)" stroke-width="2"/>
-        <path d="M838 0 L838 20 L1256 20 L1256 56" fill="none" stroke="var(--border)" stroke-width="2"/>
-      </svg>
-    </div>
-    <div class="hfk-cols">
-      <div class="hfk-path a">
-        <div class="hfk-tag">ROUTE ONE</div>
-        <h4>Hire externally</h4>
-        <ul>
-          <li><b>Terraform</b> (any provider) &ndash; concept transfer is fast</li>
-          <li><b>Git CLI</b> &ndash; daily use, not just GUI</li>
-          <li><b>Scripting</b> &ndash; Bash, Python, Ruby, comfort in a terminal</li>
-          <li><b>CI/CD</b> &ndash; GitHub Actions, Jenkins&hellip;</li>
-          <li><b>API / REST</b> familiarity &ndash; a great signal for IaC aptitude</li>
-          <li><b>Open source</b> contribution &ndash; shows self-directed learning</li>
-        </ul>
-      </div>
-      <div class="hfk-path b">
-        <div class="hfk-tag">ROUTE TWO</div>
-        <h4>Promote internally</h4>
-        <p>TF skills are still emerging in the Mac/endpoint space &ndash; the pool is small, and Jamf + Terraform experience commands a premium that will widen.</p>
-        <p><b>Consider internal promotion</b> &ndash; train your best Mac admins rather than competing for scarce talent.</p>
-        <p><b>Screen for aptitude over credentials</b> &ndash; curiosity and scripting beat a CV match.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Option E - Stepping bands -->
-  <div class="s-hiring-opt-e">
-    <div class="heb-row"><span class="heb-n">01</span><b>Terraform</b><span>Any provider &ndash; concept transfer is fast</span></div>
-    <div class="heb-row"><span class="heb-n">02</span><b>Git CLI</b><span>Daily use, not just GUI</span></div>
-    <div class="heb-row"><span class="heb-n">03</span><b>Scripting</b><span>Bash, Python, Ruby &ndash; comfort in a terminal</span></div>
-    <div class="heb-row"><span class="heb-n">04</span><b>CI/CD</b><span>GitHub Actions, Jenkins&hellip;</span></div>
-    <div class="heb-row"><span class="heb-n">05</span><b>API / REST</b><span>A great signal for IaC aptitude</span></div>
-    <div class="heb-row"><span class="heb-n">06</span><b>Open source</b><span>Shows self-directed learning</span></div>
-    <div class="heb-mkt">
-      <div class="heb-facts">
-        <div>TF skills are still emerging in the Mac/endpoint space &ndash; the pool is small</div>
-        <div>Postings now list Terraform as required for senior Mac/MDM roles</div>
-        <div>Jamf + Terraform experience commands a premium &ndash; the gap will widen</div>
-      </div>
-      <div class="heb-advcol">
-        <div class="heb-adv"><b>Consider internal promotion</b> &ndash; train your best Mac admins rather than competing for scarce talent</div>
-        <div class="heb-adv"><b>Screen for aptitude over credentials</b> &ndash; curiosity + scripting beats a CV match</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Option F - Icon board -->
-  <div class="s-hiring-opt-f">
+  <!-- A 3x2 pictogram grid, one hand-drawn geometric mark per skill (this
+       deck has no icon sprite), then a footer strip for the market facts
+       and the two pieces of advice. -->
+  <div class="hib">
     <div class="hib-grid">
       <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 L21 7 L21 17 L12 22 L3 17 L3 7 Z" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>Terraform</b><span>Any provider &ndash; concept transfer is fast</span></div>
       <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><circle cx="6" cy="18" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><circle cx="18" cy="6" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M6 9v6M9 6h6a3 3 0 0 1 3 3v0" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>Git CLI</b><span>Daily use, not just GUI</span></div>
@@ -2093,7 +1863,8 @@ Keep the observed behaviour separate from those intended benefits. The Mac engin
   <div class="body bn-content bn-baseline">
   <p class="bn-intent">The benefits we wanted learners to gain</p>
   <div class="bn-tiers">
-  <div class="bn-tier bn-individual">
+  <div class="bn-tier bn-individual" style="--tier:var(--accent)">
+  <div class="bn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
   <h2>Individual</h2>
   <ul>
   <li data-benefit="skills">Engineering skills you can use elsewhere</li>
@@ -2101,7 +1872,9 @@ Keep the observed behaviour separate from those intended benefits. The Mac engin
   <li data-benefit="load">Less cognitive load: no repeated changes across instances</li>
   </ul>
   </div>
-  <div class="bn-tier bn-team">
+  <div class="bn-flow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
+  <div class="bn-tier bn-team" style="--tier:var(--alt-light)">
+  <div class="bn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="9" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="9" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
   <h2>Team</h2>
   <ul>
   <li data-benefit="knowledge">Shared knowledge, without a single point of failure</li>
@@ -2112,7 +1885,9 @@ Keep the observed behaviour separate from those intended benefits. The Mac engin
   <li data-benefit="modules">Terraform modules for sister teams to use through self service</li>
   </ul>
   </div>
-  <div class="bn-tier bn-organisation">
+  <div class="bn-flow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
+  <div class="bn-tier bn-organisation" style="--tier:var(--text-2)">
+  <div class="bn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="6.5" width="3" height="3" fill="currentColor"/><rect x="14" y="6.5" width="3" height="3" fill="currentColor"/><rect x="7" y="12" width="3" height="3" fill="currentColor"/><rect x="14" y="12" width="3" height="3" fill="currentColor"/><rect x="9.5" y="17.5" width="5" height="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
   <h2>Organisation</h2>
   <ul>
   <li data-benefit="audit">Audit and compliance without a last-minute scramble</li>

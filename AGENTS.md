@@ -573,8 +573,7 @@ with it - the label is right-aligned inside a box the same width as the gate off
 Then `#11` delivery (`s-delivery`, rebuilt 2026-09-09 as a spectrum rail, see Notable
 content slides), `#12` content types, `#13` Louise's case study, `#14` sister-team
 scope, `#15` onboarding (tidied 2026-09-09, see Notable content slides), `#16` hiring
-(`s-hiring`, id added 2026-09-09; a five-option sandbox round is open to replace the two
-plain bordered cards with a genuinely visual treatment, see Sandbox), `#17` learner benefits, `#18` learning materials,
+(`s-hiring`, rebuilt 2026-09-09 as an icon board, see Notable content slides), `#17` learner benefits, `#18` learning materials,
 `#19` Questions and `#20` Thank You. The appendix is `#21` the skills map, `#22` the old
 pathway matrix, `#23` the old week-by-week timeline and `#24` the colour system. The
 matrix and timeline remain for readers at Gordon's request and have no assigned speaker.
@@ -610,10 +609,25 @@ Notable content slides:
   All twelve original benefits remain visible across Individual, Team and Organisation.
   The benefits are explicitly intended; a separate "What we saw in the Mac engineering
   team" strip preserves the three observed behaviours: self-sufficient PR work without
-  assistance, architectural decisions and resources managed exclusively in code. The source
-  remains a straightforward three-column reflow. Its five sandbox visual options were closed
-  without acceptance in the 2026-09-08 sandbox reset; no visual option was implemented.
-  Scoped `.bn-*` rules and a separate `:root` block hold the new sizing tokens.
+  assistance, architectural decisions and resources managed exclusively in code. Its five
+  sandbox visual options were closed without acceptance in the 2026-09-08 sandbox reset, and
+  the three-column reflow shipped as a plain, undifferentiated layout after that - three
+  identical navy boxes with no colour or icon to tell them apart. Tidied 2026-09-09 directly
+  (Gordon: "I like the layout with the 3 boxes... it looks very static"), no sandbox round:
+  each box now carries an icon (a person for Individual, three clustered dots for Team, a
+  small building for Organisation) and its own colour, reusing the lime/cornflower/off-white
+  convention already established for junior/engineer/senior on slide 9 - `--tier` set inline
+  per box, driving the icon colour, the heading colour and a 4px coloured top edge. A small
+  arrow sits in the gap between each pair of boxes so the slide reads as benefits rippling
+  outward (individual, then team, then organisation, matching what the speaker notes already
+  say) rather than three unrelated panels. Two things were caught and fixed before this
+  shipped: the icons initially pushed every box taller than the slide's fixed height budget
+  (`--bn-height`), overlapping the "What we saw" strip underneath, fixed by shrinking the
+  icon and its margin; and even after that fix, the Team box specifically (six items against
+  three in the others) still clipped its last line against the bottom edge, fixed by
+  tightening the list item gap and the box's own padding. Scoped `.bn-*` rules and a separate
+  `:root` block hold the sizing tokens; content and wording are unchanged throughout - only
+  the presentation changed.
 - **Execution** (`#4`): a fan-out - a hub panel (one engineer seconded into the DevOps CoE,
   3 months, train-the-trainer, run iteratively rather than planned end to end) bracketed by
   an SVG to five outcome cards, all plain (no per-card colour variants): materials written
@@ -723,6 +737,22 @@ Notable content slides:
   distinction and only added noise next to the blue already used for the "new starter"
   column. `data-notes` unchanged - the underlying facts were never in question, only the
   layout. Verified with disk screenshots after each pass. No presenter.json for this deck.
+- **Hiring** (`#16`, `s-hiring`): rebuilt 2026-09-09 from two plain bordered cards (a dashed
+  bullet list of six skills, a dashed bullet list of three market facts plus two pieces of
+  advice) into a 3x2 icon board - one hand-drawn geometric mark per skill (this deck has no
+  icon sprite: a hexagon for Terraform, a branch glyph for Git CLI, a terminal for
+  scripting, a refresh loop for CI/CD, a plug pair for API/REST, a star for open source), the
+  skill name and its one-line reason beneath each, then a footer strip splitting the three
+  market facts (left) from the two pieces of advice (right, accent-bordered). Content
+  unchanged from the source - only the presentation changed. Chosen from a five-option round
+  (chip cluster, scorecard table, a two-routes fork diagram, stepping bands matching slides 9
+  and 11, this icon board); two of the round's ideas were built, screenshotted and dropped
+  for misrepresenting the source rather than just restyling it - a "signal strength" dot
+  rating per skill on the scorecard option (the source never ranks these skills against each
+  other) and a Venn-style overlap diagram (would have implied Mac admins already have these
+  skills, when the actual advice is to train towards them). Classes `#s-hiring .hib` and its
+  `.hib-*` children; the other four options and the original two-card layout are removed.
+  `data-notes` unchanged - the underlying facts were never in question, only the layout.
 - **Execution** (`#4`, "How we ran it"): wording option E, "Plain sentences", accepted
   2026-09-08. The existing fan-out layout remains: one Mac engineer in the DevOps CoE in
   a hub panel, a three-month full-time secondment to train the trainer, an SVG brace to
@@ -1092,16 +1122,11 @@ spectrum rail, each borrowing a real `migrating_an_instance` layout) and two fol
 rounds - enlarge and add icons, then two stop renames - all now decided; see the Notable
 content slides entry above for the accepted result. The review page is retired.
 
-`s-hiring-five-visuals` (2026-09-09, slide 16, Dafydd, "the content is right, it's just a
-bit boring": five completely different visual treatments of the same six skills, three
-market facts and two pieces of advice, each real markup inside `#s-hiring` -
-`.s-hiring-opt-b` a chip cluster, `-opt-c` a scorecard table, `-opt-d` a two-routes fork
-diagram, `-opt-e` stepping bands matching slides 9 and 11, `-opt-f` a 3x2 icon board of
-hand-drawn geometric marks (this deck has no icon sprite). Two ideas were tried and dropped
-during the build for inventing claims the source doesn't make: a "signal strength" dot
-rating per skill on the scorecard, and a Venn-style overlap diagram that would have implied
-Mac admins already have these skills. Content is identical across every option; only the
-presentation changes. No option is accepted.
+Slide 16 (hiring) went through one options round - five treatments (a chip cluster, a
+scorecard table, a two-routes fork diagram, stepping bands matching slides 9 and 11, a 3x2
+icon board), each real markup inside `#s-hiring`, content identical throughout - now decided
+in favour of the icon board; see the Notable content slides entry above for the accepted
+result. The review page is retired.
 
 Dafydd requested a fresh sandbox on 2026-09-08: all old review pages and index entries,
 including non-linked decision history, were removed before the new slide 4 wording page

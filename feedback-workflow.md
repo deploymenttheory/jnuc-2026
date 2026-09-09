@@ -734,6 +734,43 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-09, training_a_team slide 17 "Learner benefits" tidied, no sandbox round.**
+  Gordon: "I like the layout with the 3 boxes. Can you just make it look better visually. It
+  looks very static. Can you add icons for each the individual, team and org. And organise
+  it so that it looks better and formed around the 3 entities." Done directly rather than
+  through a dispatched agent, continuing the cheap-rounds request. Kept the three-box layout
+  as asked and added: an icon per box (person / three-dot cluster / small building), a
+  colour identity per box reusing the lime/cornflower/off-white convention already used for
+  junior/engineer/senior on slide 9 (a `--tier` custom property set inline per box drives the
+  icon, the heading and a 4px coloured top edge), and a small arrow in each gap between boxes
+  so the slide reads as one flow - individual, then team, then organisation - rather than
+  three unrelated panels, matching what the speaker notes already say about benefits
+  rippling outward. Two real bugs caught and fixed before showing this: the icons first
+  pushed every box past the slide's fixed height budget, overlapping the "What we saw" strip
+  below (fixed by shrinking the icon and its margin); then Gordon caught a second one live -
+  "the text looks to be getting cut off in the Team box" - the six-item Team column was still
+  clipping its last line against the bottom edge even after the first fix, resolved by
+  tightening the list item gap and the box's own padding. Verified with disk screenshots,
+  including cropped close-ups of the Team box's bottom edge to confirm clearance, after each
+  pass; dash lint clean; `git diff --stat` scoped to `presentations/training_a_team/index.html`
+  and `AGENTS.md`. Content and wording unchanged throughout - only the presentation changed.
+  Training has no presenter.json, so presenter sync does not apply. Pushed directly to
+  `main`, no PR.
+
+- **2026-09-09, training_a_team slide 16 "Hiring" decided: the icon board.** Gordon: "I like
+  option F, if you could use that and merge." A plain acceptance, no changes requested. Done
+  directly rather than through a dispatched agent, continuing the cheap-rounds request. Wrote
+  the icon board into the deck as the net result: promoted the wrapper from
+  `.s-hiring-opt-f` to `#s-hiring .hib`, removed the other four options (chip cluster,
+  scorecard table, two-routes fork, stepping bands) and the original two-card layout
+  entirely, along with their CSS. Deleted the sandbox page `s-hiring-five-visuals.html` and
+  turned its index entry into a `.done` line; `AGENTS.md`'s slide map, Notable content slides
+  and Sandbox section all updated to match. Verified: disk screenshot of the final slide, no
+  duplicate ids and balanced section tags across the file, dash lint clean, `git diff --stat`
+  scoped to the deck file, the sandbox index, the deleted sandbox page and `AGENTS.md`.
+  `data-notes` unchanged - the underlying facts were never in question. Training has no
+  presenter.json, so presenter sync does not apply. Pushed directly to `main`, no PR.
+
 - **2026-09-09, training_a_team slide 16 "Hiring", five visual treatments, awaiting a
   decision.** Gordon: "the content is right, it's just a bit boring. Can you come up with 5
   different visuals for this slide. Completely different from each other." Done directly
