@@ -634,9 +634,16 @@ Notable content slides:
   the three heading rows in line, since the tiers hold three, six and three items. The mark
   went back up to 36px from the 32px the height squeeze had forced: folding the heading up a
   row frees about 42px inside every box, and the header row is already 41px tall from the 38px
-  heading, so the larger mark costs no height at all. That also takes the pressure off both
-  earlier fixes - the Team box now clears its bottom edge comfortably. Content and wording are
-  again untouched.
+  heading, so the larger mark costs no height at all. Content and wording are again untouched.
+  The space that freed was then spent, the same day and at the same request, on separating the
+  points: `.bn-tier ul` gap goes from 1.25 units (10px) to 2.5 units (20px). **That leaves the
+  Team column with only 10px below its last item** - measured, not eyeballed, and no tier
+  overflows today, but it is the tightest thing on the slide and the third earlier fix in this
+  entry exists because that same column once clipped. Adding a word to any Team item, or a
+  seventh item, will push it into the bottom border: re-measure that column before touching
+  its copy, and take the gap back down to 2 units (16px) if it needs the room. The other two
+  tiers hold 138px and 172px spare, so they are not the constraint - the boxes are one grid
+  row and all stretch to the tallest.
 - **Execution** (`#4`): a fan-out - a hub panel (one engineer seconded into the DevOps CoE,
   3 months, train-the-trainer, run iteratively rather than planned end to end) bracketed by
   an SVG to five outcome cards, all plain (no per-card colour variants): materials written
