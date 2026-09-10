@@ -774,7 +774,16 @@ Notable content slides:
   tiles in that row centre their content and their mark-and-title rows fall out of line with
   it. Of the two retitled tiles only GitOps is named in `data-notes`, which was updated in the
   same pass ("the GitOps working practice" in place of "daily Git CLI use"); the rest of the
-  note, and every market fact and piece of advice in the footer, are untouched.
+  note, and every market fact in the footer, are untouched. The second piece of advice was
+  reworded the same day to "Screen for aptitude over credentials - curiosity + real experience
+  beats qualifications", widening it from scripting and a CV match to experience against
+  qualifications; the first piece of advice and all three market facts stand. The footer was
+  also enlarged that day at Dafydd's request for readability: both boxes go 16.5px to 18.5px
+  with leading 1.4 to 1.45, padding 20/24 to 24/28 and the paragraph margins up a couple of
+  pixels, so the pair grows taller into the slack the shorter tiles left. `text-wrap:balance`
+  on those paragraphs is there for a reason: at 18.5px the first advice line wraps, and
+  without it "talent" was stranded alone on the second line. Sizes sit in the slide's own CSS
+  block rather than `--s16-*` tokens, matching how the rest of `#s-hiring` is written.
 - **Execution** (`#4`, "How we ran it"): wording option E, "Plain sentences", accepted
   2026-09-08. The existing fan-out layout remains: one Mac engineer in the DevOps CoE in
   a hub panel, a three-month full-time secondment to train the trainer, an SVG brace to
