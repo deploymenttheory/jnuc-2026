@@ -993,10 +993,11 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 #s-hiring .hib{display:flex;flex-direction:column;gap:32px;margin-top:36px}
 #s-hiring .hib-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 #s-hiring .hib-tile{border:1px solid var(--border);border-radius:14px;background:var(--surface);
-  padding:32px 34px;display:flex;flex-direction:column;gap:16px}
+  padding:32px 34px;display:grid;grid-template-columns:auto 1fr;
+  column-gap:16px;row-gap:14px;align-items:center;align-content:start}
 #s-hiring .hib-mark{width:52px;height:52px;flex:none}
 #s-hiring .hib-tile b{font-size:22px;font-weight:700;color:var(--text)}
-#s-hiring .hib-tile span{font-size:16px;color:var(--text-dimmer);line-height:1.4}
+#s-hiring .hib-tile span{grid-column:1/-1;font-size:16px;color:var(--text-dimmer);line-height:1.4}
 #s-hiring .hib-foot{display:flex;gap:22px}
 #s-hiring .hib-mkt{flex:1;border:1px solid var(--border);border-radius:12px;padding:20px 24px}
 #s-hiring .hib-mkt p{font-size:16.5px;color:var(--text-dimmer);line-height:1.4;margin-bottom:8px}
@@ -1815,7 +1816,7 @@ Choose the people who will approve pull requests early and explicitly train them
 </section>
 
 <!-- ============ 16 · HIRING ============ -->
-<section class="slide" id="s-hiring" data-speaker="Dafydd" data-notes="Hire for aptitude. Hunt for Terraform on any provider, daily Git CLI use, any scripting, CI/CD, API familiarity, and open-source contribution. The market: TF skills are still emerging in the Mac space, the pool is small, and Jamf-plus-Terraform commands a premium. Often the best move is to train your strongest Mac admins.">
+<section class="slide" id="s-hiring" data-speaker="Dafydd" data-notes="Hire for aptitude. Hunt for Terraform on any provider, the GitOps working practice, any scripting, CI/CD, API familiarity, and open-source contribution. The market: TF skills are still emerging in the Mac space, the pool is small, and Jamf-plus-Terraform commands a premium. Often the best move is to train your strongest Mac admins.">
   <div class="eyebrow"><i class="dot"></i>16 &middot; Hiring</div>
   <h1>Hiring for the new world</h1>
 
@@ -1824,11 +1825,11 @@ Choose the people who will approve pull requests early and explicitly train them
        and the two pieces of advice. -->
   <div class="hib">
     <div class="hib-grid">
-      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 L21 7 L21 17 L12 22 L3 17 L3 7 Z" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>Terraform</b><span>Any provider &ndash; concept transfer is fast</span></div>
-      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><circle cx="6" cy="18" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><circle cx="18" cy="6" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M6 9v6M9 6h6a3 3 0 0 1 3 3v0" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>Git CLI</b><span>Daily use, not just GUI</span></div>
-      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="1.6" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M7 9l3 3-3 3M13 15h4" fill="none" stroke="var(--green-bright)" stroke-width="1.6" stroke-linecap="round"/></svg><b>Scripting</b><span>Bash, Python, Ruby &ndash; comfort in a terminal</span></div>
-      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5M20 12a8 8 0 0 1-14 5" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M18 3v4h-4M6 21v-4h4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>CI/CD</b><span>GitHub Actions, Jenkins&hellip;</span></div>
-      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="7" height="6" rx="1.4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><rect x="14" y="9" width="7" height="6" rx="1.4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M10 12h4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>API / REST</b><span>A great signal for IaC aptitude</span></div>
+      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 L21 7 L21 17 L12 22 L3 17 L3 7 Z" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>Terraform</b><span>Any previous Terraform experience is transferable</span></div>
+      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><circle cx="6" cy="18" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><circle cx="18" cy="6" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M6 9v6M9 6h6a3 3 0 0 1 3 3v0" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>GitOps</b><span>Branching, version control, pull request process</span></div>
+      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="1.6" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M7 9l3 3-3 3M13 15h4" fill="none" stroke="var(--green-bright)" stroke-width="1.6" stroke-linecap="round"/></svg><b>Scripting</b><span>Bash, Python, Go. Comfort working in an IDE</span></div>
+      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5M20 12a8 8 0 0 1-14 5" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M18 3v4h-4M6 21v-4h4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>CI/CD</b><span>Any pipeline experience is valid. e.g. GitHub Actions, GitLab, AzDo etc</span></div>
+      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="7" height="6" rx="1.4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><rect x="14" y="9" width="7" height="6" rx="1.4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M10 12h4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>RESTful APIs</b><span>Already automating rather than clicking, and used to thinking in resources</span></div>
       <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l2.4 5 5.6.5-4.2 3.7 1.3 5.4L12 15.8 6.9 18.6l1.3-5.4L4 9.5l5.6-.5z" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>Open source</b><span>Shows self-directed learning</span></div>
     </div>
     <div class="hib-foot">

@@ -740,19 +740,41 @@ Notable content slides:
 - **Hiring** (`#16`, `s-hiring`): rebuilt 2026-09-09 from two plain bordered cards (a dashed
   bullet list of six skills, a dashed bullet list of three market facts plus two pieces of
   advice) into a 3x2 icon board - one hand-drawn geometric mark per skill (this deck has no
-  icon sprite: a hexagon for Terraform, a branch glyph for Git CLI, a terminal for
-  scripting, a refresh loop for CI/CD, a plug pair for API/REST, a star for open source), the
-  skill name and its one-line reason beneath each, then a footer strip splitting the three
-  market facts (left) from the two pieces of advice (right, accent-bordered). Content
-  unchanged from the source - only the presentation changed. Chosen from a five-option round
-  (chip cluster, scorecard table, a two-routes fork diagram, stepping bands matching slides 9
-  and 11, this icon board); two of the round's ideas were built, screenshotted and dropped
-  for misrepresenting the source rather than just restyling it - a "signal strength" dot
-  rating per skill on the scorecard option (the source never ranks these skills against each
-  other) and a Venn-style overlap diagram (would have implied Mac admins already have these
-  skills, when the actual advice is to train towards them). Classes `#s-hiring .hib` and its
-  `.hib-*` children; the other four options and the original two-card layout are removed.
-  `data-notes` unchanged - the underlying facts were never in question, only the layout.
+  icon sprite: a hexagon for Terraform, a branch glyph for GitOps, a terminal for scripting, a
+  refresh loop for CI/CD, a plug pair for RESTful APIs, a star for open source), the skill
+  name beside its mark on one row and the one-line reason spanning the row beneath, then a
+  footer strip splitting the three market facts (left) from the two pieces of advice (right,
+  accent-bordered). The rebuild itself changed only the presentation; the wording edits below
+  came later. Chosen from a five-option round (chip cluster, scorecard table, a two-routes
+  fork diagram, stepping bands matching slides 9 and 11, this icon board); two of the round's
+  ideas were built, screenshotted and dropped for misrepresenting the source rather than just
+  restyling it - a "signal strength" dot rating per skill on the scorecard option (the source
+  never ranks these skills against each other) and a Venn-style overlap diagram (would have
+  implied Mac admins already have these skills, when the actual advice is to train towards
+  them). Classes `#s-hiring .hib` and its `.hib-*` children; the other four options and the
+  original two-card layout are removed. Revised 2026-09-10 at Dafydd's request, straight into
+  the deck with no sandbox round since the layout change was specified and the sentences were
+  given: the tiles were stacked mark, name, reason and now read mark and name on one row with
+  the reason beneath (`.hib-tile` is a two-column grid, the reason spanning both columns,
+  rather than a flex column), and five reasons were rewritten. Terraform now reads "Any
+  previous Terraform experience is transferable" rather than leading on concept transfer
+  between providers; scripting reads "Bash, Python, Go. Comfort working in an IDE", dropping
+  Ruby and the terminal for Go and the IDE; CI/CD reads "Any pipeline experience is valid.
+  e.g. GitHub Actions, GitLab, AzDo etc", making the point that the vendor does not matter
+  rather than naming two tools; the API / REST tile was retitled RESTful APIs and reads
+  "Already automating rather than clicking, and used to thinking in resources". Like every
+  other tile it answers what the candidate already brings, not what the skill means: someone
+  working in APIs has made the ClickOps to automation leap already and thinks in resources,
+  which is the model Terraform uses. A first attempt ("Demonstrates understanding of what the
+  provider does underneath") was rejected for explaining the technology instead of the hire;
+  and the Git CLI tile became GitOps, reading "Branching, version control, pull request
+  process" rather than daily command-line use, since the practice is what is hired for rather
+  than the tool. The branch glyph carried over to GitOps unchanged. `align-content:start` on
+  the tile is load-bearing: CI/CD's reason wraps to two lines, and without it the shorter
+  tiles in that row centre their content and their mark-and-title rows fall out of line with
+  it. Of the two retitled tiles only GitOps is named in `data-notes`, which was updated in the
+  same pass ("the GitOps working practice" in place of "daily Git CLI use"); the rest of the
+  note, and every market fact and piece of advice in the footer, are untouched.
 - **Execution** (`#4`, "How we ran it"): wording option E, "Plain sentences", accepted
   2026-09-08. The existing fan-out layout remains: one Mac engineer in the DevOps CoE in
   a hub panel, a three-month full-time secondment to train the trainer, an SVG brace to
