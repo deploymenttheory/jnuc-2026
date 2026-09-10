@@ -573,7 +573,7 @@ with it - the label is right-aligned inside a box the same width as the gate off
 Then `#11` delivery (`s-delivery`, rebuilt 2026-09-09 as a spectrum rail, see Notable
 content slides), `#12` content types, `#13` Louise's case study, `#14` sister-team
 scope, `#15` onboarding (tidied 2026-09-09, see Notable content slides), `#16` hiring
-(`s-hiring`, rebuilt 2026-09-09 as an icon board, see Notable content slides), `#17` learner benefits, `#18` learning materials,
+(`s-hiring`, rebuilt 2026-09-09 as an icon board, see Notable content slides), `#17` benefits at every level, `#18` learning materials,
 `#19` Questions and `#20` Thank You. The appendix is `#21` the skills map, `#22` the old
 pathway matrix, `#23` the old week-by-week timeline and `#24` the colour system. The
 matrix and timeline remain for readers at Gordon's request and have no assigned speaker.
@@ -605,45 +605,50 @@ Notable content slides:
   retained. Collaboration, recovery, confident delivery, plan reading, judgement, audit
   evidence and PR history all stay visible; unaided delivery still includes normal peer review.
   Rules are scoped to the stable id and use dedicated `--s03-*` sizing tokens.
-- **Learner benefits** (`#17`, `s-learner-benefits`): split out of slide 3 on 2026-09-08. All
-  twelve original benefits remain visible across Individual, Team and Organisation. The
-  benefits are explicitly intended; a separate "What we saw in the Mac engineering team" strip
-  preserves the three observed behaviours: self-sufficient PR work without assistance,
-  architectural decisions and resources managed exclusively in code. Its five sandbox visual
-  options were closed without acceptance in the 2026-09-08 sandbox reset, and the three-column
-  reflow shipped as a plain, undifferentiated layout after that - three identical navy boxes
-  with no colour or icon to tell them apart. Tidied 2026-09-09 directly (Gordon: "I like the
-  layout with the 3 boxes... it looks very static"), no sandbox round: each box now carries an
-  icon (a person for Individual, three clustered dots for Team, a small building for
-  Organisation) and its own colour, reusing the lime/cornflower/off-white convention already
-  established for junior/engineer/senior on slide 9 - `--tier` set inline per box, driving the
-  icon colour, the heading colour and a 4px coloured top edge. A small arrow sits in the gap
-  between each pair of boxes so the slide reads as benefits rippling outward (individual, then
-  team, then organisation, matching what the speaker notes already say) rather than three
-  unrelated panels. Two things were caught and fixed before this shipped: the icons initially
-  pushed every box taller than the slide's fixed height budget (`--bn-height`), overlapping
-  the "What we saw" strip underneath, fixed by shrinking the icon and its margin; and even
-  after that fix, the Team box specifically (six items against three in the others) still
-  clipped its last line against the bottom edge, fixed by tightening the list item gap and the
-  box's own padding. Scoped `.bn-*` rules and a separate `:root` block hold the sizing tokens;
-  content and wording are unchanged throughout - only the presentation changed. Revised
-  2026-09-10 at Dafydd's request: each tier's heading now sits beside its icon on one row with
-  the list spanning the row beneath, so `.bn-tier` is a two-column grid rather than a plain
-  block, the icon's bottom margin and the heading's bottom padding are gone (the grid's column
-  and row gaps replace them) and `.bn-tier ul` spans both columns. `align-content:start` keeps
-  the three heading rows in line, since the tiers hold three, six and three items. The mark
-  went back up to 36px from the 32px the height squeeze had forced: folding the heading up a
-  row frees about 42px inside every box, and the header row is already 41px tall from the 38px
-  heading, so the larger mark costs no height at all. Content and wording are again untouched.
-  The space that freed was then spent, the same day and at the same request, on separating the
-  points: `.bn-tier ul` gap goes from 1.25 units (10px) to 2.5 units (20px). **That leaves the
-  Team column with only 10px below its last item** - measured, not eyeballed, and no tier
-  overflows today, but it is the tightest thing on the slide and the third earlier fix in this
-  entry exists because that same column once clipped. Adding a word to any Team item, or a
-  seventh item, will push it into the bottom border: re-measure that column before touching
-  its copy, and take the gap back down to 2 units (16px) if it needs the room. The other two
-  tiers hold 138px and 172px spare, so they are not the constraint - the boxes are one grid
-  row and all stretch to the tallest.
+- **Benefits at every level** (`#17`, `s-learner-benefits`): split out of slide 3 on
+  2026-09-08 and retitled on 2026-09-10 - it was "What learners gain", which had outgrown the
+  slide, since the tiers are Individual, Team and Organisation and the point is what everyone
+  gains from Terraform and GitOps rather than what the trained engineers get. Chosen by Dafydd
+  from four candidates. **The id stays `s-learner-benefits`** - ids are kept stable across
+  renames in this repo, so do not "correct" it to match the title. `docs/timeline-notes.md` is
+  authoritative for titles and carries the new one. The intro line reads "What we set out to
+  gain": these are intended benefits, never a measured result, and nothing on the slide may be
+  presented as proven.
+
+  Fourteen benefits across three tiers - three Individual, six Team, five Organisation. Each
+  tier is a panel carrying its icon and heading on one row with the benefits beneath: a person
+  for Individual, three clustered dots for Team, a small building for Organisation, each in
+  its own colour from a `--tier` set inline per box (the lime/cornflower/off-white
+  junior/engineer/senior convention from slide 9), which drives the icon, the heading and a
+  4px top edge. A small arrow sits in each gap so the slide reads as benefits rippling outward
+  rather than as three unrelated panels. The five sandbox visual options were closed without
+  acceptance in the 2026-09-08 reset and the three-column reflow shipped plain; it was tidied
+  directly on 2026-09-09 with no sandbox round, after Gordon said "I like the layout with the
+  3 boxes... it looks very static".
+
+  **The layout is height-constrained, and every change to it has been measured rather than
+  eyeballed.** `.bn-tier` is a two-column grid (`auto 1fr`) with `.bn-tier ul` spanning both
+  columns and `align-content:start` holding the three heading rows in line despite the uneven
+  item counts. The panels are one grid row and all stretch to the tallest, so **Team sets the
+  height for all three**. Current state: `--bn-height` 620px, tier columns `1fr 48px 1.3fr
+  48px 1.2fr` (Team gave width back to the outer two when Organisation grew to five items -
+  measured, Team's own wrapping is unchanged at 1.3fr), list gap 2.5 units (20px), icon 36px.
+  Clearance below the last item is Individual 184px, Team 56px, Organisation 110px. Re-measure
+  before adding an item to any tier or lengthening Team's copy; if Team needs room, the list
+  gap goes back to 2 units (16px) before `--bn-height` moves.
+
+  Removed 2026-09-10 at Dafydd's request: the "What we saw in the Mac engineering team" strip
+  that used to sit beneath the panels and hold three observed behaviours apart from the
+  intended benefits. Once the slide was reframed from learners to every level, a one-team,
+  past-tense strip read as an oddly-scoped fourth tier. `.bn-observed`, `.bn-proof` and their
+  four rules went with it, and `--bn-height` came down from 746px to 620px so the panels size
+  to their content instead of absorbing the freed space as dead room inside the boxes. **The
+  three behaviours are confirmed facts (user, Aug 2026) and are kept in `data-notes`** -
+  self-sufficient committing and reviewing PRs without assistance, architectural decisions,
+  and resources managed exclusively in code - so they can still be said aloud. The note also
+  now states outright that the benefits are intended rather than proven, which is the job the
+  strip used to do visually. Anything that puts observed results back on this slide has to
+  carry that distinction with it.
 - **Execution** (`#4`): a fan-out - a hub panel (one engineer seconded into the DevOps CoE,
   3 months, train-the-trainer, run iteratively rather than planned end to end) bracketed by
   an SVG to five outcome cards, all plain (no per-card colour variants): materials written
@@ -868,9 +873,12 @@ token for exactly that. Earlier TODOs included photos for Joseph and Gordon (`#1
 interview with Louise. The `#7` dip duration is confirmed at 2-3 months and has no TODO chip.
 The `#5` engineer quote was confirmed
 by Gordon Deacon, Aug 2026, and its chip is gone. The "what success looked like" behaviours
-(now on `#17`: the team became self-sufficient committing and reviewing PRs without assistance, was making
+(the team became self-sufficient committing and reviewing PRs without assistance, was making
 architectural decisions and was managing resources in code exclusively), the trained bar and the
-non-goals were confirmed by the user, Aug 2026, and all three `#3` chips are gone.
+non-goals were confirmed by the user, Aug 2026, and all three `#3` chips are gone. Those three
+behaviours moved to `#17` when the benefits split off, and on 2026-09-10 came off the slide with
+the "What we saw" strip - they are still confirmed and still in `#17`'s `data-notes`, but no deck
+slide shows them now.
 
 Speakers (`data-speaker`), matching `docs/timeline-notes.md`: `#5`, `#7`, `#10` and
 `#15` are Gordon; `#4`, `#6`, `#11`, `#12` and `#14` are Joseph; `#3`, `#9`, `#13`,

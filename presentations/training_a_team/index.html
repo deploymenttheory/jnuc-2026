@@ -1147,7 +1147,7 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   --bn-small: 26px;
   --bn-heading: 38px;
   --bn-label: 26px;
-  --bn-height: 726px;
+  --bn-height: 620px;
   --bn-leading: 1.22;
   --bn-heading-leading: 1.08;
   --bn-tracking: -.02em;
@@ -1155,7 +1155,7 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 #s-learner-benefits .bn-content { margin-top: calc(var(--bn-unit) * 4); height: var(--bn-height); display: flex; flex-direction: column; font-family: var(--sans); }
 #s-learner-benefits .bn-content h2, #s-learner-benefits .bn-content p, #s-learner-benefits .bn-content ul { margin: 0; }
 #s-learner-benefits .bn-intent { font-size: var(--bn-label); line-height: var(--bn-leading); color: var(--text-dimmer); padding-bottom: calc(var(--bn-unit) * 3); }
-#s-learner-benefits .bn-tiers { display: grid; grid-template-columns: 1fr 48px 1.5fr 48px 1fr; gap: calc(var(--bn-unit) * 2); flex: 1; min-height: 0; }
+#s-learner-benefits .bn-tiers { display: grid; grid-template-columns: 1fr 48px 1.3fr 48px 1.2fr; gap: calc(var(--bn-unit) * 2); flex: 1; min-height: 0; }
 #s-learner-benefits .bn-tier { min-width: 0; min-height: 0; display: grid; grid-template-columns: auto 1fr; column-gap: calc(var(--bn-unit) * 1.5); row-gap: calc(var(--bn-unit) * 3); align-items: center; align-content: start; }
 #s-learner-benefits .bn-icon { width: 36px; height: 36px; color: var(--tier); }
 #s-learner-benefits .bn-icon svg { width: 100%; height: 100%; }
@@ -1172,10 +1172,6 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
    panels either side. */
 #s-learner-benefits .bn-flow { display: flex; align-items: center; justify-content: center; align-self: center; color: var(--faint); }
 #s-learner-benefits .bn-flow svg { width: 26px; height: 26px; }
-#s-learner-benefits .bn-observed { margin-top: calc(var(--bn-unit) * 3); padding-top: calc(var(--bn-unit) * 2); border-top: var(--bn-line) solid var(--border); }
-#s-learner-benefits .bn-observed h2 { font-size: var(--bn-small); line-height: var(--bn-leading); color: var(--text-dimmer); font-weight: 500; padding-bottom: calc(var(--bn-unit) * 2); }
-#s-learner-benefits .bn-proof { display: grid; grid-template-columns: 1.45fr 1fr 1fr; gap: calc(var(--bn-unit) * 4); }
-#s-learner-benefits .bn-proof p { font-size: var(--bn-small); line-height: var(--bn-leading); color: var(--text-dim); }
 </style>
 </head>
 <body>
@@ -1848,21 +1844,21 @@ Choose the people who will approve pull requests early and explicitly train them
 </section>
 
 <!-- ============ 17 · BENEFITS ============ -->
-<section class="slide" id="s-learner-benefits" data-speaker="Dafydd" data-notes="Start with what the learner stands to gain, then follow the benefits through the team to the organisation. These were intended benefits of the training and way of working, rather than a measured list of outcomes.
+<section class="slide" id="s-learner-benefits" data-speaker="Dafydd" data-notes="Start with what the individual stands to gain, then follow the benefits through the team to the organisation. These were intended benefits of the training and way of working, rather than a measured list of outcomes.
 
 For individuals, the aim was new transferable engineering skills, a safety net that makes mistakes recoverable, and less cognitive load because the same changes no longer have to be repeated across different instances.
 
 For the team, we wanted knowledge to be shared so there was no single point of failure. The team would use the same engineering practices and language as cloud teams, have awareness of changes across teams, treat failures as learning opportunities without blame, and collaborate without conflicting changes. Terraform modules would also let sister engineering teams consume configuration through self service.
 
-For the organisation, the intended benefits were compliance and audit without a last-minute scramble, governance without slowing delivery, and deployment guardrails that scale beyond one team.
+For the organisation, the intended benefits were compliance and audit attestation without a last-minute scramble, governance without slowing delivery, deployment guardrails that scale beyond one team, simplified recovery in disaster recovery scenarios, and a change history that outlives the people who wrote it. Recovery is simplified because an instance is rebuilt from the code rather than from anyone's memory, which is exactly what the staging rebuild proved. The change history point is about the estate outliving individuals: every change carries its author, its reason and its review.
 
-Keep the observed behaviour separate from those intended benefits. The Mac engineering team became self-sufficient committing and reviewing pull requests without assistance, they were making architectural decisions, and resources were being managed exclusively in code. Normal changes went through code; breakglass GUI access remained the exception described elsewhere in the talk.">
+These are what we set out to gain, not a measured result, so do not present them as proven. What we did observe is worth saying aloud: the Mac engineering team became self-sufficient committing and reviewing pull requests without assistance, they were making architectural decisions, and resources were being managed exclusively in code. Normal changes went through code; breakglass GUI access remained the exception described elsewhere in the talk.">
   <div class="eyebrow">
   <i class="dot">
   </i>17 &middot; Benefits</div>
-  <h1>What learners gain</h1>
+  <h1>Benefits at every level</h1>
   <div class="body bn-content bn-baseline">
-  <p class="bn-intent">The benefits we wanted learners to gain</p>
+  <p class="bn-intent">What we set out to gain</p>
   <div class="bn-tiers">
   <div class="bn-tier bn-individual" style="--tier:var(--accent)">
   <div class="bn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
@@ -1891,18 +1887,12 @@ Keep the observed behaviour separate from those intended benefits. The Mac engin
   <div class="bn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="6.5" width="3" height="3" fill="currentColor"/><rect x="14" y="6.5" width="3" height="3" fill="currentColor"/><rect x="7" y="12" width="3" height="3" fill="currentColor"/><rect x="14" y="12" width="3" height="3" fill="currentColor"/><rect x="9.5" y="17.5" width="5" height="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
   <h2>Organisation</h2>
   <ul>
-  <li data-benefit="audit">Audit and compliance without a last-minute scramble</li>
+  <li data-benefit="audit">Audit and compliance attestation without a last-minute scramble</li>
   <li data-benefit="governance">Governance without slowing delivery</li>
   <li data-benefit="guardrails">Deployment guardrails that scale beyond one team</li>
+  <li data-benefit="recovery">Simplified recovery in DR scenarios</li>
+  <li data-benefit="history">A change history that outlives the people who wrote it</li>
   </ul>
-  </div>
-  </div>
-  <div class="bn-observed">
-  <h2>What we saw in the Mac engineering team</h2>
-  <div class="bn-proof">
-  <p data-observed="prs">Self-sufficient committing and reviewing PRs without assistance</p>
-  <p data-observed="architecture">Making architectural decisions</p>
-  <p data-observed="code">Managing resources exclusively in code</p>
   </div>
   </div>
   </div>
