@@ -595,7 +595,7 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
    Sandbox option D, "Gates on a rail", accepted 2026-09-08, with the numerals
    dropped at Dafydd's request so the line-art marks alone hold the rail. A navy
    safety panel on the left carries the two kinds of safety and the premise; the
-   seven conditions run down a vertical rail on the right, each marked by its own
+   six conditions run down a vertical rail on the right, each marked by its own
    glyph. The marks are decoration and every one is aria-hidden: delete them all
    and the slide still reads. The rail line sits at --s07-rail-left, which is the
    centre of the mark column, and each mark masks it with the stage colour.
@@ -1411,15 +1411,15 @@ Close with patience. Engineers have a broad range of concepts to cover, and deve
 </section>
 
 <!-- ============ 7 · CONDITIONS ============ -->
-<section class="slide" id="s-conditions" data-speaker="Gordon" data-notes="Lead with both kinds of safety and give them time. Leadership needed operational safety: no downtime, support unaffected and a team able to adopt the new way of working. Answer the question of whether this could take the estate down before starting. Engineers also needed psychological safety: room to learn while protecting the estate, with mistakes treated as learning rather than blame. All seven conditions depend on both kinds of safety.
+<section class="slide" id="s-conditions" data-speaker="Gordon" data-notes="Lead with both kinds of safety and give them time. Leadership needed operational safety: no downtime, support unaffected and a team able to adopt the new way of working. Answer the question of whether this could take the estate down before starting. Engineers also needed psychological safety: room to learn while protecting the estate, with mistakes treated as learning rather than blame. All six conditions depend on both kinds of safety.
 
 Make psychological safety explicit, out loud and more than once. Do not assume it exists because the team seems friendly. It has to continue when somebody breaks something that matters.
 
-Take the seven conditions in turn. Get non-technical stakeholders and senior leadership bought in on the priority before starting. Ours were slow to understand it, and that cost early momentum.
+Take the six conditions in turn. Get non-technical stakeholders and senior leadership bought in on the priority before starting. Ours were slow to understand it, and that cost early momentum.
 
 Gate workshop attendance on completed pre-requisite learning, with no exceptions. Engineers who skipped the pre-work held back their whole cohort. Keep days rather than weeks between learning something and practising it for real, because long gaps caused rapid knowledge loss.
 
-Use remote learning for self-paced pre-requisites. Pairing and labs worked far better face to face. Build the relationship with whoever owns Terraform and GitHub early, because their help with access, guardrails and troubleshooting is needed throughout.
+Use remote learning for self-paced pre-requisites. Pairing and labs worked far better face to face.
 
 Set expectations for the dip up front. Our team slowed down before getting faster. It took two to three months before people were comfortable raising and reviewing pull requests. That duration is confirmed. Setting the expectation early helps people understand the initial friction as part of learning.
 
@@ -1437,7 +1437,7 @@ Choose the people who will approve pull requests early and explicitly train them
         <svg class="s07-icon s07-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.2 6.6C6.8 7.6 4.8 10 4.8 13v4.4h5.4V12H7.5c.2-1.8 1.3-3.1 2.7-3.7Z"/><path d="M19.4 6.6C16 7.6 14 10 14 13v4.4h5.4V12h-2.7c.2-1.8 1.3-3.1 2.7-3.7Z"/></svg>
         <p>Engineers needed <strong>psychological safety</strong>: room to learn while protecting the estate, with mistakes treated as learning rather than blame. Say it early and often. A friendly team is no guarantee. It must still hold when something important breaks.</p>
       </div>
-      <p class="s07-premise">All seven conditions depend on both.</p>
+      <p class="s07-premise">All six conditions depend on both.</p>
     </section>
     <div class="s07-rail">
       <article class="s07-condition">
@@ -1459,11 +1459,6 @@ Choose the people who will approve pull requests early and explicitly train them
         <svg class="s07-icon s07-condition-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M15.5 14.2c2.6.3 4.5 1.9 4.5 4.8"/></svg>
         <h3>Pair and learn in person</h3>
         <p>Remote worked for self-paced pre-reqs. Pairing and labs worked far better face to face.</p>
-      </article>
-      <article class="s07-condition">
-        <svg class="s07-icon s07-condition-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.2 13.8a3.9 3.9 0 0 1 0-5.5l2.1-2.1a3.9 3.9 0 0 1 5.5 5.5l-1.1 1.1"/><path d="M13.8 10.2a3.9 3.9 0 0 1 0 5.5l-2.1 2.1a3.9 3.9 0 0 1-5.5-5.5l1.1-1.1"/></svg>
-        <h3>Work with platform owners</h3>
-        <p>Involve Terraform and GitHub owners early for access, guardrails and troubleshooting throughout.</p>
       </article>
       <article class="s07-condition">
         <svg class="s07-icon s07-condition-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5c4 .4 4.2 10.3 9 10.3s5.2-8.5 9-11.6"/></svg>
@@ -1589,7 +1584,7 @@ Choose the people who will approve pull requests early and explicitly train them
 <!-- ============ 10 · THE LEARNING PATHWAY (merges the old 9 + 10) ============ -->
 <!-- Drawn as a route, not a card grid: one rising track, four stops, text hanging
      under each stop. Deliberately unlike every other layout in the deck. -->
-<section class="slide" data-speaker="Gordon" data-notes="Four phases, in the order they were actually run. Follow the track with your hand as you speak - it climbs, because each phase stands on the one before. Phase one is the hollow amber stop, and it is the one to do differently: the whole team had no DevOps, GitOps or IaC background, so the theory was front-loaded to explain not just the how but the why. Nobody had anything to reference it against - they were reading information that meant nothing against their day job. Say that plainly rather than defending it. Phase two grounds the concepts: what a provider is, how to plan and apply a change, first resources. Phase three is the one that sounds backwards, and it is the most useful thing on the slide. We stepped back and taught Git, GitHub and GitOps only after people were writing Terraform. Nobody in the team had really used Git, and it is genuinely complex. Teaching a version control system is fine, but what do you put in it? Engineers told us directly that they needed context in order to learn, so we adapted: make the context exist first, then teach the thing that manages it. Phase four was aimed mainly at the senior engineers who would own the repo after handover - modules, for_each, conditionals, complex resources, and pull request review, because handover needs people who can approve a change. That is condition 07 from the conditions slide arriving again. Point at the dashed gate before you get there: an engineer was competent to make changes on a live production instance from the end of phase three, once Git and the GitOps flow were in. Everything to the left of that line is the whole team; phase four is the maintainers only. That is the answer to "when are they actually useful", and it is sooner than people expect.">
+<section class="slide" data-speaker="Gordon" data-notes="Four phases, in the order they were actually run. Follow the track with your hand as you speak - it climbs, because each phase stands on the one before. Phase one is the hollow amber stop, and it is the one to do differently: the whole team had no DevOps, GitOps or IaC background, so the theory was front-loaded to explain not just the how but the why. Nobody had anything to reference it against - they were reading information that meant nothing against their day job. Say that plainly rather than defending it. Phase two grounds the concepts: what a provider is, how to plan and apply a change, first resources. Phase three is the one that sounds backwards, and it is the most useful thing on the slide. We stepped back and taught Git, GitHub and GitOps only after people were writing Terraform. Nobody in the team had really used Git, and it is genuinely complex. Teaching a version control system is fine, but what do you put in it? Engineers told us directly that they needed context in order to learn, so we adapted: make the context exist first, then teach the thing that manages it. Phase four was aimed mainly at the senior engineers who would own the repo after handover - modules, for_each, conditionals, complex resources, and pull request review, because handover needs people who can approve a change. That is &quot;Choose PR approvers early&quot; from the conditions slide arriving again. Point at the dashed gate before you get there: an engineer was competent to make changes on a live production instance from the end of phase three, once Git and the GitOps flow were in. Everything to the left of that line is the whole team; phase four is the maintainers only. That is the answer to "when are they actually useful", and it is sooner than people expect.">
   <div class="eyebrow"><i class="dot"></i>10 &middot; Curriculum</div>
   <h1>The learning pathway we followed</h1>
   <p class="pw-intro">Four phases, in the order we actually ran them &ndash; including the one we would change.</p>
