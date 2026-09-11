@@ -1588,7 +1588,7 @@ Choose the people who will approve pull requests early and explicitly train them
 <section class="slide" data-speaker="Gordon" data-notes="Four phases, in the order they were actually run. Follow the track with your hand as you speak - it climbs, because each phase stands on the one before. Phase one is the hollow amber stop, and it is the one to do differently: the whole team had no DevOps, GitOps or IaC background, so the theory was front-loaded to explain not just the how but the why. Nobody had anything to reference it against - they were reading information that meant nothing against their day job. Say that plainly rather than defending it. Phase two grounds the concepts: what a provider is, how to plan and apply a change, first resources. Phase three is the one that sounds backwards, and it is the most useful thing on the slide. We stepped back and taught Git, GitHub and GitOps only after people were writing Terraform. Nobody in the team had really used Git, and it is genuinely complex. Teaching a version control system is fine, but what do you put in it? Engineers told us directly that they needed context in order to learn, so we adapted: make the context exist first, then teach the thing that manages it. Phase four was aimed mainly at the senior engineers who would own the repo after handover - modules, for_each, conditionals, complex resources, and pull request review, because handover needs people who can approve a change. That is &quot;Choose PR approvers early&quot; from the conditions slide arriving again. Point at the dashed gate before you get there: an engineer was competent to make changes on a live production instance from the end of phase three, once Git and the GitOps flow were in. Everything to the left of that line is the whole team; phase four is the maintainers only. That is the answer to "when are they actually useful", and it is sooner than people expect.">
   <div class="eyebrow"><i class="dot"></i>10 &middot; Curriculum</div>
   <h1>The learning pathway we followed</h1>
-  <p class="pw-intro">Four phases, in the order we actually ran them &ndash; including the one we would change.</p>
+  <p class="pw-intro">Delivered in four phases, although not the path we would follow today.</p>
 
   <div class="route">
     <!-- viewBox width = the real content box: 1920 slide - 2x122 padding = 1676.
@@ -1605,9 +1605,9 @@ Choose the people who will approve pull requests early and explicitly train them
     <div class="route-stops">
       <div class="stop stop-1">
         <div class="stop-n">01 <span class="pw-flag">we&rsquo;d change this</span></div>
-        <h3>Front-load the theory</h3>
+        <h3>Front-loaded the theory</h3>
         <p>IaC, config as code, the vocabulary &ndash; and the <em>why</em>, not just the how</p>
-        <p class="pw-warn">Nothing to reference it against. It did not land.</p>
+        <p class="pw-warn">Learners had nothing to reference the concepts against. It did not land well.</p>
       </div>
       <div class="stop stop-2">
         <div class="stop-n">02</div>
@@ -1629,11 +1629,11 @@ Choose the people who will approve pull requests early and explicitly train them
       </div>
     </div>
     <div class="gate" aria-hidden="true"></div>
-    <div class="gate-label">&#9664; competent on production from here</div>
+    <div class="gate-label">competent on production from here &#9654;</div>
   </div>
 
   <div class="pw-rule"><strong>Terraform before Git, deliberately.</strong> The thing that needs versioning has to exist before you can version it.
-    <span class="pw-sub">Everyone went to phase 3. Phase 4 was for the seniors who would own the repo. Start to independent: about four months.</span></div>
+    <span class="pw-sub">Everyone was trained to phase 3. Phase 4 was reserved for senior engineers who would be the repo maintainers. From start to learner independence took about four months.</span></div>
 </section>
 
 <!-- ============ 11 · DELIVERY ============ -->
