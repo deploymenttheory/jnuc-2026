@@ -58,7 +58,7 @@ month or range.
 | 14 | Don't forget to train your sister engineering teams as well | Joseph | |
 | 15 | Onboarding new starters without Terraform experience | Gordon | |
 | 16 | Hiring for the new world | Dafydd | |
-| 17 | What learners gain | Dafydd | |
+| 17 | Benefits at every level | Dafydd | |
 | 18 | Learning materials | Dafydd | |
 | 19 | Questions | Unassigned | |
 | 20 | Thank You | Unassigned | |

@@ -1011,15 +1011,16 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 #s-hiring .hib{display:flex;flex-direction:column;gap:32px;margin-top:36px}
 #s-hiring .hib-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 #s-hiring .hib-tile{border:1px solid var(--border);border-radius:14px;background:var(--surface);
-  padding:32px 34px;display:flex;flex-direction:column;gap:16px}
+  padding:32px 34px;display:grid;grid-template-columns:auto 1fr;
+  column-gap:16px;row-gap:14px;align-items:center;align-content:start}
 #s-hiring .hib-mark{width:52px;height:52px;flex:none}
 #s-hiring .hib-tile b{font-size:22px;font-weight:700;color:var(--text)}
-#s-hiring .hib-tile span{font-size:16px;color:var(--text-dimmer);line-height:1.4}
+#s-hiring .hib-tile span{grid-column:1/-1;font-size:16px;color:var(--text-dimmer);line-height:1.4}
 #s-hiring .hib-foot{display:flex;gap:22px}
-#s-hiring .hib-mkt{flex:1;border:1px solid var(--border);border-radius:12px;padding:20px 24px}
-#s-hiring .hib-mkt p{font-size:16.5px;color:var(--text-dimmer);line-height:1.4;margin-bottom:8px}
-#s-hiring .hib-adv{flex:1;border:1px solid var(--green-deep);background:var(--accent-wash);border-radius:12px;padding:20px 24px}
-#s-hiring .hib-adv p{font-size:16.5px;color:var(--text-2);line-height:1.4;margin-bottom:10px}
+#s-hiring .hib-mkt{flex:1;border:1px solid var(--border);border-radius:12px;padding:24px 28px}
+#s-hiring .hib-mkt p{font-size:18.5px;color:var(--text-dimmer);line-height:1.45;margin-bottom:10px;text-wrap:balance}
+#s-hiring .hib-adv{flex:1;border:1px solid var(--green-deep);background:var(--accent-wash);border-radius:12px;padding:24px 28px}
+#s-hiring .hib-adv p{font-size:18.5px;color:var(--text-2);line-height:1.45;margin-bottom:12px;text-wrap:balance}
 #s-hiring .hib-adv b{color:var(--green-bright)}
 /* ---------- slide 18 ---------- */
 .res{border:1px solid var(--border);border-radius:10px;background:var(--surface);padding:24px 28px;margin-bottom:22px}
@@ -1164,7 +1165,7 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
   --bn-small: 26px;
   --bn-heading: 38px;
   --bn-label: 26px;
-  --bn-height: 726px;
+  --bn-height: 620px;
   --bn-leading: 1.22;
   --bn-heading-leading: 1.08;
   --bn-tracking: -.02em;
@@ -1172,12 +1173,12 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
 #s-learner-benefits .bn-content { margin-top: calc(var(--bn-unit) * 4); height: var(--bn-height); display: flex; flex-direction: column; font-family: var(--sans); }
 #s-learner-benefits .bn-content h2, #s-learner-benefits .bn-content p, #s-learner-benefits .bn-content ul { margin: 0; }
 #s-learner-benefits .bn-intent { font-size: var(--bn-label); line-height: var(--bn-leading); color: var(--text-dimmer); padding-bottom: calc(var(--bn-unit) * 3); }
-#s-learner-benefits .bn-tiers { display: grid; grid-template-columns: 1fr 48px 1.5fr 48px 1fr; gap: calc(var(--bn-unit) * 2); flex: 1; min-height: 0; }
-#s-learner-benefits .bn-tier { min-width: 0; min-height: 0; }
-#s-learner-benefits .bn-icon { width: 32px; height: 32px; color: var(--tier); margin-bottom: calc(var(--bn-unit) * 1.25); }
+#s-learner-benefits .bn-tiers { display: grid; grid-template-columns: 1fr 48px 1.3fr 48px 1.2fr; gap: calc(var(--bn-unit) * 2); flex: 1; min-height: 0; }
+#s-learner-benefits .bn-tier { min-width: 0; min-height: 0; display: grid; grid-template-columns: auto 1fr; column-gap: calc(var(--bn-unit) * 1.5); row-gap: calc(var(--bn-unit) * 3); align-items: center; align-content: start; }
+#s-learner-benefits .bn-icon { width: 36px; height: 36px; color: var(--tier); }
 #s-learner-benefits .bn-icon svg { width: 100%; height: 100%; }
-#s-learner-benefits .bn-tier h2 { color: var(--tier); font-size: var(--bn-heading); line-height: var(--bn-heading-leading); letter-spacing: var(--bn-tracking); padding-bottom: calc(var(--bn-unit) * 3); }
-#s-learner-benefits .bn-tier ul { list-style: none; padding: 0; display: grid; gap: calc(var(--bn-unit) * 1.25); }
+#s-learner-benefits .bn-tier h2 { color: var(--tier); font-size: var(--bn-heading); line-height: var(--bn-heading-leading); letter-spacing: var(--bn-tracking); }
+#s-learner-benefits .bn-tier ul { grid-column: 1 / -1; list-style: none; padding: 0; display: grid; gap: calc(var(--bn-unit) * 2.5); }
 #s-learner-benefits .bn-tier li { color: var(--text); font-size: var(--bn-body); line-height: var(--bn-leading); }
 #s-learner-benefits .bn-baseline .bn-tier { padding: calc(var(--bn-unit) * 2); background: var(--surface); border: var(--bn-line) solid var(--border); border-top: 4px solid var(--tier); }
 /* The two arrow columns carry the "individual, then team, then organisation"
@@ -1189,10 +1190,6 @@ html[data-theme] .jamfmark{background-color:var(--art-plate);border-radius:10px;
    panels either side. */
 #s-learner-benefits .bn-flow { display: flex; align-items: center; justify-content: center; align-self: center; color: var(--faint); }
 #s-learner-benefits .bn-flow svg { width: 26px; height: 26px; }
-#s-learner-benefits .bn-observed { margin-top: calc(var(--bn-unit) * 3); padding-top: calc(var(--bn-unit) * 2); border-top: var(--bn-line) solid var(--border); }
-#s-learner-benefits .bn-observed h2 { font-size: var(--bn-small); line-height: var(--bn-leading); color: var(--text-dimmer); font-weight: 500; padding-bottom: calc(var(--bn-unit) * 2); }
-#s-learner-benefits .bn-proof { display: grid; grid-template-columns: 1.45fr 1fr 1fr; gap: calc(var(--bn-unit) * 4); }
-#s-learner-benefits .bn-proof p { font-size: var(--bn-small); line-height: var(--bn-leading); color: var(--text-dim); }
 </style>
 </head>
 <body>
@@ -1842,7 +1839,7 @@ Choose the people who will approve pull requests early and explicitly train them
 </section>
 
 <!-- ============ 16 · HIRING ============ -->
-<section class="slide" id="s-hiring" data-speaker="Dafydd" data-notes="Hire for aptitude. Hunt for Terraform on any provider, daily Git CLI use, any scripting, CI/CD, API familiarity, and open-source contribution. The market: TF skills are still emerging in the Mac space, the pool is small, and Jamf-plus-Terraform commands a premium. Often the best move is to train your strongest Mac admins.">
+<section class="slide" id="s-hiring" data-speaker="Dafydd" data-notes="Hire for aptitude. Hunt for Terraform on any provider, the GitOps working practice, any scripting, CI/CD, API familiarity, and open-source contribution. The market: TF skills are still emerging in the Mac space, the pool is small, and Jamf-plus-Terraform commands a premium. Often the best move is to train your strongest Mac admins.">
   <div class="eyebrow"><i class="dot"></i>16 &middot; Hiring</div>
   <h1>Hiring for the new world</h1>
 
@@ -1851,11 +1848,11 @@ Choose the people who will approve pull requests early and explicitly train them
        and the two pieces of advice. -->
   <div class="hib">
     <div class="hib-grid">
-      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 L21 7 L21 17 L12 22 L3 17 L3 7 Z" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>Terraform</b><span>Any provider &ndash; concept transfer is fast</span></div>
-      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><circle cx="6" cy="18" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><circle cx="18" cy="6" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M6 9v6M9 6h6a3 3 0 0 1 3 3v0" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>Git CLI</b><span>Daily use, not just GUI</span></div>
-      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="1.6" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M7 9l3 3-3 3M13 15h4" fill="none" stroke="var(--green-bright)" stroke-width="1.6" stroke-linecap="round"/></svg><b>Scripting</b><span>Bash, Python, Ruby &ndash; comfort in a terminal</span></div>
-      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5M20 12a8 8 0 0 1-14 5" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M18 3v4h-4M6 21v-4h4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>CI/CD</b><span>GitHub Actions, Jenkins&hellip;</span></div>
-      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="7" height="6" rx="1.4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><rect x="14" y="9" width="7" height="6" rx="1.4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M10 12h4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>API / REST</b><span>A great signal for IaC aptitude</span></div>
+      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 L21 7 L21 17 L12 22 L3 17 L3 7 Z" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>Terraform</b><span>Any previous Terraform experience is transferable</span></div>
+      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><circle cx="6" cy="18" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><circle cx="18" cy="6" r="3" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M6 9v6M9 6h6a3 3 0 0 1 3 3v0" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>GitOps</b><span>Branching, version control, pull request process</span></div>
+      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="1.6" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M7 9l3 3-3 3M13 15h4" fill="none" stroke="var(--green-bright)" stroke-width="1.6" stroke-linecap="round"/></svg><b>Scripting</b><span>Bash, Python, Go. Comfort working in an IDE</span></div>
+      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5M20 12a8 8 0 0 1-14 5" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M18 3v4h-4M6 21v-4h4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>CI/CD</b><span>Any pipeline experience is valid. e.g. GitHub Actions, GitLab, AzDo etc</span></div>
+      <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="7" height="6" rx="1.4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><rect x="14" y="9" width="7" height="6" rx="1.4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/><path d="M10 12h4" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>RESTful APIs</b><span>Already automating rather than clicking, and used to thinking in resources</span></div>
       <div class="hib-tile"><svg class="hib-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l2.4 5 5.6.5-4.2 3.7 1.3 5.4L12 15.8 6.9 18.6l1.3-5.4L4 9.5l5.6-.5z" fill="none" stroke="var(--green-bright)" stroke-width="1.6"/></svg><b>Open source</b><span>Shows self-directed learning</span></div>
     </div>
     <div class="hib-foot">
@@ -1866,7 +1863,7 @@ Choose the people who will approve pull requests early and explicitly train them
       </div>
       <div class="hib-adv">
         <p><b>Consider internal promotion</b> &ndash; train your best Mac admins rather than competing for scarce talent</p>
-        <p><b>Screen for aptitude over credentials</b> &ndash; curiosity + scripting beats a CV match</p>
+        <p><b>Screen for aptitude over credentials</b> &ndash; curiosity + real experience beats qualifications</p>
       </div>
     </div>
   </div>
@@ -1874,21 +1871,21 @@ Choose the people who will approve pull requests early and explicitly train them
 </section>
 
 <!-- ============ 17 · BENEFITS ============ -->
-<section class="slide" id="s-learner-benefits" data-speaker="Dafydd" data-notes="Start with what the learner stands to gain, then follow the benefits through the team to the organisation. These were intended benefits of the training and way of working, rather than a measured list of outcomes.
+<section class="slide" id="s-learner-benefits" data-speaker="Dafydd" data-notes="Start with what the individual stands to gain, then follow the benefits through the team to the organisation. These were intended benefits of the training and way of working, rather than a measured list of outcomes.
 
 For individuals, the aim was new transferable engineering skills, a safety net that makes mistakes recoverable, and less cognitive load because the same changes no longer have to be repeated across different instances.
 
 For the team, we wanted knowledge to be shared so there was no single point of failure. The team would use the same engineering practices and language as cloud teams, have awareness of changes across teams, treat failures as learning opportunities without blame, and collaborate without conflicting changes. Terraform modules would also let sister engineering teams consume configuration through self service.
 
-For the organisation, the intended benefits were compliance and audit without a last-minute scramble, governance without slowing delivery, and deployment guardrails that scale beyond one team.
+For the organisation, the intended benefits were compliance and audit attestation without a last-minute scramble, governance without slowing delivery, deployment guardrails that scale beyond one team, simplified recovery in disaster recovery scenarios, and a change history that outlives the people who wrote it. Recovery is simplified because an instance is rebuilt from the code rather than from anyone's memory, which is exactly what the staging rebuild proved. The change history point is about the estate outliving individuals: every change carries its author, its reason and its review.
 
-Keep the observed behaviour separate from those intended benefits. The Mac engineering team became self-sufficient committing and reviewing pull requests without assistance, they were making architectural decisions, and resources were being managed exclusively in code. Normal changes went through code; breakglass GUI access remained the exception described elsewhere in the talk.">
+These are what we set out to gain, not a measured result, so do not present them as proven. What we did observe is worth saying aloud: the Mac engineering team became self-sufficient committing and reviewing pull requests without assistance, they were making architectural decisions, and resources were being managed exclusively in code. Normal changes went through code; breakglass GUI access remained the exception described elsewhere in the talk.">
   <div class="eyebrow">
   <i class="dot">
   </i>17 &middot; Benefits</div>
-  <h1>What learners gain</h1>
+  <h1>Benefits at every level</h1>
   <div class="body bn-content bn-baseline">
-  <p class="bn-intent">The benefits we wanted learners to gain</p>
+  <p class="bn-intent">What we set out to gain</p>
   <div class="bn-tiers">
   <div class="bn-tier bn-individual" style="--tier:var(--accent)">
   <div class="bn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
@@ -1917,18 +1914,12 @@ Keep the observed behaviour separate from those intended benefits. The Mac engin
   <div class="bn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="6.5" width="3" height="3" fill="currentColor"/><rect x="14" y="6.5" width="3" height="3" fill="currentColor"/><rect x="7" y="12" width="3" height="3" fill="currentColor"/><rect x="14" y="12" width="3" height="3" fill="currentColor"/><rect x="9.5" y="17.5" width="5" height="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
   <h2>Organisation</h2>
   <ul>
-  <li data-benefit="audit">Audit and compliance without a last-minute scramble</li>
+  <li data-benefit="audit">Audit and compliance attestation without a last-minute scramble</li>
   <li data-benefit="governance">Governance without slowing delivery</li>
   <li data-benefit="guardrails">Deployment guardrails that scale beyond one team</li>
+  <li data-benefit="recovery">Simplified recovery in DR scenarios</li>
+  <li data-benefit="history">A change history that outlives the people who wrote it</li>
   </ul>
-  </div>
-  </div>
-  <div class="bn-observed">
-  <h2>What we saw in the Mac engineering team</h2>
-  <div class="bn-proof">
-  <p data-observed="prs">Self-sufficient committing and reviewing PRs without assistance</p>
-  <p data-observed="architecture">Making architectural decisions</p>
-  <p data-observed="code">Managing resources exclusively in code</p>
   </div>
   </div>
   </div>
