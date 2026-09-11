@@ -514,7 +514,7 @@ positioned in its own sector, with patience above the ring. Rules are scoped to
 `#s-what-worked` and the sizing and ring coordinates are `--s06-*` tokens in `:root`), `#7` conditions
 (`s-conditions`, sandbox option D, "Gates on a rail", accepted 2026-09-08 with the numerals
 dropped at Dafydd's request so the line-art icons alone mark the rail: a navy safety panel on
-the left and the seven conditions on a vertical rail on the right. Rules are scoped to
+the left and the six conditions on a vertical rail on the right. Rules are scoped to
 `#s-conditions` in the deck's slide 7 CSS block and use `--s07-*` sizing tokens in `:root`),
 `#8` mindset (`s-mindset`, size option D, "Large", accepted 2026-09-08 with a rule under the
 three column headers),
@@ -528,7 +528,8 @@ teaches Git *after* two phases of Terraform, deliberately - nobody had anything 
 yet; the thing that needs versioning has to exist before you can version it. Both confirmed by
 Gordon Deacon, Aug 2026. The four phases are his: 1 front-load the theory (flagged), 2 ground
 the concepts, 3 Git/GitHub/GitOps, 4 advanced - aimed at the seniors who would own the repo
-after handover, and closing on PR review, which is condition 07 from `#7` arriving again.
+after handover, and closing on PR review, which is "Choose PR approvers early" from `#7`
+arriving again.
 
 **`#8` Mindset shift** (sandbox option C, accepted 2026-09-04) is the only slide in this deck
 built as a ground layer plus a single grid. Three bands run full height - the navy panel at
@@ -690,10 +691,9 @@ Notable content slides:
   chip ("what replaced it") has moved to `#6`, folded into that slide's "Good third-party
   documentation" card. Then a quote strip. Classes `.chartwrap`/`.chd`, `.fchips`/`.fchip` and
   `.qstrip`.
-- **Conditions** (`#7`): a hero layout - a large left panel gives psychological safety the
-  weight the copy claims for it ("the most evidenced condition of all") with three practical
-  points under it; the other six conditions, including "Expect the dip", sit right as
-  compact numbered cards. Classes `.herowrap`, `.heropanel`, `.supp`/`.suppcard` (`.dip`).
+- **Conditions** (`#7`, `s-conditions`): a navy panel carries operational and psychological
+  safety on the left, with six conditions and their line-art icons on a vertical rail on
+  the right. See the detailed Conditions entry below for the accepted layout and deletion.
 - **Learning priorities by role** (`#9`, `s-learning-priorities`): rebuilt 2026-09-09 as
   three full-width bands stepping down the slide, one per role, each with a numbered gutter
   on the left - migrating_an_instance's slide 8 wave-workflow pattern, reused rather than a
@@ -856,13 +856,16 @@ Notable content slides:
   2026-09-08 with the numerals dropped at Dafydd's request, so the line-art icons alone mark
   the rail. A navy safety panel on the left carries both kinds of safety - operational for
   leadership behind a shield, psychological for engineers behind a pair of speech marks - over
-  the premise "All seven conditions depend on both." The seven conditions run down a vertical
-  rail on the right, each marked by its own glyph: converging arrows on 01, a barrier on 02 and
-  07, a clock on 03, two figures on 04, a link on 05 and a dip on 06. The accepted copy and the
-  seven paragraphs of speaker notes are the round-one set, with the one sentence about the
-  numbers identifying the conditions removed because there are no numbers any more. Both
-  safeties and all seven conditions stay visible, including the confirmed two-to-three-month
-  dip and choosing and training PR approvers before handover. Every mark is decorative and
+  the premise "All six conditions depend on both." The six conditions run down a vertical
+  rail on the right: stakeholder buy-in (converging arrows), pre-requisites (barrier), practice
+  (clock), pairing (two figures), the dip (dip curve) and PR approvers (barrier). On 2026-09-11,
+  Dafydd removed "Work with platform owners", its description and chain-link icon. The rail's
+  existing `space-between` layout distributes the remaining six points without sizing changes.
+  The matching platform-owner sentence was removed from the seven paragraphs of speaker notes,
+  their counts were updated, and slide 10's note now names "Choose PR approvers early" instead
+  of referring to condition 07. Both safeties and all six remaining conditions stay visible,
+  including the confirmed two-to-three-month dip and choosing and training PR approvers before
+  handover. Every mark is decorative and
   `aria-hidden`, so the slide reads with all the artwork deleted. All rules are scoped to
   `#s-conditions` and use the `--s07-*` tokens in `:root`; there is no preview injection or
   alternative layout in the deck. The old `.herowrap`, `.heropanel`, `.supp` and `.suppcard`
@@ -886,7 +889,7 @@ Speakers (`data-speaker`), matching `docs/timeline-notes.md`: `#5`, `#7`, `#10` 
 Thank You and the appendix slides are unassigned. The new benefits slide keeps Dafydd,
 who presented the original benefits on slide 3.
 
-`#7` carries a seventh condition, "Choose PR approvers early" (the last row on the rail), and
+`#7` closes its six conditions with "Choose PR approvers early" (the last row on the rail), and
 its safety panel is **Two kinds of safety** - operational (leadership) and psychological
 (engineers) - rather than psychological alone. Both from Gordon, Aug 2026. The dip lasted
 2-3 months.
@@ -1248,7 +1251,9 @@ speaker notes are retained word for word, less the one sentence about the number
 the conditions, which no longer applies. Both safeties and all seven conditions remain
 visible. Only the chosen markup and the scoped CSS it needs transfer into the deck, with the
 `--s07-*` tokens in `:root`; the dead `.herowrap` and `.suppcard` rules came out with the old
-layout. The review page and its public index entry are removed.
+layout. The review page and its public index entry are removed. This records the original
+acceptance; on 2026-09-11, "Work with platform owners", its icon and its matching note sentence
+were removed, leaving six conditions. See the current Conditions entry above.
 Downloads await a separate request);
 `s05-what-didnt-work` (2026-09-08, slide 5, Gordon, five visual designs using shorter
 copy. Option E, "Teaching and the gaps", was refined with the original chart's four

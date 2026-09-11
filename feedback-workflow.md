@@ -734,6 +734,17 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-11, training_a_team slide 7, "Work with platform owners" removed.**
+  At Dafydd's request, removed the complete point and its chain-link icon from
+  `#s-conditions`, leaving six conditions on the existing rail. Its `space-between` layout
+  redistributes the remaining points without CSS changes. Updated the premise and speaker
+  notes to six, removed the matching platform-owner note sentence, and replaced slide 10's
+  "condition 07" note reference with "Choose PR approvers early". Updated the affected
+  `AGENTS.md` descriptions, retaining the original sandbox acceptance as history. Direct
+  deletion, no sandbox round. Verified in headless Chrome over `file://` at 1920x1080:
+  six points and six rail icons, equal 39.73px gaps, no clipping, and all 24 slides advance
+  exactly once per ArrowRight. Screenshot inspected. Downloads await a separate request.
+
 - **2026-09-09, training_a_team slide 17 "Learner benefits" tidied, no sandbox round.**
   Gordon: "I like the layout with the 3 boxes. Can you just make it look better visually. It
   looks very static. Can you add icons for each the individual, team and org. And organise
