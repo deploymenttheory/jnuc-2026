@@ -789,33 +789,45 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .goalfoot p{font-size:17px;line-height:1.3;color:var(--text-dim)}
 .goalfoot .todo{display:inline-block;margin:2px 0 0}
 /* ---------- slide 9 (Learning priorities by role) ---------- */
-/* Three bands, one per role, stepping down the slide - migrating_an_instance's
-   s08 wave-workflow pattern, with a numbered gutter on the left. Each band
-   pairs a role's fixed minimum with the one discipline that actually shifts
-   with org size for that role. Solid fill = small org, hollow outline =
-   large org, always in the role's own colour (set via each band's inline
-   `color`), so a bar can never be misread as a different role's fact. */
-#s-learning-priorities .lp-bands{display:flex;flex-direction:column;gap:0}
-#s-learning-priorities .lpb-lead{font-size:26px;font-weight:700;color:var(--text-2);line-height:1.3;margin-bottom:10px}
-#s-learning-priorities .lpb-band{display:grid;grid-template-columns:88px 400px 1fr;gap:36px;align-items:center;
-  padding:24px 6px;border-top:1px solid var(--border)}
-#s-learning-priorities .lpb-band:last-of-type{border-bottom:1px solid var(--border)}
-#s-learning-priorities .lpb-gutter{display:flex;flex-direction:column;align-items:center;gap:10px;color:inherit}
-#s-learning-priorities .lpb-n{font-family:var(--mono);font-size:15px;color:var(--muted)}
-#s-learning-priorities .lpb-gutter i{width:18px;height:18px;border-radius:50%;background:currentColor;display:block}
-#s-learning-priorities .lpb-main h3{font-size:25px;font-weight:700;color:var(--text)}
-#s-learning-priorities .lpb-min{font-size:14.5px;color:var(--text-dim);margin-top:6px;line-height:1.4}
-#s-learning-priorities .lpb-disc{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
-#s-learning-priorities .lpb-bars{display:flex;flex-direction:column;gap:7px}
-#s-learning-priorities .lpb-barrow{display:flex;align-items:center;gap:10px}
-#s-learning-priorities .lpb-barrow span{font-family:var(--mono);font-size:11.5px;color:var(--muted);width:48px;flex:none}
-#s-learning-priorities .lpb-track{flex:1;height:22px;border-radius:11px;background:var(--surface-2);position:relative;overflow:hidden}
-#s-learning-priorities .lpb-fill{position:absolute;inset:0;border-radius:11px}
-#s-learning-priorities .lpb-fill.solid{background:currentColor}
-#s-learning-priorities .lpb-fill.hollow{background:transparent;border:2px solid currentColor;box-sizing:border-box}
-#s-learning-priorities .lpb-note{font-size:13px;color:var(--text-dimmer);margin-top:7px;line-height:1.4;max-width:640px}
-#s-learning-priorities .lpb-foot{display:flex;justify-content:space-between;gap:24px;padding-top:16px;font-size:15px;color:var(--muted)}
-#s-learning-priorities .lpb-foot strong{color:var(--text-dim);font-weight:700}
+/* Full 6-skill x 3-role matrix. Each cell is a small dumbbell: a solid dot
+   (small org) nested inside a hollow ring (large org), always in the role's
+   own colour. Same position = the two markers sit on top of each other, a
+   fixed minimum. Apart = the skill genuinely shifts with org size - true
+   for only two cells in the whole grid (Junior x Environment, Senior x
+   Mentoring), which is the slide's actual point made visible instead of
+   asserted, rather than the single cherry-picked skill the old per-role
+   bars showed. */
+#s-learning-priorities .lpm-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:44px}
+#s-learning-priorities .lpm-lead{font-size:28px;font-weight:700;color:var(--text-2);line-height:1.3}
+#s-learning-priorities .lpm-meta{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex:none}
+#s-learning-priorities .lpm-disclosure{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--text-dimmer)}
+#s-learning-priorities .lpm-legend{display:flex;gap:24px;font-family:var(--mono);font-size:14px;letter-spacing:.06em;color:var(--muted);flex:none}
+#s-learning-priorities .lpm-legend span{display:inline-flex;align-items:center;gap:9px}
+#s-learning-priorities .lpm-legend i{width:16px;height:16px;border-radius:50%;box-sizing:border-box}
+#s-learning-priorities .lpm-legend i.solid{background:var(--muted)}
+#s-learning-priorities .lpm-legend i.hollow{background:transparent;border:3px solid var(--muted)}
+
+#s-learning-priorities .lpm-grid{display:grid;grid-template-columns:200px repeat(3,1fr);column-gap:40px;row-gap:36px;align-items:center}
+#s-learning-priorities .lpm-corner{font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--muted);align-self:end;padding-bottom:18px}
+#s-learning-priorities .lpm-role-head{padding-bottom:18px;border-bottom:1px solid var(--border);align-self:end}
+#s-learning-priorities .lpm-role-head h3{display:flex;align-items:center;gap:11px;font-size:25px;font-weight:700;color:inherit}
+#s-learning-priorities .lpm-role-head h3 i{width:15px;height:15px;border-radius:50%;background:currentColor;flex:none}
+#s-learning-priorities .lpm-role-head p{font-size:15px;color:var(--text-dim);margin-top:7px;line-height:1.35}
+
+#s-learning-priorities .lpm-skill{font-family:var(--mono);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+#s-learning-priorities .lpm-skill.hero{color:var(--text-dim);font-weight:700}
+
+#s-learning-priorities .lpm-cell{position:relative;height:44px;padding:0 14px}
+#s-learning-priorities .lpm-track{position:relative;height:100%}
+#s-learning-priorities .lpm-track::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:var(--border);transform:translateY(-50%)}
+#s-learning-priorities .lpm-bridge{position:absolute;top:50%;height:4px;background:currentColor;opacity:.35;border-radius:2px;transform:translateY(-50%)}
+#s-learning-priorities .lpm-dot{position:absolute;top:50%;border-radius:50%;transform:translate(-50%,-50%);box-sizing:border-box}
+#s-learning-priorities .lpm-dot.solid{width:16px;height:16px;background:currentColor}
+#s-learning-priorities .lpm-dot.hollow{width:28px;height:28px;background:var(--bg);border:3.5px solid currentColor}
+
+#s-learning-priorities .lpm-foot{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:46px;padding-top:24px;border-top:1px solid var(--border)}
+#s-learning-priorities .lpm-foot p{font-size:15.5px;line-height:1.42;color:var(--text-dimmer)}
+#s-learning-priorities .lpm-foot strong{color:var(--text-dim);font-weight:700}
 
 .slide.tight h1{margin-top:14px}
 .slide.tight .sub{margin-top:8px}
@@ -1499,62 +1511,73 @@ Choose the people who will approve pull requests early and explicitly train them
     </section>
 
 <!-- ============ 9 · CURRICULUM BY ROLE ============ -->
-<section class="slide" id="s-learning-priorities" data-speaker="Dafydd" data-notes="Two points, and the slide is built to make exactly two points, not six. One: each role has its own fixed minimum, not everything - a junior needs enough to read a plan and ship a safe PR, an engineer owns modules and daily changes, a senior is the escalation point for advanced Terraform and API-versus-provider triage. That minimum does not move with org size. Two: what moves is what the team owns underneath that minimum, and each role has its own defining shift. For a junior it is the environment itself - in a small org you design, build and maintain it, because nobody provisions a repo for you; in a large org it arrives as a platform template, so the burden lifts. For an engineer it is authority over Git and GitOps - the bar stays the same length either way, because the knowledge does not shrink, but a large org adds a second approver, so say authority narrows rather than knowledge. For a senior it is mentoring load - light in a small org, where one person often spans all three roles, heavier in a large one across a bigger team, plus the packaging and endpoint security teams. Jamf API knowledge sits outside all three and never moves, because no external team will ever know your own service's API better than the team that owns it. Close on: you still need to know how the platform is designed, but your workflow will have to conform with wider company standards.">
+<section class="slide" id="s-learning-priorities" data-speaker="Dafydd" data-notes="Two points, and the slide is built to make exactly two points, not six. One: each role has its own fixed minimum, not everything - a junior needs enough to read a plan and ship a safe PR, an engineer owns modules and daily changes, a senior is the escalation point for advanced Terraform and API-versus-provider triage. That minimum does not move with org size. Two: what moves is what the team owns underneath that minimum, and each role has its own defining shift. For a junior it is the environment itself - in a small org there is no dedicated platform team, so even a junior ends up helping keep the toolchain and state backend alive alongside everyone else, because nobody provisions a repo for you; in a large org it arrives as a platform template, so even that goes away. For an engineer it is authority over Git and GitOps - the two dots land in the same place either way, because the knowledge does not shrink, but a large org adds a second approver, so say authority narrows rather than knowledge. For a senior it is mentoring load - heaviest in a small org, where one person often spans all three roles and mentoring covers the whole estate; lighter in a large one, where narrower ownership means a narrower slice to mentor on, even with more people around. Jamf API knowledge sits outside all three and never moves, because no external team will ever know your own service's API better than the team that owns it. Close on: you still need to know how the platform is designed, but your workflow will have to conform with wider company standards. Say the illustrative line if asked: we never actually ran this training programme in a small-org context, so the Environment and Mentoring shifts are our best illustration of 'you own less of the estate as the org grows', not measured data - the fixed minimums themselves are real, drawn from the curriculum we actually built and delivered.">
   <div class="eyebrow"><i class="dot"></i>09 &middot; Curriculum</div>
   <h1>Learning priorities by role</h1>
   <div class="sub">The same three roles. How far each has to stretch depends on who else is in the building.</div>
   <div class="body" style="margin-top:24px">
 
-    <!-- Three bands, one per role, stepping down the slide with a numbered
-         gutter on the left - migrating_an_instance's s08 wave-workflow
-         pattern. Each band pairs a role's fixed minimum with the one
-         discipline that actually shifts with org size for that role. Solid
-         fill = small org, hollow outline = large org, always in the role's
-         own colour (each band sets `color` inline), so a bar can never be
-         misread as a different role's fact. -->
-    <div class="lp-bands">
-      <p class="lpb-lead">Each role has a fixed minimum. What shifts with your org&rsquo;s size is what sits underneath it.</p>
-
-      <div class="lpb-band" style="color:var(--accent)">
-        <div class="lpb-gutter"><span class="lpb-n">01</span><i></i></div>
-        <div class="lpb-main"><h3>Junior</h3><p class="lpb-min">Environment, Git basics, read a plan, ship a safe PR</p></div>
-        <div>
-          <div class="lpb-disc">ENVIRONMENT</div>
-          <div class="lpb-bars">
-            <div class="lpb-barrow"><span>SMALL</span><div class="lpb-track"><div class="lpb-fill solid" style="width:100%"></div></div></div>
-            <div class="lpb-barrow"><span>LARGE</span><div class="lpb-track"><div class="lpb-fill hollow" style="width:28%"></div></div></div>
-          </div>
-          <p class="lpb-note">Builds and maintains it in a small org. In a large one it arrives as a platform template.</p>
+    <!-- Full 6-skill x 3-role matrix, replacing the earlier one-skill-per-role
+         bars: those only showed the single discipline that shifts for each
+         role and dropped the other five skills, which is exactly what chat
+         feedback flagged as inaccurate. Each cell is a small dumbbell - a
+         solid dot (small org) nested in a hollow ring (large org), always
+         in the role's own colour. Same position = fixed minimum, the two
+         markers pulling apart = the two skills that actually move (Junior x
+         Environment, Senior x Mentoring). Everything else in the grid is
+         flat by design, which is the slide's real point made visible
+         instead of asserted. -->
+    <div class="lpm-wrap">
+      <div class="lpm-top">
+        <p class="lpm-lead">Each role has a fixed minimum. What shifts with org size is how much of the estate you own.</p>
+        <div class="lpm-meta">
+          <span class="lpm-disclosure">ILLUSTRATIVE, NOT MEASURED</span>
+          <div class="lpm-legend"><span><i class="solid"></i>small org</span><span><i class="hollow"></i>large org</span></div>
         </div>
       </div>
 
-      <div class="lpb-band" style="color:var(--alt-light)">
-        <div class="lpb-gutter"><span class="lpb-n">02</span><i></i></div>
-        <div class="lpb-main"><h3>Engineer</h3><p class="lpb-min">Owns modules and daily changes, reviews others, reads the Jamf Pro API when needed</p></div>
-        <div>
-          <div class="lpb-disc">GIT &amp; GITOPS</div>
-          <div class="lpb-bars">
-            <div class="lpb-barrow"><span>SMALL</span><div class="lpb-track"><div class="lpb-fill solid" style="width:100%"></div></div></div>
-            <div class="lpb-barrow"><span>LARGE</span><div class="lpb-track"><div class="lpb-fill hollow" style="width:100%"></div></div></div>
-          </div>
-          <p class="lpb-note">Same length both sides &ndash; the knowledge does not shrink. A large org adds a second approver: less authority, not less skill.</p>
-        </div>
+      <div class="lpm-grid">
+        <div class="lpm-corner">SKILL</div>
+        <div class="lpm-role-head" style="color:var(--accent)"><h3><i></i>Junior</h3><p>Read a plan, ship a safe PR</p></div>
+        <div class="lpm-role-head" style="color:var(--alt-light)"><h3><i></i>Engineer</h3><p>Owns modules &amp; daily changes</p></div>
+        <div class="lpm-role-head" style="color:var(--text-2)"><h3><i></i>Senior</h3><p>Escalation point, releases, API triage</p></div>
+
+        <div class="lpm-skill hero">Environment</div>
+        <div class="lpm-cell" style="color:var(--accent)"><div class="lpm-track"><div class="lpm-bridge" style="left:20%;width:25%"></div><div class="lpm-dot hollow" style="left:20%"></div><div class="lpm-dot solid" style="left:45%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--alt-light)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:38%"></div><div class="lpm-dot solid" style="left:38%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--text-2)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:42%"></div><div class="lpm-dot solid" style="left:42%"></div></div></div>
+
+        <div class="lpm-skill">Git</div>
+        <div class="lpm-cell" style="color:var(--accent)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:45%"></div><div class="lpm-dot solid" style="left:45%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--alt-light)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:88%"></div><div class="lpm-dot solid" style="left:88%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--text-2)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:80%"></div><div class="lpm-dot solid" style="left:80%"></div></div></div>
+
+        <div class="lpm-skill">GitOps</div>
+        <div class="lpm-cell" style="color:var(--accent)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:18%"></div><div class="lpm-dot solid" style="left:18%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--alt-light)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:88%"></div><div class="lpm-dot solid" style="left:88%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--text-2)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:90%"></div><div class="lpm-dot solid" style="left:90%"></div></div></div>
+
+        <div class="lpm-skill">Terraform</div>
+        <div class="lpm-cell" style="color:var(--accent)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:35%"></div><div class="lpm-dot solid" style="left:35%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--alt-light)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:72%"></div><div class="lpm-dot solid" style="left:72%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--text-2)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:95%"></div><div class="lpm-dot solid" style="left:95%"></div></div></div>
+
+        <div class="lpm-skill">Jamf APIs</div>
+        <div class="lpm-cell" style="color:var(--accent)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:10%"></div><div class="lpm-dot solid" style="left:10%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--alt-light)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:55%"></div><div class="lpm-dot solid" style="left:55%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--text-2)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:88%"></div><div class="lpm-dot solid" style="left:88%"></div></div></div>
+
+        <div class="lpm-skill hero">Mentoring</div>
+        <div class="lpm-cell" style="color:var(--accent)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:5%"></div><div class="lpm-dot solid" style="left:5%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--alt-light)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:28%"></div><div class="lpm-dot solid" style="left:28%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--text-2)"><div class="lpm-track"><div class="lpm-bridge" style="left:28%;width:54%"></div><div class="lpm-dot hollow" style="left:28%"></div><div class="lpm-dot solid" style="left:82%"></div></div></div>
       </div>
 
-      <div class="lpb-band" style="color:var(--text-2)">
-        <div class="lpb-gutter"><span class="lpb-n">03</span><i></i></div>
-        <div class="lpb-main"><h3>Senior</h3><p class="lpb-min">The escalation point &ndash; advanced Terraform, releases, API-vs-provider triage</p></div>
-        <div>
-          <div class="lpb-disc">MENTORING</div>
-          <div class="lpb-bars">
-            <div class="lpb-barrow"><span>SMALL</span><div class="lpb-track"><div class="lpb-fill solid" style="width:30%"></div></div></div>
-            <div class="lpb-barrow"><span>LARGE</span><div class="lpb-track"><div class="lpb-fill hollow" style="width:78%"></div></div></div>
-          </div>
-          <p class="lpb-note">Light in a small org, where one person often spans all three roles. Heavier in a large one, across a bigger team.</p>
-        </div>
+      <div class="lpm-foot">
+        <p><strong>Junior &middot; Environment</strong> &ndash; partly theirs to help build in a small org, alongside everyone else; arrives as a platform template in a large one.</p>
+        <p><strong>Senior &middot; Mentoring</strong> &ndash; heaviest in a small org, where one person spans all three roles and owns the whole estate to mentor across; lighter once a large org narrows what they own.</p>
+        <p><strong>Jamf APIs</strong> never move for any role &ndash; no external team will ever know your own service&rsquo;s API better than the team that owns it.</p>
       </div>
-
-      <div class="lpb-foot"><span>Jamf APIs sit outside all three bands &ndash; identical either way.</span><strong>No external team will ever know your own service&rsquo;s API better than the team that owns it.</strong></div>
     </div>
 
   </div>
