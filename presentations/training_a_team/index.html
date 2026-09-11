@@ -807,7 +807,7 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 #s-learning-priorities .lpm-legend i.solid{background:var(--muted)}
 #s-learning-priorities .lpm-legend i.hollow{background:transparent;border:3px solid var(--muted)}
 
-#s-learning-priorities .lpm-grid{display:grid;grid-template-columns:200px repeat(3,1fr);column-gap:40px;row-gap:36px;align-items:center}
+#s-learning-priorities .lpm-grid{display:grid;grid-template-columns:200px repeat(3,1fr);column-gap:40px;row-gap:32px;align-items:center}
 #s-learning-priorities .lpm-corner{font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--muted);align-self:end;padding-bottom:18px}
 #s-learning-priorities .lpm-role-head{padding-bottom:18px;border-bottom:1px solid var(--border);align-self:end}
 #s-learning-priorities .lpm-role-head h3{display:flex;align-items:center;gap:11px;font-size:25px;font-weight:700;color:inherit}
@@ -825,8 +825,8 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 #s-learning-priorities .lpm-dot.solid{width:16px;height:16px;background:currentColor}
 #s-learning-priorities .lpm-dot.hollow{width:28px;height:28px;background:var(--bg);border:3.5px solid currentColor}
 
-#s-learning-priorities .lpm-foot{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:46px;padding-top:24px;border-top:1px solid var(--border)}
-#s-learning-priorities .lpm-foot p{font-size:15.5px;line-height:1.42;color:var(--text-dimmer)}
+#s-learning-priorities .lpm-foot{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:30px;padding-top:20px;border-top:1px solid var(--border)}
+#s-learning-priorities .lpm-foot p{font-size:14px;line-height:1.38;color:var(--text-dimmer)}
 #s-learning-priorities .lpm-foot strong{color:var(--text-dim);font-weight:700}
 
 .slide.tight h1{margin-top:14px}
@@ -1514,7 +1514,7 @@ Choose the people who will approve pull requests early and explicitly train them
     </section>
 
 <!-- ============ 9 · CURRICULUM BY ROLE ============ -->
-<section class="slide" id="s-learning-priorities" data-speaker="Dafydd" data-notes="Two points, and the slide is built to make exactly two points, not six. One: each role has its own fixed minimum, not everything - a junior needs enough to read a plan and ship a safe PR, an engineer owns modules and daily changes, a senior is the escalation point for advanced Terraform and API-versus-provider triage. That minimum does not move with org size. Two: what moves is what the team owns underneath that minimum, and each role has its own defining shift. For a junior it is the environment itself - in a small org there is no dedicated platform team, so even a junior ends up helping keep the toolchain and state backend alive alongside everyone else, because nobody provisions a repo for you; in a large org it arrives as a platform template, so even that goes away. For an engineer it is authority over Git and GitOps - the two dots land in the same place either way, because the knowledge does not shrink, but a large org adds a second approver, so say authority narrows rather than knowledge. For a senior it is mentoring load - heaviest in a small org, where one person often spans all three roles and mentoring covers the whole estate; lighter in a large one, where narrower ownership means a narrower slice to mentor on, even with more people around. Jamf API knowledge sits outside all three and never moves, because no external team will ever know your own service's API better than the team that owns it. Close on: you still need to know how the platform is designed, but your workflow will have to conform with wider company standards. Say the illustrative line if asked: we never actually ran this training programme in a small-org context, so the Environment and Mentoring shifts are our best illustration of 'you own less of the estate as the org grows', not measured data - the fixed minimums themselves are real, drawn from the curriculum we actually built and delivered.">
+<section class="slide" id="s-learning-priorities" data-speaker="Dafydd" data-notes="Two points, and the slide is built to make exactly two points, not six. One: each role has its own fixed minimum, not everything - a junior needs enough to read a plan and ship a safe PR, an engineer owns modules and daily changes, a senior is the escalation point for advanced Terraform and API-versus-provider triage. That minimum does not move with org size. Two: what moves is what the team owns underneath that minimum, and each role has its own defining shift. Environment moves for all three roles, not just the junior - in a small org there is no dedicated platform team, so everyone from junior to senior ends up helping keep the toolchain and state backend alive, because nobody provisions a repo for you; in a large org it arrives as a platform template and the burden lifts across the board. The junior's swing is the widest, because they are closest to the day-to-day grind of it; the senior's is the narrowest, because understanding how the platform is designed barely changes either way. For an engineer, Git itself stays exactly the same either way - the two dots land in the same place, because the knowledge does not shrink, but a large org adds a second approver, so say authority narrows rather than knowledge. GitOps and Terraform depth do move though: a large org's platform team usually owns more of the release lifecycle and CI pipeline, so the engineer needs noticeably less of it hands-on than in a small org where they own that end to end. For a senior it is mentoring load - heaviest in a small org, where one person often spans all three roles and mentoring covers the whole estate; lighter in a large one, where narrower ownership means a narrower slice to mentor on, even with more people around. The senior's GitOps and Terraform depth moves a little too - in a large org, the platform team usually owns the release lifecycle and the CI pipeline, so the senior needs noticeably less of it than in a small org where they own that end to end. Jamf API knowledge sits outside all three and never moves, because no external team will ever know your own service's API better than the team that owns it. Close on: you still need to know how the platform is designed, but your workflow will have to conform with wider company standards. Say the illustrative line if asked: we never actually ran this training programme in a small-org context, so the Environment and Mentoring shifts are our best illustration of 'you own less of the estate as the org grows', not measured data - the fixed minimums themselves are real, drawn from the curriculum we actually built and delivered.">
   <div class="eyebrow"><i class="dot"></i>09 &middot; Curriculum</div>
   <h1>Learning priorities by role</h1>
   <div class="sub">The same three roles. How far each has to stretch depends on who else is in the building.</div>
@@ -1547,23 +1547,23 @@ Choose the people who will approve pull requests early and explicitly train them
 
         <div class="lpm-skill hero">Environment</div>
         <div class="lpm-cell" style="color:var(--accent)"><div class="lpm-track"><div class="lpm-bridge" style="left:20%;width:25%"></div><div class="lpm-dot hollow" style="left:20%"></div><div class="lpm-dot solid" style="left:45%"></div></div></div>
-        <div class="lpm-cell" style="color:var(--alt-light)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:38%"></div><div class="lpm-dot solid" style="left:38%"></div></div></div>
-        <div class="lpm-cell" style="color:var(--text-2)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:42%"></div><div class="lpm-dot solid" style="left:42%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--alt-light)"><div class="lpm-track"><div class="lpm-bridge" style="left:40%;width:25%"></div><div class="lpm-dot hollow" style="left:40%"></div><div class="lpm-dot solid" style="left:65%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--text-2)"><div class="lpm-track"><div class="lpm-bridge" style="left:60%;width:10%"></div><div class="lpm-dot hollow" style="left:60%"></div><div class="lpm-dot solid" style="left:70%"></div></div></div>
 
         <div class="lpm-skill">Git</div>
         <div class="lpm-cell" style="color:var(--accent)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:45%"></div><div class="lpm-dot solid" style="left:45%"></div></div></div>
-        <div class="lpm-cell" style="color:var(--alt-light)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:88%"></div><div class="lpm-dot solid" style="left:88%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--alt-light)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:65%"></div><div class="lpm-dot solid" style="left:65%"></div></div></div>
         <div class="lpm-cell" style="color:var(--text-2)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:80%"></div><div class="lpm-dot solid" style="left:80%"></div></div></div>
 
         <div class="lpm-skill">GitOps</div>
         <div class="lpm-cell" style="color:var(--accent)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:18%"></div><div class="lpm-dot solid" style="left:18%"></div></div></div>
-        <div class="lpm-cell" style="color:var(--alt-light)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:88%"></div><div class="lpm-dot solid" style="left:88%"></div></div></div>
-        <div class="lpm-cell" style="color:var(--text-2)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:90%"></div><div class="lpm-dot solid" style="left:90%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--alt-light)"><div class="lpm-track"><div class="lpm-bridge" style="left:58%;width:30%"></div><div class="lpm-dot hollow" style="left:58%"></div><div class="lpm-dot solid" style="left:88%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--text-2)"><div class="lpm-track"><div class="lpm-bridge" style="left:70%;width:20%"></div><div class="lpm-dot hollow" style="left:70%"></div><div class="lpm-dot solid" style="left:90%"></div></div></div>
 
         <div class="lpm-skill">Terraform</div>
         <div class="lpm-cell" style="color:var(--accent)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:35%"></div><div class="lpm-dot solid" style="left:35%"></div></div></div>
-        <div class="lpm-cell" style="color:var(--alt-light)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:72%"></div><div class="lpm-dot solid" style="left:72%"></div></div></div>
-        <div class="lpm-cell" style="color:var(--text-2)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:95%"></div><div class="lpm-dot solid" style="left:95%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--alt-light)"><div class="lpm-track"><div class="lpm-bridge" style="left:42%;width:30%"></div><div class="lpm-dot hollow" style="left:42%"></div><div class="lpm-dot solid" style="left:72%"></div></div></div>
+        <div class="lpm-cell" style="color:var(--text-2)"><div class="lpm-track"><div class="lpm-bridge" style="left:75%;width:20%"></div><div class="lpm-dot hollow" style="left:75%"></div><div class="lpm-dot solid" style="left:95%"></div></div></div>
 
         <div class="lpm-skill">Jamf APIs</div>
         <div class="lpm-cell" style="color:var(--accent)"><div class="lpm-track"><div class="lpm-dot hollow" style="left:10%"></div><div class="lpm-dot solid" style="left:10%"></div></div></div>
@@ -1577,8 +1577,9 @@ Choose the people who will approve pull requests early and explicitly train them
       </div>
 
       <div class="lpm-foot">
-        <p><strong>Junior &middot; Environment</strong> &ndash; partly theirs to help build in a small org, alongside everyone else; arrives as a platform template in a large one.</p>
-        <p><strong>Senior &middot; Mentoring</strong> &ndash; heaviest in a small org, where one person spans all three roles and owns the whole estate to mentor across; lighter once a large org narrows what they own.</p>
+        <p><strong>Environment</strong> &ndash; everyone owns more of it in a small org and less once a platform team absorbs part of the estate; the junior's swing is the widest, the senior's the narrowest.</p>
+        <p><strong>Senior &middot; Mentoring</strong> &ndash; heaviest in a small org, where one person spans all three roles; lighter once a large org narrows what they own.</p>
+        <p><strong>Engineer &amp; Senior &middot; GitOps &amp; Terraform</strong> &ndash; a large org's platform team usually owns more of the release lifecycle and CI pipeline, so both roles need less of it hands-on than in a small org.</p>
         <p><strong>Jamf APIs</strong> never move for any role &ndash; no external team will ever know your own service&rsquo;s API better than the team that owns it.</p>
       </div>
     </div>
