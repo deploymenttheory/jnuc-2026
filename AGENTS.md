@@ -35,7 +35,7 @@ landing page keeps its own near-black look - it is not a deck.
 | Path | Role |
 |---|---|
 | `presentations/<slug>/` | One talk. Snake-case slug. Each deck owns its own HTML, tokens and script; decks do not import from each other beyond `_shared/`. |
-| `presentations/_shared/` | Data used by more than one deck: `speakers.js`, `qr-code.png` (the training deck's take-it-with-you code), `louise_story_final.mp4` with its `louise_story_poster.jpg` (the training deck's slide 12 interview, 1280x720, 2m52s, about 40 MB - the only file here big enough to matter to the deploy, and the only one that is not text or an icon) and `jamf_pro_icons/` (a 934-file dump of Jamf Pro's own icon set, scraped from a dev instance in `a886f28`; `migrating_an_instance` inlines 41 of them, see Icons). Content, not styling - see below. |
+| `presentations/_shared/` | Data used by more than one deck: `speakers.js`, `qr-code.png` (the training deck's take-it-with-you code), `louise_story_final.mp4` with its `louise_story_poster.jpg` (the training deck's slide 16 interview, 1280x720, 2m52s, about 40 MB - the only file here big enough to matter to the deploy, and the only one that is not text or an icon) and `jamf_pro_icons/` (a 934-file dump of Jamf Pro's own icon set, scraped from a dev instance in `a886f28`; `migrating_an_instance` inlines 41 of them, see Icons). Content, not styling - see below. |
 | `presentations/<slug>/art/` | Source art for anything a deck embeds as a data URI: one Markdown Pixelforge spec plus the PNGs exported from it. Deploy excludes `*.md`, so the spec is kept for regeneration only; the PNGs ride along but nothing links to them, because the deck carries its own base64 copy. Currently only `migrating_an_instance/art/`. |
 | `presentations/sandbox/` | Feedback review pages, one sandbox per deck: a shared `sandbox.css`, a minimal chooser `index.html`, and one subdirectory per deck (`migrating_an_instance/`, `training_a_team/`) each with its own hand-maintained `index.html` listing that deck's pages, one page per change showing implementation options as live renders of the real slide (three by default, or the number requested for that round). Deploys with the site at `/sandbox/`, linked from a Sandbox button on each deck card on the landing page (added 2026-08-27 at Joseph's request; split into one sandbox per deck the same day). See Sandbox. |
 | `template.key` | The Jamf-supplied JNUC 2026 Keynote template. Canonical reference for palette, typography and mandatory slides. |
@@ -1029,6 +1029,10 @@ hand and all four files are committed** - the deploy only syncs them. **Rebuild 
 them in the same change as any deck edit**, or the downloads on the landing page go stale -
 nothing in CI checks this.
 
+Latest complete rebuild: 2026-09-11, from the HTML at `0733418`. Both decks have 23 slides
+with speaker notes. The training deck's interview is now on slide 16 after its latest reorder;
+MEDIA was updated before exporting both formats.
+
 | Command | Builds | Needs |
 |---|---|---|
 | `make downloads` | both formats, one capture pass | Keynote installed (any version - resolved by name, not path) |
@@ -1062,24 +1066,30 @@ always built first; `make key` writes a throwaway copy into the work directory a
 committed one alone.
 
 **Slides that carry a `<video>` are listed in `MEDIA` in `tools/build-downloads.mjs`** with the
-rect the video occupies on the 1920x1080 slide. Two assertions keep that list honest, so this
+rect the video occupies on the 1920x1080 slide. Assertions keep that list honest, so this
 cannot silently regress: the build fails if a deck has more real `<video>` elements than MEDIA
 accounts for, and it fails again if the finished `.key` or `.pptx` does not actually contain
-the media at its true size. Neither is optional and both run inside `make downloads`. The capture flattens every slide to an image,
-so without that list the interview on the training deck's slide 13 ships as a poster frame and
+the media at its true size. During capture, each active slide's video count, source, poster
+and measured bounds must also match MEDIA, so a reorder or layout change fails before either
+download is written. These checks run inside `make downloads`. The capture flattens every slide to an image,
+so without that list the interview on the training deck's slide 16 ships as a poster frame and
 nothing else. The real movie is laid back over the still at that rect, with the poster as its
 cover image. **If the layout moves, re-measure the rect.**
+
+Media coordinates convert from the 1920x1080 canvas to PptxGenJS's `LAYOUT_16x9`, which
+is 10 x 5.625 inches. `PX_TO_IN` is `10 / VIEWPORT.width`; 13.333 inches belongs to
+`LAYOUT_WIDE` and would enlarge and displace the movie. Corrected during the 2026-09-11
+rebuild, with the exported PowerPoint rectangle and native Keynote placement checked.
 
 Playwright opens each deck over `file://`, presses ArrowRight through it and screenshots the
 viewport at 1920x1080 into a temp directory. `HIDE_WHILE_CAPTURING` in the script blanks the
 on-screen affordances a downloaded file cannot offer: the help bar, and video controls (a
 `<video>` exports as its poster frame, and Chrome's controls and loading spinner would
 otherwise be photographed on top of it). The slide counter and the timeline strip are
-deliberately not in that list. AppleScript then drives Keynote to assemble
-those PNGs into a 1920x1080 deck and save it, and PptxGenJS reads the same PNGs back into a
-`LAYOUT_16x9` PowerPoint (title and subject set from the `DECKS` table). Screenshots go to
-disk rather than staying in memory precisely because AppleScript can only place an image it
-can open by path. Both decks share the interface the script relies on - `section.slide`
+deliberately not in that list. PptxGenJS reads the PNGs into a `LAYOUT_16x9` PowerPoint
+(title and subject set from the `DECKS` table), and AppleScript drives Keynote to import that
+PowerPoint and save it as `.key`. Both formats therefore carry the same captured slide images.
+Both decks share the interface the script relies on - `section.slide`
 elements, an `.active` class on the current one, and ArrowRight advancing exactly one slide
 with no intra-slide fragments. A deck that breaks any of those needs the script updating, and
 the script fails loudly rather than silently emitting duplicate slides: after each keypress
@@ -1517,7 +1527,7 @@ DECK="http://localhost:8741/presentations/migrating_an_instance/index.html"
 
 For `training_a_team`, swap in `training_a_team/index.html` and use a numeric hash (`#2`),
 not a slide id. **Drop `--virtual-time-budget` for that deck and for any sandbox page that
-iframes it.** Slide 12 carries a `<video>`, and virtual time never expires in headless Chrome
+iframes it.** Slide 16 carries a `<video>`, and virtual time never expires in headless Chrome
 while a media element is pending, so the flag hangs the process instead of taking the shot.
 Without it the screenshot is taken on load, which is what you want anyway.
 `tools/build-downloads.mjs` is unaffected - Playwright waits on its own settle.

@@ -502,9 +502,9 @@ removed with `git worktree remove --force <path>` once their branch is pushed or
 Not until Joseph says so. When he does: `make downloads` on this Mac (needs Keynote; the
 Makefile installs the dependencies itself), commit the regenerated `.key` and `.pptx` for both
 decks, push. `make pptx` refreshes the PowerPoint half alone and needs no Keynote. Details in `AGENTS.md` under
-"Building the downloads". The `.key` files are currently behind the HTML on purpose; the
-`.pptx` files were built from the current HTML on 2026-09-02, when the second format was
-added, so the two formats are not in step until the next full `npm run build`.
+"Building the downloads". Both formats were rebuilt together on 2026-09-11 at Dafydd's
+request, from the HTML at `0733418`: 23 slides with notes per deck, and the training interview
+on slide 16. Later HTML edits require another requested refresh.
 
 ## Log
 
@@ -733,6 +733,22 @@ if there is nothing else to commit, left in the working tree until the merge com
 it up - either way it is on disk for a recovering session.
 
 ### Done
+
+- **2026-09-11, Keynote and PowerPoint downloads regenerated for both decks.**
+  At Dafydd's request, ran `make downloads` using Keynote Creator Studio and the Makefile's
+  dependency setup. The latest training reorder had moved Louise's interview to slide 16
+  while MEDIA still targeted slide 13. Corrected the mapping and added a capture check for
+  each active slide's video count, source, poster and bounds. The native Keynote check also
+  exposed a pre-existing conversion error: media coordinates assumed a 13.333-inch-wide
+  slide, while `LAYOUT_16x9` is 10 inches wide. Corrected `PX_TO_IN` to match that layout,
+  then rebuilt all four files with the interview fitting its captured frame.
+  Both decks contain 23 slides with notes. Verified the PowerPoint notes against the HTML,
+  all slide images identical between the two formats, and the complete original interview
+  embedded in both training downloads. Opened both Keynote files and verified slide counts,
+  notes and the movie's slide and geometry; the PowerPoint movie rectangle also matches the
+  HTML. Regression checks reject the old slide-13 mapping
+  and a shifted video rectangle. Updated the build documentation and inspected the exported
+  conditions and interview slides. No slide content changed during this rebuild.
 
 - **2026-09-11, training_a_team slide 7, "Work with platform owners" removed.**
   At Dafydd's request, removed the complete point and its chain-link icon from

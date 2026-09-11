@@ -49,7 +49,7 @@ const SETTLE_MS = 400;
 const MEDIA = [
   {
     dir: 'training_a_team',
-    slide: 13,
+    slide: 16,
     file: '_shared/louise_story_final.mp4',
     poster: '_shared/louise_story_poster.jpg',
     x: 122,
@@ -62,8 +62,9 @@ const MEDIA = [
 const mediaFor = (deck, slideNumber) =>
   MEDIA.filter((m) => m.dir === deck.dir && m.slide === slideNumber);
 
-// 1920x1080 slide units to PowerPoint inches on a 13.333 x 7.5in 16:9 layout.
-const PX_TO_IN = 13.333 / 1920;
+// PptxGenJS LAYOUT_16x9 is 10 x 5.625in (LAYOUT_WIDE is 13.333 x 7.5in).
+// Match the layout selected in writePptx so the movie fits its captured frame.
+const PX_TO_IN = 10 / VIEWPORT.width;
 
 const DECKS = [
   {
@@ -132,6 +133,7 @@ async function capture(page, deck, shotsDir) {
     // the failure is invisible until someone opens the download.
     const at = await page.evaluate(activeIndex);
     if (at !== i) throw new Error(`${deck.dir}: expected slide ${i + 1}, deck is showing ${at + 1}`);
+    await assertMediaPlacement(page, deck, i + 1);
 
     const shot = path.join(shotsDir, `slide-${String(i + 1).padStart(3, '0')}.png`);
     await page.screenshot({ type: 'png', path: shot });
@@ -139,6 +141,30 @@ async function capture(page, deck, shotsDir) {
   }
 
   return { notes, shots };
+}
+
+// A reorder can leave the video registered against the wrong slide while the
+// total video count still matches. Check the active slide and its measured rect
+// before writing either download, so stale MEDIA entries fail the build.
+async function assertMediaPlacement(page, deck, slideNumber) {
+  const actual = await page.locator('section.slide.active video[src]').evaluateAll((videos) =>
+    videos.map((video) => {
+      const { x, y, width: w, height: h } = video.getBoundingClientRect();
+      return { file: video.src, poster: video.poster, x, y, w, h };
+    }),
+  );
+  const expected = mediaFor(deck, slideNumber);
+  if (actual.length !== expected.length) {
+    throw new Error(`${deck.dir}: slide ${slideNumber} has ${actual.length} video(s), but MEDIA lists ${expected.length}. Update MEDIA after reordering slides.`);
+  }
+  for (const media of expected) {
+    const file = pathToFileURL(path.join(DECKS_DIR, media.file)).href;
+    const poster = pathToFileURL(path.join(DECKS_DIR, media.poster)).href;
+    const video = actual.find((item) => item.file === file && item.poster === poster);
+    if (!video || ['x', 'y', 'w', 'h'].some((key) => Math.abs(video[key] - media[key]) > 1)) {
+      throw new Error(`${deck.dir}: slide ${slideNumber} video source, poster or bounds do not match MEDIA. Re-measure its file and rect before exporting.`);
+    }
+  }
 }
 
 // AppleScript string literals only need backslashes and double quotes escaped.
