@@ -855,30 +855,36 @@ ul.dash li::before{content:"\25B8";position:absolute;left:4px;top:0;color:var(--
 .tlkey i{width:11px;height:11px;display:inline-block;border-radius:2px;margin-right:9px}
 
 /* ---------- slide 11 (Delivery) ---------- */
-/* A single two-zone spectrum bar rather than two cards, echoing the deck's
-   own persistent-timeline idea: one continuum with discrete labelled stops.
-   Each zone carries its own icon (overlapping circles for room, a monitor
-   for remote), drawn with currentColor so it inherits the zone's hue. */
-#s-delivery .dl-rail{display:flex;flex-direction:column;gap:20px}
-#s-delivery .dlr-track{display:flex;border-radius:16px;overflow:hidden;border:1px solid var(--border)}
-#s-delivery .dlr-zone{flex:1;padding:60px 46px 72px}
-#s-delivery .dlr-zone.room{background:var(--accent-wash)}
-#s-delivery .dlr-zone.remote{background:var(--alt-surface)}
-#s-delivery .dlr-zonehead{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:22px;
-  letter-spacing:.12em;font-weight:700;margin-bottom:56px}
-#s-delivery .dlr-zonehead svg{width:30px;height:30px;flex:none}
-#s-delivery .dlr-zone.room .dlr-zonehead{color:var(--green-bright)}
-#s-delivery .dlr-zone.remote .dlr-zonehead{color:var(--blue-light)}
-#s-delivery .dlr-stops{display:grid;grid-template-columns:repeat(5,1fr);gap:24px}
-#s-delivery .dlr-stop{text-align:center}
-#s-delivery .dlr-dot{display:block;width:23px;height:23px;border-radius:50%;margin:0 auto 26px}
-#s-delivery .dlr-zone.room .dlr-dot{background:var(--green-bright)}
-#s-delivery .dlr-zone.remote .dlr-dot{background:var(--blue-light)}
-#s-delivery .dlr-stop b{display:block;font-size:27px;font-weight:700;color:var(--text);line-height:1.26}
-#s-delivery .dlr-stop span{display:block;font-size:18px;color:var(--text-dimmer);margin-top:14px;line-height:1.36}
-#s-delivery .dlr-rule{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:12px;
-  padding:36px 38px;font-size:29px;color:var(--text-2);line-height:1.4;text-align:center;margin-top:20px}
-#s-delivery .dlr-rule b{color:var(--accent-strong)}
+/* One thin spectrum line, tinted in two halves, with ten stops as markers
+   sitting on it rather than boxed-in list items inside solid-fill cards.
+   Left-vs-right position only ever encodes which half a stop belongs to
+   (room or remote) - the underlying rule is a genuine binary, so nothing
+   here implies a fabricated in-between degree the way a gradient would. */
+#s-delivery .dl-rail{display:flex;flex-direction:column;margin-top:92px}
+#s-delivery .dlr-heads{display:flex;justify-content:space-between;margin-bottom:46px}
+#s-delivery .dlr-head{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:21px;
+  letter-spacing:.12em;font-weight:700}
+#s-delivery .dlr-head svg{width:26px;height:26px;flex:none}
+#s-delivery .dlr-head em{font-style:normal;font-weight:400;font-size:15px;letter-spacing:.06em;color:var(--muted);margin-left:3px}
+#s-delivery .dlr-head.room{color:var(--accent-strong)}
+#s-delivery .dlr-head.remote{color:var(--alt-light)}
+
+#s-delivery .dlr-spectrum{position:relative;height:210px;margin:0 3px}
+#s-delivery .dlr-line{position:absolute;top:0;width:48%;height:2px;border-radius:1px}
+#s-delivery .dlr-line.room{left:0;background:var(--accent-strong);opacity:.4}
+#s-delivery .dlr-line.remote{right:0;background:var(--alt-light);opacity:.4}
+#s-delivery .dlr-stop{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;
+  align-items:center;width:150px;text-align:center}
+#s-delivery .dlr-tick{width:13px;height:13px;border-radius:50%;margin-bottom:28px;box-shadow:0 0 0 4px var(--bg)}
+#s-delivery .dlr-stop.room .dlr-tick{background:var(--accent-strong)}
+#s-delivery .dlr-stop.remote .dlr-tick{background:var(--alt-light)}
+#s-delivery .dlr-stop b{display:block;font-size:22px;font-weight:700;color:var(--text);line-height:1.22}
+#s-delivery .dlr-stop span{display:block;font-size:14.5px;color:var(--text-dimmer);margin-top:12px;line-height:1.36}
+
+#s-delivery .dlr-rule{border-top:1px solid var(--border-soft);margin-top:44px;padding-top:42px;
+  font-size:29px;color:var(--text-2);line-height:1.45;text-align:center}
+#s-delivery .dlr-rule b{display:block;font-family:var(--mono);font-size:16px;letter-spacing:.14em;
+  font-weight:700;color:var(--accent-strong);margin-bottom:16px}
 
 /* ---------- slide 12 ---------- */
 .skillcol{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 18px}
@@ -1638,39 +1644,37 @@ Choose the people who will approve pull requests early and explicitly train them
 </section>
 
 <!-- ============ 11 · DELIVERY ============ -->
-<section class="slide" id="s-delivery" data-speaker="Joseph" data-notes="The point of this slide is the small print, not the headings. Anyone can tell you to do training in person. What people actually need is the reason, because the reason is what they can apply to their own material. Left column, and every one of these comes down to the same thing: what you can see, and how cheap it is to ask. First exposure - in a room you can see somebody is lost from across the table, before they have said a word. On a call, asking for help means unmuting and stopping everyone else, so people sit there quietly instead, and you find out three weeks later. Debugging a broken config - somebody is looking at your screen the second you go wrong, not ten minutes later after you have piled three more mistakes on top of the first one. That is why the replacement curriculum hands people a config with faults planted in it. Pairing - and be precise here, because the research does not say what people assume. Distributed pairing, including a 2023 systematic review, performs about as well as sitting together, provided both people can actually type. What the same review found really matters is whether the pair get on. Two people who do not know each other will not share a keyboard honestly, and that trust gets built in the chat around the work, which a scheduled call has none of. So form the pair in the room; after that it can go remote quite happily. Hack days - here it is simply the atmosphere. Ideas bounce, people overhear each other, and a team forms while they are solving something. Nobody has ever built that on a call. And the first bug someone introduces - owning up to a screen is much harder than owning up to a room, and in a room everyone else watches the reaction be help rather than blame, which is what makes them speak up sooner the next time. That is the whole mechanism behind psychological safety, and it is why remote can maintain it but rarely creates it. Right column, and the heading matters: with conditions. Pre-requisites - nobody needs to watch you install a toolchain, so do not waste a room on it. But ungated, it does not get finished: median completion for self-paced online content sits around 12.6%, against 60 to 90% for a cohort with a date on it. That is the evidence behind condition 02 earlier. Recorded walkthroughs - a recording can be paused, rewound and watched again at 11pm, which a room genuinely cannot do. What it cannot do is answer a question back, so it is for the parts with a fixed answer. Co-editing - if both people can type it holds up; if only one can, the other is watching somebody work, which is not learning. Pull request review is the easy one to justify, because it is how review works in the job anyway - doing it remotely is not a compromise, it is the real thing. And pull requests by their nature need time for reflection and analysis, which is exactly what a room does not give you. And keep clinics short, because video genuinely drains people faster than a room does - videoconference fatigue shows up on EEG and ECG within about fifteen minutes and is significant by fifty. So under an hour, with a break in the middle. Past that they are still on the call but they have stopped learning, and a full day of remote workshop is a wasted day. Then the rule at the bottom, which is the sentence to leave them with, and it is just the two columns said once. Everything on the left is there because the learning depends on other people - being seen when you are lost, being caught at the moment you go wrong, being reassured when you break something. Everything on the right is between a learner and the material, where there is one right answer, or where they need to pause, re-read and think. So: if the learning depends on other people, put it in the room; if it is between a learner and the material, remote is fine and often better. And the two asides on the right matter more than they look. Environment setup belongs in neither column - automate it, which is exactly what our platform arriving late cost us. And reference material is not a session in its own right - it should be carried out separately, which is the 214,645-word manual said as a delivery rule.">
+<section class="slide" id="s-delivery" data-speaker="Joseph" data-notes="The point of this slide is the small print, not the headings. Anyone can tell you to do training in person. What people actually need is the reason, because the reason is what they can apply to their own material. Left column, and every one of these comes down to the same thing: what you can see, and how cheap it is to ask. First exposure - in a room you can see somebody is lost from across the table, before they have said a word. On a call, asking for help means unmuting and stopping everyone else, so people sit there quietly instead, and you find out three weeks later. Debugging a broken config - somebody is looking at your screen the second you go wrong, not ten minutes later after you have piled three more mistakes on top of the first one. That is why the replacement curriculum hands people a config with faults planted in it. Pairing - in its plainest form, two engineers at one screen, the more confident one walking the other through real code. Be precise about the research, because it does not say what people assume. Distributed pairing, including a 2023 systematic review, performs about as well as sitting together, provided both people can actually type. What the same review found really matters is whether the pair get on. Two people who do not know each other will not share a keyboard honestly, and that trust gets built in the chat around the work, which a scheduled call has none of. So form the pair in the room; after that it can go remote quite happily. Hack days - hand them a real problem and let them find their own way to it, with no set path provided. That is what actually built the Terraform problem-solving instinct, not just following steps. The atmosphere helps too: ideas bounce, people overhear each other, and a team forms while solving something, which nobody has ever built on a call. And quick questions - interrupting is easy and fluid in a room, a hand up or a quick word does not break the flow. On a call, interrupting usually derails everything: someone has to unmute, the whole room stops and waits, and the moment has often passed by the time it is asked. That is a small thing repeated many times a day, and it adds up. Right column, and the heading matters: with conditions. Pre-requisites - installing VS Code, Terraform, the extensions, all of it - nobody needs to watch you do that, so get it done before the room, not during it. But ungated, it does not get finished: median completion for self-paced online content sits around 12.6%, against 60 to 90% for a cohort with a date on it. That is the evidence behind condition 02 earlier, and it is what makes the in-room time actually count. Recorded walkthroughs - a recording can be paused, rewound and watched again at 11pm, which a room genuinely cannot do. What it cannot do is answer a question back, so it is for the parts with a fixed answer. Remote pairing - this is what normal remote pair programming actually looks like day to day: the stronger Terraform engineer drives while the other works through it with them, not two people who both need to type. That is paired programming working as intended, just at a distance. Pull request review is the easy one to justify, because it is how review works in the job anyway - doing it remotely is not a compromise, it is the real thing. And pull requests by their nature need time for reflection and analysis, which is exactly what a room does not give you. And keep clinics short, because video genuinely drains people faster than a room does - videoconference fatigue shows up on EEG and ECG within about fifteen minutes and is significant by fifty. So under an hour, with a break in the middle. Past that they are still on the call but they have stopped learning, and a full day of remote workshop is a wasted day. Then the rule at the bottom, which is the sentence to leave them with, and it is just the two columns said once. Everything on the left is there because the learning depends on other people - being seen when you are lost, being caught at the moment you go wrong, being reassured when you break something. Everything on the right is between a learner and the material, where there is one right answer, or where they need to pause, re-read and think. So: if the learning depends on other people, put it in the room; if it is between a learner and the material, remote is fine and often better. And the two asides on the right matter more than they look. Environment setup belongs in neither column - automate it, which is exactly what our platform arriving late cost us. And reference material is not a session in its own right - it should be carried out separately, which is the 214,645-word manual said as a delivery rule.">
   <div class="eyebrow"><i class="dot"></i>11 &middot; Delivery</div>
   <h1>What lands well in the room together, what lands well remotely</h1>
-  <div class="sub">When delivering technical training, you should consider the following:</div>
+  <div class="sub">One question splits every decision below: does the learning depend on other people?</div>
 
-  <!-- A single two-zone spectrum bar rather than two cards, echoing
-       migrating_an_instance's persistent timeline strip - one continuum
-       with discrete labelled stops, captions cut to a headline plus a
-       few words. -->
+  <!-- A single spectrum rail rather than two solid-fill cards: one thin
+       line broken into two tinted halves, with ten stops as markers on
+       it rather than boxed-in list items. Position only ever encodes
+       which half a stop belongs to (room vs remote) - never a fabricated
+       in-between degree, since the underlying rule is genuinely binary
+       (depends on other people, or doesn't). -->
   <div class="dl-rail">
-    <div class="dlr-track">
-      <div class="dlr-zone room">
-        <div class="dlr-zonehead"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6.5" fill="currentColor" opacity=".85"/><circle cx="15.5" cy="12" r="6.5" fill="currentColor" opacity=".45"/></svg>IN THE ROOM &middot; default</div>
-        <div class="dlr-stops">
-          <div class="dlr-stop"><i class="dlr-dot"></i><b>First exposure</b><span>Lost before they say so</span></div>
-          <div class="dlr-stop"><i class="dlr-dot"></i><b>Debugging live</b><span>Seen the second it breaks</span></div>
-          <div class="dlr-stop"><i class="dlr-dot"></i><b>First pairing</b><span>Trust builds face to face</span></div>
-          <div class="dlr-stop"><i class="dlr-dot"></i><b>Hack days</b><span>The atmosphere does the work</span></div>
-          <div class="dlr-stop"><i class="dlr-dot"></i><b>The first bug</b><span>Owning up is easier here</span></div>
-        </div>
-      </div>
-      <div class="dlr-zone remote">
-        <div class="dlr-zonehead"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="16.5" x2="12" y2="20" stroke="currentColor" stroke-width="2"/></svg>REMOTE &middot; with conditions</div>
-        <div class="dlr-stops">
-          <div class="dlr-stop"><i class="dlr-dot"></i><b>Pre-requisites</b><span>Gate it or it slips</span></div>
-          <div class="dlr-stop"><i class="dlr-dot"></i><b>Recorded walkthroughs</b><span>Great until you have a question</span></div>
-          <div class="dlr-stop"><i class="dlr-dot"></i><b>Co-editing</b><span>Fine if both people can type</span></div>
-          <div class="dlr-stop"><i class="dlr-dot"></i><b>PR review</b><span>How review works anyway</span></div>
-          <div class="dlr-stop"><i class="dlr-dot"></i><b>Clinics</b><span>Under an hour, video drains fast</span></div>
-        </div>
-      </div>
+    <div class="dlr-heads">
+      <div class="dlr-head room"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6.5" fill="currentColor" opacity=".85"/><circle cx="15.5" cy="12" r="6.5" fill="currentColor" opacity=".45"/></svg>IN THE ROOM<em>default</em></div>
+      <div class="dlr-head remote"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="16.5" x2="12" y2="20" stroke="currentColor" stroke-width="2"/></svg>REMOTE<em>with conditions</em></div>
     </div>
-    <div class="dlr-rule"><b>THE RULE.</b> Depends on other people, put it in the room. Between a learner and the material, remote is fine, often better.</div>
+    <div class="dlr-spectrum">
+      <div class="dlr-line room"></div>
+      <div class="dlr-line remote"></div>
+      <div class="dlr-stop room" style="left:4.8%"><i class="dlr-tick"></i><b>New material</b><span>Confusion shows before they say it</span></div>
+      <div class="dlr-stop room" style="left:14.4%"><i class="dlr-tick"></i><b>Debugging live</b><span>Mistakes caught the moment they happen</span></div>
+      <div class="dlr-stop room" style="left:24%"><i class="dlr-tick"></i><b>First pairing</b><span>Working the same code, side by side</span></div>
+      <div class="dlr-stop room" style="left:33.6%"><i class="dlr-tick"></i><b>Hack days</b><span>Handed a problem, not a script</span></div>
+      <div class="dlr-stop room" style="left:43.2%"><i class="dlr-tick"></i><b>Quick questions</b><span>Doesn&rsquo;t stop the room to ask</span></div>
+      <div class="dlr-stop remote" style="left:56.8%"><i class="dlr-tick"></i><b>Pre-requisites</b><span>Done early, so room time counts</span></div>
+      <div class="dlr-stop remote" style="left:66.4%"><i class="dlr-tick"></i><b>Recorded walkthroughs</b><span>Only good for a fixed answer</span></div>
+      <div class="dlr-stop remote" style="left:76%"><i class="dlr-tick"></i><b>Remote pairing</b><span>The stronger engineer drives, not both</span></div>
+      <div class="dlr-stop remote" style="left:85.6%"><i class="dlr-tick"></i><b>PR review</b><span>Needs reflection, not real time</span></div>
+      <div class="dlr-stop remote" style="left:95.2%"><i class="dlr-tick"></i><b>Clinics</b><span>Keep it short, video drains fast</span></div>
+    </div>
+    <div class="dlr-rule"><b>THE RULE</b>If it depends on other people, put it in the room. If it&rsquo;s just the learner and the material, remote is fine, often better.</div>
   </div>
 
 </section>
