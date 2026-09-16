@@ -159,7 +159,7 @@ quotes is stale.
   for navy surfaces, HelveticaNeue stack. Code blocks map hand-tokenised HCL to lime
   keywords, light-cornflower strings and amber numbers; TODO chips are solid amber with navy
   ink. Logos (jamf white, JNUC 2026) live in tokens as data URIs.
-- **Icons.** 96 marks from `_shared/jamf_pro_icons` sit across 18 of the 23 slides, all 25
+- **Icons.** 98 marks from `_shared/jamf_pro_icons` sit across 19 of the 23 slides, all 25
   candidates from the 2026-09-02 round accepted at once. They ship as one `<svg id="ico-sprite">`
   block of 41 `<symbol>`s at the top of the body, referenced as
   `<svg class="ico" aria-hidden="true"><use href="#i-name"/></svg>`, so an icon used on ten
@@ -289,8 +289,10 @@ overlay - keep the two in step when slides move.
 7. `s05` Migration path options (three paths, each its own bordered panel with the flow diagram centred inside, chosen path's panel edged in the accent colour, prod-first chosen; the read-only API client control reads as a line inside path 03 rather than a card at the foot of the slide) - **Joseph**
 8. `s07` Prerequisites (a `.slide-sub` line framing the split; two portions, instance prep
    and migration prep, each a tidied checklist, sharing a row subgrid - same technique as
-   `#s01`'s constraints panels - so the heading and each checklist row line up across both
-   columns) - **Gordon**
+   `#s01`'s constraints panels - so the heading and first three checklist rows line up across
+   both columns. Migration prep has a fourth row, Private Terraform registry: add the required
+   provider before starting the migration, using the existing `i-box` mark from the pack's
+   `inline/box-outline.svg`) - **Gordon**
 9. `s10` Resource migration sequencing (per-resource-type choice + matrix intro + the tier
    diagram. Each band reads label, then its own mark, then the examples right-aligned to
    1688 with one mark after each example rather than the three marks clustered ahead of the

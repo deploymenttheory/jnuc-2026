@@ -734,6 +734,14 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-16, migrating_an_instance slide 8 (`#s07`), private registry prerequisite added.**
+  Dafydd approved the heading "Private Terraform registry" and the detail "Add the required
+  provider to your private Terraform registry before starting the migration." Added as the
+  fourth Migration prep row, reusing the existing `i-box` symbol sourced from the Jamf pack's
+  `inline/box-outline.svg`. The subgrid spans five rows so the heading and first three items
+  stay aligned across both columns. Speaker notes and presenter.json match. No sandbox round;
+  the wording was approved in chat. Download refresh remains separately requested.
+
 - **2026-09-11, Keynote and PowerPoint downloads regenerated for both decks.**
   At Dafydd's request, ran `make downloads` using Keynote Creator Studio and the Makefile's
   dependency setup. The latest training reorder had moved Louise's interview to slide 16
