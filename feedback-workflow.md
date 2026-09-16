@@ -740,7 +740,7 @@ it up - either way it is on disk for a recovering session.
   fourth Migration prep row, reusing the existing `i-box` symbol sourced from the Jamf pack's
   `inline/box-outline.svg`. The subgrid spans five rows so the heading and first three items
   stay aligned across both columns. Speaker notes and presenter.json match. No sandbox round;
-  the wording was approved in chat. Download refresh remains separately requested.
+  the wording was approved in chat. Download refresh remains separately requested. PR #126.
 
 - **2026-09-11, Keynote and PowerPoint downloads regenerated for both decks.**
   At Dafydd's request, ran `make downloads` using Keynote Creator Studio and the Makefile's
