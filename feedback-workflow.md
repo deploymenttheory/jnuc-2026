@@ -734,6 +734,11 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-16, migrating_an_instance slide 17 (`#s-staging`), TODO removed and speaker changed.**
+  Removed the month-confirmation TODO chip at the user's request and assigned the slide to
+  Joseph. The February timeline position is unchanged. Updated the timeline notes and
+  AGENTS.md to match. Direct deletion and speaker change, with no sandbox round.
+
 - **2026-09-16, migrating_an_instance slide 8 (`#s07`), private registry prerequisite added.**
   Dafydd approved the heading "Private Terraform registry" and the detail "Add the required
   provider to your private Terraform registry before starting the migration." Added as the
