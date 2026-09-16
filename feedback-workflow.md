@@ -734,6 +734,11 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-16, migrating_an_instance slide 17 (`#s-staging`), TODO removed and speaker changed.**
+  Removed the month-confirmation TODO chip at the user's request and assigned the slide to
+  Joseph. The February timeline position is unchanged. Updated the timeline notes and
+  AGENTS.md to match. Direct deletion and speaker change, with no sandbox round. PR #128.
+
 - **2026-09-16, migrating_an_instance slide 12, Joseph assigned to Migration wave workflow.**
   At Dafydd's request, changed `#s08`'s `data-speaker` from Dafydd to Joseph and aligned
   the authoritative timeline notes and `AGENTS.md` slide-order entry. Direct name swap,

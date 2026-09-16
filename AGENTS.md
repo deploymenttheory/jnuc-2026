@@ -339,7 +339,7 @@ overlay - keep the two in step when slides move.
     line each, with the lead and the takeaway as a quiet right-hand column. The pixel-art
     icons that used to ride beside each ring came off 2026-09-01 at Joseph's request ("for
     now"); the rings and rail carry the sequence on their own. Sources stay in `art/`,
-    unused for now) - **Dafydd**
+    unused for now) - **Joseph**
 18. `s-pivot` One codebase for every instance (rewritten 2026-08-28 with `s15b` as one arc:
     context, problem, techniques. The DRY objective in an accent band, then a real
     `jamfpro_static_computer_group` block whose `assigned_computer_ids` are the only amber
@@ -424,7 +424,8 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
 - **Staging migration:** not imported - nuked bar essentials (APNS, cloud IdP), then prod's
   configuration pointed at it and iterated through errors to a clean run. Presented as a
   highlight of the talk. Sequenced *before* the module pivot, which it caused. Kept-items
-  confirmed by Gordon Deacon, Aug 2026; the month is still open and drives the timeline bar.
+  confirmed by Gordon Deacon, Aug 2026. The slide currently highlights February 2026 on the
+  timeline; its month-confirmation TODO chip was removed at the user's request on 2026-09-16.
 - **Route to live (today):** Sandbox (isolated, CLI and GUI, no restrictions - onboarding and
   leadership hands-on; sits outside the route) -> DevTest (under IdP and device compliance, not
   change controlled) -> Staging (exact replica of prod: IdP, device compliance, directory access
@@ -469,7 +470,6 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
 | Slide | TODO | Owner |
 |---|---|---|
 | `s-pivot` | The rest of the instance-unique list, beyond static computer group members, the push certificate and Volume Purchasing content tokens | Dafydd |
-| `s-staging` | Confirm the month - drives the timeline bar | Gordon Deacon |
 
 `s18` carried the last of Q12 (`spec.md` §4) until 2026-09-03, when the slide was rebuilt
 as a verbatim copy of the training deck's resources slide and lost both its chips with it:
