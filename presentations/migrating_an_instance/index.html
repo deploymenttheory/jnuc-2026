@@ -836,11 +836,11 @@ body.reader .reader-extra {
 .check-detail { font-size: var(--fs-caption); line-height: var(--lh-body); color: var(--c-text-muted); }
 /* Two-portion split, sandbox option D, accepted 2026-08-27: instance prep and migration
    prep side by side. Row grid added 2026-09-01 (same subgrid technique as #s01's
-   constraints panels) so the heading and each of the three checklist rows share a
-   height across both columns, rather than each side wrapping independently and
-   drifting out of line. */
+   constraints panels) so the heading and first three checklist rows share a
+   height across both columns. A fifth grid row holds the fourth migration-prep
+   item without moving the existing rows out of line. */
 #s07 .prep-portions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
-#s07 .prep-portion { display: grid; grid-template-rows: subgrid; grid-row: span 4; gap: var(--sp-4); align-items: start; }
+#s07 .prep-portion { display: grid; grid-template-rows: subgrid; grid-row: span 5; gap: var(--sp-4); align-items: start; }
 #s07 .prep-portion .checklist { display: contents; }
 .prep-heading { font-family: var(--f-display); font-size: var(--fs-h2); font-weight: 700; line-height: var(--lh-tight); color: var(--c-accent); }
 .prep-portion-migration { padding-left: var(--sp-4); border-left: var(--bw-1) solid var(--c-hairline); }
@@ -1842,11 +1842,18 @@ body.presenter #viewport { display: none; }
                 <span class="check-detail">Ensure there are no org-wide policies blocking the actions you intend to take, specifically for Terraform or existing infra.</span>
               </span>
             </li>
+            <li>
+              <span class="check" aria-hidden="true"></span>
+              <span class="check-body">
+                <strong class="check-lead"><svg class="ico" aria-hidden="true"><use href="#i-box"/></svg>Private Terraform registry</strong>
+                <span class="check-detail">Add the required provider to your private Terraform registry before starting the migration.</span>
+              </span>
+            </li>
           </ul>
         </div>
       </div>
       <aside class="notes">
-        <p>The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back. Migration prep sits alongside it: runner line of sight, a backout plan and a check for org-wide policies, agreed before the first import.</p>
+        <p>The tidy-up mattered - importing dead config would have codified years of cruft. PRUNE found the unused resources; jamf-resource-deleter removed them safely, with a JSON backup and restore path in case anything was needed back. Migration prep sits alongside it: runner line of sight, a backout plan and a check for org-wide policies, agreed before the first import. Add the required provider to your private Terraform registry before starting the migration.</p>
       </aside>
     </section>
 
