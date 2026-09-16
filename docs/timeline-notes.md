@@ -23,7 +23,7 @@ month or range.
 | 9 | Resource migration sequencing | Dafydd | Nov 25 |
 | 10 | Singletons first | Gordon | December 25 |
 | 11 | You will not own the whole stack | Gordon | None |
-| 12 | Migration wave workflow | Dafydd | None |
+| 12 | Migration wave workflow | Joseph | None |
 | 13 | Tools and helpers | Gordon | None |
 | 14 | Dynamic creation with for_each | Joseph | Jan 2026 |
 | 15 | for_each exceptions | Joseph | None |

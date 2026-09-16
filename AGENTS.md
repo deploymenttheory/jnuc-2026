@@ -318,7 +318,7 @@ overlay - keep the two in step when slides move.
     `#s-sentinel .sn-*`) - **Gordon**
 12. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; seven steps as full-width
     bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
-    with a red left edge) - **Dafydd**
+    with a red left edge) - **Joseph**
 13. `s11` Tools and helpers (the pipeline diagram unchanged on the left - jamfpy -> script
     -> map -> for_each -> import; on the right the same four points as a numbered list, 1
     to 4 in mono in an accent gutter, each name in the display face, bold: PRUNE and
