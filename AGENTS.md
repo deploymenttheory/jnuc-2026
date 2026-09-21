@@ -321,8 +321,8 @@ overlay - keep the two in step when slides move.
     `#s-sentinel .sn-*`) - **Gordon**
 12. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; eight steps as full-width
     bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
-    with a red left edge, step 8 the refinement pass that makes the code DRY, added
-    2026-09-21) - **Joseph**
+    with a red left edge, step 6 the refinement pass that makes the code DRY, added
+    2026-09-21 at position 8 and moved to position 6 the same day) - **Joseph**
 13. `s11` Tools and helpers (the pipeline diagram unchanged on the left - jamfpy -> script
     -> map -> for_each -> import; on the right the same four points as a numbered list, 1
     to 4 in mono in an accent gutter, each name in the display face, bold: PRUNE and
@@ -1335,12 +1335,13 @@ request so the downturn reads as a real drop, not a shallow taper - six months, 
 and the gentle net upward trend by the end are unchanged; the page is deleted, and its
 former done entry was cleared in the 2026-09-08 sandbox reset).
 Awaiting a decision under `presentations/sandbox/migrating_an_instance/`:
-`s08-step-8-dry` (2026-09-21, slide 12, Joseph - three treatments of the eighth step on
-refinement and DRY added after step 7: A the shipped state, a plain peer continuing the
-staircase one more notch, with each band's padding tightened from `--sp-2` to `--sp-1` so
-all eight clear the timeline strip; B step 8 set apart as the pass that happens once a
-wave has closed, flush left behind a hairline rule with a muted border and number, reworded
-to open "Once the wave closes,"; C the staircase retired, all eight bands flush left at the
+`s08-step-8-dry` (2026-09-21, slide 12, Joseph - three treatments of the refinement-and-DRY
+step, moved from position 8 to position 6 the same day: A the shipped state, a plain peer
+of the other seven at the staircase notch position 6 already had, with each band's padding
+tightened from `--sp-2` to `--sp-1` so all eight clear the timeline strip; B the step set
+apart as the run's one piece of code work rather than process or communication, bracketed
+by hairline rules with its border-left and number in the cornflower accent-2 used for HCL
+syntax elsewhere in the deck; C the staircase retired, all eight bands flush left at the
 same tightened padding as A).
 
 Decided (all under `presentations/sandbox/migrating_an_instance/`):

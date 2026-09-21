@@ -109,7 +109,7 @@
       "notes": [
         "Step 3 is the one people skip and regret - revoking write permissions makes the freeze real rather than polite.",
         "Bulk waves ran December into January.",
-        "Step 8 is the refinement pass - it ran through February and March, after the bulk waves closed, not inside each one."
+        "Step 6 is the refinement pass, tidying the generated HCL into a DRY for_each map before documentation and the announcement."
       ]
     },
     {
