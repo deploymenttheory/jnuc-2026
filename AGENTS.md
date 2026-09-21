@@ -144,7 +144,7 @@ one and the other does not follow.
 | `from-clicks-to-code-jnuc2026.key` | The committed Keynote download, written by `tools/build-downloads.mjs`. The landing page links to this exact filename, so it is set in the script, not chosen freely. Rebuild and commit it with any deck edit. |
 | `from-clicks-to-code-jnuc2026.pptx` | The committed PowerPoint download - the same capture as the `.key`, assembled by PptxGenJS instead of Keynote. Same rules: filename fixed in the script, rebuild and commit it with any deck edit. |
 | `presenter.json` | Per-slide speaker notes and timer lengths plus the 30-minute talk limit. Notes are a copy of the deck's `<aside class="notes">` text and the slide order mirrors the deck - the deck wins when they differ, and `feedback-workflow.md` carries a check that must print `OK` before every push. Regenerated from the deck on 2026-08-27 (timers kept). Timer allocations are proposed, not rehearsed. Nothing reads this file yet. |
-| `art/` | Source art for the pixel-art icons that used to sit on slide 17: `s-staging-steps.md` (the Pixelforge spec - palette, rules and prose for all three) and `s-staging-wipe.png` / `s-staging-apply.png` / `s-staging-iterate.png`, 1024px square (Pixelforge's ceiling; redrawn at that size 2026-08-28, up from 384px), exported at scale 1. The icons came off the slide 2026-09-01 ("for now"); these files are unused but kept so the art can come back. See Embedded artwork below. |
+| `art/` | Source art for the pixel-art icons that used to sit on slide 19: `s-staging-steps.md` (the Pixelforge spec - palette, rules and prose for all three) and `s-staging-wipe.png` / `s-staging-apply.png` / `s-staging-iterate.png`, 1024px square (Pixelforge's ceiling; redrawn at that size 2026-08-28, up from 384px), exported at scale 1. The icons came off the slide 2026-09-01 ("for now"); these files are unused but kept so the art can come back. See Embedded artwork below. |
 | `spec.md` | Spec and change history: the original build runbook, Joseph's source narrative and full repo tree, all three Q&A rounds answered inline, and a decision index. **Historical** - sections marked SUPERSEDED (deck order, palette values, open-questions index) predate the story restructure, and everything it says about the light LBG-green palette predates the JNUC template adoption. |
 
 `spec.md` is provenance for every fact in the deck. Do not delete it; do not treat its
@@ -179,7 +179,7 @@ quotes is stale.
   policy glyph anywhere in the pack, so slide 15 stands `queue-list` in.
 - **Embedded artwork.** Everything the deck draws with an image is a data URI in the HTML,
   because the deck has to work opened straight off disk. That is the logos -
-  white-on-transparent SVGs living in tokens - and the icon sprite above. Slide 16 used to carry three multicolour
+  white-on-transparent SVGs living in tokens - and the icon sprite above. Slide 19 used to carry three multicolour
   pixel-art step icons inline as `<img class="s-staging-art">`; they came off the slide
   2026-09-01 ("for now") and the deck currently embeds no raster art. If they (or any other
   pixel art) return: this deck has **no theme system** - no `[data-theme]` blocks, no
@@ -212,8 +212,9 @@ quotes is stale.
   never in a range. Currently `#s16b` (By the numbers) is the only slide that advances to
   it (bright accent, since the story moves from March to now); `#s17`, `#s18` and
   `#s-thanks` repeat `data-when="now"` and render muted, carrying that state to the end of
-  the deck. `#s15b` (Getting as close to DRY as we can) is the last slide before that,
-  advancing to `2026-03` (bright).
+  the deck. `#s15b` (Getting as close to DRY as we can) advances to `2026-03` (bright);
+  `#s-staging` (Rebuilding staging) repeats that value straight after it, rendering muted,
+  and is the last slide before `#s16b` advances to `now`.
 - **The highlight only goes accent when the story moves.** A slide whose `data-when` range
   repeats the previous slide's renders those cells in the muted static state (via
   `#timeline.tl-static`); the month label stays accent either way. This is also how a slide
@@ -334,19 +335,13 @@ overlay - keep the two in step when slides move.
     window - light chrome bar, red/amber/lime traffic-light dots, a centred
     `joseph@jnuc - zsh` title, and a blinking cursor on a fresh prompt line below the
     result; four gate cards unchanged) - **Joseph**
-17. `s-staging` Rebuilding staging (the highlight; sits before the module pivot it caused;
-    a numbered run of the three steps down the left on a rail, verb and sentence on one
-    line each, with the lead and the takeaway as a quiet right-hand column. The pixel-art
-    icons that used to ride beside each ring came off 2026-09-01 at Joseph's request ("for
-    now"); the rings and rail carry the sequence on their own. Sources stay in `art/`,
-    unused for now) - **Joseph**
-18. `s-pivot` One codebase for every instance (rewritten 2026-08-28 with `s15b` as one arc:
+17. `s-pivot` One codebase for every instance (rewritten 2026-08-28 with `s15b` as one arc:
     context, problem, techniques. The DRY objective in an accent band, then a real
     `jamfpro_static_computer_group` block whose `assigned_computer_ids` are the only amber
     thing on the slide, against a shared / unique-to-one-instance breakdown. Closes on "The
     resource is shared. Part of its configuration cannot be." Rules are `#s-pivot .dry-*`)
     - **Joseph**
-19. `s15b` Getting as close to DRY as we can (the second half of that arc: six techniques in
+18. `s15b` Getting as close to DRY as we can (the second half of that arc: six techniques in
     a three by two grid, each carrying the syntax you actually write - input variables, local
     values, data sources, child modules, configuration as data (those four marked as what the
     estate runs), Terragrunt - over a caution that CLI workspaces share a backend. Terraform Stacks
@@ -354,6 +349,12 @@ overlay - keep the two in step when slides move.
     Enterprise 2.0 on a resource-under-management plan, so it is unavailable to anyone
     running Terraform CLI and does not belong in a list of techniques the audience can use. The module tree moved
     into the reader-mode popover. Rules are `#s15b .tech-*`) - **Dafydd**
+19. `s-staging` Rebuilding staging (the highlight; sits after the module pivot it caused,
+    immediately before By the numbers; a numbered run of the three steps down the left on a rail, verb and sentence on one
+    line each, with the lead and the takeaway as a quiet right-hand column. The pixel-art
+    icons that used to ride beside each ring came off 2026-09-01 at Joseph's request ("for
+    now"); the rings and rail carry the sequence on their own. Sources stay in `art/`,
+    unused for now) - **Joseph**
 20. `s16b` By the numbers (one hero number, 900 PRs merged, with the supporting figures -
     35-40 contributors, 1,902 commits, 134 HCL files, 19,000+ lines of code - in a quiet
     row below; date range Jan to Sept 2026; option C, accepted 2026-08-28) - **Gordon**
