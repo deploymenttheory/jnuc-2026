@@ -747,7 +747,7 @@ it up - either way it is on disk for a recovering session.
   AGENTS.md's slide-order line for `#s08` gained a clause naming what step 4 now covers.
   Presenter sync prints `OK`, dash and diff checks pass. Disk screenshot of `#s08` blocked
   again by the same worktree-isolation guard on the quoted Chrome binary path - skipped per
-  the coordinator, who verifies visually on their side. PR #<TODO>.
+  the coordinator, who verifies visually on their side. PR #132.
 
 - **2026-09-21, migrating_an_instance slide 12 (`#s08`), refinement step moved to position
   6.** Joseph: "for 12, move the new 8 to 6 so it's refine -> docs -> announce." Moved the
