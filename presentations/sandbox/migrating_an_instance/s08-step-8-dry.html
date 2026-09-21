@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sandbox - slide 12 an eighth step on refinement and DRY</title>
+<link rel="stylesheet" href="../sandbox.css">
+</head>
+<body>
+<div class="wrap">
+  <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / From Clicks to Code / slide 12</p>
+  <h1>Slide 12 - Migration wave workflow, an eighth step</h1>
+  <p class="lede">Joseph asked for an eighth step on refinement and making the code DRY. That step is in the deck now, after step 7 ("Announce to all teams: the resource is now Terraform-managed"): "Refine the generated HCL into a DRY <code>for_each</code> map: dedupe, name the IDs, share the locals," grounded in slide 14's refinement passes and the settled fact that refinement ran through February and March, after the December-January bulk waves closed. It carries the <code>i-squares-2x2</code> icon already used for slide 14's "Ours, after the passes" panel and slide 18's "Shared" row, and the <code>.slide-sub</code> line now counts eight steps. The open question is how the eighth band sits: a plain peer of 1 to 7, or set apart as work that happens after a wave closes rather than inside one, and whether the staircase indent - now one notch deeper - is worth keeping. Each render below is the real slide with only the option's CSS on top.</p>
+  <nav class="jump" aria-label="Options">
+    <a href="#a">A</a><a href="#b">B</a><a href="#c">C</a>
+  </nav>
+
+  <section class="option" id="a">
+    <h2>Option A - Same descent, one more notch <span class="tag">live now</span></h2>
+    <p>The deck as it ships from this PR. Step 8 is a plain peer of 1 to 7: the same card, the same staircase indent one notch deeper, the same border-left treatment. To make the eighth band clear the timeline strip, each band's vertical padding was tightened from <code>--sp-2</code> to <code>--sp-1</code> - the row's height is set by the step number's type size, not the body text, so that was the padding with room to give. Pick this if the refinement pass reads best as simply the next line in the same checklist the speaker has been walking down.</p>
+    <div class="frame"><iframe data-variant="a" src="../../migrating_an_instance/index.html#s08" title="Option A"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-a"></pre></details>
+  </section>
+
+  <section class="option" id="b">
+    <h2>Option B - Set apart, after the wave closes</h2>
+    <p>Step 8 is not part of the freeze-and-import sequence the other seven describe - it is the pass that happened once resources were already Terraform-managed, running on its own timeline through February and March rather than inside each wave. This option says so visually: a hairline rule breaks the sequence above it, the band drops the staircase indent to sit flush left rather than travelling one more notch, and its left edge and number turn the deck's muted grey instead of the accent lime, reading as a different kind of step rather than a numbered continuation. The wording also shifts to name the moment: "Once the wave closes, refine the generated HCL into a DRY <code>for_each</code> map: dedupe, name the IDs, share the locals." The equivalent deck edit is the same CSS on <code>#s08 .stepper li:nth-child(8)</code> plus that sentence in the markup. Pick this if the slide should make the timing distinction itself, rather than leaving it to the speaker notes.</p>
+    <div class="frame"><iframe data-variant="b" src="../../migrating_an_instance/index.html#s08" title="Option B"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-b"></pre></details>
+  </section>
+
+  <section class="option" id="c">
+    <h2>Option C - Square the staircase off</h2>
+    <p>Rather than let the descent travel an eighth notch, every band drops its indent and lines up flush left - the staircase motif is retired for this slide rather than stretched to fit one more row. The vertical padding stays tightened to <code>--sp-1</code>, the same as option A: dropping the indent frees width, not height, so it does not undo the reason that tightening was needed. What it does buy is a slide that no longer keeps travelling rightward as it grows, and a sequence that reads as a plain numbered checklist rather than a descent - which also means step 8 no longer stands out from the seven before it. Pick this if the diagonal cue was decorative rather than load-bearing, and a uniform list reads just as well at eight steps as it did at seven.</p>
+    <div class="frame"><iframe data-variant="c" src="../../migrating_an_instance/index.html#s08" title="Option C"></iframe></div>
+    <details><summary>CSS on top of the deck</summary><pre id="css-c"></pre></details>
+  </section>
+
+  <p class="foot">To choose: name the option in chat, or describe what to change and this page gets a new set. Renders need the site served over HTTP - opened from disk the iframes load but the option CSS cannot be injected.</p>
+</div>
+
+<script>
+  // Each option is CSS layered onto the real deck slide. An option that is the deck as it
+  // ships injects nothing (empty string). Rules only touch #s08 and only use the deck's
+  // own tokens, so an accepted option can be pasted into the deck as-is.
+  const VARIANTS = {
+    a: ``,
+    b: `
+/* B - step 8 set apart as the pass that happens once a wave has closed, not inside it:
+   a hairline above it, flush left instead of one more staircase notch, and a muted left
+   edge and number instead of the accent. */
+#s08 .stepper li:nth-child(8) {
+  margin-left: 0;
+  margin-top: var(--sp-2);
+  padding-top: var(--sp-2);
+  border-top: var(--bw-1) solid var(--c-hairline);
+  border-left-color: var(--c-text-muted);
+}
+#s08 .stepper li:nth-child(8) .step-num { color: var(--c-text-muted); }
+`,
+    c: `
+/* C - the staircase is retired rather than stretched for an eighth notch: every band
+   squares up flush left. Padding stays at the deck's tightened --sp-1 - dropping the
+   indent frees width, not height, so the row count still sets how tall each band can be. */
+#s08 .step:nth-child(2),
+#s08 .step:nth-child(3),
+#s08 .step:nth-child(4),
+#s08 .step:nth-child(5),
+#s08 .step:nth-child(6),
+#s08 .step:nth-child(7),
+#s08 .step:nth-child(8) { margin-left: 0; }
+`,
+  };
+
+  for (const [key, css] of Object.entries(VARIANTS)) {
+    document.getElementById('css-' + key).textContent = css || '/* nothing - this is the deck as deployed */';
+  }
+
+  document.querySelectorAll('iframe[data-variant]').forEach((frame) => {
+    frame.addEventListener('load', () => {
+      const css = VARIANTS[frame.dataset.variant];
+      let doc;
+      try { doc = frame.contentDocument; } catch (e) { doc = null; }
+      if (!doc) return; // file:// - cross-origin iframe, nothing we can do
+      if (css) {
+        const style = doc.createElement('style');
+        style.textContent = css;
+        doc.head.appendChild(style);
+      }
+      if (frame.dataset.variant === 'b') {
+        const p = doc.querySelector('#s08 .stepper li:nth-child(8) p');
+        if (p) {
+          p.innerHTML = '<svg class="ico" aria-hidden="true"><use href="#i-squares-2x2"/></svg>Once the wave closes, refine the generated HCL into a DRY <span class="mono">for_each</span> map: dedupe, name the IDs, share the locals.';
+        }
+      }
+    });
+  });
+</script>
+</body>
+</html>
