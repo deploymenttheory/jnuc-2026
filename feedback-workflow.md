@@ -734,6 +734,21 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-21, migrating_an_instance slide 16 (`#s14`) moved to slide 18.**
+  At Joseph's request, moved Validating a migration to sit after Getting as close to DRY as
+  we can, immediately before Rebuilding staging. New run: 16 One codebase for every
+  instance, 17 Getting as close to DRY as we can, 18 Validating a migration, 19 Rebuilding
+  staging. Set `#s14`'s `data-when` to `2026-03`, repeating `#s15b` and rendering muted,
+  where it used to repeat `#s13`'s `2026-01`. Knock-on: none of `#s-pivot`, `#s15b` or
+  `#s-staging`'s states change - `#s-pivot` still advances from `#s13`'s January to
+  February and renders bright, `#s15b` still advances to March and renders bright, and
+  `#s-staging` still repeats March and renders muted. Reordered `presenter.json` to match,
+  corrected the timeline notes and AGENTS.md story-order entries and its slide-16/17 DRY
+  cross-reference, and fixed one `#s-staging` speaker note that pointed back at "the last
+  two slides" (the module pivot and DRY techniques), which is no longer accurate now that
+  `#s14` sits between them and staging. Direct move, no sandbox round. Presenter sync
+  prints `OK`, dash and diff checks pass. PR #133.
+
 - **2026-09-21, migrating_an_instance slide 12 (`#s08`), step 4 reworded to cover the
   import statements.** Joseph: `amend step 4 on 12 to contain "creation of import
   statemtns & run"`. Step 4 was "Run the import."; now "Create the import statements from

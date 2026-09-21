@@ -2150,44 +2150,6 @@ body.presenter #viewport { display: none; }
       </aside>
     </section>
 
-    <!-- ============================ S14 - Validating a migration ============================ -->
-    <section class="slide" id="s14" aria-label="Validating a migration" data-speaker="Joseph" data-when="2026-01">
-      <h1 class="slide-title">Validating a migration</h1>
-      <div class="card terminal">
-        <div class="term-head" aria-hidden="true">
-          <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
-          <span class="term-title">joseph@jnuc - zsh</span>
-        </div>
-        <pre class="term-body"><span class="muted">$ terraform plan</span>
-
-<span class="term-ok">No changes. Your infrastructure matches the configuration.</span>
-<span class="muted">$ </span><span class="term-cursor" aria-hidden="true"></span></pre>
-      </div>
-      <ol class="gates">
-        <li class="card gate">
-          <span class="gate-num">1</span>
-          <p><svg class="ico ico-accent" aria-hidden="true"><use href="#i-check-circle"/></svg><code class="inline">terraform plan</code> returns zero diff.</p>
-        </li>
-        <li class="card gate">
-          <span class="gate-num">2</span>
-          <p><svg class="ico ico-accent" aria-hidden="true"><use href="#i-check-circle"/></svg>State is stored in a remote backend and not locally inspectable - AI-assisted checks confirmed each resource exists with the correct dependencies assigned.</p>
-        </li>
-        <li class="card gate">
-          <span class="gate-num">3</span>
-          <p><svg class="ico ico-accent" aria-hidden="true"><use href="#i-check-circle"/></svg>Sweep for orphaned resources living outside the HCL config.</p>
-        </li>
-        <li class="card gate gate-final">
-          <span class="gate-num">4</span>
-          <p><svg class="ico ico-accent" aria-hidden="true"><use href="#i-check-circle"/></svg>Only then: announce the resource type is Terraform-managed, and publish the BAU example.</p>
-        </li>
-      </ol>
-      <p class="takeaway">A zero diff only proves something because UI write access went <em>before</em> the import - nobody could have changed the instance behind us.</p>
-      <aside class="notes">
-        <p>Gate 4 is the point of no return - and the point of the whole exercise.</p>
-        <p>State lives in a remote backend and is not locally inspectable, hence the AI checks in gate 2.</p>
-      </aside>
-    </section>
-
     <!-- ============================ Growing pains ============================ -->
     <section class="slide" id="s-pivot" aria-label="One codebase for every instance" data-speaker="Joseph" data-when="2026-02">
       <h1 class="slide-title">One codebase for every instance</h1>
@@ -2298,6 +2260,44 @@ inputs = { ... }</p>
       </aside>
     </section>
 
+    <!-- ============================ S14 - Validating a migration ============================ -->
+    <section class="slide" id="s14" aria-label="Validating a migration" data-speaker="Joseph" data-when="2026-03">
+      <h1 class="slide-title">Validating a migration</h1>
+      <div class="card terminal">
+        <div class="term-head" aria-hidden="true">
+          <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+          <span class="term-title">joseph@jnuc - zsh</span>
+        </div>
+        <pre class="term-body"><span class="muted">$ terraform plan</span>
+
+<span class="term-ok">No changes. Your infrastructure matches the configuration.</span>
+<span class="muted">$ </span><span class="term-cursor" aria-hidden="true"></span></pre>
+      </div>
+      <ol class="gates">
+        <li class="card gate">
+          <span class="gate-num">1</span>
+          <p><svg class="ico ico-accent" aria-hidden="true"><use href="#i-check-circle"/></svg><code class="inline">terraform plan</code> returns zero diff.</p>
+        </li>
+        <li class="card gate">
+          <span class="gate-num">2</span>
+          <p><svg class="ico ico-accent" aria-hidden="true"><use href="#i-check-circle"/></svg>State is stored in a remote backend and not locally inspectable - AI-assisted checks confirmed each resource exists with the correct dependencies assigned.</p>
+        </li>
+        <li class="card gate">
+          <span class="gate-num">3</span>
+          <p><svg class="ico ico-accent" aria-hidden="true"><use href="#i-check-circle"/></svg>Sweep for orphaned resources living outside the HCL config.</p>
+        </li>
+        <li class="card gate gate-final">
+          <span class="gate-num">4</span>
+          <p><svg class="ico ico-accent" aria-hidden="true"><use href="#i-check-circle"/></svg>Only then: announce the resource type is Terraform-managed, and publish the BAU example.</p>
+        </li>
+      </ol>
+      <p class="takeaway">A zero diff only proves something because UI write access went <em>before</em> the import - nobody could have changed the instance behind us.</p>
+      <aside class="notes">
+        <p>Gate 4 is the point of no return - and the point of the whole exercise.</p>
+        <p>State lives in a remote backend and is not locally inspectable, hence the AI checks in gate 2.</p>
+      </aside>
+    </section>
+
     <!-- ============================ Rebuilding staging ============================ -->
     <section class="slide" id="s-staging" aria-label="Rebuilding staging" data-speaker="Joseph" data-when="2026-03">
       <h1 class="slide-title">Rebuilding staging</h1>
@@ -2326,7 +2326,7 @@ inputs = { ... }</p>
       <aside class="notes">
         <p>This is the highlight - slow down here.</p>
         <p>Importing staging would have locked in years of drift. So we wiped it, kept APNS and the cloud identity provider, pointed production's configuration at it, and worked through the errors until the run came back clean. Parity is inherited now, not claimed.</p>
-        <p>This is what showed up the repo problem behind the last two slides: a real staging environment is only useful if you can deploy there first, and back then a change there went straight to production too.</p>
+        <p>This is what showed up the repo problem behind the module pivot and DRY techniques: a real staging environment is only useful if you can deploy there first, and back then a change there went straight to production too.</p>
       </aside>
     </section>
 
