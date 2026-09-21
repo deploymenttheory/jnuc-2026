@@ -11,21 +11,21 @@
 <div class="wrap">
   <p class="crumb"><a href="../../">JNUC 2026</a> / <a href="./">Sandbox</a> / From Clicks to Code / slide 12</p>
   <h1>Slide 12 - Migration wave workflow, an eighth step</h1>
-  <p class="lede">Joseph asked for an eighth step on refinement and making the code DRY. That step is in the deck now, after step 7 ("Announce to all teams: the resource is now Terraform-managed"): "Refine the generated HCL into a DRY <code>for_each</code> map: dedupe, name the IDs, share the locals," grounded in slide 14's refinement passes and the settled fact that refinement ran through February and March, after the December-January bulk waves closed. It carries the <code>i-squares-2x2</code> icon already used for slide 14's "Ours, after the passes" panel and slide 17's "Shared" row, and the <code>.slide-sub</code> line now counts eight steps. The open question is how the eighth band sits: a plain peer of 1 to 7, or set apart as work that happens after a wave closes rather than inside one, and whether the staircase indent - now one notch deeper - is worth keeping. Each render below is the real slide with only the option's CSS on top.</p>
+  <p class="lede">Joseph asked for an eighth step on refinement and making the code DRY, then on 2026-09-21 asked for that step moved from position 8 to position 6, so the run reads refine, then docs, then announce. The step sits in the deck now between step 5 ("Validate the import succeeded") and the renumbered step 7 ("Publish example documentation..."): "Refine the generated HCL into a DRY <code>for_each</code> map: dedupe, name the IDs, share the locals," grounded in slide 14's refinement passes. It carries the <code>i-squares-2x2</code> icon already used for slide 14's "Ours, after the passes" panel and slide 17's "Shared" row, and the <code>.slide-sub</code> line still counts eight steps. The open question is how the band at position 6 sits: a plain peer of the other seven, or set apart as the run's one piece of code work rather than process or communication. Each render below is the real slide with only the option's CSS on top.</p>
   <nav class="jump" aria-label="Options">
     <a href="#a">A</a><a href="#b">B</a><a href="#c">C</a>
   </nav>
 
   <section class="option" id="a">
     <h2>Option A - Same descent, one more notch <span class="tag">live now</span></h2>
-    <p>The deck as it ships from this PR. Step 8 is a plain peer of 1 to 7: the same card, the same staircase indent one notch deeper, the same border-left treatment. To make the eighth band clear the timeline strip, each band's vertical padding was tightened from <code>--sp-2</code> to <code>--sp-1</code> - the row's height is set by the step number's type size, not the body text, so that was the padding with room to give. Pick this if the refinement pass reads best as simply the next line in the same checklist the speaker has been walking down.</p>
+    <p>The deck as it ships from this PR. The refinement step now sits at position 6, a plain peer of the other seven: the same card, the staircase indent that position already carried before the eighth step existed, the same border-left treatment. All eight bands still clear the timeline strip on the vertical padding tightened from <code>--sp-2</code> to <code>--sp-1</code> - the row's height is set by the step number's type size, not the body text, so that was the padding with room to give. Pick this if the refinement pass reads best as simply the next line in the same checklist the speaker has been walking down.</p>
     <div class="frame"><iframe data-variant="a" src="../../migrating_an_instance/index.html#s08" title="Option A"></iframe></div>
     <details><summary>CSS on top of the deck</summary><pre id="css-a"></pre></details>
   </section>
 
   <section class="option" id="b">
-    <h2>Option B - Set apart, after the wave closes</h2>
-    <p>Step 8 is not part of the freeze-and-import sequence the other seven describe - it is the pass that happened once resources were already Terraform-managed, running on its own timeline through February and March rather than inside each wave. This option says so visually: a hairline rule breaks the sequence above it, the band drops the staircase indent to sit flush left rather than travelling one more notch, and its left edge and number turn the deck's muted grey instead of the accent lime, reading as a different kind of step rather than a numbered continuation. The wording also shifts to name the moment: "Once the wave closes, refine the generated HCL into a DRY <code>for_each</code> map: dedupe, name the IDs, share the locals." The equivalent deck edit is the same CSS on <code>#s08 .stepper li:nth-child(8)</code> plus that sentence in the markup. Pick this if the slide should make the timing distinction itself, rather than leaving it to the speaker notes.</p>
+    <h2>Option B - Set apart as the one code step</h2>
+    <p>Step 6 is the only line in this run that is code, not process: steps 1, 2, 7 and 8 tell people something, steps 3, 4 and 5 run or gate the mechanical import. This option marks that difference rather than the timing that used to justify setting the band apart: hairline rules bracket it above and below, and its border-left and number take the cornflower <code>--c-accent-2</code> already used for HCL syntax elsewhere in the deck, in place of the lime every process step carries - the same kind of departure step 3's freeze already makes with danger red. The staircase indent stays exactly where position 6 already sits, so the sequence still reads as one descent with a coloured step in it rather than a break in the line. The equivalent deck edit is the same CSS on <code>#s08 .stepper li:nth-child(6)</code>, no markup change. Pick this if the code step should read differently from the ones either side of it, without the slide claiming a timing it no longer has.</p>
     <div class="frame"><iframe data-variant="b" src="../../migrating_an_instance/index.html#s08" title="Option B"></iframe></div>
     <details><summary>CSS on top of the deck</summary><pre id="css-b"></pre></details>
   </section>
@@ -47,17 +47,19 @@
   const VARIANTS = {
     a: ``,
     b: `
-/* B - step 8 set apart as the pass that happens once a wave has closed, not inside it:
-   a hairline above it, flush left instead of one more staircase notch, and a muted left
-   edge and number instead of the accent. */
-#s08 .stepper li:nth-child(8) {
-  margin-left: 0;
-  margin-top: var(--sp-2);
-  padding-top: var(--sp-2);
+/* B - step 6 marked as the run's one piece of code work rather than process or
+   communication: hairline rules bracket the band above and below, and its border-left
+   and number take the cornflower accent-2 already used for HCL syntax elsewhere in the
+   deck - the same kind of departure step 3's freeze already makes with danger red.
+   Indent stays exactly where position 6 already sits in the staircase, so no extra
+   height is added and nothing is pushed onto the timeline strip. */
+#s08 .stepper li:nth-child(6) {
+  background: color-mix(in srgb, var(--c-accent-2) 14%, var(--c-surface));
   border-top: var(--bw-1) solid var(--c-hairline);
-  border-left-color: var(--c-text-muted);
+  border-bottom: var(--bw-1) solid var(--c-hairline);
+  border-left-color: var(--c-accent-2);
 }
-#s08 .stepper li:nth-child(8) .step-num { color: var(--c-text-muted); }
+#s08 .stepper li:nth-child(6) .step-num { color: var(--c-accent-2); }
 `,
     c: `
 /* C - the staircase is retired rather than stretched for an eighth notch: every band
@@ -87,12 +89,6 @@
         const style = doc.createElement('style');
         style.textContent = css;
         doc.head.appendChild(style);
-      }
-      if (frame.dataset.variant === 'b') {
-        const p = doc.querySelector('#s08 .stepper li:nth-child(8) p');
-        if (p) {
-          p.innerHTML = '<svg class="ico" aria-hidden="true"><use href="#i-squares-2x2"/></svg>Once the wave closes, refine the generated HCL into a DRY <span class="mono">for_each</span> map: dedupe, name the IDs, share the locals.';
-        }
       }
     });
   });

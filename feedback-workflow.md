@@ -734,6 +734,18 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-21, migrating_an_instance slide 12 (`#s08`), refinement step moved to position
+  6.** Joseph: "for 12, move the new 8 to 6 so it's refine -> docs -> announce." Moved the
+  refine-and-DRY `<li>` intact from position 8 to 6; renumbered steps 6-8 so the run reads
+  refine, publish docs, announce. Speaker note and presenter.json reworded to name step 6 and
+  drop the "not inside each one" timing claim, without asserting a new one. Sandbox page
+  `s08-step-8-dry` kept open: option A's paragraph corrected, option C unchanged, option B
+  rebuilt around step 6 being the run's only code work rather than the dead after-the-wave
+  premise. Sandbox index entry and AGENTS.md slide-order/sandbox entries corrected for the
+  move. Presenter sync prints `OK`, dash and diff checks pass. Chrome screenshot verification
+  (steps b and c) blocked by the worktree-isolation guard, which flags the quoted
+  "Google Chrome" binary path - not built around, per instructions. PR #131.
+
 - **2026-09-21, migrating_an_instance slide 12 (`#s08`), eighth step on refinement and DRY.**
   Joseph asked for a number 8 on slide 12 covering refinement and making the code DRY.
   Added after step 7: "Refine the generated HCL into a DRY for_each map: dedupe, name the
