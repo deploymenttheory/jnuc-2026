@@ -741,7 +741,7 @@ it up - either way it is on disk for a recovering session.
   staging/production with the correct capitalised forms; "resource"/"resources" stayed
   lower case throughout. No facts, layout or CSS changed. Mirrored the one notes change
   into `presenter.json`. Direct wording fix, no sandbox round. Presenter sync prints `OK`,
-  case, dash and diff checks pass. PR TBD.
+  case, dash and diff checks pass. PR #134.
 
 - **2026-09-21, migrating_an_instance slide 16 (`#s14`) moved to slide 18.**
   At Joseph's request, moved Validating a migration to sit after Getting as close to DRY as
