@@ -28,9 +28,9 @@ month or range.
 | 14 | Dynamic creation with for_each | Joseph | Jan 2026 |
 | 15 | for_each exceptions | Joseph | None |
 | 16 | Validating a migration | Joseph | None |
-| 17 | Rebuilding staging | Joseph | Feb 2026 |
-| 18 | One codebase for every instance | Joseph | None |
-| 19 | Getting as close to DRY as we can | Dafydd | March 2026 |
+| 17 | One codebase for every instance | Joseph | Feb 2026 |
+| 18 | Getting as close to DRY as we can | Dafydd | March 2026 |
+| 19 | Rebuilding staging | Joseph | None |
 | 20 | By the numbers | Gordon | Now |
 | 21 | Questions | Anyone | None |
 | 22 | Learning materials | Anyone | None |

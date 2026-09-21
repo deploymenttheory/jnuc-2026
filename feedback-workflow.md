@@ -734,6 +734,18 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-21, migrating_an_instance slide 17 (`#s-staging`) moved to slide 19.**
+  At Joseph's request, moved Rebuilding staging to sit after Getting as close to DRY as we
+  can, immediately before By the numbers. New run: 17 One codebase for every instance, 18
+  Getting as close to DRY as we can, 19 Rebuilding staging. Set `#s-staging`'s `data-when`
+  to `2026-03`, repeating `#s15b` and rendering muted. Knock-on: `#s-pivot` now follows
+  `#s14`'s January directly, so it advances to February and renders bright, where it used
+  to render muted behind staging. Reordered `presenter.json` to match, corrected the
+  timeline notes and AGENTS.md story-order entries, and fixed one `#s-staging` speaker
+  note that pointed forward at the two slides it now follows instead of precedes. Direct
+  move, no sandbox round. Presenter sync prints `OK`, dash and diff checks pass. PR
+  #<pending>.
+
 - **2026-09-16, migrating_an_instance slide 17 (`#s-staging`), TODO removed and speaker changed.**
   Removed the month-confirmation TODO chip at the user's request and assigned the slide to
   Joseph. The February timeline position is unchanged. Updated the timeline notes and
