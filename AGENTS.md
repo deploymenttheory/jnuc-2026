@@ -214,8 +214,9 @@ quotes is stale.
   it (bright accent, since the story moves from March to now); `#s17`, `#s18` and
   `#s-thanks` repeat `data-when="now"` and render muted, carrying that state to the end of
   the deck. `#s15b` (Getting as close to DRY as we can) advances to `2026-03` (bright);
-  `#s-staging` (Rebuilding staging) repeats that value straight after it, rendering muted,
-  and is the last slide before `#s16b` advances to `now`.
+  `#s14` (Validating a migration) and `#s-staging` (Rebuilding staging) repeat that value
+  in turn straight after it, both rendering muted, and `#s-staging` is the last slide
+  before `#s16b` advances to `now`.
 - **The highlight only goes accent when the story moves.** A slide whose `data-when` range
   repeats the previous slide's renders those cells in the muted static state (via
   `#timeline.tl-static`); the month label stays accent either way. This is also how a slide
@@ -333,17 +334,13 @@ overlay - keep the two in step when slides move.
 14. `s12` Dynamic creation with for_each (comparison + the refinement passes, Gordon/Joseph split) - **Joseph**
 15. `s13` for_each exceptions (single statement - policies stayed in plain HCL because
     they are too diverse for one map) - **Joseph**
-16. `s14` Validating a migration (the `terraform plan` block reads as a real terminal
-    window - light chrome bar, red/amber/lime traffic-light dots, a centred
-    `joseph@jnuc - zsh` title, and a blinking cursor on a fresh prompt line below the
-    result; four gate cards unchanged) - **Joseph**
-17. `s-pivot` One codebase for every instance (rewritten 2026-08-28 with `s15b` as one arc:
+16. `s-pivot` One codebase for every instance (rewritten 2026-08-28 with `s15b` as one arc:
     context, problem, techniques. The DRY objective in an accent band, then a real
     `jamfpro_static_computer_group` block whose `assigned_computer_ids` are the only amber
     thing on the slide, against a shared / unique-to-one-instance breakdown. Closes on "The
     resource is shared. Part of its configuration cannot be." Rules are `#s-pivot .dry-*`)
     - **Joseph**
-18. `s15b` Getting as close to DRY as we can (the second half of that arc: six techniques in
+17. `s15b` Getting as close to DRY as we can (the second half of that arc: six techniques in
     a three by two grid, each carrying the syntax you actually write - input variables, local
     values, data sources, child modules, configuration as data (those four marked as what the
     estate runs), Terragrunt - over a caution that CLI workspaces share a backend. Terraform Stacks
@@ -351,6 +348,10 @@ overlay - keep the two in step when slides move.
     Enterprise 2.0 on a resource-under-management plan, so it is unavailable to anyone
     running Terraform CLI and does not belong in a list of techniques the audience can use. The module tree moved
     into the reader-mode popover. Rules are `#s15b .tech-*`) - **Dafydd**
+18. `s14` Validating a migration (the `terraform plan` block reads as a real terminal
+    window - light chrome bar, red/amber/lime traffic-light dots, a centred
+    `joseph@jnuc - zsh` title, and a blinking cursor on a fresh prompt line below the
+    result; four gate cards unchanged) - **Joseph**
 19. `s-staging` Rebuilding staging (the highlight; sits after the module pivot it caused,
     immediately before By the numbers; a numbered run of the three steps down the left on a rail, verb and sentence on one
     line each, with the lead and the takeaway as a quiet right-hand column. The pixel-art
@@ -450,7 +451,7 @@ three-speaker title layout arrived. Former slides folded away in the earlier tri
   to the next that a `for_each` map has to carry every field any policy might need, which
   makes it harder to read than plain HCL. Which policy fields vary is not recorded - do not
   invent examples.
-- **DRY across instances (slides 17 and 18, confirmed by Dafydd, Aug 2026):** the objective
+- **DRY across instances (slides 16 and 17, confirmed by Dafydd, Aug 2026):** the objective
   was one Terraform codebase applied to every Jamf Pro instance. Jamf Pro does not allow it,
   because the same resource type carries configuration unique to the instance it is deployed
   in - a static computer group holds computer IDs, and the push certificate and Volume

@@ -27,9 +27,9 @@ month or range.
 | 13 | Tools and helpers | Gordon | None |
 | 14 | Dynamic creation with for_each | Joseph | Jan 2026 |
 | 15 | for_each exceptions | Joseph | None |
-| 16 | Validating a migration | Joseph | None |
-| 17 | One codebase for every instance | Joseph | Feb 2026 |
-| 18 | Getting as close to DRY as we can | Dafydd | March 2026 |
+| 16 | One codebase for every instance | Joseph | Feb 2026 |
+| 17 | Getting as close to DRY as we can | Dafydd | March 2026 |
+| 18 | Validating a migration | Joseph | None |
 | 19 | Rebuilding staging | Joseph | None |
 | 20 | By the numbers | Gordon | Now |
 | 21 | Questions | Anyone | None |

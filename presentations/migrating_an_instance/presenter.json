@@ -140,15 +140,6 @@
       ]
     },
     {
-      "id": "s14",
-      "title": "Validating a migration",
-      "timerSeconds": 60,
-      "notes": [
-        "Gate 4 is the point of no return - and the point of the whole exercise.",
-        "State lives in a remote backend and is not locally inspectable, hence the AI checks in gate 2."
-      ]
-    },
-    {
       "id": "s-pivot",
       "title": "One codebase for every instance",
       "timerSeconds": 60,
@@ -170,13 +161,22 @@
       ]
     },
     {
+      "id": "s14",
+      "title": "Validating a migration",
+      "timerSeconds": 60,
+      "notes": [
+        "Gate 4 is the point of no return - and the point of the whole exercise.",
+        "State lives in a remote backend and is not locally inspectable, hence the AI checks in gate 2."
+      ]
+    },
+    {
       "id": "s-staging",
       "title": "Rebuilding staging",
       "timerSeconds": 120,
       "notes": [
         "This is the highlight - slow down here.",
         "Importing staging would have locked in years of drift. So we wiped it, kept APNS and the cloud identity provider, pointed production's configuration at it, and worked through the errors until the run came back clean. Parity is inherited now, not claimed.",
-        "This is what showed up the repo problem behind the last two slides: a real staging environment is only useful if you can deploy there first, and back then a change there went straight to production too."
+        "This is what showed up the repo problem behind the module pivot and DRY techniques: a real staging environment is only useful if you can deploy there first, and back then a change there went straight to production too."
       ]
     },
     {
