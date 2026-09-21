@@ -744,7 +744,7 @@ it up - either way it is on disk for a recovering session.
   timeline notes and AGENTS.md story-order entries, and fixed one `#s-staging` speaker
   note that pointed forward at the two slides it now follows instead of precedes. Direct
   move, no sandbox round. Presenter sync prints `OK`, dash and diff checks pass. PR
-  #<pending>.
+  #129.
 
 - **2026-09-16, migrating_an_instance slide 17 (`#s-staging`), TODO removed and speaker changed.**
   Removed the month-confirmation TODO chip at the user's request and assigned the slide to
