@@ -745,7 +745,7 @@ it up - either way it is on disk for a recovering session.
   presenter.json gained a note on the pass's separate Feb-Mar timing. Sandbox page
   `s08-step-8-dry` offers three treatments - A the shipped plain peer, B set apart as the
   post-wave pass, C the staircase retired - awaiting a decision. Presenter sync prints
-  `OK`, dash and diff checks pass. PR #pending.
+  `OK`, dash and diff checks pass. PR #130.
 
 - **2026-09-21, migrating_an_instance slide 17 (`#s-staging`) moved to slide 19.**
   At Joseph's request, moved Rebuilding staging to sit after Getting as close to DRY as we
