@@ -159,8 +159,9 @@ quotes is stale.
   for navy surfaces, HelveticaNeue stack. Code blocks map hand-tokenised HCL to lime
   keywords, light-cornflower strings and amber numbers; TODO chips are solid amber with navy
   ink. Logos (jamf white, JNUC 2026) live in tokens as data URIs.
-- **Icons.** 98 marks from `_shared/jamf_pro_icons` sit across 19 of the 23 slides, all 25
-  candidates from the 2026-09-02 round accepted at once. They ship as one `<svg id="ico-sprite">`
+- **Icons.** 99 marks from `_shared/jamf_pro_icons` sit across 19 of the 23 slides (98 from
+  all 25 candidates from the 2026-09-02 round accepted at once, plus slide 12's step 8,
+  added 2026-09-21, reusing `i-squares-2x2`). They ship as one `<svg id="ico-sprite">`
   block of 41 `<symbol>`s at the top of the body, referenced as
   `<svg class="ico" aria-hidden="true"><use href="#i-name"/></svg>`, so an icon used on ten
   slides costs its path data once. Sources are the pack's `inline/` tier - one path,
@@ -317,9 +318,10 @@ overlay - keep the two in step when slides move.
     cards are gone, because three equal bordered cards read as a framework and made the
     anecdote look like the argument; the shared `.gate*` rules stay for `#s14`. Rules are
     `#s-sentinel .sn-*`) - **Gordon**
-12. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; seven steps as full-width
+12. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; eight steps as full-width
     bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
-    with a red left edge) - **Joseph**
+    with a red left edge, step 8 the refinement pass that makes the code DRY, added
+    2026-09-21) - **Joseph**
 13. `s11` Tools and helpers (the pipeline diagram unchanged on the left - jamfpy -> script
     -> map -> for_each -> import; on the right the same four points as a numbered list, 1
     to 4 in mono in an accent gutter, each name in the display face, bold: PRUNE and
@@ -1331,8 +1333,14 @@ other two SVGs removed); the fall through each gap was steepened in the same PR 
 request so the downturn reads as a real drop, not a shallow taper - six months, six cycles
 and the gentle net upward trend by the end are unchanged; the page is deleted, and its
 former done entry was cleared in the 2026-09-08 sandbox reset).
-No pages currently awaiting a decision under
-`presentations/sandbox/migrating_an_instance/`.
+Awaiting a decision under `presentations/sandbox/migrating_an_instance/`:
+`s08-step-8-dry` (2026-09-21, slide 12, Joseph - three treatments of the eighth step on
+refinement and DRY added after step 7: A the shipped state, a plain peer continuing the
+staircase one more notch, with each band's padding tightened from `--sp-2` to `--sp-1` so
+all eight clear the timeline strip; B step 8 set apart as the pass that happens once a
+wave has closed, flush left behind a hairline rule with a muted border and number, reworded
+to open "Once the wave closes,"; C the staircase retired, all eight bands flush left at the
+same tightened padding as A).
 
 Decided (all under `presentations/sandbox/migrating_an_instance/`):
 `s-singletons-no-id` (2026-09-02, slide 10 - four rewrites, not restyles, after Dafydd said

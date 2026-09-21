@@ -846,10 +846,11 @@ body.reader .reader-extra {
 .prep-portion-migration { padding-left: var(--sp-4); border-left: var(--bw-1) solid var(--c-hairline); }
 
 /* ============================ S08 ============================ */
-/* Seven bands stepping down the slide (option C, accepted 2026-08-27): one step per
-   line at slide size, each band starting a notch further in than the one above and all
-   of them ending flush right, so the sequence reads as a descent rather than a grid.
-   Uses the full slide height instead of a strip across the top. */
+/* Eight bands stepping down the slide (option C, accepted 2026-08-27; eighth band on
+   refinement and DRY added 2026-09-21): one step per line at slide size, each band
+   starting a notch further in than the one above and all of them ending flush right, so
+   the sequence reads as a descent rather than a grid. Uses the full slide height instead
+   of a strip across the top. */
 #s08 { display: flex; flex-direction: column; }
 .stepper {
   list-style: none;
@@ -865,7 +866,10 @@ body.reader .reader-extra {
   align-items: center;
   gap: var(--sp-4);
   font-size: var(--fs-body);
-  padding: var(--sp-2) var(--sp-4);
+  /* Vertical padding tightened from --sp-2 to --sp-1 2026-09-21 so an eighth band
+     still clears the timeline strip - the row's height is set by the step number
+     (--fs-h2), not the body text, so this is the padding that had room to give. */
+  padding: var(--sp-1) var(--sp-4);
   border-left-width: var(--bw-3);
   border-left-color: var(--c-accent);
 }
@@ -889,6 +893,7 @@ body.reader .reader-extra {
 .step:nth-child(5) { margin-left: calc(var(--sp-3) * 4); }
 .step:nth-child(6) { margin-left: calc(var(--sp-3) * 5); }
 .step:nth-child(7) { margin-left: calc(var(--sp-3) * 6); }
+.step:nth-child(8) { margin-left: calc(var(--sp-3) * 7); }
 
 /* ============================ S10 sequencing ============================ */
 .s10-intro { max-width: 1600px; margin-bottom: var(--sp-3); }
@@ -1971,7 +1976,7 @@ body.presenter #viewport { display: none; }
     <!-- ============================ S08 - Migration wave workflow ============================ -->
     <section class="slide" id="s08" aria-label="Migration wave workflow" data-speaker="Joseph" data-when="2025-12">
       <h1 class="slide-title">Migration wave workflow</h1>
-      <p class="slide-sub">The same seven steps ran for every wave, with GUI write access was revoked before each import.</p>
+      <p class="slide-sub">The same eight steps ran for every wave, with GUI write access was revoked before each import.</p>
       <ol class="stepper">
         <li class="card step">
           <span class="step-num">1</span>
@@ -2005,10 +2010,15 @@ body.presenter #viewport { display: none; }
           <span class="step-num">7</span>
           <p><svg class="ico" aria-hidden="true"><use href="#i-users"/></svg>Announce to all teams: the resource is now Terraform-managed.</p>
         </li>
+        <li class="card step">
+          <span class="step-num">8</span>
+          <p><svg class="ico" aria-hidden="true"><use href="#i-squares-2x2"/></svg>Refine the generated HCL into a DRY <span class="mono">for_each</span> map: dedupe, name the IDs, share the locals.</p>
+        </li>
       </ol>
       <aside class="notes">
         <p>Step 3 is the one people skip and regret - revoking write permissions makes the freeze real rather than polite.</p>
         <p>Bulk waves ran December into January.</p>
+        <p>Step 8 is the refinement pass - it ran through February and March, after the bulk waves closed, not inside each one.</p>
       </aside>
     </section>
 

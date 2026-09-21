@@ -734,6 +734,19 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-21, migrating_an_instance slide 12 (`#s08`), eighth step on refinement and DRY.**
+  Joseph asked for a number 8 on slide 12 covering refinement and making the code DRY.
+  Added after step 7: "Refine the generated HCL into a DRY for_each map: dedupe, name the
+  IDs, share the locals," grounded in slide 14's for_each refinement-pass slide-note and
+  the settled Feb-Mar 2026 refinement window; carries the `i-squares-2x2` icon already used
+  for the "Ours, after the passes" and "Shared" concept. `.slide-sub` now reads "eight
+  steps"; the staircase gained an eighth notch and the band padding was tightened from
+  `--sp-2` to `--sp-1` so all eight bands clear the timeline strip. Speaker notes and
+  presenter.json gained a note on the pass's separate Feb-Mar timing. Sandbox page
+  `s08-step-8-dry` offers three treatments - A the shipped plain peer, B set apart as the
+  post-wave pass, C the staircase retired - awaiting a decision. Presenter sync prints
+  `OK`, dash and diff checks pass. PR #130.
+
 - **2026-09-21, migrating_an_instance slide 17 (`#s-staging`) moved to slide 19.**
   At Joseph's request, moved Rebuilding staging to sit after Getting as close to DRY as we
   can, immediately before By the numbers. New run: 17 One codebase for every instance, 18
