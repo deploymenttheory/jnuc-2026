@@ -734,6 +734,21 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-21, migrating_an_instance slide 12 (`#s08`), step 4 reworded to cover the
+  import statements.** Joseph: `amend step 4 on 12 to contain "creation of import
+  statemtns & run"`. Step 4 was "Run the import."; now "Create the import statements from
+  the structured map and run the import," grounded in `#s11`'s pipeline (jamfpy to a
+  per-resource script to a structured map to a `for_each` block to import). `i-arrow-down-
+  tray` icon and `<li class="card step">` shape unchanged; no other step touched. Speaker
+  notes, presenter.json and the `.slide-sub` line carried no claim about step 4 being only
+  the run, so none needed editing. Sandbox page `s08-step-8-dry`, its index entry and
+  AGENTS.md's sandbox paragraph were checked - option B's "steps 3, 4 and 5 run or gate the
+  mechanical import" still reads true, nothing else mentions step 4, so none were edited.
+  AGENTS.md's slide-order line for `#s08` gained a clause naming what step 4 now covers.
+  Presenter sync prints `OK`, dash and diff checks pass. Disk screenshot of `#s08` blocked
+  again by the same worktree-isolation guard on the quoted Chrome binary path - skipped per
+  the coordinator, who verifies visually on their side. PR #132.
+
 - **2026-09-21, migrating_an_instance slide 12 (`#s08`), refinement step moved to position
   6.** Joseph: "for 12, move the new 8 to 6 so it's refine -> docs -> announce." Moved the
   refine-and-DRY `<li>` intact from position 8 to 6; renumbered steps 6-8 so the run reads

@@ -320,7 +320,8 @@ overlay - keep the two in step when slides move.
     `#s-sentinel .sn-*`) - **Gordon**
 12. `s08` Migration wave workflow (Dec 2025 - Jan 2026 bulk; eight steps as full-width
     bands stepping down the slide, numbers in an aligned gutter, step 3's freeze marked
-    with a red left edge, step 6 the refinement pass that makes the code DRY, added
+    with a red left edge, step 4 covers creating the import statements from the structured
+    map and running the import, step 6 the refinement pass that makes the code DRY, added
     2026-09-21 at position 8 and moved to position 6 the same day) - **Joseph**
 13. `s11` Tools and helpers (the pipeline diagram unchanged on the left - jamfpy -> script
     -> map -> for_each -> import; on the right the same four points as a numbered list, 1
