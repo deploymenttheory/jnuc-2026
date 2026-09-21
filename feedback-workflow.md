@@ -734,6 +734,15 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-21, migrating_an_instance slide 7 (`#s05`), environment names capitalised
+  consistently.** Joseph: capitalise Staging/Production consistently and keep "resource"
+  lower case. Fixed the slide-sub, all three `.mp-name` and `.mp-why` lines, the three SVG
+  `aria-label` strings and one notes paragraph, all of which mixed lower-case
+  staging/production with the correct capitalised forms; "resource"/"resources" stayed
+  lower case throughout. No facts, layout or CSS changed. Mirrored the one notes change
+  into `presenter.json`. Direct wording fix, no sandbox round. Presenter sync prints `OK`,
+  case, dash and diff checks pass. PR #134.
+
 - **2026-09-21, migrating_an_instance slide 16 (`#s14`) moved to slide 18.**
   At Joseph's request, moved Validating a migration to sit after Getting as close to DRY as
   we can, immediately before Rebuilding staging. New run: 16 One codebase for every
