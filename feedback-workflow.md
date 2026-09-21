@@ -744,7 +744,7 @@ it up - either way it is on disk for a recovering session.
   premise. Sandbox index entry and AGENTS.md slide-order/sandbox entries corrected for the
   move. Presenter sync prints `OK`, dash and diff checks pass. Chrome screenshot verification
   (steps b and c) blocked by the worktree-isolation guard, which flags the quoted
-  "Google Chrome" binary path - not built around, per instructions. PR #<TODO>.
+  "Google Chrome" binary path - not built around, per instructions. PR #131.
 
 - **2026-09-21, migrating_an_instance slide 12 (`#s08`), eighth step on refinement and DRY.**
   Joseph asked for a number 8 on slide 12 covering refinement and making the code DRY.
