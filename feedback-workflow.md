@@ -747,7 +747,7 @@ it up - either way it is on disk for a recovering session.
   cross-reference, and fixed one `#s-staging` speaker note that pointed back at "the last
   two slides" (the module pivot and DRY techniques), which is no longer accurate now that
   `#s14` sits between them and staging. Direct move, no sandbox round. Presenter sync
-  prints `OK`, dash and diff checks pass. PR not yet opened.
+  prints `OK`, dash and diff checks pass. PR #133.
 
 - **2026-09-21, migrating_an_instance slide 12 (`#s08`), refinement step moved to position
   6.** Joseph: "for 12, move the new 8 to 6 so it's refine -> docs -> announce." Moved the
