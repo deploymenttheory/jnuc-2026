@@ -659,11 +659,13 @@ Notable content slides:
   carry that distinction with it.
 - **Execution** (`#4`): a fan-out - a hub panel (one engineer seconded into the DevOps CoE,
   3 months, train-the-trainer, run iteratively rather than planned end to end) bracketed by
-  an SVG to five outcome cards, all plain (no per-card colour variants): materials written
-  together, delivery format iterated from theory-led to practical, hackathons that didn't
-  land, no existing playbook for migrating a Mac-centric team onto Terraform specifically,
-  and different delivery plans by skill level (laid-back and project-based for higher-skill
-  engineers). The hub's foot line carries the migration link as one subordinate sentence -
+  an SVG to five outcome cards, all plain (no per-card colour variants): no existing playbook
+  for migrating a Mac-centric team onto Terraform specifically, materials written together,
+  delivery format iterated from theory-led to practical, hackathons that didn't land, and
+  different delivery plans by skill level (laid-back and project-based for higher-skill
+  engineers; the playbook point was moved to first at Joseph's request, 2026-09-22, the other
+  four keeping their relative order). The hub's foot line carries the migration link as one
+  subordinate sentence -
   the secondment also produced someone who could run migration work when needed - rather
   than as its own spokes; migration waves and handover as topics belong elsewhere in the
   deck, not on this training-execution slide. Two full-width arrows underneath keep the
@@ -816,16 +818,20 @@ Notable content slides:
   2026-09-08. The existing fan-out layout remains: one Mac engineer in the DevOps CoE in
   a hub panel, a three-month full-time secondment to train the trainer, an SVG brace to
   five plain numbered outcome cards and two full-width arrows for the knowledge exchange.
-  The five headings read "We wrote the materials together", "Practical sessions worked
-  better", "The hackathon format did not work", "We had no training playbook" and
-  "We tailored plans to skill levels", each with a short supporting sentence. The hub
-  describes pairing Mac expertise with GitOps practice and adjusting training throughout
-  delivery; its foot retains the engineer's ability to support training and run migration
-  work. Body copy is 159 words, down from 236. All seven accepted speaker-note paragraphs
-  remain, including the delivery cue, the secondment-only meaning of three months, the
-  local lack of a training playbook and plans matched to skill level. Markup, styling,
-  typography and dimensions are unchanged. Classes `.fanout`, `.hub`, `.brace`,
-  `.spokes`/`.spoke`, `.flow`/`.flowrow`.
+  The five headings read "We had no training playbook", "We wrote the materials together",
+  "Practical sessions worked better", "The hackathon format did not work" and "We tailored
+  plans to skill levels", each with a short supporting sentence. The hub describes pairing
+  Mac expertise with GitOps practice and adjusting training throughout delivery; its foot
+  retains the engineer's ability to support training and run migration work. Body copy is
+  159 words, down from 236. All seven accepted speaker-note paragraphs remain, including
+  the delivery cue, the secondment-only meaning of three months, the local lack of a
+  training playbook and plans matched to skill level; the notes were reordered in step with
+  the cards. Markup, styling, typography and dimensions are unchanged. Classes `.fanout`,
+  `.hub`, `.brace`, `.spokes`/`.spoke`, `.flow`/`.flowrow`. **The playbook card moved to
+  first position on 2026-09-22 at Joseph's request**, straight into the deck with no
+  sandbox round; the other four cards kept their relative order and the `.n` numbering was
+  renumbered 01-05 to match. The `data-notes` paragraphs, which walk the cards in order,
+  were reordered the same way so the playbook paragraph now follows the hub paragraph.
 - **What didn't work** (`#5`, `s-what-didnt-work`): refined sandbox option E, "Teaching
   and the gaps", accepted 2026-09-08. The lead keeps 144 hours, roughly four weeks of
   learning, spread across six months. Three teaching issues sit above a full-width navy
