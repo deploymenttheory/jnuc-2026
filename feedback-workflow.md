@@ -734,6 +734,21 @@ it up - either way it is on disk for a recovering session.
 
 ### Done
 
+- **2026-09-22, training_a_team slide 4 "How we ran it", playbook point moved to
+  first.** Joseph: move point 4 ("We had no training playbook") to point 1. Moved the
+  `.spoke` from position 4 to position 1; the other four keep their relative order
+  (materials together, practical sessions, scenario based hackathons, tailored plans by
+  skill level) and the `.n` labels were renumbered 01-05 to match. Checked the SVG brace -
+  it is a generic five-point fan with no per-card content, so it needed no change.
+  `data-notes` walks the cards in order, so the playbook paragraph was moved to follow the
+  hub (secondment) paragraph, matching the new visual order; no wording changed. Updated
+  both "Execution (`#4`)" entries in `AGENTS.md` to the new order. No wording, CSS or other
+  markup changed. Direct move, no sandbox round. Verified with a disk screenshot: order and
+  numbering confirmed, no overflow. Dash lint clean; `git diff --stat origin/main` scoped
+  to `presentations/training_a_team/index.html` (two hunks inside slide 4) and `AGENTS.md`.
+  Training has no presenter.json, so presenter sync does not apply. Downloads await a
+  separate request. PR #135.
+
 - **2026-09-21, migrating_an_instance slide 7 (`#s05`), environment names capitalised
   consistently.** Joseph: capitalise Staging/Production consistently and keep "resource"
   lower case. Fixed the slide-sub, all three `.mp-name` and `.mp-why` lines, the three SVG
