@@ -502,9 +502,11 @@ removed with `git worktree remove --force <path>` once their branch is pushed or
 Not until Joseph says so. When he does: `make downloads` on this Mac (needs Keynote; the
 Makefile installs the dependencies itself), commit the regenerated `.key` and `.pptx` for both
 decks, push. `make pptx` refreshes the PowerPoint half alone and needs no Keynote. Details in `AGENTS.md` under
-"Building the downloads". Both formats were rebuilt together on 2026-09-11 at Dafydd's
-request, from the HTML at `0733418`: 23 slides with notes per deck, and the training interview
-on slide 16. Later HTML edits require another requested refresh.
+"Building the downloads". Last run 2026-09-23 at Dafydd's request, for `training_a_team`
+only: 23 slides with notes, the interview still on slide 16. `migrating_an_instance`'s two
+files were restored from git after the pass and stay at the 2026-09-11 build, from the HTML at
+`0733418`, so they are behind that deck's HTML and need the next requested rebuild. Later HTML
+edits require another requested refresh.
 
 ## Log
 
@@ -733,6 +735,33 @@ if there is nothing else to commit, left in the working tree until the merge com
 it up - either way it is on disk for a recovering session.
 
 ### Done
+
+- **2026-09-23, training_a_team slide 9 sub-line reworded and the downloads regenerated.**
+  At Dafydd's request, `#9` ("Learning priorities by role") now reads "Not everyone in your
+  team needs to know the knowledge to the same level." under the title, in place of "The same
+  three roles. How far each has to stretch depends on who else is in the building." His
+  wording, kept verbatim with a full stop added to match the other sub-lines. The bold lead
+  line, the matrix and the footnotes are untouched, and the speaker notes still open on the
+  two points the slide makes, so nothing else needed changing.
+
+  Then ran `make downloads` on this Mac using Keynote Creator Studio 15.3.1 and rebuilt
+  `ClickOps_to_GitOps.key` and `ClickOps_to_GitOps.pptx`, which had been stale since
+  2026-09-11 while the deck took more than twenty commits, among them the removal of the
+  Content types slide, the move of Louise's journey to slide 16 and the slide 4 playbook
+  reorder in PR #135. The two conference-named `FINAL - 1174 ...` copies were refreshed from
+  the same pair, so all four files are byte identical in pairs. The capture pass rewrites both
+  decks, so `migrating_an_instance`'s two downloads were restored from git and stay at their
+  2026-09-11 build, behind that deck's HTML and awaiting a separate request.
+
+  Verified: 23 slides with notes in both formats, the whole 41,751,708-byte interview embedded
+  at slide 16 in each, the build's own video placement and rect assertions passing unchanged
+  with MEDIA untouched, and the exported slides 1, 4, 9, 11, 16, 17 and 23 read against the
+  HTML. One stale comment in the deck's key handler, which named slide 13 as the interview
+  slide, now refers to it by name rather than by a number that drifts.
+
+  Flagged to Dafydd, not corrected here: `docs/timeline-notes.md` and AGENTS.md's training
+  slide map still list 24 slides in the pre-`76005e3` order, and AGENTS.md still describes
+  `#9` as three full-width bands rather than the 6x3 matrix it became in `35eca5a`.
 
 - **2026-09-22, training_a_team slide 4 "How we ran it", playbook point moved to
   first.** Joseph: move point 4 ("We had no training playbook") to point 1. Moved the

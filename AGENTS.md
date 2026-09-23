@@ -1042,9 +1042,12 @@ hand and all four files are committed** - the deploy only syncs them. **Rebuild 
 them in the same change as any deck edit**, or the downloads on the landing page go stale -
 nothing in CI checks this.
 
-Latest complete rebuild: 2026-09-11, from the HTML at `0733418`. Both decks have 23 slides
-with speaker notes. The training deck's interview is now on slide 16 after its latest reorder;
-MEDIA was updated before exporting both formats.
+Latest rebuild: 2026-09-23, `training_a_team` only, from the HTML in that same commit. 23
+slides, speaker notes on every one, the interview still on slide 16 and MEDIA unchanged. The
+capture pass rewrites both decks because the script takes a format but not a deck, so
+`migrating_an_instance`'s two files were restored from git afterwards: they remain the
+2026-09-11 build, from the HTML at `0733418`, and are now behind that deck's HTML. Refresh
+them with the next requested rebuild.
 
 | Command | Builds | Needs |
 |---|---|---|
